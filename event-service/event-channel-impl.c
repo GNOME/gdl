@@ -876,8 +876,6 @@ static void
 impl_CosEventChannelAdmin_EventChannel__destroy(impl_POA_CosEventChannelAdmin_EventChannel * servant, CORBA_Environment * ev)
 {
     PortableServer_ObjectId *objid;
-    impl_POA_CosEventChannelAdmin_SupplierAdmin *supplier_admin_servant;
-    impl_POA_CosEventChannelAdmin_ConsumerAdmin *consumer_admin_servant;
 
     while (servant->push_supplier) {
         impl_CosEventChannelAdmin_ProxyPushSupplier_disconnect_push_supplier ((impl_POA_CosEventChannelAdmin_ProxyPushSupplier*)servant->push_supplier->data, ev);
