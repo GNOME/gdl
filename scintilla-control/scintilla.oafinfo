@@ -40,5 +40,7 @@
 	<oaf_attribute name="description" type="string"
 	               value="GDF Variable Viewer"/>
 
+        <oaf_attribute name="nautilus:view_as_name" type="string"
+                        value="Code"/>
 </oaf_server>
 </oaf_info>

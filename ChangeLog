@@ -1,3 +1,9 @@
+2001-03-01  Ian McKellar  <ian@eazel.com>
+
+	* scintilla-control/scintilla.oafinfo:
+	Added a nautilus:view_as_name property to the oafinfo file so that
+	the Scintilla component can be used as a Nautilus view.
+	
 2001-02-28  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "sv" to ALL_LINGUAS.
