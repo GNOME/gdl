@@ -1,0 +1,11 @@
+<Root>
+	<commands>
+		<cmd name="FormatUpdate" _label="Update" _tip="Update the whole tree"/>
+	</commands>
+	
+	<menu>
+		<submenu name="Format" _label="_Format">
+            <menuitem name="FormatUpdate" verb=""/>
+		</submenu>
+	</menu>
+</Root>
