@@ -1,3 +1,9 @@
+2001-03-05  JP Rosevear  <jpr@ximian.com>
+
+	* scintilla-control/scintilla-highlight.c
+	(set_language_properties): don't just set basic properties if
+	there are keywords
+
 2001-03-01  Ian McKellar  <ian@eazel.com>
 
 	* scintilla-control/scintilla.oafinfo:
