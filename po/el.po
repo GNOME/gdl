@@ -1,0 +1,199 @@
+# gdl - greek translation
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# AARG! Anonymous <remailer@aarg.net>
+# Simos Xenitellis <simos@hellug.gr>
+#
+# aarg: 43 messages, initial translation
+# simos: review - 43 messages. 
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl 0.1.0\n"
+"POT-Creation-Date: 2001-12-08 08:58-0500\n"
+"PO-Revision-Date: 2001-12-09 19:59+0000\n"
+"Last-Translator: AARG! Anonymous <remailer@aarg.net>\n"
+"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-7\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: scintilla-control/scintilla-control.c:114
+msgid "Position in the buffer"
+msgstr "Θέση στον ενταμιευτή"
+
+#: scintilla-control/scintilla-control.c:118
+msgid "Current line number"
+msgstr "Αριθμός τρέχουσας γραμμής"
+
+#: scintilla-control/scintilla-control.c:122
+msgid "Beginning of the selection"
+msgstr "Αρχή επιλογής"
+
+#: scintilla-control/scintilla-control.c:126
+msgid "End of the selection"
+msgstr "Τέλος επιλογής"
+
+#: scintilla-control/scintilla-ui.xml.h:1
+msgid "C_ut"
+msgstr "Αποκο_πή"
+
+#: scintilla-control/scintilla-ui.xml.h:2
+msgid "Copy"
+msgstr "Επικόλληση"
+
+#: scintilla-control/scintilla-ui.xml.h:3
+msgid "Copy the selection"
+msgstr "Επικόλληση επιλεγμένων"
+
+#: scintilla-control/scintilla-ui.xml.h:4
+msgid "Cut"
+msgstr "Αποκοπή"
+
+#: scintilla-control/scintilla-ui.xml.h:5
+msgid "Cut the selection"
+msgstr "Αποκοπή επιλεγμένων"
+
+#: scintilla-control/scintilla-ui.xml.h:6
+msgid "Find A_gain"
+msgstr "Εύρεση _Ξανά"
+
+#: scintilla-control/scintilla-ui.xml.h:7
+msgid "Find text in the document"
+msgstr "Εύρεση κειμένου στο έγγραφο"
+
+#: scintilla-control/scintilla-ui.xml.h:8
+msgid "Paste"
+msgstr "Επικόλληση"
+
+#: scintilla-control/scintilla-ui.xml.h:9
+msgid "Paste the clipboard"
+msgstr "Επικόλληση του προχείρου"
+
+#: scintilla-control/scintilla-ui.xml.h:10
+msgid "Repeats last search for text in the document"
+msgstr "Επανάληψη προηγούμενου ψαξίματος για κείμενο στο έγγραφο"
+
+#: scintilla-control/scintilla-ui.xml.h:11
+msgid "Replace text in the document"
+msgstr "Αντικατάσταση κειμένου στο έγγραφο"
+
+#: scintilla-control/scintilla-ui.xml.h:12
+msgid "_Copy"
+msgstr "Αντιγρα_φή"
+
+#: scintilla-control/scintilla-ui.xml.h:13
+msgid "_Edit"
+msgstr "_Επεξεργασία"
+
+#: scintilla-control/scintilla-ui.xml.h:14
+msgid "_Find"
+msgstr "_Εύρεση"
+
+#: scintilla-control/scintilla-ui.xml.h:15
+msgid "_Find..."
+msgstr "_Εύρεση..."
+
+#: scintilla-control/scintilla-ui.xml.h:16
+msgid "_Paste"
+msgstr "Επι_κόλληση"
+
+#: scintilla-control/scintilla-ui.xml.h:17
+msgid "_Replace"
+msgstr "_Αντικατάσταση"
+
+#: scintilla-control/scintilla-ui.xml.h:18
+msgid "_Replace..."
+msgstr "_Αντικατάσταση..."
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:1
+msgid "Factory for the Scintilla control."
+msgstr "Έλεγχος του Εργοστασίου Scintilla."
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:2
+msgid "Scintilla Editor"
+msgstr "Συντάκτης του Scintilla"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:3
+msgid "Scintilla Factory"
+msgstr "Εργοστάσιο Scintilla"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:4
+msgid "Source"
+msgstr "Πηγαίος κώδικας"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:5
+msgid "Syntax highlighting editor control."
+msgstr "Συστατικό επεξεργαστή κειμένου αναδείκνισης συντακτικού."
+
+#: scintilla-control/scintilla-find.c:105
+#: scintilla-control/scintilla-find.c:106
+msgid "Find"
+msgstr "Εύρεση"
+
+#: scintilla-control/scintilla-find.c:114
+#: scintilla-control/scintilla-find.c:345
+msgid "Find:"
+msgstr "Εύρεση:"
+
+#: scintilla-control/scintilla-find.c:127
+#: scintilla-control/scintilla-find.c:371
+msgid "Case sensitive"
+msgstr "Πεζά/κεφαλαία διαφέρουν"
+
+#: scintilla-control/scintilla-find.c:130
+#: scintilla-control/scintilla-find.c:374
+msgid "Whole word"
+msgstr "Πλήρης λέξη"
+
+#: scintilla-control/scintilla-find.c:133
+#: scintilla-control/scintilla-find.c:377
+msgid "Match word start"
+msgstr "Ταίριασμα αρχής λέξης"
+
+#. search direction radio group
+#: scintilla-control/scintilla-find.c:137
+msgid "Direction"
+msgstr "Κατεύθυνση"
+
+#: scintilla-control/scintilla-find.c:144
+msgid "Forward"
+msgstr "Εμπρός"
+
+#: scintilla-control/scintilla-find.c:148
+msgid "Backward"
+msgstr "Πίσω"
+
+#: scintilla-control/scintilla-find.c:274
+msgid "Replace confirmation"
+msgstr "Επιβεβαίωση αντικατάστασης"
+
+#: scintilla-control/scintilla-find.c:275
+#: scintilla-control/scintilla-find.c:337
+msgid "Replace"
+msgstr "Αντικατάσταση"
+
+#: scintilla-control/scintilla-find.c:276
+msgid "Replace All"
+msgstr "Αντικατάσταση Όλων"
+
+#: scintilla-control/scintilla-find.c:277
+msgid "Skip"
+msgstr "Παράκαμψη"
+
+#: scintilla-control/scintilla-find.c:280
+msgid "Found occurrence in document"
+msgstr "Βρέθηκε συμβάν στο έγγραφο"
+
+#: scintilla-control/scintilla-find.c:336
+msgid "Find and Replace"
+msgstr "Εύρεση και Αντικατάσταση"
+
+#: scintilla-control/scintilla-find.c:356
+msgid "Replace with:"
+msgstr "Αντικατάσταση με:"
+
+#. selection only checkbox
+#: scintilla-control/scintilla-find.c:381
+msgid "Selection only"
+msgstr "Μόνον επιλογή"
+
