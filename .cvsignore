@@ -29,3 +29,4 @@ gdlConf.sh
 *.tar.gz
 xml-i18n-*
 gdl.spec
+*.tags

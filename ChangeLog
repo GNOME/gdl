@@ -1,5 +1,10 @@
 2001-12-20 Naba Kumar <kh_naba@yahoo.com>
 
+	* .cvsignore
+	Update file.
+
+2001-12-20 Naba Kumar <kh_naba@yahoo.com>
+
 	* symbol-browser/.cvsignore
 	  symbol-browser/tagmanager/.cvsignore
 	  symbol-browser/tagmanager/include/.cvsignore
