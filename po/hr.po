@@ -1,11 +1,11 @@
 # Translation of gdl to Croatian
 # Copyright (C) Croatian team
-# Translators: Automatski Prijevod <>,Denis Lackovic <delacko@fly.srk.fer.hr>,
+# Translators: Automatski Prijevod <>,Danijel Studen <dstuden@vuka.hr>,Denis Lackovic <delacko@fly.srk.fer.hr>,Ivan Jankovic <rbrrneck@gmx.net>,
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl 0\n"
 "POT-Creation-Date: 2003-11-06 18:07+0100\n"
-"PO-Revision-Date: 2003-11-07 18:40+CET\n"
+"PO-Revision-Date: 2003-11-10 16:49+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #: gdl/gdl-data-view.c:421
 msgid "Expander Size"
-msgstr ""
+msgstr "Veličina razgranika"
 
 #: gdl/gdl-data-view.c:422
 msgid "Size of the expander arrow."
@@ -208,7 +208,7 @@ msgstr "Stranica"
 
 #: gdl/gdl-dock-notebook.c:135
 msgid "The index of the current page"
-msgstr ""
+msgstr "Indeks odabrane strane"
 
 #: gdl/gdl-dock-object.c:121
 msgid "Unique name for identifying the dock object"
@@ -565,7 +565,7 @@ msgstr "Neodređeno"
 #: symbol-browser-control/symbol-browser.c:379
 #: symbol-browser-control/symbol-browser.c:389
 msgid "<No Symbol>"
-msgstr ""
+msgstr "<Nema Simbola>"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:1
 msgid "Exit"
