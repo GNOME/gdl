@@ -9,6 +9,8 @@
 
 	* scintilla-control/Makefile.am: Removed duplicated EXTRA_DIST.
 	
+	* gdl.spec.in: New file.
+
 2001-07-20  Dave Camp  <dave@ximian.com>
 
         * Applied a patch from Gustavo M. Giraldez <gustavo.giraldez@gmx.net>
