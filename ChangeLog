@@ -1,3 +1,24 @@
+2001-12-20 Naba Kumar <kh_naba@yahoo.com>
+
+	* Makefile.am:
+	Added Module symbol-browser
+
+	* configure.in:
+	Added library checks for glib and gal.
+	Added ctags configuration checks to be used with
+	symbol-browser.
+	Added configure outputs for symbol-browser.
+
+	* acconfig.h:
+	Added undefs for ctags configuration.
+
+	* idl/symbol-browser.idl, idl/Makefile.am,
+	  gdl/Makefile.am, idl/GDL.idl:
+	Added symbol-browser.idl
+
+	* symbol-browser/*/*/*
+	Added symbol-browser module.
+
 2001-12-09  Simos Xenitellis  <simos@hellug.gr>
 
 	* configure.in: Added "el" to ALL_LINGUAS.

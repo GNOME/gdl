@@ -20,7 +20,8 @@ IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/idl $(IDL_CFLAGS)
 
 $(CORBA_GENERATED) : $(idl_dir)/GDL.idl \
 		     $(idl_dir)/editor-buffer.idl \
-		     $(idl_dir)/editor-gutter.idl
+		     $(idl_dir)/editor-gutter.idl \
+		     $(idl_dir)/symbol-browser.idl
 	$(ORBIT_IDL) $(IDL_FLAGS) $(idl_dir)/GDL.idl
 
 libgdl_la_SOURCES = \

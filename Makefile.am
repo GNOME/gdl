@@ -1,4 +1,4 @@
-SUBDIRS = idl gdl scintilla-control po intl
+SUBDIRS = idl gdl scintilla-control symbol-browser-control po intl
 
 m4datadir = $(datadir)/aclocal
 m4data_DATA = gdl.m4
