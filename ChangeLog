@@ -1,3 +1,9 @@
+2001-10-03  Gustavo Giráldez <gustavo.giraldez@gmx.net>
+
+       * gdl/gdl-dock.h: fixed bug to correctly position the xored
+       rectangle for the possible docking position when the dock is
+       not at the origin of its GdkWindow.
+
 2001-10-02  JP Rosevear  <jpr@ximian.com>
 
 	* scintilla-control/scintilla/Makefile.am: build static libtools

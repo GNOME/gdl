@@ -84,7 +84,7 @@ GtkWidget *item1, *item2, *item3, *item4, *item5;
 int
 main (int argc, char **argv)
 {
-	GtkWidget *win, *dock;
+	GtkWidget *win, *dock, *box;
 	int i;
 
 	gtk_init (&argc, &argv);
@@ -96,9 +96,14 @@ main (int argc, char **argv)
 	gtk_window_set_title (GTK_WINDOW (win), "Test!");
 	gtk_window_set_default_size (GTK_WINDOW (win), 400, 400);
 
+	box = gtk_vbox_new (FALSE, 0);
+	gtk_container_add (GTK_CONTAINER (win), box);
+
+	gtk_container_add (GTK_CONTAINER (box), gtk_button_new_with_label ("Test"));
+
 	/* create the dock */
 	dock = gdl_dock_new ();
-	gtk_container_add (GTK_CONTAINER (win), dock);
+	gtk_container_add (GTK_CONTAINER (box), dock);
 	gtk_container_set_border_width (GTK_CONTAINER (dock), 10);
 
 	/* create the dock items */

@@ -645,8 +645,8 @@ gdl_dock_drag_motion (GdlDock     *dock,
         should_float = FALSE;
 
 	/* Set docking indicator rectangle to the GdlDock size. */
-        dock->possible_target.rect.x = border_width;
-        dock->possible_target.rect.y = border_width;
+        dock->possible_target.rect.x = alloc->x + border_width;
+        dock->possible_target.rect.y = alloc->y + border_width;
         dock->possible_target.rect.width = alloc->width - 2 * border_width;
         dock->possible_target.rect.height = alloc->height - 2 * border_width;
 
@@ -671,7 +671,7 @@ gdl_dock_drag_motion (GdlDock     *dock,
                 dock->possible_target.position = GDL_DOCK_TOP;
                 dock->possible_target.rect.height *= SPLIT_RATIO;
             } else if (new_y > alloc->height - 2 * border_width) {
-                dock->possible_target.position = GDL_DOCK_BOTTOM;                
+                dock->possible_target.position = GDL_DOCK_BOTTOM;
                 dock->possible_target.rect.y += 
                     dock->possible_target.rect.height * (1 - SPLIT_RATIO);
                 dock->possible_target.rect.height *= SPLIT_RATIO;
@@ -681,8 +681,8 @@ gdl_dock_drag_motion (GdlDock     *dock,
                                                  rel_x, rel_y,
                                                  &dock->possible_target);
                 if (!should_float) {
-                    dock->possible_target.rect.x += border_width;
-                    dock->possible_target.rect.y += border_width;
+                    dock->possible_target.rect.x += alloc->x + border_width;
+                    dock->possible_target.rect.y += alloc->y + border_width;
                 }
             }
         }
