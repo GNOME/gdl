@@ -1,5 +1,11 @@
 2004-03-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
+	* gdl/gdl-dock-master.c (gdl_dock_master_drag_motion): When
+	traversing the widget hierarchy looking for a dock to request
+	docking ignore those docks not belonging to ourselves.
+
+2004-03-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
 	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_expose)
 	(gdl_dock_item_grip_item_notify, gdl_dock_item_grip_size_allocate):
 	Fix some RTL issues and the positioning for the iconify button when
