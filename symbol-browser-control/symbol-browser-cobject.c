@@ -103,7 +103,7 @@ impl_clear (PortableServer_Servant servant,
 	GnomeSymbolBrowserCObject *cobj;
 	
 	cobj = GNOME_SYMBOL_BROWSER_COBJECT (bonobo_object_from_servant (servant));
-	/* gnome_symbol_browser_clear(GNOME_SYMBOL_BROWSER(cobj->symbol_browser)); */
+	gnome_symbol_browser_clear (GNOME_SYMBOL_BROWSER (cobj->symbol_browser));
 }
 
 static void
