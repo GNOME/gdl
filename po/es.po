@@ -6,13 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"POT-Creation-Date: 2003-03-14 19:59+0100\n"
-"PO-Revision-Date: 2003-03-14 23:56+0100\n"
-"Last-Translator: Germán Poo Caamaño <gpoo@ubiobio.cl>\n"
+"POT-Creation-Date: 2003-03-21 12:07+0100\n"
+"PO-Revision-Date: 2003-03-21 15:57-0300\n"
+"Last-Translator: Pablo Gonzalo del Campo <pablodc@bigfoot.com>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.1\n"
 
 #: gdl/gdl-data-view.c:421
 msgid "Expander Size"
@@ -24,11 +25,11 @@ msgstr "Tamaño de la flecha del expansor."
 
 #: gdl/gdl-dock-item-grip.c:244
 msgid "Dock the toolbar"
-msgstr "Fijar en la barra de herramientas"
+msgstr "Empotrar en la barra de herramientas"
 
 #: gdl/gdl-dock-item-grip.c:245
 msgid "Un dock the toolbar"
-msgstr "Soltar de la barra de herramientas"
+msgstr "Desempotrar de la barra de herramientas"
 
 #: gdl/gdl-dock-item.c:242
 msgid "Orientation"
@@ -36,7 +37,7 @@ msgstr "Orientación"
 
 #: gdl/gdl-dock-item.c:243
 msgid "Orientation of the docking item"
-msgstr "Orientación del ítem fijado"
+msgstr "Orientación del elemento empotrado"
 
 #: gdl/gdl-dock-item.c:258
 msgid "Resizable"
@@ -44,9 +45,7 @@ msgstr "Redimensionable"
 
 #: gdl/gdl-dock-item.c:259
 msgid "If set, the dock item can be resized when docked in a paned"
-msgstr ""
-"Indica si el ítem fijado puede cambiar de tamaño cuando está fijado en un "
-"panel."
+msgstr "Si esta activado, el elemento fijo puede ser redimensionado cuando es empotrado en un paned"
 
 #: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
@@ -57,16 +56,16 @@ msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
-"Comportamiento general del ítem fijado (p.e. si éste puede ser flotante, "
+"Comportamiento general del elemento fijo (p.e. si éste puede ser flotante, "
 "bloqueado, etc.)"
 
 #: gdl/gdl-dock-item.c:275
 msgid "Grip size"
-msgstr ""
+msgstr "Tamaño de la agarradera"
 
 #: gdl/gdl-dock-item.c:276
 msgid "Size in pixels of the grip to drag the dock item"
-msgstr ""
+msgstr "Tamaño en píxeles de la agarradera para arrastrar el elemento fijo"
 
 #: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:143
 msgid "Locked"
@@ -74,7 +73,9 @@ msgstr "Bloqueado"
 
 #: gdl/gdl-dock-item.c:283
 msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr "Indica si el ítem fijado puede ser arrastrado y si debe mostrar un candado"
+msgstr ""
+"Si esta activado el elemento fijo no puede ser arrastrado por los alrededores y no "
+"muestra una agarradera"
 
 #: gdl/gdl-dock-item.c:291
 msgid "Preferred width"
@@ -82,7 +83,7 @@ msgstr "Ancho preferido"
 
 #: gdl/gdl-dock-item.c:292
 msgid "Preferred width for the dock item"
-msgstr "Ancho preferido para el ítem fijado"
+msgstr "Ancho preferido para el elemento fijo"
 
 #: gdl/gdl-dock-item.c:298
 msgid "Preferred height"
@@ -90,7 +91,7 @@ msgstr "Alto preferido"
 
 #: gdl/gdl-dock-item.c:299
 msgid "Preferred height for the dock item"
-msgstr "Alto preferido para el ítem fijado"
+msgstr "Alto preferido para el elemento fijo"
 
 #: gdl/gdl-dock-item.c:546
 #, c-format
@@ -98,6 +99,8 @@ msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
+"No se puede agregar un objeto fijo (%p del tipo %s) dentro de %s. Utilice GdlDock o "
+"algún otro objeto combinado fijo."
 
 #: gdl/gdl-dock-item.c:553
 #, c-format
@@ -111,7 +114,7 @@ msgstr ""
 #: gdl/gdl-dock-item.c:1149
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr ""
+msgstr "Estrategia de empotramiento no soportada %s en el objeto fijo del tipo %s"
 
 #. Hide menuitem.
 #: gdl/gdl-dock-item.c:1231
@@ -134,7 +137,7 @@ msgstr "Maestro"
 
 #: gdl/gdl-dock-layout.c:126
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr ""
+msgstr "Objeto GdlDockMaster al cual el objeto de distribución se encuentra adjunto"
 
 #: gdl/gdl-dock-layout.c:133
 msgid "Dirty"
@@ -168,7 +171,7 @@ msgstr "Nombre"
 
 #: gdl/gdl-dock-layout.c:776 gdl/layout.glade.h:2
 msgid "Dock items"
-msgstr "Itemes fijados"
+msgstr "Elementos fijos"
 
 #: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
 msgid "Saved layouts"
@@ -177,9 +180,9 @@ msgstr "Formato guardado"
 #: gdl/gdl-dock-layout.c:824
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is "
-"'%s'"
-msgstr ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr "Al cargar la distribución: No se sabe como crear un objeto fijo cuyo apodo sea «%s»"
 
 #: gdl/gdl-dock-layout.c:1303
 msgid "Layout managment"
@@ -191,19 +194,22 @@ msgstr "Título predeterminado"
 
 #: gdl/gdl-dock-master.c:137
 msgid "Default title for newly created floating docks"
-msgstr "Título preestablecido para los paneles flotantes recién creados"
+msgstr "Título predeterminado para los empotrables flotantes recién creados"
 
 #: gdl/gdl-dock-master.c:144
 msgid ""
-"If is set to 1, all the dock items bound to the master are locked; if it's 0, "
-"all are unlocked; -1 indicates inconsistency among the items"
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
+"Si esta definido como 1, todos los límites de los objetos fijos al maestro son "
+"bloqueados; si es 0 todos son desbloqueados, 1 indica una inconsistencia entre "
+"los elementos."
 
 #: gdl/gdl-dock-master.c:736
 #, c-format
 msgid ""
-"master %p: unable to add object %p[%s] to the hash.  There already is an item "
-"with that name (%p)."
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
 msgstr ""
 "el maestro %p no puede añadir el objeto %p[%s] al hash.  Ya existe un ítem "
 "con dicho nombre (%p)."
@@ -214,6 +220,8 @@ msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
+"El nuevo controlador fijo %p es automático.  Sőlo los objetos fijos manuales deberían ser "
+"llamados controlador."
 
 #: gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -225,7 +233,7 @@ msgstr "El índice de la página actual"
 
 #: gdl/gdl-dock-object.c:121
 msgid "Unique name for identifying the dock object"
-msgstr "Nombre único para identificar al objeto de fijación"
+msgstr "Nombre único para identificar al objeto fijo"
 
 #: gdl/gdl-dock-object.c:128
 msgid "Long name"
@@ -233,15 +241,15 @@ msgstr "Nombre largo"
 
 #: gdl/gdl-dock-object.c:129
 msgid "Human readable name for the dock object"
-msgstr "Nombre legible por el humano para el objeto de fijación"
+msgstr "Nombre legible por el humano para el objeto de fijo"
 
 #: gdl/gdl-dock-object.c:135
 msgid "Dock master"
-msgstr "Empotrable maestro"
+msgstr "Maestro fijo"
 
 #: gdl/gdl-dock-object.c:136
 msgid "Dock master this dock object is bound to"
-msgstr ""
+msgstr "El maestro fijo al que este objeto fijo se encuentra atado"
 
 #: gdl/gdl-dock-object.c:405
 #, c-format
@@ -249,6 +257,8 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
+"Llamada a gdl_dock_object_dock en el objeto fijo %p (el objeto es del tipo %s), el "
+"cual no tiene implementado este método"
 
 #: gdl/gdl-dock-object.c:534
 #, c-format
@@ -256,16 +266,18 @@ msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
+"Operación de empotramiento requerida en un objeto suelto %p. La aplicación podría "
+"fallar"
 
 #: gdl/gdl-dock-object.c:541
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr ""
+msgstr "No se puede empotrar %p a %p porque pertenecen a diferentes maestros"
 
 #: gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr ""
+msgstr "Intenta sujetarse a %p un objeto %p que ya esta fijo y atado  (maestro actual: %p)"
 
 #: gdl/gdl-dock-paned.c:134
 msgid "Position"
@@ -284,6 +296,8 @@ msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
+"Define si el contenedor se pegará a su anfitrión o se moverá hacia arriba jerárquicamente "
+"cuando el anfitrión es re-empotrado"
 
 #: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
@@ -291,7 +305,7 @@ msgstr "Host"
 
 #: gdl/gdl-dock-placeholder.c:136
 msgid "The dock object this placeholder is attached to"
-msgstr ""
+msgstr "El objeto fijo al que este contenedor se encuentra adjunto"
 
 #: gdl/gdl-dock-placeholder.c:143
 msgid "Next placement"
@@ -301,31 +315,31 @@ msgstr "Siguiente ubicación"
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
-msgstr ""
+msgstr "La posición en la cual un elemento será empotrado a nuestro anfitrión si se hace una petición para empotrar."
 
 #: gdl/gdl-dock-placeholder.c:305
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr ""
+msgstr "Intenta empotrar un objeto fijo a un contenedor suelto"
 
 #: gdl/gdl-dock-placeholder.c:419
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr ""
+msgstr "Se obtuvo una señal suelta desde un objeto (%p) que no es nuestro anfitrión %p"
 
 #: gdl/gdl-dock-placeholder.c:440
 #, c-format
 msgid ""
-"Something weird happened while getting the child placement for %p from parent "
-"%p"
-msgstr ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr "Algo extraño ha sucedido mientras se obtenía la colocación del hijo para %p del padre %p"
 
 #: gdl/gdl-dock-tablabel.c:130
 msgid "Controlling dock item"
-msgstr "Elemento empotrable de control"
+msgstr "Elemento fijo de control"
 
 #: gdl/gdl-dock-tablabel.c:131
 msgid "Dockitem which 'owns' this tablabel"
-msgstr ""
+msgstr "Elemento fijo que «posee» esta tablabel"
 
 #: gdl/gdl-dock.c:177
 msgid "Floating"
@@ -333,11 +347,11 @@ msgstr "Flotante"
 
 #: gdl/gdl-dock.c:178
 msgid "Whether the dock is floating in its own window"
-msgstr ""
+msgstr "Define si el empotrable es flotante en su propia ventana"
 
 #: gdl/gdl-dock.c:186
 msgid "Default title for the newly created floating docks"
-msgstr ""
+msgstr "Título predeterminado para los nuevos empotrables creados recientemente"
 
 #: gdl/gdl-dock.c:192
 msgid "Width"
@@ -345,7 +359,7 @@ msgstr "Ancho"
 
 #: gdl/gdl-dock.c:193
 msgid "Width for the dock when it's of floating type"
-msgstr ""
+msgstr "Ancho para el empotrable cuando es del tipo flotante"
 
 #: gdl/gdl-dock.c:200
 msgid "Height"
@@ -353,7 +367,7 @@ msgstr "Alto"
 
 #: gdl/gdl-dock.c:201
 msgid "Height for the dock when it's of floating type"
-msgstr ""
+msgstr "Alto del empotrable cuando es del tipo flotante"
 
 #: gdl/gdl-dock.c:208
 msgid "Float X"
@@ -435,7 +449,7 @@ msgstr "_Cargar"
 
 #: gdl/layout.glade.h:6
 msgid "_Lock dock items"
-msgstr "B_loquear elementos empotrados"
+msgstr "B_loquear los elementos fijos"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
 msgid "Factory for the Gnome Symbol Browser control."
