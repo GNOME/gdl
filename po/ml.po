@@ -1,18 +1,20 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# translation of gdl.HEAD.ml.po to 
 # This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # FSF-India <locale@gnu.org.in>, 2003.
+# Suresh Valiya Parambil <mvpsuresh@yahoo.com>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:gdl.HEAD\n"
+"Project-Id-Version: gdl.HEAD.ml\n"
 "POT-Creation-Date: 2003-06-06 04:02+0200\n"
-"PO-Revision-Date: 2003-07-05 10:29+0530\n"
-"Last-Translator: FSF-India <locale@gnu.org.in>\n"
-"Language-Team: Malayalam <locale@gnu.org.in>\n"
+"PO-Revision-Date: 2003-07-02 22:04-0600\n"
+"Last-Translator: Suresh Valiya Parambil <mvpsuresh@yahoo.com>\n"
+"Language-Team:  <ml@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0\n"
 
 #: gdl/gdl-data-view.c:421
 msgid "Expander Size"
@@ -20,7 +22,7 @@ msgstr "വികസിതരൂപം"
 
 #: gdl/gdl-data-view.c:422
 msgid "Size of the expander arrow."
-msgstr ""
+msgstr "വികസിത ശരത്തിന്റെ വലിപ്പം"
 
 #: gdl/gdl-dock-item-grip.c:244
 #, fuzzy
@@ -50,7 +52,7 @@ msgstr ""
 
 #: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
-msgstr ""
+msgstr "ഇനത്തിന്റെ സ്വഭാവം"
 
 #: gdl/gdl-dock-item.c:267
 msgid ""
@@ -71,8 +73,7 @@ msgid "Locked"
 msgstr "പൂട്ടി"
 
 #: gdl/gdl-dock-item.c:283
-msgid ""
-"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 
 #: gdl/gdl-dock-item.c:291
@@ -160,7 +161,7 @@ msgstr "ദൃശ്യമായ"
 
 #: gdl/gdl-dock-layout.c:687
 msgid "Item"
-msgstr ""
+msgstr "ഇനം"
 
 #: gdl/gdl-dock-layout.c:737 gdl/gdl-dock-object.c:120
 msgid "Name"
@@ -262,8 +263,7 @@ msgstr ""
 
 #: gdl/gdl-dock-object.c:583
 #, c-format
-msgid ""
-"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 
 #: gdl/gdl-dock-paned.c:134
@@ -276,7 +276,7 @@ msgstr ""
 
 #: gdl/gdl-dock-placeholder.c:127
 msgid "Sticky"
-msgstr ""
+msgstr "ഒട്ടുന്ന"
 
 #: gdl/gdl-dock-placeholder.c:128
 msgid ""
@@ -328,7 +328,7 @@ msgstr ""
 
 #: gdl/gdl-dock.c:177
 msgid "Floating"
-msgstr ""
+msgstr "ഒഴുകുന്ന"
 
 #: gdl/gdl-dock.c:178
 msgid "Whether the dock is floating in its own window"
@@ -644,3 +644,4 @@ msgstr ""
 #: symbol-browser-control/test-symbol-browser.c:292
 msgid "Can't initialize bonobo!"
 msgstr ""
+
