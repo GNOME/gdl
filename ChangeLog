@@ -1,3 +1,7 @@
+2001-07-06  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla/Makefile.am (libscintilla_widget_a_SOURCES): Added the .h files.
+
 2001-06-19  Dave Camp  <dave@ximian.com>
 
 	* scintilla-control/scintilla/ScintillaGTK.cxx

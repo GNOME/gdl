@@ -30,6 +30,13 @@ libscintilla_widget_a_SOURCES= \
 	ViewStyle.cxx \
 	Style.cxx \
 	Indicator.cxx \
-	AutoComplete.cxx
+	AutoComplete.cxx \
+	Accessor.h          Editor.h      PropSet.h          SVector.h \
+	AutoComplete.h      Indicator.h   SciLexer.h         UniConversion.h \
+	CallTip.h           KeyMap.h      ScintillaBase.h    ViewStyle.h \
+	CellBuffer.h        KeyWords.h    Scintilla.h        WinDefs.h \
+	ContractionState.h  LineMarker.h  ScintillaWidget.h  WindowAccessor.h \
+	DocumentAccessor.h  Platform.h    SString.h \
+	Document.h          PosRegExp.h   Style.h
 
 
