@@ -31,6 +31,7 @@ libgdl_la_LIBADD = \
 
 libgdlincludedir = $(includedir)/gdl
 libgdlinclude_HEADERS = \
+	$(CORBA_GENERATED_HEADER_FILES) \
 	gdl.h \
 	gdl-server-manager.h \
 	gdl-tools.h

@@ -1,4 +1,23 @@
+2000-12-02  Dave Camp  <dave@helixcode.com>
+
+	* scintilla-control/scintilla-ui.xml: Added toolbar items.
+
+	* scintilla-control/scintilla-editor-buffer.c (impl_get_chars): 
+	Renamed from impl_read().
+	(impl_insert): Changed to reflect idl changes.
+	(init_editor_buffer_corba_class): s/read/get_chars/.
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Added 
+	selection_start and selection_end properties.
+	(scintilla_activate_cb): Rearrange the freezing.
+	(get_prop): Implement the selection_start and selection_end props.
+
+	* idl/editor-buffer.idl: Replaced read() with get_chars().
+	Take a null-terminated string for insert().
+
+	* gdl/Makefile.am (libgdlinclude_HEADERS): Install 
+	CORBA_GENERATED_HEADER_FILES
+
 2000-11-11  JP Rosevear  <jpr@helixcode.com>
 
 	* NEWS: Remove borrowed cruft
-

@@ -20,4 +20,11 @@
 		 	</placeholder>
 		</submenu>
 	</menu>
+	<dockitem name="StandardToolbar">
+		<placeholder name="EditorClipboard">
+	                        <menuitem name="EditCut" verb="" _label="C_ut"/>
+                	        <menuitem name="EditCopy" verb="" _label="_Copy"/>
+	                        <menuitem name="EditPaste" verb="" _label="_Paste"/>
+		</placeholder>
+	</dockitem>
 </Root>

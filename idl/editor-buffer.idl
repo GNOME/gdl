@@ -25,8 +25,8 @@ module Development {
         typedef sequence<octet> iobuf;
         
         long get_length ();
-	void read (in long offset, in long count, out iobuf buffer);
-	void insert (in long offset, in iobuf buffer);
+	void get_chars (in long offset, in long count, out iobuf buffer);
+	void insert (in long offset, in string str);
         void delete (in long offset, in long count);
     };
 };

@@ -1,4 +1,4 @@
-SUBDIRS = gdl scintilla-control po intl
+SUBDIRS = idl gdl scintilla-control po intl
 
 confexecdir = $(libdir)
 confexec_DATA = gdlConf.sh 

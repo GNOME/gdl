@@ -35,7 +35,9 @@
 #include <gdl/gdl-server-manager.h>
 
 enum {
-  PROP_POSITION = 0
+    PROP_POSITION,
+    PROP_SELECTION_START,
+    PROP_SELECTION_END
 };
 
 static void init_scintilla_control_factory (void);
@@ -102,6 +104,18 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
 			     BONOBO_ARG_LONG, NULL,
 			     "Position in the buffer", 
 			     BONOBO_PROPERTY_UNSTORED);
+
+    bonobo_property_bag_add (pb, "selection_start", PROP_SELECTION_START,
+			     BONOBO_ARG_LONG, NULL,
+			     "Beginning of the selection", 
+			     BONOBO_PROPERTY_UNSTORED);
+
+    bonobo_property_bag_add (pb, "selection_end", PROP_SELECTION_END,
+			     BONOBO_ARG_LONG, NULL,
+			     "End of the selection", 
+			     BONOBO_PROPERTY_UNSTORED);
+
+    bonobo_control_set_properties (control, pb);
 			  
     /* Add other interfaces */
     file_impl = scintilla_persist_file_new (sci);
@@ -122,21 +136,26 @@ scintilla_activate_cb (BonoboControl *control,
 {
     BonoboUIComponent *ui_component;
     ui_component = bonobo_control_get_ui_component (control);
+
     if (activate) {
 	Bonobo_UIContainer remote_uic;
-	
-	/* Hook up the user interface */
-	bonobo_ui_component_add_verb_list_with_data (ui_component, verbs, sci);
 
 	remote_uic = bonobo_control_get_remote_ui_container (control);
 	bonobo_ui_component_set_container (ui_component, remote_uic);
+
+        bonobo_ui_component_freeze (ui_component, NULL);
+
+	/* Hook up the user interface */
+	bonobo_ui_component_add_verb_list_with_data (ui_component, verbs, sci);
+	
 	bonobo_object_release_unref (remote_uic, NULL);
-	bonobo_ui_component_freeze (ui_component, NULL);
 	bonobo_ui_util_set_ui (ui_component, GDL_DATADIR,
 			       "scintilla-ui.xml", "scintilla-control");
-	bonobo_ui_component_thaw (ui_component, NULL);
+        bonobo_ui_component_thaw (ui_component, NULL);
     } else {
+#if 0
 	bonobo_ui_component_rm (ui_component, "/", NULL);
+#endif
 	bonobo_ui_component_unset_container (ui_component);
     }
 }
@@ -159,7 +178,19 @@ set_prop (BonoboPropertyBag *bag,
 	long pos = BONOBO_ARG_GET_LONG (arg);
 	scintilla_send_message (sci, SCI_GOTOPOS, pos, 0);
 	break;
-    }
+    } 
+    case PROP_SELECTION_START :
+    {
+	long pos = BONOBO_ARG_GET_LONG (arg);
+	scintilla_send_message (sci, SCI_SETSELECTIONSTART, pos, 0);
+	break;
+    } 
+    case PROP_SELECTION_END :
+    {
+	long pos = BONOBO_ARG_GET_LONG (arg);
+	scintilla_send_message (sci, SCI_SETSELECTIONEND, pos, 0);
+	break;
+    } 
     }    
 }
 
@@ -175,6 +206,18 @@ get_prop (BonoboPropertyBag *bag,
     case PROP_POSITION :
     {
 	long pos = scintilla_send_message (sci, SCI_GETCURRENTPOS, 0, 0);
+	BONOBO_ARG_SET_LONG (arg, pos);
+	break;
+    }
+    case PROP_SELECTION_START :
+    {
+	long pos = scintilla_send_message (sci, SCI_GETSELECTIONSTART, 0, 0);
+	BONOBO_ARG_SET_LONG (arg, pos);
+	break;
+    }
+    case PROP_SELECTION_END :
+    {
+	long pos = scintilla_send_message (sci, SCI_GETSELECTIONEND, 0, 0);
 	BONOBO_ARG_SET_LONG (arg, pos);
 	break;
     }

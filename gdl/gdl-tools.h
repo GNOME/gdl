@@ -26,6 +26,7 @@
 #define __GDL_TOOLS_H__
 
 #include <glib.h>
+#include <gnome.h>
 
 BEGIN_GNOME_DECLS
 

@@ -135,11 +135,11 @@ impl_get_length (PortableServer_Servant servant,
 }
  
 static void
-impl_read (PortableServer_Servant servant,
-	   CORBA_long offset,
-	   CORBA_long count,
-	   Development_EditorBuffer_iobuf **buffer,
-	   CORBA_Environment *ev)
+impl_get_chars (PortableServer_Servant servant,
+                CORBA_long offset,
+                CORBA_long count,
+                Development_EditorBuffer_iobuf **buffer,
+                CORBA_Environment *ev)
 {
     ScintillaEditorBuffer *eb = editor_buffer_from_servant (servant);
     TextRange tr;
@@ -165,16 +165,11 @@ impl_read (PortableServer_Servant servant,
 static void
 impl_insert (PortableServer_Servant servant,
 	     CORBA_long offset,
-	     const Development_EditorBuffer_iobuf *buffer,
+	     const CORBA_char *str,
 	     CORBA_Environment *ev)
 {
     ScintillaEditorBuffer *eb = editor_buffer_from_servant (servant);
-    char *string = g_malloc (buffer->_length + 1);
-    memcpy (string, buffer->_buffer, buffer->_length);
-    string[buffer->_length] = '\0';
-    
-    scintilla_send_message (eb->sci, SCI_INSERTTEXT, offset, (long)string);
-    g_free (string);
+    scintilla_send_message (eb->sci, SCI_INSERTTEXT, offset, (long)str);
 }
 
 static void 
@@ -199,7 +194,7 @@ init_editor_buffer_corba_class (void)
 {
     /* EPV */
     editor_buffer_epv.get_length = impl_get_length;
-    editor_buffer_epv.read = impl_read;
+    editor_buffer_epv.get_chars = impl_get_chars;
     editor_buffer_epv.insert = impl_insert;
     editor_buffer_epv.delete = impl_delete;
 
