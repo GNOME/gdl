@@ -1,3 +1,8 @@
+2002-10-29  Jean Schurger <jschurger@schurger.org>
+
+	* configure.in: updated for gdl.spec.in
+	* gdl.spec.in: updated for gnome 2
+
 2002-09-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* README, NEWS: updated for new release

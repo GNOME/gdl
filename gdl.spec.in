@@ -1,31 +1,29 @@
 Name:		gdl
 Summary:	Components and library for GNOME development tools.
-Version:	@VERSION@
+Version:	@GDL_VERSION@
 Release:	1
 License:	GPL
 Group:		Development/Libraries
 Source:		%{name}-%{version}.tar.gz
 BuildRoot:	/var/tmp/%{name}-%{version}-root
 URL:		http://www.gnome.org
-Requires:	oaf >= @OAF_REQUIRED@
-Requires:	gnome-vfs >= @GNOME_VFS_REQUIRED@
-Requires:	gnome-libs >= @GNOME_LIBS_REQUIRED@
-Requires:	bonobo >= @BONOBO_REQUIRED@
-BuildRequires:  gtk+-devel >= @GTK_REQUIRED@
-BuildRequires:  oaf-devel >= @OAF_REQUIRED@
-BuildRequires:  gnome-vfs-devel >= @GNOME_VFS_REQUIRED@
-BuildRequires:  gnome-libs-devel >= @GNOME_LIBS_REQUIRED@
-BuildRequires:  bonobo-devel >= @BONOBO_REQUIRED@
+Requires: 	gtk2 >= @GTK_REQUIRED@
+Requires: 	libgnomeui >= @GNOME_REQUIRED@
+Requires: 	libbonoboui >= @BONOBOUI_REQUIRED@
+Requires: 	libxml2 >= @XML_REQUIRED@
+Requires: 	libglade2 >= @LIBGLADE_REQUIRED@
+Requires: 	librsvg2 >= @LIBRSVG_REQUIRED@
 
 %description
 This package contains components and libraries that are intended to be
-shared between GNOME development tools, including gnome-debug,
-gnome-build, and gIDE.
+shared between GNOME development tools, including gnome-build and anjuta2.
 
 The current pieces of GDL include:
 
- - A code-editing bonboo component based on the Scintilla
-   widget (scintilla-control).
+# - A code-editing bonbono component based on the Scintilla
+#   widget (scintilla-control).
+#
+Now the editor widget is the glimmer component that use gtksourceview
 
  - A utility library that also contains the stubs and skels for
    the above components (gdl).
@@ -77,22 +75,44 @@ make prefix=$RPM_BUILD_ROOT%{_prefix} bindir=$RPM_BUILD_ROOT%{_bindir} \
 %files
 %doc AUTHORS COPYING ChangeLog NEWS README
 %defattr (-, root, root)
-%{_bindir}/*
-%{_libdir}/lib*.so.*
-%{_datadir}/aclocal/gdl.m4
-%{_datadir}/gnome/ui/*.xml
-%{_datadir}/oaf/*.oaf
-
+%{_prefix}/bin/gnome-symbol-browser
+%{_prefix}/lib/bonobo/servers/GNOME_Development_SymbolBrowser.server
+%{_prefix}/lib/libgdl-1.so.0.0.0
+%{_prefix}/lib/libgdl-1.so.0
+%{_prefix}/lib/libgdl-1.so
+%{_prefix}/lib/pkgconfig/gdl-1.0.pc
+%{_prefix}/share/gdl/glade/layout.glade
+%{_prefix}/share/gnome-2.0/ui/gnome-symbol-browser.xml
+%{_prefix}/share/locale/*/LC_MESSAGES/*
 
 %files devel
 %defattr (-, root, root)
-%{_includedir}/gdl
-%{_libdir}/*a
-%{_libdir}/*so
-%{_libdir}/*sh
-%{_datadir}/idl/*.idl
-
+%{_prefix}/include/libgdl-1.0/gdl/GDL.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-item-grip.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-item.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-layout.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-master.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-notebook.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-object.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-paned.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-placeholder.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-tablabel.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-dock.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-file-selector-util.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-icons.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-recent.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl-tools.h
+%{_prefix}/include/libgdl-1.0/gdl/gdl.h
+%{_prefix}/include/libgdl-1.0/gdl/libgdltypebuiltins.h
+%{_prefix}/lib/libgdl-1.a
+%{_prefix}/lib/libgdl-1.la
+%{_prefix}/share/idl/libgdl-1.0/GDL.idl
+%{_prefix}/share/idl/libgdl-1.0/editor-buffer.idl
+%{_prefix}/share/idl/libgdl-1.0/editor-gutter.idl
+%{_prefix}/share/idl/libgdl-1.0/symbol-browser.idl
 
 %changelog
+* Tue Oct 24 2002 Jean Schurger <jschurger@schurger.org
+- Update for gnome 2 version
 * Wed Aug 8 2001 Jens Finke <jens@gnome.org>
 - created spec file
