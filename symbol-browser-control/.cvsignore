@@ -1,0 +1,7 @@
+*.oaf
+Makefile.in
+Makefile
+*.tags
+.xvpics
+test-symbol-browser
+gnome-symbol-browser

@@ -1,5 +1,12 @@
 2001-12-20 Naba Kumar <kh_naba@yahoo.com>
 
+	* symbol-browser/.cvsignore
+	  symbol-browser/tagmanager/.cvsignore
+	  symbol-browser/tagmanager/include/.cvsignore
+	Added files.
+
+2001-12-20 Naba Kumar <kh_naba@yahoo.com>
+
 	* Makefile.am:
 	Added Module symbol-browser
 
