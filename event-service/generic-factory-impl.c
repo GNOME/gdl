@@ -22,62 +22,63 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#include <libgnorba/gnorba.h>
 #include "generic-factory.h"
 #include "event-channel.h"
 
 /*** Implementation stub prototypes ***/
 
 static void
-impl_GNOME_GenericFactory__destroy(impl_POA_GNOME_GenericFactory *servant,
+impl_Bonobo_GenericFactory__destroy(impl_POA_Bonobo_GenericFactory *servant,
                                    CORBA_Environment * ev);
 static CORBA_Object
-impl_GNOME_GenericFactory_create_object (impl_POA_GNOME_GenericFactory *servant, 
+impl_Bonobo_GenericFactory_create_object (impl_POA_Bonobo_GenericFactory *servant, 
                                          const CORBA_char *obj_goad_id,
                                          const GNOME_stringlist *params,
                                          CORBA_Environment *ev);
 static CORBA_boolean
-impl_GNOME_GenericFactory_supports (impl_POA_GNOME_GenericFactory *servant,
+impl_Bonobo_GenericFactory_supports (impl_POA_Bonobo_GenericFactory *servant,
                                     const CORBA_char *obj_goad_id, 
                                     CORBA_Environment *ev);
 
 /*** epv structures ***/
 
-static PortableServer_ServantBase__epv impl_GNOME_GenericFactory_base_epv =
+static PortableServer_ServantBase__epv impl_Bonobo_GenericFactory_base_epv =
 {
     NULL,                        /* _private data */
-    (gpointer) & impl_GNOME_GenericFactory__destroy, /* finalize routine */
+    (gpointer) & impl_Bonobo_GenericFactory__destroy, /* finalize routine */
     NULL,                        /* default_POA routine */
 };
 
-static POA_GNOME_GenericFactory__epv impl_GNOME_GenericFactory_epv = 
+static POA_Bonobo_GenericFactory__epv impl_Bonobo_GenericFactory_epv = 
 {
     NULL,                        /* _private */
-    (gpointer) & impl_GNOME_GenericFactory_supports,
-    (gpointer) & impl_GNOME_GenericFactory_create_object
+    (gpointer) & impl_Bonobo_GenericFactory_supports,
+    (gpointer) & impl_Bonobo_GenericFactory_create_object
 };
 
 /*** vepv structures ***/
 
-static POA_GNOME_GenericFactory__vepv impl_GNOME_GenericFactory_vepv =
+static POA_Bonobo_GenericFactory__vepv impl_Bonobo_GenericFactory_vepv =
 {
-    &impl_GNOME_GenericFactory_base_epv,
-    &impl_GNOME_GenericFactory_epv,
+    &impl_Bonobo_GenericFactory_base_epv,
+    &impl_Bonobo_GenericFactory_epv,
 };
 
 /*** GenericFactory ***/
 
-GNOME_GenericFactory 
-impl_GNOME_GenericFactory__create(PortableServer_POA poa, 
+Bonobo_GenericFactory 
+impl_Bonobo_GenericFactory__create(PortableServer_POA poa, 
                                   CORBA_Environment * ev)
 {
-    GNOME_GenericFactory retval;
-    impl_POA_GNOME_GenericFactory *newservant;
+    Bonobo_GenericFactory retval;
+    impl_POA_Bonobo_GenericFactory *newservant;
     PortableServer_ObjectId *objid;
 	
-    newservant = g_new0(impl_POA_GNOME_GenericFactory, 1);
-    newservant->servant.vepv = &impl_GNOME_GenericFactory_vepv;
+    newservant = g_new0(impl_POA_Bonobo_GenericFactory, 1);
+    newservant->servant.vepv = &impl_Bonobo_GenericFactory_vepv;
     newservant->poa = poa;
-    POA_GNOME_GenericFactory__init((PortableServer_Servant) newservant, ev);
+    POA_Bonobo_GenericFactory__init((PortableServer_Servant) newservant, ev);
     objid = PortableServer_POA_activate_object(poa, newservant, ev);
     CORBA_free(objid);
     retval = PortableServer_POA_servant_to_reference(poa, newservant, ev);
@@ -86,7 +87,7 @@ impl_GNOME_GenericFactory__create(PortableServer_POA poa,
 }
 
 static void
-impl_GNOME_GenericFactory__destroy(impl_POA_GNOME_GenericFactory *servant, 
+impl_Bonobo_GenericFactory__destroy(impl_POA_Bonobo_GenericFactory *servant, 
                                    CORBA_Environment * ev)
 {
     PortableServer_ObjectId *objid;
@@ -95,12 +96,12 @@ impl_GNOME_GenericFactory__destroy(impl_POA_GNOME_GenericFactory *servant,
     PortableServer_POA_deactivate_object(servant->poa, objid, ev);
     CORBA_free(objid);
 	
-    POA_GNOME_GenericFactory__fini((PortableServer_Servant) servant, ev);
+    POA_Bonobo_GenericFactory__fini((PortableServer_Servant) servant, ev);
     g_free(servant);
 }
 
 static CORBA_Object
-impl_GNOME_GenericFactory_create_object (impl_POA_GNOME_GenericFactory *servant, 
+impl_Bonobo_GenericFactory_create_object (impl_POA_Bonobo_GenericFactory *servant, 
                                          const CORBA_char *obj_goad_id,
                                          const GNOME_stringlist *params,
                                          CORBA_Environment *ev)
@@ -118,7 +119,7 @@ impl_GNOME_GenericFactory_create_object (impl_POA_GNOME_GenericFactory *servant,
 }
 
 static CORBA_boolean
-impl_GNOME_GenericFactory_supports (impl_POA_GNOME_GenericFactory *servant,
+impl_Bonobo_GenericFactory_supports (impl_POA_Bonobo_GenericFactory *servant,
                                     const CORBA_char *obj_goad_id, 
                                     CORBA_Environment *ev)
 {

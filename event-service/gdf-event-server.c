@@ -71,7 +71,7 @@ main (int argc, char *argv[])
 	poa = (PortableServer_POA)
 	    CORBA_ORB_resolve_initial_references (orb, "RootPOA", &ev);	
 
-	factory = impl_GNOME_GenericFactory__create (poa, &ev);
+	factory = impl_Bonobo_GenericFactory__create (poa, &ev);
 	
 	nameserver = gnome_name_service_get ();
 	goad_server_register (nameserver, factory, 

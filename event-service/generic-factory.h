@@ -26,13 +26,14 @@
 #define GENERIC_FACTORY_H 1
 
 #include "gdf-event-server.h"
+#include <bonobo.h>
 
 typedef struct {
-    POA_GNOME_GenericFactory servant;
+    POA_Bonobo_GenericFactory servant;
     PortableServer_POA poa;
-} impl_POA_GNOME_GenericFactory;
+} impl_POA_Bonobo_GenericFactory;
 
-extern GNOME_GenericFactory
-impl_GNOME_GenericFactory__create (PortableServer_POA, CORBA_Environment *);
+extern Bonobo_GenericFactory
+impl_Bonobo_GenericFactory__create (PortableServer_POA, CORBA_Environment *);
 
 #endif /* GENERIC_FACTORY_H */
