@@ -23,6 +23,7 @@
 #include <config.h>
 #include <gnome.h>
 #include <bonobo.h>
+#include <bonobo/bonobo-shlib-factory.h>
 #include <gtk/gtk.h>
 #include <liboaf/liboaf.h>
 #include <limits.h>
@@ -110,11 +111,11 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
 
     bonobo_property_bag_add (pb, "position", PROP_POSITION,
 			     BONOBO_ARG_LONG, NULL,
-			     _("Position in the buffer"), 
+			     _("Position in the buffer"),
 			     BONOBO_PROPERTY_UNSTORED);
     bonobo_property_bag_add (pb, "line_num", PROP_LINE_NUM,
 			     BONOBO_ARG_LONG, NULL,
-			     _("Current line number"), 
+			     _("Current line number"),
 			     BONOBO_PROPERTY_UNSTORED);
     bonobo_property_bag_add (pb, "selection_start", PROP_SELECTION_START,
 			     BONOBO_ARG_LONG, NULL,
@@ -533,5 +534,5 @@ notify_cb (ScintillaObject *sci, int wparam, void *lparam,
     }
 }
 
-BONOBO_OAF_FACTORY ("OAFIID:Bonobo_Control_ScintillaFactory", 
-                    "Scintilla Factory", VERSION, scintilla_factory, NULL);
+BONOBO_OAF_SHLIB_FACTORY ("OAFIID:Bonobo_Control_ScintillaFactory", 
+                          "Scintilla Factory", scintilla_factory, NULL);

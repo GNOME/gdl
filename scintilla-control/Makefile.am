@@ -13,12 +13,11 @@ INCLUDES = \
 uidir = $(datadir)/gnome/ui
 ui_DATA = scintilla-ui.xml
 
-bin_PROGRAMS = scintilla-control
+lib_LTLIBRARIES = libscintilla-control.la
 noinst_PROGRAMS = test-scintilla
 
 test_scintilla_SOURCES = test.c
-
-scintilla_control_SOURCES = \
+libscintilla_control_la_SOURCES = \
 	scintilla-control.c \
 	scintilla-highlight.c \
 	scintilla-highlight.h \
@@ -43,15 +42,15 @@ LEXER_OBJS = \
 	scintilla/LexOthers.o  \
 	scintilla/LexVB.o
 
-scintilla_control_LDADD = \
+libscintilla_control_la_LIBADD = \
 	$(GNOME_LIBS)     \
 	$(GNOMEUI_LIBS)   \
 	$(BONOBO_LIBS)    \
 	$(BONOBOX_LIBS)   \
 	$(VFS_LIBS)       \
-	$(LEXER_OBJS)     \
-	../gdl/libgdl.la  \
-        scintilla/libscintilla-widget.a 
+	$(LEXER_OBJS) \
+	scintilla/libscintilla-widget.a \
+	../gdl/libgdl.la 
 
 test_scintilla_LDADD =  \
 	$(GNOME_LIBS)   \

@@ -1,3 +1,29 @@
+2001-09-30  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-dock-notebook.c: 
+	* gdl/gdl-dock-notebook.h: 
+	* gdl/gdl-dock-paned.c: 
+	* gdl/gdl-dock-paned.h: 
+	* gdl/gdl-dock-item.c: 
+	* gdl/gdl-dock-item.h: 
+	* gdl/gdl-dock.c: 
+	* gdl/gdl-dock.h: New docking widget by Gustavo M. Giraldez and Jeroen
+	Zwartepoorte.
+
+	* gdl/Makefile.am: Build the GdlDock widget.
+
+	* scintilla-control/Makefile.am: Build libscintilla-control.la instead
+	of scintilla-control.
+
+	* scintilla-control/scintilla-control.c: Use BONOBO_OAF_SHLIB_FACTORY
+	instead of BONOBO_OAF_FACTORY.
+
+	* scintilla-control/Bonobo_Control_Scintilla.oaf.in: Change the 
+	scintilla component from an exe component to a shlib component.
+
+	* scintilla-control/scintilla-ui.xml: Changed the edit toolbar to be in
+	band 2.
+
 2001-08-25  Jeroen Zwartepoorte <jeroen@xs4all.nl>
 
         * scintilla-control/scintilla-ui.xml: Added EditorStats statusbar item.

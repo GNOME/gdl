@@ -39,7 +39,7 @@
 		</submenu>
 	</menu>
 
-        <dockitem name="Edit" homogeneous="0" band_num="1" in_new_band="0" look="icon" relief="none">
+        <dockitem name="Edit" homogeneous="0" band_num="2" in_new_band="0" look="icon" relief="none">
 		<placeholder name="EditorClipboard">
 	                        <menuitem name="EditCut" verb="" _label="C_ut"/>
                 	        <menuitem name="EditCopy" verb="" _label="_Copy"/>

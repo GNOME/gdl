@@ -24,15 +24,29 @@ $(CORBA_GENERATED) : $(idl_dir)/GDL.idl \
 
 libgdl_la_SOURCES = \
 	$(CORBA_GENERATED) \
-	gdl-server-manager.c
+	gdl-server-manager.c \
+	gdl-dock.c \
+	gdl-dock-item.c \
+	gdl-dock-notebook.c \
+	gdl-dock-paned.c
 
 libgdl_la_LIBADD = \
 	$(BONOBO_LIBS) \
 	$(GNOME_LIBS)
+
+noinst_PROGRAMS=test-dock
+
+test_dock_sources=test-dock.c
+test_dock_LDADD=libgdl.la
 
 libgdlincludedir = $(includedir)/gdl
 libgdlinclude_HEADERS = \
 	$(CORBA_GENERATED_HEADER_FILES) \
 	gdl.h \
 	gdl-server-manager.h \
-	gdl-tools.h
+	gdl-tools.h \
+	gdl-dock.h \
+	gdl-dock-item.h \
+	gdl-dock-notebook.h \
+	gdl-dock-paned.h
+
