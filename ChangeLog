@@ -1,3 +1,7 @@
+2000-12-18  JP Rosevear  <jpr@helixcode.com>
+
+	* scintilla-control/scintilla-ui.xml: Fix toolbar placement
+
 2000-12-18  Dave Camp  <dave@helixcode.com>
 
 	* scintilla-control/scintilla-control.c (scintilla_factory): Set the
