@@ -18,8 +18,10 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <config.h>
-#include <gnome.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <bonobo.h>
 #include <bonobo-activation/bonobo-activation.h>
 #include <gdl/gdl.h>
@@ -122,6 +124,16 @@ control_factory (BonoboGenericFactory *factory,
 	GnomeSymbolBrowserCObject *cobj;
 	BonoboEventSource *event_source;
 
+	static gboolean gettext_initialized = FALSE;
+
+	if (!gettext_initialized) {
+		setlocale (LC_ALL, "");
+		bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+		textdomain (GETTEXT_PACKAGE);
+		gettext_initialized = TRUE;
+	}
+	
 	/* Create the control. */
 	symbol_browser = gnome_symbol_browser_new ();
 	gtk_widget_show_all (symbol_browser);

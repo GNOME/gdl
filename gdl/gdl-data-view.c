@@ -20,14 +20,19 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "gdl-i18n.h"
+
+#include <libgnome/gnome-macros.h>
+
 #include "gdl-data-view.h"
+#include "gdl-data-frame.h"
 
 #include "tree-expand.xpm"
 #include "tree-contract.xpm"
-
-#include <libgnome/libgnome.h>
-#include "gdl-data-frame.h"
 
 struct _GdlDataViewPrivate {
 	GList *frames;

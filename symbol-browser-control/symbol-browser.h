@@ -23,12 +23,9 @@
 #ifndef _GNOME_SYMBOL_BROWSER_H_
 #define _GNOME_SYMBOL_BROWSER_H_
 
-#include <gnome.h>
+#include <glib.h>
 
-#ifdef __cplusplus
-extern "C" {
-#pragma }
-#endif /* __cplusplus */
+G_BEGIN_DECLS
 
 #define GNOME_TYPE_SYMBOL_BROWSER		(gnome_symbol_browser_get_type ())
 #define GNOME_SYMBOL_BROWSER(obj)		(GTK_CHECK_CAST ((obj), GNOME_TYPE_SYMBOL_BROWSER, GnomeSymbolBrowser))
@@ -71,8 +68,6 @@ void       gnome_symbol_browser_destroy  (GtkObject *obj);
 
 BonoboEventSource *gnome_symbol_browser_get_event_source (GnomeSymbolBrowser *gsb);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+G_END_DECLS
 
 #endif /* _GNOME_SYMBOL_BROWSER_H_ */

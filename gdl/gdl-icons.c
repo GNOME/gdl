@@ -21,8 +21,12 @@
  * Authors: Dave Camp, Jeroen Zwartepoorte
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "gdl-i18n.h"
 #include <string.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-macros.h>
 #include <libgnomeui/gnome-icon-lookup.h>
 #include <libgnomevfs/gnome-vfs-ops.h>

@@ -27,7 +27,6 @@
 
 #include <glib.h>
 #include <gtk/gtkwidget.h>
-#include <libgnome/gnome-i18n.h>
 
 
 /* FIXME: Toggle this */

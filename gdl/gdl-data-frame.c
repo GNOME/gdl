@@ -20,15 +20,19 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "gdl-i18n.h"
+
+#include <string.h>
+#include <libgnome/gnome-macros.h>
 
 #include "gdl-data-view.h"
 #include "gdl-data-frame.h"
 #include "gdl-data-model.h"
-#include <libgnome/libgnome.h>
-
 #include "gdl-data-row.h"
-#include <string.h>
 
 struct _GdlDataFramePrivate {
 	GdkRectangle shadow_r;

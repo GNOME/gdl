@@ -24,7 +24,7 @@
 #define GDL_DATA_FRAME_H
 
 #include <glib-object.h>
-#include "gdl-data-row.h"
+#include <gdl/gdl-data-row.h>
 
 G_BEGIN_DECLS
 

@@ -10,6 +10,11 @@
  * Copyright (C) 2002 Sun Microsystems, Inc.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "gdl-i18n.h"
 #include <string.h>
 #include <glib-object.h>
 #include <atk/atkstateset.h>

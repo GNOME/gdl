@@ -20,6 +20,11 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "gdl-i18n.h"
 #include <string.h>
 #include <stdlib.h>
 #include <libxml/parser.h>
@@ -624,9 +629,8 @@ load_interface (const gchar *top_widget)
     gchar    *gui_file;
 
     /* load ui */
-    /* FIXME: set the translation domain here */
     gui_file = g_build_filename (GDL_GLADEDIR, LAYOUT_GLADE_FILE, NULL);
-    gui = glade_xml_new (gui_file, top_widget, NULL);
+    gui = glade_xml_new (gui_file, top_widget, GETTEXT_PACKAGE);
     g_free (gui_file);
     if (!gui) {
         /* FIXME: pop up an error dialog */

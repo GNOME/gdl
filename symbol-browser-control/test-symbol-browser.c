@@ -277,6 +277,11 @@ main (int argc, char *argv[])
 	CORBA_Object source;
 	BonoboListener *listener;
 
+	setlocale (LC_ALL, "");
+	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain (GETTEXT_PACKAGE);
+
 	CORBA_exception_init (&ev);
 
 	gnome_program_init ("test-symbol-browser", VERSION, LIBGNOMEUI_MODULE,

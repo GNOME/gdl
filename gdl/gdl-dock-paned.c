@@ -22,6 +22,11 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "gdl-i18n.h"
 #include <string.h>
 #include <gtk/gtkhpaned.h>
 #include <gtk/gtkvpaned.h>

@@ -1,3 +1,7 @@
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <signal.h>
 #include <stdio.h>
 #include <string.h>
@@ -21,7 +25,7 @@ log_handler (const char *domain,
 {
     g_log_default_handler (domain, level, message, data);
     if ((level & (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING)) != 0) {
-        void (* saved_handler) (int);
+        RETSIGTYPE (* saved_handler) (int);
         
         saved_handler = signal (SIGINT, SIG_IGN);
         raise (SIGINT);
@@ -216,7 +220,6 @@ main (int argc, char **argv)
 	gtk_main ();
 
   	g_object_unref (layout);
-    	gtk_widget_destroy (win);
 	
 	return 0;
 }

@@ -6,7 +6,7 @@ dnl
 dnl ==========================================================================
 
 
-AC_PREREQ(2.13)
+AC_PREREQ(2.53)
 AC_INIT(gdl)
 AM_CONFIG_HEADER(config.h)
 
@@ -33,19 +33,20 @@ GNOME_REQUIRED=2.1.0
 BONOBOUI_REQUIRED=1.108.1
 XML_REQUIRED=2.2.8
 LIBGLADE_REQUIRED=1.99.5
-LIBRSVG_REQUIRED=1.1.1
 
 AC_SUBST(GTK_REQUIRED)
 AC_SUBST(GNOME_REQUIRED)
 AC_SUBST(BONOBOUI_REQUIRED)
 AC_SUBST(XML_REQUIRED)
 AC_SUBST(LIBGLADE_REQUIRED)
-AC_SUBST(LIBRSVG_REQUIRED)
 
 AM_MAINTAINER_MODE
 
 AC_ISC_POSIX
 AC_PROG_CC
+
+AC_CHECK_HEADERS([libintl.h])
+AC_TYPE_SIGNAL
 
 dnl =====================================================================
 dnl ======== Ctags stuffs below =========================================
@@ -70,7 +71,6 @@ AC_DEFUN(CHECK_HEADER_DEFINE,
 ]) ])
 
 AC_ISC_POSIX
-AC_PROG_CC
 AM_PROG_CC_STDC
 AC_HEADER_STDC
 
@@ -85,8 +85,6 @@ AC_CHECK_HEADERS(time.h types.h unistd.h)
 AC_CHECK_HEADERS(sys/dir.h sys/stat.h sys/times.h sys/types.h)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
-AC_CYGWIN
-AC_MINGW32
 AC_C_CONST
 AC_OBJEXT
 AC_EXEEXT
@@ -247,7 +245,6 @@ dnl ========== ctags stuffs ends =======================================
 dnl =====================================================================
 
 AC_PROG_CXX
-AC_PROG_YACC
 AC_STDC_HEADERS
 AM_PROG_LIBTOOL
 AM_SANITY_CHECK
@@ -262,15 +259,12 @@ dnl ***************
 PKG_CHECK_MODULES(XML, libxml-2.0 >= $XML_REQUIRED)
 AC_SUBST(XML_CFLAGS)
 AC_SUBST(XML_LIBS)
-AC_SUBST(GAL_LIBS)
 
 PKG_CHECK_MODULES(GDL_DEPENDENCIES, 
 	gtk+-2.0 >= $GTK_REQUIRED 
-	libgnome-2.0 >= $GNOME_REQUIRED
 	libgnomeui-2.0 >= $GNOME_REQUIRED
 	libbonoboui-2.0 >= $BONOBOUI_REQUIRED
-	libglade-2.0 >= $LIBGLADE_REQUIRED
-	librsvg-2.0 >= $LIBRSVG_REQUIRED)
+	libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(GDL_DEPENDENCIES_CFLAGS)
 AC_SUBST(GDL_DEPENDENCIES_LIBS)
 
@@ -284,12 +278,6 @@ AC_SUBST(LIBBONOBO_IDL_DIR)
 BONOBO_ACTIVATION_IDL_DIR="`$PKG_CONFIG --variable=idldir bonobo-activation-2.0`"
 AC_SUBST(BONOBO_ACTIVATION_IDL_DIR)
 
-NAUTILUS_THEMEDIR="`$PKG_CONFIG --variable=prefix libnautilus`/share/pixmaps/nautilus"
-AC_SUBST(NAUTILUS_THEMEDIR)
-
-GNOME_VFS_ICONDIR="`$PKG_CONFIG --variable=prefix gnome-vfs-2.0`/share/pixmaps/document-icons"
-AC_SUBST(GNOME_VFS_ICONDIR)
-
 # marshal and enum generators
 GLIB_GENMARSHAL="`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`"
 AC_SUBST(GLIB_GENMARSHAL)
@@ -297,18 +285,12 @@ GLIB_MKENUMS="`$PKG_CONFIG --variable=glib_mkenums glib-2.0`"
 AC_SUBST(GLIB_MKENUMS)
 
 ALL_LINGUAS="az cs da de el es fr it pt ru sv vi"
-GETTEXT_PACKAGE=gdl-1
+GETTEXT_PACKAGE="gdl-1"
 AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Package name for gettext])
-AC_DEFINE_UNQUOTED(GNOME_EXPLICIT_TRANSLATION_DOMAIN, "$GETTEXT_PACKAGE", 
-	[Domain for gettext translation])
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
 
 AM_GLIB_GNU_GETTEXT
-
-# AM_GNOME2_GETTEXT above substs $DATADIRNAME
-# this is the directory where the *.{mo,gmo} files are installed
-gnomelocaledir='${prefix}/${DATADIRNAME}/locale'
-AC_SUBST(gnomelocaledir)
+AM_GLIB_DEFINE_LOCALEDIR(GNOMELOCALEDIR)
 
 AC_OUTPUT([
 Makefile

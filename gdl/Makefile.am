@@ -1,17 +1,11 @@
 INCLUDES = \
-	-DGNOMELOCALEDIR=\""$(datadir)/locales"\" 	\
+	-DG_LOG_DOMAIN=\"Gdl\"				\
 	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
 	-DG_DISABLE_DEPRECATED 				\
 	-DGTK_DISABLE_DEPRECATED 			\
 	-DGDK_DISABLE_DEPRECATED 			\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS)					\
-        -DPREFIX=\""$(prefix)"\"                        \
-        -DSYSCONFDIR=\""$(sysconfdir)"\"                \
-        -DDATADIR=\""$(datadir)"\"                      \
-        -DLIBDIR=\""$(libdir)"\"                        \
-	-DNAUTILUS_THEMEDIR=\""$(NAUTILUS_THEMEDIR)"\"  \
-	-DGNOME_VFS_ICONDIR=\""$(GNOME_VFS_ICONDIR)"\"  \
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la
@@ -48,40 +42,6 @@ CLEANFILES = $(CORBA_GENERATED) 		\
 	libgdlmarshal.c				\
 	libgdlmarshal.h
 
-libgdl_1_la_SOURCES = \
-	$(CORBA_GENERATED) \
-	default-icon.c \
-	default-icon.h \
-	gdl-tools.c \
-	gdl-dock-object.c \
-	gdl-dock-master.c \
-	gdl-dock.c \
-	gdl-dock-item.c \
-	gdl-dock-item-grip.c \
-	gdl-dock-notebook.c \
-	gdl-dock-paned.c \
-	gdl-dock-tablabel.c \
-	gdl-dock-layout.c \
-	gdl-dock-placeholder.c \
-	gdl-icons.c \
-	gdl-file-selector-util.c \
-	gdl-recent.c \
-	libgdltypebuiltins.c \
-	libgdlmarshal.c
-
-$(libgdl_1_la_OBJECTS): \
-	libgdltypebuiltins.h \
-	libgdlmarshal.h
-
-libgdl_1_la_LIBADD = \
-	$(GDL_DEPENDENCIES_LIBS) \
-	$(XML_LIBS)
-
-noinst_PROGRAMS=test-dock test-dataview
-
-test_dock_sources=test-dock.c
-test_dock_LDADD=libgdl-1.la $(XML_LIBS)
-
 libgdl_headers = \
 	gdl.h \
 	gdl-tools.h \
@@ -96,8 +56,39 @@ libgdl_headers = \
 	gdl-dock-layout.h \
 	gdl-dock-placeholder.h \
 	gdl-icons.h \
-	gdl-file-selector-util.h \
 	gdl-recent.h
+
+libgdl_1_la_SOURCES = \
+	$(CORBA_GENERATED) \
+	$(libgdl_headers) \
+	gdl-i18n.h \
+	gdl-i18n.c \
+	gdl-tools.c \
+	gdl-dock-object.c \
+	gdl-dock-master.c \
+	gdl-dock.c \
+	gdl-dock-item.c \
+	gdl-dock-item-grip.c \
+	gdl-dock-notebook.c \
+	gdl-dock-paned.c \
+	gdl-dock-tablabel.c \
+	gdl-dock-layout.c \
+	gdl-dock-placeholder.c \
+	gdl-icons.c \
+	gdl-recent.c \
+	libgdltypebuiltins.h \
+	libgdltypebuiltins.c \
+	libgdlmarshal.h \
+	libgdlmarshal.c
+
+libgdl_1_la_LIBADD = \
+	$(GDL_DEPENDENCIES_LIBS) \
+	$(XML_LIBS)
+
+noinst_PROGRAMS=test-dock test-dataview
+
+test_dock_sources=test-dock.c
+test_dock_LDADD=libgdl-1.la $(XML_LIBS)
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
@@ -114,12 +105,6 @@ EXTRA_DIST = libgdlmarshal.list \
 	layout.glade \
 	program.xpm static.xpm shared.xpm
 
-## layout.glade1 is out of date!
-
-# layout.glade: layout.glade1 $(LIBGLADE_CONVERT)
-#	$(LIBGLADE_CONVERT) layout.glade1 > layout.glade.tmp && \
-# 	mv layout.glade.tmp layout.glade
-
 test_dataview_SOURCES = \
 	gdl-data-view.h \
 	gdl-data-view.c \
@@ -133,7 +118,7 @@ test_dataview_SOURCES = \
 	gdl-data-row.c \
 	test-dataview.c
 
-test_dataview_LDADD = $(GDL_DEPENDENCIES_LIBS)
+test_dataview_LDADD = libgdl-1.la
 
 # enumerations code generation
 

@@ -20,10 +20,14 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "gdl-i18n.h"
 #include <gconf/gconf-client.h>
 #include <libgnome/gnome-macros.h>
-#include <libbonoboui.h>
+#include <bonobo/bonobo-ui-component.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <string.h>
 #include "gdl-recent.h"

@@ -28,6 +28,11 @@
  */
 
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "gdl-i18n.h"
 #include <string.h>
 #include <libgnome/gnome-macros.h>
 #include <gdk/gdkkeysyms.h>

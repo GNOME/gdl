@@ -1,4 +1,8 @@
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "gdl-i18n.h"
 
 #include "gdl-data-model-test.h"
 #include "gdl-data-model.h"

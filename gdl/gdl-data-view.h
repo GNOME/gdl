@@ -23,7 +23,7 @@
 #ifndef GDL_DATA_VIEW_H
 #define GDL_DATA_VIEW_H
 
-#include "gdl-data-model.h"
+#include <gdl/gdl-data-model.h>
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS

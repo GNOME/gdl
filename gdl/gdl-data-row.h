@@ -28,7 +28,7 @@
 #include <glib-object.h>
 #include <gtk/gtktreemodel.h>
 #include <gtk/gtkcellrenderer.h>
-#include "gdl-data-view.h"
+#include <gdl/gdl-data-view.h>
 
 G_BEGIN_DECLS
 

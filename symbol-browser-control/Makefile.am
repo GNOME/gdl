@@ -7,12 +7,10 @@ INCLUDES = \
 	-I$(srcdir)/tagmanager/include \
 	-I$(top_srcdir)/gdl \
 	-DGNOME_DATADIR=\""$(datadir)"\" \
-	-DPACKAGE_LOCALE_DIR=\""$(gnomelocaledir)"\" \
 	-DG_DISABLE_DEPRECATED \
 	-DGTK_DISABLE_DEPRECATED \
-	$(GNOME_INCLUDEDIR) \
-	$(GDL_DEPENDENCIES_CFLAGS) \
-	-DSYMBOL_BROWSER_SRCDIR=\""$(srcdir)"/\"
+	-DSYMBOL_BROWSER_SRCDIR=\""$(srcdir)"\" \
+	$(GDL_DEPENDENCIES_CFLAGS)
 
 ## Using exec binary for testing.
 
@@ -42,8 +40,7 @@ gnome_symbol_browser_SOURCES = \
 gnome_symbol_browser_LDADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
 	../gdl/libgdl-1.la \
-	-Ltagmanager/ \
-	-lctags
+	tagmanager/libctags.a
 
 noinst_PROGRAMS = test-symbol-browser
 

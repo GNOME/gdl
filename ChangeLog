@@ -1,3 +1,41 @@
+2003-01-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Removed old macros and dependencies.
+
+	* gdl/default-icon.[ch]:
+	* gdl/layout.glade1:
+	* gdl/gdl-file-selector-util.[ch]: Removed obsolete files from CVS.
+
+	* gdl/gdl-i18n.[ch]: New files used for internationalization of
+	the library.
+
+	* symbol-browser-control/Makefile.am:
+	* gdl/Makefile.am: Removed old defines.  Removed files from build.
+	Added files necessary for internationalization.
+
+	* gdl/gdl-data-frame.[ch]:
+	* gdl/gdl-data-model-test.c:
+	* gdl/gdl-data-model.c:
+	* gdl/gdl-data-row.[ch]:
+	* gdl/gdl-data-view.[ch]:
+	* gdl/gdl-dock-item-grip.c:
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-layout.c:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock-notebook.c:
+	* gdl/gdl-dock-object.c:
+	* gdl/gdl-dock-paned.c:
+	* gdl/gdl-dock-placeholder.c:
+	* gdl/gdl-dock-tablabel.c:
+	* gdl/gdl-dock.c:
+	* gdl/gdl-icons.c:
+	* gdl/gdl-recent.c:
+	* gdl/gdl-tools.[ch]:
+	* symbol-browser-control/factory.c:
+	* symbol-browser-control/symbol-browser.[ch]:
+	* symbol-browser-control/test-symbol-browser.c: Fix up files for
+	i18n.  Include config.h file.  Remove some unnecessary includes.
+	
 2003-01-07  German Poo-Caaman~o <gpoo@ubiobio.cl>
 
 	* configure.in: Added Spanish (es) to ALL_LINGUAS.

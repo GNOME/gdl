@@ -20,13 +20,15 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#include "gdl-data-row.h"
+#endif
 
+#include "gdl-i18n.h"
+#include "gdl-data-row.h"
 #include "gdl-data-model.h"
 
 #include <libgnome/gnome-macros.h>
-
 #include <gtk/gtktreemodel.h>
 #include <gtk/gtkcellrenderer.h>
 
@@ -555,11 +557,12 @@ gdl_data_row_event (GdlDataRow *row, GdkEvent *event,
 		    GtkCellEditable **editable_widget)
 {
 	switch (((GdkEventAny *)event)->type) {
-	case GDK_BUTTON_PRESS :
-		return button_press_event (row, 
-					   (GdkEventButton *)event, 
-					   editable_widget);
-	default :
+		case GDK_BUTTON_PRESS:
+			return button_press_event (row, 
+						   (GdkEventButton *)event, 
+						   editable_widget);
+		default:
+			break;
 	}
 	return FALSE;
 }

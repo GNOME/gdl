@@ -20,6 +20,10 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <bonobo.h>
 #include <gtk/gtktreeview.h>
 #include <sys/stat.h>
@@ -56,25 +60,25 @@
 /* This variable MUST be synchronized with the TMTagType definition */
 static gchar*
 symbol_types[] = {
-	"Unknown", /*! tm_tag_undef_t = 0, < Unknown type */
-	"Classes", /*! tm_tag_class_t = 1, < Class declaration */
-	"Enums", /*! tm_tag_enum_t = 2, < Enum declaration */
-	"Enumerators", /*! tm_tag_enumerator_t = 4, < Enumerator value */
-	"Fields", /*! tm_tag_field_t = 8, < Field (Java only) */
-	"Functions", /*! tm_tag_function_t = 16, < Function definition */
-	"Interfaces", /*! tm_tag_interface_t = 32, < Interface (Java only */
-	"Members", /*! tm_tag_member_t = 64, < Member variable of class/struct */
-	"Methods", /*! tm_tag_method_t = 128, < Class method (Java only */
-	"Namespaces", /*! tm_tag_namespace_t = 256, < Namespace declaration */
-	"Packages", /*! tm_tag_package_t = 512, < Package (Java only) */
-	"Prototypes", /*! tm_tag_prototype_t = 1024, < Function prototype */
-	"Structs", /*! tm_tag_struct_t = 2048, < Struct declaration */
-	"Typedefs", /*! tm_tag_typedef_t = 4096, < Typedef */
-	"Unions", /*! tm_tag_union_t = 8192, !< Union */
-	"Variables", /*! tm_tag_variable_t = 16384, < Variable */
-	"ExternVars", /*! tm_tag_externvar_t = 32768, < Extern or forward declaration */
-	"Macros", /*! tm_tag_macro_t = 65536, < Macro (withour arguments) */
-	"MacrosWithArgs", /*! tm_tag_macro_with_arg_t = 131072, < Parameterized macro */
+	N_("Unknown"), /*! tm_tag_undef_t = 0, < Unknown type */
+	N_("Classes"), /*! tm_tag_class_t = 1, < Class declaration */
+	N_("Enums"), /*! tm_tag_enum_t = 2, < Enum declaration */
+	N_("Enumerators"), /*! tm_tag_enumerator_t = 4, < Enumerator value */
+	N_("Fields"), /*! tm_tag_field_t = 8, < Field (Java only) */
+	N_("Functions"), /*! tm_tag_function_t = 16, < Function definition */
+	N_("Interfaces"), /*! tm_tag_interface_t = 32, < Interface (Java only */
+	N_("Members"), /*! tm_tag_member_t = 64, < Member variable of class/struct */
+	N_("Methods"), /*! tm_tag_method_t = 128, < Class method (Java only */
+	N_("Namespaces"), /*! tm_tag_namespace_t = 256, < Namespace declaration */
+	N_("Packages"), /*! tm_tag_package_t = 512, < Package (Java only) */
+	N_("Prototypes"), /*! tm_tag_prototype_t = 1024, < Function prototype */
+	N_("Structs"), /*! tm_tag_struct_t = 2048, < Struct declaration */
+	N_("Typedefs"), /*! tm_tag_typedef_t = 4096, < Typedef */
+	N_("Unions"), /*! tm_tag_union_t = 8192, !< Union */
+	N_("Variables"), /*! tm_tag_variable_t = 16384, < Variable */
+	N_("ExternVars"), /*! tm_tag_externvar_t = 32768, < Extern or forward declaration */
+	N_("Macros"), /*! tm_tag_macro_t = 65536, < Macro (withour arguments) */
+	N_("MacrosWithArgs"), /*! tm_tag_macro_with_arg_t = 131072, < Parameterized macro */
 	NULL
 };
 
@@ -612,7 +616,7 @@ get_tag_type_name (TMTagType type)
 	gint count = 1;
 	gint32 type_32 = (gint32)type;
 
-	g_return_val_if_fail (type < tm_tag_max_t, symbol_types[0]);
+	g_return_val_if_fail (type < tm_tag_max_t, _(symbol_types[0]));
 
 	if (type_32) {
 		while (!(type_32 & 1)) {
@@ -622,9 +626,9 @@ get_tag_type_name (TMTagType type)
 
 		/* g_print ("Symbol type name: %s\n", symbol_types[count]);*/
 
-		return symbol_types[count];
+		return _(symbol_types[count]);
 	} else
-		return symbol_types[0];
+		return _(symbol_types[0]);
 }
 
 static void
