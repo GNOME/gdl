@@ -1,13 +1,15 @@
-// SciTE - Scintilla based Text Editor
-// LexPython.cxx - lexer for Python
-// Copyright 1998-2000 by Neil Hodgson <neilh@scintilla.org>
+// Scintilla source code edit control
+/** @file LexPython.cxx
+ ** Lexer for Python.
+ **/
+// Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
 
-#include <stdlib.h> 
-#include <string.h> 
-#include <ctype.h> 
-#include <stdio.h> 
-#include <stdarg.h> 
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 #include "Platform.h"
 
@@ -16,6 +18,32 @@
 #include "KeyWords.h"
 #include "Scintilla.h"
 #include "SciLexer.h"
+
+/* Returns true if the "as" word that begins at start follows an import statement */
+static bool IsImportAs(unsigned int start, Accessor &styler) {
+	unsigned int i;
+	unsigned int j;
+	char s[10];
+
+	/* Find any import before start but after any statement terminator or quote */
+	i = start;
+	while (i > 0) {
+		char ch = styler[i - 1];
+
+		if (ch == '\n' || ch == '\r' || ch == ';' || ch == '\'' || ch == '"' || ch == '`')
+			break;
+		if (ch == 't' && i > 5) {
+			for (j = 0; j < 6; j++)
+				s[j] = styler[(i - 6) + j];
+			s[j] = '\0';
+			if (strcmp(s, "import") == 0)
+				return true;
+		}
+		i--;
+	}
+
+        return false;
+}
 
 static void ClassifyWordPy(unsigned int start, unsigned int end, WordList &keywords, Accessor &styler, char *prevWord) {
 	char s[100];
@@ -33,6 +61,8 @@ static void ClassifyWordPy(unsigned int start, unsigned int end, WordList &keywo
 		chAttr = SCE_P_NUMBER;
 	else if (keywords.InList(s))
 		chAttr = SCE_P_WORD;
+	else if (strcmp(s, "as") == 0 && IsImportAs(start, styler))
+		chAttr = SCE_P_WORD;
 	// make sure that dot-qualifiers inside the word are lexed correct
 	else for (unsigned int i = 0; i < end - start + 1; i++) {
 		if (styler[start + i] == '.') {
@@ -48,7 +78,68 @@ static bool IsPyComment(Accessor &styler, int pos, int len) {
 	return len>0 && styler[pos]=='#';
 }
 
-static void ColourisePyDoc(unsigned int startPos, int length, int initStyle, 
+static bool IsPyStringStart(char ch, char chNext, char chNext2) {
+	if (ch == '\'' || ch == '"')
+		return true;
+	if (ch == 'u' || ch == 'U') {
+		if (chNext == '"' || chNext == '\'')
+			return true;
+		if ((chNext == 'r' || chNext == 'R') && (chNext2 == '"' || chNext2 == '\''))
+			return true;
+	}
+	if ((ch == 'r' || ch == 'R') && (chNext == '"' || chNext == '\''))
+		return true;
+
+	return false;
+}
+
+static bool IsPyWordStart(char ch, char chNext, char chNext2) {
+	return (iswordchar(ch) && !IsPyStringStart(ch, chNext, chNext2));
+}
+
+/* Return the state to use for the string starting at i; *nextIndex will be set to the first index following the quote(s) */
+static int GetPyStringState(Accessor &styler, int i, int *nextIndex) {
+	char ch = styler.SafeGetCharAt(i);
+	char chNext = styler.SafeGetCharAt(i + 1);
+
+	// Advance beyond r, u, or ur prefix, but bail if there are any unexpected chars
+	if (ch == 'r' || ch == 'R') {
+		i++;
+		ch = styler.SafeGetCharAt(i);
+		chNext = styler.SafeGetCharAt(i + 1);
+	}
+	else if (ch == 'u' || ch == 'U') {
+		if (chNext == 'r' || chNext == 'R')
+			i += 2;
+		else
+			i += 1;
+		ch = styler.SafeGetCharAt(i);
+		chNext = styler.SafeGetCharAt(i + 1);
+	}
+
+	if (ch != '"' && ch != '\'') {
+		*nextIndex = i + 1;
+		return SCE_P_DEFAULT;
+	}
+
+	if (ch == chNext && ch == styler.SafeGetCharAt(i + 2)) {
+		*nextIndex = i + 3;
+
+		if (ch == '"')
+			return SCE_P_TRIPLEDOUBLE;
+		else
+			return SCE_P_TRIPLE;
+	} else {
+		*nextIndex = i + 1;
+
+		if (ch == '"')
+			return SCE_P_STRING;
+		else
+			return SCE_P_CHARACTER;
+	}
+}
+
+static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 						   WordList *keywordlists[], Accessor &styler) {
 
 	int lengthDoc = startPos + length;
@@ -61,16 +152,16 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 			startPos = styler.LineStart(lineCurrent);
 			if (startPos == 0)
 				initStyle = SCE_P_DEFAULT;
-			else 
+			else
 				initStyle = styler.StyleAt(startPos-1);
 		}
 	}
-	
+
 	// Python uses a different mask because bad indentation is marked by oring with 32
 	styler.StartAt(startPos, 127);
-	
+
 	WordList &keywords = *keywordlists[0];
-	
+
 	bool fold = styler.GetPropertyInt("fold");
 	int whingeLevel = styler.GetPropertyInt("tab.timmy.whinge.level");
 	char prevWord[200];
@@ -82,16 +173,17 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 	int state = initStyle & 31;
 
 	int indentCurrent = styler.IndentAmount(lineCurrent, &spaceFlags, IsPyComment);
-	if ((state == SCE_P_TRIPLE) || (state == SCE_P_TRIPLEDOUBLE)) 
+	if ((state == SCE_P_TRIPLE) || (state == SCE_P_TRIPLEDOUBLE))
 		indentCurrent |= SC_FOLDLEVELWHITEFLAG;
 
+	int nextIndex = 0;
 	char chPrev = ' ';
 	char chPrev2 = ' ';
 	char chNext = styler[startPos];
 	styler.StartSegment(startPos);
 	bool atStartLine = true;
 	for (int i = startPos; i < lengthDoc; i++) {
-	
+
 		if (atStartLine) {
 			char chBad = static_cast<char>(64);
 			char chGood = static_cast<char>(0);
@@ -108,11 +200,11 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 			styler.SetFlags(chFlags, static_cast<char>(state));
 			atStartLine = false;
 		}
-		
+
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
 		char chNext2 = styler.SafeGetCharAt(i + 2);
-		
+
 		if ((ch == '\r' && chNext != '\n') || (ch == '\n') || (i == lengthDoc)) {
 			if ((state == SCE_P_DEFAULT) || (state == SCE_P_TRIPLE) || (state == SCE_P_TRIPLEDOUBLE)) {
 				// Perform colourisation of white space and triple quoted strings at end of each line to allow
@@ -122,7 +214,7 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 
 			int lev = indentCurrent;
 			int indentNext = styler.IndentAmount(lineCurrent + 1, &spaceFlags, IsPyComment);
-			if ((state == SCE_P_TRIPLE) || (state == SCE_P_TRIPLEDOUBLE)) 
+			if ((state == SCE_P_TRIPLE) || (state == SCE_P_TRIPLEDOUBLE))
 				indentNext |= SC_FOLDLEVELWHITEFLAG;
 			if (!(indentCurrent & SC_FOLDLEVELWHITEFLAG)) {
 				// Only non whitespace lines can be headers
@@ -160,33 +252,20 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 			}
 		}
 		if (state == SCE_P_DEFAULT) {
-			if (iswordstart(ch)) {
+			if (IsPyWordStart(ch, chNext, chNext2)) {
 				styler.ColourTo(i - 1, state);
 				state = SCE_P_WORD;
 			} else if (ch == '#') {
 				styler.ColourTo(i - 1, state);
 				state = chNext == '#' ? SCE_P_COMMENTBLOCK : SCE_P_COMMENTLINE;
-			} else if (ch == '\"') {
+			} else if (IsPyStringStart(ch, chNext, chNext2)) {
 				styler.ColourTo(i - 1, state);
-				if (chNext == '\"' && chNext2 == '\"') {
-					i += 2;
-					state = SCE_P_TRIPLEDOUBLE;
+				state = GetPyStringState(styler, i, &nextIndex);
+				if (nextIndex != i + 1) {
+					i = nextIndex - 1;
 					ch = ' ';
 					chPrev = ' ';
 					chNext = styler.SafeGetCharAt(i + 1);
-				} else {
-					state = SCE_P_STRING;
-				}
-			} else if (ch == '\'') {
-				styler.ColourTo(i - 1, state);
-				if (chNext == '\'' && chNext2 == '\'') {
-					i += 2;
-					state = SCE_P_TRIPLE;
-					ch = ' ';
-					chPrev = ' ';
-					chNext = styler.SafeGetCharAt(i + 1);
-				} else {
-					state = SCE_P_CHARACTER;
 				}
 			} else if (isoperator(ch)) {
 				styler.ColourTo(i - 1, state);
@@ -198,25 +277,14 @@ static void ColourisePyDoc(unsigned int startPos, int length, int initStyle,
 				state = SCE_P_DEFAULT;
 				if (ch == '#') {
 					state = chNext == '#' ? SCE_P_COMMENTBLOCK : SCE_P_COMMENTLINE;
-				} else if (ch == '\"') {
-					if (chNext == '\"' && chNext2 == '\"') {
-						i += 2;
-						state = SCE_P_TRIPLEDOUBLE;
+				} else if (IsPyStringStart(ch, chNext, chNext2)) {
+					styler.ColourTo(i - 1, state);
+					state = GetPyStringState(styler, i, &nextIndex);
+					if (nextIndex != i + 1) {
+						i = nextIndex - 1;
 						ch = ' ';
 						chPrev = ' ';
 						chNext = styler.SafeGetCharAt(i + 1);
-					} else {
-						state = SCE_P_STRING;
-					}
-				} else if (ch == '\'') {
-					if (chNext == '\'' && chNext2 == '\'') {
-						i += 2;
-						state = SCE_P_TRIPLE;
-						ch = ' ';
-						chPrev = ' ';
-						chNext = styler.SafeGetCharAt(i + 1);
-					} else {
-						state = SCE_P_CHARACTER;
 					}
 				} else if (isoperator(ch)) {
 					styler.ColourTo(i, SCE_P_OPERATOR);

@@ -1,6 +1,8 @@
 // Scintilla source code edit control
-// Document.cxx - text document that handles notifications, DBCS, styling, words and end of line
-// Copyright 1998-2000 by Neil Hodgson <neilh@scintilla.org>
+/** @file Document.cxx
+ ** Text document that handles notifications, DBCS, styling, words and end of line.
+ **/
+// Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
 
 #include <stdlib.h>
@@ -14,6 +16,11 @@
 #include "SVector.h"
 #include "CellBuffer.h"
 #include "Document.h"
+
+// This is ASCII specific but is safe with chars >= 0x80
+inline bool isspacechar(unsigned char ch) {
+    return (ch == ' ') || ((ch >= 0x09) && (ch <= 0x0d));
+}
 
 Document::Document() {
 	refCount = 0;
@@ -697,19 +704,19 @@ int Document::NextWordStart(int pos, int delta) {
 	if (delta < 0) {
 		while (pos > 0 && (cb.CharAt(pos - 1) == ' ' || cb.CharAt(pos - 1) == '\t'))
 			pos--;
-		if (isspace(cb.CharAt(pos - 1))) {	// Back up to previous line
-			while (pos > 0 && isspace(cb.CharAt(pos - 1)))
+		if (isspacechar(cb.CharAt(pos - 1))) {	// Back up to previous line
+			while (pos > 0 && isspacechar(cb.CharAt(pos - 1)))
 				pos--;
 		} else {
 			bool startAtWordChar = IsWordChar(cb.CharAt(pos - 1));
-			while (pos > 0 && !isspace(cb.CharAt(pos - 1)) && (startAtWordChar == IsWordChar(cb.CharAt(pos - 1))))
+			while (pos > 0 && !isspacechar(cb.CharAt(pos - 1)) && (startAtWordChar == IsWordChar(cb.CharAt(pos - 1))))
 				pos--;
 		}
 	} else {
 		bool startAtWordChar = IsWordChar(cb.CharAt(pos));
-		while (pos < (Length()) && isspace(cb.CharAt(pos)))
+		while (pos < (Length()) && isspacechar(cb.CharAt(pos)))
 			pos++;
-		while (pos < (Length()) && !isspace(cb.CharAt(pos)) && (startAtWordChar == IsWordChar(cb.CharAt(pos))))
+		while (pos < (Length()) && !isspacechar(cb.CharAt(pos)) && (startAtWordChar == IsWordChar(cb.CharAt(pos))))
 			pos++;
 		while (pos < (Length()) && (cb.CharAt(pos) == ' ' || cb.CharAt(pos) == '\t'))
 			pos++;
@@ -784,7 +791,7 @@ long Document::FindText(int minPos, int maxPos, const char *s,
 						found = false;
 				}
 				if (found) {
-					if (!(word && wordStart) ||
+					if ((!word && !wordStart) ||
 						word && IsWordAt(pos, pos + lengthFind) ||
 						wordStart && IsWordStartAt(pos))
  						return pos;
@@ -957,4 +964,86 @@ void Document::NotifyModified(DocModification mh) {
 	for (int i = 0; i < lenWatchers; i++) {
 		watchers[i].watcher->NotifyModified(this, mh, watchers[i].userData);
 	}
+}
+
+bool Document::IsWordPartSeparator(char ch) {
+	return ispunct(ch) && IsWordChar(ch);
+}
+
+int Document::WordPartLeft(int pos) {
+	if (pos > 0) {
+		--pos;
+		char startChar = cb.CharAt(pos);
+		if (IsWordPartSeparator(startChar)) {
+			while (pos > 0 && IsWordPartSeparator(cb.CharAt(pos))) {
+				--pos;
+			}
+		}
+		if (pos > 0) {
+			startChar = cb.CharAt(pos);
+			--pos;
+			if (islower(startChar)) {
+				while (pos > 0 && islower(cb.CharAt(pos)))
+					--pos;
+				if (!isupper(cb.CharAt(pos)) && !islower(cb.CharAt(pos)))
+					++pos;
+			} else if (isupper(startChar)) {
+				while (pos > 0 && isupper(cb.CharAt(pos)))
+					--pos;
+				if (!isupper(cb.CharAt(pos)))
+					++pos;
+			} else if (isdigit(startChar)) {
+				while (pos > 0 && isdigit(cb.CharAt(pos)))
+					--pos;
+				if (!isdigit(cb.CharAt(pos)))
+					++pos;
+			} else if (ispunct(startChar)) {
+				while (pos > 0 && ispunct(cb.CharAt(pos)))
+					--pos;
+				if (!ispunct(cb.CharAt(pos)))
+					++pos;
+			} else if (isspacechar(startChar)) {
+				while (pos > 0 && isspacechar(cb.CharAt(pos)))
+					--pos;
+				if (!isspacechar(cb.CharAt(pos)))
+					++pos;
+			}
+		}
+	}
+	return pos;
+}
+
+int Document::WordPartRight(int pos) {
+	char startChar = cb.CharAt(pos);
+	int length = Length();
+	if (IsWordPartSeparator(startChar)) {
+		while (pos < length && IsWordPartSeparator(cb.CharAt(pos)))
+			++pos;
+		startChar = cb.CharAt(pos);
+	}
+	if (islower(startChar)) {
+		while (pos < length && islower(cb.CharAt(pos)))
+			++pos;
+	} else if (isupper(startChar)) {
+		if (islower(cb.CharAt(pos + 1))) {
+			++pos;
+			while (pos < length && islower(cb.CharAt(pos)))
+				++pos;
+		} else {
+			while (pos < length && isupper(cb.CharAt(pos)))
+				++pos;
+		}
+		if (islower(cb.CharAt(pos)) && isupper(cb.CharAt(pos - 1)))
+			--pos;
+	} else if (isdigit(startChar)) {
+		while (pos < length && isdigit(cb.CharAt(pos)))
+			++pos;
+	} else if (ispunct(startChar)) {
+		while (pos < length && ispunct(cb.CharAt(pos)))
+			++pos;
+	} else if (isspacechar(startChar)) {
+		while (pos < length && isspacechar(cb.CharAt(pos)))
+			++pos;
+	}
+	return pos;
 }

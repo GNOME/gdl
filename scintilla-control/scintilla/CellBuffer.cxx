@@ -1,6 +1,8 @@
 // Scintilla source code edit control
-// CellBuffer.cxx - manages a buffer of cells
-// Copyright 1998-2000 by Neil Hodgson <neilh@scintilla.org>
+/** @file CellBuffer.cxx
+ ** Manages a buffer of cells.
+ **/
+// Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
 
 #include <stdio.h>
@@ -450,14 +452,22 @@ void UndoHistory::AppendAction(actionType at, int position, char *data, int leng
 				currentAction++;
 			} else if (currentAction == savePoint) {
 				currentAction++;
-			} else if ((at == removeAction) &&
-			           ((position + lengthData * 2) != actPrevious.position)) {
-				// Removals must be at same position to coalesce
-				currentAction++;
 			} else if ((at == insertAction) &&
 			           (position != (actPrevious.position + actPrevious.lenData*2))) {
 				// Insertions must be immediately after to coalesce
 				currentAction++;
+            } else if (!actions[currentAction].mayCoalesce) {
+				// Not allowed to coalesce if this set
+				currentAction++;
+            } else if ((at == removeAction) && (lengthData == 2)) {
+                if ((position + lengthData * 2) == actPrevious.position) {
+                    ; // Backspace -> OK
+                } else if (position == actPrevious.position) {
+                    ; // Delete -> OK
+                } else {
+				    // Removals must be at same position to coalesce
+				    currentAction++;
+                }
 			} else {
 				//Platform::DebugPrintf("action coalesced\n");
 			}

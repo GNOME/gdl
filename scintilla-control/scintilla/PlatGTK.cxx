@@ -1,17 +1,24 @@
 // Scintilla source code edit control
 // PlatGTK.cxx - implementation of platform facilities on GTK+/Linux
-// Copyright 1998-2000 by Neil Hodgson <neilh@scintilla.org>
+// Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <gtk/gtk.h>
 
 #include "Platform.h"
 
-#include "ScintillaWidget.h"
 #include "Scintilla.h"
+#include "ScintillaWidget.h"
+
+/* Use fast way of getting char data on win32 to work around problems 
+   with gdk_string_extents. */
+#ifdef G_OS_WIN32
+#define FAST_WAY
+#endif
 
 Point Point::FromLong(long lpoint) {
 	return Point(
@@ -148,7 +155,7 @@ static const char *CharacterSetName(int characterSet) {
 		case SC_CHARSET_DEFAULT: return "iso8859";
 		case SC_CHARSET_BALTIC: return "*";
 		case SC_CHARSET_CHINESEBIG5: return "*";
-		case SC_CHARSET_EASTEUROPE: return "*";
+		case SC_CHARSET_EASTEUROPE: return "iso8859-2";
 		case SC_CHARSET_GB2312: return "gb2312.1980";
 		case SC_CHARSET_GREEK: return "adobe";
 		case SC_CHARSET_HANGUL: return "ksc5601.1987";
@@ -169,8 +176,14 @@ static const char *CharacterSetName(int characterSet) {
 
 void Font::Create(const char *faceName, int characterSet, 
 	int size, bool bold, bool italic) {
-	// TODO: take notice of characterSet
 	Release();
+	// If name of the font begins with a '-', assume, that it is
+	// a full fontspec.
+	if (faceName[0] == '-'){
+		id = gdk_font_load(faceName);
+		if (id)
+			return;
+	}
 	char fontspec[300];
 	fontspec[0] = '\0';
 	strcat(fontspec, "-*-");
@@ -536,8 +549,8 @@ bool Window::HasFocus() {
 }
 
 PRectangle Window::GetPosition() {
-	// Before any size allocated pretend its 100 wide so not scrolled
-	PRectangle rc(0, 0, 100, 100);
+	// Before any size allocated pretend its 1000 wide so not scrolled
+	PRectangle rc(0, 0, 1000, 1000);
 	if (id) {
 		rc.left = id->allocation.x;
 		rc.top = id->allocation.y;
@@ -807,11 +820,19 @@ Colour Platform::ChromeHighlight() {
 }
 
 const char *Platform::DefaultFont() {
+#ifdef G_OS_WIN32
+	return "Lucida Console";
+#else
 	return "lucidatypewriter";
+#endif
 }
 
 int Platform::DefaultFontSize() {
+#ifdef G_OS_WIN32
+	return 10;
+#else
 	return 12;
+#endif
 }
 
 unsigned int Platform::DoubleClickTime() {
@@ -863,6 +884,23 @@ void Platform::DebugPrintf(const char *format, ...) {
 void Platform::DebugPrintf(const char *, ...) {
 }
 #endif
+
+// Not supported for GTK+
+static bool assertionPopUps = true;
+
+bool Platform::ShowAssertionPopUps(bool assertionPopUps_) {
+	bool ret = assertionPopUps;
+	assertionPopUps = assertionPopUps_;
+	return ret;
+}
+
+void Platform::Assert(const char *c, const char *file, int line) {
+	char buffer[2000];
+	sprintf(buffer, "Assertion [%s] failed at %s %d", c, file, line);
+	strcat(buffer, "\r\n");
+	Platform::DebugDisplay(buffer);
+	abort();
+}
 
 int Platform::Clamp(int val, int minVal, int maxVal) {
 	if (val > maxVal)

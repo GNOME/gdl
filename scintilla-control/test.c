@@ -3,6 +3,7 @@
 #include <gnome.h>
 #include <liboaf/liboaf.h>
 #include <gdl/GDL.h>
+#include "scintilla/Scintilla.h"
 #include "scintilla/ScintillaWidget.h"
 
 char *filename;

@@ -25,8 +25,8 @@
 #include <bonobo.h>
 #include <gtk/gtk.h>
 
-#include "scintilla/ScintillaWidget.h"
 #include "scintilla/Scintilla.h"
+#include "scintilla/ScintillaWidget.h"
 #include "scintilla/SciLexer.h"
 #include "scintilla-persist-file.h"
 
@@ -49,7 +49,7 @@ impl_save (BonoboPersistFile *pf,
 	int i;
 
 	for (i = 0; i < length_doc; i += BLOCK_SIZE) {
-	    TextRange tr;
+	    struct TextRange tr;
 	    int grab_size = length_doc - i;
 	    if (grab_size > BLOCK_SIZE) 
 		grab_size = BLOCK_SIZE;

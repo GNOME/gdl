@@ -22,8 +22,9 @@
 
 #include <config.h>
 #include <gdl/GDL.h>
-#include "scintilla-editor-buffer.h"
+
 #include "scintilla/Scintilla.h"
+#include "scintilla-editor-buffer.h"
 
 #include <gnome.h>
 #include <bonobo.h>
@@ -142,7 +143,7 @@ impl_get_chars (PortableServer_Servant servant,
                 CORBA_Environment *ev)
 {
     ScintillaEditorBuffer *eb = editor_buffer_from_servant (servant);
-    TextRange tr;
+    struct TextRange tr;
     long pos = offset;
     long len = scintilla_send_message (eb->sci, SCI_GETTEXTLENGTH, 0, 0);
 

@@ -1,6 +1,8 @@
 // Scintilla source code edit control
-// CallTip.cxx - code for displaying call tips
-// Copyright 1998-2000 by Neil Hodgson <neilh@scintilla.org>
+/** @file CallTip.cxx
+ ** Code for displaying call tips.
+ **/
+// Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
 
 #include <stdlib.h> 
@@ -27,6 +29,7 @@ CallTip::CallTip() {
 }
 
 CallTip::~CallTip() {
+    font.Release();
 	wCallTip.Destroy();
 	delete []val;
 	val = 0;

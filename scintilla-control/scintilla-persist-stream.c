@@ -25,8 +25,8 @@
 #include <bonobo.h>
 #include <gtk/gtk.h>
 
-#include "scintilla/ScintillaWidget.h"
 #include "scintilla/Scintilla.h"
+#include "scintilla/ScintillaWidget.h"
 #include "scintilla/SciLexer.h"
 #include "scintilla-persist-stream.h"
 
@@ -48,7 +48,7 @@ impl_save (BonoboPersistStream *ps,
     for (i = 0; i < length_doc; i += BLOCK_SIZE) {
         Bonobo_Stream_iobuf buf;
 
-        TextRange tr;
+        struct TextRange tr;
         int grab_size = length_doc - i;
         if (grab_size > BLOCK_SIZE) 
             grab_size = BLOCK_SIZE;

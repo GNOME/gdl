@@ -26,8 +26,8 @@
 #include <gtk/gtk.h>
 #include <liboaf/liboaf.h>
 
-#include "scintilla/ScintillaWidget.h"
 #include "scintilla/Scintilla.h"
+#include "scintilla/ScintillaWidget.h"
 
 #include "scintilla-persist-file.h"
 #include "scintilla-editor-buffer.h"

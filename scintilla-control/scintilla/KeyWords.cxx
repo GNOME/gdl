@@ -1,13 +1,15 @@
-// SciTE - Scintilla based Text Editor
-// KeyWords.cxx - colourise for particular languages
-// Copyright 1998-2000 by Neil Hodgson <neilh@scintilla.org>
+// Scintilla source code edit control
+/** @file KeyWords.cxx
+ ** Colourise for particular languages.
+ **/
+// Copyright 1998-2001 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
 
-#include <stdlib.h> 
-#include <string.h> 
-#include <ctype.h> 
-#include <stdio.h> 
-#include <stdarg.h> 
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 #include "Platform.h"
 
@@ -43,3 +45,47 @@ void LexerModule::Colourise(unsigned int startPos, int lengthDoc, int initStyle,
 		styler.ColourTo(startPos + lengthDoc - 1, 0);
 	}
 }
+
+#ifdef __vms
+
+// The following code forces a reference to all of the Scintilla lexers.
+// If we don't do something like this, then the linker tends to "optimize"
+// them away. (eric@sourcegear.com)
+
+// Taken from wxWindow's stc.cpp. Walter.
+
+int wxForceScintillaLexers(void) {
+  extern LexerModule lmCPP;
+  extern LexerModule lmHTML;
+  extern LexerModule lmXML;
+  extern LexerModule lmProps;
+  extern LexerModule lmErrorList;
+  extern LexerModule lmMake;
+  extern LexerModule lmBatch;
+  extern LexerModule lmPerl;
+  extern LexerModule lmPython;
+  extern LexerModule lmSQL;
+  extern LexerModule lmVB;
+
+  if (
+      &lmCPP
+      && &lmHTML
+      && &lmXML
+      && &lmProps
+      && &lmErrorList
+      && &lmMake
+      && &lmBatch
+      && &lmPerl
+      && &lmPython
+      && &lmSQL
+      && &lmVB
+      )
+    {
+      return 1;
+    }
+  else
+    {
+      return 0;
+    }
+}
+#endif
