@@ -121,12 +121,12 @@ gdl_dock_destroy (GtkObject *object)
 
     /* destroy the xor gc */
     if (dock->xor_gc) {
-        gdk_gc_unref (dock->xor_gc);
+        g_object_unref (dock->xor_gc);
         dock->xor_gc = NULL;
     }
 
     if (dock->root_xor_gc) {
-        gdk_gc_unref (dock->root_xor_gc);
+        g_object_unref (dock->root_xor_gc);
         dock->root_xor_gc = NULL;
     }
 
@@ -389,13 +389,14 @@ gdl_dock_xor_rect (GdlDock *dock, GdkRectangle *rect, gboolean floating)
             values.function = GDK_INVERT;
             values.subwindow_mode = GDK_INCLUDE_INFERIORS;
             dock->root_xor_gc = gdk_gc_new_with_values 
-                (GDK_ROOT_PARENT (), &values, GDK_GC_FUNCTION | GDK_GC_SUBWINDOW);
+                (gdk_window_lookup (gdk_x11_get_default_root_xwindow ()),
+                 &values, GDK_GC_FUNCTION | GDK_GC_SUBWINDOW);
         } else 
             return;
     };
 
     if (floating) {
-        window = GDK_ROOT_PARENT ();
+        window = gdk_window_lookup (gdk_x11_get_default_root_xwindow ());
         gc = dock->root_xor_gc;
     } else {
         window = widget->window;

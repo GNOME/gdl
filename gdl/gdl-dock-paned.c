@@ -302,7 +302,7 @@ gdl_dock_paned_realize (GtkWidget *widget)
     paned->handle = gdk_window_new (widget->window,
                                     &attributes, attributes_mask);
     gdk_window_set_user_data (paned->handle, paned);
-    gdk_cursor_destroy (attributes.cursor);
+    gdk_cursor_unref (attributes.cursor);
 
     widget->style = gtk_style_attach (widget->style, widget->window);
 
@@ -381,7 +381,7 @@ gdl_dock_paned_unrealize (GtkWidget *widget)
     paned = GDL_DOCK_PANED (widget);
 
     if (paned->xor_gc) {
-        gdk_gc_destroy (paned->xor_gc);
+        g_object_unref (paned->xor_gc);
         paned->xor_gc = NULL;
     }
 
@@ -1177,7 +1177,7 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
 
         cursor = gdk_cursor_new (paned->cursor_type);
         gdk_window_set_cursor (paned->handle, cursor);
-        gdk_cursor_destroy (cursor);
+        gdk_cursor_unref (cursor);
     };
 }
 

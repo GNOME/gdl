@@ -1,3 +1,22 @@
+2002-01-13  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-layout.[ch]: New files.  Object which wraps layout
+	managment stuff for the dock.
+
+	* gdl/layout.glade: Layout manager interface file.
+
+	* gdl/test-dock.c: Removed layout saving/restoring stuff, replaced
+	with GdlDockLayout object.
+	
+	* configure.in:	Added libglade dependency.
+
+	* gdl/Makefile.am: Added GdlDockLayout.  Added
+	GDK_DISABLE_DEPRECATED flag.
+
+	* gdl/gdl-dock-item.c
+	  gdl/gdl-dock-paned.c
+	  gdl/gdl-dock.c: Replaced GDK deprecated function calls.
+	
 2002-01-12  Dave Camp  <dave@ximian.com>
 
 	* configure.in: Changed the version handling to be a bit simpler.

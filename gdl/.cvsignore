@@ -12,3 +12,5 @@ test-dock
 libgdlmarshal.c
 libgdlmarshal.h
 libgdltypebuiltins.*
+layout.xml
+test-dataview

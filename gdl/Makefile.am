@@ -1,7 +1,9 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locales"\" 	\
+	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
 	-DG_DISABLE_DEPRECATED 				\
 	-DGTK_DISABLE_DEPRECATED 			\
+	-DGDK_DISABLE_DEPRECATED 			\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS)					\
         -DPREFIX=\""$(prefix)"\"                        \
@@ -47,6 +49,7 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-notebook.c \
 	gdl-dock-paned.c \
 	gdl-dock-tablabel.c \
+	gdl-dock-layout.c \
 	gdl-file-selector-util.c \
 	libgdltypebuiltins.c \
 	libgdlmarshal.c
@@ -72,6 +75,7 @@ libgdl_headers = \
 	gdl-dock-notebook.h \
 	gdl-dock-paned.h \
 	gdl-dock-tablabel.h \
+	gdl-dock-layout.h \
 	gdl-file-selector-util.h
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
@@ -79,6 +83,13 @@ libgdlinclude_HEADERS = \
 	$(CORBA_GENERATED_HEADER_FILES) \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
+
+gladedir = $(datadir)/gdl/glade
+glade_DATA = layout.glade
+
+# layout.glade: layout.glade1 $(LIBGLADE_CONVERT)
+#	$(LIBGLADE_CONVERT) layout.glade1 > layout.glade.tmp && \
+# 	mv layout.glade.tmp layout.glade
 
 test_dataview_SOURCES = \
 	gdl-data-view.h \
@@ -97,7 +108,7 @@ test_dataview_LDADD = $(GDL_DEPENDENCIES_LIBS)
 
 # enumerations code generation
 
-libgdltypebuiltins.c: Makefile.am $(libgdl_headers)
+libgdltypebuiltins.c: $(libgdl_headers)
 	@GLIB_MKENUMS@ \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"libgdltypebuiltins.h\"\n\n" \
@@ -114,7 +125,7 @@ libgdltypebuiltins.c: Makefile.am $(libgdl_headers)
 	&& cp xgen-gtbec $(@F) \
 	&& rm -f xgen-gtbec
 
-libgdltypebuiltins.h: Makefile.am $(libgdl_headers)
+libgdltypebuiltins.h: $(libgdl_headers)
 	@GLIB_MKENUMS@ \
 			--fhead "#ifndef __LIBGDLTYPEBUILTINS_H__\n" \
 			--fhead "#define __LIBGDLTYPEBUILTINS_H__ 1\n\n" \
@@ -129,13 +140,13 @@ libgdltypebuiltins.h: Makefile.am $(libgdl_headers)
 	&& cp xgen-gth $(@F) \
 	&& rm -f xgen-gth
 
-libgdlmarshal.h: Makefile.am libgdlmarshal.list
+libgdlmarshal.h: libgdlmarshal.list
 	@GLIB_GENMARSHAL@ \
 		--prefix=gdl_marshal libgdlmarshal.list --header > xgen-gmc \
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
 
-libgdlmarshal.c: Makefile.am libgdlmarshal.h
+libgdlmarshal.c: libgdlmarshal.h
 	echo "#include \"libgdlmarshal.h\"" > xgen-gmc \
 	&& @GLIB_GENMARSHAL@ \
 		--prefix=gdl_marshal libgdlmarshal.list --body >> xgen-gmc \

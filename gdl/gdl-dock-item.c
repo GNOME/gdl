@@ -820,7 +820,7 @@ gdl_dock_item_paint (GtkWidget      *widget,
 
         if (gdk_rectangle_intersect (&event->area, &rect, &dest))
             draw_textured_frame (widget, item->bin_window, &rect,
-                                 GTK_SHADOW_OUT, &event->area);
+                                 GTK_SHADOW_OUT, &dest);
     }
 }
 
@@ -1165,7 +1165,7 @@ gdl_dock_item_grab_pointer (GdlDockItem *item)
                              fleur,
                              GDK_CURRENT_TIME) != 0);
 
-    gdk_cursor_destroy (fleur);
+    gdk_cursor_unref (fleur);
 }
 
 static void
@@ -1784,8 +1784,7 @@ gdl_dock_item_window_float (GdlDockItem *item)
                             item->float_width, item->float_height);
 
     gdk_window_reparent (item->bin_window, item->float_window, 0, 0);
-    gdk_window_set_hints (item->float_window, item->float_x, item->float_y, 
-                          0, 0, 0, 0, GDK_HINT_POS);
+    gdk_window_move (item->float_window, item->float_x, item->float_y);
 
     allocation.x = allocation.y = 0;
     allocation.width = item->float_width;
