@@ -1,3 +1,7 @@
+2003-07-21  Artur Flinta  <aflinta@cvs.gnome.org>
+
+        * configure.in: Added "pl" in ALL_LINGUAS.
+
 2003-06-14  Guntupalli Karunakar  <karunakar@freedomink.org>
 
 	* configure.in: Added "ml" in ALL_LINGUAS.
