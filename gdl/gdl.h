@@ -36,5 +36,6 @@
 #include <gdl/gdl-dock-tablabel.h>
 #include <gdl/gdl-recent.h>
 #include <gdl/gdl-icons.h>
+#include <gdl/gdl-combo-button.h>
 
 #endif

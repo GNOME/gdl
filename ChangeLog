@@ -1,3 +1,16 @@
+2003-09-13  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/Makefile.am: Added gdl-combo-button.[ch] and test case.
+	* gdl/gdl-combo-button.c: New widget that is a button with an extra
+	button next to it which can popup a menu.
+	* gdl/gdl-combo-button.h:
+	* gdl/gdl-tools.c: (gdl_pixmaps_free), (gdl_pixmaps_update):
+	* gdl/gdl-tools.h: Added GdlPixmap utility. Copied from Evolution. Used
+	for setting pixmaps in a bonoboui application.
+	* gdl/gdl.h:
+	* gdl/test-combo-button.c: (combo_button_activate_default_cb),
+	(main):
+
 2003-08-10  Wang Jian  <lark@linux.net.cn>
 
 	* configure.in: Added "zh_CN" to ALL_LINGUAS.

@@ -25,7 +25,74 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <bonobo/bonobo-ui-util.h>
 #include "gdl-tools.h"
+
+static GSList *inited_arrays = NULL;
+
+static void
+gdl_pixmaps_free (gpointer data)
+{
+	GdlPixmap *pixcache = data;
+	int i;
+
+	g_return_if_fail (g_slist_find (inited_arrays, pixcache) == NULL);
+
+	for (i = 0; pixcache[i].path; i++)
+		g_free (pixcache[i].pixbuf);
+
+	inited_arrays = g_slist_remove (inited_arrays, pixcache);
+	if (g_slist_length (inited_arrays) == 0) {
+		g_slist_free (inited_arrays);
+		inited_arrays = NULL;
+	}
+}
+
+/* Copied from evolution/shell/evolution-shell-component-utils.c */
+void gdl_pixmaps_update (BonoboUIComponent *uic,
+			 const char *pixmap_dir,
+			 GdlPixmap *pixcache)
+{
+	int i;
+
+	g_return_if_fail (uic != NULL);
+	g_return_if_fail (BONOBO_IS_UI_COMPONENT (uic));
+	g_return_if_fail (pixmap_dir != NULL);
+	g_return_if_fail (pixcache != NULL);
+
+	if (g_slist_find (inited_arrays, pixcache) == NULL) {
+		inited_arrays = g_slist_prepend (inited_arrays, pixcache);
+		g_object_set_data_full (G_OBJECT (uic), "GdlPixmaps",
+					pixcache, gdl_pixmaps_free);
+	}
+
+	for (i = 0; pixcache[i].path; i++) {
+		if (!pixcache[i].pixbuf) {
+			char *path;
+			GdkPixbuf *pixbuf;
+
+			path = g_build_filename (pixmap_dir, pixcache[i].fname, NULL);
+
+			pixbuf = gdk_pixbuf_new_from_file (path, NULL);
+			if (pixbuf == NULL) {
+				g_warning ("Cannot load image -- %s", path);
+			} else {
+				pixcache[i].pixbuf = bonobo_ui_util_pixbuf_to_xml (pixbuf);
+				g_object_unref (pixbuf);
+				bonobo_ui_component_set_prop (uic,
+					pixcache[i].path, "pixname",
+					pixcache[i].pixbuf, NULL);
+			}
+
+			g_free (path);
+		} else {
+			bonobo_ui_component_set_prop (uic, pixcache[i].path,
+						      "pixname",
+						      pixcache[i].pixbuf,
+						      NULL);
+		}
+	}
+}
 
 GtkWidget *
 gdl_button_new_with_stock_image (const char *text,

@@ -45,6 +45,7 @@ CLEANFILES = $(CORBA_GENERATED) 		\
 libgdl_headers = \
 	gdl.h \
 	gdl-tools.h \
+	gdl-combo-button.h \
 	gdl-dock-object.h \
 	gdl-dock-master.h \
 	gdl-dock.h \
@@ -64,6 +65,7 @@ libgdl_1_la_SOURCES = \
 	gdl-i18n.h \
 	gdl-i18n.c \
 	gdl-tools.c \
+	gdl-combo-button.c \
 	gdl-dock-object.c \
 	gdl-dock-master.c \
 	gdl-dock.c \
@@ -85,7 +87,7 @@ libgdl_1_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS)
 
-noinst_PROGRAMS=test-dock test-dataview
+noinst_PROGRAMS=test-dock test-dataview test-combo-button
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-1.la $(XML_LIBS)
@@ -119,6 +121,9 @@ test_dataview_SOURCES = \
 	test-dataview.c
 
 test_dataview_LDADD = libgdl-1.la
+
+test_combo_button_SOURCES = test-combo-button.c
+test_combo_button_LDADD = libgdl-1.la
 
 # enumerations code generation
 

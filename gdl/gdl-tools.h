@@ -27,7 +27,7 @@
 
 #include <glib.h>
 #include <gtk/gtkwidget.h>
-
+#include <bonobo/bonobo-ui-component.h>
 
 /* FIXME: Toggle this */
 
@@ -86,8 +86,23 @@ G_BEGIN_DECLS
 #define GDL_CALL_VIRTUAL_WITH_DEFAULT(object, get_class_cast, method, args, default) \
     (get_class_cast (object)->method ? (* get_class_cast (object)->method) args : default)
 
-GtkWidget	*gdl_button_new_with_stock_image (const char  *text,
-						  const char  *stock_id);
+/* GdlPixmap structure and method have been copied from Evolution. */
+typedef struct _GdlPixmap {
+	const char *path;
+	const char *fname;
+	char       *pixbuf;
+} GdlPixmap;
+
+#define GDL_PIXMAP(path,fname)	{ (path), (fname), NULL }
+#define GDL_PIXMAP_END		{ NULL, NULL, NULL }
+
+/* Takes an array of pixmaps, terminated by GDL_PIXMAP_END, and loads into uic */
+void gdl_pixmaps_update (BonoboUIComponent *uic,
+			 const char        *pixmap_dir,
+			 GdlPixmap         *pixcache);
+
+GtkWidget *gdl_button_new_with_stock_image (const char *text,
+					    const char *stock_id);
 
 G_END_DECLS
 
