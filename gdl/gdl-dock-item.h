@@ -59,9 +59,10 @@ typedef enum {
 typedef enum {
     GDL_DOCK_IN_DRAG             = 1 << GDL_DOCK_OBJECT_FLAGS_SHIFT,
     GDL_DOCK_IN_PREDRAG          = 1 << (GDL_DOCK_OBJECT_FLAGS_SHIFT + 1),
+    GDL_DOCK_ICONIFIED           = 1 << (GDL_DOCK_OBJECT_FLAGS_SHIFT + 2),
     /* for general use: indicates the user has started an action on
        the dock item */
-    GDL_DOCK_USER_ACTION         = 1 << (GDL_DOCK_OBJECT_FLAGS_SHIFT + 2)
+    GDL_DOCK_USER_ACTION         = 1 << (GDL_DOCK_OBJECT_FLAGS_SHIFT + 3)
 } GdlDockItemFlags;
 
 typedef struct _GdlDockItem        GdlDockItem;
@@ -106,6 +107,8 @@ struct _GdlDockItemClass {
     ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_IN_DRAG) != 0)
 #define GDL_DOCK_ITEM_IN_PREDRAG(item) \
     ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_IN_PREDRAG) != 0)
+#define GDL_DOCK_ITEM_ICONIFIED(item) \
+    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_ICONIFIED) != 0)
 #define GDL_DOCK_ITEM_USER_ACTION(item) \
     ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_USER_ACTION) != 0)
    
@@ -120,6 +123,10 @@ struct _GdlDockItemClass {
  
 GtkWidget     *gdl_dock_item_new               (const gchar         *name,
                                                 const gchar         *long_name,
+                                                GdlDockItemBehavior  behavior);
+GtkWidget     *gdl_dock_item_new_with_stock    (const gchar         *name,
+                                                const gchar         *long_name,
+                                                const gchar         *stock_id,
                                                 GdlDockItemBehavior  behavior);
 
 GType          gdl_dock_item_get_type          (void);
@@ -145,6 +152,8 @@ void           gdl_dock_item_bind              (GdlDockItem *item,
 void           gdl_dock_item_unbind            (GdlDockItem *item);
 
 void           gdl_dock_item_hide_item         (GdlDockItem *item);
+
+void           gdl_dock_item_iconify_item      (GdlDockItem *item);
 
 void           gdl_dock_item_show_item         (GdlDockItem *item);
 

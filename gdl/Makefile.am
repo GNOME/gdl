@@ -1,6 +1,7 @@
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"Gdl\"				\
 	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
+	-DGDL_IMAGESDIR=\""$(gdl_images_dir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
@@ -53,8 +54,10 @@ libgdl_headers = \
 	gdl-dock-tablabel.h \
 	gdl-dock-layout.h \
 	gdl-dock-placeholder.h \
+	gdl-dock-bar.h \
 	gdl-icons.h \
-	gdl-recent.h
+	gdl-recent.h \
+	gdl-stock.h
 
 libgdl_1_la_SOURCES = \
 	$(CORBA_GENERATED) \
@@ -73,8 +76,10 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-tablabel.c \
 	gdl-dock-layout.c \
 	gdl-dock-placeholder.c \
+	gdl-dock-bar.c \
 	gdl-icons.c \
 	gdl-recent.c \
+	gdl-stock.c \
 	libgdltypebuiltins.h \
 	libgdltypebuiltins.c \
 	libgdlmarshal.h \
@@ -97,6 +102,12 @@ libgdlinclude_HEADERS = \
 
 gladedir = $(datadir)/gdl/glade
 glade_DATA = layout.glade
+
+imagedir = $(gdl_images_dir)
+image_DATA = \
+	stock-close-12.png \
+	stock-menu-left-12.png \
+	stock-menu-right-12.png
 
 EXTRA_DIST = libgdlmarshal.list \
 	tree-expand.xpm \

@@ -2,7 +2,7 @@
  *
  * This file is part of the GNOME Devtools Libraries.
  *
- * Copyright (C) 2002 Gustavo Gir·ldez <gustavo.giraldez@gmx.net>
+ * Copyright (C) 2002 Gustavo Gir√°ldez <gustavo.giraldez@gmx.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,7 +121,7 @@ struct _GdlDockPrivate
     gint                float_y;
     gint                width;
     gint                height;
-    
+
     /* auxiliary fields */
     GdkGC              *xor_gc;
 };
@@ -547,9 +547,9 @@ static void
 gdl_dock_size_request (GtkWidget      *widget,
                        GtkRequisition *requisition)
 {
-    GdlDock      *dock;
-    GtkContainer *container;
-    guint         border_width;
+    GdlDock       *dock;
+    GtkContainer  *container;
+    guint          border_width;
 
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
@@ -576,9 +576,9 @@ static void
 gdl_dock_size_allocate (GtkWidget     *widget,
                         GtkAllocation *allocation)
 {
-    GdlDock      *dock;
-    GtkContainer *container;
-    guint         border_width;
+    GdlDock       *dock;
+    GtkContainer  *container;
+    guint          border_width;
 
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
@@ -1206,4 +1206,3 @@ gdl_dock_xor_rect (GdlDock      *dock,
                         rect->x + 1, rect->y + 1,
                         rect->width - 2, rect->height - 2);
 }
-

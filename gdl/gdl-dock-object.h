@@ -88,6 +88,7 @@ struct _GdlDockObject {
     GObject            *master;
     gchar              *name;
     gchar              *long_name;
+    gchar              *stock_id;
     
     gboolean            reduce_pending;
 };

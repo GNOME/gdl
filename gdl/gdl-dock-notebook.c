@@ -125,7 +125,7 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
     object_class->present = gdl_dock_notebook_present;
     object_class->reorder = gdl_dock_notebook_reorder;
     
-    item_class->has_grip = TRUE;
+    item_class->has_grip = FALSE;
     item_class->set_orientation = gdl_dock_notebook_set_orientation;    
     
     g_object_class_install_property (
@@ -172,10 +172,7 @@ gdl_dock_notebook_instance_init (GdlDockNotebook *notebook)
     /* create the container notebook */
     item->child = gtk_notebook_new ();
     gtk_widget_set_parent (item->child, GTK_WIDGET (notebook));
-    if (item->orientation == GTK_ORIENTATION_HORIZONTAL)
-        gtk_notebook_set_tab_pos (GTK_NOTEBOOK (item->child), GTK_POS_TOP);
-    else
-        gtk_notebook_set_tab_pos (GTK_NOTEBOOK (item->child), GTK_POS_LEFT);
+    gtk_notebook_set_tab_pos (GTK_NOTEBOOK (item->child), GTK_POS_BOTTOM);
     g_signal_connect (item->child, "switch_page",
                       (GCallback) gdl_dock_notebook_switch_page_cb, (gpointer) item);
     g_signal_connect (item->child, "notify::page",
@@ -372,19 +369,24 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
         else {
             GdlDockItem *item = GDL_DOCK_ITEM (object);
             GdlDockItem *requestor_item = GDL_DOCK_ITEM (requestor);
+            gchar       *name;
             GtkWidget   *label;
             gint         position = -1;
             
             label = gdl_dock_item_get_tablabel (requestor_item);
             if (!label) {
-                label = gdl_dock_tablabel_new (requestor_item);
+                g_object_get (requestor_item, "long_name", &name, NULL);
+                label = gtk_label_new (name);
+                g_free (name);
                 gdl_dock_item_set_tablabel (requestor_item, label);
             }
+#if 0
             if (GDL_IS_DOCK_TABLABEL (label)) {
                 gdl_dock_tablabel_deactivate (GDL_DOCK_TABLABEL (label));
                 /* hide the item grip, as we will use the tablabel's */
                 gdl_dock_item_hide_grip (requestor_item);
             }
+#endif
 
             if (other_data && G_VALUE_HOLDS (other_data, G_TYPE_INT))
                 position = g_value_get_int (other_data);

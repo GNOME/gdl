@@ -81,6 +81,7 @@ enum {
     PROP_0,
     PROP_NAME,
     PROP_LONG_NAME,
+    PROP_STOCK_ID,
     PROP_MASTER,
     PROP_EXPORT_PROPERTIES
 };
@@ -126,6 +127,13 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
         g_object_class, PROP_LONG_NAME,
         g_param_spec_string ("long_name", _("Long name"),
                              _("Human readable name for the dock object"),
+                             NULL,
+                             G_PARAM_READWRITE));
+
+    g_object_class_install_property (
+        g_object_class, PROP_STOCK_ID,
+        g_param_spec_string ("stock_id", _("Stock Icon"),
+                             _("Stock icon for the dock object"),
                              NULL,
                              G_PARAM_READWRITE));
 
@@ -202,6 +210,10 @@ gdl_dock_object_set_property  (GObject      *g_object,
         g_free (object->long_name);
         object->long_name = g_value_dup_string (value);
         break;
+    case PROP_STOCK_ID:
+        g_free (object->stock_id);
+        object->stock_id = g_value_dup_string (value);
+        break;
     case PROP_MASTER:
         if (g_value_get_object (value)) 
             gdl_dock_object_bind (object, g_value_get_object (value));
@@ -228,6 +240,9 @@ gdl_dock_object_get_property  (GObject      *g_object,
         break;
     case PROP_LONG_NAME:
         g_value_set_string (value, object->long_name);
+        break;
+    case PROP_STOCK_ID:
+        g_value_set_string (value, object->stock_id);
         break;
     case PROP_MASTER:
         g_value_set_object (value, object->master);

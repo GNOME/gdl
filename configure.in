@@ -305,6 +305,17 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettex
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR(GNOMELOCALEDIR)
 
+dnl Set PREFIX
+if test "x${prefix}" = "xNONE"; then
+  packageprefix=${ac_default_prefix}
+else
+  packageprefix=${prefix}
+fi
+
+# images directory
+gdl_images_dir="${packageprefix}/share/gdl/images"
+AC_SUBST(gdl_images_dir)
+
 AC_OUTPUT([
 Makefile
 gdl/Makefile

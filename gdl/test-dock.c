@@ -14,6 +14,7 @@
 #include "gdl-dock-notebook.h"
 #include "gdl-dock-layout.h"
 #include "gdl-dock-placeholder.h"
+#include "gdl-dock-bar.h"
 
 /* ---- this code is based on eel-debug by Darin Adler */
 
@@ -153,7 +154,7 @@ main (int argc, char **argv)
         GtkWidget *win, *table, *button, *box;
 	int i;
 	GdlDockLayout *layout;
-	GtkWidget *dock;
+	GtkWidget *dock, *dockbar;
 
 	gtk_init (&argc, &argv);
 
@@ -176,9 +177,15 @@ main (int argc, char **argv)
 
 	/* ... and the layout manager */
 	layout = gdl_dock_layout_new (GDL_DOCK (dock));
-        
-        gtk_box_pack_start (GTK_BOX (table), dock, 
-			    TRUE, TRUE, 0);
+
+	/* create the dockbar */
+	dockbar = gdl_dock_bar_new (GDL_DOCK (dock));
+
+	box = gtk_hbox_new (FALSE, 5);
+	gtk_box_pack_start (GTK_BOX (table), box, TRUE, TRUE, 0);
+
+        gtk_box_pack_start (GTK_BOX (box), dockbar, FALSE, FALSE, 0);
+        gtk_box_pack_end (GTK_BOX (box), dock, TRUE, TRUE, 0);
   
 	/* create the dock items */
         item1 = gdl_dock_item_new ("item1", "Item #1", GDL_DOCK_ITEM_BEH_LOCKED);
@@ -187,20 +194,26 @@ main (int argc, char **argv)
 			   GDL_DOCK_TOP);
 	gtk_widget_show (item1);
 
-	item2 = gdl_dock_item_new ("item2", "Item #2", GDL_DOCK_ITEM_BEH_NORMAL);
+	item2 = gdl_dock_item_new_with_stock ("item2", "Item #2",
+					      GTK_STOCK_EXECUTE,
+					      GDL_DOCK_ITEM_BEH_NORMAL);
 	g_object_set (item2, "resize", FALSE, NULL);
 	gtk_container_add (GTK_CONTAINER (item2), create_item ("Button 2"));
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2), 
 			   GDL_DOCK_RIGHT);
 	gtk_widget_show (item2);
 
-	item3 = gdl_dock_item_new ("item3", "Item #3", GDL_DOCK_ITEM_BEH_NORMAL);
+	item3 = gdl_dock_item_new_with_stock ("item3", "Item #3",
+					      GTK_STOCK_CONVERT,
+					      GDL_DOCK_ITEM_BEH_NORMAL);
 	gtk_container_add (GTK_CONTAINER (item3), create_item ("Button 3"));
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item3), 
 			   GDL_DOCK_BOTTOM);
 	gtk_widget_show (item3);
 
-	items [0] = gdl_dock_item_new ("Item #4", "Item #4", GDL_DOCK_ITEM_BEH_NORMAL);
+	items [0] = gdl_dock_item_new_with_stock ("Item #4", "Item #4",
+						  GTK_STOCK_JUSTIFY_FILL,
+						  GDL_DOCK_ITEM_BEH_NORMAL);
 	gtk_container_add (GTK_CONTAINER (items [0]), create_text_item ());
 	gtk_widget_show (items [0]);
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [0]), GDL_DOCK_BOTTOM);
@@ -208,7 +221,8 @@ main (int argc, char **argv)
 	    gchar name[10];
 
 	    snprintf (name, sizeof (name), "Item #%d", i + 4);
-	    items [i] = gdl_dock_item_new (name, name, GDL_DOCK_ITEM_BEH_NORMAL);
+	    items [i] = gdl_dock_item_new_with_stock (name, name, GTK_STOCK_NEW,
+						      GDL_DOCK_ITEM_BEH_NORMAL);
 	    gtk_container_add (GTK_CONTAINER (items [i]), create_text_item ());
 	    gtk_widget_show (items [i]);
 	    

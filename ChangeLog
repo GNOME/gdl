@@ -1,3 +1,50 @@
+2004-02-08  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* configure.in:
+	* gdl/Makefile.am:
+	* gdl/gdl-dock-bar.c:
+	* gdl/gdl-dock-bar.h:
+	* gdl/gdl-dock-item-grip.c: (gdl_dock_item_grip_get_title_area),
+	(gdl_dock_item_grip_expose), (gdl_dock_item_grip_item_notify),
+	(gdl_dock_item_grip_destroy), (gdl_dock_item_grip_set_property),
+	(gdl_dock_item_grip_close_clicked),
+	(gdl_dock_item_grip_iconify_clicked),
+	(gdl_dock_item_grip_instance_init), (gdl_dock_item_grip_realize),
+	(gdl_dock_item_grip_unrealize), (gdl_dock_item_grip_map),
+	(gdl_dock_item_grip_unmap), (gdl_dock_item_grip_size_request),
+	(gdl_dock_item_grip_size_allocate), (gdl_dock_item_grip_add),
+	(gdl_dock_item_grip_remove), (gdl_dock_item_grip_forall),
+	(gdl_dock_item_grip_child_type), (gdl_dock_item_grip_class_init),
+	(gdl_dock_item_grip_new):
+	* gdl/gdl-dock-item-grip.h:
+	* gdl/gdl-dock-item.c: (gdl_dock_item_class_init),
+	(gdl_dock_item_instance_init), (gdl_dock_item_set_property),
+	(gdl_dock_item_get_property), (gdl_dock_item_size_request),
+	(gdl_dock_item_size_allocate), (gdl_dock_item_button_changed),
+	(gdl_dock_item_motion), (gdl_dock_item_tab_button),
+	(gdl_dock_item_showhide_grip), (gdl_dock_item_new),
+	(gdl_dock_item_new_with_stock), (gdl_dock_item_iconify_item):
+	* gdl/gdl-dock-item.h:
+	* gdl/gdl-dock-notebook.c: (gdl_dock_notebook_class_init),
+	(gdl_dock_notebook_instance_init), (gdl_dock_notebook_dock):
+	* gdl/gdl-dock-object.c: (gdl_dock_object_class_init),
+	(gdl_dock_object_set_property), (gdl_dock_object_get_property):
+	* gdl/gdl-dock-object.h:
+	* gdl/gdl-dock.c: (gdl_dock_size_request),
+	(gdl_dock_size_allocate), (gdl_dock_xor_rect):
+	* gdl/gdl-dock.h:
+	* gdl/gdl-stock.c: (icon_set_from_file), (add_icon),
+	(gdl_stock_init):
+	* gdl/gdl-stock.h:
+	* gdl/stock-close-12.png:
+	* gdl/stock-menu-left-12.png:
+	* gdl/stock-menu-right-12.png:
+	* gdl/test-dock.c: (main):
+	
+	Improved GdlDock look (looks more like the Gimp's docking widget now).
+	GdlDockItems can also have a stock_id now. Added a new GdlDockBar widget
+	which displays iconified dockitems.
+
 2004-02-05  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	Changes to make GdlDock self contained and only requiring Gtk+,

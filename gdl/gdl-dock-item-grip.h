@@ -30,17 +30,25 @@ G_BEGIN_DECLS
 #define GDL_DOCK_ITEM_GRIP_GET_CLASS(obj)  \
     (GTK_CHECK_GET_CLASS ((obj), GDL_TYPE_DOCK_ITEM_GRIP, GdlDockItemGripClass))
 
-typedef struct {
-    GtkWidget parent;
+typedef struct _GdlDockItemGrip        GdlDockItemGrip;
+typedef struct _GdlDockItemGripClass   GdlDockItemGripClass;
+typedef struct _GdlDockItemGripPrivate GdlDockItemGripPrivate;
+
+struct _GdlDockItemGrip {
+    GtkContainer parent;
 	
     GdlDockItem *item;
-} GdlDockItemGrip;
+    
+    GdkWindow *title_window;
+    
+    GdlDockItemGripPrivate *_priv;
+};
 
-typedef struct {
-    GtkWidgetClass parent_class;
+struct _GdlDockItemGripClass {
+    GtkContainerClass parent_class;
 
     void (*activate) (GdlDockItemGrip *grip);
-} GdlDockItemGripClass;
+};
 
 GType      gdl_dock_item_grip_get_type (void);
 GtkWidget *gdl_dock_item_grip_new      (GdlDockItem *item);
