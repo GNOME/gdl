@@ -1,3 +1,11 @@
+2002-01-27  Mikael Hallendal  <micke@codefactory.se>
+
+	* gdl/gdl-data-view.c (gdl_data_view_set_model): cast to the
+	  correct type.
+	
+	* gdl/gdl-file-selector-util.h: don't include
+	  libgnome/gnome-defs.h
+
 2002-01-13  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-layout.[ch]: New files.  Object which wraps layout

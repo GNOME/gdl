@@ -225,8 +225,8 @@ gdl_data_view_set_model (GdlDataView *dv, GdlDataModel *model)
 
 		path_string = gtk_tree_path_to_string (path);
 		
-		frame = gdl_data_frame_new (dv, path_string);
-		gdl_data_frame_set_position (frame, x, 5);
+		frame = G_OBJECT (gdl_data_frame_new (dv, path_string));
+		gdl_data_frame_set_position (GDL_DATA_FRAME (frame), x, 5);
 
 		dv->priv->objects = g_list_append (dv->priv->objects,
 						   frame);

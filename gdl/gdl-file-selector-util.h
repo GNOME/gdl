@@ -12,8 +12,6 @@
 #ifndef _GDL_FILE_SELECTOR_UTIL_H_
 #define _GDL_FILE_SELECTOR_UTIL_H_
 
-#include <libgnome/gnome-defs.h>
-
 #include <gtk/gtkwindow.h>
 
 G_BEGIN_DECLS
