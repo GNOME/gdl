@@ -87,6 +87,7 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     BonoboControl *control;
     BonoboPropertyBag *pb;
     BonoboPersistFile *file_impl;
+    BonoboPersistStream *stream_impl;
     ScintillaEditorBuffer *buffer_impl;
     
     sci = scintilla_new ();
@@ -121,6 +122,10 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     file_impl = scintilla_persist_file_new (sci);
     bonobo_object_add_interface (BONOBO_OBJECT (control), 
 				 BONOBO_OBJECT (file_impl));
+
+    stream_impl = scintilla_persist_stream_new (sci);
+    bonobo_object_add_interface (BONOBO_OBJECT (control),
+                                 BONOBO_OBJECT (stream_impl));
 
     buffer_impl = scintilla_editor_buffer_new (SCINTILLA (sci));
     bonobo_object_add_interface (BONOBO_OBJECT (control),

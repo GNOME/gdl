@@ -7,6 +7,7 @@ INCLUDES = \
 	$(GNOME_CFLAGS) \
 	$(BONOBO_CFLAGS) \
 	$(BONOBOX_CFLAGS) \
+	$(VFS_CFLAGS) \
 	$(OAF_CFLAGS)
 
 oafdir = $(datadir)/oaf
@@ -24,8 +25,12 @@ test_scintilla_SOURCES = test.c
 
 scintilla_control_SOURCES = \
 	scintilla-control.c \
+	scintilla-highlight.c \
+	scintilla-highlight.h \
 	scintilla-persist-file.c \
 	scintilla-persist-file.h \
+	scintilla-persist-stream.c \
+	scintilla-persist-stream.h \
 	scintilla-editor-buffer.c \
 	scintilla-editor-buffer.h
 
@@ -44,6 +49,7 @@ scintilla_control_LDADD = \
 	$(GNOMEUI_LIBS)   \
 	$(BONOBO_LIBS)    \
 	$(BONOBOX_LIBS)   \
+	$(VFS_LIBS)       \
 	$(LEXER_OBJS)     \
 	../gdl/libgdl.la  \
         scintilla/libscintilla-widget.a 

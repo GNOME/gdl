@@ -16,11 +16,27 @@
             type="factory"
             location="OAFIID:control-factory:scintilla:851a1008-ca21-498d-8188-30a7543b137b">
 
+	<oaf_attribute name="name" type="string" value="Scintilla Editor"/>
+	<oaf_attribute name="description" type="string" value="A syntax highlighting editing component built with the scintilla widget."/>
+        <oaf_attribute name="bonobo:editable" type="boolean" value="true"/>
 	<oaf_attribute name="repo_ids" type="stringv">
-	 	<item value="IDL:BonoboControl/scintilla:1.0"/>
 		<item value="IDL:Bonobo/Control:1.0"/>
+		<item value="IDL:Bonobo/Unknown:1.0"/>
+		<item value="IDL:Bonobo/PersistFile:1.0"/>
 	</oaf_attribute>
-
+	<oaf_attribute name="bonobo:supported_mime_types" type="stringv">
+		<item value="text/x-idl"/>
+    		<item value="text/x-c"/>
+    		<item value="text/x-c++"/>
+    		<item value="text/html"/>
+    		<item value="text/xml"/>
+    		<item value="text/x-perl"/>
+    		<item value="text/x-sql"/>
+    		<item value="text/x-python"/>
+    		<item value="text/x-makefile"/>
+    		<item value="text/plain"/>
+    		<item value="text/*"/>
+	</oaf_attribute>
 	<oaf_attribute name="description" type="string"
 	               value="GDF Variable Viewer"/>
 
