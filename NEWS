@@ -1,3 +1,12 @@
+Changes in 0.4.0:
+
+* Use the GnomeIconTheme API in GdlIcon
+* i18n work in all parts of the library
+* Changed semantics of the "layout_changed" signal in the dock layout
+  object and improved the global "locked" property behavior
+* HIGified layout manager dialog
+* Enable SVG icon themes in GdlIcon
+
 Major changes since 0.1.0:
 
 * GNOME2 port
