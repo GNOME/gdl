@@ -1,3 +1,7 @@
+2003-03-27  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
+
+	* configure.in (ALL_LINGUAS): Added "pt_BR".
+
 2003-02-05  Thomas Vander Stichele <thomas at apestaart dot org>
 
         * configure.in: fix aclocal flags in maintainer mode
@@ -14,12 +18,12 @@
 
 	* configure.in: Added Dutch (nl) to ALL_LINGUAS
 
-2003-01-20  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-01-20  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Removed quotes from GETTEXT_PACKAGE since it was
 	breaking the GNOME translation status pages (#103848).
 
-2003-01-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2003-01-18  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-master.c: layout_changed signal is now emitted
 	whenever some item is docked or detached, either by the user or
@@ -131,11 +135,11 @@
 	* configure.in: updated for gdl.spec.in
 	* gdl.spec.in: updated for gnome 2
 
-2002-09-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-09-26  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* README, NEWS: updated for new release
 
-2002-09-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-09-21  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Removed acconfig.h in favor of defining templates
 	in the configure script directly (to conform with autoconf >= 2.52).
@@ -167,7 +171,7 @@
 
 	* configure.in: Added Vietnamese (vi) to ALL_LINGUAS
 
-2002-06-04  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-06-04  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-layout.h: API additions.
 	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_ui): Splitted
@@ -178,25 +182,25 @@
 	New API functions.
 	* gdl/layout.glade: Minor cosmetic and naming fixes.
 	
-2002-06-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-06-01  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock.c (gdl_dock_set_title)
 	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_ui):
 	Fixed a couple of memory leaks.
 
-2002-05-27  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-05-27  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-icons.c (get_themed_icon_file_path)
 	(pixbuf_for_name): Fixed a couple of memory leaks.
 
-2002-05-19  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-05-19  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-recent.c (gdl_recent_delete_from_list): Check if the
 	list after g_slist_delete_link is empty (fixes a crash when
 	re-opening the only item in the recent list) and use delete_link
 	instead of remove_link.
 
-2002-05-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-05-12  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/Makefile.am, gdl/gdl.h, gdl/gdl-dock-item.[ch],
 	gdl/gdl-dock-paned.[ch], gdl/gdl-dock-notebook.[ch],
@@ -343,7 +347,7 @@
 	* symbol-browser-control/gnome-symbol-browser.xml: Move "FormatUpdate"
 	menuitem to the "View" menu
 
-2002-02-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-02-21  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in, gdl/Makefile.am,
 	symbol-browser-control/Makefile.am,
@@ -404,7 +408,7 @@
 	(event_cb), (main): Ported to gnome2, displays message dialog when
 	user selects a symbol.
 
-2002-02-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-02-02  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-item.c (gdl_dock_item_lock, gdl_dock_item_unlock,
 	gdl_dock_item_lock_cb): New functions.
@@ -429,7 +433,7 @@
 	Call xmlFree on strings got from xmlGetProp.  Restore locked
 	attribute.
 
-2002-01-30  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-01-30  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl-1.0.pc.in: Added libglade dependency
 	* gdl/gdl-dock.c (gdl_dock_layout_build): Check the xml node's
@@ -485,7 +489,7 @@
 	* gdl/gdl-file-selector-util.h: don't include
 	  libgnome/gnome-defs.h
 
-2002-01-13  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2002-01-13  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-layout.[ch]: New files.  Object which wraps layout
 	managment stuff for the dock.
@@ -546,7 +550,7 @@
 	ultimately be a structure browser similar to the widgets
 	used in ddd and gvd.
 
-2001-12-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2001-12-21  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* Port to Gnome 2 platform of the source root files and the gdl/
 	directory.
@@ -623,7 +627,7 @@
 
 	* configure.in: Added "el" to ALL_LINGUAS.
 
-2001-12-09  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2001-12-09  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-item.c (gdl_dock_item_get_arg): g_strdup long_name
 	argument return.
@@ -644,7 +648,7 @@
 	
 	* gdl/test-dock.c: Fix gdl_dock_layout_load call.
 		
-2001-12-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2001-12-02  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/TODO.gdl-dock: Updated
 	* gdl/gdl-dock-item.[ch]:
@@ -671,7 +675,7 @@
 	Fixed allocation bug related to unsigned arithmetic operations.
 	* gdl/gdl-dock.[ch] (gdl_dock_get_named_items): New function.
 	
-2001-11-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2001-11-18  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock.c (gdl_dock_layout_load): Test if we have docked
 	items to show.  
@@ -685,7 +689,7 @@
 
 	* gdl/Makefile.am: Build gdl-file-selector-util.c.
 
-2001-11-10  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2001-11-10  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock.c (gdl_dock_layout_build): changed signature and
 	reorganized function to avoid creating empty docking containers.
@@ -699,7 +703,7 @@
 
 	* configure.in: Added "da" to ALL_LINGUAS.
 
-2001-10-09  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+2001-10-09  Gustavo GirÃ¡ldez  <gustavo.giraldez@gmx.net>
 
 	* Lots of bugfixes and new features to GdlDock by Jeroen
 	Zwartepoorte <jeroen@xs4all.nl> and me, including:
@@ -730,7 +734,7 @@
 	New function: gdl_dock_item_hide.
 	Fixed popup menu and implemented "Hide" option.
 
-2001-10-03  Gustavo Giráldez <gustavo.giraldez@gmx.net>
+2001-10-03  Gustavo GirÃ¡ldez <gustavo.giraldez@gmx.net>
 
        * gdl/gdl-dock.h: fixed bug to correctly position the xored
        rectangle for the possible docking position when the dock is
