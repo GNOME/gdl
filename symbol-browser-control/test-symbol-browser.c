@@ -8,6 +8,7 @@ enum _FileSelectionOperation {
 	OP_NONE,
 	OP_SAVE,
 	OP_LOAD,
+	OP_SET_FILE
 };
 
 typedef enum _FileSelectionOperation FileSelectionOperation;
@@ -69,11 +70,57 @@ load_file (gchar* fname)
 	return FALSE;
 }
 
+static gint
+set_file (gchar* fname)
+{
+	CORBA_Environment ev;
+	CORBA_Object interface;
+	GNOME_Development_SymbolBrowser symbol_browser;
+	gchar* dir;
+	gchar *interface_name = "IDL:GNOME/Development/SymbolBrowser:1.0";
+	BonoboControlFrame *frame;
+	Bonobo_Control control;
+
+	CORBA_exception_init (&ev);
+
+	frame = bonobo_widget_get_control_frame (file_selection_info.control);
+	control = bonobo_control_frame_get_control (frame);
+	
+	interface = Bonobo_Unknown_queryInterface (control,
+						   interface_name,
+						   &ev);
+
+	if (BONOBO_EX (&ev)) {
+		g_warning ("The Control does not seem to support `%s'.", interface_name);
+		return FALSE;
+	}
+
+	symbol_browser = interface;
+
+	g_print ("set file = %s\n", fname);
+
+	GNOME_Development_SymbolBrowser_setFile (symbol_browser,
+						       fname,
+						       &ev);
+	g_assert (!BONOBO_EX (&ev));
+
+	CORBA_exception_free (&ev);
+
+	return FALSE;
+}
+
 static void
 file_selection_destroy_cb (GtkWidget *widget,
 			   gpointer data)
 {
 	file_selection_info.widget = NULL;
+}
+
+static void
+file_selection_cancel_cb (GtkWidget *widget,
+		      gpointer data)
+{
+	gtk_widget_destroy(GTK_WIDGET(data));
 }
 
 static void
@@ -88,6 +135,9 @@ file_selection_ok_cb (GtkWidget *widget,
 	switch (file_selection_info.operation) {
 	case OP_LOAD:
 		load_file (fname);
+		break;
+	case OP_SET_FILE:
+		set_file (fname);
 		break;
 	case OP_SAVE:
 		// save_file (fname);
@@ -116,9 +166,11 @@ open_or_save_dialog (BonoboWindow          *app,
 
 	if (op == OP_LOAD)
 		widget = gtk_file_selection_new (_("Open file..."));
+	else if (op == OP_SET_FILE)
+		widget = gtk_file_selection_new (_("Set current file..."));
 	else
 		widget = gtk_file_selection_new (_("Save file..."));
-
+		
 	gtk_window_set_transient_for (GTK_WINDOW (widget),
 				      GTK_WINDOW (app));
 
@@ -127,8 +179,8 @@ open_or_save_dialog (BonoboWindow          *app,
 	file_selection_info.operation = op;
 
 	g_signal_connect_object (G_OBJECT (GTK_FILE_SELECTION (widget)->cancel_button),
-				 "clicked", G_CALLBACK (gtk_widget_destroy),
-				 GTK_OBJECT (widget), G_CONNECT_AFTER);
+			  "clicked", G_CALLBACK (file_selection_cancel_cb),
+			  widget, G_CONNECT_AFTER);
 
 	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (widget)->ok_button),
 			  "clicked", G_CALLBACK (file_selection_ok_cb),
@@ -147,6 +199,14 @@ open_file_cb (GtkWidget *widget,
 	      gpointer   data)
 {
 	open_or_save_dialog (BONOBO_WINDOW (data), OP_LOAD);
+}
+
+/* Open file dialog.  */
+static void
+set_file_cb (GtkWidget *widget,
+	      gpointer   data)
+{
+	open_or_save_dialog (BONOBO_WINDOW (data), OP_SET_FILE);
 }
 
 /* Save file.  */
@@ -197,6 +257,7 @@ event_cb (BonoboListener    *listener,
 
 static BonoboUIVerb verbs [] = {
 	BONOBO_UI_UNSAFE_VERB ("FileOpen", open_file_cb),
+	BONOBO_UI_UNSAFE_VERB ("FileSetFile", set_file_cb),
 	BONOBO_UI_UNSAFE_VERB ("FileSave", save_file_cb),
 	BONOBO_UI_UNSAFE_VERB ("FileExit", exit_cb),
 
@@ -229,7 +290,7 @@ main (int argc, char *argv[])
 						"Gnome Symbol Browser Test"));
 
 	g_signal_connect (win, "destroy", bonobo_main_quit, NULL);
-	gtk_window_set_default_size (GTK_WINDOW (win), 250, 600);
+	gtk_window_set_default_size (GTK_WINDOW (win), 350, 600);
 	
 	container = bonobo_window_get_ui_container (win);
 

@@ -553,7 +553,7 @@ TMTag **tm_tags_find(GPtrArray *sorted_tags_array, const char *name, gboolean pa
 	return (TMTag **) result;
 }
 
-static const char *tm_tag_type_name(TMTag *tag)
+const char *tm_tag_type_name(const TMTag *tag)
 {
 	g_return_val_if_fail(tag, NULL);
 	switch(tag->type)
@@ -580,6 +580,31 @@ static const char *tm_tag_type_name(TMTag *tag)
 		default: return NULL;
 	}
 	return NULL;
+}
+
+int tm_tag_name_type(const char* tag_name)
+{
+	g_return_val_if_fail(tag_name, -1);
+	if (strcmp(tag_name, "class") == 0) return tm_tag_class_t;
+	else if (strcmp(tag_name, "enum") == 0) return tm_tag_enum_t;
+	else if (strcmp(tag_name, "enumval") == 0) return tm_tag_enumerator_t;
+	else if (strcmp(tag_name, "field") == 0) return tm_tag_field_t;
+	else if (strcmp(tag_name, "function") == 0) return tm_tag_function_t;
+	else if (strcmp(tag_name, "interface") == 0) return tm_tag_interface_t;
+	else if (strcmp(tag_name, "member") == 0) return tm_tag_member_t;
+	else if (strcmp(tag_name, "method") == 0) return tm_tag_method_t;
+	else if (strcmp(tag_name, "namespace") == 0) return tm_tag_namespace_t;
+	else if (strcmp(tag_name, "package") == 0) return tm_tag_package_t;
+	else if (strcmp(tag_name, "prototype") == 0) return tm_tag_prototype_t;
+	else if (strcmp(tag_name, "struct") == 0) return tm_tag_struct_t;
+	else if (strcmp(tag_name, "typedef") == 0) return tm_tag_typedef_t;
+	else if (strcmp(tag_name, "union") == 0) return tm_tag_union_t;
+	else if (strcmp(tag_name, "variable") == 0) return tm_tag_variable_t;
+	else if (strcmp(tag_name, "extern") == 0) return tm_tag_externvar_t;
+	else if (strcmp(tag_name, "define") == 0) return tm_tag_macro_t;
+	else if (strcmp(tag_name, "macro") == 0) return tm_tag_macro_with_arg_t;
+	else if (strcmp(tag_name, "file") == 0) return tm_tag_file_t;
+	else return -1;
 }
 
 static const char *tm_tag_impl_name(TMTag *tag)

@@ -57,6 +57,12 @@ GtkWidget *gnome_symbol_browser_new      (void);
 gboolean   gnome_symbol_browser_open_dir (GnomeSymbolBrowser *sb,
 					  const gchar        *dir);
 
+void
+gnome_symbol_browser_set_file (GnomeSymbolBrowser *gsb, gchar* filepath);
+
+/* Returns the symbol combo for control creation */
+GtkWidget* gnome_symbol_browser_get_symbol_combo(GnomeSymbolBrowser *gsb);
+
 void       gnome_symbol_browser_clear    (GnomeSymbolBrowser *gsb);
 
 void       gnome_symbol_browser_reset    (GnomeSymbolBrowser *gsb);

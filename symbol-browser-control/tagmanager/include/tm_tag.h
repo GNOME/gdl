@@ -318,6 +318,12 @@ void tm_tags_array_print(GPtrArray *tags, FILE *fp);
 */
 gint tm_tag_scope_depth(const TMTag *t);
 
+/* Returns the name corrosponding to a tag type */
+const char *tm_tag_type_name(const TMTag *tag);
+
+/* Returns the tag type corrosponding to a tag name */
+int tm_tag_name_type(const char* tag_name);
+
 #ifdef __cplusplus
 }
 #endif

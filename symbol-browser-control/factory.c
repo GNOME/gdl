@@ -49,6 +49,10 @@ static void
 on_control_set_frame (BonoboControl *control,
 		      gpointer       data)
 {
+	GtkWidget *symbol_combo;
+	BonoboControl *symbol_ctrl;
+	GnomeSymbolBrowser* symbol_browser;
+	
 	Bonobo_UIContainer uic;
 	BonoboUIComponent *component;
 	CORBA_Environment ev;
@@ -79,12 +83,22 @@ on_control_set_frame (BonoboControl *control,
 	
 		/* FIXME: Merge UI */
 		bonobo_ui_component_add_verb_list_with_data (component, verbs, control);
-	
+		
 		bonobo_ui_util_set_ui (component, GNOME_DATADIR,
 					   "gnome-symbol-browser.xml",
 					   "Gnome Symbol Browser", &ev);
 		g_return_if_fail (!BONOBO_EX (&ev));
 		
+		/* Setup File Symbol list */
+		symbol_browser = g_object_get_data(G_OBJECT(control), "SymbolBrowser");
+		symbol_combo = gnome_symbol_browser_get_symbol_combo(GNOME_SYMBOL_BROWSER(symbol_browser));
+		symbol_ctrl = bonobo_control_new (symbol_combo);
+		bonobo_ui_component_object_set (component,
+					"/SymbolBrowserToolbar/FileSymbolList",
+					BONOBO_OBJREF (symbol_ctrl),
+					NULL);
+		bonobo_object_unref (BONOBO_OBJECT (symbol_ctrl));
+
 		bonobo_ui_component_thaw (component, &ev);
 	}
 	CORBA_exception_free (&ev);

@@ -1,3 +1,24 @@
+2002-04-14  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* idl/symbol-browser.idl: Added a new method called
+	setFile(), which is used to set the current file.
+	
+	* symbol-browser-control/tagmanager/include/tm_tag.h,
+	  symbol-browser-control/tagmanager/tm_tag.c: 
+	Removed static qualifier from tm_tag_type_name() and
+	availed it's prototype for use in outside code. also
+	created reverse map function tm_tag_type_name();
+	
+	* symbol-browser-control/test-symbol-browser.{c,h},
+	  symbol-browser-control/symbol-browser.{c,h},
+	  symbol-browser-control/symbol-browser-cobject.{c,h},
+	  symbol-browser-control/Makefile.am:
+	Added Per file Symbol browsing. with a new toolbar
+	for symbol browser for listing per file symbol browsing.
+	
+	* symbol-browser-control/gnome-symbol-browser.xml:
+	Added a new dockitem (toolbar) for file symbol browser.
+
 2002-04-12  Naba Kumar <kh_naba@users.sourceforge.net>
 
 	* symbol-browser-control/tagmanager/include/*.h,

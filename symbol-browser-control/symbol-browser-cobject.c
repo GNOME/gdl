@@ -32,6 +32,9 @@ static void gnome_symbol_browser_cobject_finalize   (GObject *object);
 static void impl_open_directory (PortableServer_Servant servant,
 				 const CORBA_char      *dir,
 				 CORBA_Environment     *ev);
+static void impl_set_file (PortableServer_Servant servant,
+				 const CORBA_char      *filename,
+				 CORBA_Environment     *ev);
 static void impl_clear		(PortableServer_Servant servant,
 				 CORBA_Environment     *ev);
 static void impl_update		(PortableServer_Servant servant,
@@ -60,6 +63,7 @@ gnome_symbol_browser_cobject_class_init (GnomeSymbolBrowserCObjectClass *klass)
 
 	/* EPV initialization */
 	epv->openDirectory = impl_open_directory;
+	epv->setFile = impl_set_file;
 	epv->clear = impl_clear;
 	epv->update = impl_update;
 	epv->save = impl_save;
@@ -95,6 +99,19 @@ impl_open_directory (PortableServer_Servant servant,
 	cobj = GNOME_SYMBOL_BROWSER_COBJECT (bonobo_object_from_servant (servant));
 	gnome_symbol_browser_open_dir (GNOME_SYMBOL_BROWSER (cobj->symbol_browser),
 				       (gchar*) dir);
+	bonobo_object_unref(BONOBO_OBJECT(cobj));
+}
+
+static void
+impl_set_file (PortableServer_Servant servant,
+		     const CORBA_char      *filename,
+		     CORBA_Environment     *ev)
+{
+	GnomeSymbolBrowserCObject *cobj;
+
+	cobj = GNOME_SYMBOL_BROWSER_COBJECT (bonobo_object_from_servant (servant));
+	gnome_symbol_browser_set_file (GNOME_SYMBOL_BROWSER (cobj->symbol_browser),
+				       (gchar*) filename);
 	bonobo_object_unref(BONOBO_OBJECT(cobj));
 }
 

@@ -30,6 +30,10 @@ module Development {
 		void openDirectory (in string dir)
 			raises(NotFound);
 		
+		/* set current file */
+		void setFile (in string filepath)
+			raises(NotFound);
+		
 		/* Updates the whole tree */
         void update ();
 		
