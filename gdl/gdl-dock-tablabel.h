@@ -17,16 +17,17 @@ typedef struct _GdlDockTablabel      GdlDockTablabel;
 typedef struct _GdlDockTablabelClass GdlDockTablabelClass;
 
 struct _GdlDockTablabel {
-    GtkEventBox     event_box;
+    GtkBin          parent;
 
     guint           drag_handle_size;
     GtkOrientation  orientation;
     gint            active : 1;
+    GdkWindow      *event_window;
     GtkWidget      *master;
 };
 
 struct _GdlDockTablabelClass {
-    GtkEventBoxClass  parent_class;
+    GtkBinClass      parent_class;
 
     void            (*button_pressed_handle)  (GdlDockTablabel *tablabel,
                                                gint             button,

@@ -39,10 +39,14 @@ static gint  gdl_dock_tablabel_expose        (GtkWidget      *widget,
 static gint  gdl_dock_tablabel_button_pressed (GtkWidget      *widget,
                                                GdkEventButton *event);
 
+static void  gdl_dock_tablabel_realize (GtkWidget *widget);
+static void  gdl_dock_tablabel_unrealize (GtkWidget *widget);
+static void  gdl_dock_tablabel_map (GtkWidget *widget);
+static void  gdl_dock_tablabel_unmap (GtkWidget *widget);
 
 /* Module globals */
 
-static GtkEventBoxClass *parent_class = NULL;
+static gpointer *parent_class = NULL;
 
 #define DEFAULT_DRAG_HANDLE_SIZE 10
 #define HANDLE_RATIO 1.0
@@ -88,6 +92,10 @@ gdl_dock_tablabel_class_init (GdlDockTablabelClass *klass)
     widget_class->size_allocate = gdl_dock_tablabel_size_allocate;
     widget_class->expose_event = gdl_dock_tablabel_expose;
     widget_class->button_press_event = gdl_dock_tablabel_button_pressed;
+    widget_class->realize = gdl_dock_tablabel_realize;
+    widget_class->unrealize = gdl_dock_tablabel_unrealize;
+    widget_class->map = gdl_dock_tablabel_map;
+    widget_class->unmap = gdl_dock_tablabel_unmap;
 
     g_object_class_install_property (
         g_object_class, PROP_HANDLE_SIZE,
@@ -135,7 +143,6 @@ gdl_dock_tablabel_init (GdlDockTablabel *tablabel)
     GtkWidget *widget;
 
     widget = GTK_WIDGET (tablabel);
-    GTK_WIDGET_UNSET_FLAGS (widget, GTK_NO_WINDOW);
 
     /* FIXME: is it possible to draw a label vertically? if it is so,
        then orientation has its reason to exist.
@@ -145,7 +152,6 @@ gdl_dock_tablabel_init (GdlDockTablabel *tablabel)
 
     /* by default, tablabels are active, and not normal */
     tablabel->active = FALSE;
-    gtk_widget_set_state (widget, GTK_STATE_ACTIVE);
 }
 
 static void
@@ -305,7 +311,7 @@ gdl_dock_tablabel_size_allocate (GtkWidget     *widget,
     widget->allocation = *allocation;
 
     if (GTK_WIDGET_REALIZED (widget))
-        gdk_window_move_resize (widget->window, 
+        gdk_window_move_resize (tablabel->event_window, 
                                 allocation->x, 
                                 allocation->y,
                                 allocation->width, 
@@ -314,8 +320,8 @@ gdl_dock_tablabel_size_allocate (GtkWidget     *widget,
     if (bin->child && GTK_WIDGET_VISIBLE (bin->child)) {
         GtkAllocation  child_allocation;
 
-        child_allocation.x = border_width;
-        child_allocation.y = border_width;
+        child_allocation.x = widget->allocation.x + border_width;
+        child_allocation.y = widget->allocation.y + border_width;
 
         if (tablabel->orientation == GTK_ORIENTATION_HORIZONTAL) {
             allocation->width = MAX (1, (int) allocation->width - 
@@ -348,8 +354,8 @@ gdl_dock_tablabel_paint (GtkWidget      *widget,
     tablabel = GDL_DOCK_TABLABEL (widget);
     border_width = GTK_CONTAINER (widget)->border_width;
 
-    rect.x = border_width;
-    rect.y = border_width;
+    rect.x = widget->allocation.x + border_width;
+    rect.y = widget->allocation.y + border_width;
     if (tablabel->orientation == GTK_ORIENTATION_HORIZONTAL) {
         rect.width = tablabel->drag_handle_size * HANDLE_RATIO;
         rect.height = widget->allocation.height - 2*border_width;
@@ -363,7 +369,8 @@ gdl_dock_tablabel_paint (GtkWidget      *widget,
 
     if (gdk_rectangle_intersect (&event->area, &rect, &dest)) {
         gtk_paint_handle (widget->style, widget->window, 
-                          GTK_WIDGET_STATE (widget), GTK_SHADOW_NONE,
+                          tablabel->active ? GTK_STATE_NORMAL : GTK_STATE_ACTIVE, 
+                          GTK_SHADOW_NONE,
                           &dest, widget, "dock_tablabel",
                           rect.x, rect.y, rect.width, rect.height,
                           GTK_ORIENTATION_VERTICAL);
@@ -399,9 +406,6 @@ gdl_dock_tablabel_button_pressed (GtkWidget      *widget,
     
     tablabel = GDL_DOCK_TABLABEL (widget);
     
-    if (event->window != widget->window)
-        return FALSE;
-
     event_handled = FALSE;
 
     {
@@ -433,7 +437,7 @@ gdl_dock_tablabel_button_pressed (GtkWidget      *widget,
             break;
 	}
 
-        if (in_handle && tablabel->active) {
+        if (tablabel->active) {
             g_signal_emit (widget, 
                            dock_tablabel_signals [BUTTON_PRESSED_HANDLE],
                            0, event->button, (guint) event->time);
@@ -447,15 +451,82 @@ gdl_dock_tablabel_button_pressed (GtkWidget      *widget,
 
         e = *event;
         e.window = gtk_widget_get_parent_window (widget);
-        e.x += widget->allocation.x;
-        e.y += widget->allocation.y;
         gdk_event_put ((GdkEvent *) &e);
     };
 
     return event_handled;
 }
 
+static void   
+gdl_dock_tablabel_realize (GtkWidget *widget)
+{
+    GdlDockTablabel *tablabel;
+    GdkWindowAttr attributes;
+    int attributes_mask;
+    
+    tablabel = GDL_DOCK_TABLABEL (widget);
+    
+    attributes.window_type = GDK_WINDOW_CHILD;
+    attributes.x = widget->allocation.x;
+    attributes.y = widget->allocation.y;
+    attributes.width = widget->allocation.width;
+    attributes.height = widget->allocation.height;
+    attributes.wclass = GDK_INPUT_ONLY;
+    attributes.event_mask = gtk_widget_get_events (widget);
+    attributes.event_mask |= (GDK_EXPOSURE_MASK | 
+                              GDK_BUTTON_PRESS_MASK |
+                              GDK_BUTTON_RELEASE_MASK | 
+                              GDK_ENTER_NOTIFY_MASK | 
+                              GDK_POINTER_MOTION_MASK | 
+                              GDK_LEAVE_NOTIFY_MASK);
+    attributes_mask = GDK_WA_X | GDK_WA_Y;
+    
+    widget->window = gtk_widget_get_parent_window (widget);
+    g_object_ref (widget->window);
+    
+    tablabel->event_window = 
+        gdk_window_new (gtk_widget_get_parent_window (widget),
+                        &attributes, attributes_mask);
+    gdk_window_set_user_data (tablabel->event_window, widget);
+    
+    widget->style = gtk_style_attach (widget->style, widget->window);
+    
+    GTK_WIDGET_SET_FLAGS (widget, GTK_REALIZED);
+}
 
+static void   
+gdl_dock_tablabel_unrealize (GtkWidget *widget)
+{
+    GdlDockTablabel *tablabel = GDL_DOCK_TABLABEL (widget);
+    
+    if (tablabel->event_window) {
+        gdk_window_set_user_data (tablabel->event_window, NULL);
+        gdk_window_destroy (tablabel->event_window);
+        tablabel->event_window = NULL;
+    }
+    
+    GTK_WIDGET_CLASS (parent_class)->unrealize (widget);    
+}
+
+static void  
+gdl_dock_tablabel_map (GtkWidget *widget)
+{
+    GdlDockTablabel *tablabel = GDL_DOCK_TABLABEL (widget);
+    
+    GTK_WIDGET_CLASS (parent_class)->map (widget);
+    
+    gdk_window_show (tablabel->event_window);
+}
+
+static void   
+gdl_dock_tablabel_unmap (GtkWidget *widget)
+{
+    GdlDockTablabel *tablabel = GDL_DOCK_TABLABEL (widget);
+
+    gdk_window_hide (tablabel->event_window);
+
+    GTK_WIDGET_CLASS (parent_class)->unmap (widget);
+}
 
 /* Public interface */
 
@@ -482,7 +553,7 @@ gdl_dock_tablabel_get_type (void)
         };
 
         dock_tablabel_type = g_type_register_static (
-            GTK_TYPE_EVENT_BOX, "GdlDockTablabel", &dock_tablabel_info, 0);
+            GTK_TYPE_BIN, "GdlDockTablabel", &dock_tablabel_info, 0);
     }
 
     return dock_tablabel_type;
@@ -512,7 +583,6 @@ gdl_dock_tablabel_activate (GdlDockTablabel *tablabel)
     g_return_if_fail (tablabel != NULL);
 
     tablabel->active = TRUE;
-    gtk_widget_set_state (GTK_WIDGET (tablabel), GTK_STATE_NORMAL);
 }
 
 void
@@ -521,6 +591,4 @@ gdl_dock_tablabel_deactivate (GdlDockTablabel *tablabel)
     g_return_if_fail (tablabel != NULL);
 
     tablabel->active = FALSE;
-    /* yeah, i know it contradictive */
-    gtk_widget_set_state (GTK_WIDGET (tablabel), GTK_STATE_ACTIVE);
 }
