@@ -769,8 +769,8 @@ gdl_recent_set_limit (GdlRecent *recent,
 int
 gdl_recent_get_list_type (GdlRecent *recent)
 {
-	g_return_if_fail (recent != NULL);
-	g_return_if_fail (GDL_IS_RECENT (recent));
+	g_return_val_if_fail (recent != NULL, 0);
+	g_return_val_if_fail (GDL_IS_RECENT (recent), 0);
 
 	return recent->priv->list_type;
 }

@@ -1,3 +1,5 @@
+#include <signal.h>
+#include <stdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
 
@@ -7,9 +9,45 @@
 #include "gdl-dock-item.h"
 #include "gdl-dock-notebook.h"
 #include "gdl-dock-layout.h"
+#include "gdl-dock-placeholder.h"
+
+/* ---- this code is based on eel-debug by Darin Adler */
+
+static void
+log_handler (const char *domain,
+             GLogLevelFlags level,
+             const char *message,
+             gpointer data)
+{
+    g_log_default_handler (domain, level, message, data);
+    if ((level & (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING)) != 0) {
+        void (* saved_handler) (int);
+        
+        saved_handler = signal (SIGINT, SIG_IGN);
+        raise (SIGINT);
+        signal (SIGINT, saved_handler);
+    }
+}
+
+static void
+set_log_handler (const char *domain)
+{
+    g_log_set_handler (domain, G_LOG_LEVEL_MASK, log_handler, NULL);
+}
+
+static void
+setup_handlers ()
+{
+    set_log_handler ("");
+    set_log_handler ("GLib");
+    set_log_handler ("GLib-GObject");
+    set_log_handler ("Gtk");
+    set_log_handler ("Gdk");
+}
+
+/* ---- end of debugging code */
 
 
-/* creates a simple widget with a list inside */
 static GtkWidget *
 create_item (const gchar *button_title)
 {
@@ -41,9 +79,11 @@ create_text_item ()
 	gtk_widget_show (scrolledwindow1);
 	gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1),
-					GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
-
+					GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow1),
+                                             GTK_SHADOW_ETCHED_IN);
 	text = gtk_text_view_new ();
+        g_object_set (text, "wrap-mode", GTK_WRAP_WORD, NULL);
 	gtk_widget_show (text);
 	gtk_container_add (GTK_CONTAINER (scrolledwindow1), text);
 
@@ -55,6 +95,7 @@ button_dump_cb (GtkWidget *button, gpointer data)
 {
         /* Dump XML tree. */
         gdl_dock_layout_save_to_file (GDL_DOCK_LAYOUT (data), "layout.xml");
+	g_spawn_command_line_async ("cat layout.xml", NULL);
 }
 
 static void
@@ -64,17 +105,11 @@ run_layout_manager_cb (GtkWidget *w, gpointer data)
 	gdl_dock_layout_run_manager (layout);
 }
 
-static void
-layout_changed_cb (GtkWidget *widget, gpointer data)
-{
-	g_message ("Dock emitted layout_changed signal");
-}
-  
 int
 main (int argc, char **argv)
 {
-	GtkWidget *item1, *item2, *item3, *item4;
-	GtkWidget *items [3];
+	GtkWidget *item1, *item2, *item3;
+	GtkWidget *items [4];
         GtkWidget *win, *table, *button, *box;
 	int i;
 	GdlDockLayout *layout;
@@ -82,6 +117,8 @@ main (int argc, char **argv)
 
 	gtk_init (&argc, &argv);
 
+        setup_handlers ();
+        
 	/* window creation */
 	win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	g_signal_connect (win, "delete_event", 
@@ -96,11 +133,10 @@ main (int argc, char **argv)
 
 	/* create the dock */
 	dock = gdl_dock_new ();
-	g_signal_connect (dock, "layout_changed",
-			  G_CALLBACK (layout_changed_cb), NULL);
 
+	/* ... and the layout manager */
 	layout = gdl_dock_layout_new (GDL_DOCK (dock));
-
+        
         gtk_box_pack_start (GTK_BOX (table), dock, 
 			    TRUE, TRUE, 0);
   
@@ -112,7 +148,7 @@ main (int argc, char **argv)
 	gtk_widget_show (item1);
 
 	item2 = gdl_dock_item_new ("item2", "Item #2", GDL_DOCK_ITEM_BEH_NORMAL);
-	g_object_set (item2, "resize", FALSE, "shrink", FALSE, NULL);
+	g_object_set (item2, "resize", FALSE, NULL);
 	gtk_container_add (GTK_CONTAINER (item2), create_item ("Button 2"));
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2), 
 			   GDL_DOCK_RIGHT);
@@ -124,34 +160,36 @@ main (int argc, char **argv)
 			   GDL_DOCK_BOTTOM);
 	gtk_widget_show (item3);
 
-	item4 = gdl_dock_notebook_new ();
-	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item4),
-			   GDL_DOCK_BOTTOM);
-	for (i = 0; i < 3; i++) {
-		gchar name[10];
+	items [0] = gdl_dock_item_new ("Item #4", "Item #4", GDL_DOCK_ITEM_BEH_NORMAL);
+	gtk_container_add (GTK_CONTAINER (items [0]), create_text_item ());
+	gtk_widget_show (items [0]);
+	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [0]), GDL_DOCK_BOTTOM);
+	for (i = 1; i < 3; i++) {
+	    gchar name[10];
 
-		snprintf (name, sizeof (name), "Item #%d", i + 4);
-		items [i] = gdl_dock_item_new (name, name, GDL_DOCK_ITEM_BEH_NORMAL);
-		gtk_container_add (GTK_CONTAINER (items [i]), create_text_item ());
-		gtk_widget_show (items [i]);
-		gtk_container_add (GTK_CONTAINER (item4), items [i]);
+	    snprintf (name, sizeof (name), "Item #%d", i + 4);
+	    items [i] = gdl_dock_item_new (name, name, GDL_DOCK_ITEM_BEH_NORMAL);
+	    gtk_container_add (GTK_CONTAINER (items [i]), create_text_item ());
+	    gtk_widget_show (items [i]);
+	    
+	    gdl_dock_object_dock (GDL_DOCK_OBJECT (items [0]),
+				  GDL_DOCK_OBJECT (items [i]),
+				  GDL_DOCK_CENTER, NULL);
 	};
-	gtk_widget_show (item4);
 
-	/* tests: manually dock and move around some of the items */
+        /* tests: manually dock and move around some of the items */
 	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item3), GDL_DOCK_ITEM (item1),
 			       GDL_DOCK_TOP, -1);
-
-	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), NULL, 
-			       GDL_DOCK_FLOATING, -1);
 
 	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), GDL_DOCK_ITEM (item3), 
 			       GDL_DOCK_RIGHT, -1);
 
-	/* this one causes a gdl_dock_paned_reorder */
 	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), GDL_DOCK_ITEM (item3), 
 			       GDL_DOCK_LEFT, -1);
 
+	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), NULL, 
+			       GDL_DOCK_FLOATING, -1);
+        
 	box = gtk_hbox_new (TRUE, 5);
 	gtk_box_pack_end (GTK_BOX (table), box, FALSE, FALSE, 0);
 
@@ -167,35 +205,15 @@ main (int argc, char **argv)
 	
 	gtk_widget_show_all (win);
 
+	gdl_dock_placeholder_new ("ph1", GDL_DOCK_OBJECT (dock), GDL_DOCK_TOP, FALSE);
+	gdl_dock_placeholder_new ("ph2", GDL_DOCK_OBJECT (dock), GDL_DOCK_BOTTOM, FALSE);
+	gdl_dock_placeholder_new ("ph3", GDL_DOCK_OBJECT (dock), GDL_DOCK_LEFT, FALSE);
+	gdl_dock_placeholder_new ("ph4", GDL_DOCK_OBJECT (dock), GDL_DOCK_RIGHT, FALSE);
+	
 	/* save default layout */
-	gdl_dock_layout_save_layout (layout, NULL);
-
-	/* test gdl_dock_get_item_by_name */
-	{
-		GdlDockItem *i;
-		i = gdl_dock_get_item_by_name (GDL_DOCK (dock), "item2");
-		if (GTK_WIDGET (i) == item2)
-			g_message ("gdl_dock_get_item_by_name succeded");
-		else
-			g_message ("ERROR: gdl_dock_get_item_by_name failed!");
-	};
-
+  	gdl_dock_layout_save_layout (layout, NULL);
+        
 	gtk_main ();
-
-#if 0      
-	gdl_dock_item_hide (GDL_DOCK_ITEM (items [2]));
-	gdl_dock_item_hide (GDL_DOCK_ITEM (items [1]));
-	gdl_dock_item_hide (GDL_DOCK_ITEM (items [0]));
-	gdl_dock_item_hide (GDL_DOCK_ITEM (item3));
-	gdl_dock_item_hide (GDL_DOCK_ITEM (item2));
-	gdl_dock_item_hide (GDL_DOCK_ITEM (item1));
-	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [2]));
-	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [1]));
-	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [0]));
-	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item3));
-	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2));
-	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item1));
-#endif
 
   	g_object_unref (layout);
     	gtk_widget_destroy (win);

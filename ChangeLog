@@ -1,3 +1,25 @@
+2002-05-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/Makefile.am, gdl/gdl.h, gdl/gdl-dock-item.[ch],
+	gdl/gdl-dock-paned.[ch], gdl/gdl-dock-notebook.[ch],
+	gdl/gdl-dock.[ch], gdl/gdl-dock-tablabel.[ch],
+	gdl/gdl-dock-layout.[ch], gdl/layout.glade, gdl/test-dock.c,
+	gdl/libgdlmarshal.list: New GdlDock widget architecture (see
+	gdl/README.gdl-dock).
+
+	* gdl/gdl-dock-object.[ch], gdl/gdl-dock-master.[ch],
+	gdl/gdl-dock-item-grip.[ch], gdl/gdl-dock-placeholder.[ch]: New
+	files for GdlDock.
+
+	* gdl/README.gdl-dock: New file, merged relevant entries from
+	TODO.gdl-dock (now removed).
+	
+	* gdl/gdl-recent.c (gdl_recent_get_list_type): Fixed compiler
+	warning.
+
+	* gdl/gdl-tools.h: Added two convenience macros GDL_CALL_VIRTUAL
+	and GDL_CALL_VIRTUAL_WITH_DEFAULT.
+
 2002-04-20  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/gdl-recent.c: Added James Willcox <jwillcox@cs.indiana.edu>

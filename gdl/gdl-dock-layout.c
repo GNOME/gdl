@@ -1,18 +1,43 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+ *
+ * This file is part of the GNOME Devtools Libraries.
+ *
+ * Copyright (C) 2002 Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.  
+ */
 
 #include <string.h>
 #include <stdlib.h>
 #include <libxml/parser.h>
+#include <gtk/gtk.h>
+#include <glade/glade.h>
+#include <libgnome/gnome-macros.h>
 
 #include "gdl-dock-layout.h"
 #include "gdl-tools.h"
+#include "gdl-dock-placeholder.h"
 
 
 /* ----- Private variables ----- */
 
 enum {
     PROP_0,
-    PROP_DOCK
+    PROP_MASTER,
+    PROP_DIRTY
 };
 
 #define ROOT_ELEMENT         "dock-layout"
@@ -29,12 +54,34 @@ enum {
     COLUMN_ITEM
 };
 
+struct _GdlDockLayoutPrivate {
+    xmlDocPtr         doc;
+
+    /* layout list models */
+    GtkListStore     *items_model;
+    GtkListStore     *layouts_model;
+
+    /* idle control */
+    gboolean          idle_save_pending;
+};
+
+typedef struct _GdlDockLayoutUIData GdlDockLayoutUIData;
+
+struct _GdlDockLayoutUIData {
+    GdlDockLayout    *layout;
+    
+    GtkWidget        *layout_entry;
+    GtkWidget        *locked_check;
+    GtkTreeSelection *selection;
+    gboolean          changed_by_user;
+};
+
 
 /* ----- Private prototypes ----- */
 
 static void     gdl_dock_layout_class_init      (GdlDockLayoutClass *klass);
 
-static void     gdl_dock_layout_init            (GdlDockLayout      *layout);
+static void     gdl_dock_layout_instance_init   (GdlDockLayout      *layout);
 
 static void     gdl_dock_layout_set_property    (GObject            *object,
                                                  guint               prop_id,
@@ -53,12 +100,10 @@ static void     gdl_dock_layout_build_doc       (GdlDockLayout      *layout);
 static xmlNodePtr gdl_dock_layout_find_layout   (GdlDockLayout      *layout, 
                                                  const gchar        *name);
 
-static gboolean gdl_dock_layout_construct_dialog (GdlDockLayout     *layout);
-
-static void     gdl_dock_layout_populate_models (GdlDockLayout      *layout);
-
 
 /* ----- Private implementation ----- */
+
+GNOME_CLASS_BOILERPLATE (GdlDockLayout, gdl_dock_layout, GObject, G_TYPE_OBJECT);
 
 static void
 gdl_dock_layout_class_init (GdlDockLayoutClass *klass)
@@ -70,25 +115,29 @@ gdl_dock_layout_class_init (GdlDockLayoutClass *klass)
     g_object_class->dispose = gdl_dock_layout_dispose;
 
     g_object_class_install_property (
-        g_object_class, PROP_DOCK,
-        g_param_spec_object ("dock", _("Dock"),
-                             _("GdlDock object which the layout object "
+        g_object_class, PROP_MASTER,
+        g_param_spec_object ("master", _("Master"),
+                             _("GdlDockMaster object which the layout object "
                                "is attached to"),
-                             GDL_TYPE_DOCK, 
+                             GDL_TYPE_DOCK_MASTER, 
                              G_PARAM_READWRITE));
+
+    g_object_class_install_property (
+        g_object_class, PROP_DIRTY,
+        g_param_spec_boolean ("dirty", _("Dirty"),
+                              _("True if the layouts have changed and need to be "
+                                "saved to a file"),
+                              FALSE,
+                              G_PARAM_READABLE));
 }
 
 static void
-gdl_dock_layout_init (GdlDockLayout *layout)
+gdl_dock_layout_instance_init (GdlDockLayout *layout)
 {
-    layout->dock = NULL;
-    layout->doc = NULL;
+    layout->master = NULL;
     layout->dirty = FALSE;
-    layout->dialog = NULL;
-    layout->selection = NULL;
-    layout->layout_entry = NULL;
-    layout->items_model = NULL;
-    layout->layouts_model = NULL;
+    layout->_priv = g_new0 (GdlDockLayoutPrivate, 1);
+    layout->_priv->idle_save_pending = FALSE;
 }
 
 static void
@@ -100,11 +149,11 @@ gdl_dock_layout_set_property (GObject      *object,
     GdlDockLayout *layout = GDL_DOCK_LAYOUT (object);
 
     switch (prop_id) {
-    case PROP_DOCK:
-        gdl_dock_layout_attach (layout, g_value_get_object (value));
-        break;
-    default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        case PROP_MASTER:
+            gdl_dock_layout_attach (layout, g_value_get_object (value));
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     };
 }
 
@@ -117,11 +166,14 @@ gdl_dock_layout_get_property (GObject    *object,
     GdlDockLayout *layout = GDL_DOCK_LAYOUT (object);
 
     switch (prop_id) {
-    case PROP_DOCK:
-        g_value_set_object (value, layout->dock);
-        break;
-    default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        case PROP_MASTER:
+            g_value_set_object (value, layout->master);
+            break;
+        case PROP_DIRTY:
+            g_value_set_boolean (value, layout->dirty);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     };
 }
 
@@ -135,34 +187,40 @@ gdl_dock_layout_dispose (GObject *object)
 
     layout = GDL_DOCK_LAYOUT (object);
     
-    if (layout->dock)
+    if (layout->master)
         gdl_dock_layout_attach (layout, NULL);
 
-    if (layout->doc) {
-        xmlFreeDoc (layout->doc);
-        layout->doc = NULL;
-    };
+    if (layout->_priv) {
+        if (layout->_priv->idle_save_pending) {
+            layout->_priv->idle_save_pending = FALSE;
+            g_idle_remove_by_data (layout);
+        }
+        
+        if (layout->_priv->doc) {
+            xmlFreeDoc (layout->_priv->doc);
+            layout->_priv->doc = NULL;
+        }
 
-    if (layout->dialog) {
-        gtk_widget_destroy (layout->dialog);
-        g_object_unref (layout->items_model);
-        g_object_unref (layout->layouts_model);
-        layout->dialog = NULL;
-        layout->layout_entry = NULL;
-        layout->selection = NULL;
-        layout->items_model = NULL;
-        layout->layouts_model = NULL;
-    };
+        if (layout->_priv->items_model) {
+            g_object_unref (layout->_priv->items_model);
+            g_object_unref (layout->_priv->layouts_model);
+            layout->_priv->items_model = NULL;
+            layout->_priv->layouts_model = NULL;
+        }
+
+        g_free (layout->_priv);
+        layout->_priv = NULL;
+    }
 }
 
 static void
 gdl_dock_layout_build_doc (GdlDockLayout *layout)
 {
-    g_return_if_fail (layout->doc == NULL);
+    g_return_if_fail (layout->_priv->doc == NULL);
 
-    layout->doc = xmlNewDoc ("1.0");
-    layout->doc->children = xmlNewDocNode (layout->doc, NULL, 
-                                           ROOT_ELEMENT, NULL);
+    layout->_priv->doc = xmlNewDoc ("1.0");
+    layout->_priv->doc->children = xmlNewDocNode (layout->_priv->doc, NULL, 
+                                                  ROOT_ELEMENT, NULL);
 }
 
 static xmlNodePtr
@@ -170,18 +228,18 @@ gdl_dock_layout_find_layout (GdlDockLayout *layout,
                              const gchar   *name)
 {
     xmlNodePtr node;
-    gboolean found = FALSE;
+    gboolean   found = FALSE;
 
     g_return_val_if_fail (layout != NULL, NULL);
     
-    if (!layout->doc)
+    if (!layout->_priv->doc)
         return NULL;
 
     /* get document root */
-    node = layout->doc->children;
+    node = layout->_priv->doc->children;
     for (node = node->children; node; node = node->next) {
         gchar *layout_name;
-
+        
         if (strcmp (node->name, LAYOUT_ELEMENT_NAME))
             /* skip non-layout element */
             continue;
@@ -202,13 +260,131 @@ gdl_dock_layout_find_layout (GdlDockLayout *layout,
 }
 
 static void
-save_layout_cb (GtkWidget *w, gpointer data)
+gdl_dock_layout_build_models (GdlDockLayout *layout)
 {
-    GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
-    gchar         *name;
+    if (!layout->_priv->items_model) {
+        layout->_priv->items_model = gtk_list_store_new (4, 
+                                                         G_TYPE_STRING, 
+                                                         G_TYPE_BOOLEAN,
+                                                         G_TYPE_BOOLEAN,
+                                                         G_TYPE_POINTER);
+        gtk_tree_sortable_set_sort_column_id (
+            GTK_TREE_SORTABLE (layout->_priv->items_model), 
+            COLUMN_NAME, GTK_SORT_ASCENDING);
+    }
 
+    if (!layout->_priv->layouts_model) {
+        layout->_priv->layouts_model = gtk_list_store_new (1, G_TYPE_STRING);
+        gtk_tree_sortable_set_sort_column_id (
+            GTK_TREE_SORTABLE (layout->_priv->layouts_model),
+            COLUMN_NAME, GTK_SORT_ASCENDING);
+    }
+}
+
+static void
+gdl_dock_layout_update_items_model (GdlDockLayout *layout)
+{
+    GtkTreeIter iter;
+    
+    g_return_if_fail (layout != NULL && layout->_priv != NULL);
+    g_return_if_fail (layout->master != NULL);
+    g_return_if_fail (layout->_priv->items_model != NULL);
+
+    /* update items model data after a layout load */
+    if (gtk_tree_model_get_iter_root (
+        GTK_TREE_MODEL (layout->_priv->items_model), &iter)) {
+        do {
+            GdlDockItem *item;
+            gboolean     locked;
+            
+            gtk_tree_model_get (GTK_TREE_MODEL (layout->_priv->items_model), &iter,
+                                COLUMN_ITEM, &item,
+                                -1);
+            if (item) {
+                g_object_get (item, "locked", &locked, NULL);
+                
+                gtk_list_store_set (layout->_priv->items_model, &iter, 
+                                    COLUMN_SHOW, GDL_DOCK_OBJECT_ATTACHED (item),
+                                    COLUMN_LOCKED, locked,
+                                    -1);
+            };
+        } while (gtk_tree_model_iter_next (
+            GTK_TREE_MODEL (layout->_priv->items_model), &iter));
+    };
+}
+
+static void
+gdl_dock_layout_foreach_object (GdlDockObject *object,
+                                GdlDockLayout *layout)
+{
+    /* only add items to the items model (i.e. not toplevel docks) */
+    if (GDL_IS_DOCK_ITEM (object)) {
+        GtkTreeIter iter;
+        gboolean    locked;
+        gchar      *long_name;
+
+        g_object_get (object, 
+                      "long_name", &long_name, 
+                      "locked", &locked, 
+                      NULL);
+        gtk_list_store_append (layout->_priv->items_model, &iter);
+        gtk_list_store_set (layout->_priv->items_model, &iter, 
+                            COLUMN_ITEM, object,
+                            COLUMN_NAME, long_name,
+                            COLUMN_SHOW, GDL_DOCK_OBJECT_ATTACHED (object),
+                            COLUMN_LOCKED, locked,
+                            -1);
+        g_free (long_name);
+    }
+}
+
+static void
+gdl_dock_layout_populate_models (GdlDockLayout *layout)
+{
+    GList *items, *l;
+    GtkTreeIter iter;
+
+    g_return_if_fail (layout != NULL);
+    g_return_if_fail (layout->_priv->items_model != NULL);
+    g_return_if_fail (layout->_priv->layouts_model != NULL);
+
+    /* build items list */
+    gtk_list_store_clear (layout->_priv->items_model);
+    if (layout->master) {
+        gdl_dock_master_foreach (layout->master,
+                                 (GFunc) gdl_dock_layout_foreach_object,
+                                 (gpointer) layout);
+    };
+
+    /* build layouts list */
+    gtk_list_store_clear (layout->_priv->layouts_model);
+    items = gdl_dock_layout_get_layouts (layout, FALSE);
+    for (l = items; l; l = l->next) {
+        gtk_list_store_append (layout->_priv->layouts_model, &iter);
+        gtk_list_store_set (layout->_priv->layouts_model, &iter,
+                            COLUMN_NAME, l->data,
+                            -1);
+        g_free (l->data);
+    };
+    g_list_free (items);
+}
+
+
+/* ------- UI functions & callbacks ------ */
+
+static void 
+save_layout_cb (GtkWidget *w,
+                gpointer   data)
+{
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
+
+    GdlDockLayout *layout = ui_data->layout;
+    gchar         *name;
+    
+    g_return_if_fail (layout != NULL);
+    
     /* get the entry text and use it as a name to save the layout */
-    name = g_strdup (gtk_entry_get_text (GTK_ENTRY (layout->layout_entry)));
+    name = g_strdup (gtk_entry_get_text (GTK_ENTRY (ui_data->layout_entry)));
     g_strstrip (name);
     if (strlen (name) > 0) {
         gboolean exists;
@@ -218,17 +394,18 @@ save_layout_cb (GtkWidget *w, gpointer data)
             GtkTreeIter iter;
 
             /* add the name to the model */
-            gtk_list_store_append (layout->layouts_model, &iter);
-            gtk_list_store_set (layout->layouts_model, &iter,
+            gtk_list_store_append (layout->_priv->layouts_model, &iter);
+            gtk_list_store_set (layout->_priv->layouts_model, &iter,
                                 COLUMN_NAME, name,
                                 -1);
         };
         gdl_dock_layout_save_layout (layout, name);
 
     } else {
-        GtkWidget *error_dialog;
+        GtkWidget *error_dialog, *parent;
+        parent = gtk_widget_get_toplevel (w);
         error_dialog = gtk_message_dialog_new (
-            GTK_WINDOW (layout->dialog),
+            parent ? GTK_WINDOW (parent) : NULL,
             GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
             _("You must provide a name for the layout"));
         gtk_dialog_run (GTK_DIALOG (error_dialog));
@@ -237,64 +414,45 @@ save_layout_cb (GtkWidget *w, gpointer data)
     g_free (name);
 }
 
-static void
-gdl_dock_layout_update_items_model (GdlDockLayout *layout)
+static void 
+load_layout_cb (GtkWidget *w,
+                gpointer   data)
 {
-    GtkTreeIter iter;
-    
-    g_return_if_fail (layout != NULL);
-    g_return_if_fail (layout->dock != NULL);
-    g_return_if_fail (layout->items_model != NULL);
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
 
-    /* update items model data after a layout load */
-    if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (layout->items_model), &iter)) {
-        do {
-            GdlDockItem *item;
-            GdlDockItemBehavior beh;
-
-            gtk_tree_model_get (GTK_TREE_MODEL (layout->items_model), &iter,
-                                COLUMN_ITEM, &item,
-                                -1);
-            if (item) {
-                g_object_get (item, "behavior", &beh, NULL);
-
-                gtk_list_store_set (layout->items_model, &iter, 
-                                    COLUMN_SHOW, GDL_DOCK_ITEM_IS_SHOWN (item),
-                                    COLUMN_LOCKED, beh & GDL_DOCK_ITEM_BEH_LOCKED,
-                                    -1);
-            };
-        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (layout->items_model), &iter));
-    };
-}
-
-static void
-load_layout_cb (GtkWidget *w, gpointer data)
-{
     GtkTreeModel  *model;
     GtkTreeIter    iter;
-    GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
+    GdlDockLayout *layout = ui_data->layout;
     gchar         *name;
 
-    if (gtk_tree_selection_get_selected (layout->selection, &model, &iter)) {
+    g_return_if_fail (layout != NULL);
+    
+    if (gtk_tree_selection_get_selected (ui_data->selection, &model, &iter)) {
         gtk_tree_model_get (model, &iter,
                             COLUMN_NAME, &name,
                             -1);
         gdl_dock_layout_load_layout (layout, name);
-        layout->changed_by_user = TRUE;
+        ui_data->changed_by_user = TRUE;
         g_free (name);
         gdl_dock_layout_update_items_model (layout);
+        if (ui_data->layout->master)
+            g_object_notify (G_OBJECT (ui_data->layout->master), "locked");
     };
 }
 
 static void
 delete_layout_cb (GtkWidget *w, gpointer data)
 {
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
+
     GtkTreeModel  *model;
     GtkTreeIter    iter;
-    GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
+    GdlDockLayout *layout = ui_data->layout;
     gchar         *name;
 
-    if (gtk_tree_selection_get_selected (layout->selection, &model, &iter)) {
+    g_return_if_fail (layout != NULL);
+    
+    if (gtk_tree_selection_get_selected (ui_data->selection, &model, &iter)) {
         gtk_tree_model_get (model, &iter,
                             COLUMN_NAME, &name,
                             -1);
@@ -309,13 +467,18 @@ show_toggled_cb (GtkCellRendererToggle *renderer,
                  gchar                 *path_str,
                  gpointer               data)
 {
-    GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
-    GtkTreeModel  *model = GTK_TREE_MODEL (layout->items_model);
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
+
+    GdlDockLayout *layout = ui_data->layout;
+    GtkTreeModel  *model;
     GtkTreeIter    iter;
     GtkTreePath   *path = gtk_tree_path_new_from_string (path_str);
     gboolean       value;
     GdlDockItem   *item;
 
+    g_return_if_fail (layout != NULL);
+    
+    model = GTK_TREE_MODEL (layout->_priv->items_model);
     gtk_tree_model_get_iter (model, &iter, path);
     gtk_tree_model_get (model, &iter, 
                         COLUMN_SHOW, &value, 
@@ -323,28 +486,34 @@ show_toggled_cb (GtkCellRendererToggle *renderer,
                         -1);
 
     value = !value;
-    gtk_list_store_set (layout->items_model, &iter, COLUMN_SHOW, value, -1);
+    gtk_list_store_set (layout->_priv->items_model, &iter, COLUMN_SHOW, value, -1);
     if (value)
-        gdl_dock_item_show (item);
+        gdl_dock_item_show_item (item);
     else
-        gdl_dock_item_hide (item);
+        gdl_dock_item_hide_item (item);
 
-    layout->changed_by_user = TRUE;
+    ui_data->changed_by_user = TRUE;
     gtk_tree_path_free (path);
 }
 
+#if 0
 static void
 locked_toggled_cb (GtkCellRendererToggle *renderer,
                    gchar                 *path_str,
                    gpointer               data)
 {
-    GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
-    GtkTreeModel  *model = GTK_TREE_MODEL (layout->items_model);
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
+
+    GdlDockLayout *layout = ui_data->layout;
+    GtkTreeModel  *model;
     GtkTreeIter    iter;
     GtkTreePath   *path = gtk_tree_path_new_from_string (path_str);
     gboolean       value;
     GdlDockItem   *item;
-
+    
+    g_return_if_fail (layout != NULL);
+    
+    model = GTK_TREE_MODEL (layout->_priv->items_model);
     gtk_tree_model_get_iter (model, &iter, path);
     gtk_tree_model_get (model, &iter, 
                         COLUMN_LOCKED, &value, 
@@ -352,23 +521,25 @@ locked_toggled_cb (GtkCellRendererToggle *renderer,
                         -1);
 
     value = !value;
-    gtk_list_store_set (layout->items_model, &iter, COLUMN_LOCKED, value, -1);
+    gtk_list_store_set (layout->_priv->items_model, &iter, COLUMN_LOCKED, value, -1);
     if (value)
         gdl_dock_item_lock (item);
     else
         gdl_dock_item_unlock (item);
 
-    layout->changed_by_user = TRUE;
+    ui_data->changed_by_user = TRUE;
     gtk_tree_path_free (path);
 }
+#endif
 
 static void
 selection_changed_cb (GtkTreeSelection *selection,
                       gpointer          data)
 {
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
+
     GtkTreeModel  *model;
     GtkTreeIter    iter;
-    GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
     gchar         *name;
 
     /* set the entry widget to the selected layout name */
@@ -376,89 +547,152 @@ selection_changed_cb (GtkTreeSelection *selection,
         gtk_tree_model_get (model, &iter,
                             COLUMN_NAME, &name,
                             -1);
-        gtk_entry_set_text (GTK_ENTRY (layout->layout_entry), name);
+        gtk_entry_set_text (GTK_ENTRY (ui_data->layout_entry), name);
         g_free (name);
     };
 }
 
-static gboolean
-gdl_dock_layout_construct_dialog (GdlDockLayout *layout)
+static void
+all_locked_toggled_cb (GtkWidget *widget,
+                       gpointer   data)
 {
-    GladeXML          *gui;
-    GtkWidget         *items_list, *layouts_list;
-    GtkCellRenderer   *renderer;
-    GtkTreeViewColumn *column;
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
+    GdlDockMaster       *master;
+    gboolean             locked;
+    
+    g_return_if_fail (ui_data->layout != NULL);
+    master = ui_data->layout->master;
+    g_return_if_fail (master != NULL);
 
-    if (layout->dialog)
-        return TRUE;
+    locked = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
+    g_object_set (master, "locked", locked ? 1 : 0, NULL);
+    ui_data->changed_by_user = TRUE;
+}
 
+static void
+layout_ui_destroyed (GtkWidget *widget,
+                     gpointer   user_data)
+{
+    GdlDockLayoutUIData *ui_data;
+    
+    /* widget is the GtkContainer */
+    ui_data = g_object_get_data (G_OBJECT (widget), "ui_data");
+    if (ui_data) {
+        if (ui_data->layout) {
+            if (ui_data->layout->master)
+                g_signal_handlers_disconnect_matched (ui_data->layout->master,
+                                                      G_SIGNAL_MATCH_DATA,
+                                                      0, 0, NULL, NULL,
+                                                      ui_data);
+            
+            g_object_remove_weak_pointer (G_OBJECT (ui_data->layout),
+                                          (gpointer *) &ui_data->layout);
+            ui_data->layout = NULL;
+        }
+        g_object_set_data (G_OBJECT (widget), "ui_data", NULL);
+        g_free (ui_data);
+    }
+}
+
+static void
+master_locked_notify_cb (GdlDockMaster *master,
+                         GParamSpec    *pspec,
+                         gpointer       user_data)
+{
+    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) user_data;
+    gint locked;
+
+    g_object_get (master, "locked", &locked, NULL);
+    if (locked == -1) {
+        gtk_toggle_button_set_inconsistent (
+            GTK_TOGGLE_BUTTON (ui_data->locked_check), TRUE);
+    }
+    else {
+        gtk_toggle_button_set_inconsistent (
+            GTK_TOGGLE_BUTTON (ui_data->locked_check), FALSE);
+        gtk_toggle_button_set_active (
+            GTK_TOGGLE_BUTTON (ui_data->locked_check), (locked == 1));
+    }
+}
+
+static GtkWidget *
+gdl_dock_layout_construct_ui (GdlDockLayout *layout)
+{
+    GladeXML            *gui;
+    GtkWidget           *container;
+    GtkWidget           *items_list, *layouts_list;
+    GtkCellRenderer     *renderer;
+    GtkTreeViewColumn   *column;
+
+    GdlDockLayoutUIData *ui_data;
+    
     /* load ui */
+    /* FIXME: set the translation domain here */
     gui = glade_xml_new (g_build_filename (
-        GDL_GLADEDIR, LAYOUT_GLADE_FILE, NULL), NULL, NULL);
+        GDL_GLADEDIR, LAYOUT_GLADE_FILE, NULL), "layout_container", NULL);
     if (!gui) {
         g_warning (_("Could not load layout user interface file '%s'"), 
                    LAYOUT_GLADE_FILE);
-        return FALSE;
+        return NULL;
     };
 
-    /* customize dialog */
-    layout->dialog = glade_xml_get_widget (gui, "layout_dialog");
-    if (!layout->dialog) {
-        g_warning (_("Incorrect layout interface file '%s'"),
-                   LAYOUT_GLADE_FILE);
-        g_object_unref (gui);
-        return FALSE;
-    };
-        
-    gtk_dialog_add_button (GTK_DIALOG (layout->dialog), 
-                           "gtk-close", GTK_RESPONSE_CLOSE);
-    gtk_dialog_set_has_separator (GTK_DIALOG (layout->dialog), FALSE);
-    gtk_window_set_default_size (GTK_WINDOW (layout->dialog), -1, 300);
+    /* get the container */
+    container = glade_xml_get_widget (gui, "layout_container");
 
-    /* build list models */
-    layout->items_model = gtk_list_store_new (4, 
-                                              G_TYPE_STRING, 
-                                              G_TYPE_BOOLEAN,
-                                              G_TYPE_BOOLEAN,
-                                              G_TYPE_POINTER);
-    gtk_tree_sortable_set_sort_column_id (
-        GTK_TREE_SORTABLE (layout->items_model), 
-        COLUMN_NAME, GTK_SORT_ASCENDING);
-
-    layout->layouts_model = gtk_list_store_new (1, G_TYPE_STRING);
-    gtk_tree_sortable_set_sort_column_id (
-        GTK_TREE_SORTABLE (layout->layouts_model),
-        COLUMN_NAME, GTK_SORT_ASCENDING);
+    ui_data = g_new0 (GdlDockLayoutUIData, 1);
+    ui_data->layout = layout;
+    ui_data->changed_by_user = FALSE;
+    g_object_add_weak_pointer (G_OBJECT (layout),
+                               (gpointer *) &ui_data->layout);
+    g_object_set_data (G_OBJECT (container), "ui_data", ui_data);
+    
+    /* ensure model availability */
+    gdl_dock_layout_build_models (layout);
     
     /* get ui widget references */
-    layout->layout_entry = glade_xml_get_widget (gui, "newlayout_entry");
+    ui_data->layout_entry = glade_xml_get_widget (gui, "newlayout_entry");
+    ui_data->locked_check = glade_xml_get_widget (gui, "locked_check");
+    
     items_list = glade_xml_get_widget (gui, "items_list");
     layouts_list = glade_xml_get_widget (gui, "layouts_list");
 
+    /* locked check connections */
+    g_signal_connect (ui_data->locked_check, "toggled",
+                      (GCallback) all_locked_toggled_cb, ui_data);
+    if (layout->master) {
+        g_signal_connect (layout->master, "notify::locked",
+                          (GCallback) master_locked_notify_cb, ui_data);
+        /* force update now */
+        master_locked_notify_cb (layout->master, NULL, ui_data);
+    }
+    
+    /* set models */
     gtk_tree_view_set_model (GTK_TREE_VIEW (items_list),
-                             GTK_TREE_MODEL (layout->items_model));
+                             GTK_TREE_MODEL (layout->_priv->items_model));
     gtk_tree_view_set_model (GTK_TREE_VIEW (layouts_list),
-                             GTK_TREE_MODEL (layout->layouts_model));
+                             GTK_TREE_MODEL (layout->_priv->layouts_model));
 
-    /* add lists columns */
+    /* construct list views */
     renderer = gtk_cell_renderer_toggle_new ();
     g_signal_connect (renderer, "toggled", 
-                      G_CALLBACK (show_toggled_cb), layout);
+                      G_CALLBACK (show_toggled_cb), ui_data);
     column = gtk_tree_view_column_new_with_attributes (_("Visible"),
                                                        renderer,
                                                        "active", COLUMN_SHOW,
                                                        NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (items_list), column);
 
+#if 0
     renderer = gtk_cell_renderer_toggle_new ();
     g_signal_connect (renderer, "toggled", 
-                      G_CALLBACK (locked_toggled_cb), layout);
+                      G_CALLBACK (locked_toggled_cb), ui_data);
     column = gtk_tree_view_column_new_with_attributes (_("Locked"),
                                                        renderer,
                                                        "active", COLUMN_LOCKED,
                                                        NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (items_list), column);
-
+#endif
+    
     renderer = gtk_cell_renderer_text_new ();
     column = gtk_tree_view_column_new_with_attributes (_("Item"),
                                                        renderer,
@@ -474,122 +708,421 @@ gdl_dock_layout_construct_dialog (GdlDockLayout *layout)
     gtk_tree_view_append_column (GTK_TREE_VIEW (layouts_list), column);
 
     /* connect signals */
-    layout->selection = gtk_tree_view_get_selection (
-        GTK_TREE_VIEW (layouts_list));
-    g_signal_connect (layout->selection, "changed",
-                      G_CALLBACK (selection_changed_cb), layout);
+    ui_data->selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (layouts_list));
+    g_signal_connect (ui_data->selection, "changed",
+                      G_CALLBACK (selection_changed_cb), ui_data);
 
     glade_xml_signal_connect_data (gui, "on_newlayout_entry_activate",
-                                   GTK_SIGNAL_FUNC (save_layout_cb), layout);
+                                   GTK_SIGNAL_FUNC (save_layout_cb), ui_data);
     glade_xml_signal_connect_data (gui, "on_save_button_clicked",
-                                   GTK_SIGNAL_FUNC (save_layout_cb), layout);
+                                   GTK_SIGNAL_FUNC (save_layout_cb), ui_data);
     glade_xml_signal_connect_data (gui, "on_load_button_clicked",
-                                   GTK_SIGNAL_FUNC (load_layout_cb), layout);
+                                   GTK_SIGNAL_FUNC (load_layout_cb), ui_data);
     glade_xml_signal_connect_data (gui, "on_delete_button_clicked",
-                                   GTK_SIGNAL_FUNC (delete_layout_cb), layout);
+                                   GTK_SIGNAL_FUNC (delete_layout_cb), ui_data);
+
+    g_signal_connect (container, "destroy", (GCallback) layout_ui_destroyed, NULL);
 
     g_object_unref (gui);
 
-    return TRUE;
+    return container;
 }
 
+/* ----- Save & Load layout functions --------- */
+
+#define GDL_DOCK_PARAM_CONSTRUCTION(p) \
+    (((p)->flags & (G_PARAM_CONSTRUCT | G_PARAM_CONSTRUCT_ONLY)) != 0)
+
+static GdlDockObject * 
+gdl_dock_layout_setup_object (GdlDockMaster *master,
+                              xmlNodePtr     node,
+                              gint          *n_after_params,
+                              GParameter   **after_params)
+{
+    GdlDockObject *object = NULL;
+    GType          object_type;
+    xmlChar       *object_name;
+    GObjectClass  *object_class = NULL;
+
+    GParamSpec   **props;
+    gint           n_props, i;
+    GParameter    *params = NULL;
+    gint           n_params = 0;
+    GValue         serialized = { 0, };
+    
+    object_name = xmlGetProp (node, GDL_DOCK_NAME_PROPERTY);
+    if (object_name && strlen (object_name) > 0) {
+        /* the object must already be bound to the master */
+        object = gdl_dock_master_get_object (master, object_name);
+
+        xmlFree (object_name);
+        object_type = object ? G_TYPE_FROM_INSTANCE (object) : G_TYPE_NONE;
+    }
+    else {
+        /* the object should be automatic, so create it by
+           retrieving the object type from the dock registry */
+        object_type = gdl_dock_object_type_from_nick (node->name);
+        if (object_type == G_TYPE_NONE) {
+            g_warning (_("While loading layout: don't know how to create "
+                         "a dock object whose nick is '%s'"), node->name);
+        }
+    }
+    
+    if (object_type == G_TYPE_NONE || !G_TYPE_IS_CLASSED (object_type))
+        return NULL;
+
+    object_class = g_type_class_ref (object_type);
+    props = g_object_class_list_properties (object_class, &n_props);
+        
+    /* create parameter slots */
+    /* extra parameter is the master */
+    params = g_new0 (GParameter, n_props + 1);
+    *after_params = g_new0 (GParameter, n_props);
+    *n_after_params = 0;
+    
+    /* initialize value used for transformations */
+    g_value_init (&serialized, GDL_TYPE_DOCK_PARAM);
+    
+    for (i = 0; i < n_props; i++) {
+        xmlChar *xml_prop;
+
+        /* process all exported properties, skip
+           GDL_DOCK_NAME_PROPERTY, since named items should
+           already by in the master */
+        if (!(props [i]->flags & GDL_DOCK_PARAM_EXPORT) ||
+            !strcmp (props [i]->name, GDL_DOCK_NAME_PROPERTY))
+            continue;
+
+        /* get the property from xml if there is one */
+        xml_prop = xmlGetProp (node, props [i]->name);
+        if (xml_prop) {
+            g_value_set_static_string (&serialized, xml_prop);
+            
+            if (!GDL_DOCK_PARAM_CONSTRUCTION (props [i]) &&
+                (props [i]->flags & GDL_DOCK_PARAM_AFTER)) {
+                (*after_params) [*n_after_params].name = props [i]->name;
+                g_value_init (&((* after_params) [*n_after_params].value),
+                              props [i]->value_type);
+                g_value_transform (&serialized,
+                                   &((* after_params) [*n_after_params].value));
+                (*n_after_params)++;
+            }
+            else if (!object || (!GDL_DOCK_PARAM_CONSTRUCTION (props [i]) && object)) {
+                params [n_params].name = props [i]->name;
+                g_value_init (&(params [n_params].value), props [i]->value_type);
+                g_value_transform (&serialized, &(params [n_params].value));
+                n_params++;
+            }
+            xmlFree (xml_prop);
+        }
+    }
+    g_value_unset (&serialized);
+    g_free (props);
+
+    if (!object) {
+        params [n_params].name = GDL_DOCK_MASTER_PROPERTY;
+        g_value_init (&params [n_params].value, GDL_TYPE_DOCK_MASTER);
+        g_value_set_object (&params [n_params].value, master);
+        n_params++;
+        
+        /* construct the object if we have to */
+        /* set the master, so toplevels are created correctly and
+           other objects are bound */
+        object = g_object_newv (object_type, n_params, params);
+    }
+    else {
+        /* set the parameters to the existing object */
+        for (i = 0; i < n_params; i++)
+            g_object_set_property (G_OBJECT (object),
+                                   params [i].name,
+                                   &params [i].value);
+    }
+
+    /* free the parameters (names are static/const strings) */
+    for (i = 0; i < n_params; i++)
+        g_value_unset (&params [i].value);
+    g_free (params);
+
+    /* finally unref object class */
+    g_type_class_unref (object_class);
+
+    return object;
+}
 
 static void
-gdl_dock_layout_populate_models (GdlDockLayout *layout)
+gdl_dock_layout_recursive_build (GdlDockMaster *master,
+                                 xmlNodePtr     parent_node,
+                                 GdlDockObject *parent)
 {
-    GList *items, *l;
-    GtkTreeIter iter;
+    GdlDockObject *object;
+    xmlNodePtr     node;
+    
+    g_return_if_fail (master != NULL && parent_node != NULL);
 
-    g_return_if_fail (layout != NULL);
-    g_return_if_fail (layout->items_model != NULL);
-    g_return_if_fail (layout->layouts_model != NULL);
+    /* if parent is NULL we should build toplevels */
+    for (node = parent_node->children; node; node = node->next) {
+        GParameter *after_params = NULL;
+        gint        n_after_params = 0, i;
 
-    /* build items list */
-    gtk_list_store_clear (layout->items_model);
-    if (layout->dock) {
-        items = gdl_dock_get_named_items (layout->dock);
-        for (l = items; l; l = l->next) {
-            GdlDockItem *item = l->data;
-            GdlDockItemBehavior beh;
-            gchar *long_name;
+        object = gdl_dock_layout_setup_object (master, node,
+                                               &n_after_params,
+                                               &after_params);
+        
+        if (object) {
+            gdl_dock_object_freeze (object);
 
-            g_object_get (item, 
-                          "long_name", &long_name, 
-                          "behavior", &beh, 
-                          NULL);
-            gtk_list_store_append (layout->items_model, &iter);
-            gtk_list_store_set (layout->items_model, &iter, 
-                                COLUMN_ITEM, item,
-                                COLUMN_NAME, long_name,
-                                COLUMN_SHOW, GDL_DOCK_ITEM_IS_SHOWN (item),
-                                COLUMN_LOCKED, beh & GDL_DOCK_ITEM_BEH_LOCKED,
-                                -1);
-            g_free (long_name);
-        };
-        g_list_free (items);
-    };
+            /* recurse to catch placeholders */
+            gdl_dock_layout_recursive_build (master, node, object);
+            
+            if (GDL_IS_DOCK_PLACEHOLDER (object))
+                gdl_dock_object_detach (object, FALSE);
+            
+            /* apply "after" parameters */
+            for (i = 0; i < n_after_params; i++) {
+                g_object_set_property (G_OBJECT (object),
+                                       after_params [i].name,
+                                       &after_params [i].value);
+                /* unset and free the value */
+                g_value_unset (&after_params [i].value);
+            }
+            g_free (after_params);
+            
+            /* add the object to the parent and recurse */
+            if (parent) {
+                if (GDL_IS_DOCK_PLACEHOLDER (object))
+                    gdl_dock_placeholder_attach (GDL_DOCK_PLACEHOLDER (object),
+                                                 parent);
+                else if (gdl_dock_object_is_compound (parent)) {
+                    gtk_container_add (GTK_CONTAINER (parent), GTK_WIDGET (object));
+                    if (GTK_WIDGET_VISIBLE (parent))
+                        gtk_widget_show (GTK_WIDGET (object));
+                }
+            }
+            else {
+                GdlDockObject *controller = gdl_dock_master_get_controller (master);
+                if (controller != object && GTK_WIDGET_VISIBLE (controller))
+                    gtk_widget_show (GTK_WIDGET (object));
+            }
+                
+            /* call reduce just in case any child is missing */
+            if (gdl_dock_object_is_compound (object))
+                gdl_dock_object_reduce (object);
 
-    /* build layouts list */
-    gtk_list_store_clear (layout->layouts_model);
-    items = gdl_dock_layout_get_layouts (layout, FALSE);
-    for (l = items; l; l = l->next) {
-        gtk_list_store_append (layout->layouts_model, &iter);
-        gtk_list_store_set (layout->layouts_model, &iter,
-                            COLUMN_NAME, l->data,
-                            -1);
-        g_free (l->data);
-    };
-    g_list_free (items);
+            gdl_dock_object_thaw (object);
+        }
+    }
 }
 
+static void
+_gdl_dock_layout_foreach_detach (GdlDockObject *object)
+{
+    gdl_dock_object_detach (object, TRUE);
+}
+
+static void
+gdl_dock_layout_foreach_toplevel_detach (GdlDockObject *object)
+{
+    gtk_container_foreach (GTK_CONTAINER (object),
+                           (GtkCallback) _gdl_dock_layout_foreach_detach,
+                           NULL);
+}
+
+static void
+gdl_dock_layout_load (GdlDockMaster *master, xmlNodePtr node)
+{
+    g_return_if_fail (master != NULL && node != NULL);
+
+    /* start by detaching all items from the toplevels */
+    gdl_dock_master_foreach_toplevel (master, TRUE,
+                                      (GFunc) gdl_dock_layout_foreach_toplevel_detach,
+                                      NULL);
+    
+    gdl_dock_layout_recursive_build (master, node, NULL);
+}
+
+static void 
+gdl_dock_layout_foreach_object_save (GdlDockObject *object,
+                                     gpointer       user_data)
+{
+    struct {
+        xmlNodePtr  where;
+        GHashTable *placeholders;
+    } *info = user_data, info_child;
+
+    xmlNodePtr   node;
+    gint         n_props, i;
+    GParamSpec **props;
+    GValue       attr = { 0, };
+    
+    g_return_if_fail (object != NULL && GDL_IS_DOCK_OBJECT (object));
+    g_return_if_fail (info->where != NULL);
+    
+    node = xmlNewChild (info->where,
+                        NULL,               /* ns */
+                        gdl_dock_object_nick_from_type (G_TYPE_FROM_INSTANCE (object)),
+                        NULL);              /* contents */
+
+    /* get object exported attributes */
+    props = g_object_class_list_properties (G_OBJECT_GET_CLASS (object),
+                                            &n_props);
+    g_value_init (&attr, GDL_TYPE_DOCK_PARAM);
+    for (i = 0; i < n_props; i++) {
+        GParamSpec *p = props [i];
+
+        if (p->flags & GDL_DOCK_PARAM_EXPORT) {
+            GValue v = { 0, };
+            
+            /* export this parameter */
+            /* get the parameter value */
+            g_value_init (&v, p->value_type);
+            g_object_get_property (G_OBJECT (object),
+                                   p->name,
+                                   &v);
+
+            /* only save the object "name" if it is set
+               (i.e. don't save the empty string) */
+            if (strcmp (p->name, GDL_DOCK_NAME_PROPERTY) ||
+                g_value_get_string (&v)) {
+                if (g_value_transform (&v, &attr))
+                    xmlSetProp (node, p->name, g_value_get_string (&attr));
+            }
+            
+            /* free the parameter value */
+            g_value_unset (&v);
+        }
+    }
+    g_value_unset (&attr);
+    g_free (props);
+
+    info_child = *info;
+    info_child.where = node;
+
+    /* save placeholders for the object */
+    if (info->placeholders && !GDL_IS_DOCK_PLACEHOLDER (object)) {
+        GList *lph = g_hash_table_lookup (info->placeholders, object);
+        for (; lph; lph = lph->next)
+            gdl_dock_layout_foreach_object_save (GDL_DOCK_OBJECT (lph->data),
+                                                 (gpointer) &info_child);
+    }
+    
+    /* recurse the object if appropiate */
+    if (gdl_dock_object_is_compound (object)) {
+        gtk_container_foreach (GTK_CONTAINER (object),
+                               (GtkCallback) gdl_dock_layout_foreach_object_save,
+                               (gpointer) &info_child);
+    }
+}
+
+static void
+add_placeholder (GdlDockObject *object,
+                 GHashTable    *placeholders)
+{
+    if (GDL_IS_DOCK_PLACEHOLDER (object)) {
+        GdlDockObject *host;
+        GList *l;
+        
+        g_object_get (object, "host", &host, NULL);
+        if (host) {
+            l = g_hash_table_lookup (placeholders, host);
+            /* add the current placeholder to the list of placeholders
+               for that host */
+            if (l)
+                g_hash_table_steal (placeholders, host);
+            
+            l = g_list_prepend (l, object);
+            g_hash_table_insert (placeholders, host, l);
+            g_object_unref (host);
+        }
+    }
+}
+
+static void 
+gdl_dock_layout_save (GdlDockMaster *master,
+                      xmlNodePtr     where)
+{
+    struct {
+        xmlNodePtr  where;
+        GHashTable *placeholders;
+    } info;
+    
+    GHashTable *placeholders;
+    
+    g_return_if_fail (master != NULL && where != NULL);
+
+    /* build the placeholder's hash */
+    placeholders = g_hash_table_new_full (g_direct_hash, g_direct_equal,
+                                          NULL, (GDestroyNotify) g_list_free);
+    gdl_dock_master_foreach (master, (GFunc) add_placeholder, placeholders);
+    
+    /* save the layout recursively */
+    info.where = where;
+    info.placeholders = placeholders;
+    
+    gdl_dock_master_foreach_toplevel (master, TRUE,
+                                      (GFunc) gdl_dock_layout_foreach_object_save,
+                                      (gpointer) &info);
+
+    g_hash_table_destroy (placeholders);
+}
 
 
 /* ----- Public interface ----- */
 
-GType
-gdl_dock_layout_get_type (void)
-{
-    static GType dock_layout_type = 0;
-
-    if (dock_layout_type == 0) {
-	GTypeInfo dock_layout_info = {
-	    sizeof (GdlDockLayoutClass),
-	    NULL,		/* base_init  */
-	    NULL,		/* base_finalize */
-	    (GClassInitFunc) gdl_dock_layout_class_init, 
-	    NULL,		/* class_finalize */
-	    NULL,		/* class_data */
-	    sizeof (GdlDockLayout),
-	    0,			/* n_preallocs */
-	    (GInstanceInitFunc) gdl_dock_layout_init,
-	    NULL		/* value_table */
-	};
-
-	dock_layout_type = g_type_register_static (
-	    G_TYPE_OBJECT, "GdlDockLayout", &dock_layout_info, 0);
-    };
-
-    return dock_layout_type;
-}
-
 GdlDockLayout *
 gdl_dock_layout_new (GdlDock *dock)
 {
-    return g_object_new (GDL_TYPE_DOCK_LAYOUT, "dock", dock, NULL);
+    GdlDockMaster *master = NULL;
+    
+    /* get the master of the given dock */
+    if (dock)
+        master = GDL_DOCK_OBJECT_GET_MASTER (dock);
+    
+    return g_object_new (GDL_TYPE_DOCK_LAYOUT,
+                         "master", master,
+                         NULL);
+}
+
+static gboolean
+gdl_dock_layout_idle_save (GdlDockLayout *layout)
+{
+    /* save default layout */
+    gdl_dock_layout_save_layout (layout, NULL);
+    
+    layout->_priv->idle_save_pending = FALSE;
+    
+    return FALSE;
+}
+
+static void
+gdl_dock_layout_layout_changed_cb (GdlDockMaster *master,
+                                   GdlDockLayout *layout)
+{
+    if (!layout->_priv->idle_save_pending)
+        g_idle_add ((GSourceFunc) gdl_dock_layout_idle_save, layout);
 }
 
 void
 gdl_dock_layout_attach (GdlDockLayout *layout,
-                        GdlDock       *dock)
+                        GdlDockMaster *master)
 {
     g_return_if_fail (layout != NULL);
+    g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
     
-    if (layout->dock)
-        g_object_unref (layout->dock);
-  
-    layout->dock = dock;
-    if (layout->dock)
-        g_object_ref (layout->dock);
+    if (layout->master) {
+        g_signal_handlers_disconnect_matched (layout->master, G_SIGNAL_MATCH_DATA,
+                                              0, 0, NULL, NULL, layout);
+        g_object_unref (layout->master);
+    }
+    
+    /* FIXME: destroy and create models */
+    
+    layout->master = master;
+    if (layout->master) {
+        g_object_ref (layout->master);
+        g_signal_connect (layout->master, "layout_changed",
+                          (GCallback) gdl_dock_layout_layout_changed_cb,
+                          layout);
+    }
 }
 
 gboolean
@@ -601,7 +1134,7 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
 
     g_return_val_if_fail (layout != NULL, FALSE);
     
-    if (!layout->doc || !layout->dock)
+    if (!layout->_priv->doc || !layout->master)
         return FALSE;
 
     if (!name)
@@ -615,7 +1148,7 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
         node = gdl_dock_layout_find_layout (layout, NULL);
 
     if (node) {
-        gdl_dock_layout_load (layout->dock, node);
+        gdl_dock_layout_load (layout->master, node);
         return TRUE;
     } else
         return FALSE;
@@ -629,9 +1162,9 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
     gchar      *layout_name;
 
     g_return_if_fail (layout != NULL);
-    g_return_if_fail (layout->dock != NULL);
+    g_return_if_fail (layout->master != NULL);
     
-    if (!layout->doc)
+    if (!layout->_priv->doc)
         gdl_dock_layout_build_doc (layout);
 
     if (!name)
@@ -647,13 +1180,14 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
     };
 
     /* create the new node */
-    node = xmlNewChild (layout->doc->children, NULL, 
+    node = xmlNewChild (layout->_priv->doc->children, NULL, 
                         LAYOUT_ELEMENT_NAME, NULL);
     xmlSetProp (node, NAME_ATTRIBUTE_NAME, layout_name);
 
     /* save the layout */
-    gdl_dock_layout_save (layout->dock, node);
+    gdl_dock_layout_save (layout->master, node);
     layout->dirty = TRUE;
+    g_object_notify (G_OBJECT (layout), "dirty");
 }
 
 void
@@ -673,33 +1207,53 @@ gdl_dock_layout_delete_layout (GdlDockLayout *layout,
         xmlUnlinkNode (node);
         xmlFreeNode (node);
         layout->dirty = TRUE;
-    };
+        g_object_notify (G_OBJECT (layout), "dirty");
+    }
 }
 
 void
 gdl_dock_layout_run_manager (GdlDockLayout *layout)
 {
+    GdlDockLayoutUIData *ui_data;
+    GtkWidget *dialog, *container;
+    GtkWidget *parent = NULL;
+    
     g_return_if_fail (layout != NULL);
 
-    if (!layout->dock)
+    if (!layout->master)
         /* not attached to a dock yet */
         return;
 
-    if (!gdl_dock_layout_construct_dialog (layout))
+    container = gdl_dock_layout_construct_ui (layout);
+    if (!container)
         return;
 
+    parent = GTK_WIDGET (gdl_dock_master_get_controller (layout->master));
+    if (parent)
+        parent = gtk_widget_get_toplevel (parent);
+    
+    dialog = gtk_dialog_new_with_buttons (_("Layout managment"),
+                                          parent ? GTK_WINDOW (parent) : NULL,
+                                          GTK_DIALOG_MODAL | GTK_DIALOG_NO_SEPARATOR,
+                                          GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+                                          NULL);
+
+    gtk_window_set_default_size (GTK_WINDOW (dialog), -1, 300);
+
+    gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), container);
+    
     /* fill in data */
     gdl_dock_layout_populate_models (layout);
 
-    layout->changed_by_user = FALSE;
+    gtk_dialog_run (GTK_DIALOG (dialog));
 
-    gtk_dialog_run (GTK_DIALOG (layout->dialog));
-    gtk_widget_hide (layout->dialog);
-
-    if (layout->changed_by_user) {
+    ui_data = g_object_get_data (G_OBJECT (container), "ui_data");
+    if (ui_data->changed_by_user) {
         /* save the default (current) layout */
         gdl_dock_layout_save_layout (layout, NULL);
     };
+
+    gtk_widget_destroy (dialog);
 }
 
 gboolean
@@ -708,23 +1262,24 @@ gdl_dock_layout_load_from_file (GdlDockLayout *layout,
 {
     gboolean retval = FALSE;
 
-    if (layout->doc) {
-        xmlFreeDoc (layout->doc);
-        layout->doc = NULL;
+    if (layout->_priv->doc) {
+        xmlFreeDoc (layout->_priv->doc);
+        layout->_priv->doc = NULL;
         layout->dirty = FALSE;
-    };
+        g_object_notify (G_OBJECT (layout), "dirty");
+    }
 
     /* FIXME: cannot open symlinks */
     if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
-        layout->doc = xmlParseFile (filename);
-        if (layout->doc) {
-            xmlNodePtr root = layout->doc->children;
+        layout->_priv->doc = xmlParseFile (filename);
+        if (layout->_priv->doc) {
+            xmlNodePtr root = layout->_priv->doc->children;
             /* minimum validation: test the root element */
             if (root && !strcmp (root->name, ROOT_ELEMENT)) {
                 retval = TRUE;
             } else {
-                xmlFreeDoc (layout->doc);
-                layout->doc = NULL;
+                xmlFreeDoc (layout->_priv->doc);
+                layout->_priv->doc = NULL;
             }		
         }
     }
@@ -744,14 +1299,15 @@ gdl_dock_layout_save_to_file (GdlDockLayout *layout,
     g_return_val_if_fail (filename != NULL, FALSE);
 
     /* if there is still no xml doc, create an empty one */
-    if (!layout->doc)
+    if (!layout->_priv->doc)
         gdl_dock_layout_build_doc (layout);
 
     file_handle = fopen (filename, "w");
     if (file_handle) {
-        bytes = xmlDocDump (file_handle, layout->doc);
+        bytes = xmlDocDump (file_handle, layout->_priv->doc);
         if (bytes >= 0) {
             layout->dirty = FALSE;
+            g_object_notify (G_OBJECT (layout), "dirty");
             retval = TRUE;
         };
         fclose (file_handle);
@@ -777,10 +1333,10 @@ gdl_dock_layout_get_layouts (GdlDockLayout *layout,
 
     g_return_val_if_fail (layout != NULL, NULL);
 
-    if (!layout->doc)
+    if (!layout->_priv->doc)
         return NULL;
 
-    node = layout->doc->children;
+    node = layout->_priv->doc->children;
     for (node = node->children; node; node = node->next) {
         gchar *name;
 
@@ -789,12 +1345,16 @@ gdl_dock_layout_get_layouts (GdlDockLayout *layout,
 
         name = xmlGetProp (node, NAME_ATTRIBUTE_NAME);
         if (include_default || strcmp (name, DEFAULT_LAYOUT))
-            /* FIXME: is libxml mem allocation completely compatible 
-               with glib's? */
             retval = g_list_prepend (retval, g_strdup (name));
         xmlFree (name);
     };
     retval = g_list_reverse (retval);
 
     return retval;
+}
+
+GtkWidget *
+gdl_dock_layout_get_ui (GdlDockLayout *layout)
+{
+    return gdl_dock_layout_construct_ui (layout);
 }

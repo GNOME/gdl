@@ -53,12 +53,16 @@ libgdl_1_la_SOURCES = \
 	default-icon.c \
 	default-icon.h \
 	gdl-tools.c \
+	gdl-dock-object.c \
+	gdl-dock-master.c \
 	gdl-dock.c \
 	gdl-dock-item.c \
+	gdl-dock-item-grip.c \
 	gdl-dock-notebook.c \
 	gdl-dock-paned.c \
 	gdl-dock-tablabel.c \
 	gdl-dock-layout.c \
+	gdl-dock-placeholder.c \
 	gdl-icons.c \
 	gdl-file-selector-util.c \
 	gdl-recent.c \
@@ -81,12 +85,16 @@ test_dock_LDADD=libgdl-1.la $(XML_LIBS)
 libgdl_headers = \
 	gdl.h \
 	gdl-tools.h \
+	gdl-dock-object.h \
+	gdl-dock-master.h \
 	gdl-dock.h \
 	gdl-dock-item.h \
+	gdl-dock-item-grip.h \
 	gdl-dock-notebook.h \
 	gdl-dock-paned.h \
 	gdl-dock-tablabel.h \
 	gdl-dock-layout.h \
+	gdl-dock-placeholder.h \
 	gdl-icons.h \
 	gdl-file-selector-util.h \
 	gdl-recent.h
@@ -103,7 +111,10 @@ glade_DATA = layout.glade
 EXTRA_DIST = libgdlmarshal.list \
 	tree-expand.xpm \
 	tree-contract.xpm \
-	layout.glade
+	layout.glade \
+	program.xpm static.xpm shared.xpm
+
+## layout.glade1 is out of date!
 
 # layout.glade: layout.glade1 $(LIBGLADE_CONVERT)
 #	$(LIBGLADE_CONVERT) layout.glade1 > layout.glade.tmp && \
@@ -171,4 +182,3 @@ libgdlmarshal.c: libgdlmarshal.h
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
 
-EXTRA_DIST=program.xpm static.xpm shared.xpm

@@ -1,12 +1,40 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+ *
+ * gdl-dock-item.h
+ *
+ * Author: Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ *
+ * Based on GnomeDockItem/BonoboDockItem.  Original copyright notice follows.
+ *
+ * Copyright (C) 1998 Ettore Perazzoli
+ * Copyright (C) 1998 Elliot Lee
+ * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald 
+ * All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
 
 #ifndef __GDL_DOCK_ITEM_H__
 #define __GDL_DOCK_ITEM_H__
 
-#include <gtk/gtk.h>
-#include <libxml/tree.h>
+#include <gdl/gdl-dock-object.h>
 
+G_BEGIN_DECLS
 
+/* standard macros */
 #define GDL_TYPE_DOCK_ITEM            (gdl_dock_item_get_type ())
 #define GDL_DOCK_ITEM(obj)            (GTK_CHECK_CAST ((obj), GDL_TYPE_DOCK_ITEM, GdlDockItem))
 #define GDL_DOCK_ITEM_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GDL_TYPE_DOCK_ITEM, GdlDockItemClass))
@@ -14,128 +42,82 @@
 #define GDL_IS_DOCK_ITEM_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK_ITEM))
 #define GDL_DOCK_ITEM_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_DOCK_ITEM, GdlDockItemClass))
 
-
-#define GDL_DOCK_ITEM_IS_FLOATING(item) ((item)->is_floating)
-#define GDL_DOCK_ITEM_IS_SHOWN(item)  (GTK_WIDGET (item)->parent != NULL)
-
-#define GDL_DOCK_ITEM_IS_BOUND(item)  ((item)->dock != NULL)
-
-#define GDL_DOCK_ITEM_CHECK_BOND(item,d)  ((item)->dock == GTK_WIDGET (d))
-
-#define GDL_DOCK_ITEM_CHECK_AND_BIND(item,other) G_STMT_START {              \
-    if (!GDL_DOCK_ITEM_IS_BOUND (item))                                      \
-        gdl_dock_bind_item (GDL_DOCK (GDL_DOCK_ITEM (other)->dock), item);   \
-    g_return_if_fail (item->dock == GDL_DOCK_ITEM (other)->dock); } G_STMT_END
-
-#define GDL_DOCK_ITEM_GET_PARENT(item,p) G_STMT_START {         \
-    p = GTK_WIDGET (item)->parent;                              \
-    while (p && !GDL_IS_DOCK_ITEM (p) && !GDL_IS_DOCK (p))      \
-        p = p->parent; } G_STMT_END
-
-
+/* data types & structures */
 typedef enum {
-    GDL_DOCK_TOP,
-    GDL_DOCK_BOTTOM,
-    GDL_DOCK_RIGHT,
-    GDL_DOCK_LEFT,
-    GDL_DOCK_CENTER,
-    GDL_DOCK_FLOATING
-} GdlDockPlacement;
-
-typedef enum {
-    GDL_DOCK_ITEM_BEH_NORMAL = 0,
-    GDL_DOCK_ITEM_BEH_EXCLUSIVE = 1 << 0,
-    GDL_DOCK_ITEM_BEH_NEVER_FLOATING = 1 << 1,
-    GDL_DOCK_ITEM_BEH_NEVER_VERTICAL = 1 << 2,
-    GDL_DOCK_ITEM_BEH_NEVER_HORIZONTAL = 1 << 3,
-    GDL_DOCK_ITEM_BEH_LOCKED = 1 << 4
+    GDL_DOCK_ITEM_BEH_NORMAL           = 0,
+    GDL_DOCK_ITEM_BEH_NEVER_FLOATING   = 1 << 0,
+    GDL_DOCK_ITEM_BEH_NEVER_VERTICAL   = 1 << 1,
+    GDL_DOCK_ITEM_BEH_NEVER_HORIZONTAL = 1 << 2,
+    GDL_DOCK_ITEM_BEH_LOCKED           = 1 << 3,
+    GDL_DOCK_ITEM_BEH_CANT_DOCK_TOP    = 1 << 4,
+    GDL_DOCK_ITEM_BEH_CANT_DOCK_BOTTOM = 1 << 5,
+    GDL_DOCK_ITEM_BEH_CANT_DOCK_LEFT   = 1 << 6,
+    GDL_DOCK_ITEM_BEH_CANT_DOCK_RIGHT  = 1 << 7,
+    GDL_DOCK_ITEM_BEH_CANT_DOCK_CENTER = 1 << 8
 } GdlDockItemBehavior;
 
+typedef enum {
+    GDL_DOCK_IN_DRAG             = 1 << GDL_DOCK_OBJECT_FLAGS_SHIFT,
+    GDL_DOCK_IN_PREDRAG          = 1 << (GDL_DOCK_OBJECT_FLAGS_SHIFT + 1),
+    /* for general use: indicates the user has started an action on
+       the dock item */
+    GDL_DOCK_USER_ACTION         = 1 << (GDL_DOCK_OBJECT_FLAGS_SHIFT + 2)
+} GdlDockItemFlags;
 
 typedef struct _GdlDockItem        GdlDockItem;
 typedef struct _GdlDockItemClass   GdlDockItemClass;
-typedef struct _GdlDockRequestInfo GdlDockRequestInfo;
-
+typedef struct _GdlDockItemPrivate GdlDockItemPrivate;
 
 struct _GdlDockItem {
-    GtkBin bin;
+    GdlDockObject        object;
 
-    GdkWindow           *bin_window;
-    GdkWindow           *float_window;
-
-    gchar               *name;
-    gchar               *long_name;
-
+    GtkWidget           *child;
     GdlDockItemBehavior  behavior;
     GtkOrientation       orientation;
-    GtkWidget           *dock;
-    GtkWidget           *tab_label;
-    GtkWidget           *menu;
-    guint                drag_handle_size;
 
-    guint      is_floating : 1;
-    guint      float_window_mapped : 1;
-    guint      in_drag : 1;
-    guint      in_resize : 1;
-    guint      disable_auto_reduce : 1;
+    guint                resize : 1;
 
-    guint      resize : 1;
-    guint      shrink : 1;
-    guint      handle_shown : 1;
-    gint       dragoff_x, dragoff_y;
-    gint       float_x, float_y;
-
-    /* these should be gint and not guint... trust me */
-    gint       float_width, float_height;
-
-    struct {
-        GdlDockPlacement  position;
-        gchar            *peer;
-    } last_pos;
+    gint                 dragoff_x, dragoff_y;    /* these need to be
+                                                     accesible from
+                                                     outside */
+    GdlDockItemPrivate  *_priv;
 };
-
-/* structure for drag_request return information */
-struct _GdlDockRequestInfo {
-    /* target is a GtkWidget because the dock can be a target */
-    GdlDockItem      *requestor;
-    GtkWidget        *target;
-    GdlDockPlacement  position;
-    GdkRectangle      rect;  /* where will the item dock */
-};
-
 
 struct _GdlDockItemClass {
-    GtkBinClass parent_class;
+    GdlDockObjectClass  parent_class;
 
+    gboolean            has_grip;
+    
     /* virtuals */
-    void     (* auto_reduce)      (GdlDockItem *item);
-
-    gboolean (* dock_request)     (GdlDockItem        *item, 
-                                   gint                x, 
-                                   gint                y, 
-                                   GdlDockRequestInfo *target);
-
     void     (* dock_drag_begin)  (GdlDockItem    *item);
     void     (* dock_drag_motion) (GdlDockItem    *item,
                                    gint            x,
                                    gint            y);
-    void     (* dock_drag_end)    (GdlDockItem    *item);
+    void     (* dock_drag_end)    (GdlDockItem    *item,
+                                   gboolean        cancelled);
                                    
     void     (* set_orientation)  (GdlDockItem    *item,
                                    GtkOrientation  orientation);
-                                   
-    void     (* save_layout)      (GdlDockItem *item,
-                                   xmlNodePtr   node);
-
-    void     (* item_hide)        (GdlDockItem *item);
-
-    gchar *  (* get_pos_hint)     (GdlDockItem      *item,
-                                   GdlDockItem      *caller,
-                                   GdlDockPlacement *position);
 };
 
+/* additional macros */
+#define GDL_DOCK_ITEM_FLAGS(item)     (GDL_DOCK_OBJECT (item)->flags)
+#define GDL_DOCK_ITEM_IN_DRAG(item) \
+    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_IN_DRAG) != 0)
+#define GDL_DOCK_ITEM_IN_PREDRAG(item) \
+    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_IN_PREDRAG) != 0)
+#define GDL_DOCK_ITEM_USER_ACTION(item) \
+    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_USER_ACTION) != 0)
+   
+#define GDL_DOCK_ITEM_SET_FLAGS(item,flag) \
+    G_STMT_START { (GDL_DOCK_ITEM_FLAGS (item) |= (flag)); } G_STMT_END
+#define GDL_DOCK_ITEM_UNSET_FLAGS(item,flag) \
+    G_STMT_START { (GDL_DOCK_ITEM_FLAGS (item) &= ~(flag)); } G_STMT_END
 
+#define GDL_DOCK_ITEM_HAS_GRIP(item) (GDL_DOCK_ITEM_GET_CLASS (item)->has_grip)
 
+/* public interface */
+ 
 GtkWidget     *gdl_dock_item_new               (const gchar         *name,
                                                 const gchar         *long_name,
                                                 GdlDockItemBehavior  behavior);
@@ -150,47 +132,33 @@ void           gdl_dock_item_dock_to           (GdlDockItem      *item,
 void           gdl_dock_item_set_orientation   (GdlDockItem    *item,
                                                 GtkOrientation  orientation);
 
-void           gdl_dock_item_auto_reduce       (GdlDockItem *item);
-
-gboolean       gdl_dock_item_dock_request      (GdlDockItem        *item, 
-                                                gint                x,
-                                                gint                y, 
-                                                GdlDockRequestInfo *target);
-
 GtkWidget     *gdl_dock_item_get_tablabel      (GdlDockItem *item);
 void           gdl_dock_item_set_tablabel      (GdlDockItem *item,
                                                 GtkWidget   *tablabel);
-void           gdl_dock_item_hide_handle       (GdlDockItem *item);
-void           gdl_dock_item_show_handle       (GdlDockItem *item);
+void           gdl_dock_item_hide_grip         (GdlDockItem *item);
+void           gdl_dock_item_show_grip         (GdlDockItem *item);
 
-/* GdkWindow setup and stuff */
-void           gdl_dock_item_window_sink       (GdlDockItem *item);
-
-void           gdl_dock_item_window_float      (GdlDockItem *item);
-
-void           gdl_dock_item_drag_floating     (GdlDockItem *item, 
-                                                gint         x, 
-                                                gint         y);
+/* bind and unbind items to a dock */
+void           gdl_dock_item_bind              (GdlDockItem *item,
+                                                GtkWidget   *dock);
 
 void           gdl_dock_item_unbind            (GdlDockItem *item);
 
-void           gdl_dock_item_hide              (GdlDockItem *item);
+void           gdl_dock_item_hide_item         (GdlDockItem *item);
 
-void           gdl_dock_item_show              (GdlDockItem *item);
+void           gdl_dock_item_show_item         (GdlDockItem *item);
 
 void           gdl_dock_item_lock              (GdlDockItem *item);
 
 void           gdl_dock_item_unlock            (GdlDockItem *item);
 
-void           gdl_dock_item_save_layout       (GdlDockItem *item,
-                                                xmlNodePtr   node);
-
-gchar         *gdl_dock_item_get_pos_hint      (GdlDockItem      *item,
-                                                GdlDockItem      *caller,
-                                                GdlDockPlacement *position);
-
 void        gdl_dock_item_set_default_position (GdlDockItem      *item,
-                                                GdlDockPlacement  position,
-                                                const gchar      *peer);
+                                                GdlDockObject    *reference);
+
+void        gdl_dock_item_preferred_size       (GdlDockItem      *item,
+                                                GtkRequisition   *req);
+
+
+G_END_DECLS
 
 #endif

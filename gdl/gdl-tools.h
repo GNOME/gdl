@@ -82,6 +82,11 @@ G_BEGIN_DECLS
 
 #endif /* DO_GDL_TRACE */
 
+#define GDL_CALL_VIRTUAL(object, get_class_cast, method, args) \
+    (get_class_cast (object)->method ? (* get_class_cast (object)->method) args : (void)0)
+#define GDL_CALL_VIRTUAL_WITH_DEFAULT(object, get_class_cast, method, args, default) \
+    (get_class_cast (object)->method ? (* get_class_cast (object)->method) args : default)
+
 GtkWidget	*gdl_button_new_with_stock_image (const char  *text,
 						  const char  *stock_id);
 

@@ -1,12 +1,36 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+ *
+ * This file is part of the GNOME Devtools Libraries.
+ *
+ * Copyright (C) 2002 Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.  
+ */
 
 #ifndef __GDL_DOCK_H__
 #define __GDL_DOCK_H__
 
 #include <gtk/gtk.h>
+#include <gdl/gdl-dock-object.h>
 #include <gdl/gdl-dock-item.h>
-#include <libxml/tree.h>
+#include <gdl/gdl-dock-placeholder.h>
 
+G_BEGIN_DECLS
+
+/* standard macros */
 #define GDL_TYPE_DOCK            (gdl_dock_get_type ())
 #define GDL_DOCK(obj)            (GTK_CHECK_CAST ((obj), GDL_TYPE_DOCK, GdlDock))
 #define GDL_DOCK_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GDL_TYPE_DOCK, GdlDockClass))
@@ -14,40 +38,38 @@
 #define GDL_IS_DOCK_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK))
 #define GDL_DOCK_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_DOCK, GdlDockClass))
 
-
-
-typedef struct _GdlDock       GdlDock;
-typedef struct _GdlDockClass  GdlDockClass;
+/* data types & structures */
+typedef struct _GdlDock        GdlDock;
+typedef struct _GdlDockClass   GdlDockClass;
+typedef struct _GdlDockPrivate GdlDockPrivate;
 
 struct _GdlDock {
-    GtkContainer container;
+    GdlDockObject    object;
 
-    GtkWidget          *root;
-    GList              *floating;
-    GdlDockRequestInfo  possible_target;
-    GList              *items;
+    GdlDockObject   *root;
 
-    /* auxiliary fields */
-    gboolean            rect_drawn;
-    GdkGC              *xor_gc;
-    GdkGC              *root_xor_gc;
+    GdlDockPrivate  *_priv;
 };
 
 struct _GdlDockClass {
-    GtkContainerClass parent_class;
+    GdlDockObjectClass parent_class;
 
-    void (* layout_changed) (GdlDock *dock);
+    void  (* layout_changed)  (GdlDock *dock);    /* proxy signal for the master */
 };
 
+/* additional macros */
+#define GDL_DOCK_IS_CONTROLLER(dock)  \
+    (gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (dock)) == \
+     GDL_DOCK_OBJECT (dock))
 
+/* public interface */
+ 
 GtkWidget     *gdl_dock_new               (void);
 
-GType          gdl_dock_get_type          (void);
+GtkWidget     *gdl_dock_new_from          (GdlDock          *original,
+                                           gboolean          floating);
 
-void           gdl_dock_bind_item         (GdlDock          *dock,
-                                           GdlDockItem      *item);
-void           gdl_dock_unbind_item       (GdlDock          *dock,
-                                           GdlDockItem      *item);
+GType          gdl_dock_get_type          (void);
 
 void           gdl_dock_add_item          (GdlDock          *dock,
                                            GdlDockItem      *item,
@@ -57,20 +79,22 @@ void           gdl_dock_add_floating_item (GdlDock        *dock,
                                            GdlDockItem    *item,
                                            gint            x,
                                            gint            y,
-                                           GtkOrientation  orientatinon);
+                                           gint            width,
+                                           gint            height);
 
 GdlDockItem   *gdl_dock_get_item_by_name  (GdlDock     *dock,
                                            const gchar *name);
 
-void           gdl_dock_layout_load       (GdlDock    *dock,
-                                           xmlNodePtr  node);
-                                           
-void           gdl_dock_layout_save       (GdlDock    *dock,
-                                           xmlNodePtr  node);
+GdlDockPlaceholder *gdl_dock_get_placeholder_by_name (GdlDock     *dock,
+                                                      const gchar *name);
 
 GList         *gdl_dock_get_named_items   (GdlDock    *dock);
 
-void           gdl_dock_bring_to_front    (GdlDock     *dock,
-                                           GdlDockItem *item);
+GdlDock       *gdl_dock_object_get_toplevel (GdlDockObject *object);
+
+void           gdl_dock_xor_rect            (GdlDock       *dock,
+                                             GdkRectangle  *rect);
+
+G_END_DECLS
 
 #endif
