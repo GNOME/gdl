@@ -61,6 +61,7 @@ gdl_icons_get_property (GObject *object,
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
 	}
 }
 
@@ -88,8 +89,21 @@ gdl_icons_set_property (GObject *object,
 								    (GDestroyNotify)gdk_pixbuf_unref);
 			break;
 		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
 	}
+}
+
+static void
+theme_changed_cb (GnomeIconTheme *theme,
+		  gpointer user_data)
+{
+	GdlIcons *icons = GDL_ICONS (user_data);
+
+	g_hash_table_destroy (icons->priv->icons);
+	icons->priv->icons = g_hash_table_new_full (g_str_hash, g_str_equal,
+						    (GDestroyNotify)g_free,
+						    (GDestroyNotify)gdk_pixbuf_unref);
 }
 
 static void
@@ -141,6 +155,8 @@ gdl_icons_instance_init (GdlIcons *icons)
 	icons->priv = priv;
 
 	priv->icon_theme = gnome_icon_theme_new ();
+	g_signal_connect (G_OBJECT (priv->icon_theme), "changed",
+			  G_CALLBACK (theme_changed_cb), icons);
 	priv->icons = g_hash_table_new_full (g_str_hash, g_str_equal,
 					     (GDestroyNotify)g_free,
 					     (GDestroyNotify)gdk_pixbuf_unref);
@@ -223,7 +239,10 @@ gdl_icons_get_mime_icon (GdlIcons *icons,
 
 	if (!icon_name) {
 		/* Return regular icon if one doesn't exist for mime type. */
-		return gdl_icons_get_mime_icon (icons, "gnome-fs-regular");
+		if (!strcmp (mime_type, "gnome-fs-regular"))
+			return NULL;
+		else
+			return gdl_icons_get_mime_icon (icons, "gnome-fs-regular");
 	} else {
 		icon_path = gnome_icon_theme_lookup_icon (icons->priv->icon_theme,
 							  icon_name,
@@ -232,8 +251,11 @@ gdl_icons_get_mime_icon (GdlIcons *icons,
 							  NULL);
 
 		if (!icon_path) {
-			/* Return regular icon if one doesn't exist. */
-			return gdl_icons_get_mime_icon (icons, "gnome-fs-regular");
+			g_free (icon_name);
+			if (!strcmp (mime_type, "gnome-fs-regular"))
+				return NULL;
+			else
+				return gdl_icons_get_mime_icon (icons, "gnome-fs-regular");
 		} else {
 			pixbuf = gdk_pixbuf_new_from_file (icon_path, NULL);
 			if (pixbuf != NULL) {
@@ -257,8 +279,13 @@ gdl_icons_get_mime_icon (GdlIcons *icons,
 				g_object_unref (pixbuf);
 				pixbuf = scaled;
 			} else {
-				/* Return regular icon if pixbuf doesn't exist. */
-				return gdl_icons_get_mime_icon (icons, "gnome-fs-regular");
+				g_free (icon_name);
+				g_free (icon_path);
+				if (!strcmp (mime_type, "gnome-fs-regular"))
+					return NULL;
+				else
+					return gdl_icons_get_mime_icon (icons,
+									"gnome-fs-regular");
 			}
 		}
 	}

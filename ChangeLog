@@ -1,3 +1,12 @@
+2003-01-03  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* configure.in: Update GNOME_REQUIRED to 2.1.0.
+	* gdl/gdl-icons.c: (gdl_icons_get_property),
+	(gdl_icons_set_property), (theme_changed_cb),
+	(gdl_icons_instance_init), (gdl_icons_get_mime_icon): Fix mem leaks,
+	possible infinite recursion, destroy icon cache on theme change and
+	missing invalid property warning.
+
 2002-12-27  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/gdl-icons.c: (gdl_icons_get_property),
