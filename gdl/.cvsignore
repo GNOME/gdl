@@ -14,3 +14,4 @@ libgdlmarshal.h
 libgdltypebuiltins.*
 layout.xml
 test-dataview
+test-combo-button
