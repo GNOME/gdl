@@ -2,7 +2,7 @@
  *
  * This file is part of the GNOME Devtools Libraries.
  *
- * Copyright (C) 2002 Gustavo Gir·ldez <gustavo.giraldez@gmx.net>
+ * Copyright (C) 2002 Gustavo Gir√°ldez <gustavo.giraldez@gmx.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,6 @@ typedef struct _GdlDockLayoutUIData GdlDockLayoutUIData;
 struct _GdlDockLayoutUIData {
     GdlDockLayout    *layout;
     
-    GtkWidget        *layout_entry;
     GtkWidget        *locked_check;
     GtkTreeSelection *selection;
 };
@@ -282,7 +281,7 @@ gdl_dock_layout_build_models (GdlDockLayout *layout)
     }
 
     if (!layout->_priv->layouts_model) {
-        layout->_priv->layouts_model = gtk_list_store_new (1, G_TYPE_STRING);
+        layout->_priv->layouts_model = gtk_list_store_new (2, G_TYPE_STRING);
         gtk_tree_sortable_set_sort_column_id (
             GTK_TREE_SORTABLE (layout->_priv->layouts_model),
             COLUMN_NAME, GTK_SORT_ASCENDING);
@@ -399,7 +398,7 @@ update_layouts_model (GdlDockLayout *layout)
     for (l = items; l; l = l->next) {
         gtk_list_store_append (layout->_priv->layouts_model, &iter);
         gtk_list_store_set (layout->_priv->layouts_model, &iter,
-                            COLUMN_NAME, l->data,
+                            COLUMN_NAME, l->data, 1, TRUE,
                             -1);
         g_free (l->data);
     };
@@ -408,48 +407,6 @@ update_layouts_model (GdlDockLayout *layout)
 
 
 /* ------- UI functions & callbacks ------ */
-
-static void 
-save_layout_cb (GtkWidget *w,
-                gpointer   data)
-{
-    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
-
-    GdlDockLayout *layout = ui_data->layout;
-    gchar         *name;
-    
-    g_return_if_fail (layout != NULL);
-    
-    /* get the entry text and use it as a name to save the layout */
-    name = g_strdup (gtk_entry_get_text (GTK_ENTRY (ui_data->layout_entry)));
-    g_strstrip (name);
-    if (strlen (name) > 0) {
-        gboolean exists;
-
-        exists = (gdl_dock_layout_find_layout (layout, name) != NULL);
-        if (!exists && strcmp (name, DEFAULT_LAYOUT)) {
-            GtkTreeIter iter;
-
-            /* add the name to the model */
-            gtk_list_store_append (layout->_priv->layouts_model, &iter);
-            gtk_list_store_set (layout->_priv->layouts_model, &iter,
-                                COLUMN_NAME, name,
-                                -1);
-        };
-        gdl_dock_layout_save_layout (layout, name);
-
-    } else {
-        GtkWidget *error_dialog, *parent;
-        parent = gtk_widget_get_toplevel (w);
-        error_dialog = gtk_message_dialog_new (
-            parent ? GTK_WINDOW (parent) : NULL,
-            GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-            _("You must provide a name for the layout"));
-        gtk_dialog_run (GTK_DIALOG (error_dialog));
-        gtk_widget_destroy (error_dialog);
-    };
-    g_free (name);
-}
 
 static void 
 load_layout_cb (GtkWidget *w,
@@ -525,26 +482,6 @@ show_toggled_cb (GtkCellRendererToggle *renderer,
         gdl_dock_item_hide_item (item);
 
     gtk_tree_path_free (path);
-}
-
-static void
-selection_changed_cb (GtkTreeSelection *selection,
-                      gpointer          data)
-{
-    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
-
-    GtkTreeModel  *model;
-    GtkTreeIter    iter;
-    gchar         *name;
-
-    /* set the entry widget to the selected layout name */
-    if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
-        gtk_tree_model_get (model, &iter,
-                            COLUMN_NAME, &name,
-                            -1);
-        gtk_entry_set_text (GTK_ENTRY (ui_data->layout_entry), name);
-        g_free (name);
-    };
 }
 
 static void
@@ -698,6 +635,38 @@ gdl_dock_layout_construct_items_ui (GdlDockLayout *layout)
     return container;
 }
 
+static void
+cell_edited_cb (GtkCellRendererText *cell,
+                const gchar         *path_string,
+                const gchar         *new_text,
+                gpointer             data)
+{
+    GdlDockLayoutUIData *ui_data = data;
+    GtkTreeModel *model;
+    GtkTreePath *path;
+    GtkTreeIter iter;
+    gchar *name;
+    xmlNodePtr node;
+
+    model = GTK_TREE_MODEL (ui_data->layout->_priv->layouts_model);
+    path = gtk_tree_path_new_from_string (path_string);
+
+    gtk_tree_model_get_iter (model, &iter, path);
+    gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
+
+    node = gdl_dock_layout_find_layout (ui_data->layout, name);
+    g_free (name);
+    g_return_if_fail (node != NULL);
+
+    xmlSetProp (node, NAME_ATTRIBUTE_NAME, new_text);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, COLUMN_NAME, new_text,
+                        1, TRUE, -1);
+
+    gdl_dock_layout_save_layout (ui_data->layout, new_text);
+
+    gtk_tree_path_free (path);
+}
+
 static GtkWidget *
 gdl_dock_layout_construct_layouts_ui (GdlDockLayout *layout)
 {
@@ -725,7 +694,6 @@ gdl_dock_layout_construct_layouts_ui (GdlDockLayout *layout)
     g_object_set_data (G_OBJECT (container), "ui_data", ui_data);
     
     /* get ui widget references */
-    ui_data->layout_entry = glade_xml_get_widget (gui, "newlayout_entry");
     layouts_list = glade_xml_get_widget (gui, "layouts_list");
 
     /* set models */
@@ -734,21 +702,16 @@ gdl_dock_layout_construct_layouts_ui (GdlDockLayout *layout)
 
     /* construct list views */
     renderer = gtk_cell_renderer_text_new ();
-    column = gtk_tree_view_column_new_with_attributes (_("Name"),
-                                                       renderer,
+    g_signal_connect (G_OBJECT (renderer), "edited",
+                      G_CALLBACK (cell_edited_cb), ui_data);
+    column = gtk_tree_view_column_new_with_attributes (_("Name"), renderer,
                                                        "text", COLUMN_NAME,
-                                                       NULL);
+                                                       "editable", 1, NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (layouts_list), column);
 
-    /* connect signals */
     ui_data->selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (layouts_list));
-    g_signal_connect (ui_data->selection, "changed",
-                      G_CALLBACK (selection_changed_cb), ui_data);
 
-    glade_xml_signal_connect_data (gui, "on_newlayout_entry_activate",
-                                   GTK_SIGNAL_FUNC (save_layout_cb), ui_data);
-    glade_xml_signal_connect_data (gui, "on_save_button_clicked",
-                                   GTK_SIGNAL_FUNC (save_layout_cb), ui_data);
+    /* connect signals */
     glade_xml_signal_connect_data (gui, "on_load_button_clicked",
                                    GTK_SIGNAL_FUNC (load_layout_cb), ui_data);
     glade_xml_signal_connect_data (gui, "on_delete_button_clicked",
@@ -1444,5 +1407,3 @@ gdl_dock_layout_get_layouts_ui (GdlDockLayout *layout)
 
     return ui;
 }
-
-

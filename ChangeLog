@@ -1,3 +1,14 @@
+2003-07-22  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-dock-layout.c: (gdl_dock_layout_build_models),
+	(update_layouts_model), (cell_edited_cb),
+	(gdl_dock_layout_construct_layouts_ui),
+	(gdl_dock_layout_get_layouts_ui):
+	* gdl/layout.glade:
+	* gdl/test-dock.c: (save_layout_cb), (main):
+
+	HIGify the layout manager GUI.
+
 2003-07-21  Artur Flinta  <aflinta@cvs.gnome.org>
 
         * configure.in: Added "pl" in ALL_LINGUAS.

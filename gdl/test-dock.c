@@ -109,6 +109,42 @@ run_layout_manager_cb (GtkWidget *w, gpointer data)
 	gdl_dock_layout_run_manager (layout);
 }
 
+static void
+save_layout_cb (GtkWidget *w, gpointer data)
+{
+	GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
+	GtkWidget *dialog, *hbox, *label, *entry;
+	gint response;
+
+	dialog = gtk_dialog_new_with_buttons ("New Layout",
+					      NULL,
+					      GTK_DIALOG_MODAL |
+					      GTK_DIALOG_DESTROY_WITH_PARENT,
+					      GTK_STOCK_OK,
+					      GTK_RESPONSE_OK,
+					      NULL);
+
+	hbox = gtk_hbox_new (FALSE, 8);
+	gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox, FALSE, FALSE, 0);
+
+	label = gtk_label_new ("Name:");
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	
+	entry = gtk_entry_new ();
+	gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
+
+	gtk_widget_show_all (hbox);
+	response = gtk_dialog_run (GTK_DIALOG (dialog));
+
+	if (response == GTK_RESPONSE_OK) {
+		const gchar *name = gtk_entry_get_text (GTK_ENTRY (entry));
+		gdl_dock_layout_save_layout (layout, name);
+	}
+
+	gtk_widget_destroy (dialog);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -196,6 +232,11 @@ main (int argc, char **argv)
         
 	box = gtk_hbox_new (TRUE, 5);
 	gtk_box_pack_end (GTK_BOX (table), box, FALSE, FALSE, 0);
+
+	button = gtk_button_new_with_label ("Save Layout");
+	g_signal_connect (button, "clicked",
+			  G_CALLBACK (save_layout_cb), layout);
+	gtk_box_pack_end (GTK_BOX (box), button, FALSE, TRUE, 0);
 
 	button = gtk_button_new_with_label ("Layout Manager");
 	g_signal_connect (button, "clicked",
