@@ -1,7 +1,7 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datatdir)/locals"\" \
 	-I$(top_srcdir)/src/lib -I$(includedir) $(GNOME_INCLUDEDIR) \
-	$(OAF_CFLAGS)
+	$(OAF_CFLAGS) $(BONOBO_CFLAGS)
 
 bin_PROGRAMS = \
 	gdf-event-server
