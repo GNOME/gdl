@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl VERSION\n"
-"POT-Creation-Date: 2002-12-22 04:42+0100\n"
-"PO-Revision-Date: 2002-12-23 02:31+0100\n"
+"POT-Creation-Date: 2003-01-01 05:25+0100\n"
+"PO-Revision-Date: 2003-01-01 16:17+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -471,6 +471,14 @@ msgstr "Typ, kterým budou číslovány položky."
 msgid "Open %s"
 msgstr "Otevřít %s"
 
+#: gdl/gdl-icons.c:123 gdl/gdl-icons.c:124
+msgid "Icon size"
+msgstr "Velikost ikony"
+
+#: gdl/gdl-icons.c:129 gdl/gdl-icons.c:130
+msgid "Icon zoom"
+msgstr "Zvětšení ikony"
+
 #: gdl/layout.glade.h:1
 msgid "*"
 msgstr "*"
@@ -527,17 +535,17 @@ msgstr "_Jít na symbol"
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: symbol-browser-control/symbol-browser.c:362
+#: symbol-browser-control/symbol-browser.c:365
 msgid "Tags"
 msgstr "Značky"
 
-#: symbol-browser-control/symbol-browser.c:370
-#: symbol-browser-control/symbol-browser.c:380
+#: symbol-browser-control/symbol-browser.c:373
+#: symbol-browser-control/symbol-browser.c:383
 msgid "Undefined"
 msgstr "Nedefinováno"
 
-#: symbol-browser-control/symbol-browser.c:372
-#: symbol-browser-control/symbol-browser.c:382
+#: symbol-browser-control/symbol-browser.c:375
+#: symbol-browser-control/symbol-browser.c:385
 msgid "<No Symbol>"
 msgstr "<Žádný symbol>"
 
