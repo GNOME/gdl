@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-18 03:23+0200\n"
+"POT-Creation-Date: 2004-08-19 11:24+0200\n"
 "PO-Revision-Date: 2004-07-01 17:47+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -133,9 +133,10 @@ msgstr "Blloko"
 msgid "Attempt to bind an unbound item %p"
 msgstr ""
 
+#. GRUT modified this item
 #: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
 msgid "Master"
-msgstr ""
+msgstr "Master"
 
 #: gdl/gdl-dock-layout.c:126
 msgid "GdlDockMaster object which the layout object is attached to"
@@ -400,9 +401,10 @@ msgstr "Pozicioni"
 msgid "The path to put the menu items."
 msgstr ""
 
+#. GRUT modified this item
 #: gdl/gdl-recent.c:149
 msgid "Limit"
-msgstr ""
+msgstr "Kufiri"
 
 #: gdl/gdl-recent.c:150
 msgid "The maximum number of items to be allowed in the list."
@@ -585,9 +587,10 @@ msgstr "E papërcaktuar"
 msgid "<No Symbol>"
 msgstr ""
 
+#. GRUT modified this item
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:1
 msgid "Exit"
-msgstr "Dil"
+msgstr "Dalja"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:2
 msgid "Open Project"
@@ -644,3 +647,4 @@ msgstr ""
 #: symbol-browser-control/test-symbol-browser.c:295
 msgid "Can't initialize bonobo!"
 msgstr ""
+
