@@ -39,7 +39,7 @@ static void  gdl_dock_drag_motion     (GdlDockItem  *item,
                                        gpointer      data);
 static gint  item_name_compare        (gconstpointer a,
                                        gconstpointer b);
-static void  gdl_dock_layout_build    (GdlDock     *dock,
+static gint  gdl_dock_layout_build    (GdlDock     *dock,
                                        GdlDockItem *item,
                                        xmlNodePtr   node);
 
@@ -632,65 +632,98 @@ gdl_dock_drag_motion (GdlDockItem *item,
     };
 }
 
-static void
+static gint
 gdl_dock_layout_build (GdlDock     *dock,
                        GdlDockItem *item,
                        xmlNodePtr   node)
 {
-    gchar     *name;
-    GtkWidget *widget;
-    
-    g_return_if_fail (dock != NULL);
-    g_return_if_fail (node != NULL);
+    gchar        *name;
+    GtkWidget    *widget;
+    gint          items_docked = 0, i;
+    GtkContainer *parent;
+
+    g_return_val_if_fail (dock != NULL, 0);
+    g_return_val_if_fail (node != NULL, 0);
         
+    if (item) 
+        parent = GTK_CONTAINER (item);
+    else
+        parent = GTK_CONTAINER (dock);
+
     for (; node; node = node->next) {
-        name = (gchar *)node->name;
+        name = (gchar *) node->name;
     
         /* Create/get root container/item. */
         if (!strcmp ("paned", name)) {
-            /* Create new GdlDockPaned with specified orientation. */
-            if (!strcmp ("horizontal", xmlGetProp (node, "orientation")))
-                widget = gdl_dock_paned_new (GTK_ORIENTATION_HORIZONTAL);
-            else
-                widget = gdl_dock_paned_new (GTK_ORIENTATION_VERTICAL);
+            if (node->childs) {
+                /* Create new GdlDockPaned with specified orientation. */
+                if (!strcmp ("horizontal", xmlGetProp (node, "orientation")))
+                    widget = gdl_dock_paned_new (GTK_ORIENTATION_HORIZONTAL);
+                else
+                    widget = gdl_dock_paned_new (GTK_ORIENTATION_VERTICAL);
             
-            gdl_dock_bind_item (dock, GDL_DOCK_ITEM (widget));
+                gdl_dock_bind_item (dock, GDL_DOCK_ITEM (widget));
+                gtk_container_add (parent, widget);
 
-            /* Recurse. */
-            if (node->childs)
-                gdl_dock_layout_build (dock, GDL_DOCK_ITEM (widget), 
-                                       node->childs);
-        
-            /* Set divider location. */
-            gdl_dock_paned_set_position (GDL_DOCK_PANED (widget), 
-                                         atoi (xmlGetProp (node, "divider")));
+                /* Recurse. */
+                i = gdl_dock_layout_build (dock, GDL_DOCK_ITEM (widget), 
+                                           node->childs);
 
+                if (i > 0) {
+                    if (i < 2)
+                        gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (widget));
+                    else {
+                        /* Set divider location. */
+                        gdl_dock_paned_set_position (
+                            GDL_DOCK_PANED (widget), 
+                            atoi (xmlGetProp (node, "divider")));
+                    };
+                    items_docked++;
+
+                } else
+                    gdl_dock_unbind_item (dock, GDL_DOCK_ITEM (widget));
+            };
+                
         } else if (!strcmp ("notebook", name)) {
-            /* Create new GdlDockNotebook. */
-            widget = gdl_dock_notebook_new ();
+            if (node->childs) {
+                /* Create new GdlDockNotebook. */
+                widget = gdl_dock_notebook_new ();
         
-            gdl_dock_bind_item (dock, GDL_DOCK_ITEM (widget));
+                gdl_dock_bind_item (dock, GDL_DOCK_ITEM (widget));
+                gtk_container_add (parent, widget);
 
-            /* Recurse. */
-            if (node->childs)
-                gdl_dock_layout_build (dock, GDL_DOCK_ITEM (widget), 
-                                       node->childs);
+                /* Recurse. */
+                i = gdl_dock_layout_build (dock, GDL_DOCK_ITEM (widget), 
+                                           node->childs);
 
-            /* Set tab index. */
-            gtk_notebook_set_page (GTK_NOTEBOOK (
-                    GDL_DOCK_NOTEBOOK (widget)->notebook), 
-                    atoi (xmlGetProp (node, "index")));
+                if (i > 0) {
+                    if (i < 2)
+                        gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (widget));
+                    else {
+                        /* Set tab index. */
+                        gtk_notebook_set_page (
+                            GTK_NOTEBOOK (GDL_DOCK_NOTEBOOK 
+                                          (widget)->notebook), 
+                            atoi (xmlGetProp (node, "index")));
+                    };
+                    items_docked++;
 
-        } else
-            widget = GTK_WIDGET (gdl_dock_get_item_by_name (
-                dock, (gchar *)xmlGetProp (node, "name")));
+                } else
+                    gdl_dock_unbind_item (dock, GDL_DOCK_ITEM (widget));
+            };
 
-        /* Add widget to dock. */
-        if (!item)
-            gtk_container_add (GTK_CONTAINER (dock), widget);
-        else
-            gtk_container_add (GTK_CONTAINER (item), widget);
+        } else {
+            GdlDockItem *w;
+            w = gdl_dock_get_item_by_name (
+                dock, (gchar *) xmlGetProp (node, "name"));
+            if (w) {
+                gtk_container_add (parent, GTK_WIDGET (w));
+                items_docked++;
+            };
+        };
     }        
+
+    return items_docked;
 }
 
 /* Public interface */
@@ -924,12 +957,13 @@ gdl_dock_bind_item (GdlDock          *dock,
         return;
     };
 
-    /* FIXME: check for item name duplication */
-
     /* bind the item: keep a ref only if the item has a name */
     if (item->name) {
-        gtk_widget_ref (GTK_WIDGET (item));
-        dock->items = g_list_prepend (dock->items, item);
+        if (!gdl_dock_get_item_by_name (dock, item->name)) {
+            gtk_widget_ref (GTK_WIDGET (item));
+            dock->items = g_list_prepend (dock->items, item);
+        } else
+            g_warning (_("Duplicate dock item name"));
     };
 
     item->dock = GTK_WIDGET (dock);
@@ -990,4 +1024,3 @@ gdl_dock_get_item_by_name (GdlDock     *dock,
     else
         return NULL;
 }
-

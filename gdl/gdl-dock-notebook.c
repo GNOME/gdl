@@ -164,8 +164,6 @@ gdl_dock_notebook_auto_reduce (GdlDockItem *item)
     parent = GTK_WIDGET (item)->parent;
     nb = GDL_DOCK_NOTEBOOK (item);
 
-    GDL_TRACE ();
-    
     children = gtk_container_children (GTK_CONTAINER (nb->notebook));
     /* Check if only one item remains in the notebook. */
     if (g_list_length (children) <= 1) {
@@ -300,6 +298,7 @@ gdl_dock_notebook_new (void)
     /* create the container notebook */
     bin->child = notebook->notebook = gtk_notebook_new ();
     gtk_widget_set_parent (notebook->notebook, GTK_WIDGET (notebook));
+    gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook->notebook), TRUE);
     gtk_signal_connect (GTK_OBJECT (notebook->notebook), "switch_page",
                         (GtkSignalFunc) gdl_dock_notebook_switch_page, 
                         (gpointer) notebook);

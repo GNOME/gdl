@@ -1,3 +1,13 @@
+2001-11-10  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock.c (gdl_dock_layout_build): changed signature and
+	reorganized function to avoid creating empty docking containers.
+	(gdl_dock_bind_item): check for dockitem name duplication.
+	* gdl/gdl-dock-item.c (gdl_dock_item_hide_cb): save pointer to
+	dock before calling hide to emit signal later.
+	* gdl/gdl-dock-notebook.c: removed auto_reduce debug message.
+	Create the GtkNotebook with scrollable tabs.
+	
 2001-10-28  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "da" to ALL_LINGUAS.

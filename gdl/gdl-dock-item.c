@@ -1261,8 +1261,13 @@ static void
 gdl_dock_item_hide_cb (GtkWidget   *widget, 
                        GdlDockItem *item)
 {
+    GtkObject *dock;
+
+    /* if the item is anonymous the item gets destroyed after the hide,
+       so save the pointer to the dock */
+    dock = GTK_OBJECT (item->dock);
     gdl_dock_item_hide (item);
-    gtk_signal_emit_by_name (GTK_OBJECT (item->dock), "layout_changed");
+    gtk_signal_emit_by_name (dock, "layout_changed");
 }
 
 
