@@ -10,9 +10,6 @@ INCLUDES = \
 	$(VFS_CFLAGS) \
 	$(OAF_CFLAGS)
 
-oafdir = $(datadir)/oaf
-oaf_DATA = scintilla.oafinfo
-
 uidir = $(datadir)/gnome/ui
 ui_DATA = scintilla-ui.xml
 
@@ -62,3 +59,9 @@ test_scintilla_LDADD =  \
         $(BONOBO_LIBS)  \
 	$(BONOBOX_LIBS) \
 	../gdl/libgdl.la
+
+oafdir=$(datadir)/oaf
+oaf_in_files=Bonobo_Control_Scintilla.oaf.in
+oaf_DATA = $(oaf_in_files:.oaf.in=.oaf)
+
+@XML_I18N_MERGE_OAF_RULE@

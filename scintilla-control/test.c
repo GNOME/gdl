@@ -21,11 +21,11 @@ save_clicked (GtkWidget *widget, void *closure)
     CORBA_exception_free (&ev);			     
 }
 
-static Development_EditorBuffer_iobuf *
+static GNOME_Development_EditorBuffer_iobuf *
 allocate_iobuf (char *str)
 {
-    Development_EditorBuffer_iobuf *ret;
-    ret = Development_EditorBuffer_iobuf__alloc ();
+    GNOME_Development_EditorBuffer_iobuf *ret;
+    ret = GNOME_Development_EditorBuffer_iobuf__alloc ();
     ret->_length = strlen (str);
     ret->_buffer = CORBA_sequence_CORBA_octet_allocbuf (ret->_length);
     strcpy (ret->_buffer, str);
@@ -44,8 +44,8 @@ main (int argc, char *argv[])
     BonoboUIContainer *container;
     Bonobo_UIContainer corba_container;
     BonoboUIComponent *component;
-    Development_EditorBuffer buffer;
-    Development_EditorBuffer_iobuf *iobuf;
+    GNOME_Development_EditorBuffer buffer;
+    GNOME_Development_EditorBuffer_iobuf *iobuf;
     GNOME_Development_EditorGutter gutter;
     GtkWidget *hbox;
     GtkWidget *save_btn;

@@ -1,23 +1,23 @@
 <oaf_info>
-<oaf_server iid="OAFIID:control-factory:scintilla:851a1008-ca21-498d-8188-30a7543b137b"
+<oaf_server iid="OAFIID:Bonobo_Control_ScintillaFactory"
             type="exe"
             location="scintilla-control">
 
 	<oaf_attribute name="repo_ids" type="stringv">
-		<item value="IDL:Bonobo/GenericFactory:1.0"/>
+		<item value="IDL:GNOME/GenericFactory:1.0"/>
 	</oaf_attribute>
 
-	<oaf_attribute name="description" type="string"
-	               value="GDF Output Terminal Factory"/>
+	<oaf_attribute name="name" type="string" _value="Scintilla Factory"/>
 
+	<oaf_attribute name="description" type="string"
+			_value="Factory for the Scintilla control."/>
 </oaf_server>
 
-<oaf_server iid="OAFIID:control:scintilla:8e967999-d307-4a57-ae52-c1c2cb13b867"
+<oaf_server iid="OAFIID:Bonobo_Control_Scintilla"
             type="factory"
-            location="OAFIID:control-factory:scintilla:851a1008-ca21-498d-8188-30a7543b137b">
-
-	<oaf_attribute name="name" type="string" value="Scintilla Editor"/>
-	<oaf_attribute name="description" type="string" value="A syntax highlighting editing component built with the scintilla widget."/>
+            location="OAFIID:Bonobo_Control_ScintillaFactory">
+	<oaf_attribute name="name" type="string" _value="Scintilla Editor"/>
+	<oaf_attribute name="description" type="string" _value="Syntax highlighting editor control."/>
         <oaf_attribute name="bonobo:editable" type="boolean" value="true"/>
 	<oaf_attribute name="repo_ids" type="stringv">
 		<item value="IDL:Bonobo/Control:1.0"/>
@@ -37,10 +37,8 @@
     		<item value="text/plain"/>
     		<item value="text/*"/>
 	</oaf_attribute>
-	<oaf_attribute name="description" type="string"
-	               value="GDF Variable Viewer"/>
-
         <oaf_attribute name="nautilus:view_as_name" type="string"
-                        value="Code"/>
+                       _value="Source"/>
 </oaf_server>
+
 </oaf_info>

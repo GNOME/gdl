@@ -2,19 +2,18 @@ Gnome Devtool Libraries
 =======================
 
 This package contains components and libraries that are intended to be
-shared between GNOME development tools, such as gIDE and gnome-debug.
+shared between GNOME development tools, including gnome-debug,
+gnome-build, and gIDE.
 
 The current pieces of GDL include:
 
  - A code-editing bonboo component based on the Scintilla
    widget (scintilla-control).
 
- - An implementation of the CORBA event service (event-service).
-
  - A utility library that also contains the stubs and skels for
    the above components (gdl).
 
 Discussion of GDL development takes place on the
-gnome-devtools@helixcode.com mailing list.
+gnome-devtools@gnome.org mailing list.
 
 GDL is licensed under the terms of the GPL.

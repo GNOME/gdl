@@ -29,6 +29,7 @@
 #include "scintilla/ScintillaWidget.h"
 #include "scintilla/SciLexer.h"
 #include "scintilla-persist-stream.h"
+#include "scintilla-highlight.h"
 
 #define BLOCK_SIZE 4096
 
@@ -76,7 +77,6 @@ impl_load (BonoboPersistStream *ps,
            CORBA_Environment *ev)
 {
     ScintillaObject *sci = closure;
-    char data[1024];
 
     g_return_val_if_fail (IS_SCINTILLA (sci), -1);
 
@@ -128,7 +128,7 @@ impl_get_content_types (BonoboPersistStream *ps, gpointer data,
                                                   "text/x-makefile");
 }
 
-BonoboPersistFile *
+BonoboPersistStream *
 scintilla_persist_stream_new (GtkWidget *sci)
 {
     g_return_val_if_fail (IS_SCINTILLA (sci), NULL);

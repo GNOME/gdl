@@ -45,7 +45,7 @@
 
 BEGIN_GNOME_DECLS
 
-#define SCINTILLA_EDITOR_GUTTER_TYPE                (scintilla_editor_gutter_get_gtk_type ())
+#define SCINTILLA_EDITOR_GUTTER_TYPE                (scintilla_editor_gutter_get_type ())
 #define SCINTILLA_EDITOR_GUTTER(o)                  (GTK_CHECK_CAST ((o), SCINTILLA_EDITOR_GUTTER_TYPE, ScintillaEditorGutter))
 #define SCINTILLA_EDITOR_GUTTER_CLASS(k)            (GTK_CHECK_CLASS_CAST((k), SCINTILLA_EDITOR_GUTTER_TYPE, ScintillaEditorGutterClass))
 #define GDF_IS_BREAKPOINT_SET(o)               (GTK_CHECK_TYPE ((o), SCINTILLA_EDITOR_GUTTER_TYPE))
@@ -65,10 +65,10 @@ typedef struct {
 	POA_GNOME_Development_EditorGutter__epv epv;
 } ScintillaEditorGutterClass;
 
-GtkType                scintilla_editor_gutter_get_gtk_type (void);
-ScintillaEditorGutter *scintilla_editor_gutter_new          (ScintillaObject *sci);
-ScintillaEditorGutter *scintilla_editor_gutter_construct    (ScintillaEditorGutter *bs,
-                                                             ScintillaObject *sci);
+GtkType                scintilla_editor_gutter_get_type  (void);
+ScintillaEditorGutter *scintilla_editor_gutter_new       (ScintillaObject *sci);
+ScintillaEditorGutter *scintilla_editor_gutter_construct (ScintillaEditorGutter *bs,
+                                                          ScintillaObject *sci);
 END_GNOME_DECLS
 
 #endif

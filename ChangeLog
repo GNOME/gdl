@@ -1,3 +1,41 @@
+2001-07-07  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/test.c: Changed to reflect idl changes.
+
+	* scintilla-control/scintilla-persist-stream.c (impl_load): Removed
+	the unused data variable.
+
+	* scintilla-control/scintilla-editor-gutter.c: Replaced
+	scintilla_editor_gutter_get_type with a BONOBO_X_TYPE_FUNC_FULL 
+	macro.
+
+	* scintilla-control/scintilla-editor-buffer.c: Changed to reflect
+	idl changes, and BonoboXObjectified.
+
+	* scintilla-control/scintilla-control.c: Replaced
+	init_scintilla_control_factory() and main() with
+	BONOBO_OAF_FACTORY.
+	(scintilla_factory): Marked the property description strings for
+	translation.
+
+	* scintilla-control/Makefile.am: Translate and install
+	Bonobo_Control_Scintilla.oaf.in instead of installing
+	scintilla.oafinfo.
+
+	* idl/editor-buffer.idl: Put EditorBuffer int the GNOME::Development
+	namespace and studlycapsify it.
+
+	* gdl/Makefile.am (IDL_FLAGS): Fixed a typo (s/dil/idl/).
+
+	* configure.in: Use GDL_CHECK_LIB for all the library checks, 
+	use AM_PROG_XML_I18N_TOOLS.
+
+	* gdl.m4: New file.
+
+	* Makefile.am: Install gdl.m4.
+
+	* AUTHORS, MAINTAINERS, README: updated.	
+
 2001-06-21  JP Rosevear  <jpr@ximian.com>
 
 	* gdl/gdl-tools.h: s/GDF/GDL

@@ -31,6 +31,7 @@
 #include "scintilla/ScintillaWidget.h"
 
 #include "scintilla-persist-file.h"
+#include "scintilla-persist-stream.h"
 #include "scintilla-editor-buffer.h"
 #include "scintilla-editor-gutter.h"
 
@@ -43,7 +44,6 @@ enum {
     PROP_SELECTION_END
 };
 
-static void init_scintilla_control_factory (void);
 static BonoboObject *scintilla_factory (BonoboGenericFactory *fact, 
                                         void *closure);
 static void scintilla_activate_cb (BonoboControl *control, 
@@ -74,19 +74,6 @@ BonoboUIVerb verbs[] = {
     BONOBO_UI_VERB_END
 };
 
-void
-init_scintilla_control_factory (void)
-{
-    static BonoboGenericFactory *fact = NULL;
-    
-    if (fact != NULL)
-	return;
-    
-    fact = bonobo_generic_factory_new ("OAFIID:control-factory:scintilla:851a1008-ca21-498d-8188-30a7543b137b", scintilla_factory, NULL);
-
-    if (fact == NULL) 
-	g_error (_("Could not initialize factory"));
-}
 
 BonoboObject *
 scintilla_factory (BonoboGenericFactory *fact, void *closure)
@@ -113,19 +100,19 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
 
     bonobo_property_bag_add (pb, "position", PROP_POSITION,
 			     BONOBO_ARG_LONG, NULL,
-			     "Position in the buffer", 
+			     _("Position in the buffer"), 
 			     BONOBO_PROPERTY_UNSTORED);
     bonobo_property_bag_add (pb, "line_num", PROP_LINE_NUM,
 			     BONOBO_ARG_LONG, NULL,
-			     "Current line number", 
+			     _("Current line number"), 
 			     BONOBO_PROPERTY_UNSTORED);
     bonobo_property_bag_add (pb, "selection_start", PROP_SELECTION_START,
 			     BONOBO_ARG_LONG, NULL,
-			     "Beginning of the selection", 
+			     _("Beginning of the selection"), 
 			     BONOBO_PROPERTY_UNSTORED);
     bonobo_property_bag_add (pb, "selection_end", PROP_SELECTION_END,
 			     BONOBO_ARG_LONG, NULL,
-			     "End of the selection", 
+			     _("End of the selection"), 
 			     BONOBO_PROPERTY_UNSTORED);
 
     bonobo_control_set_properties (control, pb);
@@ -309,33 +296,6 @@ paste_cb (GtkWidget *widget, ScintillaObject *sci)
     scintilla_send_message (sci, SCI_PASTE, 0, 0);
 }
 
-int 
-main (int argc, char *argv[])
-{
-    CORBA_Environment ev;
-    BonoboObject *running_context;
-
-    CORBA_exception_init (&ev);
-
-    gnome_init_with_popt_table ("scintilla test", VERSION, argc, argv, 
-				oaf_popt_options, 0, NULL);
-
-    oaf_init (argc, argv);
-    if (!bonobo_init (oaf_orb_get (), NULL, NULL))
-	g_error (_("Can't initialize bonobo!"));
-
-    bonobo_activate ();
-
-    running_context = bonobo_running_context_new ();
-    gtk_signal_connect (GTK_OBJECT (running_context), "last_unref", 
-                        GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
-
-    init_scintilla_control_factory ();
-    
-    bonobo_main ();
-
-    return 0;
-}
 
 /* Most of what is below here is taken from SciTE */
 
@@ -443,3 +403,5 @@ notify_cb (ScintillaObject *sci, int wparam, void *lparam,
     }
 }
 
+BONOBO_OAF_FACTORY ("OAFIID:Bonobo_Control_ScintillaFactory", 
+                    "Scintilla Factory", VERSION, scintilla_factory, NULL);

@@ -23,6 +23,6 @@
 #ifndef __SCINTILLA_PERSIST_STREAM__
 #define __SCINTILLA_PERSIST_STREAM__
 
-BonoboPersistFile *scintilla_persist_stream_new (GtkWidget *sci);
+BonoboPersistStream *scintilla_persist_stream_new (GtkWidget *sci);
 
 #endif

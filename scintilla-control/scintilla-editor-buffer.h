@@ -28,6 +28,7 @@ typedef struct _ScintillaEditorBuffer ScintillaEditorBuffer;
 #include <bonobo.h>
 #include <gtk/gtk.h>
 
+#include <gdl/gdl.h>
 #include "scintilla/ScintillaWidget.h"
 
 BEGIN_GNOME_DECLS
@@ -39,14 +40,15 @@ BEGIN_GNOME_DECLS
 #define SCINTILLA_IS_EDITOR_BUFFER_CLASS(k) (GTK_CHECK_CLASS_TYPE ((k), SCINTILLA_EDITOR_BUFFER_TYPE))
 
 struct _ScintillaEditorBuffer {
-    BonoboObject base;
+    BonoboXObject base;
 
     ScintillaObject *sci;
 };
 
 typedef struct 
 {
-    BonoboObjectClass parent_class;
+    BonoboXObjectClass parent_class;
+    POA_GNOME_Development_EditorBuffer__epv epv;
 } ScintillaEditorBufferClass;
 
 ScintillaEditorBuffer *scintilla_editor_buffer_new (ScintillaObject *sci);

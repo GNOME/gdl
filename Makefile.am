@@ -1,5 +1,8 @@
 SUBDIRS = idl gdl scintilla-control po intl
 
+m4datadir = $(datadir)/aclocal
+m4data_DATA = gdl.m4
+
 confexecdir = $(libdir)
 confexec_DATA = gdlConf.sh 
 
@@ -12,6 +15,7 @@ gdlConf.sh: $(top_srcdir)/gdlConf.sh.in Makefile
 	  && mv gdlConf.tmp gdlConf.sh
 
 EXTRA_DIST = 		\
+	gdl.m4          \
 	gdlConf.sh.in	\
 	MAINTAINERS	\
 	AUTHORS		

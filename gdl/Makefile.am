@@ -15,7 +15,7 @@ CORBA_GENERATED = \
 BUILT_SOURCES=$(CORBA_GENERATED)
 
 idl_dir = $(top_srcdir)/idl
-IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/dil $(IDL_CFLAGS)
+IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/idl $(IDL_CFLAGS)
 
 $(CORBA_GENERATED) : $(idl_dir)/GDL.idl \
 		     $(idl_dir)/editor-buffer.idl \

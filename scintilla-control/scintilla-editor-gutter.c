@@ -155,8 +155,6 @@ scintilla_editor_gutter_class_init (ScintillaEditorGutterClass *klass)
 	parent_class = gtk_type_class (PARENT_TYPE);
 	object_class->destroy = scintilla_editor_gutter_destroy;
 
-    g_print ("here\n");
-
     epv->addMarker = impl_add_marker;    
     epv->removeMarker = impl_remove_marker;    
     epv->getMarkers = impl_get_markers;
@@ -168,28 +166,11 @@ scintilla_editor_gutter_init (ScintillaEditorGutter *bs)
 	bs->priv = g_new0 (ScintillaEditorGutterPriv, 1);
 }
 
-GtkType
-scintilla_editor_gutter_get_gtk_type (void)
-{
-	static GtkType type = 0;
-	
-	if (!type) {
-		GtkTypeInfo info = {
-			"ScintillaEditorGutter",
-			sizeof (ScintillaEditorGutter),
-			sizeof (ScintillaEditorGutterClass),
-			(GtkClassInitFunc) scintilla_editor_gutter_class_init,
-			(GtkObjectInitFunc) scintilla_editor_gutter_init,
-			NULL, NULL, 
-			(GtkClassInitFunc) NULL
-		};
-		
-		type = bonobo_x_type_unique (PARENT_TYPE,
-                                     POA_GNOME_Development_EditorGutter__init,
-                                     NULL, GTK_STRUCT_OFFSET (ScintillaEditorGutterClass, epv), &info);
-	}
-	return type;
-}
+BONOBO_X_TYPE_FUNC_FULL (ScintillaEditorGutter,
+                         GNOME_Development_EditorGutter,
+                         PARENT_TYPE,
+                         scintilla_editor_gutter);
+
 
 			
 
