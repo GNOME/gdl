@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"POT-Creation-Date: 2003-06-14 04:07+0200\n"
-"PO-Revision-Date: 2003-05-22 18:40+0200\n"
+"POT-Creation-Date: 2003-08-13 03:49+0200\n"
+"PO-Revision-Date: 2003-08-13 03:49+0200\n"
 "Last-Translator: Александар Урошевић <urke@users.sourceforge.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -112,6 +112,8 @@ msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
+"Покушава да дода елемент типа %s у %s, али он може да садржи само један "
+"елемент; већ садржи елемент типа %s"
 
 #: gdl/gdl-dock-item.c:1149
 #, c-format
@@ -133,60 +135,59 @@ msgstr "Закључај"
 msgid "Attempt to bind an unbound item %p"
 msgstr "Покушај уградње безграничне ставке %p"
 
-#: gdl/gdl-dock-layout.c:125
+#: gdl/gdl-dock-layout.c:126
 msgid "Master"
 msgstr "Главно"
 
-#: gdl/gdl-dock-layout.c:126
+#: gdl/gdl-dock-layout.c:127
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr ""
+msgstr "GdlDockMaster објекат за који је привезан објекат распореда"
 
-#: gdl/gdl-dock-layout.c:133
+#: gdl/gdl-dock-layout.c:134
 msgid "Dirty"
 msgstr "Прљаво"
 
-#: gdl/gdl-dock-layout.c:134
+#: gdl/gdl-dock-layout.c:135
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
-
-#: gdl/gdl-dock-layout.c:447
-msgid "You must provide a name for the layout"
-msgstr "Морате дефинисати назив распореда"
+"Постављено уколико су распореди измењени и треба их сачувати у датотеку"
 
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:625
+#: gdl/gdl-dock-layout.c:565
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Не могу учитати фајл са распоредом корисничког сучеља „%s‟"
 
-#: gdl/gdl-dock-layout.c:680
+#: gdl/gdl-dock-layout.c:620
 msgid "Visible"
 msgstr "Видљиво"
 
-#: gdl/gdl-dock-layout.c:687
+#: gdl/gdl-dock-layout.c:627
 msgid "Item"
 msgstr "Ставка"
 
-#: gdl/gdl-dock-layout.c:737 gdl/gdl-dock-object.c:120
+#: gdl/gdl-dock-layout.c:710 gdl/gdl-dock-object.c:120
 msgid "Name"
 msgstr "Назив"
 
-#: gdl/gdl-dock-layout.c:776 gdl/layout.glade.h:2
+#: gdl/gdl-dock-layout.c:743 gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Ставке панела"
 
-#: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
+#: gdl/gdl-dock-layout.c:749 gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Сачувај распоред"
 
-#: gdl/gdl-dock-layout.c:824
+#: gdl/gdl-dock-layout.c:791
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
+"Приликом учитавања распореда: не уме да направи објекат за прилепљивање чији "
+"је надимак „%s“"
 
-#: gdl/gdl-dock-layout.c:1303
+#: gdl/gdl-dock-layout.c:1270
 msgid "Layout managment"
 msgstr "Управљање распоредом"
 
@@ -203,6 +204,9 @@ msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
+"Уколико је постављено на 1, сви објекти за припајање везани за главни су "
+"закључани; уколико је 0, сви су откључани; -1 означава недоследност међу "
+"ставкама"
 
 #: gdl/gdl-dock-master.c:730
 #, c-format
@@ -210,6 +214,8 @@ msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
+"главни %p: не може да дода објекат %p[%s] у хеш табелу.  Већ постоји ставка "
+"са тим именом (%p)."
 
 #: gdl/gdl-dock-master.c:895
 #, c-format
@@ -217,6 +223,8 @@ msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
+"Нови управљач припајањем %p је аутоматски.  Само ручни објекти за припајање "
+"треба да буду означени као управљачи."
 
 #: gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -252,6 +260,8 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
+"Позив функцији gdl_dock_object_dock у објекту за припајање %p (тип објекта "
+"је %s) који не садржи ову методу"
 
 #: gdl/gdl-dock-object.c:534
 #, c-format
@@ -259,17 +269,22 @@ msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
+"Покушај извођења операције припајања у неповезаном објекту %p. Програм може "
+"да пукне"
 
 #: gdl/gdl-dock-object.c:541
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
+"Не може да припоји %p на %p зато што припадају разним главним објектима"
 
 #: gdl/gdl-dock-object.c:583
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
+"Покушај везивања на %p већ везаног објекта за припајање %p (тренутно главни: "
+"%p)"
 
 #: gdl/gdl-dock-paned.c:134
 msgid "Position"
@@ -288,33 +303,37 @@ msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
+"Да ли ће се овај чувар места држати свог домаћина или се премештати у "
+"хијерархији када се домаћин одвоји"
 
 #: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
-msgstr ""
+msgstr "Домаћин"
 
 #: gdl/gdl-dock-placeholder.c:136
 msgid "The dock object this placeholder is attached to"
-msgstr ""
+msgstr "Објекат за припајање за који је овај чувар места везан"
 
 #: gdl/gdl-dock-placeholder.c:143
 msgid "Next placement"
-msgstr ""
+msgstr "Следећи распоред"
 
 #: gdl/gdl-dock-placeholder.c:144
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
+"Позиција на коју ће ставка бити припојена домаћину ако је учињен захтев за "
+"припајање нама"
 
 #: gdl/gdl-dock-placeholder.c:305
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr ""
+msgstr "Покушај припајања објекта за припајање невезаном чувару места"
 
 #: gdl/gdl-dock-placeholder.c:419
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr ""
+msgstr "Примио је сигнал за одвајање од објекта (%p) који није наш домаћин %p"
 
 #: gdl/gdl-dock-placeholder.c:440
 #, c-format
@@ -322,14 +341,16 @@ msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr ""
+"Нешто чудно се догодило при добављању размештаја садржаног елемента %p од "
+"садржаоца %p"
 
 #: gdl/gdl-dock-tablabel.c:130
 msgid "Controlling dock item"
-msgstr ""
+msgstr "Управљач елементом припајања"
 
 #: gdl/gdl-dock-tablabel.c:131
 msgid "Dockitem which 'owns' this tablabel"
-msgstr ""
+msgstr "Елемент за припајање који је „власник“ ове ознаке листа"
 
 #: gdl/gdl-dock.c:177
 msgid "Floating"
@@ -337,11 +358,11 @@ msgstr "Плутајуће"
 
 #: gdl/gdl-dock.c:178
 msgid "Whether the dock is floating in its own window"
-msgstr ""
+msgstr "Да ли елемент за припајање плута у свом прозору"
 
 #: gdl/gdl-dock.c:186
 msgid "Default title for the newly created floating docks"
-msgstr ""
+msgstr "Подразумевани наслов за новонаправљене плутајуће објекте за припајање"
 
 #: gdl/gdl-dock.c:192
 msgid "Width"
@@ -349,7 +370,7 @@ msgstr "Ширина"
 
 #: gdl/gdl-dock.c:193
 msgid "Width for the dock when it's of floating type"
-msgstr ""
+msgstr "Ширина објекта за припајање када је плутајући"
 
 #: gdl/gdl-dock.c:200
 msgid "Height"
@@ -357,36 +378,36 @@ msgstr "Висина"
 
 #: gdl/gdl-dock.c:201
 msgid "Height for the dock when it's of floating type"
-msgstr ""
+msgstr "Висин објекта за припајање када је плутајући"
 
 #: gdl/gdl-dock.c:208
 msgid "Float X"
-msgstr ""
+msgstr "Плутајући X"
 
 #: gdl/gdl-dock.c:209
 msgid "X coordinate for a floating dock"
-msgstr ""
+msgstr "X координата плутајућег објекта за припајање"
 
 #: gdl/gdl-dock.c:216
 msgid "Float Y"
-msgstr ""
+msgstr "Плутајући Y"
 
 #: gdl/gdl-dock.c:217
 msgid "Y coordinate for a floating dock"
-msgstr ""
+msgstr "Y координата плутајућег објекта за припајање"
 
 #: gdl/gdl-dock.c:494
 #, c-format
 msgid "Dock #%d"
-msgstr ""
+msgstr "Припајање #%d"
 
 #: gdl/gdl-recent.c:136
 msgid "GConf key"
-msgstr ""
+msgstr "Гконф кључ"
 
 #: gdl/gdl-recent.c:137
 msgid "The gconf key for storing the recent entries."
-msgstr ""
+msgstr "Гконф кључ у који се смештају недавни уноси."
 
 #: gdl/gdl-recent.c:143
 msgid "Path"
@@ -394,7 +415,7 @@ msgstr "Путања"
 
 #: gdl/gdl-recent.c:144
 msgid "The path to put the menu items."
-msgstr ""
+msgstr "Путања за смештање ставки менија."
 
 #: gdl/gdl-recent.c:150
 msgid "Limit"
@@ -410,7 +431,7 @@ msgstr "ТИп листе"
 
 #: gdl/gdl-recent.c:160
 msgid "The type with which the items will be numbered."
-msgstr ""
+msgstr "Тип којим ће се побројати ставке."
 
 #: gdl/gdl-recent.c:409
 #, c-format
@@ -425,53 +446,49 @@ msgstr "Величина иконице"
 msgid "Icon zoom"
 msgstr "Увећање иконице"
 
-#: gdl/layout.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: gdl/layout.glade.h:3
+#: gdl/layout.glade.h:2
 msgid "Layout Managment"
-msgstr ""
+msgstr "Управљање распоредом"
 
-#: gdl/layout.glade.h:5
+#: gdl/layout.glade.h:4
 msgid "_Load"
 msgstr "_Учитај"
 
-#: gdl/layout.glade.h:6
+#: gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Закључај ставку дијалога"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
 msgid "Factory for the Gnome Symbol Browser control."
-msgstr ""
+msgstr "Производња елемента за разгледање Гномових симбола."
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
 msgid "Gnome Symbol Browser Control"
-msgstr ""
+msgstr "Елемент за разгледање Гномових симбола"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
 msgid "Gnome Symbol Browser Control Factory"
-msgstr ""
+msgstr "Производња елемента за разгледање Гномових симбола"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
 msgid "Gnome Symbol Browser."
-msgstr ""
+msgstr "Разгледање Гномових симбола."
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:1
 msgid "Goto Symbol"
-msgstr ""
+msgstr "Иди на симбол"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:2
 msgid "Goto the displayed symbol"
-msgstr ""
+msgstr "Иди на приказани симбол"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:3
 msgid "Update Symbols"
-msgstr ""
+msgstr "Освежи симболе"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:4
 msgid "Update the symbol tree"
-msgstr ""
+msgstr "Освежи стабло симбола"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:5
 msgid "_Goto to symbol"
@@ -493,12 +510,12 @@ msgstr "Класе"
 #. ! tm_tag_class_t = 1, < Class declaration
 #: symbol-browser-control/symbol-browser.c:65
 msgid "Enums"
-msgstr ""
+msgstr "Поброј"
 
 #. ! tm_tag_enum_t = 2, < Enum declaration
 #: symbol-browser-control/symbol-browser.c:66
 msgid "Enumerators"
-msgstr ""
+msgstr "Побројавање"
 
 #. ! tm_tag_enumerator_t = 4, < Enumerator value
 #: symbol-browser-control/symbol-browser.c:67
@@ -528,7 +545,7 @@ msgstr "Методе"
 #. ! tm_tag_method_t = 128, < Class method (Java only
 #: symbol-browser-control/symbol-browser.c:72
 msgid "Namespaces"
-msgstr ""
+msgstr "Простори имена"
 
 #. ! tm_tag_namespace_t = 256, < Namespace declaration
 #: symbol-browser-control/symbol-browser.c:73
@@ -548,7 +565,7 @@ msgstr "Структуре"
 #. ! tm_tag_struct_t = 2048, < Struct declaration
 #: symbol-browser-control/symbol-browser.c:76
 msgid "Typedefs"
-msgstr ""
+msgstr "Дефиниције типова"
 
 #. ! tm_tag_typedef_t = 4096, < Typedef
 #: symbol-browser-control/symbol-browser.c:77
@@ -563,7 +580,7 @@ msgstr "Променљиве"
 #. ! tm_tag_variable_t = 16384, < Variable
 #: symbol-browser-control/symbol-browser.c:79
 msgid "ExternVars"
-msgstr ""
+msgstr "Спољне променљиве"
 
 #. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
 #: symbol-browser-control/symbol-browser.c:80
@@ -577,7 +594,7 @@ msgstr "МакроиСаАргументима"
 
 #: symbol-browser-control/symbol-browser.c:369
 msgid "Tags"
-msgstr ""
+msgstr "Ознаке"
 
 #: symbol-browser-control/symbol-browser.c:377
 #: symbol-browser-control/symbol-browser.c:387
@@ -643,8 +660,14 @@ msgstr "Постављање тренутног фајла..."
 
 #: symbol-browser-control/test-symbol-browser.c:172
 msgid "Save file..."
-msgstr ""
+msgstr "Сачувај датотеку..."
 
 #: symbol-browser-control/test-symbol-browser.c:292
 msgid "Can't initialize bonobo!"
 msgstr "Не могу иницијализовати бонобо!"
+
+#~ msgid "You must provide a name for the layout"
+#~ msgstr "Морате дефинисати назив распореда"
+
+#~ msgid "*"
+#~ msgstr "*"
