@@ -1,13 +1,13 @@
 # Czech translation of gdl
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Miloslav Trmac  <mitr@volny.cz>, 2002, 2003.
+# Miloslav Trmac <mitr@volny.cz>, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl VERSION\n"
-"POT-Creation-Date: 2003-01-22 10:57+0100\n"
-"PO-Revision-Date: 2003-01-22 18:57+0100\n"
+"POT-Creation-Date: 2003-02-06 10:58+0100\n"
+"PO-Revision-Date: 2003-02-07 17:04+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,8 +44,7 @@ msgstr "Může měnit velikost"
 
 #: gdl/gdl-dock-item.c:259
 msgid "If set, the dock item can be resized when docked in a paned"
-msgstr ""
-"Je-li nastaveno, může být změněta velikost položky doku zadokované v panelu"
+msgstr "Je-li nastaveno, může být změněna velikost položky doku zadokované v panelu"
 
 #: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
@@ -81,7 +80,7 @@ msgstr "Preferovaná šířka"
 
 #: gdl/gdl-dock-item.c:292
 msgid "Preferred width for the dock item"
-msgstr "Preferovaná šířčka položky doku"
+msgstr "Preferovaná šířka položky doku"
 
 #: gdl/gdl-dock-item.c:298
 msgid "Preferred height"
@@ -112,7 +111,7 @@ msgstr ""
 #: gdl/gdl-dock-item.c:1149
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "Nepodporovaná strategie dokování %s v objekdu doku typu %s"
+msgstr "Nepodporovaná strategie dokování %s v objektu doku typu %s"
 
 #. Hide menuitem.
 #: gdl/gdl-dock-item.c:1231
@@ -363,7 +362,7 @@ msgstr "Šířka"
 
 #: gdl/gdl-dock.c:193
 msgid "Width for the dock when it's of floating type"
-msgstr "Šářka doku, když je plovoucího typu"
+msgstr "Šířka doku, když je plovoucího typu"
 
 #: gdl/gdl-dock.c:200
 msgid "Height"
@@ -416,7 +415,7 @@ msgstr "Limit"
 
 #: gdl/gdl-recent.c:151
 msgid "The maximum number of items to be allowed in the list."
-msgstr "Maxiální počet položek povolených v seznamu."
+msgstr "Maximální počet položek povolených v seznamu."
 
 #: gdl/gdl-recent.c:159
 msgid "List type"
