@@ -1,5 +1,10 @@
 2001-03-05  Dave Camp  <dave@ximian.com>
 
+	* scintilla-control/scintilla/ScintillaGTK.cxx (SizeRequest): Request 
+	more sane values.
+
+2001-03-05  Dave Camp  <dave@ximian.com>
+
 	* scintilla-control/scintilla-control.c (scintilla_factory): Add the
 	line_num property.
 	(set_prop): 
