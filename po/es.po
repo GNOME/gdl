@@ -1,3 +1,4 @@
+# traducción de es.po al Spanish
 # translation of es.po to Spanish
 # Spanish messages for GDL.
 # Copyright © 1999, 2000, 2001, 2002, 2003 Free Software Foundation, Inc.
@@ -9,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-12 22:17+0200\n"
-"PO-Revision-Date: 2004-04-12 22:21+0200\n"
+"POT-Creation-Date: 2004-09-05 00:11+0200\n"
+"PO-Revision-Date: 2004-09-05 00:30+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +58,7 @@ msgstr "Orientación"
 
 #: gdl/gdl-dock-item.c:243
 msgid "Orientation of the docking item"
-msgstr "Orientación del elemento empotrado"
+msgstr "Orientación del elemento que se empotra"
 
 #: gdl/gdl-dock-item.c:258
 msgid "Resizable"
@@ -66,8 +67,8 @@ msgstr "Redimensionable"
 #: gdl/gdl-dock-item.c:259
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr ""
-"Si esta activado, el elemento empotrable puede ser redimensionado cuando es "
-"empotrado en un panel"
+"Si esta activado, el elemento empotrable puede ser redimensionado cuando se"
+"empotra en un panel"
 
 #: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
@@ -78,8 +79,8 @@ msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
-"Comportamiento general del elemento empotrable (p.e. si éste puede ser flotante, "
-"bloqueado, etc.)"
+"Comportamiento general del elemento empotrable (p.e. si éste puede ser "
+"flotante, bloqueado, etc.)"
 
 #: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
 msgid "Locked"
@@ -87,25 +88,23 @@ msgstr "Bloqueado"
 
 #: gdl/gdl-dock-item.c:276
 msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr ""
-"Si esta activado el elemento empotrable no puede ser arrastrado por los "
-"alrededores y no muestra una agarradera"
+msgstr "Si esta activado el elemento empotrable no puede ser arrastrado fuera y no muestra un tirador"
 
 #: gdl/gdl-dock-item.c:284
 msgid "Preferred width"
-msgstr "Ancho preferido"
+msgstr "Anchura preferida"
 
 #: gdl/gdl-dock-item.c:285
 msgid "Preferred width for the dock item"
-msgstr "Ancho preferido para el elemento empotrable"
+msgstr "Anchura preferida para el elemento empotrado"
 
 #: gdl/gdl-dock-item.c:291
 msgid "Preferred height"
-msgstr "Alto preferido"
+msgstr "Altura preferida"
 
 #: gdl/gdl-dock-item.c:292
 msgid "Preferred height for the dock item"
-msgstr "Alto preferido para el elemento empotrable"
+msgstr "Altura preferida para el elemento empotrado"
 
 #: gdl/gdl-dock-item.c:542
 #, c-format
@@ -113,8 +112,8 @@ msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
-"No se puede agregar un objeto fijo (%p del tipo %s) dentro de %s. Utilice "
-"GdlDock o algún otro objeto combinado fijo."
+"No se puede añadir un objeto empotrado (%p del tipo %s) dentro de %s. Utilice "
+"GdlDock o algún otro objeto combinado empotrado fijo."
 
 #: gdl/gdl-dock-item.c:549
 #, c-format
@@ -128,7 +127,7 @@ msgstr ""
 #: gdl/gdl-dock-item.c:1176
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "Estrategia de empotramiento no soportada %s en el objeto fijo del tipo %s"
+msgstr "Estrategia de empotramiento no soportada %s en el objeto empotrable del tipo %s"
 
 #. Hide menuitem.
 #: gdl/gdl-dock-item.c:1258
@@ -147,7 +146,7 @@ msgstr "Se intentó vincular un elemento no vinculable %p"
 
 #: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
 msgid "Master"
-msgstr "Maestro"
+msgstr "Dueño"
 
 #: gdl/gdl-dock-layout.c:126
 msgid "GdlDockMaster object which the layout object is attached to"
@@ -159,7 +158,7 @@ msgstr "Sucio"
 
 #: gdl/gdl-dock-layout.c:134
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr "Verdadero si el formato ha cambiado y necesita ser guardado a un archivo"
+msgstr "Verdadero si el formato ha cambiado y necesita guardarse en un archivo"
 
 #. FIXME: pop up an error dialog
 #: gdl/gdl-dock-layout.c:564
@@ -181,11 +180,11 @@ msgstr "Nombre"
 
 #: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
 msgid "Dock items"
-msgstr "Elementos fijos"
+msgstr "Elementos empotrados"
 
 #: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
 msgid "Saved layouts"
-msgstr "Formato guardado"
+msgstr "Colocación guardada"
 
 #: gdl/gdl-dock-layout.c:790
 #, c-format
@@ -193,12 +192,12 @@ msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
-"Al cargar la distribución: No se sabe como crear un objeto fijo cuyo apodo "
+"Al cargar la colocación: No se sabe como crear un objeto empotrable cuyo apodo "
 "sea «%s»"
 
 #: gdl/gdl-dock-layout.c:1269
 msgid "Layout managment"
-msgstr "Administración de formato"
+msgstr "Administración de la colocación"
 
 #: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
 msgid "Default title"
@@ -213,8 +212,8 @@ msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"Si esta definido como 1, todos los límites de los objetos fijos al maestro "
-"son bloqueados; si es 0 todos son desbloqueados, 1 indica una inconsistencia "
+"Si esta definido como 1, todos los límites de los objetos vinculados al principal"
+"son bloqueados; si es 0 todos son desbloqueados, -1 indica una inconsistencia "
 "entre los elementos."
 
 #: gdl/gdl-dock-master.c:730
@@ -223,7 +222,7 @@ msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
-"el maestro %p no puede añadir el objeto %p[%s] al hash.  Ya existe un ítem "
+"el principal %p no puede añadir el objeto %p[%s] al hash.  Ya existe un ítem "
 "con dicho nombre (%p)."
 
 #: gdl/gdl-dock-master.c:895
@@ -231,9 +230,7 @@ msgstr ""
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
-msgstr ""
-"El nuevo controlador fijo %p es automático.  Sőlo los objetos fijos manuales "
-"deberían ser llamados controlador."
+msgstr "El nuevo controlador de empotrables %p es automático.  Sóloőlos objetos empotrados manuales deberían ser llamados controlador."
 
 #: gdl/gdl-dock-notebook.c:135
 msgid "Page"
@@ -245,7 +242,7 @@ msgstr "El índice de la página actual"
 
 #: gdl/gdl-dock-object.c:121
 msgid "Unique name for identifying the dock object"
-msgstr "Nombre único para identificar al objeto fijo"
+msgstr "Nombre único para identificar al objeto empotrable"
 
 #: gdl/gdl-dock-object.c:128
 msgid "Long name"
@@ -253,24 +250,23 @@ msgstr "Nombre largo"
 
 #: gdl/gdl-dock-object.c:129
 msgid "Human readable name for the dock object"
-msgstr "Nombre legible por el humano para el objeto de fijo"
+msgstr "Nombre legible por el humano para el objeto empotrable"
 
 #: gdl/gdl-dock-object.c:135
 msgid "Stock Icon"
-msgstr ""
+msgstr "Icono de fábrica"
 
 #: gdl/gdl-dock-object.c:136
-#, fuzzy
 msgid "Stock icon for the dock object"
-msgstr "Nombre legible por el humano para el objeto de fijo"
+msgstr "Icono de fábrica para el objeto empotrable"
 
 #: gdl/gdl-dock-object.c:142
 msgid "Dock master"
-msgstr "Maestro fijo"
+msgstr "Empotrable principal"
 
 #: gdl/gdl-dock-object.c:143
 msgid "Dock master this dock object is bound to"
-msgstr "El maestro fijo al que este objeto fijo se encuentra atado"
+msgstr "El empotrable principal al que este objeto empotrable está vinculado"
 
 #: gdl/gdl-dock-object.c:421
 #, c-format
@@ -278,7 +274,7 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Llamada a gdl_dock_object_dock en el objeto fijo %p (el objeto es del tipo %"
+"Llamada a gdl_dock_object_dock en el objeto empotrable %p (el objeto es del tipo %"
 "s), el cual no tiene implementado este método"
 
 #: gdl/gdl-dock-object.c:550
@@ -287,19 +283,19 @@ msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
-"Operación de empotramiento requerida en un objeto suelto %p. La aplicación "
+"Se solicitó una operación de empotrado en un objeto no vinculable %p. La aplicación "
 "podría fallar"
 
 #: gdl/gdl-dock-object.c:557
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "No se puede empotrar %p a %p porque pertenecen a diferentes maestros"
+msgstr "No se puede empotrar %p en %p porque pertenecen a diferentes principales"
 
 #: gdl/gdl-dock-object.c:599
 #, c-format
 msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
-"Intenta sujetarse a %p un objeto %p que ya esta fijo y atado  (maestro "
+"Se intentó vincular con %p un objeto %p que ya está vinculado y empotrado (principal"
 "actual: %p)"
 
 #: gdl/gdl-dock-paned.c:133
@@ -308,27 +304,27 @@ msgstr "Posición"
 
 #: gdl/gdl-dock-paned.c:134
 msgid "Position of the divider in pixels"
-msgstr "Posición del divisor de píxeles"
+msgstr "Posición del divisor en píxeles"
 
 #: gdl/gdl-dock-placeholder.c:127
 msgid "Sticky"
-msgstr "Permanente"
+msgstr "Persistente"
 
 #: gdl/gdl-dock-placeholder.c:128
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-"Define si el contenedor se pegará a su anfitrión o se moverá hacia arriba "
-"jerárquicamente cuando el anfitrión es re-empotrado"
+"Define si el contenedor se pegará a su anfitrión o subirá por la"
+"jerarquía cuando el anfitrión sea re-empotrado"
 
 #: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
-msgstr "Host"
+msgstr "Anfitrión"
 
 #: gdl/gdl-dock-placeholder.c:136
 msgid "The dock object this placeholder is attached to"
-msgstr "El objeto fijo al que este contenedor se encuentra adjunto"
+msgstr "El objeto empotrable al que este contenedor se encuentra adjunto"
 
 #: gdl/gdl-dock-placeholder.c:143
 msgid "Next placement"
@@ -344,7 +340,7 @@ msgstr ""
 
 #: gdl/gdl-dock-placeholder.c:305
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr "Intenta empotrar un objeto fijo a un contenedor suelto"
+msgstr "Intenta empotrar un objeto empotrable a un contenedor suelto"
 
 #: gdl/gdl-dock-placeholder.c:419
 #, c-format
@@ -367,9 +363,8 @@ msgid "Dockitem which 'owns' this tablabel"
 msgstr "Elemento fijo que «posee» esta tablabel"
 
 #: gdl/gdl-dock-bar.c:89
-#, fuzzy
 msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "Objeto GdlDockMaster al cual el objeto de distribución se encuentra adjunto"
+msgstr "Objeto GdlDockMaster al cual el widget de la barra de empotrado se encuentra adjunto"
 
 #: gdl/gdl-dock.c:176
 msgid "Floating"
@@ -385,19 +380,19 @@ msgstr "Título predeterminado para los nuevos empotrables creados recientemente
 
 #: gdl/gdl-dock.c:191
 msgid "Width"
-msgstr "Ancho"
+msgstr "Anchura"
 
 #: gdl/gdl-dock.c:192
 msgid "Width for the dock when it's of floating type"
-msgstr "Ancho para el empotrable cuando es del tipo flotante"
+msgstr "Anchura para el empotrable cuando es del tipo flotante"
 
 #: gdl/gdl-dock.c:199
 msgid "Height"
-msgstr "Alto"
+msgstr "Altura"
 
 #: gdl/gdl-dock.c:200
 msgid "Height for the dock when it's of floating type"
-msgstr "Alto del empotrable cuando es del tipo flotante"
+msgstr "Altura del empotrable cuando es del tipo flotante"
 
 #: gdl/gdl-dock.c:207
 msgid "Float X"
@@ -475,19 +470,19 @@ msgstr "B_loquear los elementos fijos"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
 msgid "Factory for the Gnome Symbol Browser control."
-msgstr "Fábrica para el control navegador de símbolos de GNOME"
+msgstr "Fábrica para el control visor de símbolos de Gnome"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
 msgid "Gnome Symbol Browser Control"
-msgstr "Control navegador de símbolos de GNOME"
+msgstr "Control visor de símbolos de Gnome"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
 msgid "Gnome Symbol Browser Control Factory"
-msgstr "Fábrica del control navegador de símbolos de GNOME"
+msgstr "Fábrica del control visor de símbolos de Gnome"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
 msgid "Gnome Symbol Browser."
-msgstr "Navegador de símbolos de GNOME."
+msgstr "Visor de símbolos de Gnome."
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:1
 msgid "Goto Symbol"
