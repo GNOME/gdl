@@ -131,11 +131,14 @@ load_path (GdlDataRow *row)
 	g_return_if_fail (row->priv->name == NULL);
 	g_return_if_fail (row->priv->cell == NULL);
 	
-	if (gdl_data_model_get_iter (row->priv->model, &iter, row->priv->path)) {
+	if (gdl_data_model_get_iter (row->priv->model, 
+				     &iter, row->priv->path)) {
 		GValue val = { 0, };
+		char *str;
 		
 		gdl_data_model_get_name (row->priv->model, &iter, 
-					 &row->priv->name);
+					 &str);
+		row->priv->name = g_strdup (str);
 		
 		if (gdl_data_model_iter_has_child (row->priv->model, &iter)) {
 			row->priv->multi = TRUE;
@@ -143,7 +146,11 @@ load_path (GdlDataRow *row)
 		
 		gdl_data_model_get_renderer (row->priv->model, &iter, 
 					     &row->priv->cell,
-					     &row->priv->renderer_field);
+					     &str);
+		g_object_ref (GTK_OBJECT (row->priv->cell));
+		gtk_object_sink (GTK_OBJECT (row->priv->cell));
+		
+		row->priv->renderer_field = g_strdup (str);
 		gdl_data_model_get_value (row->priv->model, &iter, &val);
 		
 		g_object_set_property (G_OBJECT (row->priv->cell), 
@@ -156,6 +163,11 @@ load_path (GdlDataRow *row)
 static void
 unload_path (GdlDataRow *row)
 {
+	if (row->priv->renderer_field) {
+		g_free (row->priv->renderer_field);
+		row->priv->renderer_field = NULL;
+	}
+	
 	if (row->priv->name) {
 		g_free (row->priv->name);
 		row->priv->name = NULL;
@@ -164,6 +176,15 @@ unload_path (GdlDataRow *row)
 	if (row->priv->cell) {
 		g_object_unref (row->priv->cell);
 		row->priv->cell = NULL;
+	}
+
+	if (row->priv->subrows) {
+		GList *l;
+		for (l = row->priv->subrows; l != NULL; l = l->next) {
+			g_object_unref (G_OBJECT (l->data));
+		}
+		g_list_free (row->priv->subrows);
+		row->priv->subrows = NULL;
 	}
 }
 
@@ -178,10 +199,15 @@ gdl_data_row_finalize (GObject *object)
 {
 	GdlDataRow *row = GDL_DATA_ROW (object);
 	if (row->priv) {
+		unload_path (row);
+		
 		if (row->priv->path) {
 			gtk_tree_path_free (row->priv->path);
 			row->priv->path = NULL;
 		}
+
+		
+		g_object_unref (row->priv->model);
 		
 		g_free (row->priv);
 		row->priv = NULL;
@@ -206,9 +232,8 @@ gdl_data_row_new (GdlDataView *view,
 	row = GDL_DATA_ROW (g_object_new (gdl_data_row_get_type (),
 					  NULL));
 	
-	/* FIXME: ref and properly unref in destroy */
 	row->priv->view = view;
-	row->priv->model = view->model;
+	row->priv->model = g_object_ref (view->model);
 	
 	row->priv->cur_expand_pixbuf = gdl_data_view_get_expand_pixbuf (row->priv->view);
 

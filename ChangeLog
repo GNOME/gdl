@@ -1,5 +1,36 @@
 2001-12-30  Dave Camp  <dave@ximian.com>
 
+	* gdl/gdl-data-frame.c (gdl_data_frame_class_init): Initialize the
+	finalize member.
+	(gdl_data_frame_finalize): New function.
+
+	* gdl/gdl-data-view.c (gdl_data_view_destroy): Unref all the 
+	frames and the pixbufs.
+
+	* gdl/gdl-data-row.c (load_path): Duplicate the name and 
+	renderer_field strings, and ref/sink the cell renderer.
+	(unload_path): Free the renderer field and subrows.
+	(gdl_data_row_finalize): Call unload_path, and unref the model.
+	(gdl_data_row_new): Ref the model.
+
+2001-12-30  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-data-frame.c: Replaced frame->[x,y,width,height] with a 
+	GdkRectangle called area.  Also got rid of the property code, as this
+	is an object for internal use of the widget only.
+	(gdl_data_frame_layout): Reflect area change.
+	(gdl_data_frame_new): New function.
+	(setup_layout): New function.
+	(setup_path): New function.
+	(gdl_data_frame_class_init): Don't initialize the properties.
+
+	* gdl/gdl-data-view.c (frame_at): Use frame->area instead of
+	frame->[x,y,width,height].
+	(gdl_data_view_set_model): Use gdl_data_frame_new and 
+	gdl_data_frame_set_position.
+
+2001-12-30  Dave Camp  <dave@ximian.com>
+
 	* Added the beginnings of the GdlDataView widget, which will 
 	ultimately be a structure browser similar to the widgets
 	used in ddd and gvd.

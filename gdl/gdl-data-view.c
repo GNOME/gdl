@@ -160,7 +160,18 @@ static void
 gdl_data_view_destroy (GtkObject *obj)
 {
 	GdlDataView *dv = GDL_DATA_VIEW (obj);
+	
 	if (dv->priv) {
+		GList *l;
+		for (l = dv->priv->objects; l != NULL; l = l->next) {
+			g_object_unref (G_OBJECT (l->data));
+		}
+		g_list_free (dv->priv->objects);
+		
+		g_object_unref (dv->priv->close_pixbuf);
+		g_object_unref (dv->priv->expand_pixbuf);
+		g_object_unref (dv->priv->contract_pixbuf);
+
 		g_free (dv->priv);
 		dv->priv = NULL;
 	}
