@@ -23,7 +23,7 @@
 #ifndef __GDL_IDL__
 #define __GDL_IDL__
 
-#if !defined(__GDL_COMPILATION && defined(__ORBIT_IDL__)
+#if !defined(__GDL_COMPILATION) && defined(__ORBIT_IDL__)
 %{
 #pragma include_defs gdl/GDL.h
 %}
@@ -36,7 +36,7 @@
 #include "editor-gutter.idl"
 #include "symbol-browser.idl"
 
-#if !defined(__GDL_COMPILATION && defined(__ORBIT_IDL__)
+#if !defined(__GDL_COMPILATION) && defined(__ORBIT_IDL__)
 #pragma inhibit pop
 #endif
 #endif

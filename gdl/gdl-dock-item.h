@@ -4,7 +4,7 @@
 #define __GDL_DOCK_ITEM_H__
 
 #include <gtk/gtk.h>
-#include <gnome-xml/tree.h>
+#include <libxml/tree.h>
 
 
 #define GDL_TYPE_DOCK_ITEM            (gdl_dock_item_get_type ())
@@ -12,6 +12,8 @@
 #define GDL_DOCK_ITEM_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GDL_TYPE_DOCK_ITEM, GdlDockItemClass))
 #define GDL_IS_DOCK_ITEM(obj)         (GTK_CHECK_TYPE ((obj), GDL_TYPE_DOCK_ITEM))
 #define GDL_IS_DOCK_ITEM_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK_ITEM))
+#define GDL_DOCK_ITEM_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_DOCK_ITEM, GdlDockItemClass))
+
 
 #define GDL_DOCK_ITEM_IS_FLOATING(item) ((item)->is_floating)
 #define GDL_DOCK_ITEM_IS_SHOWN(item)  (GTK_WIDGET (item)->parent != NULL)
@@ -20,9 +22,9 @@
 
 #define GDL_DOCK_ITEM_CHECK_BOND(item,d)  ((item)->dock == GTK_WIDGET (d))
 
-#define GDL_DOCK_ITEM_CHECK_AND_BIND(item,other) G_STMT_START {                 \
-    if (!GDL_DOCK_ITEM_IS_BOUND (item))                                         \
-        gdl_dock_bind_item (GDL_DOCK (GDL_DOCK_ITEM (other)->dock), item);      \
+#define GDL_DOCK_ITEM_CHECK_AND_BIND(item,other) G_STMT_START {              \
+    if (!GDL_DOCK_ITEM_IS_BOUND (item))                                      \
+        gdl_dock_bind_item (GDL_DOCK (GDL_DOCK_ITEM (other)->dock), item);   \
     g_return_if_fail (item->dock == GDL_DOCK_ITEM (other)->dock); } G_STMT_END
 
 #define GDL_DOCK_ITEM_GET_PARENT(item,p) G_STMT_START {         \
@@ -138,7 +140,7 @@ GtkWidget     *gdl_dock_item_new               (const gchar         *name,
                                                 const gchar         *long_name,
                                                 GdlDockItemBehavior  behavior);
 
-GtkType        gdl_dock_item_get_type          (void);
+GType          gdl_dock_item_get_type          (void);
 
 void           gdl_dock_item_dock_to           (GdlDockItem      *item,
                                                 GdlDockItem      *target,

@@ -1,11 +1,16 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
+#include <stdlib.h>
+#include <string.h>
 #include <gdk/gdkx.h>
+
 #include "gdl-tools.h"
 #include "gdl-dock.h"
 #include "gdl-dock-item.h"
 #include "gdl-dock-paned.h"
 #include "gdl-dock-notebook.h"
+
+#include "libgdlmarshal.h"
 
 /* Private prototypes */
 
@@ -19,8 +24,6 @@ static void  gdl_dock_size_allocate   (GtkWidget     *widget,
                                        GtkAllocation *allocation);
 static void  gdl_dock_map             (GtkWidget *widget);
 static void  gdl_dock_unmap           (GtkWidget *widget);
-static void  gdl_dock_draw            (GtkWidget    *widget,
-                                       GdkRectangle *area);
 static void  gdl_dock_add             (GtkContainer *container,
                                        GtkWidget    *widget);
 static void  gdl_dock_remove          (GtkContainer *container,
@@ -71,7 +74,7 @@ gdl_dock_class_init (GdlDockClass *klass)
     widget_class = (GtkWidgetClass *) klass;
     container_class = (GtkContainerClass *) klass;
 
-    parent_class = gtk_type_class (gtk_container_get_type ());
+    parent_class = g_type_class_peek_parent (klass);
 
     object_class->destroy = gdl_dock_destroy;
 
@@ -79,20 +82,21 @@ gdl_dock_class_init (GdlDockClass *klass)
     widget_class->size_allocate = gdl_dock_size_allocate;
     widget_class->map = gdl_dock_map;
     widget_class->unmap = gdl_dock_unmap;
-    widget_class->draw = gdl_dock_draw;
+
     container_class->add = gdl_dock_add;
     container_class->remove = gdl_dock_remove;
     container_class->forall = gdl_dock_forall;
 
-    dock_signals [LAYOUT_CHANGED] =
-        gtk_signal_new ("layout_changed",
-                        GTK_RUN_LAST,
-                        object_class->type,
-                        GTK_SIGNAL_OFFSET (GdlDockClass, layout_changed),
-                        gtk_marshal_NONE__NONE,
-                        GTK_TYPE_NONE, 0);
-
-    gtk_object_class_add_signals (object_class, dock_signals, LAST_SIGNAL);
+    dock_signals [LAYOUT_CHANGED] = 
+        g_signal_new ("layout_changed", 
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      G_STRUCT_OFFSET (GdlDockClass, layout_changed),
+                      NULL, /* accumulator */
+                      NULL, /* accu_data */
+                      gdl_marshal_VOID__VOID,
+                      G_TYPE_NONE, /* return type */
+                      0);
 
     klass->layout_changed = NULL;
 }
@@ -113,18 +117,26 @@ static void
 gdl_dock_destroy (GtkObject *object)
 {
     GdlDock *dock = GDL_DOCK (object);
+    GList *l;
 
     /* destroy the xor gc */
     if (dock->xor_gc) {
-        gdk_gc_destroy (dock->xor_gc);
+        gdk_gc_unref (dock->xor_gc);
         dock->xor_gc = NULL;
     }
 
     if (dock->root_xor_gc) {
-        gdk_gc_destroy (dock->root_xor_gc);
+        gdk_gc_unref (dock->root_xor_gc);
         dock->root_xor_gc = NULL;
     }
 
+    /* unbind items if we still have some */
+    for (l = dock->items; l; ) {
+        GdlDockItem *item = GDL_DOCK_ITEM (l->data);
+        l = l->next;
+        gdl_dock_unbind_item (dock, item);
+    };
+    
     if (GTK_OBJECT_CLASS (parent_class)->destroy)
         (* GTK_OBJECT_CLASS (parent_class)->destroy) (object);
 }
@@ -273,35 +285,6 @@ gdl_dock_unmap (GtkWidget *widget)
 }
 
 static void
-draw_widget (GtkWidget    *widget, 
-             GdkRectangle *area)
-{
-    GdkRectangle d_area;
-
-    if (widget != NULL && gtk_widget_intersect (widget, area, &d_area))
-        gtk_widget_draw (widget, &d_area);
-}
-
-static void
-gdl_dock_draw (GtkWidget    *widget,
-               GdkRectangle *area)
-{
-    GdlDock *dock;
-
-    g_return_if_fail (widget != NULL);
-    g_return_if_fail (GDL_IS_DOCK(widget));
-
-    if (GTK_WIDGET_DRAWABLE (widget)) {
-        GList *p;
-
-        dock = GDL_DOCK (widget);
-        draw_widget (dock->root, area);
-        for (p = dock->floating; p != NULL; p = p->next)
-            draw_widget (GTK_WIDGET (p->data), area);
-    };
-}
-
-static void
 gdl_dock_add (GtkContainer *container,
               GtkWidget    *widget)
 {
@@ -368,10 +351,11 @@ gdl_dock_forall (GtkContainer *container,
     if (dock->root)
         (*callback) (dock->root, callback_data);
 
-    for (lp = dock->floating; lp; lp = lp->next) {
+    for (lp = dock->floating; lp; ) {
         GtkWidget *w;
         
         w = lp->data;
+        lp = lp->next;
         (* callback) (w, callback_data);
     };
 }
@@ -506,7 +490,7 @@ gdl_dock_drag_end (GdlDockItem *item,
         gdl_dock_item_dock_to (item, NULL, GDL_DOCK_FLOATING, -1);
 
     if (layout_changed)
-        gtk_signal_emit (GTK_OBJECT (dock), dock_signals [LAYOUT_CHANGED]);
+        g_signal_emit (dock, dock_signals [LAYOUT_CHANGED], 0);
 }
 
 static void
@@ -655,7 +639,7 @@ gdl_dock_layout_build (GdlDock     *dock,
     
         /* Create/get root container/item. */
         if (!strcmp ("paned", name)) {
-            if (node->childs) {
+            if (node->children) {
                 /* Create new GdlDockPaned with specified orientation. */
                 if (!strcmp ("horizontal", xmlGetProp (node, "orientation")))
                     widget = gdl_dock_paned_new (GTK_ORIENTATION_HORIZONTAL);
@@ -667,7 +651,7 @@ gdl_dock_layout_build (GdlDock     *dock,
 
                 /* Recurse. */
                 i = gdl_dock_layout_build (dock, GDL_DOCK_ITEM (widget), 
-                                           node->childs);
+                                           node->children);
 
                 if (i > 0) {
                     if (i < 2)
@@ -685,7 +669,7 @@ gdl_dock_layout_build (GdlDock     *dock,
             };
                 
         } else if (!strcmp ("notebook", name)) {
-            if (node->childs) {
+            if (node->children) {
                 /* Create new GdlDockNotebook. */
                 widget = gdl_dock_notebook_new ();
         
@@ -694,14 +678,14 @@ gdl_dock_layout_build (GdlDock     *dock,
 
                 /* Recurse. */
                 i = gdl_dock_layout_build (dock, GDL_DOCK_ITEM (widget), 
-                                           node->childs);
+                                           node->children);
 
                 if (i > 0) {
                     if (i < 2)
                         gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (widget));
                     else {
                         /* Set tab index. */
-                        gtk_notebook_set_page (
+                        gtk_notebook_set_current_page (
                             GTK_NOTEBOOK (GDL_DOCK_NOTEBOOK 
                                           (widget)->notebook), 
                             atoi (xmlGetProp (node, "index")));
@@ -731,27 +715,33 @@ gdl_dock_layout_build (GdlDock     *dock,
 GtkWidget *
 gdl_dock_new (void)
 {
-    return gtk_type_new (gdl_dock_get_type ());
+    return GTK_WIDGET (g_object_new (GDL_TYPE_DOCK, NULL));
 }
 
-guint
+GType
 gdl_dock_get_type (void)
 {
-    static GtkType dock_type = 0;
+    static GType dock_type = 0;
 
     if (dock_type == 0) {
-        GtkTypeInfo dock_info = {
-            "GdlDock",
-            sizeof (GdlDock),
+        GTypeInfo dock_info = {
             sizeof (GdlDockClass),
-            (GtkClassInitFunc) gdl_dock_class_init,
-            (GtkObjectInitFunc) gdl_dock_init,
-            /* reserved_1 */ NULL,
-            /* reserved_2 */ NULL,
-            (GtkClassInitFunc) NULL,
+
+            NULL,               /* base_init */
+            NULL,               /* base_finalize */
+
+            (GClassInitFunc) gdl_dock_class_init,
+            NULL,               /* class_finalize */
+            NULL,               /* class_data */
+
+            sizeof (GdlDock),
+            0,                  /* n_preallocs */
+            (GInstanceInitFunc) gdl_dock_init,
+            NULL                /* value_table */
         };
 
-        dock_type = gtk_type_unique (gtk_container_get_type (), &dock_info);
+        dock_type = g_type_register_static (GTK_TYPE_CONTAINER, "GdlDock", 
+                                            &dock_info, 0);
     }
 
     return dock_type;
@@ -888,14 +878,14 @@ gdl_dock_layout_load (GdlDock *dock, xmlNodePtr node)
        the process, but it's only restored the top widget, which besides
        that must have a name */
     /* Build layout. */    
-    for (node = node->childs; node; node = node->next) {
+    for (node = node->children; node; node = node->next) {
         if (!strcmp ("docked", node->name))
-            gdl_dock_layout_build (dock, NULL, node->childs);
+            gdl_dock_layout_build (dock, NULL, node->children);
         else if (!strcmp ("undocked", node->name)) {
             gdl_dock_add_floating_item (dock, 
                                         gdl_dock_get_item_by_name (
-                                            dock,
-                                            xmlGetProp (node->childs, "name")), 
+                                            dock, xmlGetProp (
+                                                node->children, "name")), 
                                         atoi (xmlGetProp (node, "x")),
                                         atoi (xmlGetProp (node, "y")), 
                                         GTK_ORIENTATION_HORIZONTAL);
@@ -962,6 +952,7 @@ gdl_dock_bind_item (GdlDock          *dock,
     if (item->name) {
         if (!gdl_dock_get_item_by_name (dock, item->name)) {
             gtk_widget_ref (GTK_WIDGET (item));
+            gtk_object_sink (GTK_OBJECT (item));
             dock->items = g_list_prepend (dock->items, item);
         } else
             g_warning (_("Duplicate dock item name"));
@@ -970,15 +961,12 @@ gdl_dock_bind_item (GdlDock          *dock,
     item->dock = GTK_WIDGET (dock);
 
     /* connect the signals */
-    gtk_signal_connect (GTK_OBJECT (item), "dock_drag_begin",
-                        (GtkSignalFunc) gdl_dock_drag_begin,
-                        (gpointer) dock);
-    gtk_signal_connect (GTK_OBJECT (item), "dock_drag_motion",
-                        (GtkSignalFunc) gdl_dock_drag_motion,
-                        (gpointer) dock);
-    gtk_signal_connect (GTK_OBJECT (item), "dock_drag_end",
-                        (GtkSignalFunc) gdl_dock_drag_end,
-                        (gpointer) dock);
+    g_signal_connect (item, "dock_drag_begin",
+                      G_CALLBACK (gdl_dock_drag_begin), dock);
+    g_signal_connect (item, "dock_drag_motion",
+                      G_CALLBACK (gdl_dock_drag_motion), dock);
+    g_signal_connect (item, "dock_drag_end",
+                      G_CALLBACK (gdl_dock_drag_end), dock);
 }
 
 void
@@ -994,7 +982,8 @@ gdl_dock_unbind_item (GdlDock          *dock,
     g_return_if_fail (item->dock == GTK_WIDGET (dock));
     
     /* disconnect signals */
-    gtk_signal_disconnect_by_data (GTK_OBJECT (item), (gpointer) dock);
+    g_signal_handlers_disconnect_matched (item, G_SIGNAL_MATCH_DATA, 
+                                          0, 0, NULL, NULL, dock);
 
     /* undock item if it's docked */
     item->dock = NULL;

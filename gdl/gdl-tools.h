@@ -26,11 +26,12 @@
 #define __GDL_TOOLS_H__
 
 #include <glib.h>
-#include <gnome.h>
+#include <libgnome/gnome-i18n.h>
 
-BEGIN_GNOME_DECLS
 
 /* FIXME: Toggle this */
+
+G_BEGIN_DECLS
 
 #define DO_GDL_TRACE
 
@@ -80,6 +81,6 @@ BEGIN_GNOME_DECLS
 
 #endif /* DO_GDL_TRACE */
 
-END_GNOME_DECLS
+G_END_DECLS
 
 #endif

@@ -1,5 +1,6 @@
+#include <string.h>
 #include <gtk/gtk.h>
-#include <gnome-xml/tree.h>
+#include <libxml/tree.h>
 
 #include "gdl-tools.h"
 
@@ -16,40 +17,48 @@ static GtkWidget *
 create_item (const gchar *button_title)
 {
 	GtkWidget *vbox1;
-	GtkWidget *scrolledwindow1;
-	GtkWidget *viewport1;
-	GtkWidget *list1;
 	GtkWidget *button1;
-	GList *l = NULL;
-	int i;
 
 	vbox1 = gtk_vbox_new (FALSE, 0);
 	gtk_widget_show (vbox1);
 
-	scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
-	gtk_widget_show (scrolledwindow1);
-	gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, TRUE, TRUE, 0);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1),
-					GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
+#if 0
+	{
+		GtkWidget *scrolledwindow1;
+		GtkWidget *viewport1;
+		GtkWidget *list1;
+		GList *l = NULL;
+		int i;
 
-	viewport1 = gtk_viewport_new (NULL, NULL);
-	gtk_widget_show (viewport1);
-	gtk_container_add (GTK_CONTAINER (scrolledwindow1), viewport1);
+		scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
+		gtk_widget_show (scrolledwindow1);
+		gtk_box_pack_start (GTK_BOX (vbox1), scrolledwindow1, 
+				    TRUE, TRUE, 0);
+		gtk_scrolled_window_set_policy (
+			GTK_SCROLLED_WINDOW (scrolledwindow1),
+			GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 
-	for (i = 1; i < 5; i++) {
-		gchar *s;
-		s = g_strdup_printf ("List item %d", i);
-		l = g_list_append (l, gtk_list_item_new_with_label (s));
-		g_free (s);
-	};
-	list1 = gtk_list_new ();
-	gtk_list_append_items (GTK_LIST (list1), l);
-	gtk_widget_show (list1);
-	gtk_container_add (GTK_CONTAINER (viewport1), list1);
+		viewport1 = gtk_viewport_new (NULL, NULL);
+		gtk_widget_show (viewport1);
+		gtk_container_add (GTK_CONTAINER (scrolledwindow1), viewport1);
+
+		for (i = 1; i < 5; i++) {
+			gchar *s;
+			s = g_strdup_printf ("List item %d", i);
+			l = g_list_append (
+				l, gtk_list_item_new_with_label (s));
+			g_free (s);
+		};
+		list1 = gtk_list_new ();
+		gtk_list_append_items (GTK_LIST (list1), l);
+		gtk_widget_show (list1);
+		gtk_container_add (GTK_CONTAINER (viewport1), list1);
+	}
+#endif
 
 	button1 = gtk_button_new_with_label (button_title);
 	gtk_widget_show (button1);
-	gtk_box_pack_start (GTK_BOX (vbox1), button1, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox1), button1, TRUE, TRUE, 0);
 
 	return vbox1;
 }
@@ -71,13 +80,7 @@ create_text_item ()
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1),
 					GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 
-	text = gtk_text_new (NULL,
-			     gtk_scrolled_window_get_vadjustment 
-			     (GTK_SCROLLED_WINDOW (scrolledwindow1)));
-	gtk_text_insert (GTK_TEXT (text), NULL, NULL, NULL, 
-			 "This is a text widget", -1);
-	gtk_text_set_word_wrap (GTK_TEXT (text), TRUE);
-	gtk_text_set_editable (GTK_TEXT (text), TRUE);
+	text = gtk_text_view_new ();
 	gtk_widget_show (text);
 	gtk_container_add (GTK_CONTAINER (scrolledwindow1), text);
 
@@ -94,9 +97,10 @@ options_select_cb (GtkWidget *options, xmlNodePtr layout)
 static void
 button_save_cb (GtkWidget *button, gpointer data)
 {
-        gchar *name;
+        const gchar *name;
         xmlNodePtr layout;
         GtkWidget *menu, *menuitem;
+	GList *list_items;
         
         /* Check if a name has been entered. */
         name = gtk_entry_get_text (GTK_ENTRY (edit));
@@ -106,21 +110,23 @@ button_save_cb (GtkWidget *button, gpointer data)
         }
 
         /* Save layout. */
-        layout = xmlNewChild (doc->root, NULL, "layout", NULL);
+        layout = xmlNewChild (xmlDocGetRootElement (doc), NULL, "layout", NULL);
         xmlSetProp (layout, "name", name);
         gdl_dock_layout_save (GDL_DOCK (dock), layout);
 
         /* Add item to options. */
         menu = gtk_option_menu_get_menu (GTK_OPTION_MENU (options));
         menuitem = gtk_menu_item_new_with_label (name);
-        gtk_signal_connect (GTK_OBJECT (menuitem), 
-                            "activate", 
-                            GTK_SIGNAL_FUNC (options_select_cb), 
-                            layout);
-        gtk_menu_append (GTK_MENU (menu), menuitem);
+        g_signal_connect (menuitem, "activate", 
+			  G_CALLBACK (options_select_cb), 
+			  layout);
+        gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
         gtk_widget_show (menuitem);
+
+	list_items = gtk_container_get_children (GTK_CONTAINER (menu));
         gtk_option_menu_set_history (GTK_OPTION_MENU (options), 
-                g_list_length (gtk_container_children (GTK_CONTAINER (menu))) - 1);
+				     g_list_length (list_items) - 1);
+	g_list_free (list_items);
 }
 
 static void
@@ -144,20 +150,16 @@ create_layout_frame ()
 
         button = gtk_button_new_with_label (_("Save layout"));
         gtk_container_add (GTK_CONTAINER (box2), button);                            
-        gtk_signal_connect (GTK_OBJECT (button), 
-                            "clicked", 
-                            GTK_SIGNAL_FUNC (button_save_cb), 
-                            NULL);
+        g_signal_connect (button, "clicked", 
+			  G_CALLBACK (button_save_cb), NULL);
 
         box2 = gtk_hbox_new (FALSE, 5);
         gtk_container_add (GTK_CONTAINER (box), box2);
         
         button = gtk_button_new_with_label (_("Dump XML"));
         gtk_container_add (GTK_CONTAINER (box2), button);
-        gtk_signal_connect (GTK_OBJECT (button),
-                            "clicked",
-                            GTK_SIGNAL_FUNC (button_dump_cb),
-                            NULL);
+        g_signal_connect (button, "clicked",
+			  G_CALLBACK (button_dump_cb), NULL);
 
         options = gtk_option_menu_new ();
         gtk_container_add (GTK_CONTAINER (box2), options);
@@ -178,6 +180,7 @@ int
 main (int argc, char **argv)
 {
 	GtkWidget *item1, *item2, *item3, *item4;
+	GtkWidget *items [3];
         GtkWidget *win, *table, *menuitem;
 	int i;
         xmlNodePtr default_layout;
@@ -186,8 +189,8 @@ main (int argc, char **argv)
 
 	/* window creation */
 	win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	gtk_signal_connect (GTK_OBJECT (win), "delete_event", 
-			    gtk_main_quit, NULL);
+	g_signal_connect (win, "delete_event", 
+			  G_CALLBACK (gtk_main_quit), NULL);
 	gtk_window_set_title (GTK_WINDOW (win), "Test!");
 	gtk_window_set_default_size (GTK_WINDOW (win), 400, 400);
 
@@ -208,8 +211,8 @@ main (int argc, char **argv)
 
 	/* create the dock */
 	dock = gdl_dock_new ();
-	gtk_signal_connect (GTK_OBJECT (dock), "layout_changed",
-			    layout_changed_cb, NULL);
+	g_signal_connect (dock, "layout_changed",
+			  G_CALLBACK (layout_changed_cb), NULL);
 
 	gtk_table_attach (GTK_TABLE (table), 
 	                  dock,
@@ -228,10 +231,7 @@ main (int argc, char **argv)
 	gtk_widget_show (item1);
 
 	item2 = gdl_dock_item_new ("item2", "Item #2", GDL_DOCK_ITEM_BEH_NORMAL);
-	gtk_object_set (GTK_OBJECT (item2), 
-			"resize", FALSE, 
-			"shrink", FALSE, 
-			NULL);
+	g_object_set (item2, "resize", FALSE, "shrink", FALSE, NULL);
 	gtk_container_add (GTK_CONTAINER (item2), create_item ("Button 2"));
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2), 
 			   GDL_DOCK_RIGHT);
@@ -248,13 +248,12 @@ main (int argc, char **argv)
 			   GDL_DOCK_BOTTOM);
 	for (i = 0; i < 3; i++) {
 		gchar name[10];
-		GtkWidget *item;
 
 		snprintf (name, sizeof (name), "Item #%d", i + 4);
-		item = gdl_dock_item_new (name, name, GDL_DOCK_ITEM_BEH_NORMAL);
-		gtk_container_add (GTK_CONTAINER (item), create_text_item ());
-		gtk_widget_show (item);
-		gtk_container_add (GTK_CONTAINER (item4), item);
+		items [i] = gdl_dock_item_new (name, name, GDL_DOCK_ITEM_BEH_NORMAL);
+		gtk_container_add (GTK_CONTAINER (items [i]), create_text_item ());
+		gtk_widget_show (items [i]);
+		gtk_container_add (GTK_CONTAINER (item4), items [i]);
 	};
 	gtk_widget_show (item4);
 
@@ -276,22 +275,23 @@ main (int argc, char **argv)
 
         /* Create XML tree. */
         doc = xmlNewDoc ("1.0");
-        doc->root = xmlNewDocNode (doc, NULL, "dock-layout", NULL);
+        doc->children = xmlNewDocNode (doc, NULL, "dock-layout", NULL);
         
         /* Set default layout. */
-        default_layout = xmlNewChild (doc->root, NULL, "layout", NULL);
+        default_layout = xmlNewChild (xmlDocGetRootElement (doc), 
+				      NULL, "layout", NULL);
         xmlSetProp (default_layout, "name", "Default");
         gdl_dock_layout_save (GDL_DOCK (dock), default_layout);
 
         /* Create menuitem for default layout. */
         menuitem = gtk_menu_item_new_with_label (_("Default"));
-        gtk_signal_connect (GTK_OBJECT (menuitem), 
-                            "activate", 
-                            GTK_SIGNAL_FUNC (options_select_cb), 
-                            default_layout);
+        g_signal_connect (menuitem, "activate", 
+			  G_CALLBACK (options_select_cb), 
+			  default_layout);
         gtk_widget_show (menuitem);
-        gtk_menu_append (GTK_MENU (
-                gtk_option_menu_get_menu (GTK_OPTION_MENU (options))), menuitem);
+        gtk_menu_shell_append (GTK_MENU_SHELL (
+                gtk_option_menu_get_menu (GTK_OPTION_MENU (options))), 
+			       menuitem);
         gtk_option_menu_set_history (GTK_OPTION_MENU (options), 0);
         
 	/* test gdl_dock_get_item_by_name */
@@ -305,6 +305,54 @@ main (int argc, char **argv)
 	};
 
 	gtk_main ();
+
+#if 0      
+	/* both methods below work no matter this is executed or not */
+	gdl_dock_item_hide (GDL_DOCK_ITEM (items [2]));
+	gdl_dock_item_hide (GDL_DOCK_ITEM (items [1]));
+	gdl_dock_item_hide (GDL_DOCK_ITEM (items [0]));
+	gdl_dock_item_hide (GDL_DOCK_ITEM (item3));
+	gdl_dock_item_hide (GDL_DOCK_ITEM (item2));
+	gdl_dock_item_hide (GDL_DOCK_ITEM (item1));
+	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [2]));
+	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [1]));
+	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [0]));
+	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item3));
+	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2));
+	gdl_dock_unbind_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item1));
+#endif
+
+#if 0       
+	/* this works */
+	gtk_widget_destroy (dock);
+#endif
+
+#if 0
+	/* this works too */
+     	gtk_container_remove (GTK_CONTAINER (dock->parent), dock);
+#endif
+
+#if 0
+	/* this segfaults */
+	gtk_widget_unref (dock);
+#endif
+
+#if 0
+	/* this works too */
+	gtk_widget_ref (dock);
+     	gtk_container_remove (GTK_CONTAINER (dock->parent), dock);
+	gtk_widget_unref (dock);
+#endif
+
+#if 1
+	/* this works */
+    	gtk_widget_destroy (win);
+#endif
+
+#if 0
+	/* this doesn't */
+	gtk_widget_unref (win);
+#endif
 
 	return 0;
 }

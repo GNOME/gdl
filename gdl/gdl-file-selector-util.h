@@ -16,7 +16,7 @@
 
 #include <gtk/gtkwindow.h>
 
-BEGIN_GNOME_DECLS
+G_BEGIN_DECLS
 
 char  *gdl_file_selector_open       (GtkWindow  *parent,
 				       gboolean    enable_vfs,
@@ -37,6 +37,6 @@ char  *gdl_file_selector_save       (GtkWindow  *parent,
 				       const char *default_path,
 				       const char *default_filename);
 
-END_GNOME_DECLS
+G_END_DECLS
 
 #endif /* _GDL_FILE_SELECTOR_UTIL_H_ */

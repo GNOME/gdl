@@ -1,28 +1,17 @@
-SUBDIRS = idl gdl scintilla-control symbol-browser-control po intl
+SUBDIRS = idl gdl po
+# SUBDIRS = idl gdl scintilla-control symbol-browser-control po intl
 
-m4datadir = $(datadir)/aclocal
-m4data_DATA = gdl.m4
+EXTRA_DIST = 			\
+	MAINTAINERS		\
+	AUTHORS			\
+	gdl.spec.in		\
+	intltool-extract.in	\
+	intltool-merge.in	\
+	intltool-update.in
 
-confexecdir = $(libdir)
-confexec_DATA = gdlConf.sh 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = gdl-1.0.pc
 
-gdlConf.sh: $(top_srcdir)/gdlConf.sh.in Makefile
-	sed -e 's?\@GDL_LIBDIR\@?$(GDL_LIBDIR)?g' \
-	    -e 's?\@GDL_INCLUDEDIR\@?$(GDL_INCLUDEDIR)?g' \
-	    -e 's?\@VERSION\@?$(VERSION)?g' \
-	    -e 's?\@GDL_LIBS\@?$(GDL_LIBS)?g' \
-	      < $(top_srcdir)/gdlConf.sh.in > gdlConf.tmp \
-	  && mv gdlConf.tmp gdlConf.sh
+CLEANFILES = gdl-1.0.pc
 
-EXTRA_DIST = 		\
-	gdl.m4          \
-	gdlConf.sh.in	\
-	MAINTAINERS	\
-	AUTHORS		\
-	gdl.spec.in	\
-	gdl.spec	\
-	xml-i18n-extract.in \
-	xml-i18n-merge.in \
-	xml-i18n-update.in
 
-CLEANFILES = gdlConf.sh 

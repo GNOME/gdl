@@ -11,6 +11,7 @@
 #define GDL_DOCK_NOTEBOOK_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GDL_TYPE_DOCK_NOTEBOOK, GdlDockNotebookClass))
 #define GDL_IS_DOCK_NOTEBOOK(obj)         (GTK_CHECK_TYPE ((obj), GDL_TYPE_DOCK_NOTEBOOK))
 #define GDL_IS_DOCK_NOTEBOOK_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK_NOTEBOOK))
+#define GDL_DOCK_NOTEBOOK_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_DOCK_NOTEBOOK, GdlDockNotebookClass))
 
 typedef struct _GdlDockNotebook        GdlDockNotebook;
 typedef struct _GdlDockNotebookClass   GdlDockNotebookClass;
@@ -27,7 +28,7 @@ struct _GdlDockNotebookClass {
 
 GtkWidget     *gdl_dock_notebook_new               (void);
 
-GtkType        gdl_dock_notebook_get_type          (void);
+GType          gdl_dock_notebook_get_type          (void);
 
 #endif
 

@@ -37,31 +37,34 @@
  * GTK+ at ftp://ftp.gtk.org/pub/gtk/. 
  */
 
-#include <gtk/gtkstyle.h>
 #include "gdl-tools.h"
 #include "gdl-dock.h"
 #include "gdl-dock-paned.h"
 
 
 enum {
-    ARG_0,
-    ARG_HANDLE_SIZE,
-    ARG_QUANTUM,
+    PROP_0,
+    PROP_HANDLE_SIZE,
+    PROP_QUANTUM,
 };
 
 
 static void     gdl_dock_paned_class_init     (GdlDockPanedClass  *klass);
 static void     gdl_dock_paned_init           (GdlDockPaned       *paned);
-static void     gdl_dock_paned_set_arg        (GtkObject      *object,
-                                               GtkArg         *arg,
-                                               guint           arg_id);
-static void     gdl_dock_paned_get_arg        (GtkObject      *object,
-                                               GtkArg         *arg,
-                                               guint           arg_id);
+static void     gdl_dock_paned_set_property   (GObject        *object,
+                                               guint           prop_id,
+                                               const GValue   *value,
+                                               GParamSpec     *pspec);
+static void     gdl_dock_paned_get_property   (GObject        *object,
+                                               guint           prop_id,
+                                               GValue         *value,
+                                               GParamSpec     *pspec);
 static void     gdl_dock_paned_realize        (GtkWidget      *widget);
 static void     gdl_dock_paned_map            (GtkWidget      *widget);
 static void     gdl_dock_paned_unmap          (GtkWidget      *widget);
 static void     gdl_dock_paned_unrealize      (GtkWidget      *widget);
+static void     gdl_dock_paned_paint          (GtkWidget      *widget,
+                                               GdkRectangle   *area);
 static gint     gdl_dock_paned_expose         (GtkWidget      *widget,
                                                GdkEventExpose *event);
 static void     gdl_dock_paned_add            (GtkContainer *container,
@@ -79,8 +82,6 @@ static void     gdl_dock_paned_size_request   (GtkWidget      *widget,
                                                GtkRequisition *requisition);
 static void     gdl_dock_paned_size_allocate  (GtkWidget     *widget,
                                                GtkAllocation *allocation);
-static void     gdl_dock_paned_draw           (GtkWidget    *widget,
-                                               GdkRectangle *area);
 static void     gdl_dock_paned_xor_line       (GdlDockPaned *paned);
 static gboolean gdl_dock_paned_button_press   (GtkWidget      *widget,
                                                GdkEventButton *event);
@@ -110,6 +111,8 @@ static gchar   *gdl_dock_paned_get_pos_hint    (GdlDockItem      *item,
                                                 GdlDockItem      *caller,
                                                 GdlDockPlacement *position);
 
+#define DEFAULT_DRAG_HANDLE_SIZE 5
+
 static GdlDockItemClass *parent_class = NULL;
 
 
@@ -118,20 +121,22 @@ static GdlDockItemClass *parent_class = NULL;
 static void
 gdl_dock_paned_class_init (GdlDockPanedClass *klass)
 {
+    GObjectClass *g_object_class;
     GtkObjectClass *object_class;
     GtkWidgetClass *widget_class;
     GtkContainerClass *container_class;
     GdlDockItemClass *dock_item_class;
 
+    g_object_class = (GObjectClass *) klass;
     object_class = (GtkObjectClass *) klass;
     widget_class = (GtkWidgetClass *) klass;
     container_class = (GtkContainerClass *) klass;
     dock_item_class = (GdlDockItemClass *) klass;
 
-    parent_class = gtk_type_class (GDL_TYPE_DOCK_ITEM);
+    parent_class = g_type_class_peek_parent (klass);
 
-    object_class->set_arg = gdl_dock_paned_set_arg;
-    object_class->get_arg = gdl_dock_paned_get_arg;
+    g_object_class->set_property = gdl_dock_paned_set_property;
+    g_object_class->get_property = gdl_dock_paned_get_property;
 
     widget_class->realize = gdl_dock_paned_realize;
     widget_class->map = gdl_dock_paned_map;
@@ -142,7 +147,6 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
 
     widget_class->size_request = gdl_dock_paned_size_request;
     widget_class->size_allocate = gdl_dock_paned_size_allocate;
-    widget_class->draw = gdl_dock_paned_draw;
     widget_class->button_press_event = gdl_dock_paned_button_press;
     widget_class->button_release_event = gdl_dock_paned_button_release;
     widget_class->motion_notify_event = gdl_dock_paned_motion;
@@ -159,10 +163,19 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
     dock_item_class->item_hide = gdl_dock_paned_hide;
     dock_item_class->get_pos_hint = gdl_dock_paned_get_pos_hint;
 
-    gtk_object_add_arg_type("GdlDockPaned::handle_size", GTK_TYPE_UINT,
-                            GTK_ARG_READWRITE, ARG_HANDLE_SIZE);
-    gtk_object_add_arg_type("GdlDockPaned::quantum", GTK_TYPE_UINT,
-                            GTK_ARG_READWRITE, ARG_QUANTUM);
+    g_object_class_install_property (
+        g_object_class, PROP_HANDLE_SIZE,
+        g_param_spec_uint ("handle_size", _("Handle size"),
+                           _("Size in pixels of the paned separator"),
+                           0, 100, DEFAULT_DRAG_HANDLE_SIZE,
+                           G_PARAM_READWRITE));
+
+    g_object_class_install_property (
+        g_object_class, PROP_QUANTUM,
+        g_param_spec_uint ("quantum", _("Quantum"),
+                           _("Quantum in pixels for splits"),
+                           0, 100, 1,
+                           G_PARAM_READWRITE));
 }
 
 static GtkType
@@ -172,7 +185,7 @@ gdl_dock_paned_child_type (GtkContainer *container)
         !GDL_DOCK_PANED (container)->child2)
         return GTK_TYPE_WIDGET;
     else
-        return GTK_TYPE_NONE;
+        return G_TYPE_NONE;
 }
 
 static void
@@ -186,9 +199,9 @@ gdl_dock_paned_init (GdlDockPaned *paned)
     paned->xor_gc = NULL;
     paned->cursor_type = GDK_CROSS;
   
-    paned->handle_width = 5;
-    paned->handle_height = 5;
-    paned->handle_size = 5;
+    paned->handle_width = DEFAULT_DRAG_HANDLE_SIZE;
+    paned->handle_height = DEFAULT_DRAG_HANDLE_SIZE;
+    paned->handle_size = DEFAULT_DRAG_HANDLE_SIZE;
     paned->position_set = FALSE;
     paned->last_allocation = -1;
     paned->in_drag = FALSE;
@@ -202,42 +215,45 @@ gdl_dock_paned_init (GdlDockPaned *paned)
 }
 
 static void
-gdl_dock_paned_set_arg (GtkObject *object,
-                        GtkArg    *arg,
-                        guint      arg_id)
+gdl_dock_paned_set_property (GObject        *object,
+                             guint           prop_id,
+                             const GValue   *value,
+                             GParamSpec     *pspec)
 {
     GdlDockPaned *paned = GDL_DOCK_PANED (object);
   
-    switch (arg_id) {
-    case ARG_HANDLE_SIZE:
-        gdl_dock_paned_set_handle_size (paned, GTK_VALUE_UINT (*arg));
+    switch (prop_id) {
+    case PROP_HANDLE_SIZE:
+        gdl_dock_paned_set_handle_size (paned, g_value_get_uint (value));
         break;
-    case ARG_QUANTUM:
-        paned->quantum = GTK_VALUE_UINT (*arg);
+    case PROP_QUANTUM:
+        paned->quantum = g_value_get_uint (value);
         if (paned->quantum == 0)
             paned->quantum = 1;
         break;
     default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
     }
 }
 
 static void
-gdl_dock_paned_get_arg (GtkObject *object,
-                        GtkArg    *arg,
-                        guint      arg_id)
+gdl_dock_paned_get_property (GObject        *object,
+                             guint           prop_id,
+                             GValue         *value,
+                             GParamSpec     *pspec)
 {
     GdlDockPaned *paned = GDL_DOCK_PANED (object);
 
-    switch (arg_id) {
-    case ARG_HANDLE_SIZE:
-        GTK_VALUE_UINT (*arg) = paned->handle_size;
+    switch (prop_id) {
+    case PROP_HANDLE_SIZE:
+        g_value_set_uint (value, paned->handle_size);
         break;
-    case ARG_QUANTUM:
-        GTK_VALUE_UINT (*arg) = paned->quantum;
+    case PROP_QUANTUM:
+        g_value_set_uint (value, paned->quantum);
         break;
-    default:
-        arg->type = GTK_TYPE_INVALID;
+    default: 
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
     }
 }
@@ -379,6 +395,26 @@ gdl_dock_paned_unrealize (GtkWidget *widget)
         (* GTK_WIDGET_CLASS (parent_class)->unrealize) (widget);
 }
 
+static void
+gdl_dock_paned_paint (GtkWidget    *widget,
+                      GdkRectangle *area)
+{
+    GdlDockPaned *paned;
+    guint16       border_width;
+
+    g_return_if_fail (widget != NULL);
+    g_return_if_fail (GDL_IS_DOCK_PANED (widget));
+
+    if (GTK_WIDGET_VISIBLE (widget) && GTK_WIDGET_MAPPED (widget)) {
+        paned = GDL_DOCK_PANED (widget);
+        border_width = GTK_CONTAINER (paned)->border_width;
+
+        gdk_window_clear_area (widget->window,
+                               area->x, area->y, area->width,
+                               area->height);
+    }
+}
+
 static gint
 gdl_dock_paned_expose (GtkWidget      *widget,
                        GdkEventExpose *event)
@@ -398,7 +434,7 @@ gdl_dock_paned_expose (GtkWidget      *widget,
                 child_event = *event;
                 event->area.x += paned->handle_xpos;
                 event->area.y += paned->handle_ypos;
-                gtk_widget_draw (widget, &event->area);
+                gdl_dock_paned_paint (widget, &event->area);
 	    }
 
 	} else {
@@ -505,16 +541,16 @@ gdl_dock_paned_compute_position (GdlDockPaned *paned,
   
     child1_resize = child1_shrink = child2_resize = child2_shrink = TRUE;
     if (paned->child1)
-        gtk_object_get (GTK_OBJECT (paned->child1), 
-                        "resize", &child1_resize,
-                        "shrink", &child1_shrink,
-                        NULL);
+        g_object_get (paned->child1, 
+                      "resize", &child1_resize,
+                      "shrink", &child1_shrink,
+                      NULL);
 
     if (paned->child2)
-        gtk_object_get (GTK_OBJECT (paned->child2), 
-                        "resize", &child2_resize,
-                        "shrink", &child2_shrink,
-                        NULL);
+        g_object_get (paned->child2, 
+                      "resize", &child2_resize,
+                      "shrink", &child2_shrink,
+                      NULL);
 
     if (gdl_dock_paned_handle_shown (paned))
         allocation -= (gint) paned->handle_size;
@@ -787,35 +823,6 @@ gdl_dock_paned_size_allocate (GtkWidget     *widget,
             gtk_widget_size_allocate (paned->child1, &child1_allocation);
         if (paned->child2 && GTK_WIDGET_VISIBLE (paned->child2))
             gtk_widget_size_allocate (paned->child2, &child2_allocation);
-    }
-}
-
-static void
-gdl_dock_paned_draw (GtkWidget    *widget,
-                     GdkRectangle *area)
-{
-    GdlDockPaned *paned;
-    GdkRectangle  child_area;
-    guint16       border_width;
-
-    g_return_if_fail (widget != NULL);
-    g_return_if_fail (GDL_IS_DOCK_PANED (widget));
-
-    if (GTK_WIDGET_VISIBLE (widget) && GTK_WIDGET_MAPPED (widget)) {
-        paned = GDL_DOCK_PANED (widget);
-        border_width = GTK_CONTAINER (paned)->border_width;
-
-        gdk_window_clear_area (widget->window,
-                               area->x, area->y, area->width,
-                               area->height);
-
-        /* Redraw the children */
-        if (paned->child1 && gtk_widget_intersect (paned->child1, 
-                                                   area, &child_area))
-            gtk_widget_draw (paned->child1, &child_area);
-        if (paned->child2 && gtk_widget_intersect (paned->child2, 
-                                                   area, &child_area))
-            gtk_widget_draw (paned->child2, &child_area);
     }
 }
 
@@ -1300,24 +1307,30 @@ gdl_dock_paned_get_pos_hint (GdlDockItem      *item,
 
 /* Public interface */
 
-GtkType
+GType
 gdl_dock_paned_get_type (void)
 {
-    static GtkType paned_type = 0;
+    static GType paned_type = 0;
   
     if (!paned_type) {
-        static const GtkTypeInfo paned_info = {
-            "GdlDockPaned",
-            sizeof (GdlDockPaned),
+        GTypeInfo paned_info = {
             sizeof (GdlDockPanedClass),
-            (GtkClassInitFunc) gdl_dock_paned_class_init,
-            (GtkObjectInitFunc) gdl_dock_paned_init,
-            /* reserved_1 */ NULL,
-            /* reserved_2 */ NULL,
-            (GtkClassInitFunc) NULL,
+
+            NULL,               /* base_init */
+            NULL,               /* base_finalize */
+
+            (GClassInitFunc) gdl_dock_paned_class_init,
+            NULL,               /* class_finalize */
+            NULL,               /* class_data */
+
+            sizeof (GdlDockPaned),
+            0,                  /* n_preallocs */
+            (GInstanceInitFunc) gdl_dock_paned_init,
+            NULL                /* value_table */
         };
 
-        paned_type = gtk_type_unique (GDL_TYPE_DOCK_ITEM, &paned_info);
+        paned_type = g_type_register_static (GDL_TYPE_DOCK_ITEM, "GdlDockPaned", 
+                                            &paned_info, 0);
     }
   
     return paned_type;
@@ -1328,7 +1341,7 @@ gdl_dock_paned_new (GtkOrientation orientation)
 {
     GdlDockPaned *paned;
 
-    paned = gtk_type_new (GDL_TYPE_DOCK_PANED);
+    paned = GDL_DOCK_PANED (g_object_new (GDL_TYPE_DOCK_PANED, NULL));
 
     gdl_dock_item_set_orientation (GDL_DOCK_ITEM (paned), orientation);
 

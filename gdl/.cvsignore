@@ -9,3 +9,6 @@ GDL-skels.c
 GDL-common.c
 GDL.h
 test-dock
+libgdlmarshal.c
+libgdlmarshal.h
+libgdltypebuiltins.*

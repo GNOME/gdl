@@ -12,6 +12,8 @@
 #define GDL_DOCK_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GDL_TYPE_DOCK, GdlDockClass))
 #define GDL_IS_DOCK(obj)         (GTK_CHECK_TYPE ((obj), GDL_TYPE_DOCK))
 #define GDL_IS_DOCK_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK))
+#define GDL_DOCK_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_DOCK, GdlDockClass))
+
 
 
 typedef struct _GdlDock       GdlDock;
@@ -40,7 +42,7 @@ struct _GdlDockClass {
 
 GtkWidget     *gdl_dock_new               (void);
 
-GtkType        gdl_dock_get_type          (void);
+GType          gdl_dock_get_type          (void);
 
 void           gdl_dock_bind_item         (GdlDock          *dock,
                                            GdlDockItem      *item);

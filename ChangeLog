@@ -1,3 +1,43 @@
+2001-12-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* Port to Gnome 2 platform of the source root files and the gdl/
+	directory.
+
+	* gdl-1.0.pc.in
+	gdl/libgdlmarshal.list: New files
+
+	* gdlConf.sh.in
+	gdl.m4: Removed files
+
+	* autogen.sh: Changed to use gnome2 macros.
+	
+	* configure.in: gettext renamed to gdl-1. Disabled build of
+	scintilla-control and symbol-browser-control.  
+	Version bumped to 0.3.0
+	
+	* gdl/Makefile.am: Generate glib enums and marshals.  Library
+	renamed to libgdl-1.  Headers are installed in
+	$(includedir)/libgdl-1.0/gdl.  IDL files are installed in
+	$(datadir)/idl/libgdl-1.0
+
+	* gdl/gdl-server-manager.[ch]: Removed files
+
+	* Changes to GdlDock: Type system changed to GType.  Replaced old
+	Gtk arg system with new GObject property system.  Gtk signal
+	system changed to GObject signal system.  Removed draw virtuals,
+	made expose-event handlers work correctly.  Fixed a couple of
+	object reference bugs (sink tablabels and bound items, unbind
+	items when destroying the dock).  
+
+	* gdl/gdl-dock.c: libxml2 API changes.
+
+	* gdl/gdl-dock-notebook.c: Fixed forall virtual.  Moved internal
+	GtkNotebook creation to gdl_dock_notebook_init function (it was in
+	gdl_dock_notebook_new)
+
+	* gdl/gdl-dock-tablabel.c: Tablabel handle doesn't have a shadow
+	anymore, so it's more flat
+	
 2001-12-20 Naba Kumar <kh_naba@yahoo.com>
 
 	* .cvsignore

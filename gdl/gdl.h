@@ -23,8 +23,13 @@
 #ifndef __GDL_H__
 #define __GDL_H__
 
-#include "GDL.h"
-#include "gdl-tools.h"
-#include "gdl-server-manager.h"
+#include <gdl/GDL.h>
+#include <gdl/gdl-tools.h>
+#include <gdl/gdl-dock.h>
+#include <gdl/gdl-dock-item.h>
+#include <gdl/gdl-dock-paned.h>
+#include <gdl/gdl-dock-notebook.h>
+#include <gdl/gdl-dock-tablabel.h>
+#include <gdl/gdl-file-selector-util.h>
 
 #endif

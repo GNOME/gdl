@@ -6,7 +6,8 @@
 #undef HAVE_LIBSM
 #undef PACKAGE
 #undef VERSION
-
+#undef GETTEXT_PACKAGE
+#undef GNOME_EXPLICIT_TRANSLATION_DOMAIN
 #undef clock_t
 #undef fpos_t
 #undef L_tmpnam

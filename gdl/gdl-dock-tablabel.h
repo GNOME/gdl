@@ -11,6 +11,7 @@
 #define GDL_DOCK_TABLABEL_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), GDL_TYPE_DOCK_TABLABEL, GdlDockTablabelClass))
 #define GDL_IS_DOCK_TABLABEL(obj)         (GTK_CHECK_TYPE ((obj), GDL_TYPE_DOCK_TABLABEL))
 #define GDL_IS_DOCK_TABLABEL_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK_TABLABEL))
+#define GDL_DOCK_TABLABEL_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_DOCK_TABLABEL, GdlDockTablabelClass))
 
 typedef struct _GdlDockTablabel      GdlDockTablabel;
 typedef struct _GdlDockTablabelClass GdlDockTablabelClass;
@@ -32,7 +33,7 @@ struct _GdlDockTablabelClass {
 };
 
 GtkWidget     *gdl_dock_tablabel_new           (const gchar     *label);
-GtkType        gdl_dock_tablabel_get_type      (void);
+GType          gdl_dock_tablabel_get_type      (void);
 void           gdl_dock_tablabel_activate      (GdlDockTablabel *tablabel);
 void           gdl_dock_tablabel_deactivate    (GdlDockTablabel *tablabel);
 

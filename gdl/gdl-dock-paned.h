@@ -48,6 +48,7 @@
 #define GDL_DOCK_PANED_GET_CLASS(obj)        (GTK_CHECK_GET_CLASS ((obj), GDL_TYE_DOCK_PANED, GdlDockPanedClass))
 
 
+
 typedef struct _GdlDockPaned      GdlDockPaned;
 typedef struct _GdlDockPanedClass GdlDockPanedClass;
 
@@ -89,7 +90,7 @@ struct _GdlDockPanedClass {
 };
 
 
-GtkType    gdl_dock_paned_get_type        (void);
+GType      gdl_dock_paned_get_type        (void);
 
 GtkWidget *gdl_dock_paned_new             (GtkOrientation orientation);
 

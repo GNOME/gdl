@@ -11,6 +11,7 @@
 static void  gdl_dock_notebook_class_init    (GdlDockNotebookClass *klass);
 static void  gdl_dock_notebook_init          (GdlDockNotebook *notebook);
 
+static void  gdl_dock_notebook_destroy       (GtkObject    *object);
 static void  gdl_dock_notebook_add           (GtkContainer *container,
 					      GtkWidget    *widget);
 static void  gdl_dock_notebook_remove        (GtkContainer *container,
@@ -40,6 +41,11 @@ static gchar *gdl_dock_notebook_get_pos_hint (GdlDockItem      *item,
                                               GdlDockItem      *caller,
                                               GdlDockPlacement *position);
 
+static void   gdl_dock_notebook_switch_page   (GtkNotebook     *nb,
+                                               GtkNotebookPage *page,
+                                               gint             page_num,
+                                               gpointer         data);
+
 /* Class variables and definitions */
 
 static GdlDockItemClass *parent_class = NULL;
@@ -60,7 +66,9 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
     container_class = (GtkContainerClass *) klass;
     item_class = (GdlDockItemClass *) klass;
 
-    parent_class = gtk_type_class (gdl_dock_item_get_type ());
+    parent_class = g_type_class_peek_parent (klass);
+
+    object_class->destroy = gdl_dock_notebook_destroy;
 
     container_class->add = gdl_dock_notebook_add;
     container_class->remove = gdl_dock_notebook_remove;
@@ -76,7 +84,28 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
 static void
 gdl_dock_notebook_init (GdlDockNotebook *notebook)
 {
-    notebook->notebook = NULL;
+    GtkBin *bin;
+
+    bin = GTK_BIN (notebook);
+
+    /* create the container notebook */
+    bin->child = notebook->notebook = gtk_notebook_new ();
+    gtk_widget_set_parent (notebook->notebook, GTK_WIDGET (notebook));
+    gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook->notebook), TRUE);
+    g_signal_connect (notebook->notebook, "switch_page",
+                      G_CALLBACK (gdl_dock_notebook_switch_page), notebook);
+    gtk_widget_show (notebook->notebook);
+}
+
+static void
+gdl_dock_notebook_destroy (GtkObject *object)
+{
+    GdlDockNotebook *notebook = GDL_DOCK_NOTEBOOK (object);
+
+    if (notebook->notebook) {
+        gtk_widget_unparent (notebook->notebook);
+        notebook->notebook = NULL;
+    };
 }
 
 static void
@@ -155,7 +184,14 @@ gdl_dock_notebook_forall (GtkContainer *container,
 
     notebook = GDL_DOCK_NOTEBOOK (container);
 
-    (*callback) (notebook->notebook, callback_data);
+    if (notebook->notebook) {
+        if (include_internals) 
+            (*callback) (notebook->notebook, callback_data);
+        else {
+            gtk_container_foreach (GTK_CONTAINER (notebook->notebook),
+                                   callback, callback_data);
+        };
+    };
 }
 
 static void
@@ -171,7 +207,7 @@ gdl_dock_notebook_auto_reduce (GdlDockItem *item)
     parent = GTK_WIDGET (item)->parent;
     nb = GDL_DOCK_NOTEBOOK (item);
 
-    children = gtk_container_children (GTK_CONTAINER (nb->notebook));
+    children = gtk_container_get_children (GTK_CONTAINER (nb->notebook));
     /* Check if only one item remains in the notebook. */
     if (g_list_length (children) <= 1) {
         child = gtk_notebook_get_nth_page (
@@ -210,13 +246,16 @@ gdl_dock_notebook_switch_page (GtkNotebook     *nb,
 
     /* deactivate old tablabel */
     if (nb->cur_page) {
-        tablabel = nb->cur_page->tab_label;
+        tablabel = gtk_notebook_get_tab_label (
+            nb, gtk_notebook_get_nth_page (
+                nb, gtk_notebook_get_current_page (nb)));
         if (tablabel && GDL_IS_DOCK_TABLABEL (tablabel))
             gdl_dock_tablabel_deactivate (GDL_DOCK_TABLABEL (tablabel));
     };
 
     /* activate new label */
-    tablabel = page->tab_label;
+    tablabel = gtk_notebook_get_tab_label (
+        nb, gtk_notebook_get_nth_page (nb, page_num));
     if (tablabel && GDL_IS_DOCK_TABLABEL (tablabel))
         gdl_dock_tablabel_activate (GDL_DOCK_TABLABEL (tablabel));
 }
@@ -304,7 +343,7 @@ gdl_dock_notebook_get_pos_hint (GdlDockItem      *item,
     g_return_val_if_fail (item != NULL, NULL);
 
     notebook = GDL_DOCK_NOTEBOOK (item);
-    l = pages = gtk_container_children (GTK_CONTAINER (notebook->notebook));
+    l = pages = gtk_container_get_children (GTK_CONTAINER (notebook->notebook));
 
     if (caller) {
         gboolean          caller_found = FALSE;
@@ -351,43 +390,36 @@ GtkWidget *
 gdl_dock_notebook_new (void)
 {
     GdlDockNotebook *notebook;
-    GtkBin          *bin;
 
-    notebook = GDL_DOCK_NOTEBOOK 
-	(gtk_type_new (gdl_dock_notebook_get_type ()));
-    bin = GTK_BIN (notebook);
-
-    /* create the container notebook */
-    bin->child = notebook->notebook = gtk_notebook_new ();
-    gtk_widget_set_parent (notebook->notebook, GTK_WIDGET (notebook));
-    gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook->notebook), TRUE);
-    gtk_signal_connect (GTK_OBJECT (notebook->notebook), "switch_page",
-                        (GtkSignalFunc) gdl_dock_notebook_switch_page, 
-                        (gpointer) notebook);
-    gtk_widget_show (notebook->notebook);
+    notebook = GDL_DOCK_NOTEBOOK (g_object_new (GDL_TYPE_DOCK_NOTEBOOK, NULL));
 
     return GTK_WIDGET (notebook);
 }
 
-guint
+GType
 gdl_dock_notebook_get_type (void)
 {
-    static GtkType dock_notebook_type = 0;
+    static GType dock_notebook_type = 0;
 
     if (dock_notebook_type == 0) {
-        GtkTypeInfo dock_notebook_info = {
-            "GdlDockNotebook",
-            sizeof (GdlDockNotebook),
+        GTypeInfo dock_notebook_info = {
             sizeof (GdlDockNotebookClass),
-            (GtkClassInitFunc) gdl_dock_notebook_class_init,
-            (GtkObjectInitFunc) gdl_dock_notebook_init,
-            /* reserved_1 */ NULL,
-            /* reserved_2 */ NULL,
-            (GtkClassInitFunc) NULL,
+
+            NULL,               /* base_init */
+            NULL,               /* base_finalize */
+
+            (GClassInitFunc) gdl_dock_notebook_class_init,
+            NULL,               /* class_finalize */
+            NULL,               /* class_data */
+
+            sizeof (GdlDockNotebook),
+            0,                  /* n_preallocs */
+            (GInstanceInitFunc) gdl_dock_notebook_init,
+            NULL                /* value_table */
         };
 
-        dock_notebook_type = gtk_type_unique (gdl_dock_item_get_type (), 
-					      &dock_notebook_info);
+        dock_notebook_type = g_type_register_static (
+            GDL_TYPE_DOCK_ITEM, "GdlDockNotebook", &dock_notebook_info, 0);
     }
 
     return dock_notebook_type;

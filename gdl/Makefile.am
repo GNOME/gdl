@@ -1,9 +1,12 @@
 INCLUDES = \
-	-DGNOMELOCALEDIR=\""$(datadir)/locales"\" \
-	-I$(includedir) $(GNOME_INCLUDEDIR) $(BONOBO_CFLAGS) $(GNOME_CFLAGS) \
-	$(XML_CFLAGS) $(BONOBOX_CFLAGS)
+	-DGNOMELOCALEDIR=\""$(datadir)/locales"\" 	\
+	-DG_DISABLE_DEPRECATED 				\
+	-DGTK_DISABLE_DEPRECATED 			\
+	-I$(includedir) -I$(top_srcdir)			\
+	$(WARN_CFLAGS)					\
+	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
 
-lib_LTLIBRARIES = libgdl.la
+lib_LTLIBRARIES = libgdl-1.la
 
 CORBA_GENERATED_HEADER_FILES = GDL.h
 
@@ -16,41 +19,48 @@ CORBA_GENERATED = \
 BUILT_SOURCES=$(CORBA_GENERATED)
 
 idl_dir = $(top_srcdir)/idl
-IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/idl $(IDL_CFLAGS)
+IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/idl \
+	-I $(LIBBONOBO_IDL_DIR)  				\
+	-I $(BONOBO_ACTIVATION_IDL_DIR)
 
-$(CORBA_GENERATED) : $(idl_dir)/GDL.idl \
-		     $(idl_dir)/editor-buffer.idl \
-		     $(idl_dir)/editor-gutter.idl \
-		     $(idl_dir)/symbol-browser.idl
+$(CORBA_GENERATED): $(idl_dir)/GDL.idl \
+		    $(idl_dir)/editor-buffer.idl \
+		    $(idl_dir)/editor-gutter.idl \
+	            $(idl_dir)/symbol-browser.idl 
 	$(ORBIT_IDL) $(IDL_FLAGS) $(idl_dir)/GDL.idl
 
-libgdl_la_SOURCES = \
+CLEANFILES = $(CORBA_GENERATED) 		\
+	libgdltypebuiltins.c			\
+	libgdltypebuiltins.h			\
+	libgdlmarshal.c				\
+	libgdlmarshal.h
+
+libgdl_1_la_SOURCES = \
 	$(CORBA_GENERATED) \
-	gdl-server-manager.c \
 	gdl-dock.c \
 	gdl-dock-item.c \
 	gdl-dock-notebook.c \
 	gdl-dock-paned.c \
 	gdl-dock-tablabel.c \
-	gdl-file-selector-util.c
+	gdl-file-selector-util.c \
+	libgdltypebuiltins.c \
+	libgdlmarshal.c
 
-libgdl_la_LIBADD = \
-	$(BONOBO_LIBS) \
-	$(BONOBOX_LIBS) \
-	$(GNOME_LIBS) \
-	$(GNOMEUI_LIBS) \
+$(libgdl_1_la_OBJECTS): \
+	libgdltypebuiltins.h \
+	libgdlmarshal.h
+
+libgdl_1_la_LIBADD = \
+	$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS)
 
 noinst_PROGRAMS=test-dock
 
 test_dock_sources=test-dock.c
-test_dock_LDADD=libgdl.la $(XML_LIBS)
+test_dock_LDADD=libgdl-1.la $(XML_LIBS)
 
-libgdlincludedir = $(includedir)/gdl
-libgdlinclude_HEADERS = \
-	$(CORBA_GENERATED_HEADER_FILES) \
+libgdl_headers = \
 	gdl.h \
-	gdl-server-manager.h \
 	gdl-tools.h \
 	gdl-dock.h \
 	gdl-dock-item.h \
@@ -58,3 +68,57 @@ libgdlinclude_HEADERS = \
 	gdl-dock-paned.h \
 	gdl-dock-tablabel.h \
 	gdl-file-selector-util.h
+
+libgdlincludedir = $(includedir)/libgdl-1.0/gdl
+libgdlinclude_HEADERS = \
+	$(CORBA_GENERATED_HEADER_FILES) \
+	$(libgdl_headers) \
+	libgdltypebuiltins.h
+
+# enumerations code generation
+
+libgdltypebuiltins.c: Makefile.am $(libgdl_headers)
+	@GLIB_MKENUMS@ \
+			--fhead "#include <glib-object.h>\n" \
+			--fhead "#include \"libgdltypebuiltins.h\"\n\n" \
+			--fprod "\n/* enumerations from \"@filename@\" */" \
+			--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
+			--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
+			--vtail "  { 0, NULL, NULL }\n};\n\n" \
+			--vtail "GType\n@enum_name@_get_type (void)\n{\n" \
+			--vtail "  static GType type = 0;\n\n" \
+			--vtail "  if (!type)\n" \
+			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
+			--vtail "  return type;\n}\n\n" \
+		$(libgdl_headers) > xgen-gtbec \
+	&& cp xgen-gtbec $(@F) \
+	&& rm -f xgen-gtbec
+
+libgdltypebuiltins.h: Makefile.am $(libgdl_headers)
+	@GLIB_MKENUMS@ \
+			--fhead "#ifndef __LIBGDLTYPEBUILTINS_H__\n" \
+			--fhead "#define __LIBGDLTYPEBUILTINS_H__ 1\n\n" \
+			--fhead "#include <gdl/gdl.h>\n\n" \
+			--fhead "G_BEGIN_DECLS\n\n" \
+			--ftail "G_END_DECLS\n\n" \
+			--ftail "#endif /* __LIBGDLTYPEBUILTINS_H__ */\n" \
+			--fprod "\n/* --- @filename@ --- */" \
+			--eprod "#define GDL_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
+			--eprod "GType @enum_name@_get_type (void);\n" \
+		$(libgdl_headers) > xgen-gth \
+	&& cp xgen-gth $(@F) \
+	&& rm -f xgen-gth
+
+libgdlmarshal.h: Makefile.am libgdlmarshal.list
+	@GLIB_GENMARSHAL@ \
+		--prefix=gdl_marshal libgdlmarshal.list --header > xgen-gmc \
+	&& cp xgen-gmc $(@F) \
+	&& rm -f xgen-gmc
+
+libgdlmarshal.c: Makefile.am libgdlmarshal.h
+	echo "#include \"libgdlmarshal.h\"" > xgen-gmc \
+	&& @GLIB_GENMARSHAL@ \
+		--prefix=gdl_marshal libgdlmarshal.list --body >> xgen-gmc \
+	&& cp xgen-gmc $(@F) \
+	&& rm -f xgen-gmc
+

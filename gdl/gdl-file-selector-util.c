@@ -9,9 +9,14 @@
  *
  */
 
-#include <config.h>
+#undef GTK_DISABLE_DEPRECATED
 
 #include "gdl-file-selector-util.h"
+
+#include <string.h>
+#include <stdlib.h>
+
+#include <glib.h>
 
 #include <bonobo/bonobo-event-source.h>
 #include <bonobo/bonobo-exception.h>
@@ -22,15 +27,11 @@
 #include <gtk/gtkfilesel.h>
 #include <gtk/gtksignal.h>
 
-#include <libgnome/libgnome.h>
+#include <libgnome/gnome-program.h>
 #include <libgnome/gnome-i18n.h>
 
-#include <libgnomeui/gnome-dialog.h>
-#include <libgnomeui/gnome-dialog-util.h>
-#include <libgnomeui/gnome-window-icon.h>
-
-#define GET_MODE(w) (GPOINTER_TO_INT (gtk_object_get_data (GTK_OBJECT (w), "GdlFileSelectorMode")))
-#define SET_MODE(w, m) (gtk_object_set_data (GTK_OBJECT (w), "GdlFileSelectorMode", GINT_TO_POINTER (m)))
+#define GET_MODE(w) (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (w), "GdlFileSelectorMode")))
+#define SET_MODE(w, m) (g_object_set_data (G_OBJECT (w), "GdlFileSelectorMode", GINT_TO_POINTER (m)))
 
 typedef enum {
 	FILESEL_OPEN,
@@ -48,8 +49,8 @@ delete_file_selector (GtkWidget *d, GdkEventAny *e, gpointer data)
 
 static void
 listener_cb (BonoboListener *listener, 
-	     gchar *event_name,
-	     CORBA_any *any,
+	     const gchar *event_name,
+	     const CORBA_any *any,
 	     CORBA_Environment *ev,
 	     gpointer data)
 {
@@ -79,10 +80,10 @@ listener_cb (BonoboListener *listener,
 		for (i = 0; i < seq->_length; i++)
 			strv[i] = g_strdup (seq->_buffer[i]);
 		strv[i] = NULL;
-		gtk_object_set_user_data (GTK_OBJECT (dialog), strv);
+		g_object_set_data (G_OBJECT (dialog), "user_data", strv);
 	} else {
-		gtk_object_set_user_data (GTK_OBJECT (dialog),
-					  g_strdup (seq->_buffer[0]));
+		g_object_set_data (G_OBJECT (dialog), "user_data",
+				   g_strdup (seq->_buffer[0]));
 	}
 
  cancel_clicked:
@@ -102,7 +103,7 @@ create_control (gboolean enable_vfs, FileselMode mode)
 		"EnableVFS=%d;"
 		"MultipleSelection=%d;"
 		"SaveMode=%d",
-		gnome_app_id,
+		gnome_program_get_app_id (gnome_program_get ()),
 		enable_vfs,
 		mode == FILESEL_OPEN_MULTI, 
 		mode == FILESEL_SAVE);
@@ -128,9 +129,9 @@ create_bonobo_selector (gboolean    enable_vfs,
 	if (!control)
 		return NULL;
 
-	dialog = gtk_window_new (GTK_WINDOW_DIALOG);
+	dialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_container_add (GTK_CONTAINER (dialog), GTK_WIDGET (control));
-	gtk_widget_set_usize (dialog, 560, 450);
+	gtk_widget_set_size_request (dialog, 560, 450);
 
 	bonobo_event_source_client_add_listener (
 		bonobo_widget_get_objref (control), 
@@ -157,7 +158,7 @@ static void
 ok_clicked_cb (GtkWidget *widget, gpointer data)
 {
 	GtkFileSelection *fsel;
-	gchar *file_name;
+	const gchar *file_name;
 
 	fsel = data;
 
@@ -167,7 +168,7 @@ ok_clicked_cb (GtkWidget *widget, gpointer data)
 		return;
 	
 	/* Change into directory if that's what user selected */
-	if (g_file_test (file_name, G_FILE_TEST_ISDIR)) {
+	if (g_file_test (file_name, G_FILE_TEST_IS_DIR)) {
 		gint name_len;
 		gchar *dir_name;
 
@@ -183,7 +184,8 @@ ok_clicked_cb (GtkWidget *widget, gpointer data)
 	} else if (GET_MODE (fsel) == FILESEL_OPEN_MULTI) {
 		GtkCList *clist;
 		GList  *row;
-		char **strv, *filedirname, *temp;
+		char **strv, *temp;
+		const gchar *filedirname;
 		int i, j, rows, rownum;
 
 		gtk_widget_hide (GTK_WIDGET (fsel));
@@ -217,7 +219,7 @@ ok_clicked_cb (GtkWidget *widget, gpointer data)
 		filedirname = gtk_file_selection_get_filename (fsel);
 
 		for (i = j = 1; strv[i]; i++) {
-			temp = g_concat_dir_and_file (filedirname, strv[i]);
+			temp = g_build_filename (filedirname, strv[i], NULL);
 
 			/* avoid duplicates */
 			if (strcmp (temp, strv[0]))
@@ -305,7 +307,7 @@ run_file_slector (GtkWindow  *parent,
 
 	SET_MODE (dialog, mode);
 
-	gnome_window_icon_set_from_default (dialog);
+	gtk_window_set_icon (dialog, NULL);
 	gtk_window_set_title (dialog, title);
 	gtk_window_set_modal (dialog, TRUE);
 

@@ -1,4 +1,4 @@
-idldir = $(datadir)/idl
+idldir = $(datadir)/idl/libgdl-1.0
 
 idl_DATA = \
 	GDL.idl \
