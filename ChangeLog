@@ -1,3 +1,10 @@
+2001-11-15  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-file-selector-util.c: Added file.  Copied from
+	libgnomefilesel.
+
+	* gdl/Makefile.am: Build gdl-file-selector-util.c.
+
 2001-11-10  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock.c (gdl_dock_layout_build): changed signature and
