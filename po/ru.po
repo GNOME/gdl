@@ -1,466 +1,429 @@
-# Copyright (C) 2001 Free Software Foundation, Inc.
-# Valek Filippov <frob@df.ru>, 2001.
+# Copyright (C) 2001-2003 Free Software Foundation, Inc.
+# Valek Filippov <frob@df.ru>, 2001, 2003
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"POT-Creation-Date: 2002-07-18 18:04-0300\n"
-"PO-Revision-Date: 2001-10-08 15:32+0400\n"
+"POT-Creation-Date: 2003-07-05 16:34+0400\n"
+"PO-Revision-Date: 2003-07-05 16:45+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdl/gdl-data-view.c:416
+#: gdl/gdl-data-view.c:421
 msgid "Expander Size"
 msgstr ""
 
-#: gdl/gdl-data-view.c:417
+#: gdl/gdl-data-view.c:422
 msgid "Size of the expander arrow."
 msgstr ""
 
-#: gdl/gdl-dock-item-grip.c:239
+#: gdl/gdl-dock-item-grip.c:244
 msgid "Dock the toolbar"
 msgstr ""
 
-#: gdl/gdl-dock-item-grip.c:240
+#: gdl/gdl-dock-item-grip.c:245
 msgid "Un dock the toolbar"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:245
-#, fuzzy
+#: gdl/gdl-dock-item.c:242
 msgid "Orientation"
-msgstr "Направление"
+msgstr "п²п╟п©я─п╟п╡п╩п╣п╫п╦п╣"
 
-#: gdl/gdl-dock-item.c:246
+#: gdl/gdl-dock-item.c:243
 msgid "Orientation of the docking item"
-msgstr ""
+msgstr "п²п╟п©я─п╟п╡п╩п╣п╫п╦п╣ п╡я│я┌я─п╟п╦п╡п╟п╣п╪п╬пЁп╬ я█п╩п╣п╪п╣п╫я┌п╟"
 
-#: gdl/gdl-dock-item.c:261
+#: gdl/gdl-dock-item.c:258
 msgid "Resizable"
-msgstr ""
+msgstr "п║ п╦п╥п╪п╣п╫я▐п╣п╪я▀п╪ я─п╟п╥п╪п╣я─п╬п╪"
 
-#: gdl/gdl-dock-item.c:262
+#: gdl/gdl-dock-item.c:259
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:269
+#: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
-msgstr ""
+msgstr "п÷п╬п╡п╣п╢п╣п╫п╦п╣ я█п╩п╣п╪п╣п╫я┌п╟"
 
-#: gdl/gdl-dock-item.c:270
+#: gdl/gdl-dock-item.c:267
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:278
+#: gdl/gdl-dock-item.c:275
 msgid "Grip size"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:279
+#: gdl/gdl-dock-item.c:276
 msgid "Size in pixels of the grip to drag the dock item"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:285 gdl/gdl-dock-layout.c:701 gdl/gdl-dock-master.c:123
+#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
 msgid "Locked"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:286
+#: gdl/gdl-dock-item.c:283
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:294
+#: gdl/gdl-dock-item.c:291
 msgid "Preferred width"
-msgstr ""
+msgstr "п÷я─п╣п╢п©п╬я┤я┌п╦я┌п╣п╩я▄п╫п╟я▐ я┬п╦я─п╦п╫п╟"
 
-#: gdl/gdl-dock-item.c:295
+#: gdl/gdl-dock-item.c:292
 msgid "Preferred width for the dock item"
-msgstr ""
+msgstr "п÷я─п╣п╢п©п╬я┤я┌п╦я┌п╣п╩я▄п╫п╟я▐ я┬п╦я─п╦п╫п╟ п╢п╩я▐ п╡я│я┌я─п╟п╦п╡п╟п╣п╪п╬пЁп╬ я█п╩п╣п╪п╣п╫я┌п╟"
 
-#: gdl/gdl-dock-item.c:301
+#: gdl/gdl-dock-item.c:298
 msgid "Preferred height"
-msgstr ""
+msgstr "п÷я─п╣п╢п©п╬я┤я┌п╦я┌п╣п╩я▄п╫п╟я▐ п╡я▀я│п╬я┌п╟"
 
-#: gdl/gdl-dock-item.c:302
+#: gdl/gdl-dock-item.c:299
 msgid "Preferred height for the dock item"
-msgstr ""
+msgstr "п÷я─п╣п╢п©п╬я┤я┌п╦я┌п╣п╩я▄п╫п╟я▐ п╡я▀я│п╬я┌п╟ п╢п╩я▐ п╡я│я┌я─п╟п╦п╡п╟п╣п╪п╬пЁп╬ я█п╩п╣п╪п╣п╫я┌п╟"
 
-#: gdl/gdl-dock-item.c:536
+#: gdl/gdl-dock-item.c:546
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
 
-#: gdl/gdl-dock-item.c:543
+#: gdl/gdl-dock-item.c:553
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:1139
+#: gdl/gdl-dock-item.c:1149
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 
-#. Dock/Undock menuitem.
-#: gdl/gdl-dock-item.c:1267
-msgid "Dock"
-msgstr ""
-
-#: gdl/gdl-dock-item.c:1268
-msgid "Undock"
-msgstr ""
-
 #. Hide menuitem.
-#: gdl/gdl-dock-item.c:1280
+#: gdl/gdl-dock-item.c:1231
 msgid "Hide"
-msgstr ""
+msgstr "п║п╨я─я▀я┌я▄"
 
 #. Lock menuitem
-#: gdl/gdl-dock-item.c:1286
+#: gdl/gdl-dock-item.c:1237
 msgid "Lock"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:1474
+#: gdl/gdl-dock-item.c:1404
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:121
-#, fuzzy
+#: gdl/gdl-dock-layout.c:125
 msgid "Master"
-msgstr "Вставить"
+msgstr ""
 
-#: gdl/gdl-dock-layout.c:122
+#: gdl/gdl-dock-layout.c:126
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:129
+#: gdl/gdl-dock-layout.c:133
 msgid "Dirty"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:130
+#: gdl/gdl-dock-layout.c:134
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:412
+#: gdl/gdl-dock-layout.c:447
 msgid "You must provide a name for the layout"
 msgstr ""
 
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:633
+#: gdl/gdl-dock-layout.c:625
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:691
+#: gdl/gdl-dock-layout.c:680
 msgid "Visible"
-msgstr ""
+msgstr "п▓п╦п╢п╦п╪я▀п╧"
 
-#: gdl/gdl-dock-layout.c:709
+#: gdl/gdl-dock-layout.c:687
 msgid "Item"
-msgstr ""
+msgstr "п╜п╩п╣п╪п╣п╫я┌"
 
-#: gdl/gdl-dock-layout.c:762 gdl/gdl-dock-object.c:115
+#: gdl/gdl-dock-layout.c:737 gdl/gdl-dock-object.c:120
 msgid "Name"
-msgstr ""
+msgstr "п²п╟п╥п╡п╟п╫п╦п╣"
 
-#: gdl/gdl-dock-layout.c:801 gdl/layout.glade.h:2
+#: gdl/gdl-dock-layout.c:776 gdl/layout.glade.h:2
 msgid "Dock items"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:807 gdl/layout.glade.h:4
+#: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
 msgid "Saved layouts"
-msgstr ""
+msgstr "п║п╬я┘я─п╟п╫я▒п╫п╫я▀п╣ я─п╟п╥п╪п╣я┴п╣п╫п╦я▐"
 
-#: gdl/gdl-dock-layout.c:849
+#: gdl/gdl-dock-layout.c:824
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:1318
+#: gdl/gdl-dock-layout.c:1303
 msgid "Layout managment"
-msgstr ""
+msgstr "пёп©я─п╟п╡п╩п╣п╫п╦п╣ я─п╟п╥п╪п╣я┴п╣п╫п╦п╣п╪"
 
-#: gdl/gdl-dock-master.c:116 gdl/gdl-dock.c:180
+#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
 msgid "Default title"
-msgstr ""
+msgstr "п≈п╟пЁп╬п╩п╬п╡п╬п╨ п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌"
 
-#: gdl/gdl-dock-master.c:117
+#: gdl/gdl-dock-master.c:136
 msgid "Default title for newly created floating docks"
 msgstr ""
 
-#: gdl/gdl-dock-master.c:124
+#: gdl/gdl-dock-master.c:143
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
 
-#: gdl/gdl-dock-master.c:667
+#: gdl/gdl-dock-master.c:730
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
 
-#: gdl/gdl-dock-master.c:792
+#: gdl/gdl-dock-master.c:895
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
 
-#: gdl/gdl-dock-notebook.c:129
-#, fuzzy
+#: gdl/gdl-dock-notebook.c:134
 msgid "Page"
-msgstr "Вставить"
+msgstr "п║я┌я─п╟п╫п╦я├п╟"
 
-#: gdl/gdl-dock-notebook.c:130
+#: gdl/gdl-dock-notebook.c:135
 msgid "The index of the current page"
-msgstr ""
+msgstr "п≤п╫п╢п╣п╨я│ я┌п╣п╨я┐я┴п╣п╧ я│я┌я─п╟п╫п╦я├я▀"
 
-#: gdl/gdl-dock-object.c:116
+#: gdl/gdl-dock-object.c:121
 msgid "Unique name for identifying the dock object"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:123
+#: gdl/gdl-dock-object.c:128
 msgid "Long name"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:124
+#: gdl/gdl-dock-object.c:129
 msgid "Human readable name for the dock object"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:130
+#: gdl/gdl-dock-object.c:135
 msgid "Dock master"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:131
+#: gdl/gdl-dock-object.c:136
 msgid "Dock master this dock object is bound to"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:400
+#: gdl/gdl-dock-object.c:405
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:529
+#: gdl/gdl-dock-object.c:534
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:536
+#: gdl/gdl-dock-object.c:541
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 
-#: gdl/gdl-dock-object.c:578
+#: gdl/gdl-dock-object.c:583
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 
-#: gdl/gdl-dock-paned.c:129
+#: gdl/gdl-dock-paned.c:134
 msgid "Position"
-msgstr ""
+msgstr "п÷п╬п╥п╦я├п╦я▐"
 
-#: gdl/gdl-dock-paned.c:130
+#: gdl/gdl-dock-paned.c:135
 msgid "Position of the divider in pixels"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:120
+#: gdl/gdl-dock-placeholder.c:127
 msgid "Sticky"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:121
+#: gdl/gdl-dock-placeholder.c:128
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:128
+#: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:129
+#: gdl/gdl-dock-placeholder.c:136
 msgid "The dock object this placeholder is attached to"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:136
+#: gdl/gdl-dock-placeholder.c:143
 msgid "Next placement"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:137
+#: gdl/gdl-dock-placeholder.c:144
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:298
+#: gdl/gdl-dock-placeholder.c:305
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:412
+#: gdl/gdl-dock-placeholder.c:419
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:433
+#: gdl/gdl-dock-placeholder.c:440
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr ""
 
-#: gdl/gdl-dock-tablabel.c:125
+#: gdl/gdl-dock-tablabel.c:130
 msgid "Controlling dock item"
 msgstr ""
 
-#: gdl/gdl-dock-tablabel.c:126
+#: gdl/gdl-dock-tablabel.c:131
 msgid "Dockitem which 'owns' this tablabel"
 msgstr ""
 
-#: gdl/gdl-dock.c:172
+#: gdl/gdl-dock.c:177
 msgid "Floating"
-msgstr ""
+msgstr "п÷п╩п╟п╡п╟я▌я┴п╦п╧"
 
-#: gdl/gdl-dock.c:173
+#: gdl/gdl-dock.c:178
 msgid "Whether the dock is floating in its own window"
 msgstr ""
 
-#: gdl/gdl-dock.c:181
+#: gdl/gdl-dock.c:186
 msgid "Default title for the newly created floating docks"
 msgstr ""
 
-#: gdl/gdl-dock.c:187
+#: gdl/gdl-dock.c:192
 msgid "Width"
-msgstr ""
+msgstr "п╗п╦я─п╦п╫п╟"
 
-#: gdl/gdl-dock.c:188
+#: gdl/gdl-dock.c:193
 msgid "Width for the dock when it's of floating type"
 msgstr ""
 
-#: gdl/gdl-dock.c:195
+#: gdl/gdl-dock.c:200
 msgid "Height"
-msgstr ""
+msgstr "п▓я▀я│п╬я┌п╟"
 
-#: gdl/gdl-dock.c:196
+#: gdl/gdl-dock.c:201
 msgid "Height for the dock when it's of floating type"
 msgstr ""
 
-#: gdl/gdl-dock.c:203
+#: gdl/gdl-dock.c:208
 msgid "Float X"
 msgstr ""
 
-#: gdl/gdl-dock.c:204
+#: gdl/gdl-dock.c:209
 msgid "X coordinate for a floating dock"
 msgstr ""
 
-#: gdl/gdl-dock.c:211
+#: gdl/gdl-dock.c:216
 msgid "Float Y"
 msgstr ""
 
-#: gdl/gdl-dock.c:212
+#: gdl/gdl-dock.c:217
 msgid "Y coordinate for a floating dock"
 msgstr ""
 
-#: gdl/gdl-dock.c:489
+#: gdl/gdl-dock.c:494
 #, c-format
 msgid "Dock #%d"
 msgstr ""
 
-#: gdl/gdl-file-selector-util.c:167
-#, c-format
-msgid ""
-"A file named ''%s'' already exists.\n"
-"Do you want to replace it with the one you are saving?"
-msgstr ""
-
-#. Add Don't Replace button
-#: gdl/gdl-file-selector-util.c:174
-#, fuzzy
-msgid "Do_n't replace"
-msgstr "Заменить..."
-
-#. Add Replace button
-#: gdl/gdl-file-selector-util.c:182
-msgid "_Replace"
-msgstr "Заменить..."
-
-#: gdl/gdl-file-selector-util.c:382
-#, fuzzy
-msgid "Select a file to open"
-msgstr "Только выделение"
-
-#: gdl/gdl-file-selector-util.c:410
-#, fuzzy
-msgid "Select files to open"
-msgstr "Только выделение"
-
-#: gdl/gdl-file-selector-util.c:439
-msgid "Select a filename to save"
-msgstr ""
-
-#: gdl/gdl-recent.c:132
+#: gdl/gdl-recent.c:136
 msgid "GConf key"
-msgstr ""
+msgstr "п п╩я▌я┤ GConf"
 
-#: gdl/gdl-recent.c:133
+#: gdl/gdl-recent.c:137
 msgid "The gconf key for storing the recent entries."
 msgstr ""
 
-#: gdl/gdl-recent.c:139
-#, fuzzy
+#: gdl/gdl-recent.c:143
 msgid "Path"
-msgstr "Вставить"
+msgstr "п÷я┐я┌я▄"
 
-#: gdl/gdl-recent.c:140
+#: gdl/gdl-recent.c:144
 msgid "The path to put the menu items."
 msgstr ""
 
-#: gdl/gdl-recent.c:146
+#: gdl/gdl-recent.c:150
 msgid "Limit"
-msgstr ""
+msgstr "п·пЁя─п╟п╫п╦я┤п╣п╫п╦п╣"
 
-#: gdl/gdl-recent.c:147
+#: gdl/gdl-recent.c:151
 msgid "The maximum number of items to be allowed in the list."
 msgstr ""
 
-#: gdl/gdl-recent.c:155
+#: gdl/gdl-recent.c:159
 msgid "List type"
-msgstr ""
+msgstr "п╒п╦п© я│п©п╦я│п╨п╟"
 
-#: gdl/gdl-recent.c:156
+#: gdl/gdl-recent.c:160
 msgid "The type with which the items will be numbered."
 msgstr ""
 
-#: gdl/gdl-recent.c:405
+#: gdl/gdl-recent.c:409
 #, c-format
 msgid "Open %s"
-msgstr ""
+msgstr "п·я┌п╨я─я▀я┌я▄ %s"
+
+#: gdl/gdl-icons.c:141 gdl/gdl-icons.c:142
+msgid "Icon size"
+msgstr "п═п╟п╥п╪п╣я─ п©п╦п╨я┌п╬пЁя─п╟п╪п╪я▀"
+
+#: gdl/gdl-icons.c:147 gdl/gdl-icons.c:148
+msgid "Icon zoom"
+msgstr "п°п╟я│я┬я┌п╟п╠ п©п╦п╨я┌п╬пЁя─п╟п╪п╪я▀"
 
 #: gdl/layout.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: gdl/layout.glade.h:3
 msgid "Layout Managment"
-msgstr ""
+msgstr "пёп©я─п╟п╡п╩п╣п╫п╦п╣ я─п╟п╥п╪п╣я┴п╣п╫п╦п╣п╪"
 
 #: gdl/layout.glade.h:5
 msgid "_Load"
-msgstr ""
+msgstr "п≈п╟пЁя─я┐п╥п╦я┌я▄"
 
 #: gdl/layout.glade.h:6
 msgid "_Lock dock items"
@@ -506,32 +469,125 @@ msgstr ""
 msgid "_View"
 msgstr ""
 
-#: symbol-browser-control/symbol-browser.c:362
+#: symbol-browser-control/symbol-browser.c:63
+msgid "Unknown"
+msgstr "п²п╣п╦п╥п╡п╣я│я┌п╫я▀п╧"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:64
+msgid "Classes"
+msgstr "п п╩п╟я│я│я▀"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Enums"
+msgstr ""
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:66
+msgid "Enumerators"
+msgstr ""
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Fields"
+msgstr "п÷п╬п╩я▐"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Functions"
+msgstr "п╓я┐п╫п╨я├п╦п╦"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Interfaces"
+msgstr "п≤п╫я┌п╣я─я└п╣п╧я│я▀"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Members"
+msgstr "п╖п╩п╣п╫я▀"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Methods"
+msgstr "п°п╣я┌п╬п╢я▀"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Namespaces"
+msgstr ""
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:73
+msgid "Packages"
+msgstr "п÷п╟п╨п╣я┌я▀"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:74
+msgid "Prototypes"
+msgstr "п÷я─п╬я┌п╬я┌п╦п©я▀"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Structs"
+msgstr "п║я┌я─я┐п╨я┌я┐я─я▀"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Typedefs"
+msgstr ""
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Unions"
+msgstr "п·п╠я┼п╣п╢п╦п╫п╣п╫п╦я▐"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Variables"
+msgstr "п÷п╣я─п╣п╪п╣п╫п╫я▀п╣"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:79
+msgid "ExternVars"
+msgstr ""
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Macros"
+msgstr "п°п╟п╨я─п╬я│я▀"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:81
+msgid "MacrosWithArgs"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:369
 msgid "Tags"
 msgstr ""
 
-#: symbol-browser-control/symbol-browser.c:370
-#: symbol-browser-control/symbol-browser.c:380
+#: symbol-browser-control/symbol-browser.c:377
+#: symbol-browser-control/symbol-browser.c:387
 msgid "Undefined"
 msgstr ""
 
-#: symbol-browser-control/symbol-browser.c:372
-#: symbol-browser-control/symbol-browser.c:382
+#: symbol-browser-control/symbol-browser.c:379
+#: symbol-browser-control/symbol-browser.c:389
 msgid "<No Symbol>"
 msgstr ""
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:1
-#, fuzzy
 msgid "Exit"
-msgstr "Правка"
+msgstr "п▓я▀п╧я┌п╦"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:2
 msgid "Open Project"
-msgstr ""
+msgstr "п·я┌п╨я─я▀я┌я▄ п©я─п╬п╣п╨я┌"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:3
 msgid "Save Project"
-msgstr ""
+msgstr "п║п╬я┘я─п╟п╫п╦я┌я▄ п©я─п╬п╣п╨я┌"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:4
 msgid "Set Current File"
@@ -539,29 +595,27 @@ msgstr ""
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:5
 msgid "Update"
-msgstr ""
+msgstr "п·п╠п╫п╬п╡п╦я┌я▄"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:6
 msgid "Update the whole tree"
-msgstr ""
+msgstr "п·п╠п╫п╬п╡п╦я┌я▄ п╡я│я▒ п╢п╣я─п╣п╡п╬"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:7
-#, fuzzy
 msgid "_Exit"
-msgstr "Правка"
+msgstr "п▓я▀п╧я┌п╦"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:8
-#, fuzzy
 msgid "_File"
-msgstr "Поиск"
+msgstr "п╓п╟п╧п╩"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:9
 msgid "_Open Project"
-msgstr ""
+msgstr "п·я┌п╨я─я▀я┌я▄ п©я─п╬п╣п╨я┌"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:10
 msgid "_Save Project"
-msgstr ""
+msgstr "п║п╬я┘я─п╟п╫п╦я┌я▄ п©я─п╬п╣п╨я┌"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:11
 msgid "_Set Current File"
@@ -569,7 +623,7 @@ msgstr ""
 
 #: symbol-browser-control/test-symbol-browser.c:168
 msgid "Open file..."
-msgstr ""
+msgstr "п·я┌п╨я─я▀я┌я▄ я└п╟п╧п╩..."
 
 #: symbol-browser-control/test-symbol-browser.c:170
 msgid "Set current file..."
@@ -577,107 +631,8 @@ msgstr ""
 
 #: symbol-browser-control/test-symbol-browser.c:172
 msgid "Save file..."
-msgstr ""
+msgstr "п║п╬я┘я─п╟п╫п╦я┌я▄ я└п╟п╧п╩..."
 
-#: symbol-browser-control/test-symbol-browser.c:287
+#: symbol-browser-control/test-symbol-browser.c:292
 msgid "Can't initialize bonobo!"
-msgstr ""
-
-#~ msgid "Position in the buffer"
-#~ msgstr "Позиция в буфере"
-
-#~ msgid "Current line number"
-#~ msgstr "Номер текущей строки"
-
-#~ msgid "Beginning of the selection"
-#~ msgstr "Начало выделения"
-
-#~ msgid "End of the selection"
-#~ msgstr "Конец выделения"
-
-#~ msgid "C_ut"
-#~ msgstr "Вырезать"
-
-#~ msgid "Copy"
-#~ msgstr "Скопировать"
-
-#~ msgid "Copy the selection"
-#~ msgstr "Скопировать выделение"
-
-#~ msgid "Cut"
-#~ msgstr "Вырезать"
-
-#~ msgid "Cut the selection"
-#~ msgstr "Вырезать выделение"
-
-#~ msgid "Find A_gain"
-#~ msgstr "Повторный поиск"
-
-#~ msgid "Find text in the document"
-#~ msgstr "Поиск текста в документе"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "Вставить из буфера обмена"
-
-#~ msgid "Repeats last search for text in the document"
-#~ msgstr "Повторяет последний поиск текста в документе"
-
-#~ msgid "Replace text in the document"
-#~ msgstr "Заменить текст в документе"
-
-#~ msgid "_Copy"
-#~ msgstr "Скопировать"
-
-#~ msgid "_Find..."
-#~ msgstr "Поиск..."
-
-#~ msgid "_Paste"
-#~ msgstr "Вставить"
-
-#~ msgid "_Replace..."
-#~ msgstr "Заменить..."
-
-#~ msgid "Scintilla Editor"
-#~ msgstr "Редактор Scintilla"
-
-#~ msgid "Source"
-#~ msgstr "Исходный текст"
-
-#~ msgid "Find"
-#~ msgstr "Поиск"
-
-#~ msgid "Find:"
-#~ msgstr "Поиск:"
-
-#~ msgid "Case sensitive"
-#~ msgstr "Чувствительный к регистру"
-
-#~ msgid "Whole word"
-#~ msgstr "Целое слово"
-
-#~ msgid "Forward"
-#~ msgstr "Вперёд"
-
-#~ msgid "Backward"
-#~ msgstr "Назад"
-
-#~ msgid "Replace confirmation"
-#~ msgstr "Подтверждать замену"
-
-#~ msgid "Replace"
-#~ msgstr "Заменить"
-
-#~ msgid "Replace All"
-#~ msgstr "Заменить все"
-
-#~ msgid "Skip"
-#~ msgstr "Пропустить"
-
-#~ msgid "Found occurrence in document"
-#~ msgstr "Вхождений в документе найдено"
-
-#~ msgid "Find and Replace"
-#~ msgstr "Поиск и замена"
-
-#~ msgid "Replace with:"
-#~ msgstr "Заменить на:"
+msgstr "п²п╣ я┐п╢п╟п╩п╬я│я▄ п╦п╫п╦я├п╦п╟п╩п╦п╥п╦я─п╬п╡п╟я┌я▄ bonobo!"
