@@ -1,0 +1,22 @@
+# Swedish messages for GDL.
+# Copyright (C) 2000,2001 Free Software Foundation, Inc.
+# Christian Rose <menthos@menthos.com>, 2000-2001.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GDL\n"
+"POT-Creation-Date: 2001-02-28 01:52+0100\n"
+"PO-Revision-Date: 2001-02-28 01:52+0100\n"
+"Last-Translator: Christian Rose <menthos@menthos.com>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: scintilla-control/scintilla-control.c:80
+msgid "Could not initialize factory"
+msgstr "Kunde inte initiera fabrik"
+
+#: scintilla-control/scintilla-control.c:269 scintilla-control/test.c:66
+msgid "Can't initialize bonobo!"
+msgstr "Kan inte initiera Bonobo!"

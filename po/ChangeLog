@@ -1,3 +1,10 @@
+2000-12-19  Christian Rose  <menthos@menthos.com>
+
+	* POTFILES.in: Added line.
+	* update.pl, desk.pl, README.tools: Removed files obsoleted by
+	xml-i18n-tools.
+	* sv.po: Added Swedish translation.
+
 2000-12-18  Valek Filippov  <frob@df.ru>
 	
 	Fixed ChangeLog, fixed name of module in update.pl.

@@ -1,1 +1,2 @@
-gdl/gdl-server-manager.c
+scintilla-control/scintilla-control.c
+scintilla-control/test.c

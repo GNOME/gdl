@@ -58,7 +58,7 @@ AM_PATH_ORBIT
 GNOME_IDL_DIR="`$GNOME_CONFIG --datadir`/idl"
 
 AM_GNOME_GETTEXT
-ALL_LINGUAS=""
+ALL_LINGUAS="sv"
 gnomelocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(gnomelocaledir)
 
