@@ -17,4 +17,5 @@ gdf_event_server_SOURCES =					\
 gdf_event_server_LDADD =					\
 	$(OAF_LIBS) \
 	$(UNICODE_LIBS) \
+	$(VFS_LIBS) \
 	../lib/libgdf.la
