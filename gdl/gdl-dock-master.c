@@ -460,10 +460,9 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     window = gdk_window_at_pointer (&win_x, &win_y);
     if (window) {
         GtkWidget *widget;
-        gpointer data_ptr = &widget;
         /* ok, now get the widget who owns that window and see if we can
            get to a GdlDock by walking up the hierarchy */
-        gdk_window_get_user_data (window, data_ptr);
+        gdk_window_get_user_data (window, (gpointer) &widget);
         if (GTK_IS_WIDGET (widget)) {
             while (widget && !GDL_IS_DOCK (widget))
                 widget = widget->parent;

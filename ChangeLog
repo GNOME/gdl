@@ -1,8 +1,13 @@
-2003-12-29  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+2004-01-13  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-master.c (gdl_dock_master_drag_motion): Fix for
+	strict aliasing compiler warning.
+
+2003-12-29  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Require libgnomeui 2.5.0.
 
-2003-12-26  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+2003-12-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-icons.h:
 	* gdl/gdl-icons.c: Ported to GtkIconTheme.  Use new gobject's
