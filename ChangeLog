@@ -1,6 +1,10 @@
 2005-03-08  Naba Kumar  <naba@gnome.org>
 
 	Patch from: David A Knight  <david@ritter.demon.co.uk>
+	* gdl/gdl-dock-item.c: Fixed to enable hide/show of GdlDockItem
+	to be detected.
+	
+	Patch from: David A Knight  <david@ritter.demon.co.uk>
 	* gdl/gdl-dock-item-grip.c, gdl/gdl-dock-item.[ch],
 	gdl/gdl-dock-master.c: The attached patch modifies the behaviour
 	of GdlDockItem/GdlDockItemGrip so that even when locked the grip

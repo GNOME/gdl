@@ -1606,7 +1606,7 @@ gdl_dock_item_hide_item (GdlDockItem *item)
     if (!GDL_DOCK_OBJECT_ATTACHED (item))
         /* already hidden/detached */
         return;
-    
+       
     /* if the object is manual, create a new placeholder to be able to
        restore the position later */
     if (!GDL_DOCK_OBJECT_AUTOMATIC (item)) {
@@ -1633,6 +1633,8 @@ gdl_dock_item_hide_item (GdlDockItem *item)
     /* detach the item recursively */
     gdl_dock_object_detach (GDL_DOCK_OBJECT (item), TRUE);
 
+    gtk_widget_hide (GTK_WIDGET (item));
+	
     gdl_dock_object_thaw (GDL_DOCK_OBJECT (item));
 }
 
@@ -1665,6 +1667,7 @@ gdl_dock_item_show_item (GdlDockItem *item)
                                   GDL_DOCK_FLOATING, NULL);
         }
     }
+    gtk_widget_show (GTK_WIDGET (item));
 }
 
 void
