@@ -13,8 +13,6 @@ INCLUDES = \
 uidir = $(datadir)/gnome/ui
 ui_DATA = scintilla-ui.xml
 
-EXTRA_DIST = $(oaf_DATA) $(ui_DATA)
-
 bin_PROGRAMS = scintilla-control
 noinst_PROGRAMS = test-scintilla
 
@@ -68,4 +66,4 @@ oaf_DATA = $(oaf_in_files:.oaf.in=.oaf)
 
 @XML_I18N_MERGE_OAF_RULE@
 
-EXTRA_DIST=$(oaf_in_files) $(oaf_DATA)
+EXTRA_DIST=$(oaf_in_files) $(oaf_DATA) $(ui_DATA)

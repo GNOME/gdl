@@ -1,0 +1,98 @@
+Name:		gdl
+Summary:	Components and library for GNOME development tools.
+Version:	@VERSION@
+Release:	1
+License:	GPL
+Group:		Development/Libraries
+Source:		%{name}-%{version}.tar.gz
+BuildRoot:	/var/tmp/%{name}-%{version}-root
+URL:		http://www.gnome.org
+Requires:	oaf >= @OAF_REQUIRED@
+Requires:	gnome-vfs >= @GNOME_VFS_REQUIRED@
+Requires:	gnome-libs >= @GNOME_LIBS_REQUIRED@
+Requires:	bonobo >= @BONOBO_REQUIRED@
+BuildRequires:  gtk+-devel >= @GTK_REQUIRED@
+BuildRequires:  oaf-devel >= @OAF_REQUIRED@
+BuildRequires:  gnome-vfs-devel >= @GNOME_VFS_REQUIRED@
+BuildRequires:  gnome-libs-devel >= @GNOME_LIBS_REQUIRED@
+BuildRequires:  bonobo-devel >= @BONOBO_REQUIRED@
+
+%description
+This package contains components and libraries that are intended to be
+shared between GNOME development tools, including gnome-debug,
+gnome-build, and gIDE.
+
+The current pieces of GDL include:
+
+ - A code-editing bonboo component based on the Scintilla
+   widget (scintilla-control).
+
+ - A utility library that also contains the stubs and skels for
+   the above components (gdl).
+
+
+%package devel
+Summary:	Libraries and include files for gdl.
+Group:		Development/Libraries
+Requires:	%{name} = %{version}
+
+%description devel
+Libraries and header files if you want to make use of the gdl library in your
+own programs.
+
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} \
+    --bindir=%{_bindir} --mandir=%{_mandir} \
+    --localstatedir=%{_localstatedir} --libdir=%{_libdir} \
+    --datadir=%{_datadir} --includedir=%{_includedir} \
+    --sysconfdir=%{_sysconfdir}
+
+CFLAGS="$RPM_OPT_FLAGS" make
+
+%install
+[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
+
+make prefix=$RPM_BUILD_ROOT%{_prefix} bindir=$RPM_BUILD_ROOT%{_bindir} \
+    mandir=$RPM_BUILD_ROOT%{_mandir} libdir=$RPM_BUILD_ROOT%{_libdir} \
+    localstatedir=$RPM_BUILD_ROOT%{_localstatedir} \
+    datadir=$RPM_BUILD_ROOT%{_datadir} \
+    includedir=$RPM_BUILD_ROOT%{_includedir} \
+    sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} install
+
+
+%clean
+[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+
+%files
+%doc AUTHORS COPYING ChangeLog NEWS README
+%defattr (-, root, root)
+%{_bindir}/*
+%{_libdir}/lib*.so.*
+%{_datadir}/aclocal/gdl.m4
+%{_datadir}/gnome/ui/*.xml
+%{_datadir}/oaf/*.oaf
+
+
+%files devel
+%defattr (-, root, root)
+%{_includedir}/gdl
+%{_libdir}/*a
+%{_libdir}/*so
+%{_libdir}/*sh
+%{_datadir}/idl/*.idl
+
+
+%changelog
+* Wed Aug 8 2001 Jens Finke <jens@gnome.org>
+- created spec file

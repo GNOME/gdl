@@ -18,6 +18,11 @@ EXTRA_DIST = 		\
 	gdl.m4          \
 	gdlConf.sh.in	\
 	MAINTAINERS	\
-	AUTHORS		
+	AUTHORS		\
+	gdl.spec.in	\
+	gdl.spec	\
+	xml-i18n-extract.in \
+	xml-i18n-merge.in \
+	xml-i18n-update.in
 
 CLEANFILES = gdlConf.sh 

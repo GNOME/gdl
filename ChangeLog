@@ -1,3 +1,14 @@
+2001-08-08  Jens Finke <jens@gnome.org>
+
+	* Makefile.am (EXTRA_DIST): Added *.spec[.in] and xml-i18n-*.in
+	files.
+
+	* configure.in: Added *_REQUIRED variables and appropriate
+	AC_SUBST calls, use *_REQUIRED vars in CHECK_LIB macro, generate
+	gdl.spec.
+
+	* scintilla-control/Makefile.am: Removed duplicated EXTRA_DIST.
+	
 2001-07-20  Dave Camp  <dave@ximian.com>
 
         * Applied a patch from Gustavo M. Giraldez <gustavo.giraldez@gmx.net>

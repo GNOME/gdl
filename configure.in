@@ -1,4 +1,26 @@
 AC_INIT(gdlConf.sh.in)
+
+dnl ==========================================================================
+dnl
+dnl If you add a version number here, you *must* add an AC_SUBST line for
+dnl it too, or it will never make it into the spec file!
+dnl
+dnl ==========================================================================
+
+GTK_REQUIRED=1.2.0
+GNOME_LIBS_REQUIRED=1.2.9
+BONOBO_REQUIRED=1.0.7
+OAF_REQUIRED=0.6.5
+GNOME_VFS_REQUIRED=1.0
+
+AC_SUBST(GTK_REQUIRED)
+AC_SUBST(GNOME_LIBS_REQUIRED)
+AC_SUBST(BONOBO_REQUIRED)
+AC_SUBST(OAF_REQUIRED)
+AC_SUBST(GNOME_VFS_REQUIRED)
+
+dnl ==========================================================================
+
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(gdl,0.1.0)
 
@@ -106,11 +128,11 @@ dnl ***************
 dnl GNOME Libraries 
 dnl ***************
 
-CHECK_LIB(gnome-libs, gnome, 1.2.9)
-CHECK_LIB(Bonobo, bonobo, 1.0.7)
-CHECK_LIB(Bonobo X, bonobox, 1.0.7)
-CHECK_LIB(OAF, oaf, 0.6.5)
-CHECK_LIB(GNOME-VFS, vfs, 1.0)
+CHECK_LIB(gnome-libs, gnome, $GNOME_LIBS_REQUIRED)
+CHECK_LIB(Bonobo, bonobo, $BONOBO_REQUIRED)
+CHECK_LIB(Bonobo X, bonobox, $BONOBO_REQUIRED)
+CHECK_LIB(OAF, oaf, $OAF_REQUIRED)
+CHECK_LIB(GNOME-VFS, vfs, $GNOME_VFS_REQUIRED)
 
 IDL_CFLAGS=`gnome-config --cflags idl`
 
@@ -146,4 +168,5 @@ scintilla-control/scintilla/Makefile
 intl/Makefile
 po/Makefile.in 
 stamp.h
+gdl.spec
 ],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
