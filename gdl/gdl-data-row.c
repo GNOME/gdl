@@ -34,7 +34,7 @@ struct _GdlDataRowPrivate {
 	GdlDataModel *model;
 	GtkTreePath *path;
 	GdlDataView *view;
-
+	
 	char *name;
 
 	/* area_r
@@ -65,7 +65,9 @@ struct _GdlDataRowPrivate {
 	char *renderer_field;
 
 	gboolean expanded;
-
+	gboolean focused;
+	gboolean editable;
+	
 	int split;
 	int child_split;
 	gboolean selected;
@@ -146,7 +148,8 @@ load_path (GdlDataRow *row)
 		
 		gdl_data_model_get_renderer (row->priv->model, &iter, 
 					     &row->priv->cell,
-					     &str);
+					     &str,
+					     &row->priv->editable);
 		g_object_ref (GTK_OBJECT (row->priv->cell));
 		gtk_object_sink (GTK_OBJECT (row->priv->cell));
 		
@@ -415,15 +418,20 @@ gdl_data_row_render (GdlDataRow *row, GdkDrawable *drawable,
 	PangoLayout *layout;
 
 	guint state = GTK_STATE_NORMAL;
+
 	if (row->priv->selected) {
+		if (flags & GTK_CELL_RENDERER_SELECTED)
+			state = GTK_STATE_SELECTED;
+		else 
+			state = GTK_STATE_ACTIVE;
 		gtk_paint_flat_box (GTK_WIDGET (row->priv->view)->style,
-				    drawable, GTK_STATE_SELECTED,
+				    drawable, state,
 				    GTK_SHADOW_NONE, expose_area, 
-				    GTK_WIDGET (row->priv->view), "blah",
+				    GTK_WIDGET (row->priv->view), "cell_even",
 				    row->priv->area_r.x, row->priv->area_r.y,
 				    row->priv->area_r.width + 1, 
 				    row->priv->area_r.height + 1);
-		state = GTK_STATE_SELECTED;
+
 	}
 	
 	layout = gtk_widget_create_pango_layout (GTK_WIDGET (row->priv->view),
@@ -443,6 +451,18 @@ gdl_data_row_render (GdlDataRow *row, GdkDrawable *drawable,
 	DRAWR(title_r);
 
 	if (row->priv->cell) {
+		if (row->priv->focused) {
+			gtk_paint_focus (GTK_WIDGET (row->priv->view)->style,
+					 drawable, 
+					 GTK_WIDGET_STATE (GTK_WIDGET (row->priv->view)),
+					 NULL, GTK_WIDGET (row->priv->view),
+					 "treeview", 
+					 row->priv->cell_r.x - 1,
+					 row->priv->cell_r.y - 1,
+					 row->priv->cell_r.width + 2,
+					 row->priv->cell_r.height + 2);
+		}
+					 
 		gtk_cell_renderer_render (row->priv->cell,
 					  drawable, GTK_WIDGET (row->priv->view), 
 					  &row->priv->area_r,
@@ -467,11 +487,13 @@ gdl_data_row_render (GdlDataRow *row, GdkDrawable *drawable,
 			GList *l;
 			
 			for (l = row->priv->subrows; l != NULL; l = l->next) {
-				gdl_data_row_render (GDL_DATA_ROW (l->data), drawable,
+				gdl_data_row_render (GDL_DATA_ROW (l->data), 
+						     drawable,
 						     expose_area, flags);
 			}
 		}
-		gdk_draw_rectangle (drawable, GTK_WIDGET (row->priv->view)->style->text_gc[GTK_STATE_NORMAL],
+		gdk_draw_rectangle (drawable, 
+				    GTK_WIDGET (row->priv->view)->style->text_gc[GTK_STATE_NORMAL],
 				    FALSE,
 				    row->priv->data_r.x, 
 				    row->priv->data_r.y,
@@ -501,9 +523,13 @@ gdl_data_row_at (GdlDataRow *row, int x, int y)
 	return row;
 }
 
-gboolean 
-gdl_data_row_button_press (GdlDataRow *row, GdkEventButton *event)
+static gboolean
+button_press_event (GdlDataRow *row, GdkEventButton *event, 
+		    GtkCellEditable **editable_widget)
 {
+	if (editable_widget)
+		*editable_widget = NULL;
+
 	if (GDL_POINT_IN (event->x, event->y, &row->priv->expand_r)) {
 		if (row->priv->expanded)
 			contract (row);
@@ -511,7 +537,43 @@ gdl_data_row_button_press (GdlDataRow *row, GdkEventButton *event)
 			expand (row);
 	}
 	
+	if (GDL_POINT_IN (event->x, event->y, &row->priv->cell_r)
+	    && row->priv->editable) {
+		g_return_val_if_fail (editable_widget, FALSE);
+		*editable_widget = gtk_cell_renderer_start_editing 
+			(row->priv->cell,
+			 (GdkEvent*)event,
+			 GTK_WIDGET (row->priv->view),
+			 "1:2:3",
+			 &row->priv->area_r,
+			 &row->priv->cell_r,
+			 GTK_CELL_RENDERER_SELECTED);
+	}
+	
 	return FALSE;
+
+}
+
+
+gboolean 
+gdl_data_row_event (GdlDataRow *row, GdkEvent *event, 
+		    GtkCellEditable **editable_widget)
+{
+	switch (((GdkEventAny *)event)->type) {
+	case GDK_BUTTON_PRESS :
+		return button_press_event (row, 
+					   (GdkEventButton *)event, 
+					   editable_widget);
+	default :
+	}
+	return FALSE;
+}
+
+void
+gdl_data_row_get_cell_area (GdlDataRow           *row,
+			    GdkRectangle         *rect)
+{
+	*rect = row->priv->cell_r;
 }
 
 void
@@ -523,8 +585,23 @@ gdl_data_row_set_split (GdlDataRow *row, int split)
 void
 gdl_data_row_set_selected (GdlDataRow *row, gboolean selected)
 {
-	row->priv->selected = FALSE;
+	row->priv->selected = selected;
 
 	/* FIXME: invalidate here */
 	gtk_widget_queue_draw (GTK_WIDGET (row->priv->view));
+}
+
+void
+gdl_data_row_set_focused (GdlDataRow *row, gboolean focused)
+{
+	row->priv->focused = focused;
+	
+	/* FIXME: invalidate here */
+	gtk_widget_queue_draw (GTK_WIDGET (row->priv->view));
+}
+
+const char *
+gdl_data_row_get_title (GdlDataRow *row)
+{
+	return row->priv->name;
 }

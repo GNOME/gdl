@@ -1,3 +1,45 @@
+2002-01-26  Dave Camp  <dave@ximian.com>
+
+	* gdl/Makefile.am: Remove gdl-file-selector-util.
+	* gdl/gdl-data-frame.c (gdl_data_frame_draw): Only render things that 
+	are inside the expose area.
+	(gdl_data_frame_finalize): Don't free the no-longer-existant path.
+	(gdl_data_frame_button_press): Removed most of the implementation.
+	(gdl_data_frame_new): Take a GdkDataRow instead of a path.
+	* gdl/gdl-data-model-test.c (get_value): Make one value a boolean.
+	(get_renderer): Added the is_editable field and set appropriately.
+	* gdl/gdl-data-model.c (gdl_data_model_get_renderer): Added an
+	is_editable field.
+	* gdl/gdl-data-row.c (load_path): Pass the is_editable flag.
+	(gdl_data_row_render): Render the selection and focus if necessary.
+	(button_press_event): New function.
+	(gdl_data_row_event): New function.
+	(gdl_data_row_get_cell_area): New function.
+	(gdl_data_row_set_selected): Set priv->selected to the selected argment instead
+	of hard-coding FALSE.
+	(gdl_data_row_set_focused): New function.
+	(gdl_data_row_get_title): New function.
+	* gdl/gdl-data-view.c (expose_frames): New function, moved from
+	expose_children.
+	(expose_widgets): New function.
+	(gdl_data_view_expose): Use expose_frames and expose_widgets, 
+	(frame_at): Use priv->frames instead of priv->objects.
+	(row_at): New function.
+	(gdl_data_view_put): New function.
+	(stop_editing): New function.
+	(remove_widget_cb): New function.
+	(button_press_event_cb): Handle editing if appropriate.
+	(gdl_data_view_realize): New function.
+	(gdl_data_view_size_request): New function.
+	(gdl_data_view_size_allocate): New function
+	(gdl_data_view_forall): New function.
+	(gdl_data_view_remove): New function.
+	(gdl_data_view_destroy): Updated.
+	(gdl_data_view_class_init): Initialize GtkContainer methods.
+	(gdl_data_view_set_model): Create toplevel rows and give them frames
+	rather than letting the frames create rows.
+	(gdl_data_view_layout): Use priv->frames instead of priv->objects.
+
 2002-01-27  Mikael Hallendal  <micke@codefactory.se>
 
 	* gdl/gdl-data-view.c (gdl_data_view_set_model): cast to the
@@ -27,7 +69,8 @@
 	
 2002-01-12  Dave Camp  <dave@ximian.com>
 
-	* configure.in: Changed the version handling to be a bit simpler.
+	* configure.in: Cleaned up some variables being used before AC_INIT,
+	which seemed to break things.
 
 2001-12-30  Dave Camp  <dave@ximian.com>
 

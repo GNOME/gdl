@@ -53,30 +53,37 @@ struct _GdlDataRowClass {
 };
 
 GType       gdl_data_row_get_type      (void);
-GdlDataRow *gdl_data_row_new           (GdlDataView          *view,
-					GtkTreePath          *path);
-void        gdl_data_row_get_size      (GdlDataRow           *row,
-					int                  *text_w,
-					int                  *cell_w,
-					int                  *total_width,
-					int                  *height);
-void        gdl_data_row_set_show_name (GdlDataRow           *row,
-					gboolean              show_name);
-void        gdl_data_row_layout        (GdlDataRow           *row,
-					GdkRectangle         *alloc);
-void        gdl_data_row_render        (GdlDataRow           *row,
-					GdkDrawable          *drawable,
-					GdkRectangle         *expose_area,
-					GtkCellRendererState  flags);
-GdlDataRow *gdl_data_row_at            (GdlDataRow           *row,
-					int                   x,
-					int                   y);
-gboolean    gdl_data_row_button_press  (GdlDataRow           *row,
-					GdkEventButton       *event);
-void        gdl_data_row_set_split     (GdlDataRow           *row,
-					int                   split);
-void        gdl_data_row_set_selected  (GdlDataRow           *row,
-					gboolean              selected);
+GdlDataRow *gdl_data_row_new           (GdlDataView           *view,
+					GtkTreePath           *path);
+void        gdl_data_row_get_size      (GdlDataRow            *row,
+					int                   *text_w,
+					int                   *cell_w,
+					int                   *total_width,
+					int                   *height);
+void        gdl_data_row_set_show_name (GdlDataRow            *row,
+					gboolean               show_name);
+void        gdl_data_row_layout        (GdlDataRow            *row,
+					GdkRectangle          *alloc);
+void        gdl_data_row_render        (GdlDataRow            *row,
+					GdkDrawable           *drawable,
+					GdkRectangle          *expose_area,
+					GtkCellRendererState   flags);
+GdlDataRow *gdl_data_row_at            (GdlDataRow            *row,
+					int                    x,
+					int                    y);
+gboolean    gdl_data_row_event         (GdlDataRow            *row,
+					GdkEvent              *event,
+					GtkCellEditable      **editable_widget);
+void        gdl_data_row_get_cell_area (GdlDataRow            *row,
+					GdkRectangle          *rect);
+void        gdl_data_row_set_split     (GdlDataRow            *row,
+					int                    split);
+void        gdl_data_row_set_selected  (GdlDataRow            *row,
+					gboolean               selected);
+void        gdl_data_row_set_focused   (GdlDataRow            *row,
+					gboolean               focused);
+const char *gdl_data_row_get_title     (GdlDataRow            *row);
+
 
 G_END_DECLS
 

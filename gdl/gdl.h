@@ -30,6 +30,5 @@
 #include <gdl/gdl-dock-paned.h>
 #include <gdl/gdl-dock-notebook.h>
 #include <gdl/gdl-dock-tablabel.h>
-#include <gdl/gdl-file-selector-util.h>
 
 #endif

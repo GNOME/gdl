@@ -49,8 +49,8 @@ DataItem data4[] = {
 };
 DataItem data3[] = { 
 	{ "foo foo", "foo3", "2:0", NULL }, 
-	{ "bar3", "bar3", "2:1", NULL }, 
-	{ "baz3", "2:2", "2:2",  data4 },
+	{ "bar3", 1, "2:1", NULL }, 
+	{ "baz3", "{...}", "2:2",  data4 },
 	{ NULL, NULL, NULL, NULL }
  
 };
@@ -99,18 +99,31 @@ static void
 get_value (GdlDataModel *dm, GdlDataIter *iter, GValue *value)
 {
 	DataItem *item = iter->data1;
-	g_value_init (value, G_TYPE_STRING);
-	g_value_set_string (value, item->value);	
+	if (strcmp (item->name, "bar3")) {
+		g_value_init (value, G_TYPE_STRING);
+		g_value_set_string (value, item->value);
+	} else {
+		g_value_init (value, G_TYPE_BOOLEAN);
+		g_value_set_boolean (value, item->value);
+	}
 }
 
 static void
 get_renderer (GdlDataModel *dm, GdlDataIter *iter, 
-	      GtkCellRenderer **renderer, char **field)
+	      GtkCellRenderer **renderer, char **field,
+	      gboolean *is_editable)
 {
 	DataItem *item = iter->data1;
-	*renderer = g_object_new (gtk_cell_renderer_text_get_type (),
-				  NULL);
-	*field = "text";
+	if (!strcmp (item->name, "bar3")) {
+		*renderer = g_object_new (gtk_cell_renderer_toggle_get_type (),
+					  "activatable", TRUE, NULL);
+		*field = "active";
+	} else {
+		*renderer = g_object_new (gtk_cell_renderer_text_get_type (),
+					  "editable", TRUE, NULL);
+		*field = "text";
+	}
+	*is_editable = (item->children == NULL);
 }
 
 static gboolean

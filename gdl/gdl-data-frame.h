@@ -24,6 +24,7 @@
 #define GDL_DATA_FRAME_H
 
 #include <glib-object.h>
+#include "gdl-data-row.h"
 
 G_BEGIN_DECLS
 
@@ -53,10 +54,11 @@ struct _GdlDataFrameClass {
 
 GType         gdl_data_frame_get_type     (void);
 GdlDataFrame *gdl_data_frame_new          (GdlDataView    *view,
-					   const char     *path);
+					   GdlDataRow     *row);
 void          gdl_data_frame_layout       (GdlDataFrame   *frame);
 void          gdl_data_frame_draw         (GdlDataFrame   *item,
-					   GdkDrawable    *drawable);
+					   GdkDrawable    *drawable,
+					   GdkRectangle   *expose_area);
 void          gdl_data_frame_set_selected (GdlDataFrame   *frame,
 					   gboolean        val);
 gboolean      gdl_data_frame_button_press (GdlDataFrame   *frame,

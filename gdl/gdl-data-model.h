@@ -67,7 +67,8 @@ struct _GdlDataModelIface {
 	void (*get_value) (GdlDataModel *dm, GdlDataIter *iter, 
 			   GValue *value);
 	void (*get_renderer) (GdlDataModel *dm, GdlDataIter *iter,
-			      GtkCellRenderer **renderer, char **field);
+			      GtkCellRenderer **renderer, char **field,
+			      gboolean *is_editable);
 	gboolean (*iter_next) (GdlDataModel *dm, GdlDataIter *iter);
 	gboolean (*iter_children) (GdlDataModel *dm, GdlDataIter *iter,
 				   GdlDataIter *parent);
@@ -89,7 +90,8 @@ void         gdl_data_model_get_value      (GdlDataModel     *dm,
 void         gdl_data_model_get_renderer   (GdlDataModel     *dm,
 					    GdlDataIter      *iter,
 					    GtkCellRenderer **renderer,
-					    char            **field);
+					    char            **field,
+					    gboolean         *is_editable);
 gboolean     gdl_data_model_iter_next      (GdlDataModel     *dm,
 					    GdlDataIter      *iter);
 gboolean     gdl_data_model_iter_children  (GdlDataModel     *dm,

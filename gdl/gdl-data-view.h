@@ -68,5 +68,4 @@ GdkPixbuf *gdl_data_view_get_contract_pixbuf (GdlDataView  *view);
 void       gdl_data_view_set_contract_pixbuf (GdlDataView  *view,
 					      GdkPixbuf    *pixbuf);
 
-
 #endif

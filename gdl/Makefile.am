@@ -74,9 +74,13 @@ libgdl_headers = \
 	gdl-dock-item.h \
 	gdl-dock-notebook.h \
 	gdl-dock-paned.h \
+<<<<<<< Makefile.am
+	gdl-dock-tablabel.h 
+=======
 	gdl-dock-tablabel.h \
 	gdl-dock-layout.h \
 	gdl-file-selector-util.h
+>>>>>>> 1.11
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \

@@ -40,10 +40,8 @@ struct _GdlDataFramePrivate {
 	
 	int shadow_offset;
 	int titlebar_height;
-	GtkTreePath *path;
 	char *title;
 	
-	GdlDataRow *selected_row;
 	GdlDataRow *row;
 	
 	PangoLayout *layout;
@@ -143,8 +141,10 @@ change_layout (GdlDataFrame *frame)
 #define EXPLODE(r) (r).x, (r).y, (r).width, (r).height
 
 void
-gdl_data_frame_draw (GdlDataFrame *frame, GdkDrawable *drawable)
+gdl_data_frame_draw (GdlDataFrame *frame, GdkDrawable *drawable,
+		     GdkRectangle *expose_area)
 {
+	GdkRectangle inter;
 	guint8 state = 
 		frame->priv->selected ? GTK_STATE_SELECTED : GTK_STATE_NORMAL;
 	
@@ -169,16 +169,24 @@ gdl_data_frame_draw (GdlDataFrame *frame, GdkDrawable *drawable)
 			 frame->priv->title_r.x, frame->priv->title_r.y,
 			 frame->priv->layout);
 
-	gdk_pixbuf_render_to_drawable_alpha (gdl_data_view_get_close_pixbuf (frame->view),
-					     drawable,
-					     0, 0, 
-					     EXPLODE (frame->priv->close_r),
-					     GDK_PIXBUF_ALPHA_BILEVEL,
-					     127,
-					     GDK_RGB_DITHER_NORMAL, 0, 0);
+	if (gdk_rectangle_intersect (expose_area, &frame->priv->close_r, &inter)) {
+		gdk_pixbuf_render_to_drawable_alpha (gdl_data_view_get_close_pixbuf (frame->view),
+						     drawable,
+						     inter.x - frame->priv->close_r.x,
+						     inter.y - frame->priv->close_r.y, 
+						     EXPLODE (inter),
+						     GDK_PIXBUF_ALPHA_BILEVEL,
+						     127,
+						     GDK_RGB_DITHER_NORMAL, 0, 0);
+	}
+	
 	if (frame->priv->row) {
-		gdl_data_row_render (frame->priv->row, drawable,
-				     &frame->priv->row_r, 0);
+		if (gdk_rectangle_intersect (expose_area, &frame->priv->row_r,
+					     &inter)) {
+			gdl_data_row_render (frame->priv->row, drawable,
+					     &inter,
+					     frame->priv->selected ? GTK_CELL_RENDERER_SELECTED : 0);
+		}
 	}
 }
 
@@ -210,7 +218,6 @@ gdl_data_frame_finalize (GObject *object)
 
 	if (frame->priv) {
 		g_free (frame->priv->title);
-		gtk_tree_path_free (frame->priv->path);
 		g_object_unref (frame->priv->layout);
 		g_object_unref (frame->priv->row);
 		
@@ -225,7 +232,7 @@ gdl_data_frame_set_selected (GdlDataFrame *frame,
 			     gboolean val)
 {
 	frame->priv->selected = val;
-	
+
 	gdk_window_invalidate_rect (GTK_LAYOUT (frame->view)->bin_window,
 				    &frame->priv->frame_r,
 				    TRUE);
@@ -235,19 +242,6 @@ gboolean
 gdl_data_frame_button_press (GdlDataFrame *frame,
 			     GdkEventButton *event)
 {
-	if (frame->priv->row) {
-		GdlDataRow *row = gdl_data_row_at (frame->priv->row, 
-						   event->x, event->y);
-		if (row) {
-			if (frame->priv->selected_row) {
-				gdl_data_row_set_selected (frame->priv->selected_row, FALSE);
-			}
-			frame->priv->selected_row = row;
-			gdl_data_row_set_selected (row, TRUE);
-
-			return gdl_data_row_button_press (row, event);
-		}
-	}
 	return FALSE;
 }
 
@@ -258,31 +252,6 @@ gdl_data_frame_set_position (GdlDataFrame *frame,
 {
 	frame->area.x = x;
 	frame->area.y = y;
-
-	gdl_data_frame_layout (frame);
-}
-
-static void
-setup_path (GdlDataFrame *frame)
-{
-	GdlDataIter iter;
-	GdlDataModel *model = frame->view->model;
-	
-	char *name;
-
-	if (frame->priv->row) {
-		g_object_unref (frame->priv->row);
-	}
-
-	gdl_data_model_get_iter (GDL_DATA_MODEL (model),
-				 &iter, frame->priv->path);
-	gdl_data_model_get_name (GDL_DATA_MODEL (model),
-				 &iter, &name);
-	frame->priv->title = g_strdup (name);
-
-	frame->priv->row = gdl_data_row_new (frame->view, frame->priv->path);
-
-	change_layout (frame);
 
 	gdl_data_frame_layout (frame);
 }
@@ -306,18 +275,17 @@ setup_layout (GdlDataFrame *frame)
 
 GdlDataFrame *
 gdl_data_frame_new (GdlDataView *view,
-		    const char *path)
+		    GdlDataRow *row)
 {
 	GdlDataFrame *frame;
 	frame = GDL_DATA_FRAME (g_object_new (GDL_TYPE_DATA_FRAME, NULL));
 	
 	frame->view = view;
 
+	frame->priv->row = row;
+	frame->priv->title = g_strdup (gdl_data_row_get_title (row));
+
 	setup_layout (frame);
-
-	frame->priv->path = gtk_tree_path_new_from_string (path);
-
-	setup_path (frame);
 
 	gdl_data_frame_layout (frame);
 	

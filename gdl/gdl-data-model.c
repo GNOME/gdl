@@ -79,7 +79,8 @@ void
 gdl_data_model_get_renderer (GdlDataModel *dm,
 			     GdlDataIter *iter,
 			     GtkCellRenderer **renderer,
-			     char **field)
+			     char **field,
+			     gboolean *is_editable)
 {
 	g_return_if_fail (dm != NULL);
 	g_return_if_fail (iter != NULL);
@@ -87,7 +88,8 @@ gdl_data_model_get_renderer (GdlDataModel *dm,
 	g_return_if_fail (GDL_DATA_MODEL_GET_IFACE (dm)->get_renderer != NULL);
 	
 	(*GDL_DATA_MODEL_GET_IFACE (dm)->get_renderer) (dm, iter, 
-							renderer, field);
+							renderer, field,
+							is_editable);
 }
 
 gboolean
