@@ -2,18 +2,19 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # V. van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2002.
 # Tino Meinen <a.t.meinen@chello.nl>, 2003.
+# Daniel van Eeden <daniel_e@dds.nl>, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GDL CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 04:13+0100\n"
-"PO-Revision-Date: 2003-01-23 09:11+0100\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2004-02-29 03:32+0100\n"
+"PO-Revision-Date: 2004-02-29 11:36+0100\n"
+"Last-Translator: Daniel van Eeden <daniel_e@dds.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: gdl/gdl-data-view.c:418
 msgid "Expander Size"
@@ -34,31 +35,28 @@ msgid "Un dock the toolbar"
 msgstr "De werkbalk vrijmaken"
 
 #: gdl/gdl-dock-item-grip.c:506
-#, fuzzy
 msgid "Iconify"
 msgstr "Pictogram-grootte"
 
 #: gdl/gdl-dock-item-grip.c:506
 msgid "Iconify this dock"
-msgstr ""
+msgstr "Verklein dok tot pictogram grootte"
 
-#. GRUT modified this item
 #: gdl/gdl-dock-item-grip.c:508
 msgid "Close"
 msgstr "Sluiten"
 
 #: gdl/gdl-dock-item-grip.c:508
 msgid "Close this dock"
-msgstr ""
+msgstr "Sluit deze dok"
 
 #: gdl/gdl-dock-item-grip.c:810 gdl/gdl-dock-tablabel.c:129
 msgid "Controlling dock item"
 msgstr "Controlerende dok-item"
 
 #: gdl/gdl-dock-item-grip.c:811
-#, fuzzy
 msgid "Dockitem which 'owns' this grip"
-msgstr "Dok-item welke dit tab-label 'bezit'"
+msgstr "Dok-item welke deze grip 'bezit'"
 
 #: gdl/gdl-dock-item.c:242
 msgid "Orientation"
@@ -267,15 +265,13 @@ msgstr "Lange naam"
 msgid "Human readable name for the dock object"
 msgstr "Leesbare naam voor het dok-object"
 
-#. GRUT modified this item
 #: gdl/gdl-dock-object.c:135
 msgid "Stock Icon"
 msgstr "Standaard pictogram"
 
 #: gdl/gdl-dock-object.c:136
-#, fuzzy
 msgid "Stock icon for the dock object"
-msgstr "Leesbare naam voor het dok-object"
+msgstr "Standaard pictogram voor het dok-object"
 
 #: gdl/gdl-dock-object.c:142
 msgid "Dock master"
@@ -382,7 +378,6 @@ msgid "Dockitem which 'owns' this tablabel"
 msgstr "Dok-item welke dit tab-label 'bezit'"
 
 #: gdl/gdl-dock-bar.c:89
-#, fuzzy
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "GdlDockMaster-object waaraan het layout-object is gebonden"
 
