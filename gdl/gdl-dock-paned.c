@@ -106,6 +106,10 @@ static void     gdl_dock_paned_layout_save     (GdlDockItem *item,
                                                 xmlNodePtr   node);
 static void     gdl_dock_paned_hide            (GdlDockItem *item);
 
+static gchar   *gdl_dock_paned_get_pos_hint    (GdlDockItem      *item,
+                                                GdlDockItem      *caller,
+                                                GdlDockPlacement *position);
+
 static GdlDockItemClass *parent_class = NULL;
 
 
@@ -153,7 +157,8 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
     dock_item_class->set_orientation = gdl_dock_paned_set_orientation;
     dock_item_class->save_layout = gdl_dock_paned_layout_save;
     dock_item_class->item_hide = gdl_dock_paned_hide;
-    
+    dock_item_class->get_pos_hint = gdl_dock_paned_get_pos_hint;
+
     gtk_object_add_arg_type("GdlDockPaned::handle_size", GTK_TYPE_UINT,
                             GTK_ARG_READWRITE, ARG_HANDLE_SIZE);
     gtk_object_add_arg_type("GdlDockPaned::quantum", GTK_TYPE_UINT,
@@ -1233,6 +1238,63 @@ gdl_dock_paned_hide (GdlDockItem *item)
     /* Auto reduce parent. */
     if (parent && GDL_IS_DOCK_ITEM (parent))
         gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (parent));
+}
+
+static gchar *
+gdl_dock_paned_get_pos_hint (GdlDockItem      *item,
+                             GdlDockItem      *caller,
+                             GdlDockPlacement *position)
+{
+    GdlDockPaned *paned;
+
+    g_return_val_if_fail (item != NULL, NULL);
+
+    paned = GDL_DOCK_PANED (item);
+    if (caller) {
+        GdlDockPlacement place;
+
+        /* going up the hierarchy */
+        /* FIXME: handle the case when the item has not been auto_reduced 
+           and propagate the call to the parent */
+        if (GTK_WIDGET (caller) == paned->child1) {
+            if (item->orientation == GTK_ORIENTATION_HORIZONTAL)
+                *position = GDL_DOCK_LEFT;
+            else
+                *position = GDL_DOCK_TOP;
+            return gdl_dock_item_get_pos_hint (GDL_DOCK_ITEM (paned->child2), 
+                                               NULL, &place);
+
+        }
+        else if (GTK_WIDGET (caller) == paned->child2) {
+            if (item->orientation == GTK_ORIENTATION_HORIZONTAL)
+                *position = GDL_DOCK_RIGHT;
+            else
+                *position = GDL_DOCK_BOTTOM;
+            return gdl_dock_item_get_pos_hint (GDL_DOCK_ITEM (paned->child1), 
+                                               NULL, &place);
+
+        }
+        else {
+            g_warning (_("gdl_dock_paned_get_pos_hint called with a "
+                         "contained child"));
+            return NULL;
+        };
+
+    } else {
+        /* going down the hierarchy */
+        if (item->name)
+            return g_strdup (item->name);
+
+        /* try with our children */
+        if (paned->child1)
+            return gdl_dock_item_get_pos_hint (GDL_DOCK_ITEM (paned->child1), 
+                                               NULL, position);
+        else if (paned->child2)
+            return gdl_dock_item_get_pos_hint (GDL_DOCK_ITEM (paned->child2), 
+                                               NULL, position);
+        else 
+            return NULL;
+    };
 }
 
 

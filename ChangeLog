@@ -1,3 +1,30 @@
+2001-12-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/TODO.gdl-dock: Updated
+	* gdl/gdl-dock-item.[ch]:
+	Removed location menu option functions and struct fields.
+	Removed some (already fixed) FIXMEs.
+	(gdl_dock_item_save_position, gdl_dock_item_restore_position):
+	New docked position save/restore functions.
+	(gdl_dock_item_get_pos_hint): New class virtual method to support 
+	position saving: returns a hinted relative position of the item to 
+	another	named item.
+	(gdl_dock_item_{dock,undock}_cb): Dock/Undock menu items
+	callbacks.
+	(gdl_dock_item_dock_to): Save docked position if item wants to
+	float.  Containers can no longer be nested inside notebooks: the
+	item is docked relative to the container notebook in such case.
+	(gdl_dock_item_hide): Save current dock position.
+	(gdl_dock_item_show): New function, to show a previously hidden,
+	via gdl_dock_item_hide, item.
+	* gdl/gdl-dock-notebook.c: Implemented get_pos_hint virtual.
+	(gdl_dock_notebook_add): create default label from long name if
+	available.
+	* gdl/gdl-dock-paned.c: Implemented get_pos_hint virtual.
+	* gdl/gdl-dock-tablabel.c (gdl_dock_tablabel_size_allocate):
+	Fixed allocation bug related to unsigned arithmetic operations.
+	* gdl/gdl-dock.[ch] (gdl_dock_get_named_items): New function.
+	
 2001-11-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock.c (gdl_dock_layout_load): Test if we have docked

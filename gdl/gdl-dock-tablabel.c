@@ -260,10 +260,12 @@ gdl_dock_tablabel_size_allocate (GtkWidget     *widget,
         child_allocation.y = border_width;
 
         if (tablabel->orientation == GTK_ORIENTATION_HORIZONTAL) {
-            allocation->width -= tablabel->drag_handle_size;
+            allocation->width = MAX (1, (int) allocation->width - 
+                                     (int) tablabel->drag_handle_size);
             child_allocation.x += tablabel->drag_handle_size;
         } else {
-            allocation->height -= tablabel->drag_handle_size;
+            allocation->height = MAX (1, (int) allocation->height - 
+                                      (int) tablabel->drag_handle_size);
         };
 
         child_allocation.width = 

@@ -36,6 +36,10 @@ static void  gdl_dock_notebook_hide          (GdlDockItem *item);
 static void  gdl_dock_notebook_hide_foreach  (GtkWidget *widget,
                                               gpointer   data);
 
+static gchar *gdl_dock_notebook_get_pos_hint (GdlDockItem      *item,
+                                              GdlDockItem      *caller,
+                                              GdlDockPlacement *position);
+
 /* Class variables and definitions */
 
 static GdlDockItemClass *parent_class = NULL;
@@ -66,6 +70,7 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
     item_class->set_orientation = gdl_dock_notebook_set_orientation;    
     item_class->save_layout = gdl_dock_notebook_layout_save;
     item_class->item_hide = gdl_dock_notebook_hide;
+    item_class->get_pos_hint = gdl_dock_notebook_get_pos_hint;
 }
 
 static void
@@ -95,10 +100,12 @@ gdl_dock_notebook_add (GtkContainer *container,
         gdl_dock_item_window_sink (item);
 
     label = gdl_dock_item_get_tablabel (item);
-    if (!label)
-        /* FIXME: get long name, and do it with gtk_object_get */
-        label = gtk_label_new (item->name);
-    else if (GDL_IS_DOCK_TABLABEL (label)) {
+    if (!label) {
+        if (item->long_name)
+            label = gtk_label_new (item->long_name);
+        else
+            label = gtk_label_new (item->name);
+    } else if (GDL_IS_DOCK_TABLABEL (label)) {
         gdl_dock_tablabel_deactivate (GDL_DOCK_TABLABEL (label));
         /* hide the item drag handle, as we will use the tablabel's */
         gdl_dock_item_hide_handle (item);
@@ -282,6 +289,61 @@ gdl_dock_notebook_hide_foreach (GtkWidget *widget,
     
     gdl_dock_item_hide (GDL_DOCK_ITEM (widget));
 }
+
+static gchar *
+gdl_dock_notebook_get_pos_hint (GdlDockItem      *item,
+                                GdlDockItem      *caller,
+                                GdlDockPlacement *position)
+{
+    GdlDockNotebook  *notebook;
+    GList            *pages, *l;
+    gchar            *ret_val = NULL;
+    GdlDockItem      *child;
+    GdlDockPlacement  place;
+
+    g_return_val_if_fail (item != NULL, NULL);
+
+    notebook = GDL_DOCK_NOTEBOOK (item);
+    l = pages = gtk_container_children (GTK_CONTAINER (notebook->notebook));
+
+    if (caller) {
+        gboolean          caller_found = FALSE;
+
+        while (l && !(ret_val && caller_found)) {
+            /* find caller among children and a peer with name */
+            child = GDL_DOCK_ITEM (l->data);
+            if (child == caller)
+                caller_found = TRUE;
+            else if (!ret_val) 
+                ret_val = gdl_dock_item_get_pos_hint (child, NULL, &place);
+            
+            l = l->next;
+        };
+
+        if (caller_found)
+            *position = GDL_DOCK_CENTER;
+        else
+            g_warning (_("gdl_dock_notebook_get_pos_hint called with a caller "
+                         "not among notebook's children"));
+
+    } else {
+        if (item->name)
+            ret_val = g_strdup (item->name);
+        else {
+            /* traverse children looking for a named item */
+            while (l && !ret_val) {
+                child = GDL_DOCK_ITEM (l->data);
+                ret_val = gdl_dock_item_get_pos_hint (child, NULL, &place);
+                l = l->next;
+            };
+        };
+    };
+
+    g_list_free (pages);
+
+    return ret_val;
+}
+
 
 /* Public interface */
 

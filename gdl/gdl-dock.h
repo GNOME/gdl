@@ -66,4 +66,6 @@ void           gdl_dock_layout_load       (GdlDock    *dock,
 void           gdl_dock_layout_save       (GdlDock    *dock,
                                            xmlNodePtr  node);
 
+GList         *gdl_dock_get_named_items   (GdlDock    *dock);
+
 #endif

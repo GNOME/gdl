@@ -1025,3 +1025,11 @@ gdl_dock_get_item_by_name (GdlDock     *dock,
     else
         return NULL;
 }
+
+GList *
+gdl_dock_get_named_items (GdlDock *dock)
+{
+    g_return_val_if_fail (dock != NULL, NULL);
+
+    return g_list_copy (dock->items);
+}

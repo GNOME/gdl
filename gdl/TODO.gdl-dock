@@ -1,16 +1,8 @@
-* Popup menu for the dragbar
-
 * In GdlDockPaned (drag_request): decide which child to pass the request to in function of the coordinate
 
 * Keyboard navigation in floating items: if the parent window has the focus, the keyboard works (sawfish, follow-focus mode) and the item is still in the "tab ring" (don't know the exact name).
 
-* XML layout saving/restoring.  Idea: make a per-item function which asks for the layout, and make nested calls to build the tree/XML stream
-
 * Floating window size negotiation.  See GnomeDockItem's implementation (preferred_width/height arguments).  Also, if the item is resizable, provide some mechanism for doing that without the aid of the window manager.
-
-* Fix the undock final position.  This is related to the relative sizes of the item (the docked vs. the floating sizes)
-
-* Emit "layout_changed" signal in the dock.
 
 * When docking with paned, split the paned according to previous relative sizes or something like that.
 
@@ -24,8 +16,6 @@
 
 * Make a nicer dragbar for the items, with buttons for undocking, closing, hidding, etc. (See sodipodi, kdevelop)
 
-* Decide whether to use signals for drag_{begin,motion,end} in the items, or just call gdl_dock_* directly.  Signal pros: API hide, possibility to hook other functions, "compatibility" with GnomeDock.  Signal cons: slower (?), less clear.
-
 * Virtualize reorder (?): don't know if this would be useful.
 
 * Virtualize dock_to: don't know either.  Would allow implementing different docking behavior.  Contrast with next item...
@@ -33,8 +23,6 @@
 * Make a dock_to counterpart: dock_from or something like that.  The basic idea is that if an item doesn't know how to solve a docking request, it transfers the task to the target.  This way, both functions are complementary from a semantic point of view.  This also allows for easier extensibility, as new docking ways are implemented in the "host" dockitem.
 
 * Click to hide in paned handle: basically what mozilla and nautilus do.  Should only be enabled if the "hideable" property (see above) is enabled.
-
-* GdlDockNotebook: self-explanatory, I think.
 
 * GdlDockBand: implement a dockitem which can hold items the same way as GnomeDockBand does.
 

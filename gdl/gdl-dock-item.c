@@ -38,8 +38,6 @@ static void  gdl_dock_item_style_set     (GtkWidget *widget,
 static void  gdl_dock_item_set_floating  (GdlDockItem *item, 
                                           gboolean val);
 
-static void  gdl_dock_item_location        (GtkWidget   *widget,
-                                            GdlDockItem *item);
 static void  gdl_dock_item_dock_drag_start (GdlDockItem *item);
 
 static gint  gdl_dock_item_button_changed (GtkWidget *widget,
@@ -58,6 +56,10 @@ static void  gdl_dock_item_tab_drag      (GtkWidget *widget,
 static void  gdl_dock_item_hide_cb       (GtkWidget   *widget,
                                           GdlDockItem *item);
 
+static void  gdl_dock_item_save_position (GdlDockItem *item,
+                                          gboolean     save_floating);
+
+static void  gdl_dock_item_restore_position (GdlDockItem *item);
 
 /* Class variables and definitions */
 
@@ -91,8 +93,6 @@ static GtkBinClass *parent_class = NULL;
 struct DockItemMenu {
     GtkWidget *dock, *undock;
     GtkWidget *hide;
-    GtkWidget *location_menu, *location;
-    GtkWidget *left, *right, *top, *bottom, *center;
     GtkWidget *first_option;
 };
 
@@ -209,6 +209,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     klass->set_orientation = NULL;
     klass->save_layout = NULL;
     klass->item_hide = NULL;
+    klass->get_pos_hint = NULL;
 }
 
 static void
@@ -236,6 +237,9 @@ gdl_dock_item_init (GdlDockItem *item)
     item->in_resize = FALSE;
     item->handle_shown = TRUE;
     item->drag_handle_size = DEFAULT_DRAG_HANDLE_SIZE;
+
+    item->last_pos.position = GDL_DOCK_FLOATING;
+    item->last_pos.peer = NULL;
 }
 
 static void
@@ -345,6 +349,7 @@ gdl_dock_item_destroy (GtkObject *object)
     };
     g_free (item->name);
     g_free (item->long_name);
+    g_free (item->last_pos.peer);
 
     if (item->menu) {
         gtk_widget_destroy (item->menu);
@@ -870,21 +875,6 @@ gdl_dock_item_set_floating (GdlDockItem *item,
 }
 
 static void
-gdl_dock_item_location (GtkWidget *widget,
-                        GdlDockItem *item)
-{
-    guint position;
-    GtkWidget *parent;
-    
-    /* Reposition item. */
-    position = GPOINTER_TO_UINT (gtk_object_get_data (GTK_OBJECT (widget), "position"));    
-    GDL_DOCK_ITEM_GET_PARENT (item, parent);
-    gdl_dock_item_dock_to (item, GDL_DOCK_ITEM (parent), position, -1);
-
-    /* FIXME: emit layout_changed signal on the dock */
-}
-
-static void
 gdl_dock_item_dock_drag_start (GdlDockItem *item)
 {
     GtkWidget *widget;
@@ -942,6 +932,33 @@ gdl_dock_item_detach_menu (GtkWidget *widget,
 }
 
 static void
+gdl_dock_item_dock_cb (GtkWidget   *widget,
+                       GdlDockItem *item)
+{
+    g_return_if_fail (item != NULL);
+
+    /* force docking even if saved position is floating */
+    if (item->last_pos.position == GDL_DOCK_FLOATING)
+        item->last_pos.position = GDL_DOCK_TOP;
+
+    gdl_dock_item_restore_position (item);
+
+    /* layout has changed */
+    gtk_signal_emit_by_name (GTK_OBJECT (item->dock), "layout_changed");
+}
+
+static void
+gdl_dock_item_undock_cb (GtkWidget   *widget,
+                         GdlDockItem *item)
+{
+    g_return_if_fail (item != NULL);
+
+    /* current position is saved in dock_to when the item floats */
+    gdl_dock_item_dock_to (item, NULL, GDL_DOCK_FLOATING, -1);
+    gtk_signal_emit_by_name (GTK_OBJECT (item->dock), "layout_changed");
+}
+
+static void
 gdl_dock_item_popup_menu (GdlDockItem  *item, 
                           gint          button,
                           guint32       time)
@@ -962,6 +979,10 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
         /* Dock/Undock menuitem. */
         menu_data->dock = gtk_menu_item_new_with_label (_("Dock"));
         menu_data->undock = gtk_menu_item_new_with_label (_("Undock"));
+        gtk_signal_connect (GTK_OBJECT (menu_data->dock), "activate", 
+                            GTK_SIGNAL_FUNC (gdl_dock_item_dock_cb), item);
+        gtk_signal_connect (GTK_OBJECT (menu_data->undock), "activate", 
+                            GTK_SIGNAL_FUNC (gdl_dock_item_undock_cb), item);
         gtk_widget_ref (menu_data->dock);
         gtk_widget_ref (menu_data->undock);
         menu_data->first_option = NULL;
@@ -971,58 +992,6 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
         gtk_menu_append (GTK_MENU (item->menu), menu_data->hide);
         gtk_signal_connect (GTK_OBJECT (mitem), "activate", 
                             GTK_SIGNAL_FUNC (gdl_dock_item_hide_cb), item);
-
-        /* Horizontal line. */
-        gtk_menu_append (GTK_MENU (item->menu), gtk_menu_item_new ());
-
-        /* Location menu. */
-        mitem = menu_data->location = 
-            gtk_menu_item_new_with_label (_("Location"));
-        gtk_menu_append (GTK_MENU (item->menu), mitem);
-
-        menu_data->location_menu = gtk_menu_new ();
-        gtk_menu_item_set_submenu (GTK_MENU_ITEM (mitem), 
-                                   menu_data->location_menu);
-        
-        /* Top. */
-        mitem = menu_data->top = gtk_menu_item_new_with_label (_("Top"));
-        gtk_menu_append (GTK_MENU (menu_data->location_menu), mitem);
-        gtk_object_set_data (GTK_OBJECT (mitem), "position", 
-                             GUINT_TO_POINTER (GDL_DOCK_TOP));
-        gtk_signal_connect (GTK_OBJECT (mitem), "activate", 
-                            GTK_SIGNAL_FUNC (gdl_dock_item_location), item);
-
-        /* Left. */
-        mitem = menu_data->left = gtk_menu_item_new_with_label (_("Left"));
-        gtk_menu_append (GTK_MENU (menu_data->location_menu), mitem);
-        gtk_object_set_data (GTK_OBJECT (mitem), "position", 
-                             GUINT_TO_POINTER (GDL_DOCK_LEFT));
-        gtk_signal_connect (GTK_OBJECT (mitem), "activate", 
-                            GTK_SIGNAL_FUNC (gdl_dock_item_location), item);
-        
-        /* Center. */                    
-        mitem = menu_data->center = gtk_menu_item_new_with_label (_("Center"));
-        gtk_menu_append (GTK_MENU (menu_data->location_menu), mitem);
-        gtk_object_set_data (GTK_OBJECT (mitem), "position", 
-                             GUINT_TO_POINTER (GDL_DOCK_CENTER));
-        gtk_signal_connect (GTK_OBJECT (mitem), "activate", 
-                            GTK_SIGNAL_FUNC (gdl_dock_item_location), item);
-        
-        /* Right */
-        mitem = menu_data->right = gtk_menu_item_new_with_label (_("Right"));
-        gtk_menu_append (GTK_MENU (menu_data->location_menu), mitem);
-        gtk_object_set_data (GTK_OBJECT (mitem), "position", 
-                             GUINT_TO_POINTER (GDL_DOCK_RIGHT));
-        gtk_signal_connect (GTK_OBJECT (mitem), "activate", 
-                            GTK_SIGNAL_FUNC (gdl_dock_item_location), item);
-
-        /* Bottom. */
-        mitem = menu_data->bottom = gtk_menu_item_new_with_label (_("Bottom"));
-        gtk_menu_append (GTK_MENU (menu_data->location_menu), mitem);
-        gtk_object_set_data (GTK_OBJECT (mitem), "position", 
-                             GUINT_TO_POINTER (GDL_DOCK_BOTTOM));
-        gtk_signal_connect (GTK_OBJECT (mitem), "activate", 
-                            GTK_SIGNAL_FUNC (gdl_dock_item_location), item);
 
     } else
         menu_data = gtk_object_get_user_data (GTK_OBJECT (item->menu));
@@ -1039,9 +1008,6 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
         gtk_menu_prepend (GTK_MENU (item->menu), menu_data->undock);
         menu_data->first_option = menu_data->undock;
     };
-
-    gtk_widget_set_sensitive (menu_data->location, 
-                              !GDL_DOCK_ITEM_IS_FLOATING (item));
 
     /* Show popup menu. */
     gtk_widget_show_all (item->menu);
@@ -1270,6 +1236,134 @@ gdl_dock_item_hide_cb (GtkWidget   *widget,
     gtk_signal_emit_by_name (dock, "layout_changed");
 }
 
+/* save the current docked position wrt to a named (i.e. non-anonymous and
+ * bound to the dock) item */
+static void
+gdl_dock_item_save_position (GdlDockItem *item,
+                             gboolean     save_floating)
+{
+    GtkWidget *parent;
+
+    /* don't save floating pos */
+    if (GDL_DOCK_ITEM_IS_FLOATING (item) && !save_floating)
+        return;
+
+    GDL_DOCK_ITEM_GET_PARENT (GTK_WIDGET (item), parent);
+    if (parent) {
+        if (item->last_pos.peer) {
+            g_free (item->last_pos.peer);
+            item->last_pos.peer = NULL;
+        };
+
+        if (GDL_IS_DOCK (parent)) {
+            item->last_pos.position = GDL_DOCK_TOP;
+
+            /* peer NULL means the dock */
+            item->last_pos.peer = NULL;
+
+        } else {
+            item->last_pos.peer = gdl_dock_item_get_pos_hint (
+                GDL_DOCK_ITEM (parent), item, &item->last_pos.position);
+        };
+    };
+
+    return;
+}
+
+static void  
+gdl_dock_item_restore_position (GdlDockItem *item)
+{
+    GtkWidget        *target = GTK_WIDGET (item);
+    GtkWidget        *parent;
+    GdlDockPlacement  new_pos = GDL_DOCK_FLOATING;
+    GdlDockItem      *item_target;
+    
+    g_return_if_fail (item != NULL);
+
+    while (target) {
+        item_target = GDL_DOCK_ITEM (target);
+
+        new_pos = item_target->last_pos.position;
+        /* special cases */
+        if (new_pos == GDL_DOCK_FLOATING) {
+            target = NULL;
+            break;
+        } else if (!item_target->last_pos.peer) {
+            /* there is no saved docking position: dock to the dock :-) */
+            target = item->dock;
+            break;
+        };
+        
+        /* find peer */
+        target = GTK_WIDGET (gdl_dock_get_item_by_name (
+            GDL_DOCK (item->dock), item_target->last_pos.peer));
+
+        if (target) {
+            /* found: check if still docked */
+            GDL_DOCK_ITEM_GET_PARENT (GDL_DOCK_ITEM (target), parent);
+            if (parent)
+                break;
+            
+        } else {
+            /* the peer is no longer bound to the dock... dock it in the top
+               of the hierarchy but respecting the previous position */
+            target = item->dock;
+            break;
+        };
+    };
+
+    if (target == item->dock) {
+        GtkWidget *w;
+
+        /* FIXME: damned special case! we need a more uniform way to do this
+           it's also more or less done in gdl_dock_drag_end */
+        GDL_DOCK_ITEM_GET_PARENT (item, parent);
+
+        w = GTK_WIDGET (item);
+        gtk_widget_ref (w);
+        if (w->parent) {
+            gtk_container_remove (GTK_CONTAINER (w->parent), w);
+            if (GDL_IS_DOCK_ITEM (parent))
+                gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (parent));
+        };
+        gdl_dock_add_item (GDL_DOCK (item->dock), item, new_pos);
+        gtk_widget_unref (w);
+
+    } else {
+        gdl_dock_item_dock_to (item, GDL_DOCK_ITEM (target), new_pos, -1);
+    };
+}
+
+
+/* This function returns the name of a peer dockitem to caller and sets
+ * position to the relative position between the items. 
+ * If the caller is NULL, it means the parent has made the call and is
+ * looking for a child's name. */
+gchar *
+gdl_dock_item_get_pos_hint (GdlDockItem      *item,
+                            GdlDockItem      *caller,
+                            GdlDockPlacement *position)
+{
+    GdlDockItemClass *klass;
+
+    g_return_val_if_fail (item != NULL, NULL);
+
+    /* call virtual */
+    klass = GDL_DOCK_ITEM_CLASS (GTK_OBJECT (item)->klass);
+    if (klass->get_pos_hint)
+        return klass->get_pos_hint (item, caller, position);
+
+    if (caller) {
+        /* this would imply a dockitem is docked inside us, which is not 
+           possible */
+        g_warning (_("gdl_dock_item_get_pos_hint called for a regular item "
+                     "in traversing the docking hierarchy up"));
+        return NULL;
+
+    } else
+        return g_strdup (item->name);
+}
+
 
 /* ----------------------------------------------------------------------
  * Public interface 
@@ -1288,8 +1382,6 @@ gdl_dock_item_new (const gchar         *name,
     item->long_name = g_strdup (long_name);
     item->behavior = behavior;
 
-    /* FIXME: this should create the label using the description 
-       (or translated name) */
     gdl_dock_item_set_tablabel (item, gdl_dock_tablabel_new (item->long_name));
     
     return GTK_WIDGET (item);
@@ -1374,6 +1466,9 @@ gdl_dock_item_dock_to (GdlDockItem      *item,
 
     /* Item wants to float. */
     if (position == GDL_DOCK_FLOATING || !target_item) {
+        /* save previous docking position */
+        gdl_dock_item_save_position (item, FALSE);
+
         /* Remove widget from current container. */
         if (real_old_parent)           
             gtk_container_remove (GTK_CONTAINER (real_old_parent), widget);
@@ -1388,13 +1483,22 @@ gdl_dock_item_dock_to (GdlDockItem      *item,
 
     } else {
         GtkWidget *target, *parent, *real_parent;
+        gboolean target_resolved = FALSE;
 
-        target = GTK_WIDGET (target_item);
+        do {
+            /* get target and target's parent */
+            target = GTK_WIDGET (target_item);
+            real_parent = target->parent;
+            GDL_DOCK_ITEM_GET_PARENT (target, parent);
+            if (!parent)
+                parent = real_parent;
 
-        real_parent = target->parent;
-        GDL_DOCK_ITEM_GET_PARENT (target, parent);
-        if (!parent)
-            parent = real_parent;
+            if (GDL_IS_DOCK_NOTEBOOK (parent))
+                /* do not allow composite docking inside a notebook */
+                target_item = GDL_DOCK_ITEM (parent);
+            else
+                target_resolved = TRUE;
+        } while (!target_resolved);
 
         /* Unfloat item. */
         if (GDL_DOCK_ITEM_IS_FLOATING (item))
@@ -1408,6 +1512,8 @@ gdl_dock_item_dock_to (GdlDockItem      *item,
                current item.  Otherwise, we create a GdlDockNotebook and
                add it in place of the target. */
             if (!GDL_IS_DOCK_NOTEBOOK (target)) {
+                /* check if the target is already docked in a notebook
+                   note: this disallows nesting notebooks */
                 gtk_widget_ref (target);
                 gtk_container_remove (GTK_CONTAINER (real_parent), target);
                 nb = gdl_dock_notebook_new ();
@@ -1491,9 +1597,6 @@ gdl_dock_item_dock_to (GdlDockItem      *item,
         }
     }
     
-    /* Set item placement. */
-    item->placement = position;
-
     /* Decrease refcount (was increased to prevent destruction). */
     gtk_widget_unref (widget);
     
@@ -1792,6 +1895,9 @@ gdl_dock_item_hide (GdlDockItem *item)
 {
     GdlDockItemClass *klass;
 
+    /* save current docking position */
+    gdl_dock_item_save_position (item, TRUE);
+
     /* auto_reduce barrier to avoid reentrancy problems */
     item->disable_auto_reduce = TRUE;
 
@@ -1821,6 +1927,16 @@ gdl_dock_item_hide (GdlDockItem *item)
 
     item->disable_auto_reduce = FALSE;
 }
+
+
+void
+gdl_dock_item_show (GdlDockItem *item)
+{
+    g_return_if_fail (item != NULL);
+
+    gdl_dock_item_restore_position (item);
+}
+
 
 void
 gdl_dock_item_save_layout (GdlDockItem *item,

@@ -14,6 +14,7 @@
 #define GDL_IS_DOCK_ITEM_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK_ITEM))
 
 #define GDL_DOCK_ITEM_IS_FLOATING(item) ((item)->is_floating)
+#define GDL_DOCK_ITEM_IS_SHOWN(item)  (GTK_WIDGET (item)->parent)
 
 #define GDL_DOCK_ITEM_IS_BOUND(item)  ((item)->dock != NULL)
 
@@ -64,9 +65,6 @@ struct _GdlDockItem {
     gchar               *long_name;
 
     GdlDockItemBehavior  behavior;
-    /* FIXME: this should go away and be replaced using layout managment
-       functions */
-    GdlDockPlacement     placement;
     GtkOrientation       orientation;
     GtkWidget           *dock;
     GtkWidget           *tab_label;
@@ -87,6 +85,11 @@ struct _GdlDockItem {
 
     /* these should be gint and not guint... trust me */
     gint       float_width, float_height;
+
+    struct {
+        GdlDockPlacement  position;
+        gchar            *peer;
+    } last_pos;
 };
 
 /* structure for drag_request return information */
@@ -97,6 +100,7 @@ struct _GdlDockRequestInfo {
     GdlDockPlacement  position;
     GdkRectangle      rect;  /* where will the item dock */
 };
+
 
 struct _GdlDockItemClass {
     GtkBinClass parent_class;
@@ -122,6 +126,10 @@ struct _GdlDockItemClass {
                                    xmlNodePtr   node);
 
     void     (* item_hide)        (GdlDockItem *item);
+
+    gchar *  (* get_pos_hint)     (GdlDockItem      *item,
+                                   GdlDockItem      *caller,
+                                   GdlDockPlacement *position);
 };
 
 
@@ -166,8 +174,13 @@ void           gdl_dock_item_unbind            (GdlDockItem *item);
 
 void           gdl_dock_item_hide              (GdlDockItem *item);
 
+void           gdl_dock_item_show              (GdlDockItem *item);
+
 void           gdl_dock_item_save_layout       (GdlDockItem *item,
                                                 xmlNodePtr   node);
 
+gchar         *gdl_dock_item_get_pos_hint      (GdlDockItem      *item,
+                                                GdlDockItem      *caller,
+                                                GdlDockPlacement *position);
 
 #endif
