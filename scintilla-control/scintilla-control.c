@@ -36,6 +36,7 @@
 
 enum {
     PROP_POSITION,
+    PROP_LINE_NUM,
     PROP_SELECTION_START,
     PROP_SELECTION_END
 };
@@ -93,6 +94,7 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     sci = scintilla_new ();
 
     gtk_widget_show_all (GTK_WIDGET (sci));
+    
     control = bonobo_control_new (GTK_WIDGET (sci));
 
     gtk_signal_connect (GTK_OBJECT (control), "activate",
@@ -105,12 +107,14 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
 			     BONOBO_ARG_LONG, NULL,
 			     "Position in the buffer", 
 			     BONOBO_PROPERTY_UNSTORED);
-
+    bonobo_property_bag_add (pb, "line_num", PROP_LINE_NUM,
+			     BONOBO_ARG_LONG, NULL,
+			     "Current line number", 
+			     BONOBO_PROPERTY_UNSTORED);
     bonobo_property_bag_add (pb, "selection_start", PROP_SELECTION_START,
 			     BONOBO_ARG_LONG, NULL,
 			     "Beginning of the selection", 
 			     BONOBO_PROPERTY_UNSTORED);
-
     bonobo_property_bag_add (pb, "selection_end", PROP_SELECTION_END,
 			     BONOBO_ARG_LONG, NULL,
 			     "End of the selection", 
@@ -187,6 +191,13 @@ set_prop (BonoboPropertyBag *bag,
 	scintilla_send_message (sci, SCI_GOTOPOS, pos, 0);
 	break;
     } 
+    case PROP_LINE_NUM :
+    {
+        long line = BONOBO_ARG_GET_LONG (arg);
+        scintilla_send_message (sci, SCI_GOTOLINE, line, 0);
+        scintilla_send_message (sci, SCI_MOVECARETINSIDEVIEW, 0, 0);
+        break;
+    }
     case PROP_SELECTION_START :
     {
 	long pos = BONOBO_ARG_GET_LONG (arg);
@@ -198,7 +209,7 @@ set_prop (BonoboPropertyBag *bag,
 	long pos = BONOBO_ARG_GET_LONG (arg);
 	scintilla_send_message (sci, SCI_SETSELECTIONEND, pos, 0);
 	break;
-    } 
+    }
     }    
 }
 
@@ -216,6 +227,13 @@ get_prop (BonoboPropertyBag *bag,
 	long pos = scintilla_send_message (sci, SCI_GETCURRENTPOS, 0, 0);
 	BONOBO_ARG_SET_LONG (arg, pos);
 	break;
+    }
+    case PROP_LINE_NUM :
+    {
+        long pos = scintilla_send_message (sci, SCI_GETCURRENTPOS, 0, 0);
+        long line = scintilla_send_message (sci, SCI_LINEFROMPOSITION, pos, 0);
+        BONOBO_ARG_SET_LONG (arg, pos);
+        break;
     }
     case PROP_SELECTION_START :
     {

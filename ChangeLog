@@ -1,3 +1,10 @@
+2001-03-05  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Add the
+	line_num property.
+	(set_prop): 
+	(get_prop): Implemented the line_num property.
+
 2001-03-05  JP Rosevear  <jpr@ximian.com>
 
 	* scintilla-control/scintilla-highlight.c
