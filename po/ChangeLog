@@ -1,3 +1,7 @@
+2002-05-18  Carlos Perello Marin <carlos@gnome-db.org>
+
+        * POTFILES.in: Fixed, sorry all strings will change :-(
+
 2002-02-14  Duarte Loreto <happyguy_pt@hotmail.com>
 
         * pt.po: Added Portugues translation by Paulo Silva <paulojjs@yahoo.com>
