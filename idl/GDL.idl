@@ -31,7 +31,6 @@
 #endif
 
 #include <Bonobo.idl>
-#include <ORBitservices/CosEventChannel.idl>
 
 #include "editor-buffer.idl"
 

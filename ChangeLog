@@ -1,3 +1,7 @@
+2000-12-03  Dave Camp  <dave@helixcode.com>
+
+	* idl/GDL.idl: Don't include the event channel idl.
+
 2000-12-02  Dave Camp  <dave@helixcode.com>
 
 	* scintilla-control/scintilla-ui.xml: Added toolbar items.
