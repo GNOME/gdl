@@ -618,6 +618,7 @@ master_locked_notify_cb (GdlDockMaster *master,
 static GtkWidget *
 gdl_dock_layout_construct_ui (GdlDockLayout *layout)
 {
+    gchar               *gui_file;
     GladeXML            *gui;
     GtkWidget           *container;
     GtkWidget           *items_list, *layouts_list;
@@ -628,8 +629,9 @@ gdl_dock_layout_construct_ui (GdlDockLayout *layout)
     
     /* load ui */
     /* FIXME: set the translation domain here */
-    gui = glade_xml_new (g_build_filename (
-        GDL_GLADEDIR, LAYOUT_GLADE_FILE, NULL), "layout_container", NULL);
+    gui_file = g_build_filename (GDL_GLADEDIR, LAYOUT_GLADE_FILE, NULL);
+    gui = glade_xml_new (gui_file, "layout_container", NULL);
+    g_free (gui_file);
     if (!gui) {
         g_warning (_("Could not load layout user interface file '%s'"), 
                    LAYOUT_GLADE_FILE);

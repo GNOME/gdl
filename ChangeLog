@@ -1,3 +1,9 @@
+2002-06-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock.c (gdl_dock_set_title)
+	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_ui):
+	Fixed a couple of memory leaks.
+
 2002-05-27  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-icons.c (get_themed_icon_file_path)

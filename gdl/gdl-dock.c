@@ -463,6 +463,7 @@ gdl_dock_set_title (GdlDock *dock)
 {
     GdlDockObject *object = GDL_DOCK_OBJECT (dock);
     gchar         *title = NULL;
+    gboolean       free_title = FALSE;
     
     if (!dock->_priv->window)
         return;
@@ -472,19 +473,25 @@ gdl_dock_set_title (GdlDock *dock)
     }
     else if (object->master) {
         g_object_get (object->master, "default_title", &title, NULL);
+        free_title = TRUE;
     }
 
-    if (!title && dock->root)
+    if (!title && dock->root) {
         g_object_get (dock->root, "long_name", &title, NULL);
+        free_title = TRUE;
+    }
     
     if (!title) {
         /* set a default title in the long_name */
         dock->_priv->auto_title = TRUE;
+        free_title = FALSE;
         title = object->long_name = g_strdup_printf (
             _("Dock #%d"), GDL_DOCK_MASTER (object->master)->dock_number++);
     }
 
     gtk_window_set_title (GTK_WINDOW (dock->_priv->window), title);
+    if (free_title)
+        g_free (title);
 }
 
 static void
