@@ -1,3 +1,7 @@
+2001-12-09  Simos Xenitellis  <simos@hellug.gr>
+
+	* configure.in: Added "el" to ALL_LINGUAS.
+
 2001-12-09  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-item.c (gdl_dock_item_get_arg): g_strdup long_name
