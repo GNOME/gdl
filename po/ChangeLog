@@ -1,3 +1,8 @@
+2002-07-08  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* POTFILES.in: added missing gdl/layout.glade.  Pointed by Marcel
+	Telka <marcel@telka.sk>.
+
 2002-07-04  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* vi.po: Updated Vietnamese file

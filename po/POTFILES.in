@@ -11,6 +11,7 @@ gdl/gdl-dock-tablabel.c
 gdl/gdl-dock.c
 gdl/gdl-file-selector-util.c
 gdl/gdl-recent.c
+gdl/layout.glade
 symbol-browser-control/GNOME_Development_SymbolBrowser.server.in
 symbol-browser-control/gnome-symbol-browser.xml
 symbol-browser-control/symbol-browser.c
