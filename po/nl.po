@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GDL CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-13 04:00+0100\n"
+"POT-Creation-Date: 2004-02-24 04:13+0100\n"
 "PO-Revision-Date: 2003-01-23 09:11+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -15,23 +15,50 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdl/gdl-data-view.c:421
+#: gdl/gdl-data-view.c:418
 msgid "Expander Size"
 msgstr "Uitklapper-grootte"
 
-#: gdl/gdl-data-view.c:422
+#: gdl/gdl-data-view.c:419
 msgid "Size of the expander arrow."
 msgstr "Grootte van de uitklapperpijl"
 
 # om in zeemanstermen te blijven zoude we het eigenlijk moeten
 # hebben over aanmeren en afmeren
-#: gdl/gdl-dock-item-grip.c:247
+#: gdl/gdl-dock-item-grip.c:320
 msgid "Dock the toolbar"
 msgstr "De werkbalk vastzetten"
 
-#: gdl/gdl-dock-item-grip.c:248
+#: gdl/gdl-dock-item-grip.c:321
 msgid "Un dock the toolbar"
 msgstr "De werkbalk vrijmaken"
+
+#: gdl/gdl-dock-item-grip.c:506
+#, fuzzy
+msgid "Iconify"
+msgstr "Pictogram-grootte"
+
+#: gdl/gdl-dock-item-grip.c:506
+msgid "Iconify this dock"
+msgstr ""
+
+#. GRUT modified this item
+#: gdl/gdl-dock-item-grip.c:508
+msgid "Close"
+msgstr "Sluiten"
+
+#: gdl/gdl-dock-item-grip.c:508
+msgid "Close this dock"
+msgstr ""
+
+#: gdl/gdl-dock-item-grip.c:810 gdl/gdl-dock-tablabel.c:129
+msgid "Controlling dock item"
+msgstr "Controlerende dok-item"
+
+#: gdl/gdl-dock-item-grip.c:811
+#, fuzzy
+msgid "Dockitem which 'owns' this grip"
+msgstr "Dok-item welke dit tab-label 'bezit'"
 
 #: gdl/gdl-dock-item.c:242
 msgid "Orientation"
@@ -63,43 +90,34 @@ msgstr ""
 "Globale gedrag van het dok-item (of het kan zweven, of het is vastgezet, "
 "enz.)"
 
-#: gdl/gdl-dock-item.c:275
-msgid "Grip size"
-msgstr "Greep-grootte"
-
-#: gdl/gdl-dock-item.c:276
-msgid "Size in pixels of the grip to drag the dock item"
-msgstr ""
-"Afmeting in pixels van de greep waarmee het dok-item kan worden gesleept"
-
-#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
+#: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
 msgid "Locked"
 msgstr "Vergrendeld"
 
-#: gdl/gdl-dock-item.c:283
+#: gdl/gdl-dock-item.c:276
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Indien aangezet, kan het dok-item niet worden versleept en bezit het geen "
 "greep."
 
-#: gdl/gdl-dock-item.c:291
+#: gdl/gdl-dock-item.c:284
 msgid "Preferred width"
 msgstr "Gewenste breedte"
 
-#: gdl/gdl-dock-item.c:292
+#: gdl/gdl-dock-item.c:285
 msgid "Preferred width for the dock item"
 msgstr "Gewenste breedte van het dok-item"
 
-#: gdl/gdl-dock-item.c:298
+#: gdl/gdl-dock-item.c:291
 msgid "Preferred height"
 msgstr "Gewenste hoogte"
 
-#: gdl/gdl-dock-item.c:299
+#: gdl/gdl-dock-item.c:292
 msgid "Preferred height for the dock item"
 msgstr "Gewenste hoogte van het dok-item"
 
-#: gdl/gdl-dock-item.c:546
+#: gdl/gdl-dock-item.c:542
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -108,7 +126,7 @@ msgstr ""
 "U kunt een dok-object (%p van type %s) niet toevoegen aan een %s. Gebruik "
 "GdlDock of een ander samengesteld dok-object."
 
-#: gdl/gdl-dock-item.c:553
+#: gdl/gdl-dock-item.c:549
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -117,71 +135,71 @@ msgstr ""
 "Poging om een widget met type %s toe te voegen aan %s, maar het kan slechts "
 "één widget per keer bevatten; het bevat reeds een widget van type %s"
 
-#: gdl/gdl-dock-item.c:1149
+#: gdl/gdl-dock-item.c:1171
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Niet ondersteunde dok-strategie %s is dok-object van type %s"
 
 #. Hide menuitem.
-#: gdl/gdl-dock-item.c:1231
+#: gdl/gdl-dock-item.c:1253
 msgid "Hide"
 msgstr "Verbergen"
 
 #. Lock menuitem
-#: gdl/gdl-dock-item.c:1237
+#: gdl/gdl-dock-item.c:1259
 msgid "Lock"
 msgstr "Vastzetten"
 
-#: gdl/gdl-dock-item.c:1404
+#: gdl/gdl-dock-item.c:1443
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Poging om een niet gebonden item %p te binden"
 
-#: gdl/gdl-dock-layout.c:126
+#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
 msgid "Master"
 msgstr "Meester"
 
-#: gdl/gdl-dock-layout.c:127
+#: gdl/gdl-dock-layout.c:126
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "GdlDockMaster-object waaraan het layout-object is gebonden"
 
-#: gdl/gdl-dock-layout.c:134
+#: gdl/gdl-dock-layout.c:133
 msgid "Dirty"
 msgstr "Vuil"
 
-#: gdl/gdl-dock-layout.c:135
+#: gdl/gdl-dock-layout.c:134
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "Waar, indien de layout is veranderd en opgeslagen dient te worden in een "
 "bestand"
 
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:565
+#: gdl/gdl-dock-layout.c:564
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Kon bestand '%s', met de layout van de gebruikersinterface, niet laden"
 
-#: gdl/gdl-dock-layout.c:620
+#: gdl/gdl-dock-layout.c:619
 msgid "Visible"
 msgstr "Zichtbaar"
 
-#: gdl/gdl-dock-layout.c:627
+#: gdl/gdl-dock-layout.c:626
 msgid "Item"
 msgstr "Item"
 
-#: gdl/gdl-dock-layout.c:710 gdl/gdl-dock-object.c:120
+#: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
 msgid "Name"
 msgstr "Naam"
 
-#: gdl/gdl-dock-layout.c:743 gdl/layout.glade.h:1
+#: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Dok-items"
 
-#: gdl/gdl-dock-layout.c:749 gdl/layout.glade.h:3
+#: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Opgeslagen layouts"
 
-#: gdl/gdl-dock-layout.c:791
+#: gdl/gdl-dock-layout.c:790
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
@@ -190,19 +208,19 @@ msgstr ""
 "Tijdens het laden van de layout: onbekend hoe het dok-object met de bijnaam "
 "'%s'moet worden aangemaakt"
 
-#: gdl/gdl-dock-layout.c:1270
+#: gdl/gdl-dock-layout.c:1269
 msgid "Layout managment"
 msgstr "Layout-beheer"
 
-#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
+#: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
 msgid "Default title"
 msgstr "Standaard-titel"
 
-#: gdl/gdl-dock-master.c:136
+#: gdl/gdl-dock-master.c:135
 msgid "Default title for newly created floating docks"
 msgstr "Standaard-titel voor nieuw aangemaakte zwevende dokken"
 
-#: gdl/gdl-dock-master.c:143
+#: gdl/gdl-dock-master.c:142
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -211,7 +229,7 @@ msgstr ""
 "indien 0, zijn alle vrijgemaakt; -1 geeft een inconsistentie onder de items "
 "aan "
 
-#: gdl/gdl-dock-master.c:730
+#: gdl/gdl-dock-master.c:729
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -220,7 +238,7 @@ msgstr ""
 "meester %p: kon object %p[%s] niet aan de hak-tabel toevoegen.  Er is reeds "
 "een item met die naam (%p)"
 
-#: gdl/gdl-dock-master.c:895
+#: gdl/gdl-dock-master.c:894
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -229,11 +247,11 @@ msgstr ""
 "De nieuwe dok-bedienaar %p is automatisch.  Alleen handmatige dok-objecten "
 "mogen controller genoemd worden."
 
-#: gdl/gdl-dock-notebook.c:134
+#: gdl/gdl-dock-notebook.c:135
 msgid "Page"
 msgstr "Pagina"
 
-#: gdl/gdl-dock-notebook.c:135
+#: gdl/gdl-dock-notebook.c:136
 msgid "The index of the current page"
 msgstr "De index van de huidige pagina"
 
@@ -249,15 +267,25 @@ msgstr "Lange naam"
 msgid "Human readable name for the dock object"
 msgstr "Leesbare naam voor het dok-object"
 
+#. GRUT modified this item
 #: gdl/gdl-dock-object.c:135
+msgid "Stock Icon"
+msgstr "Standaard pictogram"
+
+#: gdl/gdl-dock-object.c:136
+#, fuzzy
+msgid "Stock icon for the dock object"
+msgstr "Leesbare naam voor het dok-object"
+
+#: gdl/gdl-dock-object.c:142
 msgid "Dock master"
 msgstr "Dok-meester"
 
-#: gdl/gdl-dock-object.c:136
+#: gdl/gdl-dock-object.c:143
 msgid "Dock master this dock object is bound to"
 msgstr "Dok-meester aan welke dit dok is gebonden"
 
-#: gdl/gdl-dock-object.c:405
+#: gdl/gdl-dock-object.c:419
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -266,7 +294,7 @@ msgstr ""
 "Aanroep naar gdl_dock_object_dock ine en dok-object %p (object-type is %s) "
 "welke deze methode niet heeft geïmplementeerd"
 
-#: gdl/gdl-dock-object.c:534
+#: gdl/gdl-dock-object.c:548
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -275,13 +303,13 @@ msgstr ""
 "Dok-operatie (vastzetten) aangevraagd voor een ongebonden object %p. De "
 "toepassing kan mogelijk crashen."
 
-#: gdl/gdl-dock-object.c:541
+#: gdl/gdl-dock-object.c:555
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "Kan %p niet vastzetten aan %p omdat ze aan verschillende meesters toebehoren"
 
-#: gdl/gdl-dock-object.c:583
+#: gdl/gdl-dock-object.c:597
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -289,11 +317,11 @@ msgstr ""
 "Poging om %p te binden aan een reeds gebonden dok-object %p (huidige "
 "meester: %p)"
 
-#: gdl/gdl-dock-paned.c:134
+#: gdl/gdl-dock-paned.c:133
 msgid "Position"
 msgstr "Positie"
 
-#: gdl/gdl-dock-paned.c:135
+#: gdl/gdl-dock-paned.c:134
 msgid "Position of the divider in pixels"
 msgstr "Positie van de verdeler in pixels"
 
@@ -350,95 +378,96 @@ msgstr ""
 "p van de moeder %p"
 
 #: gdl/gdl-dock-tablabel.c:130
-msgid "Controlling dock item"
-msgstr "Controlerende dok-item"
-
-#: gdl/gdl-dock-tablabel.c:131
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Dok-item welke dit tab-label 'bezit'"
 
-#: gdl/gdl-dock.c:177
+#: gdl/gdl-dock-bar.c:89
+#, fuzzy
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "GdlDockMaster-object waaraan het layout-object is gebonden"
+
+#: gdl/gdl-dock.c:176
 msgid "Floating"
 msgstr "Zwevend"
 
-#: gdl/gdl-dock.c:178
+#: gdl/gdl-dock.c:177
 msgid "Whether the dock is floating in its own window"
 msgstr "Of het dok in zijn eigen venster zweeft"
 
-#: gdl/gdl-dock.c:186
+#: gdl/gdl-dock.c:185
 msgid "Default title for the newly created floating docks"
 msgstr "Standaard titel voor de nieuw aangemaakte zwevende dokken"
 
-#: gdl/gdl-dock.c:192
+#: gdl/gdl-dock.c:191
 msgid "Width"
 msgstr "Breedte"
 
-#: gdl/gdl-dock.c:193
+#: gdl/gdl-dock.c:192
 msgid "Width for the dock when it's of floating type"
 msgstr "Breedte van het dok als het zweeft"
 
-#: gdl/gdl-dock.c:200
+#: gdl/gdl-dock.c:199
 msgid "Height"
 msgstr "Hoogte"
 
-#: gdl/gdl-dock.c:201
+#: gdl/gdl-dock.c:200
 msgid "Height for the dock when it's of floating type"
 msgstr "Hoogte van het dok als het zweeft"
 
-#: gdl/gdl-dock.c:208
+#: gdl/gdl-dock.c:207
 msgid "Float X"
 msgstr "X zwevend"
 
-#: gdl/gdl-dock.c:209
+#: gdl/gdl-dock.c:208
 msgid "X coordinate for a floating dock"
 msgstr "X-coördinaat van een zwevend dok"
 
-#: gdl/gdl-dock.c:216
+#: gdl/gdl-dock.c:215
 msgid "Float Y"
 msgstr "Y zwevend"
 
-#: gdl/gdl-dock.c:217
+#: gdl/gdl-dock.c:216
 msgid "Y coordinate for a floating dock"
 msgstr "Y-coördinaat van een zwevend dok"
 
-#: gdl/gdl-dock.c:494
+#: gdl/gdl-dock.c:497
 #, c-format
 msgid "Dock #%d"
 msgstr "Dok nr.%d"
 
-#: gdl/gdl-recent.c:136
+#: gdl/gdl-recent.c:135
 msgid "GConf key"
 msgstr "GConf sleutel"
 
-#: gdl/gdl-recent.c:137
+#: gdl/gdl-recent.c:136
 msgid "The gconf key for storing the recent entries."
 msgstr "De gconf-sleutel voor opslaan van recente bestanden."
 
-#: gdl/gdl-recent.c:143
+#: gdl/gdl-recent.c:142
 msgid "Path"
 msgstr "Pad"
 
-#: gdl/gdl-recent.c:144
+#: gdl/gdl-recent.c:143
 msgid "The path to put the menu items."
 msgstr "Het pad voor de menu-items"
 
-#: gdl/gdl-recent.c:150
+#: gdl/gdl-recent.c:149
 msgid "Limit"
 msgstr "Limiet"
 
-#: gdl/gdl-recent.c:151
+#: gdl/gdl-recent.c:150
 msgid "The maximum number of items to be allowed in the list."
 msgstr "Het maximum aantal toegestane items in de lijst"
 
-#: gdl/gdl-recent.c:159
+#: gdl/gdl-recent.c:158
 msgid "List type"
 msgstr "Lijst-type"
 
-#: gdl/gdl-recent.c:160
+#: gdl/gdl-recent.c:159
 msgid "The type with which the items will be numbered."
 msgstr "Het type waarmee de items worden genummerd"
 
-#: gdl/gdl-recent.c:409
+#: gdl/gdl-recent.c:408
 #, c-format
 msgid "Open %s"
 msgstr "Open %s"
@@ -670,6 +699,13 @@ msgstr "Bestand opslaan..."
 #: symbol-browser-control/test-symbol-browser.c:295
 msgid "Can't initialize bonobo!"
 msgstr "Kan bonobo niet initialiseren!"
+
+#~ msgid "Grip size"
+#~ msgstr "Greep-grootte"
+
+#~ msgid "Size in pixels of the grip to drag the dock item"
+#~ msgstr ""
+#~ "Afmeting in pixels van de greep waarmee het dok-item kan worden gesleept"
 
 #~ msgid "You must provide a name for the layout"
 #~ msgstr "U moet een naam geven voor de layout"
