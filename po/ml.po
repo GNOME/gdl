@@ -73,7 +73,8 @@ msgid "Locked"
 msgstr "പൂട്ടി"
 
 #: gdl/gdl-dock-item.c:283
-msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 
 #: gdl/gdl-dock-item.c:291
@@ -263,7 +264,8 @@ msgstr ""
 
 #: gdl/gdl-dock-object.c:583
 #, c-format
-msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 
 #: gdl/gdl-dock-paned.c:134
@@ -591,7 +593,7 @@ msgstr "പുറത്ത് കടക്കുക"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:2
 msgid "Open Project"
-msgstr ""
+msgstr " പ്രൊജക്ട് തുറക്കുക"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:3
 msgid "Save Project"
@@ -644,4 +646,3 @@ msgstr ""
 #: symbol-browser-control/test-symbol-browser.c:292
 msgid "Can't initialize bonobo!"
 msgstr ""
-
