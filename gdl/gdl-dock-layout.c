@@ -63,6 +63,9 @@ struct _GdlDockLayoutPrivate {
 
     /* idle control */
     gboolean          idle_save_pending;
+
+    /* ui change control */
+    gboolean          changed_by_user;
 };
 
 typedef struct _GdlDockLayoutUIData GdlDockLayoutUIData;
@@ -73,7 +76,6 @@ struct _GdlDockLayoutUIData {
     GtkWidget        *layout_entry;
     GtkWidget        *locked_check;
     GtkTreeSelection *selection;
-    gboolean          changed_by_user;
 };
 
 
@@ -432,7 +434,7 @@ load_layout_cb (GtkWidget *w,
                             COLUMN_NAME, &name,
                             -1);
         gdl_dock_layout_load_layout (layout, name);
-        ui_data->changed_by_user = TRUE;
+        layout->_priv->changed_by_user = TRUE;
         g_free (name);
         gdl_dock_layout_update_items_model (layout);
         if (ui_data->layout->master)
@@ -492,7 +494,7 @@ show_toggled_cb (GtkCellRendererToggle *renderer,
     else
         gdl_dock_item_hide_item (item);
 
-    ui_data->changed_by_user = TRUE;
+    layout->_priv->changed_by_user = TRUE;
     gtk_tree_path_free (path);
 }
 
@@ -527,7 +529,7 @@ locked_toggled_cb (GtkCellRendererToggle *renderer,
     else
         gdl_dock_item_unlock (item);
 
-    ui_data->changed_by_user = TRUE;
+    layout->_priv->changed_by_user = TRUE;
     gtk_tree_path_free (path);
 }
 #endif
@@ -566,7 +568,7 @@ all_locked_toggled_cb (GtkWidget *widget,
 
     locked = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
     g_object_set (master, "locked", locked ? 1 : 0, NULL);
-    ui_data->changed_by_user = TRUE;
+    ui_data->layout->_priv->changed_by_user = TRUE;
 }
 
 static void
@@ -615,35 +617,48 @@ master_locked_notify_cb (GdlDockMaster *master,
     }
 }
 
-static GtkWidget *
-gdl_dock_layout_construct_ui (GdlDockLayout *layout)
+static GladeXML *
+load_interface (const gchar *top_widget)
 {
-    gchar               *gui_file;
+    GladeXML *gui;
+    gchar    *gui_file;
+
+    /* load ui */
+    /* FIXME: set the translation domain here */
+    gui_file = g_build_filename (GDL_GLADEDIR, LAYOUT_GLADE_FILE, NULL);
+    gui = glade_xml_new (gui_file, top_widget, NULL);
+    g_free (gui_file);
+    if (!gui) {
+        /* FIXME: pop up an error dialog */
+        g_warning (_("Could not load layout user interface file '%s'"), 
+                   LAYOUT_GLADE_FILE);
+        return NULL;
+    };
+    return gui;
+}
+
+static GtkWidget *
+gdl_dock_layout_construct_items_ui (GdlDockLayout *layout)
+{
     GladeXML            *gui;
     GtkWidget           *container;
-    GtkWidget           *items_list, *layouts_list;
+    GtkWidget           *items_list;
     GtkCellRenderer     *renderer;
     GtkTreeViewColumn   *column;
 
     GdlDockLayoutUIData *ui_data;
     
-    /* load ui */
-    /* FIXME: set the translation domain here */
-    gui_file = g_build_filename (GDL_GLADEDIR, LAYOUT_GLADE_FILE, NULL);
-    gui = glade_xml_new (gui_file, "layout_container", NULL);
-    g_free (gui_file);
-    if (!gui) {
-        g_warning (_("Could not load layout user interface file '%s'"), 
-                   LAYOUT_GLADE_FILE);
+    /* load the interface if it wasn't provided */
+    gui = load_interface ("items_vbox");
+    
+    if (!gui)
         return NULL;
-    };
-
+    
     /* get the container */
-    container = glade_xml_get_widget (gui, "layout_container");
+    container = glade_xml_get_widget (gui, "items_vbox");
 
     ui_data = g_new0 (GdlDockLayoutUIData, 1);
     ui_data->layout = layout;
-    ui_data->changed_by_user = FALSE;
     g_object_add_weak_pointer (G_OBJECT (layout),
                                (gpointer *) &ui_data->layout);
     g_object_set_data (G_OBJECT (container), "ui_data", ui_data);
@@ -652,11 +667,8 @@ gdl_dock_layout_construct_ui (GdlDockLayout *layout)
     gdl_dock_layout_build_models (layout);
     
     /* get ui widget references */
-    ui_data->layout_entry = glade_xml_get_widget (gui, "newlayout_entry");
     ui_data->locked_check = glade_xml_get_widget (gui, "locked_check");
-    
     items_list = glade_xml_get_widget (gui, "items_list");
-    layouts_list = glade_xml_get_widget (gui, "layouts_list");
 
     /* locked check connections */
     g_signal_connect (ui_data->locked_check, "toggled",
@@ -671,8 +683,6 @@ gdl_dock_layout_construct_ui (GdlDockLayout *layout)
     /* set models */
     gtk_tree_view_set_model (GTK_TREE_VIEW (items_list),
                              GTK_TREE_MODEL (layout->_priv->items_model));
-    gtk_tree_view_set_model (GTK_TREE_VIEW (layouts_list),
-                             GTK_TREE_MODEL (layout->_priv->layouts_model));
 
     /* construct list views */
     renderer = gtk_cell_renderer_toggle_new ();
@@ -702,6 +712,52 @@ gdl_dock_layout_construct_ui (GdlDockLayout *layout)
                                                        NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (items_list), column);
 
+    /* connect signals */
+    g_signal_connect (container, "destroy", (GCallback) layout_ui_destroyed, NULL);
+
+    g_object_unref (gui);
+
+    return container;
+}
+
+static GtkWidget *
+gdl_dock_layout_construct_layouts_ui (GdlDockLayout *layout)
+{
+    GladeXML            *gui;
+    GtkWidget           *container;
+    GtkWidget           *layouts_list;
+    GtkCellRenderer     *renderer;
+    GtkTreeViewColumn   *column;
+
+    GdlDockLayoutUIData *ui_data;
+    
+    /* load the interface if it wasn't provided */
+    gui = load_interface ("layouts_vbox");
+    
+    if (!gui)
+        return NULL;
+    
+    /* get the container */
+    container = glade_xml_get_widget (gui, "layouts_vbox");
+
+    ui_data = g_new0 (GdlDockLayoutUIData, 1);
+    ui_data->layout = layout;
+    g_object_add_weak_pointer (G_OBJECT (layout),
+                               (gpointer *) &ui_data->layout);
+    g_object_set_data (G_OBJECT (container), "ui_data", ui_data);
+    
+    /* ensure model availability */
+    gdl_dock_layout_build_models (layout);
+    
+    /* get ui widget references */
+    ui_data->layout_entry = glade_xml_get_widget (gui, "newlayout_entry");
+    layouts_list = glade_xml_get_widget (gui, "layouts_list");
+
+    /* set models */
+    gtk_tree_view_set_model (GTK_TREE_VIEW (layouts_list),
+                             GTK_TREE_MODEL (layout->_priv->layouts_model));
+
+    /* construct list views */
     renderer = gtk_cell_renderer_text_new ();
     column = gtk_tree_view_column_new_with_attributes (_("Name"),
                                                        renderer,
@@ -727,6 +783,31 @@ gdl_dock_layout_construct_ui (GdlDockLayout *layout)
 
     g_object_unref (gui);
 
+    return container;
+}
+
+static GtkWidget *
+gdl_dock_layout_construct_ui (GdlDockLayout *layout)
+{
+    GtkWidget *container, *child;
+    
+    container = gtk_notebook_new ();
+    gtk_widget_show (container);
+    
+    child = gdl_dock_layout_construct_items_ui (layout);
+    if (child)
+        gtk_notebook_append_page (GTK_NOTEBOOK (container),
+                                  child,
+                                  gtk_label_new (_("Dock items")));
+    
+    child = gdl_dock_layout_construct_layouts_ui (layout);
+    if (child)
+        gtk_notebook_append_page (GTK_NOTEBOOK (container),
+                                  child,
+                                  gtk_label_new (_("Saved layouts")));
+
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (container), 0);
+    
     return container;
 }
 
@@ -1188,6 +1269,7 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
 
     /* save the layout */
     gdl_dock_layout_save (layout->master, node);
+    layout->_priv->changed_by_user = FALSE;
     layout->dirty = TRUE;
     g_object_notify (G_OBJECT (layout), "dirty");
 }
@@ -1216,7 +1298,6 @@ gdl_dock_layout_delete_layout (GdlDockLayout *layout,
 void
 gdl_dock_layout_run_manager (GdlDockLayout *layout)
 {
-    GdlDockLayoutUIData *ui_data;
     GtkWidget *dialog, *container;
     GtkWidget *parent = NULL;
     
@@ -1249,8 +1330,7 @@ gdl_dock_layout_run_manager (GdlDockLayout *layout)
 
     gtk_dialog_run (GTK_DIALOG (dialog));
 
-    ui_data = g_object_get_data (G_OBJECT (container), "ui_data");
-    if (ui_data->changed_by_user) {
+    if (layout->_priv->changed_by_user) {
         /* save the default (current) layout */
         gdl_dock_layout_save_layout (layout, NULL);
     };
@@ -1358,5 +1438,46 @@ gdl_dock_layout_get_layouts (GdlDockLayout *layout,
 GtkWidget *
 gdl_dock_layout_get_ui (GdlDockLayout *layout)
 {
-    return gdl_dock_layout_construct_ui (layout);
+    GtkWidget *ui;
+
+    g_return_val_if_fail (layout != NULL, NULL);
+    ui = gdl_dock_layout_construct_ui (layout);
+
+    /* FIXME: this shouldn't be here.  Instead populate models should
+       change when an item is added/removed from the dock master, and
+       when gdl_dock_layout_load_from_file is called.  And do it in an
+       idle handler */
+    gdl_dock_layout_populate_models (layout);
+
+    return ui;
 }
+
+GtkWidget *
+gdl_dock_layout_get_items_ui (GdlDockLayout *layout)
+{
+    GtkWidget *ui;
+
+    g_return_val_if_fail (layout != NULL, NULL);
+    ui = gdl_dock_layout_construct_items_ui (layout);
+
+    /* FIXME: same case as gdl_dock_layout_get_ui */
+    gdl_dock_layout_populate_models (layout);
+
+    return ui;
+}
+
+GtkWidget *
+gdl_dock_layout_get_layouts_ui (GdlDockLayout *layout)
+{
+    GtkWidget *ui;
+
+    g_return_val_if_fail (layout != NULL, NULL);
+    ui = gdl_dock_layout_construct_layouts_ui (layout);
+
+    /* FIXME: same case as gdl_dock_layout_get_ui */
+    gdl_dock_layout_populate_models (layout);
+
+    return ui;
+}
+
+

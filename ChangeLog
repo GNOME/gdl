@@ -1,3 +1,14 @@
+2002-06-04  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-layout.h: API additions.
+	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_ui): Splitted
+	in gdl_dock_layout_construct_items_ui and
+	gdl_dock_layout_construct_layouts_ui to support the two new API
+	functions.
+	(gdl_dock_layout_get_items_ui, gdl_dock_layout_get_layouts_ui):
+	New API functions.
+	* gdl/layout.glade: Minor cosmetic and naming fixes.
+	
 2002-06-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock.c (gdl_dock_set_title)
