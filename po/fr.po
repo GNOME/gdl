@@ -1,13 +1,13 @@
 # French translation of gdl.
-# Copyright (C) 2002 Free Software Foundation, Inc.
-# Gildas GUILLEMOT <g.guillemot@laposte.net>, 2002.
+# Copyright (C) 2002-2003 Free Software Foundation, Inc.
+# Gildas Guillemot <g.guillemot@laposte.net>, 2002-2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl 0.3.0\n"
-"POT-Creation-Date: 2002-11-23 19:38+0100\n"
-"PO-Revision-Date: 2002-11-23 19:34+0100\n"
-"Last-Translator: Gildas GUILLEMOT <g.guillemot@laposte.net>\n"
+"POT-Creation-Date: 2003-01-02 22:42+0100\n"
+"PO-Revision-Date: 2003-01-02 22:42+0100\n"
+"Last-Translator: Gildas Guillemot <g.guillemot@laposte.net>\n"
 "Language-Team:  GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -481,6 +481,14 @@ msgstr "Le type avec lequel les éléments seront numérotés."
 msgid "Open %s"
 msgstr "Ouvrir %s"
 
+#: gdl/gdl-icons.c:123 gdl/gdl-icons.c:124
+msgid "Icon size"
+msgstr "Taille d'icône"
+
+#: gdl/gdl-icons.c:129 gdl/gdl-icons.c:130
+msgid "Icon zoom"
+msgstr "Zoom d'icône"
+
 #: gdl/layout.glade.h:1
 msgid "*"
 msgstr "*"
@@ -537,17 +545,17 @@ msgstr "_Aller au symbôle"
 msgid "_View"
 msgstr "_Voir"
 
-#: symbol-browser-control/symbol-browser.c:362
+#: symbol-browser-control/symbol-browser.c:365
 msgid "Tags"
 msgstr "Balise"
 
-#: symbol-browser-control/symbol-browser.c:370
-#: symbol-browser-control/symbol-browser.c:380
+#: symbol-browser-control/symbol-browser.c:373
+#: symbol-browser-control/symbol-browser.c:383
 msgid "Undefined"
 msgstr "Indéfini"
 
-#: symbol-browser-control/symbol-browser.c:372
-#: symbol-browser-control/symbol-browser.c:382
+#: symbol-browser-control/symbol-browser.c:375
+#: symbol-browser-control/symbol-browser.c:385
 msgid "<No Symbol>"
 msgstr "<Aucun symbôle>"
 
