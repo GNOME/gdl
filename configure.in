@@ -6,6 +6,7 @@ dnl
 dnl ==========================================================================
 
 
+AC_PREREQ(2.52)
 AC_INIT(gdl, 0.3.0, http://bugzilla.gnome.org/enter_bug.cgi?product=gdl)
 AM_CONFIG_HEADER(config.h)
 AC_CONFIG_SRCDIR(gdl/gdl.h)
