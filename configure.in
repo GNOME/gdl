@@ -1,4 +1,5 @@
 AC_INIT(gdlConf.sh.in)
+AM_PROG_XML_I18N_TOOLS
 
 dnl ==========================================================================
 dnl
@@ -114,7 +115,6 @@ AC_STDC_HEADERS
 AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
 
-AM_PROG_XML_I18N_TOOLS
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
