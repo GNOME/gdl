@@ -1,0 +1,195 @@
+# gdl-1's Portuguese Translation
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gconf-editor package.
+# Paulo Silva <paulojjs@yahoo.com>, 2002
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.4.1\n"
+"POT-Creation-Date: 2002-02-14 00:04+0000\n"
+"PO-Revision-Date: 2002-02-12 16:40+0000\n"
+"Last-Translator: Paulo Silva <paulojjs@yahoo.com\n"
+"Language-Team: Portuguese <none@none.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: scintilla-control/scintilla-control.c:114
+msgid "Position in the buffer"
+msgstr "Posição no buffer"
+
+#: scintilla-control/scintilla-control.c:118
+msgid "Current line number"
+msgstr "Número da linha actual"
+
+#: scintilla-control/scintilla-control.c:122
+msgid "Beginning of the selection"
+msgstr "Início da selecção"
+
+#: scintilla-control/scintilla-control.c:126
+msgid "End of the selection"
+msgstr "Fim da selecção"
+
+#: scintilla-control/scintilla-ui.xml.h:1
+msgid "C_ut"
+msgstr "C_ortar"
+
+#: scintilla-control/scintilla-ui.xml.h:2
+msgid "Copy"
+msgstr "Copiar"
+
+#: scintilla-control/scintilla-ui.xml.h:3
+msgid "Copy the selection"
+msgstr "Copiar a selecção"
+
+#: scintilla-control/scintilla-ui.xml.h:4
+msgid "Cut"
+msgstr "Cortar"
+
+#: scintilla-control/scintilla-ui.xml.h:5
+msgid "Cut the selection"
+msgstr "Cortar a selecção"
+
+#: scintilla-control/scintilla-ui.xml.h:6
+msgid "Find A_gain"
+msgstr "Pesquisar de novo"
+
+#: scintilla-control/scintilla-ui.xml.h:7
+msgid "Find text in the document"
+msgstr "Pesquisar texto no documento"
+
+#: scintilla-control/scintilla-ui.xml.h:8
+msgid "Paste"
+msgstr "Colar"
+
+#: scintilla-control/scintilla-ui.xml.h:9
+msgid "Paste the clipboard"
+msgstr "Colar o clipboard"
+
+#: scintilla-control/scintilla-ui.xml.h:10
+msgid "Repeats last search for text in the document"
+msgstr "Repetir a última pesquisa de texto no documento"
+
+#: scintilla-control/scintilla-ui.xml.h:11
+msgid "Replace text in the document"
+msgstr "Substituir texto no documento"
+
+#: scintilla-control/scintilla-ui.xml.h:12
+msgid "_Copy"
+msgstr "_Copiar"
+
+#: scintilla-control/scintilla-ui.xml.h:13
+msgid "_Edit"
+msgstr "_Editar"
+
+#: scintilla-control/scintilla-ui.xml.h:14
+msgid "_Find"
+msgstr "_Pesquisar"
+
+#: scintilla-control/scintilla-ui.xml.h:15
+msgid "_Find..."
+msgstr "_Pesquisar..."
+
+#: scintilla-control/scintilla-ui.xml.h:16
+msgid "_Paste"
+msgstr "Colar"
+
+#: scintilla-control/scintilla-ui.xml.h:17
+msgid "_Replace"
+msgstr "Substitui_r"
+
+#: scintilla-control/scintilla-ui.xml.h:18
+msgid "_Replace..."
+msgstr "Substitui_r..."
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:1
+msgid "Factory for the Scintilla control."
+msgstr "Fábrica para o controlo Scintilla"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:2
+msgid "Scintilla Editor"
+msgstr "Editor Scintilla"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:3
+msgid "Scintilla Factory"
+msgstr "Fábrica Scintilla"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:4
+msgid "Source"
+msgstr "Fonte"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:5
+msgid "Syntax highlighting editor control."
+msgstr "Controlo de editor syntax highlighting"
+
+#: scintilla-control/scintilla-find.c:105
+#: scintilla-control/scintilla-find.c:106
+msgid "Find"
+msgstr "Pesquisar"
+
+#: scintilla-control/scintilla-find.c:114
+#: scintilla-control/scintilla-find.c:345
+msgid "Find:"
+msgstr "Pesquisar:"
+
+#: scintilla-control/scintilla-find.c:127
+#: scintilla-control/scintilla-find.c:371
+msgid "Case sensitive"
+msgstr "Sensível à capitalização"
+
+#: scintilla-control/scintilla-find.c:130
+#: scintilla-control/scintilla-find.c:374
+msgid "Whole word"
+msgstr "Palavra inteira"
+
+#: scintilla-control/scintilla-find.c:133
+#: scintilla-control/scintilla-find.c:377
+msgid "Match word start"
+msgstr "Respeita início da palavra"
+
+#. search direction radio group
+#: scintilla-control/scintilla-find.c:137
+msgid "Direction"
+msgstr "Direcção"
+
+#: scintilla-control/scintilla-find.c:144
+msgid "Forward"
+msgstr "Para a frente"
+
+#: scintilla-control/scintilla-find.c:148
+msgid "Backward"
+msgstr "Para trás"
+
+#: scintilla-control/scintilla-find.c:274
+msgid "Replace confirmation"
+msgstr "Confirmar substituição"
+
+#: scintilla-control/scintilla-find.c:275
+#: scintilla-control/scintilla-find.c:337
+msgid "Replace"
+msgstr "Substituir"
+
+#: scintilla-control/scintilla-find.c:276
+msgid "Replace All"
+msgstr "Substituir Tudo"
+
+#: scintilla-control/scintilla-find.c:277
+msgid "Skip"
+msgstr "Saltar"
+
+#: scintilla-control/scintilla-find.c:280
+msgid "Found occurrence in document"
+msgstr "Ocorrência encontrada no documento"
+
+#: scintilla-control/scintilla-find.c:336
+msgid "Find and Replace"
+msgstr "Pesquisa e Substituição"
+
+#: scintilla-control/scintilla-find.c:356
+msgid "Replace with:"
+msgstr "Substituir com:"
+
+#. selection only checkbox
+#: scintilla-control/scintilla-find.c:381
+msgid "Selection only"
+msgstr "Aplicar apenas à selecção"
