@@ -1,3 +1,8 @@
+2001-08-26  JP Rosevear  <jpr@ximian.com>
+
+	* scintilla-control/scintilla-ui.xml: update place holder name to
+	match gtkhtml (which we will guess in the standard
+
 2001-08-08  Jens Finke <jens@gnome.org>
 
 	* Makefile.am (EXTRA_DIST): Added *.spec[.in] and xml-i18n-*.in

@@ -25,7 +25,7 @@
 	</commands>
 	<menu>
 		<submenu name="Edit" _label="_Edit">
-			<placeholder name="EditorClipboard">	
+			<placeholder name="EditorCutCopyPaste">	
 	                        <menuitem name="EditCut" verb="" _label="C_ut"/>
                 	        <menuitem name="EditCopy" verb="" _label="_Copy"/>
 	                        <menuitem name="EditPaste" verb="" _label="_Paste"/>
