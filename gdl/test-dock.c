@@ -88,7 +88,7 @@ static void
 options_select_cb (GtkWidget *options, xmlNodePtr layout)
 {
         /* Load layout. */
-        gdl_dock_layout_load (GDL_DOCK (dock), layout->childs);
+        gdl_dock_layout_load (GDL_DOCK (dock), layout);
 }
 
 static void

@@ -14,7 +14,7 @@
 #define GDL_IS_DOCK_ITEM_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), GDL_TYPE_DOCK_ITEM))
 
 #define GDL_DOCK_ITEM_IS_FLOATING(item) ((item)->is_floating)
-#define GDL_DOCK_ITEM_IS_SHOWN(item)  (GTK_WIDGET (item)->parent)
+#define GDL_DOCK_ITEM_IS_SHOWN(item)  (GTK_WIDGET (item)->parent != NULL)
 
 #define GDL_DOCK_ITEM_IS_BOUND(item)  ((item)->dock != NULL)
 
@@ -182,5 +182,9 @@ void           gdl_dock_item_save_layout       (GdlDockItem *item,
 gchar         *gdl_dock_item_get_pos_hint      (GdlDockItem      *item,
                                                 GdlDockItem      *caller,
                                                 GdlDockPlacement *position);
+
+void        gdl_dock_item_set_default_position (GdlDockItem      *item,
+                                                GdlDockPlacement  position,
+                                                const gchar      *peer);
 
 #endif

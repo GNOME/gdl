@@ -264,8 +264,7 @@ gdl_dock_item_set_arg (GtkObject *object,
         gtk_widget_queue_resize (GTK_WIDGET (object));
         break;
     case ARG_LONG_NAME:
-        if (item->long_name)
-            g_free (item->long_name);
+        g_free (item->long_name);
         item->long_name = g_strdup (GTK_VALUE_STRING (*arg));
         if (item->tab_label && GDL_IS_DOCK_TABLABEL (item->tab_label))
             /* FIXME: we should have a "sync tablabel" or something */
@@ -317,8 +316,7 @@ gdl_dock_item_get_arg (GtkObject *object,
         GTK_VALUE_BOOL (*arg) = item->shrink;
         break;
     case ARG_LONG_NAME:
-        /* FIXME: should we strdup the value, or act like a gtklabel? */
-        GTK_VALUE_STRING (*arg) = item->long_name;
+        GTK_VALUE_STRING (*arg) = g_strdup (item->long_name);
         break;
     case ARG_FLOAT_WIDTH:
         GTK_VALUE_UINT (*arg) = item->float_width;
@@ -1256,7 +1254,10 @@ gdl_dock_item_save_position (GdlDockItem *item,
         };
 
         if (GDL_IS_DOCK (parent)) {
-            item->last_pos.position = GDL_DOCK_TOP;
+            if (GDL_DOCK_ITEM_IS_FLOATING (item))
+                item->last_pos.position = GDL_DOCK_FLOATING;
+            else
+                item->last_pos.position = GDL_DOCK_TOP;
 
             /* peer NULL means the dock */
             item->last_pos.peer = NULL;
@@ -1330,7 +1331,10 @@ gdl_dock_item_restore_position (GdlDockItem *item)
         gtk_widget_unref (w);
 
     } else {
-        gdl_dock_item_dock_to (item, GDL_DOCK_ITEM (target), new_pos, -1);
+        if (target)
+            gdl_dock_item_dock_to (item, GDL_DOCK_ITEM (target), new_pos, -1);
+        else
+            gdl_dock_item_dock_to (item, NULL, GDL_DOCK_FLOATING, -1);
     };
 }
 
@@ -1958,3 +1962,14 @@ gdl_dock_item_save_layout (GdlDockItem *item,
     };
 }
 
+void
+gdl_dock_item_set_default_position (GdlDockItem      *item,
+                                    GdlDockPlacement  position,
+                                    const gchar      *peer)
+{
+    g_return_if_fail (GDL_IS_DOCK_ITEM (item));
+
+    item->last_pos.position = position;
+    g_free (item->last_pos.peer);
+    item->last_pos.peer = g_strdup (peer);
+}

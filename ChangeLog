@@ -1,3 +1,24 @@
+2001-12-09  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_get_arg): g_strdup long_name
+	argument return.
+	(gdl_dock_item_save_position): If saving floating position
+	correctly set the position struct field.
+	(gdl_dock_item_restore_position): Check for NULL target when docking.
+	(gdl_dock_item_set_default_position): New function.
+
+	* gdl/gdl-dock-item.h: Fixed GDL_DOCK_ITEM_IS_SHOWN macro.  Added
+	gdl_dock_item_set_default_position function.
+
+	* gdl/gdl-dock-tablabel.c (gdl_dock_tablabel_paint): Use flat_box
+	instead of box for the label background.
+
+	* gdl/gdl-dock.c (gdl_dock_layout_load): Use the node's children
+	to build the layout instead of the node itself, which is
+	semantically more correct.
+	
+	* gdl/test-dock.c: Fix gdl_dock_layout_load call.
+		
 2001-12-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/TODO.gdl-dock: Updated

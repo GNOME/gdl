@@ -888,7 +888,7 @@ gdl_dock_layout_load (GdlDock *dock, xmlNodePtr node)
        the process, but it's only restored the top widget, which besides
        that must have a name */
     /* Build layout. */    
-    for (; node; node = node->next) {
+    for (node = node->childs; node; node = node->next) {
         if (!strcmp ("docked", node->name))
             gdl_dock_layout_build (dock, NULL, node->childs);
         else if (!strcmp ("undocked", node->name)) {

@@ -292,21 +292,21 @@ gdl_dock_tablabel_paint (GtkWidget      *widget,
     border_width = GTK_CONTAINER (widget)->border_width;
 
     if (!event)
-        gtk_paint_box (widget->style,
-                       widget->window,
-                       GTK_WIDGET_STATE (widget),
-                       GTK_SHADOW_NONE,
-                       area, widget,
-                       "dockitem_bin",
-                       0, 0, -1, -1);
+        gtk_paint_flat_box (widget->style,
+                            widget->window,
+                            GTK_WIDGET_STATE (widget),
+                            GTK_SHADOW_NONE,
+                            area, widget,
+                            "dockitem_bin",
+                            0, 0, -1, -1);
     else
-        gtk_paint_box (widget->style,
-                       widget->window,
-                       GTK_WIDGET_STATE (widget),
-                       GTK_SHADOW_NONE,
-                       &event->area, widget,
-                       "dockitem_bin",
-                       0, 0, -1, -1);
+        gtk_paint_flat_box (widget->style,
+                            widget->window,
+                            GTK_WIDGET_STATE (widget),
+                            GTK_SHADOW_NONE,
+                            &event->area, widget,
+                            "dockitem_bin",
+                            0, 0, -1, -1);
 
     rect.x = border_width;
     rect.y = border_width;
