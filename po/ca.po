@@ -1,0 +1,660 @@
+# Traducció GDL de l'equip Softcatalà
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gdl package.
+# Xavier Conde Rueda <xaviconde@eresmas.com>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-11-20 03:24+0100\n"
+"PO-Revision-Date: 2003-11-20 19:02+0000\n"
+"Last-Translator: Xavier Conde Rueda<xaviconde@eresmas.com>\n"
+"Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gdl/gdl-data-view.c:421
+msgid "Expander Size"
+msgstr "Mida de l'expandidor"
+
+#: gdl/gdl-data-view.c:422
+msgid "Size of the expander arrow."
+msgstr "Mida de la fletxa expandidora"
+
+#: gdl/gdl-dock-item-grip.c:244
+msgid "Dock the toolbar"
+msgstr "Adjunta la barra d'eines"
+
+#: gdl/gdl-dock-item-grip.c:245
+msgid "Un dock the toolbar"
+msgstr "Separa la barra d'eines"
+
+#: gdl/gdl-dock-item.c:242
+msgid "Orientation"
+msgstr "Orientació"
+
+#: gdl/gdl-dock-item.c:243
+msgid "Orientation of the docking item"
+msgstr "Orientació de l'element adjuntable"
+
+#: gdl/gdl-dock-item.c:258
+msgid "Resizable"
+msgstr "Canvia la mida"
+
+#: gdl/gdl-dock-item.c:259
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "Si està habilitat, es pot canviar la mida de l'element adjuntable "
+"quan sigui adjuntat en una subfinestra"
+
+#: gdl/gdl-dock-item.c:266
+msgid "Item behavior"
+msgstr "Comportament de l'element"
+
+#: gdl/gdl-dock-item.c:267
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Comportament general de l'element adjuntable (si pot flotar com una finestra, si "
+"està bloquejat, etc.)"
+
+#: gdl/gdl-dock-item.c:275
+msgid "Grip size"
+msgstr "Mida per arrossegar"
+
+#: gdl/gdl-dock-item.c:276
+msgid "Size in pixels of the grip to drag the dock item"
+msgstr "Mida en píxels de la zona per arrosegar l'element enganxable"
+
+#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
+msgid "Locked"
+msgstr "Bloquejat"
+
+#: gdl/gdl-dock-item.c:283
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Si està habilitat, l'element enganxable no pot ser arrosegat i no mostra "
+"una zona per arrosegar"
+
+#: gdl/gdl-dock-item.c:291
+msgid "Preferred width"
+msgstr "Amplada predeterminada"
+
+#: gdl/gdl-dock-item.c:292
+msgid "Preferred width for the dock item"
+msgstr "Amplada predeterminada per a l'element adjuntable"
+
+#: gdl/gdl-dock-item.c:298
+msgid "Preferred height"
+msgstr "Alçada predeterminada"
+
+#: gdl/gdl-dock-item.c:299
+msgid "Preferred height for the dock item"
+msgstr "Alçada predeterminada per a l'element adjuntable"
+
+#: gdl/gdl-dock-item.c:546
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"No es pot afegir un element enganxable (%p de tipus %s) a dins de %s. Feu servir "
+"un GdlDock o un altre tipus de component d'objecte adjuntable."
+
+#: gdl/gdl-dock-item.c:553
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"S'ha provat d'afegir un element d'interfície gràfica de tipus %s a %s, però només pot "
+"contenir un element. Ara conté un element de tipus %s" 
+
+#: gdl/gdl-dock-item.c:1149
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "No es pot fer servir l'estratègia %s per adjuntar en un objecte de tipus %s"
+
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1231
+msgid "Hide"
+msgstr "Oculta"
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1237
+msgid "Lock"
+msgstr "Bloqueja"
+
+#: gdl/gdl-dock-item.c:1404
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "S'intenta enllaçar amb un element %p no enllaçat"
+
+#: gdl/gdl-dock-layout.c:126
+msgid "Master"
+msgstr "Mestre"
+
+#: gdl/gdl-dock-layout.c:127
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "Objecte GdlDockMaster al qual s'adjunta l'objecte de disposició"
+
+#: gdl/gdl-dock-layout.c:134
+msgid "Dirty"
+msgstr "Brut"
+
+#: gdl/gdl-dock-layout.c:135
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Cert si les disposicions han canviat i s'han de desar en un fitxer"
+
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:565
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "No es pot carregar el fitxer de disposició de la interfície d'usuari, '%s'"
+
+#: gdl/gdl-dock-layout.c:620
+msgid "Visible"
+msgstr "Visible"
+
+#: gdl/gdl-dock-layout.c:627
+msgid "Item"
+msgstr "Element"
+
+#: gdl/gdl-dock-layout.c:710 gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "Nom"
+
+#: gdl/gdl-dock-layout.c:743 gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "Elements adjuntables"
+
+#: gdl/gdl-dock-layout.c:749 gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "Disposicions desades"
+
+#: gdl/gdl-dock-layout.c:791
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"S'ha produït un error en carregar la disposició: no es pot crear un objecte adjuntable "
+"el sobrenom del qual sigui '%s'"
+
+#: gdl/gdl-dock-layout.c:1270
+msgid "Layout managment"
+msgstr "Gestió de la disposició"
+
+#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
+msgid "Default title"
+msgstr "Títol predeterminat"
+
+#: gdl/gdl-dock-master.c:136
+msgid "Default title for newly created floating docks"
+msgstr "Títol predeterminat per als nous objectes flotants adjuntables"
+
+#: gdl/gdl-dock-master.c:143
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Si té valor 1, es bloquegen tots els elements adjuntables vinculats al mestre; "
+"si val 0, tots estan desbloquejats; -1 vol dir que existeix inconsistencia entre "
+"els elements"
+
+#: gdl/gdl-dock-master.c:730
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"mestre %p: no es pot afegir l'objecte %p[%s] a la taula de dispersió. Ja hi ha "
+"un element anomenat %p."
+
+#: gdl/gdl-dock-master.c:895
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"El nou control·lador %p de l'enganxable és automàtic. Només els objectes enganxables "
+"manualment es poden anomenar control·ladors."
+
+#: gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "Pàgina"
+
+#: gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "L'índex de la pàgina actual"
+
+#: gdl/gdl-dock-object.c:121
+msgid "Unique name for identifying the dock object"
+msgstr "Nom únic per identificar l'objecte enganxable"
+
+#: gdl/gdl-dock-object.c:128
+msgid "Long name"
+msgstr "Nom llarg"
+
+#: gdl/gdl-dock-object.c:129
+msgid "Human readable name for the dock object"
+msgstr "Nom de l'objecte enganxable comprensible per a les persones"
+
+#: gdl/gdl-dock-object.c:135
+msgid "Dock master"
+msgstr "Mestre de l'adjuntable"
+
+#: gdl/gdl-dock-object.c:136
+msgid "Dock master this dock object is bound to"
+msgstr "L'adjuntable mestre al qual aquest objecte està vinculat"
+
+#: gdl/gdl-dock-object.c:405
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"S'ha cridat al mètode gdl_dock_object_dock en un objecte adjuntable %p (el tipus "
+"d'objecte és %s) que no té implementat aquest mètod"
+
+#: gdl/gdl-dock-object.c:534
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"S'ha demanat una operació adjuntable en un objecte sense vincular %p. L'aplicació "
+"pot destruir-se"
+
+#: gdl/gdl-dock-object.c:541
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "No es pot adjuntar %p a %p perquè pertanyen a mestres diferents"
+
+#: gdl/gdl-dock-object.c:583
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"S'ha intentat vincular a %p un objecte vinculat adjuntable %p (mestre actual: %p)"
+
+#: gdl/gdl-dock-paned.c:134
+msgid "Position"
+msgstr "Posició"
+
+#: gdl/gdl-dock-paned.c:135
+msgid "Position of the divider in pixels"
+msgstr "Posició del separador en píxels"
+
+#: gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr "Enganxòs"
+
+#: gdl/gdl-dock-placeholder.c:128
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "Amfitrió"
+
+#: gdl/gdl-dock-placeholder.c:136
+msgid "The dock object this placeholder is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:143
+msgid "Next placement"
+msgstr "Següent ubicació"
+
+#: gdl/gdl-dock-placeholder.c:144
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"La posició on s'adjuntarà un element al nostre amfitrió si se'ns demana "
+"adjuntar-se a nosaltres"
+
+#: gdl/gdl-dock-placeholder.c:305
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:419
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "S'ha rebut un senyal de separació d'un objecte (%p) que no és el nostre amfitrió %p"
+
+#: gdl/gdl-dock-placeholder.c:440
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Ha succeït alguna cosa estranya quan s'estava obtenint la ubicació per a %p "
+"del seu pare %p"
+
+#: gdl/gdl-dock-tablabel.c:130
+msgid "Controlling dock item"
+msgstr "Control de l'objecte adjuntable"
+
+#: gdl/gdl-dock-tablabel.c:131
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Element enganxalbe que 'poseeix' aquesta etiqueta"
+
+#: gdl/gdl-dock.c:177
+msgid "Floating"
+msgstr "Flota"
+
+#: gdl/gdl-dock.c:178
+msgid "Whether the dock is floating in its own window"
+msgstr "Si l'adjuntable flotarà a la seva pròpia finestra"
+
+#: gdl/gdl-dock.c:186
+msgid "Default title for the newly created floating docks"
+msgstr "Títol predeterminat per als nous objectes ajuntables flotants"
+
+#: gdl/gdl-dock.c:192
+msgid "Width"
+msgstr "Amplada"
+
+#: gdl/gdl-dock.c:193
+msgid "Width for the dock when it's of floating type"
+msgstr "Amplada de l'adjuntable quan és de tipus flotant"
+
+#: gdl/gdl-dock.c:200
+msgid "Height"
+msgstr "Alçada"
+
+#: gdl/gdl-dock.c:201
+msgid "Height for the dock when it's of floating type"
+msgstr "Alçada per a l'element enganxable quan és de tipus flotant"
+
+#: gdl/gdl-dock.c:208
+msgid "Float X"
+msgstr "Flota en X"
+
+#: gdl/gdl-dock.c:209
+msgid "X coordinate for a floating dock"
+msgstr "Coordenada X per a l'adjuntable flotant"
+
+#: gdl/gdl-dock.c:216
+msgid "Float Y"
+msgstr "Flota en Y"
+
+#: gdl/gdl-dock.c:217
+msgid "Y coordinate for a floating dock"
+msgstr "Coordenada Y per a l'adjuntable flotant"
+
+#: gdl/gdl-dock.c:494
+#, c-format
+msgid "Dock #%d"
+msgstr "Adjuntable nº %d"
+
+#: gdl/gdl-recent.c:136
+msgid "GConf key"
+msgstr "Clau GConf"
+
+#: gdl/gdl-recent.c:137
+msgid "The gconf key for storing the recent entries."
+msgstr "La clau gconf per emmagatzemar les entrades recents."
+
+#: gdl/gdl-recent.c:143
+msgid "Path"
+msgstr "Camí"
+
+#: gdl/gdl-recent.c:144
+msgid "The path to put the menu items."
+msgstr "El camí on posar els elements de menú."
+
+#: gdl/gdl-recent.c:150
+msgid "Limit"
+msgstr "Límit"
+
+#: gdl/gdl-recent.c:151
+msgid "The maximum number of items to be allowed in the list."
+msgstr "El número máxim d'elements permès en la llista."
+
+#: gdl/gdl-recent.c:159
+msgid "List type"
+msgstr "Tipus de llista"
+
+#: gdl/gdl-recent.c:160
+msgid "The type with which the items will be numbered."
+msgstr "El tipus amb el qual es numeraran els elements."
+
+#: gdl/gdl-recent.c:409
+#, c-format
+msgid "Open %s"
+msgstr "Obre %s"
+
+#: gdl/gdl-icons.c:141 gdl/gdl-icons.c:142
+msgid "Icon size"
+msgstr "Mida de la icona"
+
+#: gdl/gdl-icons.c:147 gdl/gdl-icons.c:148
+msgid "Icon zoom"
+msgstr "Ampliació de la icona"
+
+#: gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Gestió de disposicions"
+
+#: gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Carrega"
+
+#: gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "B_loqueja elements adjuntables"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "Factoria per al control del navegador de símbols del Gnome"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr "Control del navegador de símbols del Gnome"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr "Factoria de control del navegador de símbols del Gnome"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr "Navegador de símbols del Gnome."
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr "Vés a símbol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr "Vés a l'element mostrat"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr "Actualitza símbols"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr "Actualitza l'arbre de símbols"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr "Vés a sím_bol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "_Visualitza"
+
+#: symbol-browser-control/symbol-browser.c:63
+msgid "Unknown"
+msgstr "Desconegut"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:64
+msgid "Classes"
+msgstr "Classes"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Enums"
+msgstr "Enumeracions"
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:66
+msgid "Enumerators"
+msgstr "Enumeradors"
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Fields"
+msgstr "Camps"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Functions"
+msgstr "Funcions"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Interfaces"
+msgstr "Interfícies"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Members"
+msgstr "Membres"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Methods"
+msgstr "Mètodes"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Namespaces"
+msgstr "Espais de noms"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:73
+msgid "Packages"
+msgstr "Paquets"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:74
+msgid "Prototypes"
+msgstr "Prototipus"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Structs"
+msgstr "Estructures"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Typedefs"
+msgstr "Definicions de tipus"
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Unions"
+msgstr "Unions"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Variables"
+msgstr "Variables"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:79
+msgid "ExternVars"
+msgstr "Variables externes"
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Macros"
+msgstr "Macros"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:81
+msgid "MacrosWithArgs"
+msgstr "Macros amb arguments"
+
+#: symbol-browser-control/symbol-browser.c:369
+msgid "Tags"
+msgstr "Etiquetes"
+
+#: symbol-browser-control/symbol-browser.c:377
+#: symbol-browser-control/symbol-browser.c:387
+msgid "Undefined"
+msgstr "No definit"
+
+#: symbol-browser-control/symbol-browser.c:379
+#: symbol-browser-control/symbol-browser.c:389
+msgid "<No Symbol>"
+msgstr "<Cap símbol>"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "Surt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr "Obre projecte"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr "Desa projecte"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr "Defineix el fitxer actual"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "Actualitza"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr "Actualitza l'arbre complet"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr "_Surt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "_Fitxer"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr "_Obre projecte"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr "_Desa projecte"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr "D_efineix fitxer actual"
+
+#: symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr "Obre fitxer..."
+
+#: symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr "Defineix fitxer actual..."
+
+#: symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr "Desa fitxer..."
+
+#: symbol-browser-control/test-symbol-browser.c:292
+msgid "Can't initialize bonobo!"
+msgstr "No es pot inicialitzar el bonobo!"
