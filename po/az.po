@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2001-11-10 09:17-0500\n"
+"PO-Revision-Date: 2001-11-25 15:15GMT+0200\n"
+"Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
+"Language-Team: Azerbaijani Turkic <linuxaz@azerimail.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
+
+#: scintilla-control/scintilla-control.c:114
+msgid "Position in the buffer"
+msgstr "Bufer vəziyyəti"
+
+#: scintilla-control/scintilla-control.c:118
+msgid "Current line number"
+msgstr "Cari sətir sırası"
+
+#: scintilla-control/scintilla-control.c:122
+msgid "Beginning of the selection"
+msgstr "Seçkinin başı"
+
+#: scintilla-control/scintilla-control.c:126
+msgid "End of the selection"
+msgstr "Seçkinin sonu"
+
+#: scintilla-control/scintilla-ui.xml.h:1
+msgid "C_ut"
+msgstr "Kə_s"
+
+#: scintilla-control/scintilla-ui.xml.h:2
+msgid "Copy"
+msgstr "Köçürt"
+
+#: scintilla-control/scintilla-ui.xml.h:3
+msgid "Copy the selection"
+msgstr "Seçkini köçürt"
+
+#: scintilla-control/scintilla-ui.xml.h:4
+msgid "Cut"
+msgstr "Kəs"
+
+#: scintilla-control/scintilla-ui.xml.h:5
+msgid "Cut the selection"
+msgstr "Seçkini kəs"
+
+#: scintilla-control/scintilla-ui.xml.h:6
+msgid "Find A_gain"
+msgstr "Yenə Ax_tar"
+
+#: scintilla-control/scintilla-ui.xml.h:7
+msgid "Find text in the document"
+msgstr "Sənəddəki mətni axtar"
+
+#: scintilla-control/scintilla-ui.xml.h:8
+msgid "Paste"
+msgstr "Yapışdır"
+
+#: scintilla-control/scintilla-ui.xml.h:9
+msgid "Paste the clipboard"
+msgstr "Ara yaddaşı yapışdır"
+
+#: scintilla-control/scintilla-ui.xml.h:10
+msgid "Repeats last search for text in the document"
+msgstr "Sənddəki axırıncı dəfə aparılan axtarışı təkrarlayar"
+
+#: scintilla-control/scintilla-ui.xml.h:11
+msgid "Replace text in the document"
+msgstr "Sənəddəki mətni əvəz et"
+
+#: scintilla-control/scintilla-ui.xml.h:12
+msgid "_Copy"
+msgstr "_Köçürt"
+
+#: scintilla-control/scintilla-ui.xml.h:13
+msgid "_Edit"
+msgstr "_Düzəlt"
+
+#: scintilla-control/scintilla-ui.xml.h:14
+msgid "_Find"
+msgstr "Axta_r"
+
+#: scintilla-control/scintilla-ui.xml.h:15
+msgid "_Find..."
+msgstr "_Axtar..."
+
+#: scintilla-control/scintilla-ui.xml.h:16
+msgid "_Paste"
+msgstr "_Yapışdır"
+
+#: scintilla-control/scintilla-ui.xml.h:17
+msgid "_Replace"
+msgstr "Ə_vəz Et"
+
+#: scintilla-control/scintilla-ui.xml.h:18
+msgid "_Replace..."
+msgstr "Əvə_z Et..."
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:1
+msgid "Factory for the Scintilla control."
+msgstr "Scintilla idarəsi üçün emalatxana."
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:2
+msgid "Scintilla Editor"
+msgstr "Scintilla Editoru"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:3
+msgid "Scintilla Factory"
+msgstr "Scintilla Emalatxanası"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:4
+msgid "Source"
+msgstr "Qaynaq"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:5
+msgid "Syntax highlighting editor control."
+msgstr "Sintaksis işıqlandırmalı düzəliş idarəsi."
+
+#: scintilla-control/scintilla-find.c:105
+#: scintilla-control/scintilla-find.c:106
+msgid "Find"
+msgstr "Axtar"
+
+#: scintilla-control/scintilla-find.c:114
+#: scintilla-control/scintilla-find.c:345
+msgid "Find:"
+msgstr "Axtar:"
+
+#: scintilla-control/scintilla-find.c:127
+#: scintilla-control/scintilla-find.c:371
+msgid "Case sensitive"
+msgstr "Böyük/kiçik hərfə həssas"
+
+#: scintilla-control/scintilla-find.c:130
+#: scintilla-control/scintilla-find.c:374
+msgid "Whole word"
+msgstr "Bütün söz"
+
+#: scintilla-control/scintilla-find.c:133
+#: scintilla-control/scintilla-find.c:377
+msgid "Match word start"
+msgstr "Kəlmə halını müqayisə et"
+
+#. search direction radio group
+#: scintilla-control/scintilla-find.c:137
+msgid "Direction"
+msgstr "Tərəf"
+
+#: scintilla-control/scintilla-find.c:144
+msgid "Forward"
+msgstr "İrəli"
+
+#: scintilla-control/scintilla-find.c:148
+msgid "Backward"
+msgstr "Arxaya"
+
+#: scintilla-control/scintilla-find.c:274
+msgid "Replace confirmation"
+msgstr "Əvəz etmə təsdiqi"
+
+#: scintilla-control/scintilla-find.c:275
+#: scintilla-control/scintilla-find.c:337
+msgid "Replace"
+msgstr "Əvəz Et"
+
+#: scintilla-control/scintilla-find.c:276
+msgid "Replace All"
+msgstr "Hamısını Əvəz Et"
+
+#: scintilla-control/scintilla-find.c:277
+msgid "Skip"
+msgstr "Nəzərə Alma"
+
+#: scintilla-control/scintilla-find.c:280
+msgid "Found occurrence in document"
+msgstr "Sənəddə tapılan təkrarlanmalar"
+
+#: scintilla-control/scintilla-find.c:336
+msgid "Find and Replace"
+msgstr "Axtar və Əvəz Et"
+
+#: scintilla-control/scintilla-find.c:356
+msgid "Replace with:"
+msgstr "Bununla əvəz et:"
+
+#. selection only checkbox
+#: scintilla-control/scintilla-find.c:381
+msgid "Selection only"
+msgstr "Təkcə seçkini"
+
