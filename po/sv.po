@@ -1,15 +1,15 @@
 # Swedish messages for GTK+.
-# Copyright (C) 1999, 2000, 2001, 2002 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003 Free Software Foundation, Inc.
 # Tomas Ögren <stric@ing.umu.se>, 1999.
-# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002.
+# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003.
 #
 # $Id$
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtk+\n"
-"POT-Creation-Date: 2002-07-18 18:04-0300\n"
-"PO-Revision-Date: 2002-07-08 11:28+0200\n"
+"POT-Creation-Date: 2003-01-03 22:50+0100\n"
+"PO-Revision-Date: 2003-01-03 22:52+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -475,6 +475,14 @@ msgstr "Typen med vilken objekten kommer att numreras."
 msgid "Open %s"
 msgstr "Öppna %s"
 
+#: gdl/gdl-icons.c:123 gdl/gdl-icons.c:124
+msgid "Icon size"
+msgstr "Ikonstorlek"
+
+#: gdl/gdl-icons.c:129 gdl/gdl-icons.c:130
+msgid "Icon zoom"
+msgstr "Ikonzoom"
+
 #: gdl/layout.glade.h:1
 msgid "*"
 msgstr "*"
@@ -531,17 +539,17 @@ msgstr "_Gå till symbol"
 msgid "_View"
 msgstr "_Visa"
 
-#: symbol-browser-control/symbol-browser.c:362
+#: symbol-browser-control/symbol-browser.c:365
 msgid "Tags"
 msgstr "Taggar"
 
-#: symbol-browser-control/symbol-browser.c:370
-#: symbol-browser-control/symbol-browser.c:380
+#: symbol-browser-control/symbol-browser.c:373
+#: symbol-browser-control/symbol-browser.c:383
 msgid "Undefined"
 msgstr "Odefinierad"
 
-#: symbol-browser-control/symbol-browser.c:372
-#: symbol-browser-control/symbol-browser.c:382
+#: symbol-browser-control/symbol-browser.c:375
+#: symbol-browser-control/symbol-browser.c:385
 msgid "<No Symbol>"
 msgstr "<Ingen symbol>"
 
@@ -2254,9 +2262,6 @@ msgstr "Kan inte initiera bonobo!"
 
 #~ msgid "Icon set to display."
 #~ msgstr "Ikonsamling att visa."
-
-#~ msgid "Icon size"
-#~ msgstr "Ikonstorlek"
 
 #~ msgid "Size to use for stock icon or icon set."
 #~ msgstr "Storlek att använda för standardikon eller ikonsamling."
