@@ -1,3 +1,10 @@
+2002-04-10  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/Makefile.am: Added gdl-recent.[ch].
+	* gdl/gdl-recent.c: New class for displaying recent files/projects.
+	* gdl/gdl-recent.h: Idem.
+	* gdl/gdl.h: Added new header files.
+
 2002-04-09  Dave Camp  <dave@ximian.com>
 
 	* gdl/gdl-icons.c (remove_icon_file_name_suffix): Fix the string

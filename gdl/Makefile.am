@@ -61,6 +61,7 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-layout.c \
 	gdl-icons.c \
 	gdl-file-selector-util.c \
+	gdl-recent.c \
 	libgdltypebuiltins.c \
 	libgdlmarshal.c
 
@@ -87,7 +88,8 @@ libgdl_headers = \
 	gdl-dock-tablabel.h \
 	gdl-dock-layout.h \
 	gdl-icons.h \
-	gdl-file-selector-util.h
+	gdl-file-selector-util.h \
+	gdl-recent.h
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
