@@ -52,6 +52,7 @@ libgdl_1_la_SOURCES = \
 	$(CORBA_GENERATED) \
 	default-icon.c \
 	default-icon.h \
+	gdl-tools.c \
 	gdl-dock.c \
 	gdl-dock-item.c \
 	gdl-dock-notebook.c \
@@ -59,6 +60,7 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-tablabel.c \
 	gdl-dock-layout.c \
 	gdl-icons.c \
+	gdl-file-selector-util.c \
 	libgdltypebuiltins.c \
 	libgdlmarshal.c
 
@@ -84,7 +86,8 @@ libgdl_headers = \
 	gdl-dock-paned.h \
 	gdl-dock-tablabel.h \
 	gdl-dock-layout.h \
-	gdl-icons.h
+	gdl-icons.h \
+	gdl-file-selector-util.h
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \

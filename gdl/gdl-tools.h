@@ -26,6 +26,7 @@
 #define __GDL_TOOLS_H__
 
 #include <glib.h>
+#include <gtk/gtkwidget.h>
 #include <libgnome/gnome-i18n.h>
 
 
@@ -80,6 +81,9 @@ G_BEGIN_DECLS
 #define GDL_TRACE_EXTRA()
 
 #endif /* DO_GDL_TRACE */
+
+GtkWidget	*gdl_button_new_with_stock_image (const char  *text,
+						  const char  *stock_id);
 
 G_END_DECLS
 

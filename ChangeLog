@@ -1,3 +1,16 @@
+2002-03-16  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/Makefile.am: Added gdl-file-selector-util.[ch] back and also added
+	gdl-tools.c
+	* gdl/gdl-file-selector-util.c: (listener_cb),
+	(replace_existing_file), (ok_clicked_cb), (concat_dir_and_file),
+	(create_gtk_selector), (run_file_selector),
+	(gdl_file_selector_open), (gdl_file_selector_open_multi),
+	(gdl_file_selector_save): Ported to GTK+ 2.0 and added replace dialog
+	if you selected a file in a save dialog that already exists.
+	* gdl/gdl-tools.h: Added gdl_button_new_with_stock_image method.
+	* gdl/gdl-tools.c: Idem.
+
 2002-03-10  Dave Camp  <dave@ximian.com>
 
 	* configure.in:  Require librsvg.

@@ -9,9 +9,8 @@
  *
  */
 
-#undef GTK_DISABLE_DEPRECATED
-
 #include "gdl-file-selector-util.h"
+#include "gdl-tools.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -22,10 +21,7 @@
 #include <bonobo/bonobo-exception.h>
 #include <bonobo/bonobo-widget.h>
 
-#include <gtk/gtkmain.h>
-#include <gtk/gtkclist.h>
-#include <gtk/gtkfilesel.h>
-#include <gtk/gtksignal.h>
+#include <gtk/gtk.h>
 
 #include <libgnome/gnome-program.h>
 #include <libgnome/gnome-i18n.h>
@@ -48,11 +44,11 @@ delete_file_selector (GtkWidget *d, GdkEventAny *e, gpointer data)
 }
 
 static void
-listener_cb (BonoboListener *listener, 
-	     const gchar *event_name,
-	     const CORBA_any *any,
+listener_cb (BonoboListener    *listener, 
+	     const char        *event_name,
+	     const CORBA_any   *any,
 	     CORBA_Environment *ev,
-	     gpointer data)
+	     gpointer           data)
 {
 	GtkWidget *dialog;
 	CORBA_sequence_CORBA_string *seq;
@@ -154,11 +150,58 @@ create_bonobo_selector (gboolean    enable_vfs,
 	return GTK_WINDOW (dialog);
 }
 
+static gboolean
+replace_existing_file (GtkWindow   *parent,
+		       const char  *filename)
+{
+	GtkWidget *dialog;
+	GtkWidget *button;
+	int ret;
+	char *uri;
+
+	uri = g_strdup (filename);/*gnome_vfs_x_format_uri_for_display (filename);*/
+	dialog = gtk_message_dialog_new (parent,
+			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_QUESTION,
+			GTK_BUTTONS_NONE,
+			_("A file named ''%s'' already exists.\n"
+			  "Do you want to replace it with the "
+			  "one you are saving?"), 
+			uri);
+	g_free (uri);
+
+	/* Add Don't Replace button */
+	button = gdl_button_new_with_stock_image (_("Do_n't replace"),
+						  GTK_STOCK_CANCEL);
+	gtk_dialog_add_action_widget (GTK_DIALOG (dialog),
+				      button,
+				      GTK_RESPONSE_CANCEL);
+	gtk_widget_show (button);
+
+	/* Add Replace button */
+	button = gdl_button_new_with_stock_image (_("_Replace"),
+						  GTK_STOCK_REFRESH);
+	gtk_dialog_add_action_widget (GTK_DIALOG (dialog),
+				      button,
+				      GTK_RESPONSE_YES);
+	gtk_widget_show (button);
+
+	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CANCEL);
+
+	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+
+	ret = gtk_dialog_run (GTK_DIALOG (dialog));
+
+	gtk_widget_destroy (dialog);
+
+	return (ret == GTK_RESPONSE_YES);
+}
+
 static void
 ok_clicked_cb (GtkWidget *widget, gpointer data)
 {
 	GtkFileSelection *fsel;
-	const gchar *file_name;
+	const char *file_name;
 
 	fsel = data;
 
@@ -169,8 +212,8 @@ ok_clicked_cb (GtkWidget *widget, gpointer data)
 	
 	/* Change into directory if that's what user selected */
 	if (g_file_test (file_name, G_FILE_TEST_IS_DIR)) {
-		gint name_len;
-		gchar *dir_name;
+		int name_len;
+		char *dir_name;
 
 		name_len = strlen (file_name);
 		if (name_len < 1 || file_name [name_len - 1] != '/') {
@@ -182,61 +225,20 @@ ok_clicked_cb (GtkWidget *widget, gpointer data)
 		gtk_file_selection_set_filename (fsel, dir_name);
 		g_free (dir_name);
 	} else if (GET_MODE (fsel) == FILESEL_OPEN_MULTI) {
-		GtkCList *clist;
-		GList  *row;
-		char **strv, *temp;
-		const gchar *filedirname;
-		int i, j, rows, rownum;
+		char **files = gtk_file_selection_get_selections (fsel);
 
-		gtk_widget_hide (GTK_WIDGET (fsel));
-		
-		clist = GTK_CLIST (fsel->file_list);
-		rows = g_list_length (clist->selection);
-		strv = g_new (char *, rows + 2);
-		strv[0] = g_strdup (file_name);
-
-		/* i *heart* gtkfilesel's api. 
-		 *
-		 * we iterate twice since setting "" as the file name
-		 * (to get the directory) clears the selection. this
-		 * is based on some stuff from the gimp.
-		 *
-		 */
-
-		for (rownum = 0, i = 1, row = clist->row_list; row; row = g_list_next (row), rownum++) {
-			if (GTK_CLIST_ROW (row)->state != GTK_STATE_SELECTED)
-				continue;
-
-			if (gtk_clist_get_cell_type (clist, rownum, 0) != GTK_CELL_TEXT)
-				continue;
-
-			gtk_clist_get_text (clist, rownum, 0, &strv[i++]);
-		}
-
-		strv[i] = NULL;
-
-		gtk_file_selection_set_filename (fsel, "");
-		filedirname = gtk_file_selection_get_filename (fsel);
-
-		for (i = j = 1; strv[i]; i++) {
-			temp = g_build_filename (filedirname, strv[i], NULL);
-
-			/* avoid duplicates */
-			if (strcmp (temp, strv[0]))
-				strv[j++] = temp;
-			else
-				g_free (temp);
-		}
-
-		strv[j] = NULL;
-
-		gtk_object_set_user_data (GTK_OBJECT (fsel), strv);
+		g_object_set_data (G_OBJECT (fsel), "return_data", files);
 		gtk_main_quit ();
 	} else {
+		if (g_file_test (file_name, G_FILE_TEST_EXISTS)) 
+			if (!replace_existing_file (GTK_WINDOW (fsel), file_name))
+				return;
+
 		gtk_widget_hide (GTK_WIDGET (fsel));
 
-		gtk_object_set_user_data (GTK_OBJECT (fsel),
-					  g_strdup (file_name));
+		g_object_set_data (G_OBJECT (fsel),
+				   "return_data",
+				   g_strdup (file_name));
 		gtk_main_quit ();
 	}
 }
@@ -248,6 +250,20 @@ cancel_clicked_cb (GtkWidget *widget, gpointer data)
 	gtk_main_quit ();
 }
 
+static char *
+concat_dir_and_file (const char *dir,
+		     const char *file)
+{
+	g_return_val_if_fail (dir != NULL, NULL);
+	g_return_val_if_fail (file != NULL, NULL);
+
+	/* If the directory name doesn't have a / on the end, we need
+	   to add one so we get a proper path to the file */
+	if (dir[0] != '\0' && dir [strlen(dir) - 1] != G_DIR_SEPARATOR)
+		return g_strconcat (dir, G_DIR_SEPARATOR_S, file, NULL);
+	else
+		return g_strconcat (dir, file, NULL);
+}
 
 static GtkWindow *
 create_gtk_selector (FileselMode mode,
@@ -255,45 +271,57 @@ create_gtk_selector (FileselMode mode,
 		     const char *default_filename)
 {
 	GtkWidget *filesel;
+	char *path;
 
 	filesel = gtk_file_selection_new (NULL);
 
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
-			    "clicked", GTK_SIGNAL_FUNC (ok_clicked_cb),
+	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (filesel)->ok_button),
+			    "clicked", G_CALLBACK (ok_clicked_cb),
 			    filesel);
 
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (filesel)->cancel_button),
-			    "clicked", GTK_SIGNAL_FUNC (cancel_clicked_cb),
+	g_signal_connect (G_OBJECT (GTK_FILE_SELECTION (filesel)->cancel_button),
+			    "clicked", G_CALLBACK (cancel_clicked_cb),
 			    filesel);
 
 	if (default_path) {
-		char *tmp;
+		path = g_strconcat (default_path, 
+				    default_path[strlen (default_path) - 1] == '/'
+				    ? NULL : "/", NULL);
+	} else {
+		path = g_strdup ("./");
+	}
 
-		tmp = g_strconcat (default_path, 
-				   default_path[strlen (default_path) - 1] == '/'
-				   ? NULL : "/", NULL);
+	if (default_filename) {
+		char *filename = concat_dir_and_file (path, default_filename);
+		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), filename);
+		g_free (filename);
 
-		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), tmp);
-		g_free (tmp);
+		/* Select file name */
+		gtk_editable_select_region (GTK_EDITABLE (
+					    GTK_FILE_SELECTION (filesel)->selection_entry), 
+					    0, -1);
+	} else {
+		gtk_file_selection_set_filename (GTK_FILE_SELECTION (filesel), path);
 	}
 
 	if (mode == FILESEL_OPEN_MULTI) {
-		gtk_clist_set_selection_mode (GTK_CLIST (GTK_FILE_SELECTION (filesel)->file_list),
-					      GTK_SELECTION_MULTIPLE);
+		gtk_file_selection_set_select_multiple (GTK_FILE_SELECTION (filesel),
+							TRUE);
 	}
+
+	g_free (path);
 
 	return GTK_WINDOW (filesel);
 }
 
-/* FIXME: break up into smaller functions */
 static gpointer
-run_file_slector (GtkWindow  *parent,
-		  gboolean    enable_vfs,
-		  FileselMode mode, 
-		  const char *title,
-		  const char *mime_types,
-		  const char *default_path, 
-		  const char *default_filename)
+run_file_selector (GtkWindow  *parent,
+		   gboolean    enable_vfs,
+		   FileselMode mode, 
+		   const char *title,
+		   const char *mime_types,
+		   const char *default_path, 
+		   const char *default_filename)
 
 {
 	GtkWindow *dialog = NULL;
@@ -307,22 +335,21 @@ run_file_slector (GtkWindow  *parent,
 
 	SET_MODE (dialog, mode);
 
-	gtk_window_set_icon (dialog, NULL);
 	gtk_window_set_title (dialog, title);
 	gtk_window_set_modal (dialog, TRUE);
 
 	if (parent)
 		gtk_window_set_transient_for (dialog, parent);
 	
-	gtk_signal_connect (GTK_OBJECT (dialog), "delete_event",
-			    GTK_SIGNAL_FUNC (delete_file_selector),
-			    dialog);
+	g_signal_connect (G_OBJECT (dialog), "delete_event",
+			  G_CALLBACK (delete_file_selector),
+			  dialog);
 
 	gtk_widget_show_all (GTK_WIDGET (dialog));
 
 	gtk_main ();
 
-	retval = gtk_object_get_user_data (GTK_OBJECT (dialog));
+	retval = g_object_get_data (G_OBJECT (dialog), "return_data");
 
 	gtk_widget_destroy (GTK_WIDGET (dialog));
 
@@ -346,14 +373,14 @@ run_file_slector (GtkWindow  *parent,
  **/
 char *
 gdl_file_selector_open (GtkWindow  *parent,
-			  gboolean    enable_vfs,
-			  const char *title,
-			  const char *mime_types,
-			  const char *default_path)
+			gboolean    enable_vfs,
+			const char *title,
+			const char *mime_types,
+			const char *default_path)
 {
-	return run_file_slector (parent, enable_vfs, FILESEL_OPEN, 
-				 title ? title : _("Select a file to open"),
-				 mime_types, default_path, NULL);
+	return run_file_selector (parent, enable_vfs, FILESEL_OPEN, 
+				  title ? title : _("Select a file to open"),
+				  mime_types, default_path, NULL);
 }
 
 /**
@@ -374,14 +401,14 @@ gdl_file_selector_open (GtkWindow  *parent,
  **/
 char **
 gdl_file_selector_open_multi (GtkWindow  *parent,
-				gboolean    enable_vfs,
-				const char *title,
-				const char *mime_types,
-				const char *default_path)
+			      gboolean    enable_vfs,
+			      const char *title,
+			      const char *mime_types,
+			      const char *default_path)
 {
-	return run_file_slector (parent, enable_vfs, FILESEL_OPEN_MULTI,
-				 title ? title : _("Select files to open"),
-				 mime_types, default_path, NULL);
+	return run_file_selector (parent, enable_vfs, FILESEL_OPEN_MULTI,
+				  title ? title : _("Select files to open"),
+				  mime_types, default_path, NULL);
 }
 
 /**
@@ -402,13 +429,13 @@ gdl_file_selector_open_multi (GtkWindow  *parent,
  **/
 char *
 gdl_file_selector_save (GtkWindow  *parent,
-			  gboolean    enable_vfs,
-			  const char *title,
-			  const char *mime_types,
-			  const char *default_path, 
-			  const char *default_filename)
+			gboolean    enable_vfs,
+			const char *title,
+			const char *mime_types,
+			const char *default_path, 
+			const char *default_filename)
 {
-	return run_file_slector (parent, enable_vfs, FILESEL_SAVE,
-				 title ? title : _("Select a filename to save"),
-				 mime_types, default_path, default_filename);
+	return run_file_selector (parent, enable_vfs, FILESEL_SAVE,
+				  title ? title : _("Select a filename to save"),
+				  mime_types, default_path, default_filename);
 }
