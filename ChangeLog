@@ -2,7 +2,7 @@
 
 	Patch from: David A Knight  <david@ritter.demon.co.uk>
 	* gdl/gdl-dock-item.c: Fixed to enable hide/show of GdlDockItem
-	to be detected.
+	to be detected. Bug #143471.
 	
 	Patch from: David A Knight  <david@ritter.demon.co.uk>
 	* gdl/gdl-dock-item-grip.c, gdl/gdl-dock-item.[ch],
