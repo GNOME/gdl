@@ -10,12 +10,12 @@ msgstr ""
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gdl/gdl-data-view.c:421
 msgid "Expander Size"
-msgstr "Størrelse på utvider"
+msgstr "StÃ¸rrelse pÃ¥ utvider"
 
 #: gdl/gdl-data-view.c:422
 msgid "Size of the expander arrow."
@@ -57,7 +57,7 @@ msgstr ""
 
 #: gdl/gdl-dock-item.c:283
 msgid "Grip size"
-msgstr "Størrelse på håndtak"
+msgstr "StÃ¸rrelse pÃ¥ hÃ¥ndtak"
 
 #: gdl/gdl-dock-item.c:284
 msgid "Size in pixels of the grip to drag the dock item"
@@ -65,7 +65,7 @@ msgstr ""
 
 #: gdl/gdl-dock-item.c:290 gdl/gdl-dock-layout.c:705 gdl/gdl-dock-master.c:128
 msgid "Locked"
-msgstr "Låst"
+msgstr "LÃ¥st"
 
 #: gdl/gdl-dock-item.c:291
 msgid ""
@@ -82,7 +82,7 @@ msgstr ""
 
 #: gdl/gdl-dock-item.c:306
 msgid "Preferred height"
-msgstr "Foretrukket høyde"
+msgstr "Foretrukket hÃ¸yde"
 
 #: gdl/gdl-dock-item.c:307
 msgid "Preferred height for the dock item"
@@ -124,7 +124,7 @@ msgstr "Skjul"
 #. Lock menuitem
 #: gdl/gdl-dock-item.c:1291
 msgid "Lock"
-msgstr "Lås"
+msgstr "LÃ¥s"
 
 #: gdl/gdl-dock-item.c:1479
 #, c-format
@@ -163,7 +163,7 @@ msgstr "Synlig"
 
 #: gdl/gdl-dock-layout.c:713
 msgid "Item"
-msgstr "Oppføring"
+msgstr "OppfÃ¸ring"
 
 #: gdl/gdl-dock-layout.c:766 gdl/gdl-dock-object.c:120
 msgid "Name"
@@ -351,7 +351,7 @@ msgstr ""
 
 #: gdl/gdl-dock.c:200
 msgid "Height"
-msgstr "Høyde"
+msgstr "HÃ¸yde"
 
 #: gdl/gdl-dock.c:201
 msgid "Height for the dock when it's of floating type"
@@ -380,7 +380,7 @@ msgstr ""
 
 #: gdl/gdl-recent.c:136
 msgid "GConf key"
-msgstr "GConf-nøkkel"
+msgstr "GConf-nÃ¸kkel"
 
 #: gdl/gdl-recent.c:137
 msgid "The gconf key for storing the recent entries."
@@ -413,11 +413,11 @@ msgstr ""
 #: gdl/gdl-recent.c:409
 #, c-format
 msgid "Open %s"
-msgstr "Åpne %s"
+msgstr "Ã…pne %s"
 
 #: gdl/gdl-icons.c:141 gdl/gdl-icons.c:142
 msgid "Icon size"
-msgstr "Ikonstørrelse"
+msgstr "IkonstÃ¸rrelse"
 
 #: gdl/gdl-icons.c:147 gdl/gdl-icons.c:148
 msgid "Icon zoom"
@@ -457,7 +457,7 @@ msgstr ""
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:1
 msgid "Goto Symbol"
-msgstr "Gå til symbol"
+msgstr "GÃ¥ til symbol"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:2
 msgid "Goto the displayed symbol"
@@ -473,7 +473,7 @@ msgstr ""
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:5
 msgid "_Goto to symbol"
-msgstr "_Gå til symbol"
+msgstr "_GÃ¥ til symbol"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:6
 msgid "_View"
@@ -526,7 +526,7 @@ msgstr "Metoder"
 #. ! tm_tag_method_t = 128, < Class method (Java only
 #: symbol-browser-control/symbol-browser.c:72
 msgid "Namespaces"
-msgstr "Navneområder"
+msgstr "NavneomrÃ¥der"
 
 #. ! tm_tag_namespace_t = 256, < Namespace declaration
 #: symbol-browser-control/symbol-browser.c:73
@@ -593,7 +593,7 @@ msgstr "Avslutt"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:2
 msgid "Open Project"
-msgstr "Åpne prosjekt"
+msgstr "Ã…pne prosjekt"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:3
 msgid "Save Project"
@@ -621,7 +621,7 @@ msgstr "_Fil"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:9
 msgid "_Open Project"
-msgstr "_Åpne prosjekt"
+msgstr "_Ã…pne prosjekt"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:10
 msgid "_Save Project"
@@ -633,7 +633,7 @@ msgstr ""
 
 #: symbol-browser-control/test-symbol-browser.c:168
 msgid "Open file..."
-msgstr "Åpne fil..."
+msgstr "Ã…pne fil..."
 
 #: symbol-browser-control/test-symbol-browser.c:170
 msgid "Set current file..."
