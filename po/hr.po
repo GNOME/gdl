@@ -1,11 +1,11 @@
 # Translation of gdl to Croatian
 # Copyright (C) Croatian team
-# Translators: Automatski Prijevod <>,Danijel Studen <dstuden@vuka.hr>,Denis Lackovic <delacko@fly.srk.fer.hr>,Ivan Jankovic <rbrrneck@gmx.net>,
+# Translators: Automatski Prijevod <>,Danijel Studen <dstuden@vuka.hr>,Denis Lackovic <delacko@fly.srk.fer.hr>,Ivan Jankovic <rbrrneck@gmx.net>,Jerko Škifić <skific@riteh.hr>,
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl 0\n"
 "POT-Creation-Date: 2003-11-06 18:07+0100\n"
-"PO-Revision-Date: 2003-11-10 18:57+CET\n"
+"PO-Revision-Date: 2003-12-30 18:32+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
@@ -506,7 +506,7 @@ msgstr ""
 #. ! tm_tag_method_t = 128, < Class method (Java only
 #: symbol-browser-control/symbol-browser.c:72
 msgid "Namespaces"
-msgstr ""
+msgstr "Prostori za ime"
 
 #. ! tm_tag_namespace_t = 256, < Namespace declaration
 #: symbol-browser-control/symbol-browser.c:73
@@ -626,5 +626,5 @@ msgstr ""
 
 #: symbol-browser-control/test-symbol-browser.c:292
 msgid "Can't initialize bonobo!"
-msgstr ""
+msgstr "Ne mogu inicijalizirati bonobo!"
 
