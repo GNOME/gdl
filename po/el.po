@@ -1,10 +1,12 @@
 # gdl - greek translation
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# AARG! Anonymous <remailer@aarg.net>
-# Simos Xenitellis <simos@hellug.gr>
+# AARG! Anonymous <remailer@aarg.net>, 2001.
+# Simos Xenitellis <simos@hellug.gr>, 2001.
+# Panayotis Pakos <aeikineton@yahoo.com>, 2001.
 #
 # aarg: 43 messages, initial translation
 # simos: review - 43 messages. 
+# panayotis: review - 43 messages.
 #
 msgid ""
 msgstr ""
@@ -123,7 +125,7 @@ msgstr "Πηγαίος κώδικας"
 
 #: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:5
 msgid "Syntax highlighting editor control."
-msgstr "Συστατικό επεξεργαστή κειμένου αναδείκνισης συντακτικού."
+msgstr "Συστατικό επεξεργαστή κειμένου ανάδειξης συντακτικού."
 
 #: scintilla-control/scintilla-find.c:105
 #: scintilla-control/scintilla-find.c:106
