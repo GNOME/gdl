@@ -1,13 +1,13 @@
 *.gmo
 *.mo
+*.pot
 Makefile
 Makefile.in
 Makefile.in.in
 POTFILES
 cat-id-tbl.c
 stamp-cat-id
-gdl.pot
-messages
-gdl-1.pot
 po2tbl.sed
 po2tbl.sed.in
+messages
+missing

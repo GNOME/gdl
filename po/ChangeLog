@@ -1,5 +1,10 @@
 2003-01-13  Christian Rose  <menthos@menthos.com>
 
+	* .cvsignore: Added more entries.
+	* sv.po: Updated Swedish translation.
+
+2003-01-13  Christian Rose  <menthos@menthos.com>
+
 	* POTFILES.in: Removed no longer existing file.
 
 2003-01-07  German Poo-Caaman~o <gpoo@ubiobio.cl>
