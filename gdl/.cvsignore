@@ -3,5 +3,8 @@ Makefile
 *.lo
 *.la
 .deps
-_libs
 .libs
+GDL-stubs.c
+GDL-skels.c
+GDL-common.c
+GDL.h

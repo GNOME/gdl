@@ -25,5 +25,5 @@ INSTALL
 intl
 ABOUT-NLS
 COPYING
-galConf.sh
+gdlConf.sh
 *.tar.gz
