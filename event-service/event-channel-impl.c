@@ -907,8 +907,7 @@ impl_CosEventChannelAdmin_EventChannel__destroy(impl_POA_CosEventChannelAdmin_Ev
                                                    ev);
     impl_CosEventChannelAdmin_SupplierAdmin__destroy (supplier_admin_servant,
                                                       ev);
-#endif     
-
+#endif
     
     objid = PortableServer_POA_servant_to_id(servant->poa, servant, ev);
     PortableServer_POA_deactivate_object(servant->poa, objid, ev);
