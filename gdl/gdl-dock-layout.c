@@ -25,6 +25,7 @@ enum {
 enum {
     COLUMN_NAME,
     COLUMN_SHOW,
+    COLUMN_LOCKED,
     COLUMN_ITEM
 };
 
@@ -192,7 +193,7 @@ gdl_dock_layout_find_layout (GdlDockLayout *layout,
         layout_name = xmlGetProp (node, NAME_ATTRIBUTE_NAME);
         if (!strcmp (name, layout_name))
             found = TRUE;
-        free (layout_name);
+        xmlFree (layout_name);
 
         if (found)
             break;
@@ -237,6 +238,36 @@ save_layout_cb (GtkWidget *w, gpointer data)
 }
 
 static void
+gdl_dock_layout_update_items_model (GdlDockLayout *layout)
+{
+    GtkTreeIter iter;
+    
+    g_return_if_fail (layout != NULL);
+    g_return_if_fail (layout->dock != NULL);
+    g_return_if_fail (layout->items_model != NULL);
+
+    /* update items model data after a layout load */
+    if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (layout->items_model), &iter)) {
+        do {
+            GdlDockItem *item;
+            GdlDockItemBehavior beh;
+
+            gtk_tree_model_get (GTK_TREE_MODEL (layout->items_model), &iter,
+                                COLUMN_ITEM, &item,
+                                -1);
+            if (item) {
+                g_object_get (item, "behavior", &beh, NULL);
+
+                gtk_list_store_set (layout->items_model, &iter, 
+                                    COLUMN_SHOW, GDL_DOCK_ITEM_IS_SHOWN (item),
+                                    COLUMN_LOCKED, beh & GDL_DOCK_ITEM_BEH_LOCKED,
+                                    -1);
+            };
+        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (layout->items_model), &iter));
+    };
+}
+
+static void
 load_layout_cb (GtkWidget *w, gpointer data)
 {
     GtkTreeModel  *model;
@@ -251,6 +282,7 @@ load_layout_cb (GtkWidget *w, gpointer data)
         gdl_dock_layout_load_layout (layout, name);
         layout->changed_by_user = TRUE;
         g_free (name);
+        gdl_dock_layout_update_items_model (layout);
     };
 }
 
@@ -296,6 +328,35 @@ show_toggled_cb (GtkCellRendererToggle *renderer,
         gdl_dock_item_show (item);
     else
         gdl_dock_item_hide (item);
+
+    layout->changed_by_user = TRUE;
+    gtk_tree_path_free (path);
+}
+
+static void
+locked_toggled_cb (GtkCellRendererToggle *renderer,
+                   gchar                 *path_str,
+                   gpointer               data)
+{
+    GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
+    GtkTreeModel  *model = GTK_TREE_MODEL (layout->items_model);
+    GtkTreeIter    iter;
+    GtkTreePath   *path = gtk_tree_path_new_from_string (path_str);
+    gboolean       value;
+    GdlDockItem   *item;
+
+    gtk_tree_model_get_iter (model, &iter, path);
+    gtk_tree_model_get (model, &iter, 
+                        COLUMN_LOCKED, &value, 
+                        COLUMN_ITEM, &item, 
+                        -1);
+
+    value = !value;
+    gtk_list_store_set (layout->items_model, &iter, COLUMN_LOCKED, value, -1);
+    if (value)
+        gdl_dock_item_lock (item);
+    else
+        gdl_dock_item_unlock (item);
 
     layout->changed_by_user = TRUE;
     gtk_tree_path_free (path);
@@ -355,8 +416,9 @@ gdl_dock_layout_construct_dialog (GdlDockLayout *layout)
     gtk_window_set_default_size (GTK_WINDOW (layout->dialog), -1, 300);
 
     /* build list models */
-    layout->items_model = gtk_list_store_new (3, 
+    layout->items_model = gtk_list_store_new (4, 
                                               G_TYPE_STRING, 
+                                              G_TYPE_BOOLEAN,
                                               G_TYPE_BOOLEAN,
                                               G_TYPE_POINTER);
     gtk_tree_sortable_set_sort_column_id (
@@ -382,9 +444,18 @@ gdl_dock_layout_construct_dialog (GdlDockLayout *layout)
     renderer = gtk_cell_renderer_toggle_new ();
     g_signal_connect (renderer, "toggled", 
                       G_CALLBACK (show_toggled_cb), layout);
-    column = gtk_tree_view_column_new_with_attributes (_("Show?"),
+    column = gtk_tree_view_column_new_with_attributes (_("Visible"),
                                                        renderer,
                                                        "active", COLUMN_SHOW,
+                                                       NULL);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (items_list), column);
+
+    renderer = gtk_cell_renderer_toggle_new ();
+    g_signal_connect (renderer, "toggled", 
+                      G_CALLBACK (locked_toggled_cb), layout);
+    column = gtk_tree_view_column_new_with_attributes (_("Locked"),
+                                                       renderer,
+                                                       "active", COLUMN_LOCKED,
                                                        NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (items_list), column);
 
@@ -422,6 +493,7 @@ gdl_dock_layout_construct_dialog (GdlDockLayout *layout)
     return TRUE;
 }
 
+
 static void
 gdl_dock_layout_populate_models (GdlDockLayout *layout)
 {
@@ -438,14 +510,19 @@ gdl_dock_layout_populate_models (GdlDockLayout *layout)
         items = gdl_dock_get_named_items (layout->dock);
         for (l = items; l; l = l->next) {
             GdlDockItem *item = l->data;
+            GdlDockItemBehavior beh;
             gchar *long_name;
 
-            g_object_get (item, "long_name", &long_name, NULL);
+            g_object_get (item, 
+                          "long_name", &long_name, 
+                          "behavior", &beh, 
+                          NULL);
             gtk_list_store_append (layout->items_model, &iter);
             gtk_list_store_set (layout->items_model, &iter, 
                                 COLUMN_ITEM, item,
                                 COLUMN_NAME, long_name,
                                 COLUMN_SHOW, GDL_DOCK_ITEM_IS_SHOWN (item),
+                                COLUMN_LOCKED, beh & GDL_DOCK_ITEM_BEH_LOCKED,
                                 -1);
             g_free (long_name);
         };
@@ -460,7 +537,7 @@ gdl_dock_layout_populate_models (GdlDockLayout *layout)
         gtk_list_store_set (layout->layouts_model, &iter,
                             COLUMN_NAME, l->data,
                             -1);
-        free (l->data);
+        g_free (l->data);
     };
     g_list_free (items);
 }
@@ -714,9 +791,8 @@ gdl_dock_layout_get_layouts (GdlDockLayout *layout,
         if (include_default || strcmp (name, DEFAULT_LAYOUT))
             /* FIXME: is libxml mem allocation completely compatible 
                with glib's? */
-            retval = g_list_prepend (retval, name);
-        else
-            free (name);
+            retval = g_list_prepend (retval, g_strdup (name));
+        xmlFree (name);
     };
     retval = g_list_reverse (retval);
 

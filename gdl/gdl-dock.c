@@ -54,6 +54,7 @@ enum {
     LAST_SIGNAL
 };
 
+
 static GtkContainerClass *parent_class = NULL;
 
 static guint dock_signals [LAST_SIGNAL] = { 0 };
@@ -66,10 +67,12 @@ static guint dock_signals [LAST_SIGNAL] = { 0 };
 static void
 gdl_dock_class_init (GdlDockClass *klass)
 {
+    GObjectClass      *gobject_class;
     GtkObjectClass    *object_class;
     GtkWidgetClass    *widget_class;
     GtkContainerClass *container_class;
 
+    gobject_class = (GObjectClass *) klass;
     object_class = (GtkObjectClass *) klass;
     widget_class = (GtkWidgetClass *) klass;
     container_class = (GtkContainerClass *) klass;
@@ -626,6 +629,7 @@ gdl_dock_layout_build (GdlDock     *dock,
     GtkWidget    *widget;
     gint          items_docked = 0, i;
     GtkContainer *parent;
+    char         *value;
 
     g_return_val_if_fail (dock != NULL, 0);
     g_return_val_if_fail (node != NULL, 0);
@@ -638,15 +642,19 @@ gdl_dock_layout_build (GdlDock     *dock,
     for (; node; node = node->next) {
         name = (gchar *) node->name;
     
+        widget = NULL;
+
         /* Create/get root container/item. */
         if (!strcmp ("paned", name)) {
             if (node->children) {
                 /* Create new GdlDockPaned with specified orientation. */
-                if (!strcmp ("horizontal", xmlGetProp (node, "orientation")))
+                value = xmlGetProp (node, "orientation");
+                if (!value || !strcmp ("horizontal", value))
                     widget = gdl_dock_paned_new (GTK_ORIENTATION_HORIZONTAL);
                 else
                     widget = gdl_dock_paned_new (GTK_ORIENTATION_VERTICAL);
-            
+                xmlFree (value);
+
                 gdl_dock_bind_item (dock, GDL_DOCK_ITEM (widget));
                 gtk_container_add (parent, widget);
 
@@ -655,18 +663,25 @@ gdl_dock_layout_build (GdlDock     *dock,
                                            node->children);
 
                 if (i > 0) {
-                    if (i < 2)
+                    if (i < 2) {
                         gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (widget));
-                    else {
+                        widget = NULL;
+                    } else {
                         /* Set divider location. */
-                        gdl_dock_paned_set_position (
-                            GDL_DOCK_PANED (widget), 
-                            atoi (xmlGetProp (node, "divider")));
+                        value = xmlGetProp (node, "divider");
+                        if (value) {
+                            gdl_dock_paned_set_position (
+                                GDL_DOCK_PANED (widget), 
+                                atoi (value));
+                            xmlFree (value);
+                        };
                     };
                     items_docked++;
 
-                } else
+                } else {
                     gdl_dock_unbind_item (dock, GDL_DOCK_ITEM (widget));
+                    widget = NULL;
+                };
             };
                 
         } else if (!strcmp ("notebook", name)) {
@@ -682,28 +697,49 @@ gdl_dock_layout_build (GdlDock     *dock,
                                            node->children);
 
                 if (i > 0) {
-                    if (i < 2)
+                    if (i < 2) {
                         gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (widget));
-                    else {
+                        widget = NULL;
+                    } else {
                         /* Set tab index. */
-                        gtk_notebook_set_current_page (
-                            GTK_NOTEBOOK (GDL_DOCK_NOTEBOOK 
-                                          (widget)->notebook), 
-                            atoi (xmlGetProp (node, "index")));
+                        value = xmlGetProp (node, "index");
+                        if (value) {
+                            gtk_notebook_set_current_page (
+                                GTK_NOTEBOOK (GDL_DOCK_NOTEBOOK 
+                                              (widget)->notebook), 
+                                atoi (value));
+                            xmlFree (value);
+                        };
                     };
                     items_docked++;
 
-                } else
+                } else {
                     gdl_dock_unbind_item (dock, GDL_DOCK_ITEM (widget));
+                    widget = NULL;
+                };
             };
 
         } else if (!strcmp ("item", name)) {
-            GdlDockItem *w;
-            w = gdl_dock_get_item_by_name (
-                dock, (gchar *) xmlGetProp (node, "name"));
-            if (w) {
-                gtk_container_add (parent, GTK_WIDGET (w));
+            value = xmlGetProp (node, "name");
+            widget = GTK_WIDGET (gdl_dock_get_item_by_name (dock, value));
+            xmlFree (value);
+
+            if (widget) {
+                gtk_container_add (parent, widget);
                 items_docked++;
+            };
+        };
+
+        /* Restore locked status */
+        if (widget) {
+            value = xmlGetProp (node, "locked");
+            if (value) {
+                if (!g_ascii_strcasecmp ("yes", value) || 
+                    !g_ascii_strcasecmp ("true", value))                    
+                    gdl_dock_item_lock (GDL_DOCK_ITEM (widget));
+                else
+                    gdl_dock_item_unlock (GDL_DOCK_ITEM (widget));
+                xmlFree (value);
             };
         };
     }        
@@ -883,16 +919,23 @@ gdl_dock_layout_load (GdlDock *dock, xmlNodePtr node)
         if (!strcmp ("docked", node->name))
             gdl_dock_layout_build (dock, NULL, node->children);
         else if (!strcmp ("undocked", node->name)) {
-            gdl_dock_add_floating_item (dock, 
-                                        gdl_dock_get_item_by_name (
-                                            dock, xmlGetProp (
-                                                node->children, "name")), 
-                                        atoi (xmlGetProp (node, "x")),
-                                        atoi (xmlGetProp (node, "y")), 
-                                        GTK_ORIENTATION_HORIZONTAL);
+            char *value = xmlGetProp (node->children, "name");
+            GdlDockItem *item = gdl_dock_get_item_by_name (dock, value);
+            xmlFree (value);
+
+            if (item) {
+                int x, y;
+
+                value = xmlGetProp (node, "x"); x = atoi (value); xmlFree (value);
+                value = xmlGetProp (node, "y"); y = atoi (value); xmlFree (value);
+
+                /* FIXME: restore the correct orientation */
+                gdl_dock_add_floating_item (dock, item,
+                                            x, y, GTK_ORIENTATION_HORIZONTAL);
+            }
         }
     }
-    
+
     /* Show all items. */
     if (dock->root)
         gtk_widget_show_all (dock->root);

@@ -58,6 +58,9 @@ static void  gdl_dock_item_tab_drag      (GtkWidget *widget,
 static void  gdl_dock_item_hide_cb       (GtkWidget   *widget,
                                           GdlDockItem *item);
 
+static void  gdl_dock_item_lock_cb       (GtkWidget   *widget,
+                                          GdlDockItem *item);
+
 static void  gdl_dock_item_save_position (GdlDockItem *item,
                                           gboolean     save_floating);
 
@@ -95,7 +98,7 @@ static GtkBinClass *parent_class = NULL;
 
 struct DockItemMenu {
     GtkWidget *dock, *undock;
-    GtkWidget *hide;
+    GtkWidget *hide, *lock;
     GtkWidget *first_option;
 };
 
@@ -197,7 +200,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
         g_object_class, PROP_BEHAVIOR,
         g_param_spec_flags ("behavior", _("Item behavior"),
                             _("General behavior for the dock item (i.e. "
-                              "whether it can floats, if it's locked, etc.)"),
+                              "whether it can float, if it's locked, etc.)"),
                             GDL_TYPE_DOCK_ITEM_BEHAVIOR,
                             GDL_DOCK_ITEM_BEH_NORMAL,
                             G_PARAM_READWRITE));
@@ -329,9 +332,15 @@ gdl_dock_item_set_property  (GObject      *object,
             gtk_widget_queue_resize (GTK_WIDGET (item));
         break;
     case PROP_BEHAVIOR:
+    {
+        GdlDockItemBehavior old_beh = item->behavior;
         item->behavior = g_value_get_flags (value);
-        /* FIXME: sync tablabel and other stuff */
+
+        if ((old_beh ^ item->behavior) & GDL_DOCK_ITEM_BEH_LOCKED)
+            gtk_widget_queue_resize (GTK_WIDGET (item));
+
         break;
+    }
     case PROP_HANDLE_SIZE:
         item->drag_handle_size = g_value_get_uint (value);
         if (GDL_DOCK_ITEM_HANDLE_SHOWN (item))
@@ -979,6 +988,12 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
         g_signal_connect (mitem, "activate", 
                           G_CALLBACK (gdl_dock_item_hide_cb), item);
 
+        /* Lock menuitem */
+        mitem = menu_data->lock = gtk_menu_item_new_with_label (_("Lock"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (item->menu), menu_data->lock);
+        g_signal_connect (mitem, "activate",
+                          G_CALLBACK (gdl_dock_item_lock_cb), item);
+
     } else
         menu_data = g_object_get_data (G_OBJECT (item->menu), "user_data");
 
@@ -1007,6 +1022,8 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
 {
     GdlDockItem *item;
     gboolean     event_handled;
+    gboolean   in_handle;
+    gboolean   in_resize_handle;
   
     g_return_val_if_fail (widget != NULL, FALSE);
     g_return_val_if_fail (GDL_IS_DOCK_ITEM (widget), FALSE);
@@ -1023,31 +1040,29 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
 
     event_handled = FALSE;
 
+    /* Check if user clicked on the drag handle. */      
+    switch (item->orientation) {
+    case GTK_ORIENTATION_HORIZONTAL:
+        in_handle = event->x < item->drag_handle_size;
+        in_resize_handle = event->x > item->float_width 
+            - item->drag_handle_size / 2;
+        break;
+    case GTK_ORIENTATION_VERTICAL:
+        in_handle = event->y < item->drag_handle_size;
+        in_resize_handle = event->y > item->float_height 
+            - item->drag_handle_size / 2;
+        break;
+    default:
+        in_handle = FALSE;
+        in_resize_handle = FALSE;
+        break;
+    }
+
     /* Left mousebutton click on dockitem. */
     if (event->button == 1 && event->type == GDK_BUTTON_PRESS) {
         GtkWidget *child;
-        gboolean   in_handle;
-        gboolean   in_resize_handle;
 
         child = GTK_BIN (item)->child;
-
-        /* Check if user clicked on the drag handle. */      
-        switch (item->orientation) {
-        case GTK_ORIENTATION_HORIZONTAL:
-            in_handle = event->x < item->drag_handle_size;
-            in_resize_handle = event->x > item->float_width 
-                - item->drag_handle_size / 2;
-            break;
-	case GTK_ORIENTATION_VERTICAL:
-            in_handle = event->y < item->drag_handle_size;
-            in_resize_handle = event->y > item->float_height 
-                - item->drag_handle_size / 2;
-            break;
-	default:
-            in_handle = FALSE;
-            in_resize_handle = FALSE;
-            break;
-	}
 
         /* If the dockitem doesn't contain a child, do nothing. */
         if (!child) {
@@ -1094,7 +1109,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
 
         event_handled = TRUE;
 
-    } else if (event->button == 3 && event->type == GDK_BUTTON_PRESS) {
+    } else if (event->button == 3 && event->type == GDK_BUTTON_PRESS && in_handle) {
         gdl_dock_item_popup_menu (item, event->button, event->time);
      
         event_handled = TRUE;    	
@@ -1219,6 +1234,16 @@ gdl_dock_item_hide_cb (GtkWidget   *widget,
     gdl_dock_item_hide (item);
     g_signal_emit_by_name (dock, "layout_changed");
 }
+
+static void
+gdl_dock_item_lock_cb (GtkWidget   *widget,
+                       GdlDockItem *item)
+{
+    g_return_if_fail (item != NULL);
+
+    gdl_dock_item_lock (item);
+}
+
 
 /* save the current docked position wrt to a named (i.e. non-anonymous and
  * bound to the dock) item */
@@ -1840,6 +1865,7 @@ gdl_dock_item_set_tablabel (GdlDockItem *item,
         gtk_object_sink (GTK_OBJECT (tablabel));
         item->tab_label = tablabel;
         if (GDL_IS_DOCK_TABLABEL (tablabel)) {
+            g_object_set (tablabel, "master", item, NULL);
             /* FIXME: what happens if the tablabel is already connected
                to another item? */
             /* connect to tablabel signal */
@@ -1927,6 +1953,26 @@ gdl_dock_item_show (GdlDockItem *item)
     gdl_dock_item_restore_position (item);
 }
 
+void
+gdl_dock_item_lock (GdlDockItem *item)
+{
+    GdlDockItemBehavior beh;
+
+    g_object_get (item, "behavior", &beh, NULL);
+    beh |= GDL_DOCK_ITEM_BEH_LOCKED;
+    g_object_set (item, "behavior", beh, NULL);
+}
+
+void
+gdl_dock_item_unlock (GdlDockItem *item)
+{
+    GdlDockItemBehavior beh;
+
+    g_object_get (item, "behavior", &beh, NULL);
+    beh &= ~GDL_DOCK_ITEM_BEH_LOCKED;
+    g_object_set (item, "behavior", beh, NULL);
+}
+
 
 void
 gdl_dock_item_save_layout (GdlDockItem *item,
@@ -1945,6 +1991,8 @@ gdl_dock_item_save_layout (GdlDockItem *item,
         /* Create "item" node. */
         item_node = xmlNewChild (node, NULL, "item", NULL);
         xmlSetProp (item_node, "name", item->name);
+        xmlSetProp (item_node, "locked", 
+                    GDL_DOCK_ITEM_NOT_LOCKED (item) ? "no" : "yes");
     };
 }
 

@@ -275,6 +275,9 @@ gdl_dock_notebook_layout_save (GdlDockItem *item,
     sprintf (buffer, "%i", gtk_notebook_get_current_page (GTK_NOTEBOOK 
             (GDL_DOCK_NOTEBOOK (item)->notebook)));
     xmlSetProp (nb_node, "index", buffer);
+
+    xmlSetProp (nb_node, "locked", 
+                (item->behavior & GDL_DOCK_ITEM_BEH_LOCKED) ? "yes" : "no");
     
     /* Add children. */
     gtk_container_foreach (GTK_CONTAINER (

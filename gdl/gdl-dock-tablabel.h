@@ -22,6 +22,7 @@ struct _GdlDockTablabel {
     guint           drag_handle_size;
     GtkOrientation  orientation;
     gint            active : 1;
+    GtkWidget      *master;
 };
 
 struct _GdlDockTablabelClass {

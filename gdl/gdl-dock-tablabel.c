@@ -2,6 +2,7 @@
 
 #include "gdl-dock-tablabel.h"
 #include "gdl-tools.h"
+#include "gdl-dock-item.h"
 
 #include "libgdlmarshal.h"
 
@@ -19,6 +20,11 @@ static void  gdl_dock_tablabel_get_property  (GObject              *object,
                                               guint                 prop_id,
                                               GValue               *value,
                                               GParamSpec           *pspec);
+
+static void  gdl_dock_tablabel_master_changed_behavior 
+                                             (GObject            *master,
+                                              GParamSpec         *pspec,
+                                              gpointer            data);
 
 static void  gdl_dock_tablabel_size_request  (GtkWidget          *widget,
                                               GtkRequisition     *requisition);
@@ -50,7 +56,8 @@ enum {
     PROP_0,
     PROP_HANDLE_SIZE,
     PROP_ORIENTATION,
-    PROP_LABEL
+    PROP_LABEL,
+    PROP_MASTER
 };
 
 
@@ -102,6 +109,12 @@ gdl_dock_tablabel_class_init (GdlDockTablabelClass *klass)
         g_param_spec_string ("label", _("Label"),
                              _("Text for the dock item tab label"),
                              NULL, G_PARAM_READWRITE));
+
+    g_object_class_install_property (
+        g_object_class, PROP_MASTER,
+        g_param_spec_pointer ("master", _("Master dockitem"),
+                              _("Dockitem which 'owns' this tablabel"),
+                              G_PARAM_READWRITE));
 
     dock_tablabel_signals [BUTTON_PRESSED_HANDLE] =
         g_signal_new ("button_pressed_handle",
@@ -162,6 +175,22 @@ gdl_dock_tablabel_set_property (GObject      *object,
                support the label parameter */
             g_object_set (bin->child, "label", g_value_get_string (value));
         break;
+    case PROP_MASTER:
+        if (tablabel->master) {
+            g_object_remove_weak_pointer (G_OBJECT (tablabel->master), 
+                                          (gpointer *) &tablabel->master);
+            g_signal_handlers_disconnect_by_func (
+                tablabel->master, gdl_dock_tablabel_master_changed_behavior, tablabel);
+        };
+
+        tablabel->master = g_value_get_pointer (value);
+        if (tablabel->master) {
+            g_object_add_weak_pointer (G_OBJECT (tablabel->master), 
+                                       (gpointer *) &tablabel->master);
+            g_signal_connect (tablabel->master, "notify::behavior",
+                              G_CALLBACK (gdl_dock_tablabel_master_changed_behavior),
+                              tablabel);
+        };
     default:
         break;
     };
@@ -194,10 +223,29 @@ gdl_dock_tablabel_get_property (GObject    *object,
         } else
             g_value_set_string (value, NULL);
         break;
+    case PROP_MASTER:
+        g_value_set_pointer (value, tablabel->master);
+        break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
     }
+}
+
+static void
+gdl_dock_tablabel_master_changed_behavior (GObject    *master,
+                                           GParamSpec *pspec,
+                                           gpointer    data)
+{
+    GdlDockItemBehavior  beh;
+    GdlDockTablabel     *tablabel = GDL_DOCK_TABLABEL (data);
+
+    g_object_get (master, "behavior", &beh, NULL);
+    if (beh & GDL_DOCK_ITEM_BEH_LOCKED)
+        g_object_set (tablabel, "handle_size", 0, NULL);
+    else
+        /* FIXME: should restore previous handle_size */
+        g_object_set (tablabel, "handle_size", DEFAULT_DRAG_HANDLE_SIZE, NULL);
 }
 
 static void

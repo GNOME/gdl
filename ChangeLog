@@ -1,3 +1,28 @@
+2002-02-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_lock, gdl_dock_item_unlock,
+	gdl_dock_item_lock_cb): New functions.
+	(gdl_dock_item_set_property): Resize widget if changed locked
+	behavior.
+	(gdl_dock_item_popup_menu): Added "Lock" menu item.
+	(gdl_dock_item_button_changed): Only activate popup is clicked on
+	the drag handle.
+	(gdl_dock_item_save_layout): Save locked attribute.  
+	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_dialog): Added
+	"Locked" column.
+	Use xmlFree instead of free in a couple of places.
+	(gdl_dock_layout_update_items_model): New function to update
+	checkboxes after loading a layout.
+	* gdl/gdl-dock-notebook.c (gdl_dock_notebook_save_layout): Save
+	locked attribute.
+	* gdl/gdl-dock-tablabel.c (gdl_dock_master_changed_behavior):
+	New function, notify callback.
+	Added "master" property, which keeps a weak pointer to the
+	dockitem which "owns" the tablabel.
+	* gdl/gdl-dock.c (gdl_dock_build_layout, gdl_dock_load_layout):
+	Call xmlFree on strings got from xmlGetProp.  Restore locked
+	attribute.
+
 2002-01-30  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl-1.0.pc.in: Added libglade dependency

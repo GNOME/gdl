@@ -178,6 +178,10 @@ void           gdl_dock_item_hide              (GdlDockItem *item);
 
 void           gdl_dock_item_show              (GdlDockItem *item);
 
+void           gdl_dock_item_lock              (GdlDockItem *item);
+
+void           gdl_dock_item_unlock            (GdlDockItem *item);
+
 void           gdl_dock_item_save_layout       (GdlDockItem *item,
                                                 xmlNodePtr   node);
 
