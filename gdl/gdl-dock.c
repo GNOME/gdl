@@ -440,7 +440,7 @@ gdl_dock_get_property  (GObject      *object,
                 g_object_get (GDL_DOCK_OBJECT (object)->master,
                               "default_title", &default_title,
                               NULL);
-                g_value_set_string_take_ownership (value, default_title);
+                g_value_take_string (value, default_title);
             }
             else
                 g_value_set_string (value, NULL);

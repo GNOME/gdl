@@ -36,7 +36,7 @@ gdl_pixmaps_free (gpointer data)
 	GdlPixmap *pixcache = data;
 	int i;
 
-	g_return_if_fail (g_slist_find (inited_arrays, pixcache) == NULL);
+	g_return_if_fail (g_slist_find (inited_arrays, pixcache) != NULL);
 
 	for (i = 0; pixcache[i].path; i++)
 		g_free (pixcache[i].pixbuf);

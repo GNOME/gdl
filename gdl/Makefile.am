@@ -1,11 +1,8 @@
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"Gdl\"				\
 	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
-	-DG_DISABLE_DEPRECATED 				\
-	-DGTK_DISABLE_DEPRECATED 			\
-	-DGDK_DISABLE_DEPRECATED 			\
 	-I$(includedir) -I$(top_srcdir)			\
-	$(WARN_CFLAGS)					\
+	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la

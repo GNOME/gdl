@@ -10,11 +10,8 @@ main (int argc, char *argv[])
 {
 	GtkWidget *win;
 	GtkWidget *view;
-	GtkWidget *scrolled;
 	GdlDataModel *model;
-	int cx, cy;
 	GtkWidget *vbox;
-	GtkWidget *btn;
 
 	gtk_init (&argc, &argv);
 
@@ -41,4 +38,6 @@ main (int argc, char *argv[])
 	gtk_widget_grab_focus (GTK_WIDGET (view));
 
 	gtk_main ();
+
+	return 0;
 }

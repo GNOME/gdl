@@ -9,6 +9,7 @@
 
 #include <string.h>
 #include <gtk/gtkcellrenderertext.h>
+#include <gtk/gtkcellrenderertoggle.h>
 
 GObjectClass *parent_class;
 
@@ -53,7 +54,7 @@ DataItem data4[] = {
 };
 DataItem data3[] = { 
 	{ "foo foo", "foo3", "2:0", NULL }, 
-	{ "bar3", 1, "2:1", NULL }, 
+	{ "bar3", "1", "2:1", NULL }, 
 	{ "baz3", "{...}", "2:2",  data4 },
 	{ NULL, NULL, NULL, NULL }
  
@@ -108,7 +109,7 @@ get_value (GdlDataModel *dm, GdlDataIter *iter, GValue *value)
 		g_value_set_string (value, item->value);
 	} else {
 		g_value_init (value, G_TYPE_BOOLEAN);
-		g_value_set_boolean (value, item->value);
+		g_value_set_boolean (value, !strcmp (item->value, "1"));
 	}
 }
 

@@ -37,13 +37,10 @@ G_BEGIN_DECLS
 #define GDL_IS_ICONS_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((obj), GDL_TYPE_ICONS))
 
 typedef struct _GdlIcons		GdlIcons;
-typedef struct _GdlIconsPrivate		GdlIconsPrivate;
 typedef struct _GdlIconsClass		GdlIconsClass;
 
 struct _GdlIcons {
 	GObject parent;
-
-	GdlIconsPrivate *priv;
 };
 
 struct _GdlIconsClass {
@@ -51,8 +48,7 @@ struct _GdlIconsClass {
 };
 
 GType gdl_icons_get_type             (void);
-GdlIcons *gdl_icons_new              (int         icon_size,
-				      double      icon_zoom);
+GdlIcons *gdl_icons_new              (int         icon_size);
 
 GdkPixbuf *gdl_icons_get_folder_icon (GdlIcons   *icons);
 GdkPixbuf *gdl_icons_get_uri_icon    (GdlIcons   *icons,

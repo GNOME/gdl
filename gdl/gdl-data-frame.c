@@ -135,12 +135,14 @@ gdl_data_frame_layout (GdlDataFrame *frame)
 	frame->area.height = frame->priv->frame_r.height + frame->priv->shadow_offset;
 }
 
+#if 0 /* not used */
 static void
 change_layout (GdlDataFrame *frame)
 {
 	char *text = frame->priv->title ? frame->priv->title : "?";
 	pango_layout_set_text (frame->priv->layout, text, strlen (text));
 }
+#endif
 
 #define EXPLODE(r) (r).x, (r).y, (r).width, (r).height
 
@@ -174,14 +176,14 @@ gdl_data_frame_draw (GdlDataFrame *frame, GdkDrawable *drawable,
 			 frame->priv->layout);
 
 	if (gdk_rectangle_intersect (expose_area, &frame->priv->close_r, &inter)) {
-		gdk_pixbuf_render_to_drawable_alpha (gdl_data_view_get_close_pixbuf (frame->view),
-						     drawable,
-						     inter.x - frame->priv->close_r.x,
-						     inter.y - frame->priv->close_r.y, 
-						     EXPLODE (inter),
-						     GDK_PIXBUF_ALPHA_BILEVEL,
-						     127,
-						     GDK_RGB_DITHER_NORMAL, 0, 0);
+		GdkPixbuf *pixbuf = gdl_data_view_get_close_pixbuf (frame->view);
+		gdk_draw_pixbuf (drawable, NULL, pixbuf,
+				 0, 0, 
+				 inter.x - frame->priv->close_r.x,
+				 inter.y - frame->priv->close_r.y,
+				 gdk_pixbuf_get_width (pixbuf),
+				 gdk_pixbuf_get_height (pixbuf),
+				 GDK_RGB_DITHER_NORMAL, 0, 0);
 	}
 	
 	if (frame->priv->row) {

@@ -1,4 +1,5 @@
 #include <config.h>
+#include <string.h>
 #include <bonobo.h>
 #include <gnome.h>
 #include <bonobo-activation/bonobo-activation.h>
@@ -28,7 +29,7 @@ static FileSelectionInfo file_selection_info = {
 };
 
 static gint
-load_file (gchar* fname)
+load_file (const gchar* fname)
 {
 	CORBA_Environment ev;
 	CORBA_Object interface;
@@ -71,12 +72,11 @@ load_file (gchar* fname)
 }
 
 static gint
-set_file (gchar* fname)
+set_file (const gchar* fname)
 {
 	CORBA_Environment ev;
 	CORBA_Object interface;
 	GNOME_Development_SymbolBrowser symbol_browser;
-	gchar* dir;
 	gchar *interface_name = "IDL:GNOME/Development/SymbolBrowser:1.0";
 	BonoboControlFrame *frame;
 	Bonobo_Control control;
@@ -222,6 +222,7 @@ exit_cb (GtkWidget *widget,
 	 gpointer   data)
 {
 	bonobo_main_quit ();
+	gtk_widget_destroy (GTK_WIDGET (data));
 }
 
 static void
@@ -231,7 +232,7 @@ event_cb (BonoboListener    *listener,
 	  CORBA_Environment *ev,
 	  gpointer           user_data)
 {
-	GtkWidget *dialog;
+	GtkWidget *dialog = NULL;
 	GtkWidget *window = user_data;
 
 	if (!strcmp (event, "go-to")) {
@@ -245,13 +246,15 @@ event_cb (BonoboListener    *listener,
 						 location);
 	}
 
-	/* Close dialog on user response */
-	g_signal_connect (G_OBJECT (dialog),
-			  "response",
-			  G_CALLBACK (gtk_widget_destroy),
-			  NULL);
+	if (dialog) {
+		/* Close dialog on user response */
+		g_signal_connect (G_OBJECT (dialog),
+				  "response",
+				  G_CALLBACK (gtk_widget_destroy),
+				  NULL);
 
-	gtk_widget_show (dialog);
+		gtk_widget_show (dialog);
+	}
 }
 
 
@@ -294,7 +297,7 @@ main (int argc, char *argv[])
 	win = BONOBO_WINDOW (bonobo_window_new ("Gnome symbol browser",
 						"Gnome Symbol Browser Test"));
 
-	g_signal_connect (win, "destroy", bonobo_main_quit, NULL);
+	g_signal_connect (win, "delete-event", bonobo_main_quit, NULL);
 	gtk_window_set_default_size (GTK_WINDOW (win), 350, 600);
 	
 	container = bonobo_window_get_ui_container (win);
@@ -305,7 +308,7 @@ main (int argc, char *argv[])
 
 	bonobo_ui_util_set_ui (component,
 			       "",
-			       SYMBOL_BROWSER_SRCDIR "test-symbol-browser-ui.xml",
+			       "./test-symbol-browser-ui.xml",
 			       "test",
 			       &ev);
 
@@ -314,7 +317,7 @@ main (int argc, char *argv[])
 	wid = bonobo_widget_new_control ("OAFIID:GNOME_Development_SymbolBrowser_Control",
 					 BONOBO_OBJREF (container));
 
-	control_frame = bonobo_widget_get_control_frame (wid);
+	control_frame = bonobo_widget_get_control_frame (BONOBO_WIDGET (wid));
 	control = bonobo_control_frame_get_control (control_frame);
 
 	source = Bonobo_Unknown_queryInterface (control,
@@ -341,6 +344,8 @@ main (int argc, char *argv[])
 	CORBA_exception_free (&ev);
 
 	bonobo_main ();
+
+	bonobo_debug_shutdown ();
 
 	return 0;
 }

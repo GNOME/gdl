@@ -1,3 +1,34 @@
+2003-12-26  Gustavo Giraldez  <gustavo@localhost.localdomain>
+
+	* gdl/gdl-icons.h:
+	* gdl/gdl-icons.c: Ported to GtkIconTheme.  Use new gobject's
+	class private data (g_type_class_add_private, etc.).  Removed
+	"icon_zoom" property.
+	(gdl_icons_new): Take one parameter instead of two.
+	
+	* symbol-browser-control/symbol-browser.c: Ported from symbol
+	combo to GtkComboBox.
+
+	* symbol-browser-control/symbol-browser-cobject.h: 
+	* symbol-browser-control/symbol-browser-cobject.c: Ported from
+	BonoboXObject to BonoboObject.
+
+	* configure.in: Added DEPRECATED_FLAGS.  Define DEPRECATED_FLAGS
+	and error compiler warnings only in maintainer mode.  Require Gtk+
+	2.3.0.
+	
+	* gdl/gdl-tools.c (gdl_pixmaps_free): Fix inverted precondition.
+
+	* gdl/gdl-dock.c (gdl_dock_get_property): Replace deprecated
+	g_value_set_string_take_ownership with g_value_take_string.
+
+	* symbol-browser-control/test-symbol-browser.c: 
+	* symbol-browser-control/factory.c: 
+	* gdl/test-dataview.c: 
+	* gdl/gdl-dock-item-grip.c: 
+	* gdl/gdl-data-model-test.c: 
+	* gdl/gdl-data-frame.c: Fix compiler warnings.
+
 2003-11-27  Jordi Mallach  <jordi@sindominio.net>
 
 	* configure.in (ALL_LINGUAS): Added "ca" (Catalan).

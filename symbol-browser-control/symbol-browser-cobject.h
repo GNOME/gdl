@@ -21,7 +21,7 @@
 #ifndef _SYMBOL_BROWSER_COBJECT_H_
 #define _SYMBOL_BROWSER_COBJECT_H_
 
-#include <bonobo/bonobo-xobject.h>
+#include <bonobo/bonobo-object.h>
 #include "symbol-browser.h"
 
 G_BEGIN_DECLS
@@ -44,12 +44,12 @@ typedef struct _GnomeSymbolBrowserCObject	GnomeSymbolBrowserCObject;
 typedef struct _GnomeSymbolBrowserCObjectClass	GnomeSymbolBrowserCObjectClass;
 
 struct _GnomeSymbolBrowserCObject {
-	BonoboXObject parent;
+	BonoboObject parent;
 	GtkWidget *symbol_browser;
 };
 
 struct _GnomeSymbolBrowserCObjectClass {
-	BonoboXObjectClass parent_class;
+	BonoboObjectClass parent_class;
 
 	POA_GNOME_Development_SymbolBrowser__epv epv;
 };

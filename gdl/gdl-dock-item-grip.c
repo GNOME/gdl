@@ -27,14 +27,13 @@
 #include "gdl-dock.h"
 #include "gdl-tools.h"
 
+#define A11Y_UNFINISHED
 
 enum {
     ACTIVATE,
     LAST_SIGNAL
 };
 static guint signals [LAST_SIGNAL];
-
-static AtkObjectClass *a11y_parent_class = NULL;
 
 GNOME_CLASS_BOILERPLATE (GdlDockItemGrip, gdl_dock_item_grip,
 			 GtkWidget, GTK_TYPE_WIDGET);
@@ -82,6 +81,11 @@ gdl_dock_item_grip_expose (GtkWidget      *widget,
     return FALSE;
 }
 
+
+#ifndef A11Y_UNFINISHED
+
+static AtkObjectClass *a11y_parent_class = NULL;
+
 static void
 grip_item_a11y_initialize (AtkObject *accessible, gpointer widget)
 {
@@ -115,7 +119,6 @@ grip_item_a11y_ref_state_set (AtkObject *accessible)
     return state_set;
 }
 
-#if 0
 static GdlDock *
 get_dock (GtkWidget *widget)
 {
@@ -208,9 +211,7 @@ gdl_dock_item_grip_get_n_actions (AtkAction *action)
     else
         return ACTION_LAST;
 }
-#endif
 
-#if 0
 static void
 grip_item_a11y_class_init (AtkObjectClass *klass)
 {
@@ -219,12 +220,14 @@ grip_item_a11y_class_init (AtkObjectClass *klass)
     klass->initialize = grip_item_a11y_initialize;
     klass->ref_state_set = grip_item_a11y_ref_state_set;
 }
-#endif
+
+#endif /* A11Y_UNFINISHED */
+
 
 static AtkObject *
 gdl_dock_item_grip_get_accessible (GtkWidget *widget)
 {
-#if 0
+#ifndef A11Y_UNFINISHED
     AtkObject *accessible;
     static GType a11y_type = 0;
 
@@ -251,20 +254,20 @@ gdl_dock_item_grip_get_accessible (GtkWidget *widget)
 
     return bonobo_a11y_set_atk_object_ret (
         widget, g_object_new (a11y_type, NULL));
-#else
+#else /* !A11Y_UNFINISHED */
     return NULL;
-#endif
+#endif /* A11Y_UNFINISHED */
 }
 
 static void
 gdl_dock_item_grip_activate (GdlDockItemGrip *grip)
 {
-#if 0
+#ifndef A11Y_UNFINISHED
     if (grip->item->is_floating)
         gdl_dock_item_grip_dock (grip);
     else
         gdl_dock_item_grip_undock (grip);
-#endif
+#endif /* A11Y_UNFINISHED */
 }
 
 static void
@@ -280,7 +283,7 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     GTK_WIDGET_SET_FLAGS (grip, GTK_NO_WINDOW);
 }
 
-#if 0
+#ifndef A11Y_UNFINISHED
 static BonoboDockBand *
 get_dock_band (GtkWidget *widget)
 {
@@ -289,13 +292,13 @@ get_dock_band (GtkWidget *widget)
 
     return (BonoboDockBand *) widget;
 }
-#endif
+#endif /* A11Y_UNFINISHED */
 
 static gint
 gdl_dock_item_grip_key_press_event (GtkWidget   *widget,
                                     GdkEventKey *event)
 {
-#if 0
+#ifndef A11Y_UNFINISHED
     gboolean had_focus = GTK_WIDGET_HAS_FOCUS (widget);
     BonoboDockBand *band = get_dock_band (widget);
     BonoboDockItemGrip *grip = (BonoboDockItemGrip *) widget;
@@ -307,7 +310,7 @@ gdl_dock_item_grip_key_press_event (GtkWidget   *widget,
             gtk_widget_grab_focus (widget);
         return TRUE;
     }
-#endif
+#endif /* A11Y_UNFINISHED */
 
     return GTK_WIDGET_CLASS (parent_class)->key_press_event (widget, event);
 }

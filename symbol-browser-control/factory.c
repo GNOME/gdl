@@ -111,7 +111,7 @@ static void
 on_control_destroy (GtkObject          *control,
 		    GnomeSymbolBrowser *symbol_browser)
 {
-	g_message("Symbol browser control destroyed: Instance count = %d", --instance_count);
+	g_message("Symbol browser control destroyed: Instance count = %ld", --instance_count);
 }
 
 static BonoboObject *
@@ -163,7 +163,7 @@ control_factory (BonoboGenericFactory *factory,
 			  G_CALLBACK (on_control_destroy),
 			  symbol_browser);
 	
-	g_message("Symbol browser control created: Instance count = %d", ++instance_count);
+	g_message("Symbol browser control created: Instance count = %ld", ++instance_count);
 	
 	return BONOBO_OBJECT (control);
 }

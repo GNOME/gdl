@@ -19,10 +19,11 @@
  */
 
 #include <bonobo.h>
+#include <string.h>
 #include <gdl/gdl.h>
 #include "symbol-browser-cobject.h"
 
-static BonoboXObjectClass *parent_class;
+static BonoboObjectClass *parent_class;
 
 /* Forward declarations */
 static void gnome_symbol_browser_cobject_class_init (GnomeSymbolBrowserCObjectClass *klass);
@@ -57,7 +58,7 @@ gnome_symbol_browser_cobject_class_init (GnomeSymbolBrowserCObjectClass *klass)
 	POA_GNOME_Development_SymbolBrowser__epv *epv = &klass->epv;
 
 	object_class = G_OBJECT_CLASS (klass);
-	parent_class = gtk_type_class (BONOBO_X_OBJECT_TYPE);
+	parent_class = g_type_class_peek_parent (klass);
 
 	object_class->finalize = gnome_symbol_browser_cobject_finalize;
 
@@ -107,7 +108,7 @@ impl_set_file (PortableServer_Servant servant,
 		     const CORBA_char      *filename,
 		     CORBA_Environment     *ev)
 {
-	gchar* file;
+	const gchar* file;
 	gchar* file_uri = "file://";
 	
 	GnomeSymbolBrowserCObject *cobj;
@@ -179,10 +180,10 @@ impl_save (PortableServer_Servant servant,
 }
 
 /* Public functions. */
-BONOBO_X_TYPE_FUNC_FULL (GnomeSymbolBrowserCObject, 
-			 GNOME_Development_SymbolBrowser, 
-			 BONOBO_X_OBJECT_TYPE, 
-			 gnome_symbol_browser_cobject);
+BONOBO_TYPE_FUNC_FULL (GnomeSymbolBrowserCObject, 
+		       GNOME_Development_SymbolBrowser, 
+		       BONOBO_TYPE_OBJECT, 
+		       gnome_symbol_browser_cobject);
 
 GnomeSymbolBrowserCObject *
 gnome_symbol_browser_cobject_new (GnomeSymbolBrowser *symbol_browser)

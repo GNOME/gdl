@@ -28,6 +28,8 @@
 #include <gtk/gtktreeview.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <ctype.h>
+#include <string.h>
 
 #include <tm_project.h>
 #include <tm_tagmanager.h>
@@ -82,6 +84,11 @@ symbol_types[] = {
 	NULL
 };
 
+enum {
+	SYMBOL_NAME = 0,
+	COMBO_N_COLUMNS
+};
+
 static GtkVBoxClass *parent_class = NULL;
 
 struct _GnomeSymbolBrowserPriv {
@@ -95,6 +102,7 @@ struct _GnomeSymbolBrowserPriv {
 	TMWorkObject *tm_file;
 
 	GtkTreeModel *tree_model;
+	GtkListStore *combo_store;
 	GHashTable *symbol_hash;
 
 	BonoboListener *listener;
@@ -178,7 +186,7 @@ static void
 gsb_update_tree (GnomeSymbolBrowser *gsb)
 {
 	GnomeSymbolBrowserPriv *priv;
-	TMSymbol *sym, *sym1, *symbol_tree;
+	TMSymbol *symbol_tree;
 	
 	priv = gsb->priv;
 
@@ -187,7 +195,7 @@ gsb_update_tree (GnomeSymbolBrowser *gsb)
 		symbol_tree = tm_symbol_tree_new(priv->project->tags_array);
 
 		if (symbol_tree) {
-			GtkTreePath *root = gtk_tree_path_new_root ();
+			GtkTreePath *root = gtk_tree_path_new_first ();
 
 			gsb_insert_nodes (gsb, NULL, symbol_tree, 0);
 
@@ -286,7 +294,8 @@ gsb_tree_node_data_new (GsbTreeNodeType type,
 	node->type = type;
 	node->symbol = symbol;
 
-	return node;}
+	return node;
+}
 
 static void
 gsb_tree_node_data_free (GsbTreeNodeData *node)
@@ -360,7 +369,7 @@ gsb_tree_node_set_text (GtkTreeViewColumn *tree_column,
 			gpointer           data)
 {
 	GsbTreeNodeData *node;
-	gchar *node_text;
+	gchar *node_text = NULL;
 
 	gtk_tree_model_get (model, iter, 0, &node, -1);
 
@@ -377,7 +386,8 @@ gsb_tree_node_set_text (GtkTreeViewColumn *tree_column,
 					node_text = g_strdup (_("Undefined"));
 			} else
 				node_text = g_strdup (_("<No Symbol>"));
-		}		break;
+		}
+		break;
 	case GSB_TREE_SYMBOL:
 		if (node->symbol) {
 			if (node->symbol->tag) {
@@ -387,7 +397,8 @@ gsb_tree_node_set_text (GtkTreeViewColumn *tree_column,
 					node_text = g_strdup (_("Undefined"));
 			} else
 				node_text = g_strdup (_("<No Symbol>"));
-		}		break;
+		}
+		break;
 	}
 
 	g_object_set (GTK_CELL_RENDERER (cell), "text", 
@@ -399,18 +410,25 @@ gsb_tree_node_set_text (GtkTreeViewColumn *tree_column,
 /* ----------------------------------------------------------------------
  * Callbacks
  * ---------------------------------------------------------------------- */
-void
-symbol_file_entry_changed_cb (GtkEntry* entry, gpointer user_data)
+
+static void
+symbol_combo_changed_cb (GtkComboBox* combo, gpointer user_data)
 {
 	GnomeSymbolBrowser *gsb;
-	const gchar *string;
-	
+	gchar *string = NULL;
+	GtkTreeIter iter;
+
 	gsb = GNOME_SYMBOL_BROWSER(user_data);
-	string = gtk_entry_get_text (GTK_ENTRY(entry));
-	
-	if (!string || strlen (string) == 0)
-		return;
-	gsb_goto_tag(gsb, string);
+
+	if (gtk_combo_box_get_active_iter (combo, &iter)) {
+		gtk_tree_model_get (GTK_TREE_MODEL (gsb->priv->combo_store),
+				    &iter,
+				    SYMBOL_NAME, &string,
+				    -1);
+		if (string && strlen (string) > 0)
+			gsb_goto_tag(gsb, string);
+		g_free (string);
+	}
 }
 
 static void
@@ -631,6 +649,7 @@ get_tag_type_name (TMTagType type)
 		return _(symbol_types[0]);
 }
 
+#if 0 /* used for debugging */
 static void
 symbol_print (TMSymbol *symbol,
 	      guint     level)
@@ -645,6 +664,7 @@ symbol_print (TMSymbol *symbol,
 	fprintf (stderr, "%s ", (symbol->tag) ? symbol->tag->name : "Root");
 	fprintf (stderr, "(Tag:%d)\n", (symbol->tag) ? symbol->tag->type : -1);
 }
+#endif
 
 static gboolean
 gsb_goto_tag(GnomeSymbolBrowser* gsb, const gchar* qual_name)
@@ -757,37 +777,36 @@ get_qualified_tag_name(const TMTag *tag)
 	return s;
 }
 
-static const GList*
-gsb_get_tag_list(GnomeSymbolBrowser* gsb, gchar* filepath, guint tag_types)
+static void
+gsb_fill_symbol_combo (GnomeSymbolBrowser* gsb, gchar* filepath, guint tag_types)
 {
-	static GList *tag_names = NULL;
+	TMTag *tag;
+	guint i;
+	GtkTreeIter iter;
+	GList *tag_names = NULL;
 
-	if ((gsb->priv->tm_file) && (gsb->priv->tm_file->tags_array) &&
-		(gsb->priv->tm_file->tags_array->len > 0))
-	{
-		TMTag *tag;
-		guint i;
+	if ((!gsb->priv->tm_file) || (!gsb->priv->tm_file->tags_array) ||
+	    (gsb->priv->tm_file->tags_array->len <= 0))
+		return;
 
-		if (tag_names)
-		{
-			GList *tmp;
-			for (tmp = tag_names; tmp; tmp = g_list_next(tmp))
-				g_free(tmp->data);
-			g_list_free(tag_names);
-			tag_names = NULL;
+	for (i=0; i < gsb->priv->tm_file->tags_array->len; ++i) {
+		tag = TM_TAG(gsb->priv->tm_file->tags_array->pdata[i]);
+		if (tag->type & tag_types) {
+			tag_names = g_list_prepend (tag_names, 
+						    g_strdup (get_qualified_tag_name(tag)->str));
 		}
-
-		for (i=0; i < gsb->priv->tm_file->tags_array->len; ++i)
-		{
-			tag = TM_TAG(gsb->priv->tm_file->tags_array->pdata[i]);
-			if (tag->type & tag_types)
-				tag_names = g_list_prepend(tag_names, g_strdup(get_qualified_tag_name(tag)->str));
-		}
-		tag_names = g_list_sort(tag_names, (GCompareFunc) strcmp);
-		return tag_names;
 	}
-	else
-		return NULL;
+	tag_names = g_list_sort(tag_names, (GCompareFunc) strcmp);
+
+	while (tag_names)
+	{
+		gtk_list_store_append (gsb->priv->combo_store, &iter);
+		gtk_list_store_set (gsb->priv->combo_store, &iter,
+				    SYMBOL_NAME, tag_names->data,
+				    -1);
+		g_free (tag_names->data);
+		tag_names = g_list_delete_link (tag_names, tag_names);
+	}
 }
 
 /* ----------------------------------------------------------------------
@@ -862,22 +881,30 @@ gnome_symbol_browser_init (GnomeSymbolBrowser *sb)
 	gtk_widget_show_all (priv->tree_sw);
 	
 	/* Create File Symbol Combo List */
-	priv->symbol_combo = gtk_combo_new();
-	gtk_widget_ref(priv->symbol_combo);
-	gtk_widget_set_usize(GTK_WIDGET(priv->symbol_combo), 300, -1);
-	gtk_widget_show(priv->symbol_combo);
-	gtk_entry_set_editable (GTK_ENTRY(GTK_COMBO(priv->symbol_combo)->entry), FALSE);
+	priv->combo_store = gtk_list_store_new (COMBO_N_COLUMNS, G_TYPE_STRING);
+	priv->symbol_combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (priv->combo_store));
 
-	g_signal_handlers_disconnect_by_func (G_OBJECT(GTK_COMBO(priv->symbol_combo)->entry),
-		  G_CALLBACK(symbol_file_entry_changed_cb), sb);
-		
+	renderer = gtk_cell_renderer_text_new ();
+	gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->symbol_combo),
+				    renderer, TRUE);
+	gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->symbol_combo),
+					renderer,
+					"text", SYMBOL_NAME,
+					NULL);
+
+	g_signal_connect (priv->symbol_combo, "changed", 
+			  G_CALLBACK (symbol_combo_changed_cb), sb);
+
+	gtk_widget_ref (priv->symbol_combo);
+	gtk_widget_set_size_request (priv->symbol_combo, 300, -1);
+	gtk_widget_show (priv->symbol_combo);
 
 	priv->symbol_hash = g_hash_table_new (g_str_hash, g_str_equal);
 	priv->directory = NULL;
 	priv->project = NULL;
 	priv->tm_file = NULL;
 	priv->event_source = bonobo_event_source_new ();
-	priv->icons = gdl_icons_new (24, 16.0);
+	priv->icons = gdl_icons_new (16);
 }
 
 static void
@@ -940,8 +967,8 @@ GtkWidget*
 gnome_symbol_browser_get_symbol_combo(GnomeSymbolBrowser *gsb)
 {
 	
-	g_return_if_fail (gsb != NULL);
-	g_return_if_fail (GNOME_IS_SYMBOL_BROWSER (gsb));
+	g_return_val_if_fail (gsb != NULL, NULL);
+	g_return_val_if_fail (GNOME_IS_SYMBOL_BROWSER (gsb), NULL);
 
 	return gsb->priv->symbol_combo;
 }
@@ -1012,7 +1039,7 @@ gnome_symbol_browser_clear (GnomeSymbolBrowser *gsb)
 void
 gnome_symbol_browser_set_file (GnomeSymbolBrowser *gsb, gchar* filepath)
 {
-	const GList *tags = NULL;
+	GtkTreeIter iter;
 	
 	tm_source_file_free (gsb->priv->tm_file);
 	if (filepath)
@@ -1020,25 +1047,17 @@ gnome_symbol_browser_set_file (GnomeSymbolBrowser *gsb, gchar* filepath)
 	else 
 		gsb->priv->tm_file = NULL;
 
+	gtk_list_store_clear (gsb->priv->combo_store);
+	gtk_list_store_append (gsb->priv->combo_store, &iter);
+	gtk_list_store_set (gsb->priv->combo_store, &iter,
+			    SYMBOL_NAME, "", -1);
+	
 	/* Update File Symbol list */
 	if (filepath) {
-		tags = gsb_get_tag_list(gsb, filepath, tm_tag_max_t);
-		
-		g_signal_handlers_disconnect_by_func (G_OBJECT(GTK_COMBO(gsb->priv->symbol_combo)->entry),
-		  G_CALLBACK(symbol_file_entry_changed_cb), gsb);
-		
-		if (tags) {
-			gtk_combo_set_popdown_strings(GTK_COMBO(gsb->priv->symbol_combo),
-				(GList *) tags);
-		} else {
-			tags = g_list_append (tags, "");
-			gtk_combo_set_popdown_strings(GTK_COMBO(gsb->priv->symbol_combo),
-				(GList *) tags);
-			g_list_free(tags);
-		}
-		g_signal_connect (G_OBJECT(GTK_COMBO(gsb->priv->symbol_combo)->entry),
-			"changed", G_CALLBACK (symbol_file_entry_changed_cb), gsb);
+		gsb_fill_symbol_combo (gsb, filepath, tm_tag_max_t);
 	}
+
+	gtk_combo_box_set_active (GTK_COMBO_BOX (gsb->priv->symbol_combo), 0);
 }
 
 BonoboEventSource *

@@ -7,8 +7,7 @@ INCLUDES = \
 	-I$(srcdir)/tagmanager/include \
 	-I$(top_srcdir)/gdl \
 	-DGNOME_DATADIR=\""$(datadir)"\" \
-	-DG_DISABLE_DEPRECATED \
-	-DGTK_DISABLE_DEPRECATED \
+	$(WARN_CFLAGS) $(DEPRECATED_FLAGS) \
 	-DSYMBOL_BROWSER_SRCDIR=\""$(srcdir)"\" \
 	$(GDL_DEPENDENCIES_CFLAGS)
 
