@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GDL CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-21 12:11+0200\n"
+"POT-Creation-Date: 2003-07-16 11:37+0200\n"
 "PO-Revision-Date: 2003-01-23 09:11+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -315,7 +315,7 @@ msgstr ""
 
 #: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
-msgstr "Gastheer"
+msgstr "Host"
 
 #: gdl/gdl-dock-placeholder.c:136
 msgid "The dock object this placeholder is attached to"
@@ -641,7 +641,7 @@ msgstr "Huidig bestand instellen"
 # misschien is verversen hier beter
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:5
 msgid "Update"
-msgstr "Bijwerken"
+msgstr "Verversen"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:6
 msgid "Update the whole tree"
