@@ -1,3 +1,7 @@
+2000-02-20  Dave Camp  <campd@oit.edu>
+
+	* event-channel-impl.c (impl_CosEventChannelAdmin_ProxyPushConsumer_push): Took out an unnecessary trace.
+
 1999-11-29  Dave Camp  <campd@oit.edu>
 
 	* Makefile.am: Don't build the typed event channel.

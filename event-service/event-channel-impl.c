@@ -381,9 +381,6 @@ impl_CosEventChannelAdmin_ProxyPushConsumer_push(impl_POA_CosEventChannelAdmin_P
                                                  CORBA_any * data,
                                                  CORBA_Environment * ev)
 {
-    GDF_TRACE_EXTRA ("%d - %p - %p - %p", getpid (), servant,
-                     servant->channel_servant, data);
-
     event_channel_notify (servant->channel_servant, data, ev);
 }
 
