@@ -1,8 +1,8 @@
 /*  -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  * 
- * This file is part of the GNOME Devtools Libraries
+ * This file is part of the GNOME Devtool Libraries
  * 
- * Copyright (C) 2000 Dave Camp <dave@helixcode.com>
+ * Copyright (C) 2001 Dave Camp <dave@ximian.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,22 +20,22 @@
  * Boston, MA 02111-1307, USA.  
  */
 
-#ifndef __GDL_IDL__
-#define __GDL_IDL__
+module GNOME {
+module Development {
+    interface EditorGutter : Bonobo::Unknown {
+        struct Marker {
+            long line_num;
+            string type;
+        };
 
-#if !defined(__GDL_COMPILATION && defined(__ORBIT_IDL__)
-%{
-#pragma include_defs gdl/GDL.h
-%}
-#pragma inhibit push
-#endif
+        typedef sequence<Marker> MarkerList;
 
-#include <Bonobo.idl>
-
-#include "editor-buffer.idl"
-#include "editor-gutter.idl"
-
-#if !defined(__GDL_COMPILATION && defined(__ORBIT_IDL__)
-#pragma inhibit pop
-#endif
-#endif
+        exception UnsupportedType { };
+        
+        void addMarker (in long line, in string type) raises (UnsupportedType);
+        void removeMarker (in long line, in string type);
+        
+        MarkerList getMarkers ();
+    };
+};
+};

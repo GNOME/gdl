@@ -32,6 +32,7 @@
 
 #include "scintilla-persist-file.h"
 #include "scintilla-editor-buffer.h"
+#include "scintilla-editor-gutter.h"
 
 #include <gdl/gdl-server-manager.h>
 
@@ -96,6 +97,7 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     BonoboPersistFile *file_impl;
     BonoboPersistStream *stream_impl;
     ScintillaEditorBuffer *buffer_impl;
+    ScintillaEditorGutter *gutter_impl;
     
     sci = scintilla_new ();
 
@@ -127,6 +129,7 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
 			     BONOBO_PROPERTY_UNSTORED);
 
     bonobo_control_set_properties (control, pb);
+    bonobo_object_unref (BONOBO_OBJECT (pb));
 			  
     /* Add other interfaces */
     file_impl = scintilla_persist_file_new (sci);
@@ -141,6 +144,10 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     bonobo_object_add_interface (BONOBO_OBJECT (control),
 				 BONOBO_OBJECT (buffer_impl));
 
+    gutter_impl = scintilla_editor_gutter_new (SCINTILLA (sci));
+    bonobo_object_add_interface (BONOBO_OBJECT (control),
+                                 BONOBO_OBJECT (gutter_impl));
+    
     gtk_signal_connect (GTK_OBJECT (sci), "notify",
                         GTK_SIGNAL_FUNC (notify_cb), NULL);
 
@@ -154,10 +161,10 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINMASKN, 2, SC_MASK_FOLDERS);
     scintilla_send_message (SCINTILLA (sci), SCI_SETMODEVENTMASK, SC_MOD_CHANGEFOLD, 0);
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINSENSITIVEN, 2, 1);
-    scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDEROPEN, SC_MARK_MINUS);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDEROPEN, SC_MARK_ARROWDOWN);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETFORE, SC_MARKNUM_FOLDEROPEN, LONG_MAX);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETBACK, SC_MARKNUM_FOLDEROPEN, 0);
-    scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDER, SC_MARK_PLUS);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDER, SC_MARK_ARROW);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETFORE, SC_MARKNUM_FOLDER, LONG_MAX);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETBACK, SC_MARKNUM_FOLDER, 0);
     scintilla_send_message (SCINTILLA(sci), SCI_SETINDENTATIONGUIDES, 1, 0);
@@ -306,7 +313,8 @@ int
 main (int argc, char *argv[])
 {
     CORBA_Environment ev;
-    
+    BonoboObject *running_context;
+
     CORBA_exception_init (&ev);
 
     gnome_init_with_popt_table ("scintilla test", VERSION, argc, argv, 
@@ -317,6 +325,10 @@ main (int argc, char *argv[])
 	g_error (_("Can't initialize bonobo!"));
 
     bonobo_activate ();
+
+    running_context = bonobo_running_context_new ();
+    gtk_signal_connect (GTK_OBJECT (running_context), "last_unref", 
+                        GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
 
     init_scintilla_control_factory ();
     

@@ -46,6 +46,7 @@ main (int argc, char *argv[])
     BonoboUIComponent *component;
     Development_EditorBuffer buffer;
     Development_EditorBuffer_iobuf *iobuf;
+    GNOME_Development_EditorGutter gutter;
     GtkWidget *hbox;
     GtkWidget *save_btn;
     BonoboControlFrame *control_frame;
@@ -97,19 +98,16 @@ main (int argc, char *argv[])
     
     file = bonobo_object_client_query_interface (cli, "IDL:Bonobo/PersistFile:1.0", NULL);
     Bonobo_PersistFile_load (file, filename, &ev);
-#if 0
-    buffer = bonobo_object_client_query_interface (cli, "IDL:Development/EditorBuffer:1.0", NULL);
     
-    iobuf = allocate_iobuf ("will be deleted/* GPL NOTICE HERE */");
-    Development_EditorBuffer_insert (buffer, 0, iobuf, &ev);
-    CORBA_free (iobuf);
-
-    Development_EditorBuffer_delete (buffer, 0,
-				     strlen ("will be deleted"), &ev);
-#endif
+    gutter = bonobo_object_client_query_interface (cli, "IDL:GNOME/Development/EditorGutter:1.0", NULL);
+    
+    GNOME_Development_EditorGutter_addMarker (gutter, 1, "Breakpoint", &ev);
+    GNOME_Development_EditorGutter_addMarker (gutter, 10, "DisabledBreakpoint", &ev);
+    GNOME_Development_EditorGutter_addMarker (gutter, 4, "CurrentLine", &ev);
+    GNOME_Development_EditorGutter_removeMarker (gutter, 4, "CurrentLine", &ev);
+    GNOME_Development_EditorGutter_addMarker (gutter, 6, "CurrentLine", &ev);
 
     bonobo_main ();
-
 
     return 0;
 }

@@ -1,3 +1,27 @@
+2001-05-12  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Unref
+	the property bag after adding it to the control.
+	(scintilla_factory): Create the gutter implementation.
+	(scintilla_factory): Use arrows instead of + and - for the
+	folding.
+	(main): Create a running context and run gtk_main_quit on its
+	last_unref signal.
+
+	* scintilla-control/scintilla/ScintillaGTK.cxx: Changed the default 
+	requisition.
+	
+	* scintilla-control/Makefile.am (scintilla_control_SOURCES): Build
+	scintilla-editor-gutter.[ch].
+
+	* scintilla-control/scintilla-editor-gutter.[ch]: New files.
+
+	* idl/editor-gutter.idl: New file.
+
+	* idl/GDL.idl: Include editor-gutter.idl
+
+	* lib/Makefile.am (libgdl_la_SOURCES): Depend on editor-gutter.idl.
+
 2001-03-18  Dirk Vangestel  <dirk.vangestel@advalvas.be>
 
 	* scintilla-control/scintilla-control.c (get_prop): Now returns line

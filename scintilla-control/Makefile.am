@@ -32,7 +32,9 @@ scintilla_control_SOURCES = \
 	scintilla-persist-stream.c \
 	scintilla-persist-stream.h \
 	scintilla-editor-buffer.c \
-	scintilla-editor-buffer.h
+	scintilla-editor-buffer.h \
+	scintilla-editor-gutter.c \
+	scintilla-editor-gutter.h
 
 LEXER_OBJS = \
 	scintilla/LexCPP.o     \

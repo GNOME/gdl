@@ -1,6 +1,6 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locales"\" \
-	-I$(includedir) $(GNOME_INCLUDEDIR) $(BONOBO_CFLAGS)
+	-I$(includedir) $(GNOME_INCLUDEDIR) $(BONOBO_CFLAGS) $(GNOME_CFLAGS)
 
 lib_LTLIBRARIES = libgdl.la
 
@@ -18,7 +18,8 @@ idl_dir = $(top_srcdir)/idl
 IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/dil $(IDL_CFLAGS)
 
 $(CORBA_GENERATED) : $(idl_dir)/GDL.idl \
-		     $(idl_dir)/editor-buffer.idl
+		     $(idl_dir)/editor-buffer.idl \
+		     $(idl_dir)/editor-gutter.idl
 	$(ORBIT_IDL) $(IDL_FLAGS) $(idl_dir)/GDL.idl
 
 libgdl_la_SOURCES = \
