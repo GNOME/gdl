@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-23 14:30+0200\n"
+"POT-Creation-Date: 2004-07-28 03:20+0200\n"
 "PO-Revision-Date: 2004-07-01 17:47+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3.1\n"
 
-#. GRUT modified this item
 #: gdl/gdl-data-view.c:418
 msgid "Expander Size"
 msgstr "Madhësia e shpalosësit"
@@ -36,7 +35,7 @@ msgstr "Ikonifiko këtë qeli"
 #. GRUT modified this item
 #: gdl/gdl-dock-item-grip.c:366
 msgid "Close"
-msgstr "Mbylle"
+msgstr "Mbyll"
 
 #: gdl/gdl-dock-item-grip.c:366
 msgid "Close this dock"
@@ -50,7 +49,6 @@ msgstr "Duke kontrolluar elementët e qelisë"
 msgid "Dockitem which 'owns' this grip"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-item.c:242
 msgid "Orientation"
 msgstr "Orientimi"
@@ -59,7 +57,6 @@ msgstr "Orientimi"
 msgid "Orientation of the docking item"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-item.c:258
 msgid "Resizable"
 msgstr "E ripërmasueshme"
@@ -78,16 +75,15 @@ msgid ""
 "locked, etc.)"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
 msgid "Locked"
 msgstr "E bllokuar"
 
 #: gdl/gdl-dock-item.c:276
-msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-item.c:284
 msgid "Preferred width"
 msgstr "Gjerësia e preferuar"
@@ -96,7 +92,6 @@ msgstr "Gjerësia e preferuar"
 msgid "Preferred width for the dock item"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-item.c:291
 msgid "Preferred height"
 msgstr "Lartësia e preferuar"
@@ -124,13 +119,11 @@ msgstr ""
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 
-#. GRUT modified this item
 #. Hide menuitem.
 #: gdl/gdl-dock-item.c:1258
 msgid "Hide"
 msgstr "Fshih"
 
-#. GRUT modified this item
 #. Lock menuitem
 #: gdl/gdl-dock-item.c:1264
 msgid "Lock"
@@ -163,7 +156,6 @@ msgstr ""
 msgid "Could not load layout user interface file '%s'"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-layout.c:619
 msgid "Visible"
 msgstr "I dukshëm"
@@ -172,7 +164,6 @@ msgstr "I dukshëm"
 msgid "Item"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
 msgid "Name"
 msgstr "Emri"
@@ -228,7 +219,6 @@ msgstr ""
 msgid "Page"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-notebook.c:136
 msgid "The index of the current page"
 msgstr "Treguesi i faqes aktuale"
@@ -245,7 +235,6 @@ msgstr ""
 msgid "Human readable name for the dock object"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-object.c:135
 msgid "Stock Icon"
 msgstr "Ikona rezervë"
@@ -283,10 +272,10 @@ msgstr ""
 
 #: gdl/gdl-dock-object.c:599
 #, c-format
-msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-paned.c:133
 msgid "Position"
 msgstr "Pozicioni"
@@ -305,7 +294,6 @@ msgid ""
 "the host is redocked"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
 msgstr "Host"
@@ -360,7 +348,6 @@ msgstr ""
 msgid "Default title for the newly created floating docks"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock.c:191
 msgid "Width"
 msgstr "Gjerësia"
@@ -369,7 +356,6 @@ msgstr "Gjerësia"
 msgid "Width for the dock when it's of floating type"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-dock.c:199
 msgid "Height"
 msgstr "Lartësia"
@@ -407,7 +393,6 @@ msgstr ""
 msgid "The gconf key for storing the recent entries."
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-recent.c:142
 msgid "Path"
 msgstr "Pozicioni"
@@ -432,13 +417,11 @@ msgstr ""
 msgid "The type with which the items will be numbered."
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/gdl-recent.c:408
 #, c-format
 msgid "Open %s"
 msgstr "Hap %s"
 
-#. GRUT modified this item
 #: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
 msgid "Icon size"
 msgstr "Madhësia e ikonës"
@@ -447,7 +430,6 @@ msgstr "Madhësia e ikonës"
 msgid "Layout Managment"
 msgstr ""
 
-#. GRUT modified this item
 #: gdl/layout.glade.h:4
 msgid "_Load"
 msgstr "_Ngarkesa"
@@ -492,12 +474,10 @@ msgstr ""
 msgid "_Goto to symbol"
 msgstr ""
 
-#. GRUT modified this item
 #: symbol-browser-control/gnome-symbol-browser.xml.h:6
 msgid "_View"
 msgstr "_Shfaq"
 
-#. GRUT modified this item
 #: symbol-browser-control/symbol-browser.c:65
 msgid "Unknown"
 msgstr "Nuk njihet"
@@ -522,7 +502,6 @@ msgstr ""
 msgid "Fields"
 msgstr ""
 
-#. GRUT modified this item
 #. ! tm_tag_field_t = 8, < Field (Java only)
 #: symbol-browser-control/symbol-browser.c:70
 msgid "Functions"
@@ -533,7 +512,6 @@ msgstr "Funksionet"
 msgid "Interfaces"
 msgstr ""
 
-#. GRUT modified this item
 #. ! tm_tag_interface_t = 32, < Interface (Java only
 #: symbol-browser-control/symbol-browser.c:72
 msgid "Members"
@@ -549,7 +527,6 @@ msgstr ""
 msgid "Namespaces"
 msgstr ""
 
-#. GRUT modified this item
 #. ! tm_tag_namespace_t = 256, < Namespace declaration
 #: symbol-browser-control/symbol-browser.c:75
 msgid "Packages"
@@ -575,7 +552,6 @@ msgstr ""
 msgid "Unions"
 msgstr ""
 
-#. GRUT modified this item
 #. ! tm_tag_union_t = 8192, !< Union
 #: symbol-browser-control/symbol-browser.c:80
 msgid "Variables"
@@ -586,7 +562,6 @@ msgstr "Të ndryshueshmet"
 msgid "ExternVars"
 msgstr ""
 
-#. GRUT modified this item
 #. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
 #: symbol-browser-control/symbol-browser.c:82
 msgid "Macros"
@@ -597,12 +572,10 @@ msgstr "Automatizime"
 msgid "MacrosWithArgs"
 msgstr ""
 
-#. GRUT modified this item
 #: symbol-browser-control/symbol-browser.c:378
 msgid "Tags"
 msgstr "Tags"
 
-#. GRUT modified this item
 #: symbol-browser-control/symbol-browser.c:386
 #: symbol-browser-control/symbol-browser.c:397
 msgid "Undefined"
@@ -613,7 +586,6 @@ msgstr "E papërcaktuar"
 msgid "<No Symbol>"
 msgstr ""
 
-#. GRUT modified this item
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:1
 msgid "Exit"
 msgstr "Dil"
@@ -630,7 +602,6 @@ msgstr ""
 msgid "Set Current File"
 msgstr ""
 
-#. GRUT modified this item
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:5
 msgid "Update"
 msgstr "Rifresko"
@@ -643,7 +614,6 @@ msgstr ""
 msgid "_Exit"
 msgstr ""
 
-#. GRUT modified this item
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:8
 msgid "_File"
 msgstr "_File"
