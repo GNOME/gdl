@@ -512,7 +512,6 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     }
     
     if (!may_dock) {
-        GdkRectangle *rect;
         GtkRequisition req;
         
         dock = NULL;
@@ -532,9 +531,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
             g_value_unset (&my_request.extra);
 
         g_value_init (&my_request.extra, GDK_TYPE_RECTANGLE);
-        rect = g_new0 (GdkRectangle, 1);
-        *rect = my_request.rect;
-        g_value_set_boxed (&my_request.extra, rect);
+        g_value_set_boxed (&my_request.extra, &my_request.rect);
     };
 
     if (!(my_request.rect.x == request->rect.x &&
