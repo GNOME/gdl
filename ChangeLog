@@ -1,3 +1,8 @@
+2000-12-18  Dave Camp  <dave@helixcode.com>
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Set the
+	width of the line number margin.
+
 2000-12-03  Dave Camp  <dave@helixcode.com>
 
 	* idl/GDL.idl: Don't include the event channel idl.

@@ -126,6 +126,9 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     bonobo_object_add_interface (BONOBO_OBJECT (control),
 				 BONOBO_OBJECT (buffer_impl));
 
+    scintilla_send_message (sci, SCI_SETMARGINWIDTHN, 1, 30);
+    scintilla_send_message (sci, SCI_SETMARGINTYPEN, 1, SC_MARGIN_NUMBER);
+
     return BONOBO_OBJECT (control);
 }
 
