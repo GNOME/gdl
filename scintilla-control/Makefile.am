@@ -48,9 +48,8 @@ libscintilla_control_la_LIBADD = \
 	$(BONOBO_LIBS)    \
 	$(BONOBOX_LIBS)   \
 	$(VFS_LIBS)       \
-	$(LEXER_OBJS) \
-	scintilla/libscintilla-widget.a \
-	../gdl/libgdl.la 
+	scintilla/libscintilla-lexers.la \
+	scintilla/libscintilla-widget.la
 
 test_scintilla_LDADD =  \
 	$(GNOME_LIBS)   \

@@ -1,8 +1,9 @@
 INCLUDES= `gtk-config --cflags` -DGTK -DSCI_LEXER -W -Wall -I .
 
-noinst_LIBRARIES=libscintilla-widget.a libthrowaway.a
+noinst_LTLIBRARIES=libscintilla-widget.la libscintilla-lexers.la
 
-libthrowaway_a_SOURCES = \
+libscintilla_lexers_la_LDFLAGS = --all-static
+libscintilla_lexers_la_SOURCES = \
 	LexCPP.cxx       \
 	LexHTML.cxx      \
 	LexLua.cxx       \
@@ -12,7 +13,8 @@ libthrowaway_a_SOURCES = \
 	LexSQL.cxx       \
 	LexVB.cxx
 
-libscintilla_widget_a_SOURCES= \
+libscintilla_widget_la_LDFLAGS = --all-static
+libscintilla_widget_la_SOURCES= \
 	DocumentAccessor.cxx \
 	WindowAccessor.cxx \
 	KeyWords.cxx \

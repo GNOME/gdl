@@ -1,3 +1,11 @@
+2001-10-02  JP Rosevear  <jpr@ximian.com>
+
+	* scintilla-control/scintilla/Makefile.am: build static libtools
+	libs
+
+	* scintilla-control/Makefile.am: use static libtools libs for
+	libtool 1.3.x
+
 2001-09-30  Dave Camp  <dave@ximian.com>
 
 	* gdl/gdl-dock-notebook.c: 
