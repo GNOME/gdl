@@ -1,0 +1,61 @@
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Valek Filippov <frob@df.ru>, 2001.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"POT-Creation-Date: 2001-02-28 19:30+0300\n"
+"PO-Revision-Date: 2001-02-28 19:33+03:00\n"
+"Last-Translator: Valek Filippov <frob@df.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: scintilla-control/scintilla-control.c:80
+msgid "Could not initialize factory"
+msgstr "Не удалось инициализировать фабрику"
+
+#: scintilla-control/scintilla-control.c:269 scintilla-control/test.c:66
+msgid "Can't initialize bonobo!"
+msgstr "Не удалось инициализировать bonobo!"
+
+#: scintilla-control/scintilla-ui.xml.h:1
+msgid "C_ut"
+msgstr "Вырезать"
+
+#: scintilla-control/scintilla-ui.xml.h:2
+msgid "Copy"
+msgstr "Скопировать"
+
+#: scintilla-control/scintilla-ui.xml.h:3
+msgid "Copy the selection"
+msgstr "Скопировать выделение"
+
+#: scintilla-control/scintilla-ui.xml.h:4
+msgid "Cut"
+msgstr "Вырезать"
+
+#: scintilla-control/scintilla-ui.xml.h:5
+msgid "Cut the selection"
+msgstr "Вырезать выделение"
+
+#: scintilla-control/scintilla-ui.xml.h:6
+msgid "Paste"
+msgstr "Вставить"
+
+#: scintilla-control/scintilla-ui.xml.h:7
+msgid "Paste the clipboard"
+msgstr "Вставить из буфера обмена"
+
+#: scintilla-control/scintilla-ui.xml.h:8
+msgid "_Copy"
+msgstr "Скопировать"
+
+#: scintilla-control/scintilla-ui.xml.h:9
+msgid "_Edit"
+msgstr "Правка"
+
+#: scintilla-control/scintilla-ui.xml.h:10
+msgid "_Paste"
+msgstr "Вставить"
