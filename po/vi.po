@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl VERSION\n"
 "POT-Creation-Date: 2002-07-18 18:04-0300\n"
-"PO-Revision-Date: 2002-05-31 21:40+0700\n"
+"PO-Revision-Date: 2003-01-20 16:20+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: Gnome-Vi <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -472,21 +472,19 @@ msgstr "Mở %s"
 
 #: gdl/layout.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: gdl/layout.glade.h:3
-#, fuzzy
 msgid "Layout Managment"
 msgstr "Quản lý layout"
 
 #: gdl/layout.glade.h:5
 msgid "_Load"
-msgstr ""
+msgstr "_Nạp"
 
 #: gdl/layout.glade.h:6
-#, fuzzy
 msgid "_Lock dock items"
-msgstr "Mục cư trú"
+msgstr ""
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
 msgid "Factory for the Gnome Symbol Browser control."

@@ -1,3 +1,7 @@
+2003-01-20  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* configure.in: Added Dutch (nl) to ALL_LINGUAS
+
 2003-01-20  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Removed quotes from GETTEXT_PACKAGE since it was
