@@ -1,3 +1,7 @@
+2002-01-12  Dave Camp  <dave@ximian.com>
+
+	* configure.in: Changed the version handling to be a bit simpler.
+
 2001-12-30  Dave Camp  <dave@ximian.com>
 
 	* gdl/gdl-data-frame.c (gdl_data_frame_class_init): Initialize the
