@@ -1,3 +1,7 @@
+2002-12-30  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* POTFILES.in: added missing gdl/gdl-icons.c
+
 2002-12-23  Miloslav Trmac  <mitr@volny.cz>
 
 	* cs.po: Added Czech translation.
