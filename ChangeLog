@@ -1,5 +1,10 @@
 2001-07-07  Dave Camp  <dave@ximian.com>
 
+	* configure.in: Include a renamed copy of GDL_CHECK_LIB here, and
+	use that instead.
+	
+2001-07-07  Dave Camp  <dave@ximian.com>
+
 	* scintilla-control/test.c: Changed to reflect idl changes.
 
 	* scintilla-control/scintilla-persist-stream.c (impl_load): Removed

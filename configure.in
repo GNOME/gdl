@@ -3,9 +3,61 @@ AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(gdl,0.1.0)
 
 AM_ACLOCAL_INCLUDE(macros)
-AM_ACLOCAL_INCLUDE(.)
 
 AM_MAINTAINER_MODE
+
+dnl
+dnl GDL_CHECK_LIB is defined in gdl.m4.  However, we can't use that yet.
+dnl So we have a copy here.  If you modify this, see if you should modify
+dnl the one in gdl.m4 too.
+dnl
+AC_DEFUN(CHECK_LIB, [
+	dispname="$1"
+	pkgname="$2"
+	minvers="$3"
+	maxvers="$4"
+
+	AC_MSG_CHECKING(for $dispname)
+
+	if gnome-config --libs $pkgname > /dev/null 2>&1; then
+		pkgvers=`gnome-config --modversion $pkgname | sed -e 's/^[[^0-9]]*//'`
+	else
+		pkgvers=not
+	fi
+	AC_MSG_RESULT($pkgvers found)
+
+	pkgvers=`echo $pkgvers | awk -F. '{ print $[]1 * 1000000 + $[]2 * 10000 + $[]3 * 100 + $[]4;}'`
+	cmpminvers=`echo $minvers | awk -F. '{ print $[]1 * 1000000 + $[]2 * 10000 + $[]3 * 100 + $[]4;}'`
+	cmpmaxvers=`echo $maxvers | awk -F. '{ print $[]1 * 1000000 + $[]2 * 10000 + $[]3 * 100 + $[]4;}'`
+	ok=yes
+	if test "$pkgvers" -lt $cmpminvers; then
+		ok=no
+	elif test -n "$maxvers" -a "$pkgvers" -ge $cmpmaxvers; then
+		ok=no
+	fi
+	if test $ok = no; then
+		case $maxvers in
+		"")
+			dispvers="$minvers or higher"
+			;;
+		$minvers)
+			dispvers="$minvers (exactly)"
+			;;
+		*)
+			dispvers="$minvers or higher, but less than $maxvers,"
+			;;
+		esac
+
+		AC_MSG_ERROR([
+""
+"You need $dispname $dispvers to build GDL"
+"If you think you already have this installed, consult the README."])
+	fi
+
+	tmp_bsnom=`echo $pkgname | tr a-z A-Z`
+	eval $tmp_bsnom'_CFLAGS'=\"`gnome-config --cflags $pkgname`\"
+	eval $tmp_bsnom'_LIBS'=\"`gnome-config --libs $pkgname`\"
+])
 
 dnl libtool versioning
 
@@ -54,11 +106,11 @@ dnl ***************
 dnl GNOME Libraries 
 dnl ***************
 
-GDL_CHECK_LIB(gnome-libs, gnome, 1.2.9)
-GDL_CHECK_LIB(Bonobo, bonobo, 1.0.7)
-GDL_CHECK_LIB(Bonobo X, bonobox, 1.0.7)
-GDL_CHECK_LIB(OAF, oaf, 0.6.5)
-GDL_CHECK_LIB(GNOME-VFS, vfs, 1.0)
+CHECK_LIB(gnome-libs, gnome, 1.2.9)
+CHECK_LIB(Bonobo, bonobo, 1.0.7)
+CHECK_LIB(Bonobo X, bonobox, 1.0.7)
+CHECK_LIB(OAF, oaf, 0.6.5)
+CHECK_LIB(GNOME-VFS, vfs, 1.0)
 
 IDL_CFLAGS=`gnome-config --cflags idl`
 
