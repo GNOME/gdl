@@ -126,7 +126,7 @@ AC_SUBST(IDL_CFLAGS)
 GNOME_IDL_DIR="`$GNOME_CONFIG --datadir`/idl"
 
 AM_GNOME_GETTEXT
-ALL_LINGUAS="ru sv"
+ALL_LINGUAS="it ru sv"
 gnomelocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(gnomelocaledir)
 

@@ -1,0 +1,70 @@
+# Italian messages for gdl.
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Alessio Frusciante <algol@firenze.linux.it>, 2001.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"POT-Creation-Date: 2001-07-08 21:49-0100\n"
+"PO-Revision-Date: 2001-07-08 21:54-01:00\n"
+"Last-Translator: Alessio Frusciante <algol@firenze.linux.it>\n"
+"Language-Team: italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: scintilla-control/scintilla-control.c:103
+msgid "Position in the buffer"
+msgstr "Posizione nel buffer"
+
+#: scintilla-control/scintilla-control.c:107
+msgid "Current line number"
+msgstr "Numero di linea corrente"
+
+#: scintilla-control/scintilla-control.c:111
+msgid "Beginning of the selection"
+msgstr "Inizio della selezione"
+
+#: scintilla-control/scintilla-control.c:115
+msgid "End of the selection"
+msgstr "Fine della selezione"
+
+#: scintilla-control/scintilla-ui.xml.h:1
+msgid "C_ut"
+msgstr "_Taglia"
+
+#: scintilla-control/scintilla-ui.xml.h:2
+msgid "Copy"
+msgstr "Copia"
+
+#: scintilla-control/scintilla-ui.xml.h:3
+msgid "Copy the selection"
+msgstr "Copia la selezione"
+
+#: scintilla-control/scintilla-ui.xml.h:4
+msgid "Cut"
+msgstr "Taglia"
+
+#: scintilla-control/scintilla-ui.xml.h:5
+msgid "Cut the selection"
+msgstr "Taglia la selezione"
+
+#: scintilla-control/scintilla-ui.xml.h:6
+msgid "Paste"
+msgstr "Incolla"
+
+#: scintilla-control/scintilla-ui.xml.h:7
+msgid "Paste the clipboard"
+msgstr "Incolla dalla clipboard"
+
+#: scintilla-control/scintilla-ui.xml.h:8
+msgid "_Copy"
+msgstr "_Copia"
+
+#: scintilla-control/scintilla-ui.xml.h:9
+msgid "_Edit"
+msgstr "_Modifica"
+
+#: scintilla-control/scintilla-ui.xml.h:10
+msgid "_Paste"
+msgstr "_Incolla"

@@ -1,3 +1,7 @@
+2001-07-09  Christopher R. Gabriel  <cgabriel@cgabriel.org>
+
+	* configure.in (ALL_LINGUAS): Added italian translation.
+
 2001-07-07  Dave Camp  <dave@ximian.com>
 
 	* configure.in: Include a renamed copy of GDL_CHECK_LIB here, and
