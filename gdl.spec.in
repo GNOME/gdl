@@ -54,12 +54,7 @@ CFLAGS="$RPM_OPT_FLAGS" make
 %install
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{_prefix} bindir=$RPM_BUILD_ROOT%{_bindir} \
-    mandir=$RPM_BUILD_ROOT%{_mandir} libdir=$RPM_BUILD_ROOT%{_libdir} \
-    localstatedir=$RPM_BUILD_ROOT%{_localstatedir} \
-    datadir=$RPM_BUILD_ROOT%{_datadir} \
-    includedir=$RPM_BUILD_ROOT%{_includedir} \
-    sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} install
+make DESTDIR="$RPM_BUILD_ROOT" install
 
 
 %clean
@@ -75,43 +70,25 @@ make prefix=$RPM_BUILD_ROOT%{_prefix} bindir=$RPM_BUILD_ROOT%{_bindir} \
 %files
 %doc AUTHORS COPYING ChangeLog NEWS README
 %defattr (-, root, root)
-%{_prefix}/bin/gnome-symbol-browser
-%{_prefix}/lib/bonobo/servers/GNOME_Development_SymbolBrowser.server
-%{_prefix}/lib/libgdl-1.so.0.0.0
-%{_prefix}/lib/libgdl-1.so.0
-%{_prefix}/lib/libgdl-1.so
-%{_prefix}/lib/pkgconfig/gdl-1.0.pc
-%{_prefix}/share/gdl/glade/layout.glade
-%{_prefix}/share/gnome-2.0/ui/gnome-symbol-browser.xml
+%{_prefix}/bin/*
+%{_prefix}/lib/bonobo/servers/*
+%{_prefix}/lib/lib*.so.*
+%{_prefix}/lib/pkgconfig/*
+%{_prefix}/share/gdl
+%{_prefix}/share/gnome-2.0/ui/*
 %{_prefix}/share/locale/*/LC_MESSAGES/*
 
 %files devel
 %defattr (-, root, root)
-%{_prefix}/include/libgdl-1.0/gdl/GDL.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-item-grip.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-item.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-layout.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-master.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-notebook.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-object.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-paned.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-placeholder.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock-tablabel.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-dock.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-file-selector-util.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-icons.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-recent.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl-tools.h
-%{_prefix}/include/libgdl-1.0/gdl/gdl.h
-%{_prefix}/include/libgdl-1.0/gdl/libgdltypebuiltins.h
-%{_prefix}/lib/libgdl-1.a
-%{_prefix}/lib/libgdl-1.la
-%{_prefix}/share/idl/libgdl-1.0/GDL.idl
-%{_prefix}/share/idl/libgdl-1.0/editor-buffer.idl
-%{_prefix}/share/idl/libgdl-1.0/editor-gutter.idl
-%{_prefix}/share/idl/libgdl-1.0/symbol-browser.idl
+%{_prefix}/include/libgdl-1.0
+%{_prefix}/lib/lib*.a
+%{_prefix}/lib/lib*.la
+%{_prefix}/lib/lib*.so
+%{_prefix}/share/idl/libgdl-1.0
 
 %changelog
+* Tue Aug 10 2004 Pierre Sarrazin <http://sarrazip.com/>
+- Update for version 0.4.0
 * Tue Oct 24 2002 Jean Schurger <jschurger@schurger.org
 - Update for gnome 2 version
 * Wed Aug 8 2001 Jens Finke <jens@gnome.org>

@@ -1,5 +1,8 @@
 2005-03-08  Naba Kumar  <naba@gnome.org>
 
+	Patch from: Pierre Sarrazin  <sarrazip@sarrazip.com>
+	* gdl.spec.in: Updated and fixed rpm spec file.
+	
 	Patch from: David A Knight  <david@ritter.demon.co.uk>
 	* gdl/gdl-dock-item.c: Fixed to enable hide/show of GdlDockItem
 	to be detected. Bug #143471.
