@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GDL CVS\n"
-"POT-Creation-Date: 2003-01-23 03:48+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-21 12:11+0200\n"
 "PO-Revision-Date: 2003-01-23 09:11+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -71,7 +72,7 @@ msgid "Size in pixels of the grip to drag the dock item"
 msgstr ""
 "Afmeting in pixels van de greep waarmee het dok-item kan worden gesleept"
 
-#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:143
+#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
 msgid "Locked"
 msgstr "Vergrendeld"
 
@@ -197,15 +198,15 @@ msgstr ""
 msgid "Layout managment"
 msgstr "Layout-beheer"
 
-#: gdl/gdl-dock-master.c:136 gdl/gdl-dock.c:185
+#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
 msgid "Default title"
 msgstr "Standaard-titel"
 
-#: gdl/gdl-dock-master.c:137
+#: gdl/gdl-dock-master.c:136
 msgid "Default title for newly created floating docks"
 msgstr "Standaard-titel voor nieuw aangemaakte zwevende dokken"
 
-#: gdl/gdl-dock-master.c:144
+#: gdl/gdl-dock-master.c:143
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -214,7 +215,7 @@ msgstr ""
 "indien 0, zijn alle vrijgemaakt; -1 geeft een inconsistentie onder de items "
 "aan "
 
-#: gdl/gdl-dock-master.c:736
+#: gdl/gdl-dock-master.c:730
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -223,7 +224,7 @@ msgstr ""
 "meester %p: kon object %p[%s] niet aan de hak-tabel toevoegen.  Er is reeds "
 "een item met die naam (%p)"
 
-#: gdl/gdl-dock-master.c:906
+#: gdl/gdl-dock-master.c:895
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -510,7 +511,7 @@ msgstr "_Ga naar symbool"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:6
 msgid "_View"
-msgstr "B_eeld"
+msgstr "Beel_d"
 
 #: symbol-browser-control/symbol-browser.c:63
 msgid "Unknown"
