@@ -1,4 +1,4 @@
-SUBDIRS = idl gdl symbol-browser-control po
+SUBDIRS = idl gdl po
 
 EXTRA_DIST = 			\
 	MAINTAINERS		\

@@ -1,5 +1,8 @@
 2005-03-08  Naba Kumar  <naba@gnome.org>
 
+	* configure.in, Makefile.am: Disabling symbol-browser build as it
+	has been deprecated. Eventually, it will be removed.
+
 	Patch from: Pierre Sarrazin  <sarrazip@sarrazip.com>
 	* gdl.spec.in: Updated and fixed rpm spec file.
 	
