@@ -161,7 +161,7 @@ main (int argc, char **argv)
 			   GDL_DOCK_TOP);
 	gtk_widget_show (item1);
 
-	item2 = gdl_dock_item_new_with_stock ("item2", "Item #2",
+	item2 = gdl_dock_item_new_with_stock ("item2", "Item #2 has some large title",
 					      GTK_STOCK_EXECUTE,
 					      GDL_DOCK_ITEM_BEH_NORMAL);
 	g_object_set (item2, "resize", FALSE, NULL);
@@ -170,7 +170,7 @@ main (int argc, char **argv)
 			   GDL_DOCK_RIGHT);
 	gtk_widget_show (item2);
 
-	item3 = gdl_dock_item_new_with_stock ("item3", "Item #3",
+	item3 = gdl_dock_item_new_with_stock ("item3", "Item #3 has accented characters (áéíóúñ)",
 					      GTK_STOCK_CONVERT,
 					      GDL_DOCK_ITEM_BEH_NORMAL |
 					      GDL_DOCK_ITEM_BEH_CANT_CLOSE);

@@ -1,3 +1,30 @@
+2004-03-05  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/Makefile.am: Don't install gdl-dock-item-grip.h
+	
+	* gdl/gdl-dock-bar.c (gdl_dock_bar_instance_init)
+	(gdl_dock_bar_destroy, gdl_dock_bar_add_item): Fix memory and
+	tooltip object leaks.
+	
+	* gdl/gdl-dock-item-grip.h:
+	* gdl/gdl-dock-item-grip.c: Remove unused a11y code.  Will have to
+	implement it later, but for now it clutters the source file.
+	Moved stock icons initialization to class_init.
+	(ensure_title_and_icon_pixbuf): Move Pango layout and pixbuf
+	creation to this function.
+	(gdl_dock_item_grip_expose): Simplify logic and use
+	ensure_title_and_icon_pixbuf.
+	(gdl_dock_item_grip_realize, gdl_dock_item_grip_size_request)
+	(gdl_dock_item_grip_item_notify): Ditto
+	(ellipsize_layout, gdl_dock_item_grip_size_allocate): Title
+	ellipsizing code.
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_button_changed): Check for
+	grip->title_window before resetting the cursor.
+
+	* gdl/gdl-dock-object.c (gdl_dock_object_finalize): Free the
+	stock_id property.
+
 2004-03-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-master.c (gdl_dock_master_drag_motion): When

@@ -266,6 +266,8 @@ gdl_dock_object_finalize (GObject *g_object)
     object->name = NULL;
     g_free (object->long_name);
     object->long_name = NULL;
+    g_free (object->stock_id);
+    object->stock_id = NULL;
 
     GDL_CALL_PARENT (G_OBJECT_CLASS, finalize, (g_object));
 }

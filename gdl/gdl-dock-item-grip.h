@@ -46,8 +46,6 @@ struct _GdlDockItemGrip {
 
 struct _GdlDockItemGripClass {
     GtkContainerClass parent_class;
-
-    void (*activate) (GdlDockItemGrip *grip);
 };
 
 GType      gdl_dock_item_grip_get_type (void);

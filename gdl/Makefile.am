@@ -48,7 +48,6 @@ libgdl_headers = \
 	gdl-dock-master.h \
 	gdl-dock.h \
 	gdl-dock-item.h \
-	gdl-dock-item-grip.h \
 	gdl-dock-notebook.h \
 	gdl-dock-paned.h \
 	gdl-dock-tablabel.h \
@@ -70,6 +69,7 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-master.c \
 	gdl-dock.c \
 	gdl-dock-item.c \
+	gdl-dock-item-grip.h \
 	gdl-dock-item-grip.c \
 	gdl-dock-notebook.c \
 	gdl-dock-paned.c \

@@ -939,12 +939,17 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
             GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
             event_handled = TRUE;
         }
-             
-        cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
-                                             GDK_HAND2);
-        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window,
-                               cursor);
-        gdk_cursor_unref (cursor);
+
+        /* we check the window since if the item was redocked it's
+           been unrealized and maybe it's not realized again yet */
+        if (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window) {
+            cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
+                                                 GDK_HAND2);
+            gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window,
+                                   cursor);
+            gdk_cursor_unref (cursor);
+        }
+
     } else if (event->button == 3 && event->type == GDK_BUTTON_PRESS && in_handle) {
         gdl_dock_item_popup_menu (item, event->button, event->time);
         event_handled = TRUE;    	

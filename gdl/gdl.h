@@ -29,7 +29,6 @@
 #include <gdl/gdl-dock-master.h>
 #include <gdl/gdl-dock.h>
 #include <gdl/gdl-dock-item.h>
-#include <gdl/gdl-dock-item-grip.h>
 #include <gdl/gdl-dock-layout.h>
 #include <gdl/gdl-dock-paned.h>
 #include <gdl/gdl-dock-notebook.h>

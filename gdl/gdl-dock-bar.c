@@ -99,6 +99,8 @@ gdl_dock_bar_instance_init (GdlDockBar *dockbar)
     dockbar->_priv->master = NULL;
     dockbar->_priv->items = NULL;
     dockbar->_priv->tooltips = gtk_tooltips_new ();
+    g_object_ref (dockbar->_priv->tooltips);
+    gtk_object_sink (GTK_OBJECT (dockbar->_priv->tooltips));
 }
 
 static void
@@ -152,7 +154,7 @@ gdl_dock_bar_destroy (GtkObject *object)
         }
 
         if (priv->tooltips) {
-            gtk_object_destroy (GTK_OBJECT (priv->tooltips));
+            g_object_unref (priv->tooltips);
             priv->tooltips = NULL;
         }
         
@@ -249,6 +251,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     gtk_box_pack_start (GTK_BOX (dockbar), button, FALSE, FALSE, 0);
 
     gtk_tooltips_set_tip (priv->tooltips, button, name, name);
+    g_free (name);
 
     g_object_set_data (G_OBJECT (item), "GdlDockBar", dockbar);
     g_object_set_data (G_OBJECT (item), "GdlDockBarButton", button);
