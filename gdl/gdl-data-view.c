@@ -410,6 +410,15 @@ gdl_data_view_class_init (GdlDataViewClass *klass)
 	widget_class->size_request = gdl_data_view_size_request;
 	widget_class->size_allocate = gdl_data_view_size_allocate;
 	object_class->destroy = gdl_data_view_destroy;
+
+	gtk_widget_class_install_style_property (widget_class,
+						 g_param_spec_int ("expander_size",
+								   _("Expander Size"),
+								   _("Size of the expander arrow."),
+								   0, 
+								   G_MAXINT,
+								   10,
+								   G_PARAM_READABLE));
 }
 
 GtkWidget *

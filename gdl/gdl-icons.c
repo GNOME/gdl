@@ -102,8 +102,8 @@ remove_icon_file_name_suffix (const char *icon_name)
 
         for (i = 0; i < G_N_ELEMENTS (icon_file_name_suffixes); i++) {
                 suffix = icon_file_name_suffixes[i];
-                if (strcmp (icon_name + (len - strlen (suffix)), 
-			    suffix)) {
+                if (!strcmp (icon_name + (len - strlen (suffix)), 
+			     suffix)) {
                         return g_strndup (icon_name, len - strlen (suffix));
                 }
         }
@@ -206,7 +206,7 @@ reload_theme (const char *theme_name)
 
 	if (theme_name == NULL) {
 		char *name = gconf_client_get_string (gconf_client,
-						      "/apps/nautilus/preferences/theme",
+						      "/desktop/gnome/file-views/icon_theme",
 						      NULL);
 		if (name) {
 			theme_dir = get_theme_dir (name);
@@ -400,6 +400,8 @@ gdl_icon_for_mime (const char *mime_type)
 	}
 	ret = pixbuf_for_name (name);
 	g_free (name);
+
+	return ret;
 }
 
 GdkPixbuf *

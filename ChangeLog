@@ -1,5 +1,16 @@
 2002-04-09  Dave Camp  <dave@ximian.com>
 
+	* gdl/gdl-icons.c (remove_icon_file_name_suffix): Fix the string
+	comparison.
+
+	* gdl/gdl-data-view.c (gdl_data_view_class_init): Add an 
+	expander_size style property.
+
+	* gdl/gdl-data-row.c: Remove the custom expand and remove pixbufs,
+	and draw the expander with gtk.
+
+2002-04-09  Dave Camp  <dave@ximian.com>
+
 	* gdl/gdl-dock-notebook.c (gdl_dock_notebook_bring_to_front): New
 	function.
 

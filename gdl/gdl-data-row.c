@@ -56,8 +56,6 @@ struct _GdlDataRowPrivate {
 	GdkRectangle expand_r;
 	GdkRectangle cell_r;
 	
-	GdkPixbuf *cur_expand_pixbuf;
-
 	gboolean multi;
 	GtkCellRenderer *cell;
 	GList *subrows;
@@ -102,7 +100,7 @@ expand (GdlDataRow *row)
 							  &iter);
 		}
 		row->priv->subrows = g_list_reverse (row->priv->subrows);
-		row->priv->cur_expand_pixbuf = gdl_data_view_get_contract_pixbuf (row->priv->view);
+
 		row->priv->expanded = TRUE;
 		gdl_data_view_layout (GDL_DATA_VIEW (row->priv->view));
 		gtk_widget_queue_draw (GTK_WIDGET (row->priv->view));
@@ -118,7 +116,7 @@ contract (GdlDataRow *row)
 	}
 	g_list_free (row->priv->subrows);
 	row->priv->subrows = NULL;
-	row->priv->cur_expand_pixbuf = gdl_data_view_get_expand_pixbuf (row->priv->view);
+
 	row->priv->expanded = FALSE;
 	gdl_data_view_layout (GDL_DATA_VIEW (row->priv->view));
 	gtk_widget_queue_draw (GTK_WIDGET (row->priv->view));
@@ -237,9 +235,6 @@ gdl_data_row_new (GdlDataView *view,
 	
 	row->priv->view = view;
 	row->priv->model = g_object_ref (view->model);
-	
-	row->priv->cur_expand_pixbuf = gdl_data_view_get_expand_pixbuf (row->priv->view);
-
 	row->priv->path = gtk_tree_path_copy (path);
 	load_path (row);
 
@@ -290,8 +285,8 @@ layout_row (GdlDataRow *row,
 	row->priv->data_r.height = row->priv->cell_r.height;
 
 	if (row->priv->multi) {
-		row->priv->expand_r.width = gdk_pixbuf_get_width (row->priv->cur_expand_pixbuf);
-		row->priv->expand_r.height = gdk_pixbuf_get_height (row->priv->cur_expand_pixbuf);
+		row->priv->expand_r.width = 10;
+		row->priv->expand_r.height = 10;
 
 		row->priv->data_r.width += row->priv->expand_r.width;
 		row->priv->data_r.height = MAX (row->priv->expand_r.height,
@@ -472,15 +467,15 @@ gdl_data_row_render (GdlDataRow *row, GdkDrawable *drawable,
 		DRAWR(cell_r);
 	}
 	if (row->priv->multi) {
-		gdk_pixbuf_render_to_drawable_alpha
-			(row->priv->cur_expand_pixbuf,
-			 drawable, 0, 0,
-			 row->priv->expand_r.x,
-			 row->priv->expand_r.y,
-			 row->priv->expand_r.width,
-			 row->priv->expand_r.height,
-			 GDK_PIXBUF_ALPHA_BILEVEL, 127,
-			 GDK_RGB_DITHER_NORMAL, 0, 0);
+		gtk_paint_expander (GTK_WIDGET (row->priv->view)->style,
+				    drawable,
+				    GTK_WIDGET_STATE (GTK_WIDGET (row->priv->view)),
+				    expose_area,
+				    GTK_WIDGET (row->priv->view),
+				    "gdldataview",
+				    row->priv->expand_r.x + row->priv->expand_r.width / 2,
+				    row->priv->expand_r.y + row->priv->expand_r.height / 2,
+				    row->priv->expanded ? GTK_EXPANDER_EXPANDED : GTK_EXPANDER_COLLAPSED);
 		DRAWR(expand_r);
 		
 		if (row->priv->expanded) {
