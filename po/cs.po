@@ -1,15 +1,15 @@
 # Czech translation of gdl
 # Copyright (C) 2002, 2003, 2004 gdl'S COPYRIGHT HOLDER
-# Copyright (C) 2004 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) 2004, 2005 Miloslav Trmac <mitr@volny.cz>
 # This file is distributed under the same license as the PACKAGE package.
-# Miloslav Trmac <mitr@volny.cz>, 2002, 2003.
+# Miloslav Trmac <mitr@volny.cz>, 2002, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 03:37+0100\n"
-"PO-Revision-Date: 2004-02-11 06:07+0100\n"
+"POT-Creation-Date: 2005-03-11 11:25+0100\n"
+"PO-Revision-Date: 2005-03-11 15:31+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,92 +24,84 @@ msgstr "Velikost expandéru"
 msgid "Size of the expander arrow."
 msgstr "Velikost šipky expandéru."
 
-#: gdl/gdl-dock-item-grip.c:320
-msgid "Dock the toolbar"
-msgstr "Zadokovat lištu nástrojů"
-
-#: gdl/gdl-dock-item-grip.c:321
-msgid "Un dock the toolbar"
-msgstr "Oddokovat lištu nástrojů"
-
-#: gdl/gdl-dock-item-grip.c:506
+#: gdl/gdl-dock-item-grip.c:371
 msgid "Iconify"
 msgstr "Minimalizovat"
 
-#: gdl/gdl-dock-item-grip.c:506
+#: gdl/gdl-dock-item-grip.c:371
 msgid "Iconify this dock"
 msgstr "Minimalizovat tento dok"
 
-#: gdl/gdl-dock-item-grip.c:508
+#: gdl/gdl-dock-item-grip.c:373
 msgid "Close"
 msgstr "Zavřít"
 
-#: gdl/gdl-dock-item-grip.c:508
+#: gdl/gdl-dock-item-grip.c:373
 msgid "Close this dock"
 msgstr "Zavřít tento dok"
 
-#: gdl/gdl-dock-item-grip.c:809 gdl/gdl-dock-tablabel.c:129
+#: gdl/gdl-dock-item-grip.c:682 gdl/gdl-dock-tablabel.c:129
 msgid "Controlling dock item"
 msgstr "Řídicí položka doku"
 
-#: gdl/gdl-dock-item-grip.c:810
+#: gdl/gdl-dock-item-grip.c:683
 msgid "Dockitem which 'owns' this grip"
 msgstr "Položka doku, která 'vlastní' tento úchyt"
 
-#: gdl/gdl-dock-item.c:239
+#: gdl/gdl-dock-item.c:241
 msgid "Orientation"
 msgstr "Orientace"
 
-#: gdl/gdl-dock-item.c:240
+#: gdl/gdl-dock-item.c:242
 msgid "Orientation of the docking item"
 msgstr "Orientace dokovací položky"
 
-#: gdl/gdl-dock-item.c:255
+#: gdl/gdl-dock-item.c:257
 msgid "Resizable"
 msgstr "Může měnit velikost"
 
-#: gdl/gdl-dock-item.c:256
+#: gdl/gdl-dock-item.c:258
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr ""
 "Je-li nastaveno, může být změněna velikost položky doku zadokované v panelu"
 
-#: gdl/gdl-dock-item.c:263
+#: gdl/gdl-dock-item.c:265
 msgid "Item behavior"
 msgstr "Chování položky"
 
-#: gdl/gdl-dock-item.c:264
+#: gdl/gdl-dock-item.c:266
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "Obecné chování položky doku (např. jestli je plovoucí, zamčená, atd.)"
 
-#: gdl/gdl-dock-item.c:272 gdl/gdl-dock-master.c:141
+#: gdl/gdl-dock-item.c:274 gdl/gdl-dock-master.c:141
 msgid "Locked"
 msgstr "Zamčená"
 
-#: gdl/gdl-dock-item.c:273
+#: gdl/gdl-dock-item.c:275
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Je-li nastaveno, nemůže být položka doku přesouvána a nezobrazuje úchyt"
 
-#: gdl/gdl-dock-item.c:281
+#: gdl/gdl-dock-item.c:283
 msgid "Preferred width"
 msgstr "Preferovaná šířka"
 
-#: gdl/gdl-dock-item.c:282
+#: gdl/gdl-dock-item.c:284
 msgid "Preferred width for the dock item"
 msgstr "Preferovaná šířka položky doku"
 
-#: gdl/gdl-dock-item.c:288
+#: gdl/gdl-dock-item.c:290
 msgid "Preferred height"
 msgstr "Preferovaná výška"
 
-#: gdl/gdl-dock-item.c:289
+#: gdl/gdl-dock-item.c:291
 msgid "Preferred height for the dock item"
 msgstr "Preferovaná výška položky doku"
 
-#: gdl/gdl-dock-item.c:527
+#: gdl/gdl-dock-item.c:541
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -118,7 +110,7 @@ msgstr ""
 "Nemůžete přidat objekt doku (%p typu %s) do %s. Použijte GdlDock nebo jiný "
 "objekt složeného doku."
 
-#: gdl/gdl-dock-item.c:534
+#: gdl/gdl-dock-item.c:548
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -127,27 +119,32 @@ msgstr ""
 "Pokouším se přidat widget typu %s do %s, ale ten může obsahovat jen jeden "
 "widget; již obsahuje widget typu %s"
 
-#: gdl/gdl-dock-item.c:1157
+#: gdl/gdl-dock-item.c:1174
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nepodporovaná strategie dokování %s v objektu doku typu %s"
 
+#. UnLock menuitem
+#: gdl/gdl-dock-item.c:1257
+msgid "UnLock"
+msgstr "Odemknout"
+
 #. Hide menuitem.
-#: gdl/gdl-dock-item.c:1239
+#: gdl/gdl-dock-item.c:1264
 msgid "Hide"
 msgstr "Skrýt"
 
 #. Lock menuitem
-#: gdl/gdl-dock-item.c:1245
+#: gdl/gdl-dock-item.c:1269
 msgid "Lock"
 msgstr "Zamknout"
 
-#: gdl/gdl-dock-item.c:1429
+#: gdl/gdl-dock-item.c:1474
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Pokus připojit nepřipojenou položku %p"
 
-#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
+#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:103
 msgid "Master"
 msgstr "Master"
 
@@ -219,7 +216,7 @@ msgstr ""
 "zamknuty; je-li 0, jsou všechny odemknuty; -1 indikuje nekonzistenci mezi "
 "položkami"
 
-#: gdl/gdl-dock-master.c:729
+#: gdl/gdl-dock-master.c:730
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -228,7 +225,7 @@ msgstr ""
 "master %p: nemohu přidat objekt %p[%s] do hashe. Položka (%p) s tímto jménem "
 "již existuje."
 
-#: gdl/gdl-dock-master.c:894
+#: gdl/gdl-dock-master.c:895
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -237,11 +234,11 @@ msgstr ""
 "Nový dok controller %p je automatický. Jen ruční objekty doku by měly být "
 "pojmenovány controller."
 
-#: gdl/gdl-dock-notebook.c:133
+#: gdl/gdl-dock-notebook.c:135
 msgid "Page"
 msgstr "Strana"
 
-#: gdl/gdl-dock-notebook.c:134
+#: gdl/gdl-dock-notebook.c:136
 msgid "The index of the current page"
 msgstr "Index současné strany"
 
@@ -273,7 +270,7 @@ msgstr "Master doku"
 msgid "Dock master this dock object is bound to"
 msgstr "Master doku, ke kterému je tento objekt doku připojen"
 
-#: gdl/gdl-dock-object.c:419
+#: gdl/gdl-dock-object.c:421
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -282,7 +279,7 @@ msgstr ""
 "Volání gdl_dock_object v objektu %p (typ objektu je %s), který "
 "neimplementoval tuto metodu"
 
-#: gdl/gdl-dock-object.c:548
+#: gdl/gdl-dock-object.c:550
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -291,12 +288,12 @@ msgstr ""
 "Požadována operace zadokování v nepřipojeném objektu %p. Aplikace možná "
 "spadne"
 
-#: gdl/gdl-dock-object.c:555
+#: gdl/gdl-dock-object.c:557
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Nemohu zadokovat %p do %p, protože patří k různým masterům"
 
-#: gdl/gdl-dock-object.c:597
+#: gdl/gdl-dock-object.c:599
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -363,7 +360,7 @@ msgstr "Při získávání umístění potomka %p rodiče %p se stalo něco divn
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Položka doku, která 'vlastní' tuto jmenovku záložky"
 
-#: gdl/gdl-dock-bar.c:89
+#: gdl/gdl-dock-bar.c:104
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "Objekt GdlDockMaster, ke kterému je připojen widget lišty doku"
 
@@ -676,6 +673,12 @@ msgstr "Uložit soubor..."
 #: symbol-browser-control/test-symbol-browser.c:295
 msgid "Can't initialize bonobo!"
 msgstr "Nemohu inicializovat bonobo!"
+
+#~ msgid "Dock the toolbar"
+#~ msgstr "Zadokovat lištu nástrojů"
+
+#~ msgid "Un dock the toolbar"
+#~ msgstr "Oddokovat lištu nástrojů"
 
 #~ msgid "Grip size"
 #~ msgstr "Velikost úchytu"
