@@ -2,6 +2,7 @@
  * This file is part of the GNOME Devtools Libraries.
  *
  * Copyright (C) 2002 Jeroen Zwartepoorte
+ *                    James Willcox <jwillcox@cs.indiana.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

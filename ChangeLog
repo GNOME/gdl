@@ -1,3 +1,10 @@
+2002-04-20  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-recent.c: Added James Willcox <jwillcox@cs.indiana.edu>
+	(original author of gnome-recent on which gedit-recent is based, on
+	which gdl-recent is based) to copyright list.
+	* gdl/gdl-recent.h: Idem.
+
 2002-04-15  Naba Kumar <kh_naba@users.sourceforge.net>
 
 	* symbol-browser-control/factory.c, 
