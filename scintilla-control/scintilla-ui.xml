@@ -51,4 +51,7 @@
 		                <menuitem name="EditReplace" verb="" _label="_Replace"/>
 		</placeholder>
 	</dockitem>
+        <status>
+                <control name="EditorStats"/>
+        </status>
 </Root>

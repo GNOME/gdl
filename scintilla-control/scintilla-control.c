@@ -61,6 +61,8 @@ static void get_prop (BonoboPropertyBag *bag,
                       CORBA_Environment *ev,
 		      gpointer user_data);
 
+static void scintilla_update_statusbar (ScintillaObject *sci);
+
 static void notify_cb (ScintillaObject *sci, int wparam, void *lparam, 
                        gpointer user_data);
 static void destroy_cb (ScintillaObject *sci, gpointer data);
@@ -176,6 +178,11 @@ scintilla_activate_cb (BonoboControl *control,
 		       ScintillaObject *sci)
 {
     BonoboUIComponent *ui_component;
+    GtkWidget *fixed, *lines, *colon, *cols, *frame;
+    GtkRequisition req;
+    int pos;
+    BonoboControl *status;
+    
     ui_component = bonobo_control_get_ui_component (control);
 
     if (activate) {
@@ -193,10 +200,55 @@ scintilla_activate_cb (BonoboControl *control,
 	bonobo_ui_util_set_ui (ui_component, GDL_DATADIR,
 			       "scintilla-ui.xml", "scintilla-control");
         bonobo_ui_component_thaw (ui_component, NULL);
+	
+	/* Sadly, we need to recreate the statusbar widget everytime 
+	 * scintilla activates: the widget can't be reparented atm */
+	
+	/* Create widgets */
+	lines = gtk_label_new ("WWW");
+	colon = gtk_label_new (":");
+	cols = gtk_label_new ("WWW");
+	fixed = gtk_fixed_new ();
+	
+	/* Add widgets and set size */
+	gtk_misc_set_alignment (GTK_MISC (lines), 1.0, 0.5);
+	gtk_fixed_put (GTK_FIXED (fixed), lines, 0, 0);	
+	gtk_widget_size_request (lines, &req);
+	gtk_fixed_put (GTK_FIXED (fixed), colon, req.width, 0);
+	pos = req.width;
+	gtk_widget_size_request (colon, &req);
+	pos += req.width;
+	gtk_fixed_put (GTK_FIXED (fixed), cols, pos, 0);
+	gtk_widget_size_request (cols, &req);	
+	gtk_widget_set_usize (fixed, pos + req.width, req.height);
+
+	/* Create frame for labels */	
+	frame = gtk_frame_new (NULL);
+	status = bonobo_control_new (frame);
+
+	gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
+	gtk_container_add (GTK_CONTAINER (frame), fixed);
+	gtk_widget_show_all (frame);
+
+	/* Store lines, colon and cols labels as data (needed for updating) */		
+	gtk_object_set_data (GTK_OBJECT (sci), "lines", lines);
+	gtk_object_set_data (GTK_OBJECT (sci), "colon", colon);
+	gtk_object_set_data (GTK_OBJECT (sci), "cols", cols);
+	
+	/* Add control to statusbar */
+	bonobo_ui_component_object_set (ui_component, "/status/EditorStats",
+					BONOBO_OBJREF (status),
+					NULL);
+	
+	scintilla_update_statusbar (sci);
     } else {
 #if 0
 	bonobo_ui_component_rm (ui_component, "/", NULL);
 #endif
+	gtk_object_set_data (GTK_OBJECT (sci), "lines", NULL);
+	gtk_object_set_data (GTK_OBJECT (sci), "colon", NULL);
+	gtk_object_set_data (GTK_OBJECT (sci), "cols", NULL);
+	
 	bonobo_ui_component_unset_container (ui_component);
     }
 }
@@ -283,6 +335,37 @@ get_prop (BonoboPropertyBag *bag,
 	break;
     }
     }
+}
+
+static void
+scintilla_update_statusbar (ScintillaObject *sci)
+{
+	GtkWidget *lines, *colon, *cols;
+	GtkRequisition req;
+	int caret_pos, line_pos, col_pos;
+	gchar text[10];
+
+	lines = gtk_object_get_data (GTK_OBJECT (sci), "lines");
+	colon = gtk_object_get_data (GTK_OBJECT (sci), "colon");
+	cols = gtk_object_get_data (GTK_OBJECT (sci), "cols");
+	
+	if (lines) {
+		/* Get data */
+		caret_pos = scintilla_send_message (sci, SCI_GETCURRENTPOS, 0, 0);
+		line_pos = scintilla_send_message (sci, SCI_LINEFROMPOSITION, caret_pos, 0);
+		col_pos = scintilla_send_message (sci, SCI_GETCOLUMN, caret_pos, 0);
+		
+		/* Set label text */
+		snprintf (text, 10, "%i", line_pos + 1);
+		gtk_label_set_text (GTK_LABEL (lines), text);
+		snprintf (text, 10, "%i", col_pos);
+		gtk_label_set_text (GTK_LABEL (cols), text);
+		
+		/* Reposition lines label */
+		gtk_widget_size_request (lines, &req);
+		gtk_widget_set_uposition (lines, colon->allocation.x - req.width, 
+					  colon->allocation.y);
+	}	
 }
 
 /*
@@ -443,6 +526,9 @@ notify_cb (ScintillaObject *sci, int wparam, void *lparam,
                           notification->foldLevelNow,
                           notification->foldLevelPrev);
         }
+        break;
+    case SCN_UPDATEUI :
+    	scintilla_update_statusbar (sci);
         break;
     }
 }

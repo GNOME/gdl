@@ -1,3 +1,10 @@
+2001-08-25  Jeroen Zwartepoorte <jeroen@xs4all.nl>
+
+        * scintilla-control/scintilla-ui.xml: Added EditorStats statusbar item.
+        
+        * scintilla-control/scintilla-control.c: Implemented EditorStats 
+        statusbar item. Displays "lines:columns" information.
+
 2001-08-28  Fatih Demir <kabalak@gtranslator.org>
 
 	* configure.in: Moved "AM_PROG_XML_I18N_TOOLS" after AC_INIT.
