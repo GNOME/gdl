@@ -1,6 +1,7 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datatdir)/locals"\" \
-	-I$(top_srcdir)/src/lib -I$(includedir) $(GNOME_INCLUDEDIR)
+	-I$(top_srcdir)/src/lib -I$(includedir) $(GNOME_INCLUDEDIR) \
+	$(OAF_CFLAGS)
 
 bin_PROGRAMS = \
 	gdf-event-server
@@ -14,4 +15,5 @@ gdf_event_server_SOURCES =					\
 	event-channel.h
 
 gdf_event_server_LDADD =					\
+	$(OAF_LIBS) \
 	../lib/libgdf.la

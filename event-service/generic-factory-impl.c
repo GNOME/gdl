@@ -102,13 +102,13 @@ impl_Bonobo_GenericFactory__destroy(impl_POA_Bonobo_GenericFactory *servant,
 
 static CORBA_Object
 impl_Bonobo_GenericFactory_create_object (impl_POA_Bonobo_GenericFactory *servant, 
-                                         const CORBA_char *obj_goad_id,
+                                         const CORBA_char *obj_iid,
                                          const GNOME_stringlist *params,
                                          CORBA_Environment *ev)
 {
     CORBA_Object retval = CORBA_OBJECT_NIL;
-
-    if (!strcmp (obj_goad_id, "gdf_event_channel")) {
+    
+    if (!strcmp (obj_iid, "OAFIID:gdf_event_channel:1124b7ed-752c-4091-9b6c-c426fdd50517")) {
         retval = impl_CosEventChannelAdmin_EventChannel__create
             (servant->poa, ev);
     }

@@ -1,3 +1,12 @@
+2000-05-22  Dave Camp  <campd@oit.edu>
+
+	* generic-factory-impl.c (impl_Bonobo_GenericFactory_create_object): 
+	check for the oaf iid rather than the goad id.
+
+	* gdf-event-server.c (main): Initialize and use oaf rather than gnorba.
+
+	* Makefile.am: Use OAF_CFLAGS and OAF_LIBS
+
 2000-02-20  Dave Camp  <campd@oit.edu>
 
 	* event-channel-impl.c (impl_CosEventChannelAdmin_ProxyPushConsumer_push): Took out an unnecessary trace.

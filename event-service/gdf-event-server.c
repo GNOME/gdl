@@ -22,6 +22,9 @@
  * Boston, MA 02111-1307, USA.  
  */
 
+#include <gnome.h>
+#include <liboaf/liboaf.h>
+
 #include "gdf-event-server.h"
 #include "event-channel.h"
 #include "generic-factory.h"
@@ -38,14 +41,13 @@ signal_handler(int signo)
 int
 main (int argc, char *argv[])
 {
-	CORBA_ORB orb;
-	CORBA_Object nameserver;
 	CORBA_Environment ev;
 	CosEventChannelAdmin_EventChannelFactory factory;
 	PortableServer_POA poa;
 	PortableServer_POAManager pm;
 	struct sigaction act;
 	sigset_t         empty_mask;
+    OAF_RegistrationResult result;
 
 	sigemptyset(&empty_mask);
 	act.sa_handler = signal_handler;
@@ -63,26 +65,49 @@ main (int argc, char *argv[])
 
 	CORBA_exception_init (&ev);
 
+#if 0 /* goad stuff */
 	goad_register_arguments ();
 
 	orb = gnome_CORBA_init ("gdf-event-server", VERSION, &argc, argv,
                             GNORBA_INIT_SERVER_FUNC, &ev);
+#endif
+    gnome_init_with_popt_table ("gdf-event-server", VERSION, argc, argv, 
+                                oaf_popt_options, 0, NULL);
+    oaf_init (argc, argv);
 
 	poa = (PortableServer_POA)
-	    CORBA_ORB_resolve_initial_references (orb, "RootPOA", &ev);	
+	    CORBA_ORB_resolve_initial_references (oaf_orb_get (), 
+                                              "RootPOA", &ev);	
 
 	factory = impl_Bonobo_GenericFactory__create (poa, &ev);
-	
+
+#if 0 /* goad stuff */
 	nameserver = gnome_name_service_get ();
 	goad_server_register (nameserver, factory, 
                           "gdf_event_channel_factory", 
                           "object",
                           &ev);
+#endif
+    result = oaf_active_server_register ("OAFIID:gdf_event_channel_factory:b0007e1e-e684-4294-9ac5-ae9454e413f0", 
+                                         factory);
+    switch (result) {
+    case OAF_REG_SUCCESS :
+        break;
+    case OAF_REG_NOT_LISTED:
+        g_error ("Cannot register the commander because it is not listed.");
+        return 1;
+    case OAF_REG_ALREADY_ACTIVE:
+        g_error ("Cannot register the commander because it is already active.");        return 1;
+    case OAF_REG_ERROR :
+    default :
+        g_error ("Cannot register the commander because of an unknown error.");
+        return 1;
+    }
 
 	pm = PortableServer_POA__get_the_POAManager (poa, &ev);
 	PortableServer_POAManager_activate (pm, &ev);	
 
-	//CORBA_ORB_run (orb, &ev);
+	/*CORBA_ORB_run (orb, &ev);*/
 	gtk_main ();
 
 	CORBA_exception_free (&ev);
