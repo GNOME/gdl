@@ -75,8 +75,8 @@ BEGIN_GNOME_DECLS
 
 #else /* DO_GDL_TRACE */
 
-#define GDF_TRACE()
-#define GDF_TRACE_EXTRA()
+#define GDL_TRACE()
+#define GDL_TRACE_EXTRA()
 
 #endif /* DO_GDL_TRACE */
 
