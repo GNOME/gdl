@@ -24,6 +24,8 @@
 
 #include "event-channel.h"
 
+static gint num_channels = 0; /* Number of currently instantiated channels */
+
 /*** Implementation stub prototypes ***/
 
 static void
@@ -867,6 +869,8 @@ impl_CosEventChannelAdmin_EventChannel__create(PortableServer_POA poa, CORBA_Env
     objid = PortableServer_POA_activate_object(poa, newservant, ev);
     CORBA_free(objid);
     retval = PortableServer_POA_servant_to_reference(poa, newservant, ev);
+	
+    num_channels++;
 
     return retval;
 }
@@ -917,6 +921,12 @@ impl_CosEventChannelAdmin_EventChannel__destroy(impl_POA_CosEventChannelAdmin_Ev
 	
     POA_CosEventChannelAdmin_EventChannel__fini((PortableServer_Servant) servant, ev);
     g_free(servant);
+
+    /* Quit if this is the last channel being served */
+    num_channels--;
+    if (num_channels == 0) 
+        gtk_main_quit ();
+    
 }
 
 

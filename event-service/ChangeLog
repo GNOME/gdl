@@ -1,8 +1,3 @@
-2000-01-13  Dave Camp  <campd@oit.edu>
-
-	* gdf-event-server.c: The event service is not implemented as a shlib
-	component.
-
 1999-11-29  Dave Camp  <campd@oit.edu>
 
 	* Makefile.am: Don't build the typed event channel.

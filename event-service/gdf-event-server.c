@@ -28,46 +28,6 @@
 
 /*** Main Program ***/
 
-#define SHLIB_SERVER
-
-#ifdef SHLIB_SERVER
-
-static CORBA_Object 
-activator (PortableServer_POA poa, const char *goad_id, const char **params,
-           gpointer *impl_ptr, CORBA_Environment *ev)
-{
-	CosEventChannelAdmin_EventChannelFactory factory;
-	CORBA_Object nameserver;
-
-	factory = impl_GNOME_GenericFactory__create (poa, ev);
-	
-	nameserver = gnome_name_service_get ();
-	goad_server_register (nameserver, factory, 
-                          "gdf_event_channel_factory", 
-                          "object",
-                          ev);
-    return factory;
-}
-
-static void
-deactivator (PortableServer_POA poa, const char *goad_id, 
-             gpointer *impl_ptr, CORBA_Environment *ev)
-{
-}
-
-static const char *repo_id[]={"IDL:IDL:GNOME/GenericFactory:1.0", NULL};
-static GnomePluginObject server_list[] = {
-    { repo_id, "gdf_event_channel_factory", NULL, 
-      "GDF Event Channel Factory", &activator, &deactivator },
-    { NULL }
-};  
-
-GnomePlugin GNOME_Plugin_info = {
-    server_list, NULL
-};
-
-#else  /* Executable server */
-
 static void
 signal_handler(int signo)
 {
@@ -100,6 +60,7 @@ main (int argc, char *argv[])
 	act.sa_handler = SIG_IGN;
 	sigaction(SIGPIPE, &act, 0);
 
+
 	CORBA_exception_init (&ev);
 
 	goad_register_arguments ();
@@ -121,11 +82,10 @@ main (int argc, char *argv[])
 	pm = PortableServer_POA__get_the_POAManager (poa, &ev);
 	PortableServer_POAManager_activate (pm, &ev);	
 
+	//CORBA_ORB_run (orb, &ev);
 	gtk_main ();
 
 	CORBA_exception_free (&ev);
 
 	return 0;
 }
-
-#endif
