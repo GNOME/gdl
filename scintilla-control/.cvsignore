@@ -6,3 +6,4 @@ Makefile
 .libs
 scintilla-control
 test-scintilla
+*.oaf
