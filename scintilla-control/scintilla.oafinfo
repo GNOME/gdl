@@ -1,0 +1,28 @@
+<oaf_info>
+<oaf_server iid="OAFIID:control-factory:scintilla:851a1008-ca21-498d-8188-30a7543b137b"
+            type="exe"
+            location="scintilla-control">
+
+	<oaf_attribute name="repo_ids" type="stringv">
+		<item value="IDL:Bonobo/GenericFactory:1.0"/>
+	</oaf_attribute>
+
+	<oaf_attribute name="description" type="string"
+	               value="GDF Output Terminal Factory"/>
+
+</oaf_server>
+
+<oaf_server iid="OAFIID:control:scintilla:8e967999-d307-4a57-ae52-c1c2cb13b867"
+            type="factory"
+            location="OAFIID:control-factory:scintilla:851a1008-ca21-498d-8188-30a7543b137b">
+
+	<oaf_attribute name="repo_ids" type="stringv">
+	 	<item value="IDL:BonoboControl/scintilla:1.0"/>
+		<item value="IDL:Bonobo/Control:1.0"/>
+	</oaf_attribute>
+
+	<oaf_attribute name="description" type="string"
+	               value="GDF Variable Viewer"/>
+
+</oaf_server>
+</oaf_info>
