@@ -147,7 +147,7 @@ impl_get_chars (PortableServer_Servant servant,
     long pos = offset;
     long len = scintilla_send_message (eb->sci, SCI_GETTEXTLENGTH, 0, 0);
 
-    if (len - pos > count) {
+    if (len - pos < count) {
 	count = len - pos;
     }
 
