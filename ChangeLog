@@ -1,5 +1,12 @@
 2003-04-20  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
+	* gdl/gdl-dock-master.c: Don't set object->master to NULL when
+	disposing the master.  Instead call gdl_dock_object_unbind() so
+	the dock object can unregister the weak pointer.  That simplifies
+	the remove and dispose methods a bit.
+	
+2003-04-20  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
 	* gdl/gdl-dock-master.c (gdl_dock_master_drag_motion): Plugged a
 	memory leak.
 	

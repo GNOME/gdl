@@ -52,8 +52,7 @@ static void     gdl_dock_master_get_property  (GObject            *object,
                                                GValue             *value,
                                                GParamSpec         *pspec);
 
-static gboolean _gdl_dock_master_remove       (gpointer            key,
-                                               GdlDockObject      *object,
+static void     _gdl_dock_master_remove       (GdlDockObject      *object,
                                                GdlDockMaster      *master);
 
 static void     gdl_dock_master_drag_begin    (GdlDockItem        *item, 
@@ -177,17 +176,11 @@ gdl_dock_master_instance_init (GdlDockMaster *master)
     master->_priv->unlocked_items = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
 
-static gboolean
-_gdl_dock_master_remove (gpointer       key,
-                         GdlDockObject *object,
+static void
+_gdl_dock_master_remove (GdlDockObject *object,
                          GdlDockMaster *master)
 {
-    gboolean retval = (key != NULL);
-    
-    /* do all the stuff we should for removing the object from our
-       object, but don't remove it from the hash, so we can use this
-       function for finalizing the object */
-    g_return_val_if_fail (master != NULL && object != NULL, FALSE);
+    g_return_if_fail (master != NULL && object != NULL);
 
     if (GDL_IS_DOCK (object)) {
         GList *found_link;
@@ -226,25 +219,23 @@ _gdl_dock_master_remove (gpointer       key,
     g_signal_handlers_disconnect_matched (object, G_SIGNAL_MATCH_DATA, 
                                           0, 0, NULL, NULL, master);
 
-    object->master = NULL;
-    if (key) {
-        /* we were called from the hash iterator, so the object is in the hash */
-        g_object_unref (object);
-    }
-    else {
-        /* unref the object from the hash if it's there */
-        if (object->name) {
-            GdlDockObject *found_object;
-            found_object = g_hash_table_lookup (master->dock_objects, object->name);
-            if (found_object == object) {
-                g_object_unref (object);
-                /* will remove the object later */
-                retval = TRUE;
-            }
+    /* unref the object from the hash if it's there */
+    if (object->name) {
+        GdlDockObject *found_object;
+        found_object = g_hash_table_lookup (master->dock_objects, object->name);
+        if (found_object == object) {
+            g_hash_table_remove (master->dock_objects, object->name);
+            g_object_unref (object);
         }
     }
+}
 
-    return retval;
+static void
+ht_foreach_build_slist (gpointer  key,
+                        gpointer  value,
+                        GSList  **slist)
+{
+    *slist = g_slist_prepend (*slist, value);
 }
 
 static void
@@ -261,6 +252,19 @@ gdl_dock_master_dispose (GObject *g_object)
                         (GFunc) gdl_dock_object_unbind, NULL);
         g_list_free (master->toplevel_docks);
         master->toplevel_docks = NULL;
+    }
+    
+    if (master->dock_objects) {
+        GSList *alive_docks = NULL;
+        g_hash_table_foreach (master->dock_objects,
+                              (GHFunc) ht_foreach_build_slist, &alive_docks);
+        while (alive_docks) {
+            gdl_dock_object_unbind (GDL_DOCK_OBJECT (alive_docks->data));
+            alive_docks = g_slist_delete_link (alive_docks, alive_docks);
+        }
+        
+        g_hash_table_destroy (master->dock_objects);
+        master->dock_objects = NULL;
     }
     
     if (master->_priv) {
@@ -289,13 +293,6 @@ gdl_dock_master_dispose (GObject *g_object)
         master->_priv = NULL;
     }
 
-    if (master->dock_objects) {
-        g_hash_table_foreach_remove (master->dock_objects,
-                                     (GHRFunc) _gdl_dock_master_remove, master);
-        g_hash_table_destroy (master->dock_objects);
-        master->dock_objects = NULL;
-    }
-    
     GNOME_CALL_PARENT (G_OBJECT_CLASS, dispose, (g_object));
 }
 
@@ -797,8 +794,6 @@ void
 gdl_dock_master_remove (GdlDockMaster *master,
                         GdlDockObject *object)
 {
-    gchar *name;
-    
     g_return_if_fail (master != NULL && object != NULL);
 
     /* remove from locked/unlocked hashes and property change if
@@ -815,11 +810,8 @@ gdl_dock_master_remove (GdlDockMaster *master,
     /* ref the master, since removing the controller could cause master disposal */
     g_object_ref (master);
     
-    name = g_strdup (object->name);
     /* all the interesting stuff happens in _gdl_dock_master_remove */
-    if (_gdl_dock_master_remove (NULL, object, master))
-        g_hash_table_remove (master->dock_objects, name);
-    g_free (name);
+    _gdl_dock_master_remove (object, master);
 
     /* post a layout_changed emission if the item is not automatic
      * (since it should be removed from the items model) */
