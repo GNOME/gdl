@@ -4,21 +4,29 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"POT-Creation-Date: 2001-02-28 19:30+0300\n"
-"PO-Revision-Date: 2001-02-28 19:33+03:00\n"
+"POT-Creation-Date: 2001-10-08 15:29+0400\n"
+"PO-Revision-Date: 2001-10-08 15:32+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-r\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: scintilla-control/scintilla-control.c:80
-msgid "Could not initialize factory"
-msgstr "Не удалось инициализировать фабрику"
+#: scintilla-control/scintilla-control.c:114
+msgid "Position in the buffer"
+msgstr "Позиция в буфере"
 
-#: scintilla-control/scintilla-control.c:269 scintilla-control/test.c:66
-msgid "Can't initialize bonobo!"
-msgstr "Не удалось инициализировать bonobo!"
+#: scintilla-control/scintilla-control.c:118
+msgid "Current line number"
+msgstr "Номер текущей строки"
+
+#: scintilla-control/scintilla-control.c:122
+msgid "Beginning of the selection"
+msgstr "Начало выделения"
+
+#: scintilla-control/scintilla-control.c:126
+msgid "End of the selection"
+msgstr "Конец выделения"
 
 #: scintilla-control/scintilla-ui.xml.h:1
 msgid "C_ut"
@@ -41,21 +49,145 @@ msgid "Cut the selection"
 msgstr "Вырезать выделение"
 
 #: scintilla-control/scintilla-ui.xml.h:6
+msgid "Find A_gain"
+msgstr "Повторный поиск"
+
+#: scintilla-control/scintilla-ui.xml.h:7
+msgid "Find text in the document"
+msgstr "Поиск текста в документе"
+
+#: scintilla-control/scintilla-ui.xml.h:8
 msgid "Paste"
 msgstr "Вставить"
 
-#: scintilla-control/scintilla-ui.xml.h:7
+#: scintilla-control/scintilla-ui.xml.h:9
 msgid "Paste the clipboard"
 msgstr "Вставить из буфера обмена"
 
-#: scintilla-control/scintilla-ui.xml.h:8
+#: scintilla-control/scintilla-ui.xml.h:10
+msgid "Repeats last search for text in the document"
+msgstr "Повторяет последний поиск текста в документе"
+
+#: scintilla-control/scintilla-ui.xml.h:11
+msgid "Replace text in the document"
+msgstr "Заменить текст в документе"
+
+#: scintilla-control/scintilla-ui.xml.h:12
 msgid "_Copy"
 msgstr "Скопировать"
 
-#: scintilla-control/scintilla-ui.xml.h:9
+#: scintilla-control/scintilla-ui.xml.h:13
 msgid "_Edit"
 msgstr "Правка"
 
-#: scintilla-control/scintilla-ui.xml.h:10
+#: scintilla-control/scintilla-ui.xml.h:14
+msgid "_Find"
+msgstr "Поиск"
+
+#: scintilla-control/scintilla-ui.xml.h:15
+msgid "_Find..."
+msgstr "Поиск..."
+
+#: scintilla-control/scintilla-ui.xml.h:16
 msgid "_Paste"
 msgstr "Вставить"
+
+#: scintilla-control/scintilla-ui.xml.h:17
+msgid "_Replace"
+msgstr "Заменить..."
+
+#: scintilla-control/scintilla-ui.xml.h:18
+msgid "_Replace..."
+msgstr "Заменить..."
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:1
+msgid "Factory for the Scintilla control."
+msgstr ""
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:2
+msgid "Scintilla Editor"
+msgstr "Редактор Scintilla"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:3
+msgid "Scintilla Factory"
+msgstr ""
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:4
+msgid "Source"
+msgstr "Исходный текст"
+
+#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:5
+msgid "Syntax highlighting editor control."
+msgstr ""
+
+#: scintilla-control/scintilla-find.c:105
+#: scintilla-control/scintilla-find.c:106
+msgid "Find"
+msgstr "Поиск"
+
+#: scintilla-control/scintilla-find.c:114
+#: scintilla-control/scintilla-find.c:345
+msgid "Find:"
+msgstr "Поиск:"
+
+#: scintilla-control/scintilla-find.c:127
+#: scintilla-control/scintilla-find.c:371
+msgid "Case sensitive"
+msgstr "Чувствительный к регистру"
+
+#: scintilla-control/scintilla-find.c:130
+#: scintilla-control/scintilla-find.c:374
+msgid "Whole word"
+msgstr "Целое слово"
+
+#: scintilla-control/scintilla-find.c:133
+#: scintilla-control/scintilla-find.c:377
+msgid "Match word start"
+msgstr ""
+
+#. search direction radio group
+#: scintilla-control/scintilla-find.c:137
+msgid "Direction"
+msgstr "Направление"
+
+#: scintilla-control/scintilla-find.c:144
+msgid "Forward"
+msgstr "Вперёд"
+
+#: scintilla-control/scintilla-find.c:148
+msgid "Backward"
+msgstr "Назад"
+
+#: scintilla-control/scintilla-find.c:274
+msgid "Replace confirmation"
+msgstr "Подтверждать замену"
+
+#: scintilla-control/scintilla-find.c:275
+#: scintilla-control/scintilla-find.c:337
+msgid "Replace"
+msgstr "Заменить"
+
+#: scintilla-control/scintilla-find.c:276
+msgid "Replace All"
+msgstr "Заменить все"
+
+#: scintilla-control/scintilla-find.c:277
+msgid "Skip"
+msgstr "Пропустить"
+
+#: scintilla-control/scintilla-find.c:280
+msgid "Found occurrence in document"
+msgstr "Вхождений в документе найдено"
+
+#: scintilla-control/scintilla-find.c:336
+msgid "Find and Replace"
+msgstr "Поиск и замена"
+
+#: scintilla-control/scintilla-find.c:356
+msgid "Replace with:"
+msgstr "Заменить на:"
+
+#. selection only checkbox
+#: scintilla-control/scintilla-find.c:381
+msgid "Selection only"
+msgstr "Только выделение"
