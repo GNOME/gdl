@@ -1,3 +1,7 @@
+2003-05-13  Marcel Telka  <marcel@telka.sk>
+
+	* configure.in (ALL_LINGUAS): Added "sk".
+
 2003-04-20  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-master.c: Don't set object->master to NULL when
