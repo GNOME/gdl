@@ -1,5 +1,10 @@
 2001-03-05  Dave Camp  <dave@ximian.com>
 
+	* scintilla-control/scintilla-control.c (set_prop): 
+	(get_prop): Fixed the prototypes of these functions.
+
+2001-03-05  Dave Camp  <dave@ximian.com>
+
 	* scintilla-control/scintilla/ScintillaGTK.cxx (SizeRequest): Request 
 	more sane values.
 

@@ -25,6 +25,7 @@
 #include <bonobo.h>
 #include <gtk/gtk.h>
 #include <liboaf/liboaf.h>
+#include <limits.h>
 
 #include "scintilla/Scintilla.h"
 #include "scintilla/ScintillaWidget.h"
@@ -50,10 +51,12 @@ static void scintilla_activate_cb (BonoboControl *control,
 static void set_prop (BonoboPropertyBag *bag, 
 		      const BonoboArg *arg,
 		      guint arg_id,
+                      CORBA_Environment *ev,
 		      gpointer user_data);
 static void get_prop (BonoboPropertyBag *bag, 
 		      BonoboArg *arg,
 		      guint arg_id,
+                      CORBA_Environment *ev,
 		      gpointer user_data);
 
 static void cut_cb (GtkWidget *widget, ScintillaObject *sci);
@@ -135,8 +138,22 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     bonobo_object_add_interface (BONOBO_OBJECT (control),
 				 BONOBO_OBJECT (buffer_impl));
 
-    scintilla_send_message (sci, SCI_SETMARGINWIDTHN, 1, 30);
-    scintilla_send_message (sci, SCI_SETMARGINTYPEN, 1, SC_MARGIN_NUMBER);
+    scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINWIDTHN, 1, 30);
+    scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINTYPEN, 1, SC_MARGIN_NUMBER);
+    scintilla_send_message (SCINTILLA(sci), SCI_SETFOLDFLAGS, 16, 0);
+    
+    scintilla_send_message (SCINTILLA(sci), SCI_SETPROPERTY, (long)"fold", (long)"1");
+    scintilla_send_message (SCINTILLA(sci), SCI_SETMODEVENTMASK, SC_MOD_CHANGEFOLD, 0);
+    scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINWIDTHN, 2, 25);
+    scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINTYPEN, 2, SC_MARGIN_SYMBOL);
+    scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINMASKN, 2, SC_MASK_FOLDERS);
+    scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINSENSITIVEN, 2, 1);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDEROPEN, SC_MARK_MINUS);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETFORE, SC_MARKNUM_FOLDEROPEN, LONG_MAX);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETBACK, SC_MARKNUM_FOLDEROPEN, 0);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDER, SC_MARK_PLUS);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETFORE, SC_MARKNUM_FOLDER, LONG_MAX);
+    scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETBACK, SC_MARKNUM_FOLDER, 0);
 
     return BONOBO_OBJECT (control);
 }
@@ -180,6 +197,7 @@ void
 set_prop (BonoboPropertyBag *bag,
 	  const BonoboArg *arg,
 	  guint arg_id,
+          CORBA_Environment *ev,
 	  gpointer user_data)
 {
     ScintillaObject *sci = user_data;
@@ -217,6 +235,7 @@ void
 get_prop (BonoboPropertyBag *bag,
 	  BonoboArg *arg,
 	  guint arg_id,
+          CORBA_Environment *ev,
 	  gpointer user_data)
 {
     ScintillaObject *sci = user_data;
