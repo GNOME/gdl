@@ -59,6 +59,8 @@ enum {
     COLUMN_ITEM
 };
 
+#define COLUMN_EDITABLE COLUMN_SHOW
+
 struct _GdlDockLayoutPrivate {
     xmlDocPtr         doc;
 
@@ -281,7 +283,8 @@ gdl_dock_layout_build_models (GdlDockLayout *layout)
     }
 
     if (!layout->_priv->layouts_model) {
-        layout->_priv->layouts_model = gtk_list_store_new (2, G_TYPE_STRING);
+        layout->_priv->layouts_model = gtk_list_store_new (2, G_TYPE_STRING,
+                                                           G_TYPE_BOOLEAN);
         gtk_tree_sortable_set_sort_column_id (
             GTK_TREE_SORTABLE (layout->_priv->layouts_model),
             COLUMN_NAME, GTK_SORT_ASCENDING);
@@ -398,7 +401,7 @@ update_layouts_model (GdlDockLayout *layout)
     for (l = items; l; l = l->next) {
         gtk_list_store_append (layout->_priv->layouts_model, &iter);
         gtk_list_store_set (layout->_priv->layouts_model, &iter,
-                            COLUMN_NAME, l->data, 1, TRUE,
+                            COLUMN_NAME, l->data, COLUMN_EDITABLE, TRUE,
                             -1);
         g_free (l->data);
     };
@@ -660,7 +663,7 @@ cell_edited_cb (GtkCellRendererText *cell,
 
     xmlSetProp (node, NAME_ATTRIBUTE_NAME, new_text);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, COLUMN_NAME, new_text,
-                        1, TRUE, -1);
+                        COLUMN_EDITABLE, TRUE, -1);
 
     gdl_dock_layout_save_layout (ui_data->layout, new_text);
 
@@ -706,7 +709,8 @@ gdl_dock_layout_construct_layouts_ui (GdlDockLayout *layout)
                       G_CALLBACK (cell_edited_cb), ui_data);
     column = gtk_tree_view_column_new_with_attributes (_("Name"), renderer,
                                                        "text", COLUMN_NAME,
-                                                       "editable", 1, NULL);
+                                                       "editable", COLUMN_EDITABLE,
+                                                       NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (layouts_list), column);
 
     ui_data->selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (layouts_list));

@@ -159,6 +159,7 @@ gdl_icons_instance_init (GdlIcons *icons)
 	icons->priv = priv;
 
 	priv->icon_theme = gnome_icon_theme_new ();
+	gnome_icon_theme_set_allow_svg (priv->icon_theme, TRUE);
 	g_signal_connect (G_OBJECT (priv->icon_theme), "changed",
 			  G_CALLBACK (theme_changed_cb), icons);
 	priv->icons = g_hash_table_new_full (g_str_hash, g_str_equal,

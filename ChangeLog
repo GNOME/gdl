@@ -1,3 +1,12 @@
+2003-07-26  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-dock-layout.c: (gdl_dock_layout_build_models),
+	(update_layouts_model), (cell_edited_cb),
+	(gdl_dock_layout_construct_layouts_ui): Use COLUMN_EDITABLE of the
+	hardcoded "1".
+	* gdl/gdl-icons.c: (gdl_icons_instance_init): Enable SVG icon themes
+	(patch by John Palmieri (#117301)).
+
 2003-07-25  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added Macedonian (mk) to ALL_LINGUAS
