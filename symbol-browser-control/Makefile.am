@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = tagmanager
+SUBDIRS = tagmanager pixmaps
 
 INCLUDES = \
 	-I$(top_srcdir) \
@@ -67,7 +67,4 @@ EXTRA_DIST = 	  	\
 	$(server_DATA) 	\
 	$(ui_DATA)
 
-dist-hook:
-	mkdir $(distdir)/pixmaps
-	for file in class.xpm enum.xpm extern_variable.xpm folder.xpm function.xpm macro.xpm member.xpm private.xpm protected.xpm public.xpm struct.xpm unknown.xpm variable.xpm; do cp -a $(srcdir)/pixmaps/$$file $(distdir)/pixmaps; done
 

@@ -305,6 +305,7 @@ gdl/Makefile
 symbol-browser-control/Makefile
 symbol-browser-control/tagmanager/Makefile
 symbol-browser-control/tagmanager/include/Makefile
+symbol-browser-control/pixmaps/Makefile
 idl/Makefile
 po/Makefile.in 
 gdl.spec

@@ -65,4 +65,6 @@ void        gdl_dock_placeholder_attach   (GdlDockPlaceholder *ph,
                                            GdlDockObject      *object);
 
 
+G_END_DECLS
+
 #endif /* __GDL_DOCK_PLACEHOLDER_H__ */

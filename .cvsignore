@@ -32,3 +32,6 @@ gdl.spec
 gdl-1.0.pc
 intltool-*
 *.tags
+.tm_project.cache
+autom4te.cache
+stamp-h1
