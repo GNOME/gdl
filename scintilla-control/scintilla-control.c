@@ -434,8 +434,6 @@ notify_cb (ScintillaObject *sci, int wparam, void *lparam,
         break;
     case SCN_MODIFIED :
         if (notification->modificationType == SC_MOD_CHANGEFOLD) {
-            g_print ("fold changed\n");
-            
             fold_changed (sci,
                           notification->line, 
                           notification->foldLevelNow,

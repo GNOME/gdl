@@ -66,7 +66,7 @@ void
 destroy_cb (GtkObject *server, gpointer data)
 {
     num_servers--;
-    
+
     if (num_servers == 0) {
         all_destroyed_callback ();
     }

@@ -382,9 +382,14 @@ gint ScintillaGTK::FocusOut(GtkWidget *widget, GdkEventFocus * /*event*/) {
 	return FALSE;
 }
 
-void ScintillaGTK::SizeRequest(GtkWidget * /*widget*/, GtkRequisition *requisition) {
-	requisition->width = 1000;
-	requisition->height = 1000;
+void ScintillaGTK::SizeRequest(GtkWidget *widget, GtkRequisition *requisition) {
+	GtkRequisition req;
+	ScintillaGTK *sciThis = ScintillaFromWidget(widget);
+	requisition->width = 100;
+	requisition->height = 100;
+	
+	gtk_widget_size_request (sciThis->scrollbarh.GetID(), &req);
+	gtk_widget_size_request (sciThis->scrollbarv.GetID(), &req);
 }
 
 void ScintillaGTK::SizeAllocate(GtkWidget *widget, GtkAllocation *allocation) {
@@ -893,8 +898,7 @@ void ScintillaGTK::Resize(int width, int height) {
 
 	// Not always needed, but some themes can have different sizes of scrollbars
 	scrollBarWidth = GTK_WIDGET(scrollbarv.GetID())->requisition.width;
-	scrollBarHeight = GTK_WIDGET(scrollbarh.GetID())->requisition.height;
-	
+ 	scrollBarHeight = GTK_WIDGET(scrollbarh.GetID())->requisition.height;
 	// These allocations should never produce negative sizes as they would wrap around to huge 
 	// unsigned numbers inside GTK+ causing warnings.
 	

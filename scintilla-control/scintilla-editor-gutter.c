@@ -1,4 +1,4 @@
-/*  -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  * 
  * This file is part of the GNOME Devtool Libraries..
  * 
@@ -39,10 +39,6 @@
 
 static GtkObjectClass *parent_class = NULL;
 
-struct _ScintillaEditorGutterPriv {
-    ScintillaObject *sci;
-};
-
 enum {
     MARKER_BREAKPOINT, 
     MARKER_DISABLED_BREAKPOINT,
@@ -50,6 +46,11 @@ enum {
     LAST_MARKER
 };
 
+struct _ScintillaEditorGutterPriv {
+    ScintillaObject *sci;
+
+    int marker_refcounts[LAST_MARKER];
+};
 
 ScintillaEditorGutter *
 scintilla_editor_gutter_construct (ScintillaEditorGutter *bs, 
@@ -68,7 +69,7 @@ scintilla_editor_gutter_construct (ScintillaEditorGutter *bs,
                             0x808080);
     scintilla_send_message (sci, SCI_MARKERDEFINE, MARKER_CURRENT_LINE, 
                             SC_MARK_SHORTARROW);
-
+    
     return bs;
 }
 
@@ -101,7 +102,7 @@ impl_add_marker (PortableServer_Servant servant,
     } else {
         g_warning ("unknown marker type: %s\n", type);
     }
-    
+
     scintilla_send_message (gutter->priv->sci, SCI_MARKERADD,
                             line - 1, marker);
 }
@@ -125,9 +126,9 @@ impl_remove_marker (PortableServer_Servant servant,
     } else {
         g_warning ("unknown marker type: %s\n", type);
     }
-    
+
     scintilla_send_message (gutter->priv->sci, SCI_MARKERDELETE,
-                            line -1, marker);
+                            line - 1, marker);
 }
 
 static GNOME_Development_EditorGutter_MarkerList *
