@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl 0.1\n"
-"POT-Creation-Date: 2003-01-23 23:18+0100\n"
-"PO-Revision-Date: 2003-01-23 23:23+0100\n"
+"POT-Creation-Date: 2003-08-24 19:26+0200\n"
+"PO-Revision-Date: 2003-08-24 19:30+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,114 +19,105 @@ msgstr "Størrelse på utvider"
 
 #: gdl/gdl-data-view.c:422
 msgid "Size of the expander arrow."
-msgstr ""
+msgstr "Størrelse på pil på utvider."
 
 #: gdl/gdl-dock-item-grip.c:244
 msgid "Dock the toolbar"
-msgstr ""
+msgstr "Fest verktøylinjen"
 
 #: gdl/gdl-dock-item-grip.c:245
 msgid "Un dock the toolbar"
-msgstr ""
+msgstr "Riv løs verktøylinjen"
 
-#: gdl/gdl-dock-item.c:250
+#: gdl/gdl-dock-item.c:242
 msgid "Orientation"
 msgstr "Orientering"
 
-#: gdl/gdl-dock-item.c:251
+#: gdl/gdl-dock-item.c:243
 msgid "Orientation of the docking item"
-msgstr ""
+msgstr "Orientering på dokken"
 
-#: gdl/gdl-dock-item.c:266
+#: gdl/gdl-dock-item.c:258
 msgid "Resizable"
-msgstr ""
+msgstr "Kan endre størrelse"
 
-#: gdl/gdl-dock-item.c:267
+#: gdl/gdl-dock-item.c:259
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:274
+#: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
-msgstr ""
+msgstr "Oppførsel for oppføring"
 
-#: gdl/gdl-dock-item.c:275
+#: gdl/gdl-dock-item.c:267
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:283
+#: gdl/gdl-dock-item.c:275
 msgid "Grip size"
 msgstr "Størrelse på håndtak"
 
-#: gdl/gdl-dock-item.c:284
+#: gdl/gdl-dock-item.c:276
 msgid "Size in pixels of the grip to drag the dock item"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:290 gdl/gdl-dock-layout.c:705 gdl/gdl-dock-master.c:128
+#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
 msgid "Locked"
 msgstr "Låst"
 
-#: gdl/gdl-dock-item.c:291
+#: gdl/gdl-dock-item.c:283
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:299
+#: gdl/gdl-dock-item.c:291
 msgid "Preferred width"
 msgstr "Foretrukket bredde"
 
-#: gdl/gdl-dock-item.c:300
+#: gdl/gdl-dock-item.c:292
 msgid "Preferred width for the dock item"
-msgstr ""
+msgstr "Foretrukket bredde for dokken"
 
-#: gdl/gdl-dock-item.c:306
+#: gdl/gdl-dock-item.c:298
 msgid "Preferred height"
 msgstr "Foretrukket høyde"
 
-#: gdl/gdl-dock-item.c:307
+#: gdl/gdl-dock-item.c:299
 msgid "Preferred height for the dock item"
-msgstr ""
+msgstr "Foretrukket høyde for dokken"
 
-#: gdl/gdl-dock-item.c:541
+#: gdl/gdl-dock-item.c:546
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
 
-#: gdl/gdl-dock-item.c:548
+#: gdl/gdl-dock-item.c:553
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
 
-#: gdl/gdl-dock-item.c:1144
+#: gdl/gdl-dock-item.c:1149
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 
-#. Dock/Undock menuitem.
-#: gdl/gdl-dock-item.c:1272
-msgid "Dock"
-msgstr ""
-
-#: gdl/gdl-dock-item.c:1273
-msgid "Undock"
-msgstr ""
-
 #. Hide menuitem.
-#: gdl/gdl-dock-item.c:1285
+#: gdl/gdl-dock-item.c:1231
 msgid "Hide"
 msgstr "Skjul"
 
 #. Lock menuitem
-#: gdl/gdl-dock-item.c:1291
+#: gdl/gdl-dock-item.c:1237
 msgid "Lock"
 msgstr "Lås"
 
-#: gdl/gdl-dock-item.c:1479
+#: gdl/gdl-dock-item.c:1404
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr ""
@@ -147,69 +138,65 @@ msgstr "Skitten"
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:417
-msgid "You must provide a name for the layout"
-msgstr ""
-
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:637
+#: gdl/gdl-dock-layout.c:565
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:695
+#: gdl/gdl-dock-layout.c:620
 msgid "Visible"
 msgstr "Synlig"
 
-#: gdl/gdl-dock-layout.c:713
+#: gdl/gdl-dock-layout.c:627
 msgid "Item"
 msgstr "Oppføring"
 
-#: gdl/gdl-dock-layout.c:766 gdl/gdl-dock-object.c:120
+#: gdl/gdl-dock-layout.c:710 gdl/gdl-dock-object.c:120
 msgid "Name"
 msgstr "Navn"
 
-#: gdl/gdl-dock-layout.c:805 gdl/layout.glade.h:2
+#: gdl/gdl-dock-layout.c:743 gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:811 gdl/layout.glade.h:4
+#: gdl/gdl-dock-layout.c:749 gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:853
+#: gdl/gdl-dock-layout.c:791
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
 
-#: gdl/gdl-dock-layout.c:1322
+#: gdl/gdl-dock-layout.c:1270
 msgid "Layout managment"
 msgstr ""
 
-#: gdl/gdl-dock-master.c:121 gdl/gdl-dock.c:185
+#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
 msgid "Default title"
 msgstr "Forvalgt tittel"
 
-#: gdl/gdl-dock-master.c:122
+#: gdl/gdl-dock-master.c:136
 msgid "Default title for newly created floating docks"
 msgstr ""
 
-#: gdl/gdl-dock-master.c:129
+#: gdl/gdl-dock-master.c:143
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
 
-#: gdl/gdl-dock-master.c:672
+#: gdl/gdl-dock-master.c:730
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
 
-#: gdl/gdl-dock-master.c:797
+#: gdl/gdl-dock-master.c:895
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -277,44 +264,44 @@ msgstr "Posisjon"
 msgid "Position of the divider in pixels"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:125
+#: gdl/gdl-dock-placeholder.c:127
 msgid "Sticky"
 msgstr "Klebrig"
 
-#: gdl/gdl-dock-placeholder.c:126
+#: gdl/gdl-dock-placeholder.c:128
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:133
+#: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
 msgstr "Vert"
 
-#: gdl/gdl-dock-placeholder.c:134
+#: gdl/gdl-dock-placeholder.c:136
 msgid "The dock object this placeholder is attached to"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:141
+#: gdl/gdl-dock-placeholder.c:143
 msgid "Next placement"
 msgstr "Neste plassering"
 
-#: gdl/gdl-dock-placeholder.c:142
+#: gdl/gdl-dock-placeholder.c:144
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:303
+#: gdl/gdl-dock-placeholder.c:305
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:417
+#: gdl/gdl-dock-placeholder.c:419
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 
-#: gdl/gdl-dock-placeholder.c:438
+#: gdl/gdl-dock-placeholder.c:440
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -404,7 +391,7 @@ msgstr ""
 
 #: gdl/gdl-recent.c:159
 msgid "List type"
-msgstr ""
+msgstr "Listetype"
 
 #: gdl/gdl-recent.c:160
 msgid "The type with which the items will be numbered."
@@ -423,19 +410,15 @@ msgstr "Ikonstørrelse"
 msgid "Icon zoom"
 msgstr ""
 
-#: gdl/layout.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: gdl/layout.glade.h:3
+#: gdl/layout.glade.h:2
 msgid "Layout Managment"
 msgstr ""
 
-#: gdl/layout.glade.h:5
+#: gdl/layout.glade.h:4
 msgid "_Load"
 msgstr "_Last"
 
-#: gdl/layout.glade.h:6
+#: gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr ""
 
@@ -585,7 +568,7 @@ msgstr "Udefinert"
 #: symbol-browser-control/symbol-browser.c:379
 #: symbol-browser-control/symbol-browser.c:389
 msgid "<No Symbol>"
-msgstr ""
+msgstr "<Ingen symboler>"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:1
 msgid "Exit"
@@ -601,7 +584,7 @@ msgstr "Lagre prosjekt"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:4
 msgid "Set Current File"
-msgstr ""
+msgstr "Sett aktiv fil"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:5
 msgid "Update"
@@ -609,7 +592,7 @@ msgstr "Oppdater"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:6
 msgid "Update the whole tree"
-msgstr ""
+msgstr "Oppdater hele treet"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:7
 msgid "_Exit"
@@ -629,7 +612,7 @@ msgstr "_Lagre prosjekt"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:11
 msgid "_Set Current File"
-msgstr ""
+msgstr "_Sett aktiv fil"
 
 #: symbol-browser-control/test-symbol-browser.c:168
 msgid "Open file..."
@@ -637,7 +620,7 @@ msgstr "Åpne fil..."
 
 #: symbol-browser-control/test-symbol-browser.c:170
 msgid "Set current file..."
-msgstr ""
+msgstr "Sett aktiv fil..."
 
 #: symbol-browser-control/test-symbol-browser.c:172
 msgid "Save file..."
