@@ -92,6 +92,7 @@ gdl_dock_notebook_init (GdlDockNotebook *notebook)
     bin->child = notebook->notebook = gtk_notebook_new ();
     gtk_widget_set_parent (notebook->notebook, GTK_WIDGET (notebook));
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook->notebook), TRUE);
+    
     g_signal_connect (notebook->notebook, "switch_page",
                       G_CALLBACK (gdl_dock_notebook_switch_page), notebook);
     gtk_widget_show (notebook->notebook);
@@ -427,3 +428,25 @@ gdl_dock_notebook_get_type (void)
 
     return dock_notebook_type;
 }
+
+void
+gdl_dock_notebook_bring_to_front    (GdlDockNotebook *notebook,
+                                     GdlDockItem     *child)
+{
+    int i;
+    
+    i = g_list_length (GTK_NOTEBOOK (notebook->notebook)->children);
+    while (--i > -1) {
+        GtkWidget *child_widget;
+        
+        child_widget = gtk_notebook_get_nth_page 
+            (GTK_NOTEBOOK (notebook->notebook), i);
+
+        if (GDL_DOCK_ITEM (child_widget) == child) {
+            gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook->notebook), 
+                                           i);
+            return;
+        }
+    }
+}
+

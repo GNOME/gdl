@@ -1066,3 +1066,23 @@ gdl_dock_get_named_items (GdlDock *dock)
 
     return g_list_copy (dock->items);
 }
+
+void
+gdl_dock_bring_to_front (GdlDock *dock, GdlDockItem *item)
+{
+    GtkWidget *parent;
+
+    g_return_if_fail (GDL_IS_DOCK (dock));
+    g_return_if_fail (GDL_IS_DOCK_ITEM (item));
+
+    GDL_DOCK_ITEM_GET_PARENT (GTK_WIDGET (item), parent);
+    while (parent && GDL_IS_DOCK_ITEM (parent)) {
+        if (GDL_IS_DOCK_NOTEBOOK (parent)) {
+            gdl_dock_notebook_bring_to_front (GDL_DOCK_NOTEBOOK (parent), 
+                                              item);
+
+        }
+        item = GDL_DOCK_ITEM (parent);
+        GDL_DOCK_ITEM_GET_PARENT (GTK_WIDGET (item), parent);
+    }
+}

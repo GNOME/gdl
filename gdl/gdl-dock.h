@@ -70,4 +70,7 @@ void           gdl_dock_layout_save       (GdlDock    *dock,
 
 GList         *gdl_dock_get_named_items   (GdlDock    *dock);
 
+void           gdl_dock_bring_to_front    (GdlDock     *dock,
+                                           GdlDockItem *item);
+
 #endif

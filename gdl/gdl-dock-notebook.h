@@ -30,5 +30,8 @@ GtkWidget     *gdl_dock_notebook_new               (void);
 
 GType          gdl_dock_notebook_get_type          (void);
 
+void           gdl_dock_notebook_bring_to_front    (GdlDockNotebook *notebook,
+                                                    GdlDockItem     *child);
+
 #endif
 
