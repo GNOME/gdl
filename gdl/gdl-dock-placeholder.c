@@ -35,6 +35,8 @@
 #include "libgdltypebuiltins.h"
 
 
+#undef PLACEHOLDER_DEBUG
+
 /* ----- Private prototypes ----- */
 
 static void     gdl_dock_placeholder_class_init     (GdlDockPlaceholderClass *klass);
@@ -311,10 +313,10 @@ gdl_dock_placeholder_dock (GdlDockObject    *object,
     }
 }
 
+#ifdef PLACEHOLDER_DEBUG
 static void
 print_placement_stack (GdlDockPlaceholder *ph)
 {
-#if 0
     GSList *s = ph->_priv->placement_stack;
     GEnumClass *enum_class = G_ENUM_CLASS (g_type_class_ref (GDL_TYPE_DOCK_PLACEMENT));
     GEnumValue *enum_value;
@@ -333,8 +335,8 @@ print_placement_stack (GdlDockPlaceholder *ph)
     
     g_string_free (message, TRUE);
     g_type_class_unref (enum_class);
-#endif
 }
+#endif
 
 static void 
 gdl_dock_placeholder_present (GdlDockObject *object,
@@ -460,7 +462,9 @@ detach_cb (GdlDockObject *object,
     if (new_host)
         connect_host (ph, new_host);
 
+#ifdef PLACEHOLDER_DEBUG
     print_placement_stack (ph);
+#endif
 }
 
 /**
@@ -537,7 +541,9 @@ dock_cb (GdlDockObject    *object,
             }
         }
     }
+#ifdef PLACEHOLDER_DEBUG
     print_placement_stack (ph);
+#endif
 }
 
 static void

@@ -96,7 +96,22 @@ struct _GdlDockMasterPrivate {
     GdlDock        *rect_owner;
     
     GdlDockRequest *drag_request;
+
+    /* source id for the idle handler to emit a layout_changed signal */
+    guint           idle_layout_changed_id;
+
+    /* hashes to quickly calculate the overall locked status: i.e.
+     * if size(unlocked_items) == 0 then locked = 1
+     * else if size(locked_items) == 0 then locked = 0
+     * else locked = -1
+     */
+    GHashTable     *locked_items;
+    GHashTable     *unlocked_items;
 };
+
+#define COMPUTE_LOCKED(master)                                          \
+    (g_hash_table_size ((master)->_priv->unlocked_items) == 0 ? 1 :     \
+     (g_hash_table_size ((master)->_priv->locked_items) == 0 ? 0 : -1))
 
 static guint master_signals [LAST_SIGNAL] = { 0 };
 
@@ -157,6 +172,9 @@ gdl_dock_master_instance_init (GdlDockMaster *master)
     
     master->_priv = g_new0 (GdlDockMasterPrivate, 1);
     master->_priv->number = 1;
+
+    master->_priv->locked_items = g_hash_table_new (g_direct_hash, g_direct_equal);
+    master->_priv->unlocked_items = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
 
 static gboolean
@@ -204,11 +222,9 @@ _gdl_dock_master_remove (gpointer       key,
             }
         }
     }
-    else if (GDL_IS_DOCK_ITEM (object)) {
-        /* disconnect dock dragging signals */
-        g_signal_handlers_disconnect_matched (object, G_SIGNAL_MATCH_DATA, 
-                                              0, 0, NULL, NULL, master);
-    }
+    /* disconnect dock object signals */
+    g_signal_handlers_disconnect_matched (object, G_SIGNAL_MATCH_DATA, 
+                                          0, 0, NULL, NULL, master);
 
     object->master = NULL;
     if (key) {
@@ -248,6 +264,9 @@ gdl_dock_master_dispose (GObject *g_object)
     }
     
     if (master->_priv) {
+        if (master->_priv->idle_layout_changed_id)
+            g_source_remove (master->_priv->idle_layout_changed_id);
+        
         if (master->_priv->root_xor_gc) {
             g_object_unref (master->_priv->root_xor_gc);
             master->_priv->root_xor_gc = NULL;
@@ -260,6 +279,11 @@ gdl_dock_master_dispose (GObject *g_object)
         }
         g_free (master->_priv->default_title);
         master->_priv->default_title = NULL;
+
+        g_hash_table_destroy (master->_priv->locked_items);
+        master->_priv->locked_items = NULL;
+        g_hash_table_destroy (master->_priv->unlocked_items);
+        master->_priv->unlocked_items = NULL;
         
         g_free (master->_priv);
         master->_priv = NULL;
@@ -330,49 +354,6 @@ gdl_dock_master_set_property  (GObject      *object,
     }
 }
 
-static gint
-is_locked (GdlDockItem *item)
-{
-    gint     result;
-    gboolean item_locked;
-    g_object_get (item, "locked", &item_locked, NULL);
-    result = item_locked ? 1 : 0;
-
-    if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (item))) {
-        GList *children, *l;
-        children = gtk_container_get_children (GTK_CONTAINER (item));
-        /* compare with our children */
-        for (l = children; l; l = l->next) {
-            if (is_locked (GDL_DOCK_ITEM (l->data)) != result) {
-                result = -1;
-                break;
-            }
-        }
-        g_list_free (children);
-    }
-    return result;
-}
-
-static gint
-gdl_dock_master_locked (GdlDockMaster *master)
-{
-    gint   result = -1;
-    GList *l;
-    
-    /* see if all items are locked or unlocked */
-    for (l = master->toplevel_docks; l; l = l->next) {
-        GdlDock *dock = GDL_DOCK (l->data);
-        if (dock->root) {
-            gint r = is_locked (GDL_DOCK_ITEM (dock->root));
-            if (r == -1 || (r != result && result != -1))
-                return -1;
-            /* save the result for comparision */
-            result = r;
-        }
-    }
-    return result;
-}
-
 static void
 gdl_dock_master_get_property  (GObject      *object,
                                guint         prop_id,
@@ -386,7 +367,7 @@ gdl_dock_master_get_property  (GObject      *object,
             g_value_set_string (value, master->_priv->default_title);
             break;
         case PROP_LOCKED:
-            g_value_set_int (value, gdl_dock_master_locked (master));
+            g_value_set_int (value, COMPUTE_LOCKED (master));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -644,11 +625,94 @@ gdl_dock_master_layout_changed (GdlDockMaster *master)
 {
     g_return_if_fail (GDL_IS_DOCK_MASTER (master));
 
-    /* notify the controller */
+    /* emit "layout_changed" on the controller to notify the user who
+     * normally shouldn't have access to us */
     if (master->controller)
         g_signal_emit_by_name (master->controller, "layout_changed");
+
+    /* remove the idle handler if there is one */
+    if (master->_priv->idle_layout_changed_id) {
+        g_source_remove (master->_priv->idle_layout_changed_id);
+        master->_priv->idle_layout_changed_id = 0;
+    }
 }
 
+static gboolean
+idle_emit_layout_changed (gpointer user_data)
+{
+    GdlDockMaster *master = user_data;
+
+    g_return_val_if_fail (master && GDL_IS_DOCK_MASTER (master), FALSE);
+
+    master->_priv->idle_layout_changed_id = 0;
+    g_signal_emit (master, master_signals [LAYOUT_CHANGED], 0);
+    
+    return FALSE;
+}
+
+static void 
+item_dock_cb (GdlDockObject    *object,
+              GdlDockObject    *requestor,
+              GdlDockPlacement  position,
+              GValue           *other_data,
+              gpointer          user_data)
+{
+    GdlDockMaster *master = user_data;
+    
+    g_return_if_fail (requestor && GDL_IS_DOCK_OBJECT (requestor));
+    g_return_if_fail (master && GDL_IS_DOCK_MASTER (master));
+
+    /* here we are in fact interested in the requestor, since it's
+     * assumed that object will not change its visibility... for the
+     * requestor, however, could mean that it's being shown */
+    if (!GDL_DOCK_OBJECT_IN_REFLOW (requestor) &&
+        !GDL_DOCK_OBJECT_AUTOMATIC (requestor)) {
+        if (!master->_priv->idle_layout_changed_id)
+            master->_priv->idle_layout_changed_id =
+                g_idle_add (idle_emit_layout_changed, master);
+    }
+}
+
+static void 
+item_detach_cb (GdlDockObject *object,
+                gboolean       recursive,
+                gpointer       user_data)
+{
+    GdlDockMaster *master = user_data;
+    
+    g_return_if_fail (object && GDL_IS_DOCK_OBJECT (object));
+    g_return_if_fail (master && GDL_IS_DOCK_MASTER (master));
+
+    if (!GDL_DOCK_OBJECT_IN_REFLOW (object) &&
+        !GDL_DOCK_OBJECT_AUTOMATIC (object)) {
+        if (!master->_priv->idle_layout_changed_id)
+            master->_priv->idle_layout_changed_id =
+                g_idle_add (idle_emit_layout_changed, master);
+    }
+}
+
+static void
+item_notify_cb (GdlDockObject *object,
+                GParamSpec    *pspec,
+                gpointer       user_data)
+{
+    GdlDockMaster *master = user_data;
+    gint locked = COMPUTE_LOCKED (master);
+    gboolean item_locked;
+    
+    g_object_get (object, "locked", &item_locked, NULL);
+
+    if (item_locked) {
+        g_hash_table_remove (master->_priv->unlocked_items, object);
+        g_hash_table_insert (master->_priv->locked_items, object, NULL);
+    } else {
+        g_hash_table_remove (master->_priv->locked_items, object);
+        g_hash_table_insert (master->_priv->unlocked_items, object, NULL);
+    }
+    
+    if (COMPUTE_LOCKED (master) != locked)
+        g_object_notify (G_OBJECT (master), "locked");
+}
 
 /* ----- Public interface ----- */
 
@@ -694,6 +758,12 @@ gdl_dock_master_add (GdlDockMaster *master,
             master->toplevel_docks = g_list_prepend (master->toplevel_docks, object);
         else
             master->toplevel_docks = g_list_append (master->toplevel_docks, object);
+
+        /* we are interested in the dock request this toplevel
+         * receives to update the layout */
+        g_signal_connect (object, "dock",
+                          G_CALLBACK (item_dock_cb), master);
+
     }
     else if (GDL_IS_DOCK_ITEM (object)) {
         /* we need to connect the item's signals */
@@ -703,6 +773,26 @@ gdl_dock_master_add (GdlDockMaster *master,
                           G_CALLBACK (gdl_dock_master_drag_motion), master);
         g_signal_connect (object, "dock_drag_end",
                           G_CALLBACK (gdl_dock_master_drag_end), master);
+        g_signal_connect (object, "dock",
+                          G_CALLBACK (item_dock_cb), master);
+        g_signal_connect (object, "detach",
+                          G_CALLBACK (item_detach_cb), master);
+
+        /* register to "locked" notification if the item has a grip,
+         * and add the item to the corresponding hash */
+        if (GDL_DOCK_ITEM_HAS_GRIP (object)) {
+            g_signal_connect (object, "notify::locked",
+                              G_CALLBACK (item_notify_cb), master);
+            item_notify_cb (object, NULL, master);
+        }
+        
+        /* post a layout_changed emission if the item is not automatic
+         * (since it should be added to the items model) */
+        if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
+            if (!master->_priv->idle_layout_changed_id)
+                master->_priv->idle_layout_changed_id =
+                    g_idle_add (idle_emit_layout_changed, master);
+        }
     }
 }
 
@@ -714,6 +804,17 @@ gdl_dock_master_remove (GdlDockMaster *master,
     
     g_return_if_fail (master != NULL && object != NULL);
 
+    /* remove from locked/unlocked hashes and property change if
+     * that's the case */
+    if (GDL_IS_DOCK_ITEM (object) && GDL_DOCK_ITEM_HAS_GRIP (object)) {
+        gint locked = COMPUTE_LOCKED (master);
+        if (g_hash_table_remove (master->_priv->locked_items, object) ||
+            g_hash_table_remove (master->_priv->unlocked_items, object)) {
+            if (COMPUTE_LOCKED (master) != locked)
+                g_object_notify (G_OBJECT (master), "locked");
+        }
+    }
+        
     /* ref the master, since removing the controller could cause master disposal */
     g_object_ref (master);
     
@@ -723,6 +824,14 @@ gdl_dock_master_remove (GdlDockMaster *master,
         g_hash_table_remove (master->dock_objects, name);
     g_free (name);
 
+    /* post a layout_changed emission if the item is not automatic
+     * (since it should be removed from the items model) */
+    if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
+        if (!master->_priv->idle_layout_changed_id)
+            master->_priv->idle_layout_changed_id =
+                g_idle_add (idle_emit_layout_changed, master);
+    }
+    
     /* balance ref count */
     g_object_unref (master);
 }

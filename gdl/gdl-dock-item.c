@@ -183,14 +183,6 @@ struct _GdlDockItemPrivate {
     gint       start_x, start_y;
 };
 
-typedef struct _GdlDockItemMenuData GdlDockItemMenuData;
-
-struct _GdlDockItemMenuData {
-    GtkWidget *dock, *undock;
-    GtkWidget *hide, *lock;
-    GtkWidget *first_option;
-};
-
 /* FIXME: implement the rest of the behaviors */
 
 #define SPLIT_RATIO  0.4
@@ -429,6 +421,9 @@ gdl_dock_item_set_property  (GObject      *g_object,
             item->behavior = g_value_get_flags (value);
 
             if ((old_beh ^ item->behavior) & GDL_DOCK_ITEM_BEH_LOCKED) {
+                if (GDL_DOCK_OBJECT_GET_MASTER (item))
+                    g_signal_emit_by_name (GDL_DOCK_OBJECT_GET_MASTER (item),
+                                           "layout_changed");
                 g_object_notify (g_object, "locked");
                 gdl_dock_item_showhide_grip (item);
             }
@@ -441,14 +436,24 @@ gdl_dock_item_set_property  (GObject      *g_object,
                 gtk_widget_queue_resize (GTK_WIDGET (item));
             break;
         case PROP_LOCKED:
+        {
+            GdlDockItemBehavior old_beh = item->behavior;
+
             if (g_value_get_boolean (value))
                 item->behavior |= GDL_DOCK_ITEM_BEH_LOCKED;
             else
                 item->behavior &= ~GDL_DOCK_ITEM_BEH_LOCKED;
-            gdl_dock_item_showhide_grip (item);
-            g_object_notify (g_object, "behavior");
-            
+
+            if (old_beh ^ item->behavior) {
+                gdl_dock_item_showhide_grip (item);
+                g_object_notify (g_object, "behavior");
+
+                if (GDL_DOCK_OBJECT_GET_MASTER (item))
+                    g_signal_emit_by_name (GDL_DOCK_OBJECT_GET_MASTER (item),
+                                           "layout_changed");
+            }
             break;
+        }
         case PROP_PREFERRED_WIDTH:
             item->_priv->preferred_width = g_value_get_int (value);
             break;
@@ -1202,52 +1207,10 @@ static void
 gdl_dock_item_detach_menu (GtkWidget *widget,
                            GtkMenu   *menu)
 {
-    GdlDockItem         *item;
-    GdlDockItemMenuData *menu_data;
+    GdlDockItem *item;
    
     item = GDL_DOCK_ITEM (widget);
-    menu_data = g_object_get_data (G_OBJECT (menu), "user_data");
-
-    /* destroy menu items */
-    gtk_widget_unref (menu_data->dock);
-    gtk_widget_unref (menu_data->undock);
-    gtk_widget_destroy (menu_data->dock);
-    gtk_widget_destroy (menu_data->undock);
-
-    /* release menu data struct */
     item->_priv->menu = NULL;
-    g_free (menu_data);
-    g_object_set_data (G_OBJECT (menu), "user_data", NULL);
-}
-
-static void
-gdl_dock_item_dock_cb (GtkWidget   *widget,
-                       GdlDockItem *item)
-{
-#if 0
-    g_return_if_fail (item != NULL);
-    /* force docking even if saved position is floating */
-    if (item->last_pos.position == GDL_DOCK_FLOATING)
-        item->last_pos.position = GDL_DOCK_TOP;
-
-    gdl_dock_item_restore_position (item);
-
-    /* layout has changed */
-    g_signal_emit_by_name (item->dock, "layout_changed");
-#endif
-}
-
-static void
-gdl_dock_item_undock_cb (GtkWidget   *widget,
-                         GdlDockItem *item)
-{
-#if 0
-    g_return_if_fail (item != NULL);
-
-    /* current position is saved in dock_to when the item floats */
-    gdl_dock_item_dock_to (item, NULL, GDL_DOCK_FLOATING, -1);
-    g_signal_emit_by_name (item->dock, "layout_changed");
-#endif
 }
 
 static void
@@ -1256,62 +1219,27 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
                           guint32       time)
 {
     GtkWidget *mitem;
-    GdlDockItemMenuData *menu_data;
 
     if (!item->_priv->menu) {
         /* Create popup menu and attach it to the dock item */
         item->_priv->menu = gtk_menu_new ();
-
-        menu_data = g_new0 (GdlDockItemMenuData, 1);
-        g_object_set_data (G_OBJECT (item->_priv->menu), "user_data", menu_data);
-        gtk_menu_attach_to_widget (GTK_MENU (item->_priv->menu), 
+        gtk_menu_attach_to_widget (GTK_MENU (item->_priv->menu),
                                    GTK_WIDGET (item),
                                    gdl_dock_item_detach_menu);
         
-        /* Dock/Undock menuitem. */
-        menu_data->dock = gtk_menu_item_new_with_label (_("Dock"));
-        menu_data->undock = gtk_menu_item_new_with_label (_("Undock"));
-        g_signal_connect (menu_data->dock, "activate", 
-                          G_CALLBACK (gdl_dock_item_dock_cb), item);
-        g_signal_connect (menu_data->undock, "activate", 
-                          G_CALLBACK (gdl_dock_item_undock_cb), item);
-        gtk_widget_ref (menu_data->dock);
-        gtk_widget_ref (menu_data->undock);
-        gtk_object_sink (GTK_OBJECT (menu_data->dock));
-        gtk_object_sink (GTK_OBJECT (menu_data->undock));
-        menu_data->first_option = NULL;
-
         /* Hide menuitem. */
-        mitem = menu_data->hide = gtk_menu_item_new_with_label (_("Hide"));
-        gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), menu_data->hide);
+        mitem = gtk_menu_item_new_with_label (_("Hide"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
         g_signal_connect (mitem, "activate", 
                           G_CALLBACK (gdl_dock_item_hide_cb), item);
 
         /* Lock menuitem */
-        mitem = menu_data->lock = gtk_menu_item_new_with_label (_("Lock"));
-        gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), menu_data->lock);
+        mitem = gtk_menu_item_new_with_label (_("Lock"));
+        gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
         g_signal_connect (mitem, "activate",
                           G_CALLBACK (gdl_dock_item_lock_cb), item);
 
-    } else
-        menu_data = g_object_get_data (G_OBJECT (item->_priv->menu), "user_data");
-
-    /* update menu options */
-    if (menu_data->first_option) {
-        gtk_container_remove (GTK_CONTAINER (item->_priv->menu), 
-                              menu_data->first_option);
-        menu_data->first_option = NULL;
     }
-
-#if 0
-    if (GDL_DOCK_ITEM_IS_FLOATING (item)) {
-        gtk_menu_shell_prepend (GTK_MENU_SHELL (item->menu), menu_data->dock);
-        menu_data->first_option = menu_data->dock;
-    } else {
-        gtk_menu_shell_prepend (GTK_MENU_SHELL (item->menu), menu_data->undock);
-        menu_data->first_option = menu_data->undock;
-    };
-#endif
 
     /* Show popup menu. */
     gtk_widget_show_all (item->_priv->menu);
@@ -1400,8 +1328,6 @@ gdl_dock_item_hide_cb (GtkWidget   *widget,
 
     master = GDL_DOCK_OBJECT_GET_MASTER (item);
     gdl_dock_item_hide_item (item);
-    if (master)
-        g_signal_emit_by_name (master, "layout_changed");
 }
 
 static void
@@ -1411,7 +1337,6 @@ gdl_dock_item_lock_cb (GtkWidget   *widget,
     g_return_if_fail (item != NULL);
 
     gdl_dock_item_lock (item);
-    g_signal_emit_by_name (GDL_DOCK_OBJECT_GET_MASTER (item), "layout_changed");
 }
 
 static void

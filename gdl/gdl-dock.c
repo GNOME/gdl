@@ -949,10 +949,8 @@ gdl_dock_floating_window_delete_event_cb (GtkWidget *widget)
     
     dock = GDL_DOCK (g_object_get_data (G_OBJECT (widget), "dock"));
     if (dock->root) {
-        GdlDockMaster *master = GDL_DOCK_OBJECT_GET_MASTER (dock);
         /* this will call reduce on ourselves, hiding the window if appropiate */
         gdl_dock_item_hide_item (GDL_DOCK_ITEM (dock->root));
-        g_signal_emit_by_name (master, "layout_changed");
     }
 
     return TRUE;

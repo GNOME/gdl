@@ -68,9 +68,6 @@ struct _GdlDockLayoutPrivate {
 
     /* idle control */
     gboolean          idle_save_pending;
-
-    /* ui change control */
-    gboolean          changed_by_user;
 };
 
 typedef struct _GdlDockLayoutUIData GdlDockLayoutUIData;
@@ -106,6 +103,8 @@ static void     gdl_dock_layout_build_doc       (GdlDockLayout      *layout);
 
 static xmlNodePtr gdl_dock_layout_find_layout   (GdlDockLayout      *layout, 
                                                  const gchar        *name);
+
+static void     gdl_dock_layout_build_models    (GdlDockLayout      *layout);
 
 
 /* ----- Private implementation ----- */
@@ -145,6 +144,8 @@ gdl_dock_layout_instance_init (GdlDockLayout *layout)
     layout->dirty = FALSE;
     layout->_priv = g_new0 (GdlDockLayoutPrivate, 1);
     layout->_priv->idle_save_pending = FALSE;
+
+    gdl_dock_layout_build_models (layout);
 }
 
 static void
@@ -289,53 +290,89 @@ gdl_dock_layout_build_models (GdlDockLayout *layout)
 }
 
 static void
-gdl_dock_layout_update_items_model (GdlDockLayout *layout)
+build_list (GdlDockObject *object, GList **list)
 {
-    GtkTreeIter iter;
-    
-    g_return_if_fail (layout != NULL && layout->_priv != NULL);
-    g_return_if_fail (layout->master != NULL);
-    g_return_if_fail (layout->_priv->items_model != NULL);
-
-    /* update items model data after a layout load */
-    if (gtk_tree_model_get_iter_root (
-        GTK_TREE_MODEL (layout->_priv->items_model), &iter)) {
-        do {
-            GdlDockItem *item;
-            gboolean     locked;
-            
-            gtk_tree_model_get (GTK_TREE_MODEL (layout->_priv->items_model), &iter,
-                                COLUMN_ITEM, &item,
-                                -1);
-            if (item) {
-                g_object_get (item, "locked", &locked, NULL);
-                
-                gtk_list_store_set (layout->_priv->items_model, &iter, 
-                                    COLUMN_SHOW, GDL_DOCK_OBJECT_ATTACHED (item),
-                                    COLUMN_LOCKED, locked,
-                                    -1);
-            };
-        } while (gtk_tree_model_iter_next (
-            GTK_TREE_MODEL (layout->_priv->items_model), &iter));
-    };
+    /* add only items, not toplevels */
+    if (GDL_IS_DOCK_ITEM (object))
+        *list = g_list_prepend (*list, object);
 }
 
 static void
-gdl_dock_layout_foreach_object (GdlDockObject *object,
-                                GdlDockLayout *layout)
+update_items_model (GdlDockLayout *layout)
 {
-    /* only add items to the items model (i.e. not toplevel docks) */
-    if (GDL_IS_DOCK_ITEM (object)) {
-        GtkTreeIter iter;
-        gboolean    locked;
-        gchar      *long_name;
+    GList *items, *l;
+    GtkTreeIter iter;
+    GtkListStore *store;
+    gchar *long_name;
+    gboolean locked;
+    
+    g_return_if_fail (layout != NULL);
+    g_return_if_fail (layout->_priv->items_model != NULL);
 
+    if (!layout->master)
+        return;
+    
+    /* build items list */
+    items = NULL;
+    gdl_dock_master_foreach (layout->master, (GFunc) build_list, &items);
+
+    /* walk the current model */
+    store = layout->_priv->items_model;
+    
+    /* update items model data after a layout load */
+    if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
+        gboolean valid = TRUE;
+        
+        while (valid) {
+            GdlDockItem *item;
+            
+            gtk_tree_model_get (GTK_TREE_MODEL (store), &iter,
+                                COLUMN_ITEM, &item,
+                                -1);
+            if (item) {
+                /* look for the object in the items list */
+                for (l = items; l && l->data != item; l = l->next);
+
+                if (l) {
+                    /* found, update data */
+                    g_object_get (item, 
+                                  "long_name", &long_name, 
+                                  "locked", &locked, 
+                                  NULL);
+                    gtk_list_store_set (store, &iter, 
+                                        COLUMN_NAME, long_name,
+                                        COLUMN_SHOW, GDL_DOCK_OBJECT_ATTACHED (item),
+                                        COLUMN_LOCKED, locked,
+                                        -1);
+                    g_free (long_name);
+
+                    /* remove the item from the linked list and keep on walking the model */
+                    items = g_list_delete_link (items, l);
+                    valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
+
+                } else {
+                    /* not found, which means the item has been removed */
+                    valid = gtk_list_store_remove (store, &iter);
+                    
+                }
+
+            } else {
+                /* not a valid row */
+                valid = gtk_list_store_remove (store, &iter);
+            }
+        }
+    }
+
+    /* add any remaining objects */
+    for (l = items; l; l = l->next) {
+        GdlDockObject *object = l->data;
+        
         g_object_get (object, 
                       "long_name", &long_name, 
                       "locked", &locked, 
                       NULL);
-        gtk_list_store_append (layout->_priv->items_model, &iter);
-        gtk_list_store_set (layout->_priv->items_model, &iter, 
+        gtk_list_store_append (store, &iter);
+        gtk_list_store_set (store, &iter, 
                             COLUMN_ITEM, object,
                             COLUMN_NAME, long_name,
                             COLUMN_SHOW, GDL_DOCK_OBJECT_ATTACHED (object),
@@ -343,25 +380,18 @@ gdl_dock_layout_foreach_object (GdlDockObject *object,
                             -1);
         g_free (long_name);
     }
+    
+    g_list_free (items);
 }
 
 static void
-gdl_dock_layout_populate_models (GdlDockLayout *layout)
+update_layouts_model (GdlDockLayout *layout)
 {
     GList *items, *l;
     GtkTreeIter iter;
-
+    
     g_return_if_fail (layout != NULL);
-    g_return_if_fail (layout->_priv->items_model != NULL);
     g_return_if_fail (layout->_priv->layouts_model != NULL);
-
-    /* build items list */
-    gtk_list_store_clear (layout->_priv->items_model);
-    if (layout->master) {
-        gdl_dock_master_foreach (layout->master,
-                                 (GFunc) gdl_dock_layout_foreach_object,
-                                 (gpointer) layout);
-    };
 
     /* build layouts list */
     gtk_list_store_clear (layout->_priv->layouts_model);
@@ -439,12 +469,8 @@ load_layout_cb (GtkWidget *w,
                             COLUMN_NAME, &name,
                             -1);
         gdl_dock_layout_load_layout (layout, name);
-        layout->_priv->changed_by_user = TRUE;
         g_free (name);
-        gdl_dock_layout_update_items_model (layout);
-        if (ui_data->layout->master)
-            g_object_notify (G_OBJECT (ui_data->layout->master), "locked");
-    };
+    }
 }
 
 static void
@@ -493,51 +519,13 @@ show_toggled_cb (GtkCellRendererToggle *renderer,
                         -1);
 
     value = !value;
-    gtk_list_store_set (layout->_priv->items_model, &iter, COLUMN_SHOW, value, -1);
     if (value)
         gdl_dock_item_show_item (item);
     else
         gdl_dock_item_hide_item (item);
 
-    layout->_priv->changed_by_user = TRUE;
     gtk_tree_path_free (path);
 }
-
-#if 0
-static void
-locked_toggled_cb (GtkCellRendererToggle *renderer,
-                   gchar                 *path_str,
-                   gpointer               data)
-{
-    GdlDockLayoutUIData *ui_data = (GdlDockLayoutUIData *) data;
-
-    GdlDockLayout *layout = ui_data->layout;
-    GtkTreeModel  *model;
-    GtkTreeIter    iter;
-    GtkTreePath   *path = gtk_tree_path_new_from_string (path_str);
-    gboolean       value;
-    GdlDockItem   *item;
-    
-    g_return_if_fail (layout != NULL);
-    
-    model = GTK_TREE_MODEL (layout->_priv->items_model);
-    gtk_tree_model_get_iter (model, &iter, path);
-    gtk_tree_model_get (model, &iter, 
-                        COLUMN_LOCKED, &value, 
-                        COLUMN_ITEM, &item, 
-                        -1);
-
-    value = !value;
-    gtk_list_store_set (layout->_priv->items_model, &iter, COLUMN_LOCKED, value, -1);
-    if (value)
-        gdl_dock_item_lock (item);
-    else
-        gdl_dock_item_unlock (item);
-
-    layout->_priv->changed_by_user = TRUE;
-    gtk_tree_path_free (path);
-}
-#endif
 
 static void
 selection_changed_cb (GtkTreeSelection *selection,
@@ -573,7 +561,6 @@ all_locked_toggled_cb (GtkWidget *widget,
 
     locked = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
     g_object_set (master, "locked", locked ? 1 : 0, NULL);
-    ui_data->layout->_priv->changed_by_user = TRUE;
 }
 
 static void
@@ -587,6 +574,7 @@ layout_ui_destroyed (GtkWidget *widget,
     if (ui_data) {
         if (ui_data->layout) {
             if (ui_data->layout->master)
+                /* disconnet the notify handler */
                 g_signal_handlers_disconnect_matched (ui_data->layout->master,
                                                       G_SIGNAL_MATCH_DATA,
                                                       0, 0, NULL, NULL,
@@ -667,9 +655,6 @@ gdl_dock_layout_construct_items_ui (GdlDockLayout *layout)
                                (gpointer *) &ui_data->layout);
     g_object_set_data (G_OBJECT (container), "ui_data", ui_data);
     
-    /* ensure model availability */
-    gdl_dock_layout_build_models (layout);
-    
     /* get ui widget references */
     ui_data->locked_check = glade_xml_get_widget (gui, "locked_check");
     items_list = glade_xml_get_widget (gui, "items_list");
@@ -698,17 +683,6 @@ gdl_dock_layout_construct_items_ui (GdlDockLayout *layout)
                                                        NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (items_list), column);
 
-#if 0
-    renderer = gtk_cell_renderer_toggle_new ();
-    g_signal_connect (renderer, "toggled", 
-                      G_CALLBACK (locked_toggled_cb), ui_data);
-    column = gtk_tree_view_column_new_with_attributes (_("Locked"),
-                                                       renderer,
-                                                       "active", COLUMN_LOCKED,
-                                                       NULL);
-    gtk_tree_view_append_column (GTK_TREE_VIEW (items_list), column);
-#endif
-    
     renderer = gtk_cell_renderer_text_new ();
     column = gtk_tree_view_column_new_with_attributes (_("Item"),
                                                        renderer,
@@ -749,9 +723,6 @@ gdl_dock_layout_construct_layouts_ui (GdlDockLayout *layout)
     g_object_add_weak_pointer (G_OBJECT (layout),
                                (gpointer *) &ui_data->layout);
     g_object_set_data (G_OBJECT (container), "ui_data", ui_data);
-    
-    /* ensure model availability */
-    gdl_dock_layout_build_models (layout);
     
     /* get ui widget references */
     ui_data->layout_entry = glade_xml_get_widget (gui, "newlayout_entry");
@@ -958,10 +929,11 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
         if (object) {
             gdl_dock_object_freeze (object);
 
-            /* recurse to catch placeholders */
+            /* recurse here to catch placeholders */
             gdl_dock_layout_recursive_build (master, node, object);
             
             if (GDL_IS_DOCK_PLACEHOLDER (object))
+                /* placeholders are later attached to the parent */
                 gdl_dock_object_detach (object, FALSE);
             
             /* apply "after" parameters */
@@ -974,7 +946,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
             }
             g_free (after_params);
             
-            /* add the object to the parent and recurse */
+            /* add the object to the parent */
             if (parent) {
                 if (GDL_IS_DOCK_PLACEHOLDER (object))
                     gdl_dock_placeholder_attach (GDL_DOCK_PLACEHOLDER (object),
@@ -1136,7 +1108,10 @@ gdl_dock_layout_save (GdlDockMaster *master,
     
     g_return_if_fail (master != NULL && where != NULL);
 
-    /* build the placeholder's hash */
+    /* build the placeholder's hash: the hash keeps lists of
+     * placeholders associated to each object, so that we can save the
+     * placeholders when we are saving the object (since placeholders
+     * don't show up in the normal widget hierarchy) */
     placeholders = g_hash_table_new_full (g_direct_hash, g_direct_equal,
                                           NULL, (GDestroyNotify) g_list_free);
     gdl_dock_master_foreach (master, (GFunc) add_placeholder, placeholders);
@@ -1184,8 +1159,13 @@ static void
 gdl_dock_layout_layout_changed_cb (GdlDockMaster *master,
                                    GdlDockLayout *layout)
 {
-    if (!layout->_priv->idle_save_pending)
+    /* update model */
+    update_items_model (layout);
+
+    if (!layout->_priv->idle_save_pending) {
         g_idle_add ((GSourceFunc) gdl_dock_layout_idle_save, layout);
+        layout->_priv->idle_save_pending = TRUE;
+    }
 }
 
 void
@@ -1201,7 +1181,7 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
         g_object_unref (layout->master);
     }
     
-    /* FIXME: destroy and create models */
+    gtk_list_store_clear (layout->_priv->items_model);
     
     layout->master = master;
     if (layout->master) {
@@ -1210,6 +1190,8 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
                           (GCallback) gdl_dock_layout_layout_changed_cb,
                           layout);
     }
+
+    update_items_model (layout);
 }
 
 gboolean
@@ -1273,7 +1255,6 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
 
     /* save the layout */
     gdl_dock_layout_save (layout->master, node);
-    layout->_priv->changed_by_user = FALSE;
     layout->dirty = TRUE;
     g_object_notify (G_OBJECT (layout), "dirty");
 }
@@ -1326,18 +1307,9 @@ gdl_dock_layout_run_manager (GdlDockLayout *layout)
                                           NULL);
 
     gtk_window_set_default_size (GTK_WINDOW (dialog), -1, 300);
-
     gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), container);
     
-    /* fill in data */
-    gdl_dock_layout_populate_models (layout);
-
     gtk_dialog_run (GTK_DIALOG (dialog));
-
-    if (layout->_priv->changed_by_user) {
-        /* save the default (current) layout */
-        gdl_dock_layout_save_layout (layout, NULL);
-    };
 
     gtk_widget_destroy (dialog);
 }
@@ -1362,6 +1334,7 @@ gdl_dock_layout_load_from_file (GdlDockLayout *layout,
             xmlNodePtr root = layout->_priv->doc->children;
             /* minimum validation: test the root element */
             if (root && !strcmp (root->name, ROOT_ELEMENT)) {
+                update_layouts_model (layout);
                 retval = TRUE;
             } else {
                 xmlFreeDoc (layout->_priv->doc);
@@ -1447,12 +1420,6 @@ gdl_dock_layout_get_ui (GdlDockLayout *layout)
     g_return_val_if_fail (layout != NULL, NULL);
     ui = gdl_dock_layout_construct_ui (layout);
 
-    /* FIXME: this shouldn't be here.  Instead populate models should
-       change when an item is added/removed from the dock master, and
-       when gdl_dock_layout_load_from_file is called.  And do it in an
-       idle handler */
-    gdl_dock_layout_populate_models (layout);
-
     return ui;
 }
 
@@ -1464,9 +1431,6 @@ gdl_dock_layout_get_items_ui (GdlDockLayout *layout)
     g_return_val_if_fail (layout != NULL, NULL);
     ui = gdl_dock_layout_construct_items_ui (layout);
 
-    /* FIXME: same case as gdl_dock_layout_get_ui */
-    gdl_dock_layout_populate_models (layout);
-
     return ui;
 }
 
@@ -1477,9 +1441,6 @@ gdl_dock_layout_get_layouts_ui (GdlDockLayout *layout)
 
     g_return_val_if_fail (layout != NULL, NULL);
     ui = gdl_dock_layout_construct_layouts_ui (layout);
-
-    /* FIXME: same case as gdl_dock_layout_get_ui */
-    gdl_dock_layout_populate_models (layout);
 
     return ui;
 }

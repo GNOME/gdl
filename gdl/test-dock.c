@@ -214,9 +214,6 @@ main (int argc, char **argv)
 	gdl_dock_placeholder_new ("ph3", GDL_DOCK_OBJECT (dock), GDL_DOCK_LEFT, FALSE);
 	gdl_dock_placeholder_new ("ph4", GDL_DOCK_OBJECT (dock), GDL_DOCK_RIGHT, FALSE);
 	
-	/* save default layout */
-  	gdl_dock_layout_save_layout (layout, NULL);
-        
 	gtk_main ();
 
   	g_object_unref (layout);

@@ -1,3 +1,38 @@
+2003-01-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-master.c: layout_changed signal is now emitted
+	whenever some item is docked or detached, either by the user or
+	programatically.  Previously, it was only emitted when the user
+	changed the layout.  Also, the signal is emitted in an idle
+	handler to prevent multiple emission.  The global "locked"
+	property is now calculated more efficiently, and only reflects the
+	locked state for items which can be locked, i.e. those which have
+	a grip.
+	(gdl_dock_master_add): Connect to "dock" and "detach" signals and
+	"locked" notify for every dock item added to track layout changes
+	and global "locked" property.
+	(gdl_dock_master_remove): Queue a "layout_changed" signal and
+	notify "locked" property if appropiate.
+
+	* gdl/gdl-dock-layout.c: Items tree model updates are now
+	incremental, not clear and fill.  Models are created when the
+	layout object is created and are updated whenever we receive
+	a layout_changed signal from the master.
+	(gdl_dock_layout_layout_changed_cb): Update items model.
+	(gdl_dock_layout_attach): Idem.
+
+	* gdl/gdl-dock-item.c: Removed GdlDockItemMenuData structure used
+	to hold popup information, since it's no longer necessary.  The
+	"layout_changed" signal in the dock master is no longer emitted in
+	lock_cb and hide_cb methods, since that's now tracked by the
+	master itself.
+	(gdl_dock_item_set_property): Emit layout_changed in the dock
+	master when the locked property changes.
+		
+	* gdl/gdl-dock.c (gdl_dock_floating_window_delete_event_cb): Don't
+	emit layout_changed in the master, since that's now handled
+	transparently.
+
 2003-01-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* configure.in: Removed old macros and dependencies.
