@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1998-2001, Darren Hiebert
 *
@@ -29,8 +28,8 @@ extern void cppBeginStatement (void);
 extern void cppEndStatement (void);
 extern void cppUngetc (const int c);
 extern int cppGetc (void);
-extern char *getArglistFromPos(fpos_t startPosition, const char *tokenName, boolean isMacro);
-extern char *getArglistFromStr(char *buf, const char *name, boolean isMacro);
+extern char *getArglistFromPos(fpos_t startPosition, const char *tokenName);
+extern char *getArglistFromStr(char *buf, const char *name);
 #endif	/* _GET_H */
 
 /* vi:set tabstop=8 shiftwidth=4: */

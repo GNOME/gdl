@@ -27,7 +27,7 @@ static BonoboXObjectClass *parent_class;
 /* Forward declarations */
 static void gnome_symbol_browser_cobject_class_init (GnomeSymbolBrowserCObjectClass *klass);
 static void gnome_symbol_browser_cobject_init       (GnomeSymbolBrowserCObject *cobj);
-static void gnome_symbol_browser_cobject_destroy    (GtkObject *object);
+static void gnome_symbol_browser_cobject_finalize   (GObject *object);
 
 static void impl_open_directory (PortableServer_Servant servant,
 				 const CORBA_char      *dir,
@@ -50,13 +50,13 @@ static void impl_save		(PortableServer_Servant servant,
 static void
 gnome_symbol_browser_cobject_class_init (GnomeSymbolBrowserCObjectClass *klass)
 {
-	GtkObjectClass *object_class;
+	GObjectClass *object_class;
 	POA_GNOME_Development_SymbolBrowser__epv *epv = &klass->epv;
 
-	object_class = GTK_OBJECT_CLASS (klass);
+	object_class = G_OBJECT_CLASS (klass);
 	parent_class = gtk_type_class (BONOBO_X_OBJECT_TYPE);
 
-	object_class->destroy = gnome_symbol_browser_cobject_destroy;
+	object_class->finalize = gnome_symbol_browser_cobject_finalize;
 
 	/* EPV initialization */
 	epv->openDirectory = impl_open_directory;
@@ -73,7 +73,7 @@ gnome_symbol_browser_cobject_init (GnomeSymbolBrowserCObject *cobj)
 }
 
 static void
-gnome_symbol_browser_cobject_destroy (GtkObject *object)
+gnome_symbol_browser_cobject_finalize (GObject *object)
 {
 	GnomeSymbolBrowserCObject *cobj;
 	
@@ -81,7 +81,8 @@ gnome_symbol_browser_cobject_destroy (GtkObject *object)
 	g_return_if_fail (GNOME_IS_SYMBOL_BROWSER_COBJECT (object));
 	
 	cobj = GNOME_SYMBOL_BROWSER_COBJECT (object);
-	g_object_unref (cobj->symbol_browser);
+	gtk_widget_unref (GTK_WIDGET(cobj->symbol_browser));
+	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 static void
@@ -94,6 +95,7 @@ impl_open_directory (PortableServer_Servant servant,
 	cobj = GNOME_SYMBOL_BROWSER_COBJECT (bonobo_object_from_servant (servant));
 	gnome_symbol_browser_open_dir (GNOME_SYMBOL_BROWSER (cobj->symbol_browser),
 				       (gchar*) dir);
+	bonobo_object_unref(BONOBO_OBJECT(cobj));
 }
 
 static void
@@ -166,7 +168,7 @@ gnome_symbol_browser_cobject_new (GnomeSymbolBrowser *symbol_browser)
 
 	cobject = GNOME_SYMBOL_BROWSER_COBJECT (g_object_new (GNOME_SYMBOL_BROWSER_COBJECT_TYPE, NULL));
 
-	g_object_ref (symbol_browser);
+	gtk_widget_ref (GTK_WIDGET(symbol_browser));
 	cobject->symbol_browser = GTK_WIDGET (symbol_browser);
 
 	return cobject;

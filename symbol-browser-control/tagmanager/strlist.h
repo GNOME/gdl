@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1999-2001, Darren Hiebert
 *
@@ -41,6 +40,7 @@ extern vString* stringListItem (const stringList *const current, const unsigned 
 extern void stringListDelete (stringList *const current);
 extern boolean stringListHasInsensitive (const stringList *const current, const char *const string);
 extern boolean stringListHas (const stringList *const current, const char *const string);
+extern boolean stringListHasFile (const stringList *const current, const char *const file);
 extern boolean stringListExtensionMatched (const stringList* const list, const char* const extension);
 extern boolean stringListFileMatched (const stringList* const list, const char* const str);
 extern void stringListPrint (const stringList *const current);

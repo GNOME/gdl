@@ -28,6 +28,8 @@
 
 /*#define USE_SHARED_LIBRARY_COMPONENT*/
 
+static glong instance_count;
+
 static void on_format_update (GtkWidget     *widget,
 			      BonoboControl *control)
 {
@@ -50,26 +52,41 @@ on_control_set_frame (BonoboControl *control,
 	Bonobo_UIContainer uic;
 	BonoboUIComponent *component;
 	CORBA_Environment ev;
-
+	Bonobo_ControlFrame frame;
+	
 	CORBA_exception_init (&ev);
+	
+	g_message ("Control frame set called.");
+    
+	frame = bonobo_control_get_control_frame (control, &ev);
+    if (frame != CORBA_OBJECT_NIL) {
 
-	bonobo_control_get_control_frame (control, &ev);
-	g_return_if_fail (!BONOBO_EX (&ev));
+		CORBA_Object_release (frame, &ev);
 
-	uic = bonobo_control_get_remote_ui_container (control, &ev);
-	g_return_if_fail (!BONOBO_EX (&ev));
-	component = bonobo_control_get_ui_component (control);
-	bonobo_ui_component_set_container (component, uic, &ev);
-	g_return_if_fail (!BONOBO_EX (&ev));
-
-	/* FIXME: Merge UI */
-	bonobo_ui_component_add_verb_list_with_data (component, verbs, control);
-
-	bonobo_ui_util_set_ui (component, GNOME_DATADIR,
-			       "gnome-symbol-browser.xml",
-			       "Gnome Symbol Browser", &ev);
-	g_return_if_fail (!BONOBO_EX (&ev));
-
+		component = bonobo_control_get_ui_component (control);
+			
+		uic = bonobo_control_get_remote_ui_container (control, &ev);
+		if (uic == CORBA_OBJECT_NIL)
+			return;
+		g_return_if_fail (!BONOBO_EX (&ev));
+		
+		bonobo_ui_component_set_container (component, uic, &ev);
+		bonobo_ui_component_freeze (component, &ev);
+		
+		bonobo_object_release_unref (uic, &ev);
+		
+		g_return_if_fail (!BONOBO_EX (&ev));
+	
+		/* FIXME: Merge UI */
+		bonobo_ui_component_add_verb_list_with_data (component, verbs, control);
+	
+		bonobo_ui_util_set_ui (component, GNOME_DATADIR,
+					   "gnome-symbol-browser.xml",
+					   "Gnome Symbol Browser", &ev);
+		g_return_if_fail (!BONOBO_EX (&ev));
+		
+		bonobo_ui_component_thaw (component, &ev);
+	}
 	CORBA_exception_free (&ev);
 }
 
@@ -77,7 +94,7 @@ static void
 on_control_destroy (GtkObject          *control,
 		    GnomeSymbolBrowser *symbol_browser)
 {
-	g_object_unref (symbol_browser);
+	g_message("Symbol browser control destroyed: Instance count = %d", --instance_count);
 }
 
 static BonoboObject *
@@ -108,18 +125,19 @@ control_factory (BonoboGenericFactory *factory,
 	event_source = gnome_symbol_browser_get_event_source (GNOME_SYMBOL_BROWSER (symbol_browser));
 	bonobo_object_add_interface (BONOBO_OBJECT (control),
 				     BONOBO_OBJECT (event_source));
-
+	
 	/* UI initialization takes place when the control frame is set */
-	g_signal_connect (control,
+	g_signal_connect (G_OBJECT(control),
 			  "set_frame",
 			  G_CALLBACK (on_control_set_frame),
 			  symbol_browser);
-
-	g_signal_connect (control,
+	g_signal_connect (G_OBJECT(control),
 			  "destroy",
 			  G_CALLBACK (on_control_destroy),
 			  symbol_browser);
-
+	
+	g_message("Symbol browser control created: Instance count = %d", ++instance_count);
+	
 	return BONOBO_OBJECT (control);
 }
 

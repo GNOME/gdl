@@ -1,3 +1,25 @@
+2002-04-12  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* symbol-browser-control/tagmanager/include/*.h,
+	  symbol-browser-control/tagmanager/include/Makefile.am,
+	  symbol-browser-control/tagmanager/*.[h,c],
+	  symbol-browser-control/tagmanager/Makefile.am:
+	  Upgraded tagmanager to 0.6 version. Added/removed many files.
+	  
+	* symbol-browser-control/pixmaps/*.xpm: Removed old icon files.
+	* symbol-browser-control/pixmaps/sv_*.xpm: Added new icon files.
+	
+	* symbol-browser-control/test-symbol-browser.c,
+	  symbol-browser-control/symbol-browser.{c,h},
+	  symbol-browser-control/symbol-browser-cobject.{c,h}:
+	  
+	  Adjusted to the new tagmanager. Added more c types
+	  (enums, typedef etc) and organized all of
+	  them in sub folders to improve visibility and clarity.   
+	  s/GtkObject/GObject/ as the derivative class for BonoboXObject
+	  (clears compiler warnings). Cleaned ref/unref issues with
+	  symbol-browser-control.
+	
 2002-04-10  Naba Kumar <kh_naba@users.sourceforge.net>
 
 	* gdl/gdl-recent.c: Fixed a crash bug with tries to

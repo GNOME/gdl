@@ -1,6 +1,4 @@
 /*
-*   $Id$
-*
 *   Copyright (c) 1998-2001, Darren Hiebert
 *
 *   This source code is released for free distribution under the terms of the
@@ -54,7 +52,9 @@ extern void vStringClear (vString *const string);
 extern vString *vStringNew (void);
 extern void vStringDelete (vString *const string);
 extern void vStringPut (vString *const string, const int c);
-extern void vStringStrip (vString *const string);
+extern void vStringStripNewline (vString *const string);
+extern void vStringStripLeading (vString *const string);
+extern void vStringStripTrailing (vString *const string);
 extern void vStringCatS (vString *const string, const char *const s);
 extern void vStringNCatS (vString *const string, const char *const s, const size_t length);
 extern vString *vStringNewCopy (vString *const string);

@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1998-2001, Darren Hiebert
 *
@@ -41,7 +40,6 @@
 #define getSourceLineNumber()	File.source.lineNumber
 #define isLanguage(lang)	(boolean)((lang) == File.source.language)
 #define isHeaderFile()		File.source.isHeader
-#define getSourceSeekPosition() File.seekPosition
 
 /*  Is the character valid as a character of a C identifier?
  */
@@ -85,7 +83,6 @@ typedef struct sInputFile {
     FILE	*fp;		/* stream used for reading the file */
     unsigned long lineNumber;	/* line number in the input file */
     fpos_t	filePosition;	/* file position of current line */
-	unsigned long seekPosition;
     int		ungetch;	/* a single character that was ungotten */
     boolean	eof;		/* have we reached the end of file? */
     boolean	newLine;	/* will the next character begin a new line? */

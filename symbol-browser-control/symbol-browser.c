@@ -26,17 +26,32 @@
 #include <dirent.h>
 
 #include <tm_project.h>
+#include <tm_tagmanager.h>
 #include "symbol-browser.h"
 #include "../gdl/libgdlmarshal.h"
 #include "../gdl/gdl-icons.h"
-#include "pixmaps/class.xpm"
-#include "pixmaps/struct.xpm"
-#include "pixmaps/member.xpm"
-#include "pixmaps/function.xpm"
-#include "pixmaps/enum.xpm"
-#include "pixmaps/variable.xpm"
-#include "pixmaps/extern_variable.xpm"
-#include "pixmaps/unknown.xpm"
+
+#include "pixmaps/sv_unknown.xpm"
+#include "pixmaps/sv_class.xpm"
+#include "pixmaps/sv_struct.xpm"
+#include "pixmaps/sv_function.xpm"
+#include "pixmaps/sv_macro.xpm"
+#include "pixmaps/sv_variable.xpm"
+#include "pixmaps/sv_typedef.xpm"
+
+#include "pixmaps/sv_enum.xpm"
+#include "pixmaps/sv_enumerator.xpm"
+
+#include "pixmaps/sv_private_fun.xpm"
+#include "pixmaps/sv_protected_fun.xpm"
+#include "pixmaps/sv_public_fun.xpm"
+
+#include "pixmaps/sv_private_var.xpm"
+#include "pixmaps/sv_protected_var.xpm"
+#include "pixmaps/sv_public_var.xpm"
+
+#include "pixmaps/sv_static_fun.xpm"
+#include "pixmaps/sv_static_var.xpm"
 
 /* This variable MUST be synchronized with the TMTagType definition */
 static gchar*
@@ -82,6 +97,7 @@ struct _GnomeSymbolBrowserPriv {
 
 typedef enum {
 	GSB_TREE_FOLDER,
+	GSB_TREE_ROOT,
 	GSB_TREE_SYMBOL,
 } GsbTreeNodeType;
 
@@ -96,8 +112,9 @@ struct _GsbTreeNodeData {
 static void gnome_symbol_browser_class_init (GnomeSymbolBrowserClass *klass);
 static void gnome_symbol_browser_init       (GnomeSymbolBrowser      *sb);
 
-static GdkPixbuf *get_image_for_type        (gchar    *type_name);
-static gchar *get_tag_type_name             (TMTagType type);
+static GdkPixbuf *get_image_for_type_key    (gchar     *type_name);
+static gchar *get_tag_type_name             (TMTagType  type);
+static gchar *get_tag_type_name_key         (TMSymbol  *symbol);
 
 static gboolean destroy_symbol_data_cb (gpointer key,
 					gpointer value,
@@ -221,15 +238,18 @@ static void
 gsb_update_tree (GnomeSymbolBrowser *gsb)
 {
 	GnomeSymbolBrowserPriv *priv;
-
+	TMSymbol *sym, *sym1, *symbol_tree;
+	
 	priv = gsb->priv;
 
 	if (priv->project) {
-		TMSymbol *symbol = TM_PROJECT (priv->project)->symbol_tree;
-		if (symbol) {
+		/* TMSymbol *symbol = TM_PROJECT (priv->project)->symbol_tree; */
+		symbol_tree = tm_symbol_tree_new(priv->project->tags_array);
+
+		if (symbol_tree) {
 			GtkTreePath *root = gtk_tree_path_new_root ();
 
-			gsb_insert_nodes (gsb, NULL, symbol, 0);
+			gsb_insert_nodes (gsb, NULL, symbol_tree, 0);
 
 			/* expand root node. */
 			gtk_tree_view_expand_row (GTK_TREE_VIEW (gsb->priv->tree),
@@ -250,8 +270,9 @@ gsb_insert_nodes (GnomeSymbolBrowser *gsb,
 	GsbTreeNodeData        *node;
 	GtkTreeIter             iter, iter2;
 	GtkTreePath            *path;
-	GSList                 *tmp;
-
+	gint                    i;
+	gboolean                has_children;
+	
 	priv = gsb->priv;
 
 	/*symbol_print (symbol, level);*/
@@ -264,30 +285,56 @@ gsb_insert_nodes (GnomeSymbolBrowser *gsb,
 			gtk_tree_store_set (GTK_TREE_STORE (priv->tree_model),
 					    &iter, 0, node, -1);
 			break;
-		case 1: /* structure, method or variables. */
+		case 1: /* structure, method or variables root nodes. */
+			
+			path = g_hash_table_lookup(priv->symbol_hash, get_tag_type_name_key (symbol));
+		
+			if (!path) {
+				node = gsb_tree_node_data_new (GSB_TREE_ROOT, symbol);
+				gtk_tree_store_append (GTK_TREE_STORE (priv->tree_model), &iter2, parent);
+				gtk_tree_store_set (GTK_TREE_STORE (priv->tree_model), &iter2, 0, node, -1);
+				
+				/* Insert tag type root node into hashtable */
+				path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->tree_model),
+								&iter2);
+				g_hash_table_insert (priv->symbol_hash,
+							 g_strdup (get_tag_type_name_key (symbol)),
+							 path);
+			} else {
+				gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->tree_model), &iter2, path);
+			}
+			parent = &iter2;
+			
 		case 2:
 			node = gsb_tree_node_data_new (GSB_TREE_SYMBOL, symbol);
 			gtk_tree_store_append (GTK_TREE_STORE (priv->tree_model), &iter, parent);
 			gtk_tree_store_set (GTK_TREE_STORE (priv->tree_model), &iter, 0, node, -1);
 
-			/* insert tag typename into hashtable for incremental
-			   updating (when implemented). */
-			path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->tree_model),
-							&iter);
-			g_hash_table_insert (priv->symbol_hash,
-					     g_strdup (get_tag_type_name (symbol->tag->type)),
-					     path);
 			break;
-		case 3:
-		case 4:
 		default:
 			g_warning ("Recursion level in gsb_insert_nodes exceeds 3 !!!");
 			return;
 	}
 
 	/* recurse. */
-	for (tmp = symbol->children; tmp; tmp = g_slist_next (tmp))
-		gsb_insert_nodes (gsb, &iter, TM_SYMBOL (tmp->data), level+1);
+	if (level == 0 ||
+		((symbol->tag) &&
+		(symbol->tag->type != tm_tag_undef_t) &&
+		(symbol->tag->type != tm_tag_function_t) &&
+		(symbol->info.children) &&
+		(symbol->info.children->len > 0)))
+			has_children = TRUE;
+		else
+			has_children = FALSE;
+
+	if (has_children) {
+		for (i=0; i < symbol->info.children->len; ++i) {
+			TMSymbol *sym = TM_SYMBOL(symbol->info.children->pdata[i]);
+			if (!sym || ! sym->tag || !sym->tag->atts.entry.file)
+				continue;
+			gsb_insert_nodes (gsb, &iter, TM_SYMBOL (sym), level+1);
+		}
+	}
 }
 
 static GsbTreeNodeData *
@@ -341,15 +388,21 @@ gsb_tree_node_set_pixbuf (GtkTreeViewColumn *tree_column,
 {
 	GsbTreeNodeData *node;
 	GdkPixbuf *pixbuf = NULL;
+	gchar *type_key;
 
 	gtk_tree_model_get (model, iter, 0, &node, -1);
 
 	switch (node->type) {
 	case GSB_TREE_FOLDER:
-		pixbuf = get_image_for_type ("Folders");
+		pixbuf = get_image_for_type_key ("Folders");
+		break;
+	case GSB_TREE_ROOT:
+		type_key = get_tag_type_name_key(node->symbol);
+		pixbuf = get_image_for_type_key (type_key);
 		break;
 	case GSB_TREE_SYMBOL:
-		pixbuf = get_image_for_type (get_tag_type_name (node->symbol->tag->type));
+		type_key = get_tag_type_name_key(node->symbol);
+		pixbuf = get_image_for_type_key (type_key);
 		break;
 	}
 
@@ -375,6 +428,16 @@ gsb_tree_node_set_text (GtkTreeViewColumn *tree_column,
 	case GSB_TREE_FOLDER:
 		node_text = g_strdup (_("Tags"));
 		break;
+	case GSB_TREE_ROOT:
+		if (node->symbol) {
+			if (node->symbol->tag) {
+				if (node->symbol->tag->type != tm_tag_undef_t)
+					node_text = g_strdup (get_tag_type_name(node->symbol->tag->type));
+				else
+					node_text = g_strdup (_("Undefined"));
+			} else
+				node_text = g_strdup (_("<No Symbol>"));
+		}		break;
 	case GSB_TREE_SYMBOL:
 		if (node->symbol) {
 			if (node->symbol->tag) {
@@ -435,42 +498,164 @@ row_activated_cb (GtkTreeView       *tree_view,
 }
 
 static GdkPixbuf *
-get_image_for_type (gchar *type_name) 
+get_image_for_type_key (gchar *type_name_key) 
 {
 	static GHashTable *icons = NULL;
 	GdkPixbuf *pixbuf;
 
 	if (!icons) {
+		
 		icons = g_hash_table_new (g_str_hash, g_str_equal);
+		
 		pixbuf = gdl_icon_for_folder ();
 		g_hash_table_insert (icons, g_strdup ("Tags"), pixbuf);
+		
 		pixbuf = gdl_icon_for_folder ();
 		g_hash_table_insert (icons, g_strdup ("Folders"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)unknown_xpm);
-		g_hash_table_insert (icons, g_strdup ("Undefined"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)unknown_xpm);
-		g_hash_table_insert (icons, g_strdup ("Unknown"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)class_xpm);
-		g_hash_table_insert (icons, g_strdup ("Classes"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)struct_xpm);
-		g_hash_table_insert (icons, g_strdup ("Structs"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)member_xpm);
-		g_hash_table_insert (icons, g_strdup ("Members"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)function_xpm);
-		g_hash_table_insert (icons, g_strdup ("Functions"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)enum_xpm);
-		g_hash_table_insert (icons, g_strdup ("Enums"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)variable_xpm);
-		g_hash_table_insert (icons, g_strdup ("Variables"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)extern_variable_xpm);
-		g_hash_table_insert (icons, g_strdup ("ExternVars"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_unknown_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_none_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_class_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_class_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_struct_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_struct_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_enum_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_enum_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_enumerator_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_enumerator_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_macro_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_macro_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_function_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_function_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_variable_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_variable_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_typedef_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_typedef_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_private_fun_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_private_fun_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_protected_fun_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_protected_fun_t"), pixbuf);
+		
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_public_fun_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_public_fun_t"), pixbuf);
+
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_private_var_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_private_var_t"), pixbuf);
+
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_protected_var_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_protected_var_t"), pixbuf);
+
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_public_var_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_public_var_t"), pixbuf);
+
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_static_fun_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_static_fun_t"), pixbuf);
+
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_static_var_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_static_var_t"), pixbuf);
+
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_public_fun_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_public_fun_t"), pixbuf);
+
+		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_public_var_xpm);
+		g_hash_table_insert (icons, g_strdup ("sv_public_var_t"), pixbuf);
+
 	}
 
-	pixbuf = g_hash_table_lookup (icons, type_name);
+	pixbuf = g_hash_table_lookup (icons, type_name_key);
 	if (pixbuf)
 		return pixbuf;
 
-	return g_hash_table_lookup (icons, "Unknown");
+	return g_hash_table_lookup (icons, "sv_none_t");
+}
+
+static gchar*
+get_tag_type_name_key (TMSymbol *sym)
+{
+	gchar access;
+	gchar *type;
+
+	if (!sym || !sym->tag || (tm_tag_file_t == sym->tag->type))
+		return "sv_none_t";
+	
+	access = sym->tag->atts.entry.access;
+	switch (sym->tag->type)
+	{
+		case tm_tag_class_t:
+			type = "sv_class_t";
+			break;
+		case tm_tag_struct_t:
+			type = "sv_struct_t";
+			break;
+		case tm_tag_enum_t:
+			type = "sv_enum_t";
+			break;
+		case tm_tag_enumerator_t:
+			type = "sv_enumerator_t";
+			break;
+		case tm_tag_typedef_t:
+			type = "sv_typedef_t";
+			break;
+		case tm_tag_function_t:
+		case tm_tag_prototype_t:
+			if ((sym->info.equiv) && (TAG_ACCESS_UNKNOWN == access))
+				access = sym->info.equiv->atts.entry.access;
+			switch (access)
+			{
+				case TAG_ACCESS_PRIVATE:
+					type = "sv_private_fun_t";
+					break;
+				case TAG_ACCESS_PROTECTED:
+					type = "sv_protected_fun_t";
+					break;
+				case TAG_ACCESS_PUBLIC:
+					type = "sv_public_fun_t";
+					break;
+				default:
+					type = "sv_function_t";
+					break;
+			}
+			break;
+		case tm_tag_member_t:
+			switch (access)
+			{
+				case TAG_ACCESS_PRIVATE:
+					type = "sv_private_var_t";
+					break;
+				case TAG_ACCESS_PROTECTED:
+					type = "sv_protected_var_t";
+					break;
+				case TAG_ACCESS_PUBLIC:
+					type = "sv_public_var_t";
+					break;
+				default:
+					type = "sv_variable_t";
+					break;
+			}
+			break;
+		case tm_tag_externvar_t:
+		case tm_tag_variable_t:
+			type = "sv_variable_t";
+			break;
+		case tm_tag_macro_t:
+		case tm_tag_macro_with_arg_t:
+			type = "sv_macro_t";
+			break;
+		default:
+			type = "sv_none_t";
+			break;
+	}
+	return type;
 }
 
 static gchar *
@@ -598,7 +783,7 @@ gnome_symbol_browser_open_dir (GnomeSymbolBrowser *gsb,
 	gsb->priv->directory = g_strdup (dir);
 
 	/* Open/Create a new project */
-	gsb->priv->project = tm_project_new (dir, "Project");
+	gsb->priv->project = tm_project_new (dir, NULL, NULL, FALSE);
 	tm_project_update (gsb->priv->project, TRUE, TRUE, TRUE);
 	tm_project_save (TM_PROJECT (gsb->priv->project));
 	gsb_update_tree (gsb);

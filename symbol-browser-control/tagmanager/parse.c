@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1996-2001, Darren Hiebert
 *
@@ -44,7 +43,7 @@ tagEntryFunction TagEntryFunction = NULL;
 extern void makeSimpleTag (const vString* const name,
 			   kindOption* const kinds, const int kind)
 {
-    if (kinds [kind].enabled  &&  name != NULL  &&  vStringLength (name) > 0)
+    if (name != NULL  &&  vStringLength (name) > 0)
     {
         tagEntryInfo e;
         initTagEntry (&e, vStringValue (name));

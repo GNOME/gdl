@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1999-2001, Darren Hiebert
 *
@@ -93,7 +92,7 @@ extern stringList* stringListNewFromFile (const char* const fileName)
 	{
 	    vString* const str = vStringNew ();
 	    readLine (str, fp);
-	    vStringStrip (str);
+	    vStringStripTrailing (str);
 	    if (vStringLength (str) > 0)
 		stringListAdd (result, str);
 	    else
@@ -144,7 +143,8 @@ extern void stringListDelete (stringList *const current)
     }
 }
 
-extern boolean stringListHas (const stringList *const current, const char *const str)
+extern boolean stringListHas (const stringList *const current,
+			      const char *const str)
 {
     boolean result = FALSE;
     unsigned int i;
@@ -162,6 +162,17 @@ extern boolean stringListHasInsensitive (const stringList *const current,
     Assert (current != NULL);
     for (i = 0  ;  ! result  &&  i < current->count  ;  ++i)
 	result = (boolean) (stricmp (str, vStringValue (current->list [i]))==0);
+    return result;
+}
+
+extern boolean stringListHasFile (const stringList *const current,
+				  const char *const file)
+{
+    boolean result = FALSE;
+    unsigned int i;
+    Assert (current != NULL);
+    for (i = 0  ;  ! result  &&  i < current->count  ;  ++i)
+	result = (boolean) (isSameFile (file, vStringValue (current->list [i])));
     return result;
 }
 

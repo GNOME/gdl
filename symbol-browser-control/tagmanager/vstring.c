@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1998-2001, Darren Hiebert
 *
@@ -107,16 +106,16 @@ extern void vStringCatS (vString *const string, const char *const s)
 
 extern vString *vStringNewCopy (vString *const string)
 {
-    vString *new = vStringNew ();
-    vStringCatS (new, string->buffer);
-    return new;
+    vString *vs = vStringNew ();
+    vStringCatS (vs, string->buffer);
+    return vs;
 }
 
 extern vString *vStringNewInit (const char *const s)
 {
-    vString *new = vStringNew ();
-    vStringCatS (new, s);
-    return new;
+    vString *vs = vStringNew ();
+    vStringCatS (vs, s);
+    return vs;
 }
 
 extern void vStringNCatS (vString *const string, const char *const s,
@@ -134,12 +133,38 @@ extern void vStringNCatS (vString *const string, const char *const s,
     vStringTerminate (string);
 }
 
+/*  Strip trailing newline from string.
+ */
+extern void vStringStripNewline (vString *const string)
+{
+    const size_t final = string->length - 1;
+    if (string->buffer [final] == '\n')
+    {
+	string->buffer [final] = '\0';
+	string->length--;
+    }
+}
+
+/*  Strip leading white space from string.
+ */
+extern void vStringStripLeading (vString *const string)
+{
+    while (isspace ((int) string->buffer [0]) && string->length > 0)
+    {
+	size_t i;
+	for (i = 1  ;  i < string->length  ;  ++i)
+	    string->buffer [i - 1] = string->buffer [i];
+	--string->length;
+	string->buffer [string->length] = '\0';
+    }
+}
+
 /*  Strip trailing white space from string.
  */
-extern void vStringStrip (vString *const string)
+extern void vStringStripTrailing (vString *const string)
 {
-    while (string->length > 0  &&
-	   isspace ((int) string->buffer [string->length - 1]))
+    while (isspace ((int) string->buffer [string->length - 1]) &&
+	   string->length > 0)
     {
 	string->length--;
 	string->buffer [string->length] = '\0';

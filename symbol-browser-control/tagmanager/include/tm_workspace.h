@@ -1,3 +1,12 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #ifndef TM_WORKSPACE_H
 #define TM_WORKSPACE_H
 
@@ -47,7 +56,7 @@ typedef struct _TMWorkspace
  a workspace is created. Subsequent calls to the function will return the
  created workspace.
 */
-const TMWorkspace *tm_get_workspace();
+const TMWorkspace *tm_get_workspace(void);
 
 /*! Adds a work object (source file or project) to the workspace.
  \param work_object The work object to add to the project.
@@ -60,10 +69,12 @@ gboolean tm_workspace_add_object(TMWorkObject *work_object);
  overloaded version of tm_work_object_find().
  \param work_object Pointer to the workspace.
  \param file_name The name of the file to search.
+ \param name_only If you want to match just the name and not the full path.
  \return Pointer to the work object matching the file name (NULL if not found).
  \sa tm_work_object_find(), tm_project_find_file().
 */
-TMWorkObject *tm_workspace_find_object(TMWorkObject *work_object, const char *file_name);
+TMWorkObject *tm_workspace_find_object(TMWorkObject *work_object, const char *file_name
+  ,gboolean name_only);
 
 /*! Removes a member object from the workspace if it exists.
  \param work_object Pointer to the work object to be removed.
@@ -97,7 +108,7 @@ gboolean tm_workspace_create_global_tags(const char *pre_process, const char *in
  all member work objects. You shouldn't have to call this directly since
  this is called automatically by tm_workspace_update().
 */
-void tm_workspace_recreate_tags_array();
+void tm_workspace_recreate_tags_array(void);
 
 /*! Calls tm_work_object_update() for all workspace member work objects.
  Use if you want to globally refresh the workspace.

@@ -1,3 +1,15 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
+#include <stdio.h>
+#include <limits.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 
@@ -5,6 +17,19 @@
 #include "tm_work_object.h"
 
 static GPtrArray *s_work_object_subclasses = NULL;
+
+gchar *tm_get_real_path(const gchar *file_name)
+{
+	if (file_name)
+	{
+		gchar path[PATH_MAX+1];
+		memset(path, '\0', PATH_MAX+1);
+		realpath(file_name, path);
+		return g_strdup(path);
+	}
+	else
+		return NULL;
+}
 
 guint tm_work_object_register(GFreeFunc free_func, TMUpdateFunc update_func, TMFindFunc find_func)
 {
@@ -57,7 +82,12 @@ gboolean tm_work_object_init(TMWorkObject *work_object, guint type, const char *
 		return FALSE;
 	}
 	work_object->type = type;
-	work_object->file_name = g_strdup(file_name);
+	work_object->file_name = tm_get_real_path(file_name);
+	work_object->short_name = strrchr(work_object->file_name, '/');
+	if (work_object->short_name)
+		++ work_object->short_name;
+	else
+		work_object->short_name = work_object->file_name;
 	work_object->parent = NULL;
 	work_object->analyze_time = 0;
 	work_object->tags_array = NULL;
@@ -125,7 +155,7 @@ void tm_work_object_write_tags(TMWorkObject *work_object, FILE *file, guint attr
 {
 	if (NULL != work_object->tags_array)
 	{
-		int i;
+		guint i;
 		for (i=0; i < work_object->tags_array->len; ++i)
 			tm_tag_write((TMTag *) g_ptr_array_index(work_object->tags_array, i)
 			  , file, (TMTagAttrType) attrs);
@@ -147,7 +177,8 @@ gboolean tm_work_object_update(TMWorkObject *work_object, gboolean force
 	return FALSE;
 }
 
-TMWorkObject *tm_work_object_find(TMWorkObject *work_object, const char *file_name)
+TMWorkObject *tm_work_object_find(TMWorkObject *work_object, const char *file_name
+  , gboolean name_only)
 {
 	if ((NULL != work_object) && (work_object->type > 0) &&
 		  (work_object->type < s_work_object_subclasses->len) &&
@@ -157,13 +188,31 @@ TMWorkObject *tm_work_object_find(TMWorkObject *work_object, const char *file_na
 		  ((TMWorkObjectClass *)s_work_object_subclasses->pdata[work_object->type])->find_func;
 		if (NULL == find_func)
 		{
-			if (0 == strcmp(work_object->file_name, file_name))
-				return work_object;
+			if (name_only)
+			{
+				const char *short_name = strrchr(file_name, '/');
+				if (short_name)
+					++ short_name;
+				else
+					short_name = file_name;
+				if (0 == strcmp(work_object->short_name, short_name))
+					return work_object;
+				else
+					return NULL;
+			}
 			else
-				return NULL;
+			{
+				char *path = tm_get_real_path(file_name);
+				int cmp = strcmp(work_object->file_name, file_name);
+				g_free(path);
+				if (0 == cmp)
+					return work_object;
+				else
+					return NULL;
+			}
 		}
 		else
-			return find_func(work_object, file_name);
+			return find_func(work_object, file_name, name_only);
 	}
 	return NULL;
 }

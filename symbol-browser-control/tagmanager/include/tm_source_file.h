@@ -1,3 +1,12 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #ifndef TM_SOURCE_FILE_H
 #define TM_SOURCE_FILE_H
 
@@ -47,6 +56,7 @@ typedef struct _TMSourceFile
 {
 	TMWorkObject work_object; /*!< The base work object */
 	langType lang; /*!< Programming language used */
+	gboolean inactive; /*!< Whether this file should be scanned for tags */
 } TMSourceFile;
 
 /*! Initializes a TMSourceFile structure from a file name. */

@@ -1,4 +1,14 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #include <stdio.h>
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -15,19 +25,22 @@
 guint source_file_class_id = 0;
 static TMSourceFile *current_source_file = NULL;
 
-gboolean tm_source_file_init(TMSourceFile *source_file, const char *file_name, gboolean update)
+gboolean tm_source_file_init(TMSourceFile *source_file, const char *file_name
+  , gboolean update)
 {
-#ifdef TM_DEBUG
-	g_message("Source File init: %s", file_name);
-#endif
-
 	if (0 == source_file_class_id)
 		source_file_class_id = tm_work_object_register(tm_source_file_free
 		  , tm_source_file_update, NULL);
+
+#ifdef DEBUG
+	g_message("Source File init: %s", file_name);
+#endif
+
 	if (FALSE == tm_work_object_init(&(source_file->work_object),
 		  source_file_class_id, file_name, FALSE))
 		return FALSE;
 	source_file->lang = LANG_AUTO;
+	source_file->inactive = FALSE;
 	if (update)
 		tm_source_file_update(TM_WORK_OBJECT(source_file), FALSE, FALSE, FALSE);
 	return TRUE;
@@ -46,7 +59,7 @@ TMWorkObject *tm_source_file_new(const char *file_name, gboolean update)
 
 void tm_source_file_destroy(TMSourceFile *source_file)
 {
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Destroying source file: %s", source_file->work_object.file_name);
 #endif
 
@@ -69,7 +82,7 @@ void tm_source_file_free(gpointer source_file)
 
 gboolean tm_source_file_parse(TMSourceFile *source_file)
 {
-	const char *file_name = source_file->work_object.file_name;
+	const char *file_name;
 	gboolean status = TRUE;
 
 	if ((NULL == source_file) || (NULL == source_file->work_object.file_name))
@@ -78,10 +91,10 @@ gboolean tm_source_file_parse(TMSourceFile *source_file)
 		return FALSE;
 	}
 
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Parsing %s", source_file->work_object.file_name);
 #endif
-
+	file_name = source_file->work_object.file_name;
 	if (NULL == LanguageTable)
 	{
 		initializeParsing();
@@ -93,14 +106,20 @@ gboolean tm_source_file_parse(TMSourceFile *source_file)
 	if (LANG_AUTO == source_file->lang)
 		source_file->lang = getFileLanguage (file_name);
 	if (source_file->lang == LANG_IGNORE)
+	{
+#ifdef DEBUG
 		g_warning("ignoring %s (unknown language)\n", file_name);
+#endif
+	}
 	else if (! LanguageTable [source_file->lang]->enabled)
+	{
+#ifdef DEBUG
 		g_warning("ignoring %s (language disabled)\n", file_name);
+#endif
+	}
 	else
 	{
 		int passCount = 0;
-		if (LanguageTable[source_file->lang]->initialize != NULL)
-			LanguageTable[source_file->lang]->initialize(source_file->lang);
 		while ((TRUE == status) && (passCount < 3))
 		{
 			if (source_file->work_object.tags_array)
@@ -137,7 +156,7 @@ int tm_source_file_tags(const tagEntryInfo *tag)
 }
 
 gboolean tm_source_file_update(TMWorkObject *source_file, gboolean force
-  , gboolean recurse, gboolean update_parent)
+  , gboolean __unused__ recurse, gboolean update_parent)
 {
 	if (force || (tm_work_object_is_changed(source_file)))
 	{
@@ -155,11 +174,10 @@ gboolean tm_source_file_update(TMWorkObject *source_file, gboolean force
 gboolean tm_source_file_write(TMWorkObject *source_file, FILE *fp, guint attrs)
 {
 	TMTag *tag;
-	int i;
+	guint i;
 
 	if (NULL != source_file)
 	{
-		tm_source_file_update(source_file, FALSE, FALSE, TRUE);
 		if (NULL != (tag = tm_tag_new(TM_SOURCE_FILE(source_file), NULL)))
 		{
 			tm_tag_write(tag, fp, tm_tag_attr_max_t);

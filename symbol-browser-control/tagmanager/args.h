@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1999-2001, Darren Hiebert
 *

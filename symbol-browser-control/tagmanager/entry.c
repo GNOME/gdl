@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1996-2001, Darren Hiebert
 *
@@ -818,7 +817,6 @@ extern void initTagEntry (tagEntryInfo *const e, const char *const name)
     e->filePosition	= getInputFilePosition ();
     e->sourceFileName	= getSourceFileTagPath ();
     e->name		= name;
-	e->seekPosition = getSourceSeekPosition();
 }
 
 /* vi:set tabstop=8 shiftwidth=4: */

@@ -1,3 +1,12 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #ifndef TM_FILE_ENTRY_H
 #define TM_FILE_ENTRY_H
 
@@ -48,6 +57,11 @@ typedef void (*TMFileEntryFunc) (TMFileEntry *entry, gpointer user_data
 
 /*! Convinience casting macro */
 #define TM_FILE_ENTRY(E) ((TMFileEntry *) (E))
+
+/*! Function that compares two file entries on name and returns the
+ difference
+*/
+gint tm_file_entry_compare(TMFileEntry *e1, TMFileEntry *e2);
 
 /*! Function to create a new file entry structure.
 \param path Path to the file for which the entry is to be created.

@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 1998-2001, Darren Hiebert
 *
@@ -51,30 +50,6 @@ typedef struct sTagFields {
     const char *const *value;	/* list of values for extension flags */
 } tagFields;
 
-/*  Describes the type of tag being generated.
- */
-typedef enum eTagType {
-    TAG_UNDEFINED,
-    TAG_CLASS,			/* class name */
-    TAG_ENUM,			/* enumeration name */
-    TAG_ENUMERATOR,		/* enumerator (enumeration value) */
-    TAG_FIELD,			/* field (Java) */
-    TAG_FUNCTION,		/* function definition */
-    TAG_INTERFACE,		/* interface declaration */
-    TAG_MEMBER,			/* structure, class or interface member */
-    TAG_METHOD,			/* method declaration */
-    TAG_NAMESPACE,		/* namespace name */
-    TAG_PACKAGE,		/* package name */
-    TAG_PROTOTYPE,		/* function prototype or declaration */
-    TAG_STRUCT,			/* structure name */
-    TAG_TYPEDEF,		/* typedef name */
-    TAG_UNION,			/* union name */
-    TAG_VARIABLE,		/* variable definition */
-    TAG_EXTERN_VAR,		/* external variable declaration */
-	TAG_MACRO,			/* #define s */
-    TAG_COUNT			/* must be last */
-} tagType;
-
 /*  Information about the current tag candidate.
  */
 typedef struct sTagEntryInfo {
@@ -98,7 +73,7 @@ typedef struct sTagEntryInfo {
 	const char *arglist; /* Argument list for functions and macros with arguments */
 	const char *varType;
     } extensionFields;		/* list of extension fields*/
-	tagType type;
+	int type;
 	unsigned long seekPosition;
 } tagEntryInfo;
 

@@ -1,3 +1,12 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #ifndef TM_SYMBOL_H
 #define TM_SYMBOL_H
 
@@ -21,7 +30,11 @@ typedef struct _TMSymbol
 {
 	TMTag *tag; /*!< The tag corresponding to this symbol */
 	struct _TMSymbol *parent; /*!< Parent class/struct for functions/variables */
-	GSList *children; /*!< List of member functions/variables for classes/structs */
+	union
+	{
+		GPtrArray *children; /*!< Array of child symbols */
+		TMTag *equiv; /*!< Prototype tag for functions */
+	} info;
 } TMSymbol;
 
 #define TM_SYMBOL(S) ((TMSymbol *) (S))
@@ -48,7 +61,13 @@ tm_symbol_tree_free() and tm_symbol_tree_new().
 TMSymbol *tm_symbol_tree_update(TMSymbol *root, GPtrArray *tags);
 
 /*! Symbol comparison function - can be used for sorting purposes. */
-gint tm_symbol_compare(gconstpointer p1, gconstpointer p2);
+int tm_symbol_compare(const void *p1, const void *p2);
+
+/*! Tag comparison function tailor made for creating symbol view */
+int tm_symbol_tag_compare(const TMTag **t1, const TMTag **t2);
+
+/*! Prints the symbol hierarchy to standard error */
+void tm_symbol_print(TMSymbol *sym, guint level);
 
 #ifdef __cplusplus
 }

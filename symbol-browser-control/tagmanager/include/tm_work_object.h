@@ -1,3 +1,12 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #ifndef TM_WORK_OBJECT_H
 #define TM_WORK_OBJECT_H
 
@@ -25,7 +34,8 @@ extern "C"
 typedef struct _TMWorkObject
 {
 	guint type; /*!< The type of object. Can be a source file or a project */
-	char *file_name; /*!< File name of the work object */
+	char *file_name; /*!< Full file name (inc. path) of the work object */
+	char *short_name; /*!< Just the name of the file (without the path) */
 	struct _TMWorkObject *parent;
 	time_t analyze_time; /*!< Time when the object was last analyzed */
 	GPtrArray *tags_array; /*!< Tags obtained by parsing the object */
@@ -47,7 +57,8 @@ typedef gboolean (*TMUpdateFunc) (TMWorkObject *work_object, gboolean force
  to the file name if the file is part of the object, and NULL otherwise.
  \sa tm_work_object_find()
 */
-typedef TMWorkObject *(*TMFindFunc) (TMWorkObject *work_object, const char *file_name);
+typedef TMWorkObject *(*TMFindFunc) (TMWorkObject *work_object, const char *file_name
+  , gboolean name_only);
 
 /*!
  Contains pointers to functions necessary to handle virtual function calls
@@ -65,6 +76,15 @@ typedef struct _TMWorkObjectClass
 #define TM_OBJECT_TYPE(work_object) ((TMWorkObject *) work_object)->type /*!< Type of the work object */
 #define TM_OBJECT_FILE(work_object) ((TMWorkObject *) work_object)->file_name /*!< File name of the work object */
 #define TM_OBJECT_TAGS(work_object) ((TMWorkObject *) work_object)->tags_array /*!< Tag array of the work object */
+
+/*!
+ Given a file name, returns a newly allocated string containing the realpath()
+ of the file. However, unlike realpath, a reasonable guess is returned even if
+ the file does not exist, which may often be the case
+ \param file_name The original file_name
+ \return A newly allocated string containing the real path to the file
+*/
+gchar *tm_get_real_path(const gchar *file_name);
 
 /*!
  Initializes the work object structure. This function should be called by the
@@ -161,7 +181,8 @@ gboolean tm_work_object_update(TMWorkObject *work_object, gboolean force
  calls the registered find function of teh derived object.
  \sa TMFindFunc
 */
-TMWorkObject *tm_work_object_find(TMWorkObject *work_object, const char *file_name);
+TMWorkObject *tm_work_object_find(TMWorkObject *work_object, const char *file_name
+  , gboolean name_only);
 
 #ifdef __cplusplus
 }

@@ -1,3 +1,12 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #ifndef TM_TAG_H
 #define TM_TAG_H
 
@@ -54,10 +63,11 @@ typedef enum
 	tm_tag_union_t = 8192, /*!< Union */
 	tm_tag_variable_t = 16384, /*!< Variable */
 	tm_tag_externvar_t = 32768, /*!< Extern or forward declaration */
-	tm_tag_macro_t = 65536, /*!< Macro (without arguments) */
+	tm_tag_macro_t = 65536, /*!<  Macro (without arguments) */
 	tm_tag_macro_with_arg_t = 131072, /*!< Parameterized macro */
 	tm_tag_file_t = 262144, /*!< File (Pseudo tag) */
-	tm_tag_max_t = 524287 /*!< Maximum value of TMTagType */
+	tm_tag_other_t = 524288, /*!< Other (non C/C++/Java tag) */
+	tm_tag_max_t = 1048575 /*!< Maximum value of TMTagType */
 } TMTagType;
 
 /*!
@@ -75,15 +85,31 @@ typedef enum
 	tm_tag_attr_type_t = 2, /*!< Tag Type */
 	tm_tag_attr_file_t = 4, /*!< File in which tag exists */
 	tm_tag_attr_line_t = 8, /*!< Line number of tag */
-	tm_tag_attr_pos_t = 16, /*!< Byte position of tag in the file */
+	tm_tag_attr_pos_t = 16, /*!< Byte position of tag in the file (Obsolete) */
 	tm_tag_attr_scope_t = 32, /*!< Scope of the tag */
 	tm_tag_attr_inheritance_t = 64, /*!< Parent classes */
 	tm_tag_attr_arglist_t = 128, /*!< Argument list */
 	tm_tag_attr_local_t = 256, /*!< If it has local scope */
 	tm_tag_attr_time_t = 512, /*!< Modification time (File tag only) */
 	tm_tag_attr_vartype_t = 1024, /*!< Variable Type */
-	tm_tag_attr_max_t = 2047 /*!< Maximum value */
+	tm_tag_attr_access_t = 2048, /*!< Access type (public/protected/private) */
+	tm_tag_attr_impl_t = 4096, /*!< Implementation (e.g. virtual) */
+	tm_tag_attr_lang_t = 8192, /*!< Language (File tag only) */
+	tm_tag_attr_inactive_t = 16384, /*!< Inactive file (File tag only) */
+	tm_tag_attr_max_t = 32767 /*!< Maximum value */
 } TMTagAttrType;
+
+/*! Tag access type for C++/Java member functions and variables */
+#define TAG_ACCESS_PUBLIC 'p' /*!< Public member */
+#define TAG_ACCESS_PROTECTED 'r' /*!< Protected member */
+#define TAG_ACCESS_PRIVATE 'v' /*!< Private member */
+#define TAG_ACCESS_FRIEND 'f' /*!< Friend members/functions */
+#define TAG_ACCESS_DEFAULT 'd' /*!< Default access (Java) */
+#define TAG_ACCESS_UNKNOWN 'x' /*!< Unknown access type */
+
+/*! Tag implementation type for functions */
+#define TAG_IMPL_VIRTUAL 'v' /*!< Virtual implementation */
+#define TAG_IMPL_UNKNOWN 'x' /*!< Unknown implementation */
 
 /*!
  This structure holds all information about a tag, including the file
@@ -103,18 +129,20 @@ typedef struct _TMTag
 		{
 			TMSourceFile *file; /*!< File in which the tag occurs */
 			gulong line; /*!< Line number of the tag */
-			gulong pos; /*!< Seek position of the tag */
 			gboolean local; /*!< Is the tag of local scope */
 			char *arglist; /*!< Argument list (functions/prototypes/macros) */
 			char *scope; /*!< Scope of tag */
 			char *inheritance; /*!< Parent classes */
 			char *var_type; /*!< Variable type (maps to struct for typedefs) */
+			char access; /*!< Access type (public/protected/private/etc.) */
+			char impl; /*!< Implementation (e.g. virtual) */
 		} entry;
 		/*! These are pseudo tag attributes representing a file */
 		struct
 		{
 			time_t timestamp; /*!< Time of parsing of the file */
 			langType lang; /*!< Programming language of the file */
+			gboolean inactive; /*!< Whether this file is to be parsed */
 		} file;
 	} atts;
 } TMTag;
@@ -272,6 +300,23 @@ void tm_tag_destroy(TMTag *tag);
  \param tag Pointer to a TMTag structure
 */
 void tm_tag_free(gpointer tag);
+
+/*!
+  Prints information about a tag to the given file pointer.
+  \param tag The tag whose info is required.
+  \fp The file pointer of teh file to print the info to.
+*/
+void tm_tag_print(TMTag *tag, FILE *fp);
+
+/*!
+  Prints info about all tags in the array to the given file pointer.
+*/
+void tm_tags_array_print(GPtrArray *tags, FILE *fp);
+
+/*!
+  Returns the depth of tag scope (useful for finding tag hierarchy
+*/
+gint tm_tag_scope_depth(const TMTag *t);
 
 #ifdef __cplusplus
 }

@@ -1,10 +1,17 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
 #ifndef TM_PROJECT_H
 #define TM_PROJECT_H
 
 #include <glib.h>
 #include "tm_work_object.h"
-#include "tm_source_file.h"
-#include "tm_symbol.h"
 
 /*! \file
  The TMProject structure and associated functions can be used to group together
@@ -40,30 +47,38 @@ extern "C"
 typedef struct _TMProject
 {
 	TMWorkObject work_object; /*!< The parent work object */
-	char *project_name; /*!< The name of the project */
+	char *dir; /*!< Top project directory */
+	const char **sources; /*!< Extensions for source files (wildcards, NULL terminated) */
+	const char **ignore; /*!< File patters to ignore */
 	GPtrArray *file_list; /*!< Array of TMSourceFile present in the project */
-	TMSymbol *symbol_tree; /*!< Root of the symbol tree */
 } TMProject;
 
-/*! Initializes a TMSourceFile structure from specified parameters
+/*! Initializes a TMProject structure from specified parameters
  \param project The TMProject structure to initialize.
- \param file_name The file name of the project database.
- \param project_name The name of the project.
+ \param dir The top level directory of the project.
+ \param sources The source files you are interested in (as wildcards).
+ \param ignore The files you are not interested in (as wildcards).
+ \param force Ignore cache (do full-scan of project directory)
  */
-gboolean tm_project_init(TMProject *project, const char *file_name,
-  const char *project_name);
+gboolean tm_project_init(TMProject *project, const char *dir
+  , const char **sources, const char **ignore, gboolean force);
 
 /*! Initializes a TMProject structure with the given parameters and
- returns a pointer to it. If the project file exists, loads the project
- automatically. If the passed file_name is a directory, a default project
- file 'tm.tags' is looked for inside the directory. If such a file is not
- found, it assumes autoscan mode and imports all C/C++ and Java source files
- recursively in the directory.
- \param file_name Name of the project file (or the top level directory).
- \param project_name Name of the project (Can be NULL).
+ returns a pointer to it. The function looks for a file called 'tm.tags'
+ inside the top level directory to load the project. If such a file is not
+ found, it assumes autoscan mode and imports all source files
+ by recursively scanning the directory for Makefile.am and importing them.
+ If top Makefile.am is missing as well, it simply imports all source files.
+ \param dir The top level directory for the project.
+ \param sources The list of source extensions. This should be a NULL terminated
+ list of wildcards for the source types that you want to get displayed
+ in the source tree. If the default list is acceptable, use NULL.
+ \param ignore A NULL terminated list of wildcards for files to ignore
+ \param force Ignore cache if present (treat as new project)
  \sa tm_project_init() , tm_project_autoscan()
 */
-TMWorkObject *tm_project_new(const char *file_name, const char *project_name);
+TMWorkObject *tm_project_new(const char *dir, const char **sources
+  , const char **ignore, gboolean force);
 
 /*! Destroys the contents of the project. Note that the tags are owned by the
  source files of the project, so they are also destroyed as each source file
@@ -102,10 +117,11 @@ gboolean tm_project_save(TMProject *project);
  and pushing it at the end of the project's file list.
  \param project The project to add the file to.
  \param file_name Full path of the file to be added to the project.
- \param update Whether the tag image for project and workspace should be updated.
+ \param update Whether to update tags image after addition.
  \return TRUE on success, FALSE on failure.
 */
-gboolean tm_project_add_file(TMProject *project, const char *file_name, gboolean update);
+gboolean tm_project_add_file(TMProject *project, const char *file_name
+  , gboolean update);
 
 /*! Finds a file in a project. If the file exists, returns a pointer to it,
  else returns NULL. This is the overloaded function TMFindFunc for TMProject.
@@ -113,9 +129,11 @@ gboolean tm_project_add_file(TMProject *project, const char *file_name, gboolean
  called by tm_work_object_find().
  \param project The project in which the file is to be searched.
  \param The name of the file to be searched.
+ \param name_only Whether the comparison is to be only on name (not full path)
  \return Pointer the file (TMSourceFile) in the project. NULL if the file was not found.
 */
-TMWorkObject *tm_project_find_file(TMWorkObject *work_object, const char *file_name);
+TMWorkObject *tm_project_find_file(TMWorkObject *work_object, const char *file_name
+  , gboolean name_only);
 
 /*! Destroys a member object and removes it from the project list.
  \param project The project from the file is to be removed.
@@ -150,7 +168,12 @@ void tm_project_recreate_tags_array(TMProject *project);
  if the directory is a valid top-level project directory, i.e, if the
  directory contains one of Makefile.am, Makefile.in or Makefile.
 */
-gboolean tm_project_autoscan(TMProject *project, const char *dir_name);
+gboolean tm_project_autoscan(TMProject *project);
+
+/*! Returns TRUE if the passed file is a source file as matched by the project
+  source extensions (project->extn)
+*/
+gboolean tm_project_is_source_file(TMProject *project, const char *file_name);
 
 /*! Contains the id obtained by registering the TMProject class as a child of
  TMWorkObject.

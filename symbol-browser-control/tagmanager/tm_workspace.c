@@ -1,3 +1,14 @@
+/*
+*
+*   Copyright (c) 2001-2002, Biswapesh Chattopadhyay
+*
+*   This source code is released for free distribution under the terms of the
+*   GNU General Public License.
+*
+*/
+
+#include "general.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,10 +21,10 @@
 static TMWorkspace *theWorkspace = NULL;
 guint workspace_class_id = 0;
 
-static gboolean tm_create_workspace()
+static gboolean tm_create_workspace(void)
 {
 	char *file_name = g_strdup_printf("%s/%d", P_tmpdir, getpid());
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Workspace created: %s", file_name);
 #endif
 
@@ -38,12 +49,12 @@ static gboolean tm_create_workspace()
 
 void tm_workspace_free(gpointer workspace)
 {
-	int i;
+	guint i;
 
 	if (workspace != theWorkspace)
 		return;
 
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Workspace destroyed");
 #endif
 
@@ -68,7 +79,7 @@ void tm_workspace_free(gpointer workspace)
 	}
 }
 
-const TMWorkspace *tm_get_workspace()
+const TMWorkspace *tm_get_workspace(void)
 {
 	if (NULL == theWorkspace)
 		tm_create_workspace();
@@ -88,7 +99,7 @@ gboolean tm_workspace_add_object(TMWorkObject *work_object)
 
 gboolean tm_workspace_remove_object(TMWorkObject *w, gboolean free)
 {
-	int i;
+	guint i;
 	if ((NULL == theWorkspace) || (NULL == theWorkspace->work_objects)
 		  || (NULL == w))
 		return FALSE;
@@ -99,7 +110,7 @@ gboolean tm_workspace_remove_object(TMWorkObject *w, gboolean free)
 			if (free)
 				tm_work_object_free(w);
 			g_ptr_array_remove_index_fast(theWorkspace->work_objects, i);
-			tm_workspace_update(TM_WORK_OBJECT(theWorkspace), TRUE, TRUE, FALSE);
+			tm_workspace_update(TM_WORK_OBJECT(theWorkspace), TRUE, FALSE, FALSE);
 			return TRUE;
 		}
 	}
@@ -127,7 +138,7 @@ gboolean tm_workspace_create_global_tags(const char *pre_process, const char *in
   , const char *tags_file)
 {
 	char *command;
-	int i;
+	guint i;
 	FILE *fp;
 	TMWorkObject *source_file;
 	GPtrArray *tags_array;
@@ -143,7 +154,9 @@ gboolean tm_workspace_create_global_tags(const char *pre_process, const char *in
 	  do \
 	  	echo \"#include \\\"$file\\\"\" >>%s; \
 	  done", includes, temp_file);
+#ifdef DEBUG
 	g_warning("Executing: %s", command);
+#endif
 	if (0 != system(command))
 	{
 		g_free(command);
@@ -152,7 +165,9 @@ gboolean tm_workspace_create_global_tags(const char *pre_process, const char *in
 	}
 	g_free(command);
 	command = g_strdup_printf("%s %s >%s", pre_process, temp_file, temp_file2);
+#ifdef DEBUG
 	g_warning("Executing: %s", command);
+#endif
 	system(command);
 	g_free(command);
 	unlink(temp_file);
@@ -199,35 +214,34 @@ gboolean tm_workspace_create_global_tags(const char *pre_process, const char *in
 	return TRUE;
 }
 
-TMWorkObject *tm_workspace_find_object(TMWorkObject *work_object, const char *file_name)
+TMWorkObject *tm_workspace_find_object(TMWorkObject *work_object, const char *file_name
+  , gboolean name_only)
 {
 	TMWorkObject *w = NULL;
-	int i;
+	guint i;
 
 	if (work_object != TM_WORK_OBJECT(theWorkspace))
 		return NULL;
 	if ((NULL == theWorkspace) || (NULL == theWorkspace->work_objects)
 		|| (0 == theWorkspace->work_objects->len))
 		return NULL;
-	if (0 == strcmp(theWorkspace->work_object.file_name, file_name))
-		return TM_WORK_OBJECT(theWorkspace);
 	for (i = 0; i < theWorkspace->work_objects->len; ++i)
 	{
 		if (NULL != (w = tm_work_object_find(TM_WORK_OBJECT(theWorkspace->work_objects->pdata[i])
-			  , file_name)))
+			  , file_name, name_only)))
 			return w;
 	}
 	return NULL;
 }
 
-void tm_workspace_recreate_tags_array()
+void tm_workspace_recreate_tags_array(void)
 {
-	int i, j;
+	guint i, j;
 	TMWorkObject *w;
 	TMTagAttrType sort_attrs[] = { tm_tag_attr_name_t, tm_tag_attr_file_t
 		, tm_tag_attr_scope_t, tm_tag_attr_type_t, 0};
 
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Recreating workspace tags array");
 #endif
 
@@ -238,13 +252,13 @@ void tm_workspace_recreate_tags_array()
 	else
 		theWorkspace->work_object.tags_array = g_ptr_array_new();
 
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Total %d objects", theWorkspace->work_objects->len);
 #endif
 	for (i=0; i < theWorkspace->work_objects->len; ++i)
 	{
 		w = TM_WORK_OBJECT(theWorkspace->work_objects->pdata[i]);
-#ifdef TM_DEBUG
+#ifdef DEBUG
 		g_message("Adding tags of %s", w->file_name);
 #endif
 		if ((NULL != w) && (NULL != w->tags_array) && (w->tags_array->len > 0))
@@ -256,19 +270,19 @@ void tm_workspace_recreate_tags_array()
 			}
 		}
 	}
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Total: %d tags", theWorkspace->work_object.tags_array->len);
 #endif
 	tm_tags_sort(theWorkspace->work_object.tags_array, sort_attrs, TRUE);
 }
 
 gboolean tm_workspace_update(TMWorkObject *workspace, gboolean force
-  , gboolean recurse, gboolean update_parent)
+  , gboolean recurse, gboolean __unused__ update_parent)
 {
-	int i;
+	guint i;
 	gboolean update_tags = force;
 	
-#ifdef TM_DEBUG
+#ifdef DEBUG
 	g_message("Updating workspace");
 #endif
 
@@ -313,13 +327,15 @@ const GPtrArray *tm_workspace_find(const char *name, int type, TMTagAttrType *at
 	for (i = 0; i < 2; ++i)
 	{
 		match = matches[i];
-		if (match)
+		if ((match) && (*match))
 		{
 			while (TRUE)
 			{
 				if (type & (*match)->type)
 					g_ptr_array_add(tags, *match);
 				++ match;
+				if (NULL == *match)
+					break;
 				if (partial)
 				{
 					if (0 != strncmp((*match)->name, name, len))

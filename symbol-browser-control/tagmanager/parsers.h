@@ -1,5 +1,4 @@
 /*
-*   $Id$
 *
 *   Copyright (c) 2000-2001, Darren Hiebert
 *
@@ -18,7 +17,29 @@
 #define PARSER_LIST \
     CParser, \
     CppParser, \
-    JavaParser
+    JavaParser, \
+    AsmParser, \
+    AspParser, \
+    AwkParser, \
+    BetaParser, \
+    CobolParser, \
+    EiffelParser, \
+    FortranParser, \
+    LispParser, \
+    LuaParser, \
+    MakefileParser, \
+    PascalParser, \
+    PerlParser, \
+    PhpParser, \
+    PythonParser, \
+    RexxParser, \
+    RubyParser, \
+    SchemeParser, \
+    ShParser, \
+    SlangParser, \
+    TclParser, \
+    VimParser, \
+    YaccParser
 
 #endif	/* _PARSERS_H */
 

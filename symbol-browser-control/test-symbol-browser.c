@@ -60,7 +60,6 @@ load_file (gchar* fname)
 	GNOME_Development_SymbolBrowser_openDirectory (symbol_browser,
 						       dir,
 						       &ev);
-
 	g_free (dir);
 
 	g_assert (!BONOBO_EX (&ev));
@@ -230,7 +229,8 @@ main (int argc, char *argv[])
 						"Gnome Symbol Browser Test"));
 
 	g_signal_connect (win, "destroy", bonobo_main_quit, NULL);
-
+	gtk_window_set_default_size (GTK_WINDOW (win), 250, 600);
+	
 	container = bonobo_window_get_ui_container (win);
 
 	component = bonobo_ui_component_new_default ();
@@ -254,7 +254,7 @@ main (int argc, char *argv[])
 	source = Bonobo_Unknown_queryInterface (control,
 						"IDL:Bonobo/EventSource:1.0",
 						&ev);
-
+						
 	listener = bonobo_listener_new (NULL, NULL);
 	g_signal_connect (listener, "event_notify", G_CALLBACK (event_cb), win);
 
@@ -264,7 +264,9 @@ main (int argc, char *argv[])
 						&ev);
 	} else
 		g_error ("Couldn't get event source for widget");
-
+	
+	Bonobo_Unknown_unref(control, &ev);
+	
 	g_object_set_data (G_OBJECT (win), "SymbolBrowser", wid);
 	bonobo_window_set_contents (BONOBO_WINDOW (win), wid);
 	gtk_widget_show_all (GTK_WIDGET (win));
