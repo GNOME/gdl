@@ -1,4 +1,8 @@
-2003-12-26  Gustavo Giraldez  <gustavo@localhost.localdomain>
+2003-12-29  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Require libgnomeui 2.5.0.
+
+2003-12-26  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-icons.h:
 	* gdl/gdl-icons.c: Ported to GtkIconTheme.  Use new gobject's
