@@ -124,6 +124,9 @@ static void  gdl_dock_item_hide_cb       (GtkWidget   *widget,
 static void  gdl_dock_item_lock_cb       (GtkWidget   *widget,
                                           GdlDockItem *item);
 
+static void  gdl_dock_item_unlock_cb     (GtkWidget   *widget,
+                                          GdlDockItem *item);
+
 static void  gdl_dock_item_showhide_grip (GdlDockItem *item);
 
 static void  gdl_dock_item_real_set_orientation (GdlDockItem    *item,
@@ -157,12 +160,8 @@ enum {
 
 static guint gdl_dock_item_signals [LAST_SIGNAL] = { 0 };
 
-#define GDL_DOCK_ITEM_NOT_LOCKED(item) !((item)->behavior & GDL_DOCK_ITEM_BEH_LOCKED)
 #define GDL_DOCK_ITEM_GRIP_SHOWN(item) \
-    (GDL_DOCK_ITEM_HAS_GRIP (item) && \
-     GDL_DOCK_ITEM_NOT_LOCKED (item) && \
-     (item)->_priv->grip_shown)
-
+    (GDL_DOCK_ITEM_HAS_GRIP (item)) 
 
 struct _GdlDockItemPrivate {
     GtkWidget *menu;
@@ -444,7 +443,7 @@ gdl_dock_item_set_property  (GObject      *g_object,
                 item->behavior &= ~GDL_DOCK_ITEM_BEH_LOCKED;
 
             if (old_beh ^ item->behavior) {
-                gdl_dock_item_showhide_grip (item);
+		gdl_dock_item_showhide_grip (item);
                 g_object_notify (g_object, "behavior");
 
                 if (GDL_DOCK_OBJECT_GET_MASTER (item))
@@ -879,6 +878,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
                               GdkEventButton *event)
 {
     GdlDockItem *item;
+    gboolean     locked;
     gboolean     event_handled;
     gboolean     in_handle;
     GdkCursor   *cursor;
@@ -892,9 +892,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
     if (!EVENT_IN_GRIP_EVENT_WINDOW (event, item->_priv->grip))
         return FALSE;
     
-    /* Verify that the item is not locked. */
-    if (!GDL_DOCK_ITEM_NOT_LOCKED (item))
-        return FALSE;
+    locked = !GDL_DOCK_ITEM_NOT_LOCKED (item);
 
     event_handled = FALSE;
 
@@ -912,7 +910,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
     }
 
     /* Left mousebutton click on dockitem. */
-    if (event->button == 1 && event->type == GDK_BUTTON_PRESS) {
+    if (!locked && event->button == 1 && event->type == GDK_BUTTON_PRESS) {
         /* Set in_drag flag, grab pointer and call begin drag operation. */      
         if (in_handle) {
             item->_priv->start_x = event->x;
@@ -929,7 +927,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
             event_handled = TRUE;
         };
         
-    } else if (event->type == GDK_BUTTON_RELEASE && event->button == 1) {
+    } else if (!locked &&event->type == GDK_BUTTON_RELEASE && event->button == 1) {
         if (GDL_DOCK_ITEM_IN_DRAG (item)) {
             /* User dropped widget somewhere. */
             gdl_dock_item_drag_end (item, FALSE);
@@ -1254,18 +1252,25 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
                                    GTK_WIDGET (item),
                                    gdl_dock_item_detach_menu);
         
-        /* Hide menuitem. */
-        mitem = gtk_menu_item_new_with_label (_("Hide"));
-        gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
-        g_signal_connect (mitem, "activate", 
-                          G_CALLBACK (gdl_dock_item_hide_cb), item);
-
-        /* Lock menuitem */
-        mitem = gtk_menu_item_new_with_label (_("Lock"));
-        gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
-        g_signal_connect (mitem, "activate",
-                          G_CALLBACK (gdl_dock_item_lock_cb), item);
-
+	if (item->behavior & GDL_DOCK_ITEM_BEH_LOCKED) {
+            /* UnLock menuitem */
+            mitem = gtk_menu_item_new_with_label (_("UnLock"));
+            gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), 
+			           mitem);
+            g_signal_connect (mitem, "activate",
+                              G_CALLBACK (gdl_dock_item_unlock_cb), item);
+	} else {
+            /* Hide menuitem. */
+            mitem = gtk_menu_item_new_with_label (_("Hide"));
+            gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
+            g_signal_connect (mitem, "activate", 
+                              G_CALLBACK (gdl_dock_item_hide_cb), item);
+	    /* Lock menuitem */
+            mitem = gtk_menu_item_new_with_label (_("Lock"));
+            gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
+            g_signal_connect (mitem, "activate",
+                              G_CALLBACK (gdl_dock_item_lock_cb), item);
+	}
     }
 
     /* Show popup menu. */
@@ -1367,14 +1372,35 @@ gdl_dock_item_lock_cb (GtkWidget   *widget,
 }
 
 static void
+gdl_dock_item_unlock_cb (GtkWidget   *widget,
+                       GdlDockItem *item)
+{
+    g_return_if_fail (item != NULL);
+
+    gdl_dock_item_unlock (item);
+}
+
+static void
 gdl_dock_item_showhide_grip (GdlDockItem *item)
 {
+    GdkDisplay *display;
+    GdkCursor *cursor;
+    
+    gdl_dock_item_detach_menu (GTK_WIDGET (item), NULL); 
+    display = gtk_widget_get_display (GTK_WIDGET (item));
+    cursor = NULL;
+    
     if (item->_priv->grip) {
-        if (GDL_DOCK_ITEM_GRIP_SHOWN (item))
-            gtk_widget_show (item->_priv->grip);
-        else
-            gtk_widget_hide (item->_priv->grip);
+        if (GDL_DOCK_ITEM_GRIP_SHOWN (item) && 
+	    GDL_DOCK_ITEM_NOT_LOCKED(item))
+             cursor = gdk_cursor_new_for_display (display, GDK_HAND2);
     }
+    if (item->_priv->grip && GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window)
+        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window, cursor);
+
+    if (cursor)
+        gdk_cursor_unref (cursor);
+    
     gtk_widget_queue_resize (GTK_WIDGET (item));
 }
 
@@ -1538,6 +1564,7 @@ gdl_dock_item_hide_grip (GdlDockItem *item)
         item->_priv->grip_shown = FALSE;
         gdl_dock_item_showhide_grip (item);
     };
+    g_warning ("Grips always show unless GDL_DOCK_ITEM_BEH_NO_GRIP is set\n" );
 }
 
 void

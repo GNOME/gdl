@@ -774,7 +774,7 @@ gdl_dock_master_add (GdlDockMaster *master,
 
         /* register to "locked" notification if the item has a grip,
          * and add the item to the corresponding hash */
-        if (GDL_DOCK_ITEM_HAS_GRIP (object)) {
+        if (GDL_DOCK_ITEM_HAS_GRIP (GDL_DOCK_ITEM (object))) {
             g_signal_connect (object, "notify::locked",
                               G_CALLBACK (item_notify_cb), master);
             item_notify_cb (object, NULL, master);
@@ -798,7 +798,7 @@ gdl_dock_master_remove (GdlDockMaster *master,
 
     /* remove from locked/unlocked hashes and property change if
      * that's the case */
-    if (GDL_IS_DOCK_ITEM (object) && GDL_DOCK_ITEM_HAS_GRIP (object)) {
+    if (GDL_IS_DOCK_ITEM (object) && GDL_DOCK_ITEM_HAS_GRIP (GDL_DOCK_ITEM (object))) {
         gint locked = COMPUTE_LOCKED (master);
         if (g_hash_table_remove (master->_priv->locked_items, object) ||
             g_hash_table_remove (master->_priv->unlocked_items, object)) {

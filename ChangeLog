@@ -1,6 +1,14 @@
 2005-03-08  Naba Kumar  <naba@gnome.org>
 
 	Patch from: David A Knight  <david@ritter.demon.co.uk>
+	* gdl/gdl-dock-item-grip.c, gdl/gdl-dock-item.[ch],
+	gdl/gdl-dock-master.c: The attached patch modifies the behaviour
+	of GdlDockItem/GdlDockItemGrip so that even when locked the grip
+	bar is always displayed. To allow items to not have a grip bar
+	at all a new behaviour is also added, GDL_DOCK_ITEM_BEH_NO_GRIP,
+	as the locked status can no longer be used for this. Bug #143475
+	
+	Patch from: David A Knight  <david@ritter.demon.co.uk>
 	* gdl/gdl-dock-bar.[ch]: Added orientation get/set functions
 	to allow for horizontal/vertical layout -- bug #155339
 

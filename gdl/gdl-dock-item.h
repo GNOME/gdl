@@ -55,7 +55,8 @@ typedef enum {
     GDL_DOCK_ITEM_BEH_CANT_DOCK_RIGHT  = 1 << 7,
     GDL_DOCK_ITEM_BEH_CANT_DOCK_CENTER = 1 << 8,
     GDL_DOCK_ITEM_BEH_CANT_CLOSE       = 1 << 9,
-    GDL_DOCK_ITEM_BEH_CANT_ICONIFY     = 1 << 10
+    GDL_DOCK_ITEM_BEH_CANT_ICONIFY     = 1 << 10,
+    GDL_DOCK_ITEM_BEH_NO_GRIP          = 1 << 11
 } GdlDockItemBehavior;
 
 typedef enum {
@@ -113,19 +114,24 @@ struct _GdlDockItemClass {
     ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_ICONIFIED) != 0)
 #define GDL_DOCK_ITEM_USER_ACTION(item) \
     ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_USER_ACTION) != 0)
-   
+#define GDL_DOCK_ITEM_NOT_LOCKED(item) !((item)->behavior & GDL_DOCK_ITEM_BEH_LOCKED)
+#define GDL_DOCK_ITEM_NO_GRIP(item) ((item)->behavior & GDL_DOCK_ITEM_BEH_NO_GRIP)
+
 #define GDL_DOCK_ITEM_SET_FLAGS(item,flag) \
     G_STMT_START { (GDL_DOCK_ITEM_FLAGS (item) |= (flag)); } G_STMT_END
 #define GDL_DOCK_ITEM_UNSET_FLAGS(item,flag) \
     G_STMT_START { (GDL_DOCK_ITEM_FLAGS (item) &= ~(flag)); } G_STMT_END
 
-#define GDL_DOCK_ITEM_HAS_GRIP(item) (GDL_DOCK_ITEM_GET_CLASS (item)->has_grip)
+#define GDL_DOCK_ITEM_HAS_GRIP(item) ((GDL_DOCK_ITEM_GET_CLASS (item)->has_grip)&& \
+		! GDL_DOCK_ITEM_NO_GRIP (item))
 
 #define GDL_DOCK_ITEM_CANT_CLOSE(item) \
-    (((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_CLOSE) != 0)
+    ((((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_CLOSE) != 0)|| \
+     ! GDL_DOCK_ITEM_NOT_LOCKED(item))
 
 #define GDL_DOCK_ITEM_CANT_ICONIFY(item) \
-    (((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_ICONIFY) != 0)
+    ((((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_ICONIFY) != 0)|| \
+     ! GDL_DOCK_ITEM_NOT_LOCKED(item))
 
 /* public interface */
  
