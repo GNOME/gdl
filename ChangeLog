@@ -1,3 +1,7 @@
+2003-07-25  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* configure.in: Added Macedonian (mk) to ALL_LINGUAS
+
 2003-07-22  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/gdl-dock-layout.c: (gdl_dock_layout_build_models),
