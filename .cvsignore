@@ -35,3 +35,4 @@ intltool-*
 .tm_project.cache
 autom4te.cache
 stamp-h1
+depcomp

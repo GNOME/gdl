@@ -1,3 +1,8 @@
+2003-08-06  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Bumped version number for new release.
+	* AUTHORS: Updated.
+	
 2003-07-26  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/gdl-dock-layout.c: (gdl_dock_layout_build_models),
