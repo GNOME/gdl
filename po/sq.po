@@ -1,20 +1,19 @@
-# translation of gdl.HEAD.po to Albanian
-# This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Përkthimi i mesazheve të gdl në shqip
+# This file is distributed under the same license as the gdl package.
+# Copyright (C) 2004 Free Software Foundation, Inc.
 # Laurent Dhima <laurenti@alblinux.net>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl.HEAD\n"
+"Project-Id-Version: gdl HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-19 11:24+0200\n"
-"PO-Revision-Date: 2004-07-01 17:47+0200\n"
+"POT-Creation-Date: 2004-09-02 11:25+0200\n"
+"PO-Revision-Date: 2004-09-03 18:00+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
 
 #: gdl/gdl-data-view.c:418
 msgid "Expander Size"
@@ -54,69 +53,76 @@ msgstr "Orientimi"
 
 #: gdl/gdl-dock-item.c:243
 msgid "Orientation of the docking item"
-msgstr ""
+msgstr "Orientimi nga i elementit të qelisë"
 
 #: gdl/gdl-dock-item.c:258
 msgid "Resizable"
 msgstr "E ripërmasueshme"
 
 #: gdl/gdl-dock-item.c:259
+#, fuzzy
 msgid "If set, the dock item can be resized when docked in a paned"
-msgstr ""
+msgstr "element në a"
 
 #: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
 msgstr "Sjellja e elementit"
 
 #: gdl/gdl-dock-item.c:267
+#, fuzzy
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
-msgstr ""
+msgstr "Të përgjithshme për element e i bllokuar"
 
 #: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
 msgid "Locked"
 msgstr "E bllokuar"
 
 #: gdl/gdl-dock-item.c:276
-msgid ""
-"If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr ""
+#, fuzzy
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "element dhe a"
 
 #: gdl/gdl-dock-item.c:284
 msgid "Preferred width"
 msgstr "Gjerësia e preferuar"
 
 #: gdl/gdl-dock-item.c:285
+#, fuzzy
 msgid "Preferred width for the dock item"
-msgstr ""
+msgstr "gjerësia për element"
 
 #: gdl/gdl-dock-item.c:291
 msgid "Preferred height"
 msgstr "Lartësia e preferuar"
 
 #: gdl/gdl-dock-item.c:292
+#, fuzzy
 msgid "Preferred height for the dock item"
-msgstr ""
+msgstr "lartësia për element"
 
 #: gdl/gdl-dock-item.c:542
 #, c-format
+#, fuzzy
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
-msgstr ""
+msgstr "Ti shto a nga lloji a a tjetër."
 
 #: gdl/gdl-dock-item.c:549
 #, c-format
+#, fuzzy
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
-msgstr ""
+msgstr "shto a me lloji a a ora përmban a nga lloji"
 
 #: gdl/gdl-dock-item.c:1176
 #, c-format
+#, fuzzy
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr ""
+msgstr "në nga lloji"
 
 #. Hide menuitem.
 #: gdl/gdl-dock-item.c:1258
@@ -130,31 +136,34 @@ msgstr "Blloko"
 
 #: gdl/gdl-dock-item.c:1448
 #, c-format
+#, fuzzy
 msgid "Attempt to bind an unbound item %p"
-msgstr ""
+msgstr "element"
 
-#. GRUT modified this item
 #: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
 msgid "Master"
 msgstr "Master"
 
 #: gdl/gdl-dock-layout.c:126
+#, fuzzy
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr ""
+msgstr "është"
 
 #: gdl/gdl-dock-layout.c:133
 msgid "Dirty"
 msgstr ""
 
 #: gdl/gdl-dock-layout.c:134
+#, fuzzy
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr ""
+msgstr "dhe a"
 
 #. FIXME: pop up an error dialog
 #: gdl/gdl-dock-layout.c:564
 #, c-format
+#, fuzzy
 msgid "Could not load layout user interface file '%s'"
-msgstr ""
+msgstr "nuk ngarkoje përdorues interfaqja"
 
 #: gdl/gdl-dock-layout.c:619
 msgid "Visible"
@@ -169,8 +178,9 @@ msgid "Name"
 msgstr "Emri"
 
 #: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
+#, fuzzy
 msgid "Dock items"
-msgstr ""
+msgstr "Qelia elementët"
 
 #: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
 msgid "Saved layouts"
@@ -178,92 +188,108 @@ msgstr ""
 
 #: gdl/gdl-dock-layout.c:790
 #, c-format
+#, fuzzy
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
-msgstr ""
+msgstr "a është"
 
 #: gdl/gdl-dock-layout.c:1269
+#, fuzzy
 msgid "Layout managment"
-msgstr ""
+msgstr "Planimetria"
 
 #: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
+#, fuzzy
 msgid "Default title"
-msgstr ""
+msgstr "E prezgjedhur titulli"
 
 #: gdl/gdl-dock-master.c:135
+#, fuzzy
 msgid "Default title for newly created floating docks"
-msgstr ""
+msgstr "E prezgjedhur titulli për"
 
 #: gdl/gdl-dock-master.c:142
+#, fuzzy
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr ""
+msgstr "është elementët i bllokuar elementët"
 
 #: gdl/gdl-dock-master.c:730
 #, c-format
+#, fuzzy
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
-msgstr ""
+msgstr "shto është element me emri."
 
 #: gdl/gdl-dock-master.c:895
 #, c-format
+#, fuzzy
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
-msgstr ""
+msgstr "i ri është Vetëm manual."
 
 #: gdl/gdl-dock-notebook.c:135
+#, fuzzy
 msgid "Page"
-msgstr ""
+msgstr "Faqja"
 
 #: gdl/gdl-dock-notebook.c:136
 msgid "The index of the current page"
 msgstr "Treguesi i faqes aktuale"
 
 #: gdl/gdl-dock-object.c:121
+#, fuzzy
 msgid "Unique name for identifying the dock object"
-msgstr ""
+msgstr "Unique emri për"
 
 #: gdl/gdl-dock-object.c:128
+#, fuzzy
 msgid "Long name"
-msgstr ""
+msgstr "emri"
 
 #: gdl/gdl-dock-object.c:129
+#, fuzzy
 msgid "Human readable name for the dock object"
-msgstr ""
+msgstr "Njeriu emri për"
 
 #: gdl/gdl-dock-object.c:135
 msgid "Stock Icon"
 msgstr "Ikona rezervë"
 
 #: gdl/gdl-dock-object.c:136
+#, fuzzy
 msgid "Stock icon for the dock object"
-msgstr ""
+msgstr "ikonë për"
 
 #: gdl/gdl-dock-object.c:142
+#, fuzzy
 msgid "Dock master"
-msgstr ""
+msgstr "Qelia"
 
 #: gdl/gdl-dock-object.c:143
+#, fuzzy
 msgid "Dock master this dock object is bound to"
-msgstr ""
+msgstr "Qelia është"
 
 #: gdl/gdl-dock-object.c:421
 #, c-format
+#, fuzzy
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
-msgstr ""
+msgstr "Thirrje në a lloji është"
 
 #: gdl/gdl-dock-object.c:550
 #, c-format
+#, fuzzy
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
-msgstr ""
+msgstr "Qelia në a programi crash (bllokim)"
 
 #: gdl/gdl-dock-object.c:557
 #, c-format
@@ -272,8 +298,7 @@ msgstr ""
 
 #: gdl/gdl-dock-object.c:599
 #, c-format
-msgid ""
-"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 
 #: gdl/gdl-dock-paned.c:133
@@ -281,142 +306,164 @@ msgid "Position"
 msgstr "Pozicioni"
 
 #: gdl/gdl-dock-paned.c:134
+#, fuzzy
 msgid "Position of the divider in pixels"
-msgstr ""
+msgstr "Pozicioni nga në pixels"
 
 #: gdl/gdl-dock-placeholder.c:127
 msgid "Sticky"
 msgstr ""
 
 #: gdl/gdl-dock-placeholder.c:128
+#, fuzzy
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
-msgstr ""
+msgstr "sipër gjerarkia është"
 
 #: gdl/gdl-dock-placeholder.c:135
 msgid "Host"
 msgstr "Host"
 
 #: gdl/gdl-dock-placeholder.c:136
+#, fuzzy
 msgid "The dock object this placeholder is attached to"
-msgstr ""
+msgstr "është"
 
 #: gdl/gdl-dock-placeholder.c:143
+#, fuzzy
 msgid "Next placement"
-msgstr ""
+msgstr "Vazhdo"
 
 #: gdl/gdl-dock-placeholder.c:144
+#, fuzzy
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
-msgstr ""
+msgstr "element a është"
 
 #: gdl/gdl-dock-placeholder.c:305
+#, fuzzy
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr ""
+msgstr "a"
 
 #: gdl/gdl-dock-placeholder.c:419
 #, c-format
+#, fuzzy
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr ""
+msgstr "a është nuk"
 
 #: gdl/gdl-dock-placeholder.c:440
 #, c-format
+#, fuzzy
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
-msgstr ""
+msgstr "fëmi (sekondar, i dytë) për"
 
 #: gdl/gdl-dock-tablabel.c:130
 msgid "Dockitem which 'owns' this tablabel"
 msgstr ""
 
 #: gdl/gdl-dock-bar.c:89
+#, fuzzy
 msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr ""
+msgstr "është"
 
 #: gdl/gdl-dock.c:176
 msgid "Floating"
 msgstr ""
 
 #: gdl/gdl-dock.c:177
+#, fuzzy
 msgid "Whether the dock is floating in its own window"
-msgstr ""
+msgstr "është në dritare"
 
 #: gdl/gdl-dock.c:185
+#, fuzzy
 msgid "Default title for the newly created floating docks"
-msgstr ""
+msgstr "E prezgjedhur titulli për"
 
 #: gdl/gdl-dock.c:191
 msgid "Width"
 msgstr "Gjerësia"
 
 #: gdl/gdl-dock.c:192
+#, fuzzy
 msgid "Width for the dock when it's of floating type"
-msgstr ""
+msgstr "Gjerësia për nga lloji"
 
 #: gdl/gdl-dock.c:199
 msgid "Height"
 msgstr "Lartësia"
 
 #: gdl/gdl-dock.c:200
+#, fuzzy
 msgid "Height for the dock when it's of floating type"
-msgstr ""
+msgstr "Lartësia për nga lloji"
 
 #: gdl/gdl-dock.c:207
+#, fuzzy
 msgid "Float X"
-msgstr ""
+msgstr "Float X"
 
 #: gdl/gdl-dock.c:208
+#, fuzzy
 msgid "X coordinate for a floating dock"
-msgstr ""
+msgstr "X për a"
 
 #: gdl/gdl-dock.c:215
+#, fuzzy
 msgid "Float Y"
-msgstr ""
+msgstr "Float Y"
 
 #: gdl/gdl-dock.c:216
+#, fuzzy
 msgid "Y coordinate for a floating dock"
-msgstr ""
+msgstr "Y për a"
 
 #: gdl/gdl-dock.c:497
 #, c-format
+#, fuzzy
 msgid "Dock #%d"
-msgstr ""
+msgstr "Qelia"
 
 #: gdl/gdl-recent.c:135
 msgid "GConf key"
 msgstr ""
 
 #: gdl/gdl-recent.c:136
+#, fuzzy
 msgid "The gconf key for storing the recent entries."
-msgstr ""
+msgstr "për."
 
 #: gdl/gdl-recent.c:142
 msgid "Path"
 msgstr "Pozicioni"
 
 #: gdl/gdl-recent.c:143
+#, fuzzy
 msgid "The path to put the menu items."
-msgstr ""
+msgstr "shtegu menuja elementët."
 
-#. GRUT modified this item
 #: gdl/gdl-recent.c:149
 msgid "Limit"
 msgstr "Kufiri"
 
 #: gdl/gdl-recent.c:150
+#, fuzzy
 msgid "The maximum number of items to be allowed in the list."
-msgstr ""
+msgstr "maksimum nga elementët në lista."
 
 #: gdl/gdl-recent.c:158
+#, fuzzy
 msgid "List type"
-msgstr ""
+msgstr "Lista lloji"
 
 #: gdl/gdl-recent.c:159
+#, fuzzy
 msgid "The type with which the items will be numbered."
-msgstr ""
+msgstr "lloji me elementët."
 
 #: gdl/gdl-recent.c:408
 #, c-format
@@ -428,32 +475,38 @@ msgid "Icon size"
 msgstr "Madhësia e ikonës"
 
 #: gdl/layout.glade.h:2
+#, fuzzy
 msgid "Layout Managment"
-msgstr ""
+msgstr "Planimetria"
 
 #: gdl/layout.glade.h:4
 msgid "_Load"
 msgstr "_Ngarkesa"
 
 #: gdl/layout.glade.h:5
+#, fuzzy
 msgid "_Lock dock items"
-msgstr ""
+msgstr "Blloko elementët"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+#, fuzzy
 msgid "Factory for the Gnome Symbol Browser control."
-msgstr ""
+msgstr "Fabrikë për Shfletuesi kontrolli."
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+#, fuzzy
 msgid "Gnome Symbol Browser Control"
-msgstr ""
+msgstr "Shfletuesi Kontrollo"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+#, fuzzy
 msgid "Gnome Symbol Browser Control Factory"
-msgstr ""
+msgstr "Shfletuesi Kontrollo Fabrikë"
 
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+#, fuzzy
 msgid "Gnome Symbol Browser."
-msgstr ""
+msgstr "Shfletuesi."
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:1
 msgid "Goto Symbol"
@@ -464,12 +517,14 @@ msgid "Goto the displayed symbol"
 msgstr ""
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:3
+#, fuzzy
 msgid "Update Symbols"
-msgstr ""
+msgstr "Rifresko Simbolet"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:4
+#, fuzzy
 msgid "Update the symbol tree"
-msgstr ""
+msgstr "Rifresko degëzimi"
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:5
 msgid "_Goto to symbol"
@@ -587,62 +642,71 @@ msgstr "E papërcaktuar"
 msgid "<No Symbol>"
 msgstr ""
 
-#. GRUT modified this item
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:1
 msgid "Exit"
 msgstr "Dalja"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+#, fuzzy
 msgid "Open Project"
-msgstr ""
+msgstr "Hap Projekti"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+#, fuzzy
 msgid "Save Project"
-msgstr ""
+msgstr "Ruaj Projekti"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+#, fuzzy
 msgid "Set Current File"
-msgstr ""
+msgstr "Aktual File"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:5
 msgid "Update"
 msgstr "Rifresko"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+#, fuzzy
 msgid "Update the whole tree"
-msgstr ""
+msgstr "Rifresko degëzimi"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+#, fuzzy
 msgid "_Exit"
-msgstr ""
+msgstr "Dalja"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:8
 msgid "_File"
 msgstr "_File"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+#, fuzzy
 msgid "_Open Project"
-msgstr ""
+msgstr "Hap Projekti"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+#, fuzzy
 msgid "_Save Project"
-msgstr ""
+msgstr "Ruaj Projekti"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+#, fuzzy
 msgid "_Set Current File"
-msgstr ""
+msgstr "Aktual File"
 
 #: symbol-browser-control/test-symbol-browser.c:168
+#, fuzzy
 msgid "Open file..."
-msgstr ""
+msgstr "Hap file..."
 
 #: symbol-browser-control/test-symbol-browser.c:170
 msgid "Set current file..."
 msgstr ""
 
 #: symbol-browser-control/test-symbol-browser.c:172
+#, fuzzy
 msgid "Save file..."
-msgstr ""
+msgstr "Ruaj."
 
 #: symbol-browser-control/test-symbol-browser.c:295
 msgid "Can't initialize bonobo!"
