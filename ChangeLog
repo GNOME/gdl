@@ -1,3 +1,7 @@
+2003-11-27  Jordi Mallach  <jordi@sindominio.net>
+
+	* configure.in (ALL_LINGUAS): Added "ca" (Catalan).
+
 2003-09-13  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/Makefile.am: Added gdl-combo-button.[ch] and test case.
