@@ -206,7 +206,7 @@ reload_theme (const char *theme_name)
 
 	if (theme_name == NULL) {
 		char *name = gconf_client_get_string (gconf_client,
-						      "/desktop/gnome/file-views/icon_theme",
+						      "/desktop/gnome/file_views/icon_theme",
 						      NULL);
 		if (name) {
 			theme_dir = get_theme_dir (name);

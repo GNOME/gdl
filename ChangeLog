@@ -1,3 +1,8 @@
+2002-06-09  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-icons.c: (reload_theme): Use "file_views" gconf key instead
+	of older "file-views" key from gnome1 era.
+
 2002-06-04  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added Vietnamese (vi) to ALL_LINGUAS
