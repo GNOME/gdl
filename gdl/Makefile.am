@@ -88,7 +88,7 @@ libgdl_1_la_LIBADD = \
 noinst_PROGRAMS=test-dock test-dataview
 
 test_dock_sources=test-dock.c
-test_dock_LDADD=libgdl-1.la $(XML_LIBS)
+test_dock_LDADD=libgdl-1.la $(XML_LIBS) $(GLIB_LIBS)
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
