@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl 0.1.0\n"
-"POT-Creation-Date: 2001-12-08 08:58-0500\n"
+"POT-Creation-Date: 2002-07-18 18:04-0300\n"
 "PO-Revision-Date: 2001-12-09 19:59+0000\n"
 "Last-Translator: AARG! Anonymous <remailer@aarg.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -19,183 +19,682 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-7\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: scintilla-control/scintilla-control.c:114
-msgid "Position in the buffer"
-msgstr "Θέση στον ενταμιευτή"
+#: gdl/gdl-data-view.c:416
+msgid "Expander Size"
+msgstr ""
 
-#: scintilla-control/scintilla-control.c:118
-msgid "Current line number"
-msgstr "Αριθμός τρέχουσας γραμμής"
+#: gdl/gdl-data-view.c:417
+msgid "Size of the expander arrow."
+msgstr ""
 
-#: scintilla-control/scintilla-control.c:122
-msgid "Beginning of the selection"
-msgstr "Αρχή επιλογής"
+#: gdl/gdl-dock-item-grip.c:239
+msgid "Dock the toolbar"
+msgstr ""
 
-#: scintilla-control/scintilla-control.c:126
-msgid "End of the selection"
-msgstr "Τέλος επιλογής"
+#: gdl/gdl-dock-item-grip.c:240
+msgid "Un dock the toolbar"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:1
-msgid "C_ut"
-msgstr "Αποκο_πή"
+#: gdl/gdl-dock-item.c:245
+#, fuzzy
+msgid "Orientation"
+msgstr "Κατεύθυνση"
 
-#: scintilla-control/scintilla-ui.xml.h:2
-msgid "Copy"
+#: gdl/gdl-dock-item.c:246
+msgid "Orientation of the docking item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:261
+msgid "Resizable"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:262
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:269
+msgid "Item behavior"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:270
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:278
+msgid "Grip size"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:279
+msgid "Size in pixels of the grip to drag the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:285 gdl/gdl-dock-layout.c:701 gdl/gdl-dock-master.c:123
+msgid "Locked"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:286
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:294
+msgid "Preferred width"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:295
+msgid "Preferred width for the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:301
+msgid "Preferred height"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:302
+msgid "Preferred height for the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:536
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+
+#: gdl/gdl-dock-item.c:543
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:1139
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr ""
+
+#. Dock/Undock menuitem.
+#: gdl/gdl-dock-item.c:1267
+msgid "Dock"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:1268
+msgid "Undock"
+msgstr ""
+
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1280
+msgid "Hide"
+msgstr ""
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1286
+msgid "Lock"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:1474
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:121
+#, fuzzy
+msgid "Master"
 msgstr "Επικόλληση"
 
-#: scintilla-control/scintilla-ui.xml.h:3
-msgid "Copy the selection"
-msgstr "Επικόλληση επιλεγμένων"
+#: gdl/gdl-dock-layout.c:122
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:4
-msgid "Cut"
-msgstr "Αποκοπή"
+#: gdl/gdl-dock-layout.c:129
+msgid "Dirty"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:5
-msgid "Cut the selection"
-msgstr "Αποκοπή επιλεγμένων"
+#: gdl/gdl-dock-layout.c:130
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:6
-msgid "Find A_gain"
-msgstr "Εύρεση _Ξανά"
+#: gdl/gdl-dock-layout.c:412
+msgid "You must provide a name for the layout"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:7
-msgid "Find text in the document"
-msgstr "Εύρεση κειμένου στο έγγραφο"
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:633
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:8
-msgid "Paste"
+#: gdl/gdl-dock-layout.c:691
+msgid "Visible"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:709
+msgid "Item"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:762 gdl/gdl-dock-object.c:115
+msgid "Name"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:801 gdl/layout.glade.h:2
+msgid "Dock items"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:807 gdl/layout.glade.h:4
+msgid "Saved layouts"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:849
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:1318
+msgid "Layout managment"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:116 gdl/gdl-dock.c:180
+msgid "Default title"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:117
+msgid "Default title for newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:124
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:667
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+
+#: gdl/gdl-dock-master.c:792
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+
+#: gdl/gdl-dock-notebook.c:129
+#, fuzzy
+msgid "Page"
 msgstr "Επικόλληση"
 
-#: scintilla-control/scintilla-ui.xml.h:9
-msgid "Paste the clipboard"
-msgstr "Επικόλληση του προχείρου"
+#: gdl/gdl-dock-notebook.c:130
+msgid "The index of the current page"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:10
-msgid "Repeats last search for text in the document"
-msgstr "Επανάληψη προηγούμενου ψαξίματος για κείμενο στο έγγραφο"
+#: gdl/gdl-dock-object.c:116
+msgid "Unique name for identifying the dock object"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:11
-msgid "Replace text in the document"
-msgstr "Αντικατάσταση κειμένου στο έγγραφο"
+#: gdl/gdl-dock-object.c:123
+msgid "Long name"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:12
-msgid "_Copy"
-msgstr "Αντιγρα_φή"
+#: gdl/gdl-dock-object.c:124
+msgid "Human readable name for the dock object"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:13
-msgid "_Edit"
-msgstr "_Επεξεργασία"
+#: gdl/gdl-dock-object.c:130
+msgid "Dock master"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:14
-msgid "_Find"
-msgstr "_Εύρεση"
+#: gdl/gdl-dock-object.c:131
+msgid "Dock master this dock object is bound to"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:15
-msgid "_Find..."
-msgstr "_Εύρεση..."
+#: gdl/gdl-dock-object.c:400
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:16
-msgid "_Paste"
-msgstr "Επι_κόλληση"
+#: gdl/gdl-dock-object.c:529
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
 
-#: scintilla-control/scintilla-ui.xml.h:17
+#: gdl/gdl-dock-object.c:536
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:578
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+
+#: gdl/gdl-dock-paned.c:129
+msgid "Position"
+msgstr ""
+
+#: gdl/gdl-dock-paned.c:130
+msgid "Position of the divider in pixels"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:120
+msgid "Sticky"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:121
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:128
+msgid "Host"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:129
+msgid "The dock object this placeholder is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:136
+msgid "Next placement"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:137
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:298
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:412
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:433
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+
+#: gdl/gdl-dock-tablabel.c:125
+msgid "Controlling dock item"
+msgstr ""
+
+#: gdl/gdl-dock-tablabel.c:126
+msgid "Dockitem which 'owns' this tablabel"
+msgstr ""
+
+#: gdl/gdl-dock.c:172
+msgid "Floating"
+msgstr ""
+
+#: gdl/gdl-dock.c:173
+msgid "Whether the dock is floating in its own window"
+msgstr ""
+
+#: gdl/gdl-dock.c:181
+msgid "Default title for the newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock.c:187
+msgid "Width"
+msgstr ""
+
+#: gdl/gdl-dock.c:188
+msgid "Width for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:195
+msgid "Height"
+msgstr ""
+
+#: gdl/gdl-dock.c:196
+msgid "Height for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:203
+msgid "Float X"
+msgstr ""
+
+#: gdl/gdl-dock.c:204
+msgid "X coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:211
+msgid "Float Y"
+msgstr ""
+
+#: gdl/gdl-dock.c:212
+msgid "Y coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:489
+#, c-format
+msgid "Dock #%d"
+msgstr ""
+
+#: gdl/gdl-file-selector-util.c:167
+#, c-format
+msgid ""
+"A file named ''%s'' already exists.\n"
+"Do you want to replace it with the one you are saving?"
+msgstr ""
+
+#. Add Don't Replace button
+#: gdl/gdl-file-selector-util.c:174
+#, fuzzy
+msgid "Do_n't replace"
+msgstr "_Αντικατάσταση"
+
+#. Add Replace button
+#: gdl/gdl-file-selector-util.c:182
 msgid "_Replace"
 msgstr "_Αντικατάσταση"
 
-#: scintilla-control/scintilla-ui.xml.h:18
-msgid "_Replace..."
-msgstr "_Αντικατάσταση..."
-
-#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:1
-msgid "Factory for the Scintilla control."
-msgstr "Έλεγχος του Εργοστασίου Scintilla."
-
-#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:2
-msgid "Scintilla Editor"
-msgstr "Συντάκτης του Scintilla"
-
-#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:3
-msgid "Scintilla Factory"
-msgstr "Εργοστάσιο Scintilla"
-
-#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:4
-msgid "Source"
-msgstr "Πηγαίος κώδικας"
-
-#: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:5
-msgid "Syntax highlighting editor control."
-msgstr "Συστατικό επεξεργαστή κειμένου ανάδειξης συντακτικού."
-
-#: scintilla-control/scintilla-find.c:105
-#: scintilla-control/scintilla-find.c:106
-msgid "Find"
-msgstr "Εύρεση"
-
-#: scintilla-control/scintilla-find.c:114
-#: scintilla-control/scintilla-find.c:345
-msgid "Find:"
-msgstr "Εύρεση:"
-
-#: scintilla-control/scintilla-find.c:127
-#: scintilla-control/scintilla-find.c:371
-msgid "Case sensitive"
-msgstr "Πεζά/κεφαλαία διαφέρουν"
-
-#: scintilla-control/scintilla-find.c:130
-#: scintilla-control/scintilla-find.c:374
-msgid "Whole word"
-msgstr "Πλήρης λέξη"
-
-#: scintilla-control/scintilla-find.c:133
-#: scintilla-control/scintilla-find.c:377
-msgid "Match word start"
-msgstr "Ταίριασμα αρχής λέξης"
-
-#. search direction radio group
-#: scintilla-control/scintilla-find.c:137
-msgid "Direction"
-msgstr "Κατεύθυνση"
-
-#: scintilla-control/scintilla-find.c:144
-msgid "Forward"
-msgstr "Εμπρός"
-
-#: scintilla-control/scintilla-find.c:148
-msgid "Backward"
-msgstr "Πίσω"
-
-#: scintilla-control/scintilla-find.c:274
-msgid "Replace confirmation"
-msgstr "Επιβεβαίωση αντικατάστασης"
-
-#: scintilla-control/scintilla-find.c:275
-#: scintilla-control/scintilla-find.c:337
-msgid "Replace"
-msgstr "Αντικατάσταση"
-
-#: scintilla-control/scintilla-find.c:276
-msgid "Replace All"
-msgstr "Αντικατάσταση Όλων"
-
-#: scintilla-control/scintilla-find.c:277
-msgid "Skip"
-msgstr "Παράκαμψη"
-
-#: scintilla-control/scintilla-find.c:280
-msgid "Found occurrence in document"
-msgstr "Βρέθηκε συμβάν στο έγγραφο"
-
-#: scintilla-control/scintilla-find.c:336
-msgid "Find and Replace"
-msgstr "Εύρεση και Αντικατάσταση"
-
-#: scintilla-control/scintilla-find.c:356
-msgid "Replace with:"
-msgstr "Αντικατάσταση με:"
-
-#. selection only checkbox
-#: scintilla-control/scintilla-find.c:381
-msgid "Selection only"
+#: gdl/gdl-file-selector-util.c:382
+#, fuzzy
+msgid "Select a file to open"
 msgstr "Μόνον επιλογή"
 
+#: gdl/gdl-file-selector-util.c:410
+#, fuzzy
+msgid "Select files to open"
+msgstr "Μόνον επιλογή"
+
+#: gdl/gdl-file-selector-util.c:439
+msgid "Select a filename to save"
+msgstr ""
+
+#: gdl/gdl-recent.c:132
+msgid "GConf key"
+msgstr ""
+
+#: gdl/gdl-recent.c:133
+msgid "The gconf key for storing the recent entries."
+msgstr ""
+
+#: gdl/gdl-recent.c:139
+#, fuzzy
+msgid "Path"
+msgstr "Επικόλληση"
+
+#: gdl/gdl-recent.c:140
+msgid "The path to put the menu items."
+msgstr ""
+
+#: gdl/gdl-recent.c:146
+msgid "Limit"
+msgstr ""
+
+#: gdl/gdl-recent.c:147
+msgid "The maximum number of items to be allowed in the list."
+msgstr ""
+
+#: gdl/gdl-recent.c:155
+msgid "List type"
+msgstr ""
+
+#: gdl/gdl-recent.c:156
+msgid "The type with which the items will be numbered."
+msgstr ""
+
+#: gdl/gdl-recent.c:405
+#, c-format
+msgid "Open %s"
+msgstr ""
+
+#: gdl/layout.glade.h:1
+msgid "*"
+msgstr ""
+
+#: gdl/layout.glade.h:3
+msgid "Layout Managment"
+msgstr ""
+
+#: gdl/layout.glade.h:5
+msgid "_Load"
+msgstr ""
+
+#: gdl/layout.glade.h:6
+msgid "_Lock dock items"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+#, fuzzy
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "Έλεγχος του Εργοστασίου Scintilla."
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:362
+msgid "Tags"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:370
+#: symbol-browser-control/symbol-browser.c:380
+msgid "Undefined"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:372
+#: symbol-browser-control/symbol-browser.c:382
+msgid "<No Symbol>"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+#, fuzzy
+msgid "Exit"
+msgstr "_Επεξεργασία"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+#, fuzzy
+msgid "_Exit"
+msgstr "_Επεξεργασία"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+#, fuzzy
+msgid "_File"
+msgstr "_Εύρεση"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:287
+msgid "Can't initialize bonobo!"
+msgstr ""
+
+#~ msgid "Position in the buffer"
+#~ msgstr "Θέση στον ενταμιευτή"
+
+#~ msgid "Current line number"
+#~ msgstr "Αριθμός τρέχουσας γραμμής"
+
+#~ msgid "Beginning of the selection"
+#~ msgstr "Αρχή επιλογής"
+
+#~ msgid "End of the selection"
+#~ msgstr "Τέλος επιλογής"
+
+#~ msgid "C_ut"
+#~ msgstr "Αποκο_πή"
+
+#~ msgid "Copy"
+#~ msgstr "Επικόλληση"
+
+#~ msgid "Copy the selection"
+#~ msgstr "Επικόλληση επιλεγμένων"
+
+#~ msgid "Cut"
+#~ msgstr "Αποκοπή"
+
+#~ msgid "Cut the selection"
+#~ msgstr "Αποκοπή επιλεγμένων"
+
+#~ msgid "Find A_gain"
+#~ msgstr "Εύρεση _Ξανά"
+
+#~ msgid "Find text in the document"
+#~ msgstr "Εύρεση κειμένου στο έγγραφο"
+
+#~ msgid "Paste the clipboard"
+#~ msgstr "Επικόλληση του προχείρου"
+
+#~ msgid "Repeats last search for text in the document"
+#~ msgstr "Επανάληψη προηγούμενου ψαξίματος για κείμενο στο έγγραφο"
+
+#~ msgid "Replace text in the document"
+#~ msgstr "Αντικατάσταση κειμένου στο έγγραφο"
+
+#~ msgid "_Copy"
+#~ msgstr "Αντιγρα_φή"
+
+#~ msgid "_Find..."
+#~ msgstr "_Εύρεση..."
+
+#~ msgid "_Paste"
+#~ msgstr "Επι_κόλληση"
+
+#~ msgid "_Replace..."
+#~ msgstr "_Αντικατάσταση..."
+
+#~ msgid "Scintilla Editor"
+#~ msgstr "Συντάκτης του Scintilla"
+
+#~ msgid "Scintilla Factory"
+#~ msgstr "Εργοστάσιο Scintilla"
+
+#~ msgid "Source"
+#~ msgstr "Πηγαίος κώδικας"
+
+#~ msgid "Syntax highlighting editor control."
+#~ msgstr "Συστατικό επεξεργαστή κειμένου ανάδειξης συντακτικού."
+
+#~ msgid "Find"
+#~ msgstr "Εύρεση"
+
+#~ msgid "Find:"
+#~ msgstr "Εύρεση:"
+
+#~ msgid "Case sensitive"
+#~ msgstr "Πεζά/κεφαλαία διαφέρουν"
+
+#~ msgid "Whole word"
+#~ msgstr "Πλήρης λέξη"
+
+#~ msgid "Match word start"
+#~ msgstr "Ταίριασμα αρχής λέξης"
+
+#~ msgid "Forward"
+#~ msgstr "Εμπρός"
+
+#~ msgid "Backward"
+#~ msgstr "Πίσω"
+
+#~ msgid "Replace confirmation"
+#~ msgstr "Επιβεβαίωση αντικατάστασης"
+
+#~ msgid "Replace"
+#~ msgstr "Αντικατάσταση"
+
+#~ msgid "Replace All"
+#~ msgstr "Αντικατάσταση Όλων"
+
+#~ msgid "Skip"
+#~ msgstr "Παράκαμψη"
+
+#~ msgid "Found occurrence in document"
+#~ msgstr "Βρέθηκε συμβάν στο έγγραφο"
+
+#~ msgid "Find and Replace"
+#~ msgstr "Εύρεση και Αντικατάσταση"
+
+#~ msgid "Replace with:"
+#~ msgstr "Αντικατάσταση με:"

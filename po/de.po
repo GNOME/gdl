@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl HEAD\n"
-"POT-Creation-Date: 2002-08-29 13:36+0200\n"
+"POT-Creation-Date: 2002-07-18 18:04-0300\n"
 "PO-Revision-Date: 2002-08-28 13:24+0100\n"
 "Last-Translator: Christian Neumair <christian-neumair@web.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"

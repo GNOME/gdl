@@ -1,3 +1,8 @@
+Major changes since 0.1.0:
 
-New module.  Created from gnome-debug bits.
+* GNOME2 port
+* Scintilla editing component is no longer available
+* New symbol browser component
+* New docking widget
+* Beginnings of a data display widget 
 
