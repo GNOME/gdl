@@ -1,3 +1,38 @@
+2002-02-03  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* Makefile.am: Added symbol-browser-control back.
+	* configure.in: Idem.
+	* symbol-browser-control/Makefile.am: Idem.
+	* symbol-browser-control/factory.c: (on_format_update),
+	(on_control_set_frame), (on_control_destroy), (control_factory):
+	* symbol-browser-control/symbol-browser-cobject.c: Ported to gnome2.
+	(gnome_symbol_browser_cobject_class_init),
+	(gnome_symbol_browser_cobject_init),
+	(gnome_symbol_browser_cobject_destroy), (impl_open_directory),
+	(impl_clear), (impl_update), (impl_update_file),
+	(impl_remove_file), (impl_save),
+	(gnome_symbol_browser_cobject_new): Moved to BonoboXObject.
+	* symbol-browser-control/symbol-browser-cobject.h: Idem.
+	* symbol-browser-control/symbol-browser.c: Ported to GtkTreeView.
+	(gnome_symbol_browser_class_init), (gnome_symbol_browser_init),
+	(destroy_symbol_data_cb), (gsb_update_tree), (gsb_insert_nodes),
+	(get_sub_node), (gsb_sub_node_data_new), (gsb_tree_node_data_new),
+	(gsb_tree_node_data_free), (gsb_tree_node_data_copy),
+	(gsb_tree_node_data_get_type), (gsb_tree_node_set_pixbuf),
+	(gsb_tree_node_set_text), (row_activated_cb), (get_image_for_type),
+	(get_tag_type_name), (symbol_print), (gnome_symbol_browser_new),
+	(gnome_symbol_browser_get_type), (gnome_symbol_browser_destroy),
+	(gnome_symbol_browser_reset), (gnome_symbol_browser_open_dir),
+	(gnome_symbol_browser_clear),
+	(gnome_symbol_browser_get_event_source): Ported to GtkTreeView. Uses
+	BonoboEventSource now instead of events via PropertyBags.
+	* symbol-browser-control/symbol-browser.h: Added get_event_source
+	method.
+	* symbol-browser-control/test-symbol-browser.c: (load_file),
+	(open_or_save_dialog), (open_file_cb), (save_file_cb), (exit_cb),
+	(event_cb), (main): Ported to gnome2, displays message dialog when
+	user selects a symbol.
+
 2002-02-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-item.c (gdl_dock_item_lock, gdl_dock_item_unlock,

@@ -1,4 +1,4 @@
-SUBDIRS = idl gdl po
+SUBDIRS = idl gdl symbol-browser-control po
 # SUBDIRS = idl gdl scintilla-control symbol-browser-control po intl
 
 EXTRA_DIST = 			\

@@ -21,10 +21,10 @@
 #ifndef _SYMBOL_BROWSER_COBJECT_H_
 #define _SYMBOL_BROWSER_COBJECT_H_
 
-#include <bonobo.h>
+#include <bonobo/bonobo-xobject.h>
 #include "symbol-browser.h"
 
-BEGIN_GNOME_DECLS
+G_BEGIN_DECLS
 
 #define GNOME_SYMBOL_BROWSER_COBJECT_TYPE (gnome_symbol_browser_cobject_get_type())
 
@@ -40,24 +40,26 @@ BEGIN_GNOME_DECLS
 #define GNOME_IS_SYMBOL_BROWSER_COBJECT_CLASS(klass)	(GTK_CHECK_TYPE ((klass), \
 				GNOME_SYMBOL_BROWSER_COBJECT_TYPE))
 
-typedef struct _GnomeSymbolBrowserCObject		GnomeSymbolBrowserCObject;
+typedef struct _GnomeSymbolBrowserCObject	GnomeSymbolBrowserCObject;
 typedef struct _GnomeSymbolBrowserCObjectClass	GnomeSymbolBrowserCObjectClass;
 
-struct _GnomeSymbolBrowserCObject
-{
-	BonoboObject parent;
-	GtkWidget*   symbol_browser;
+struct _GnomeSymbolBrowserCObject {
+	BonoboXObject parent;
+	GtkWidget *symbol_browser;
 };
 
-struct _GnomeSymbolBrowserCObjectClass
-{
-	BonoboObjectClass parent_class;
+struct _GnomeSymbolBrowserCObjectClass {
+	BonoboXObjectClass parent_class;
+
+	POA_GNOME_Development_SymbolBrowser__epv epv;
 };
 
-GtkType
+GType
 gnome_symbol_browser_cobject_get_type (void);
 
-GnomeSymbolBrowserCObject*
-gnome_symbol_browser_cobject_new(GnomeSymbolBrowser* ccview_widget);
+GnomeSymbolBrowserCObject *
+gnome_symbol_browser_cobject_new (GnomeSymbolBrowser *symbol_browser);
+
+G_END_DECLS
 
 #endif /* _SYMBOL_BROWSER_COBJECT_H_ */

@@ -30,15 +30,15 @@ extern "C" {
 #pragma }
 #endif /* __cplusplus */
 
-#define GNOME_TYPE_SYMBOL_BROWSER			(gnome_symbol_browser_get_type ())
-#define GNOME_SYMBOL_BROWSER(obj)			(GTK_CHECK_CAST ((obj), GNOME_TYPE_SYMBOL_BROWSER, GnomeSymbolBrowser))
+#define GNOME_TYPE_SYMBOL_BROWSER		(gnome_symbol_browser_get_type ())
+#define GNOME_SYMBOL_BROWSER(obj)		(GTK_CHECK_CAST ((obj), GNOME_TYPE_SYMBOL_BROWSER, GnomeSymbolBrowser))
 #define GNOME_SYMBOL_BROWSER_CLASS(klass)	(GTK_CHECK_CLASS_CAST ((klass), GNOME_TYPE_SYMBOL_BROWSER, GnomeSymbolBrowserClass))
 #define GNOME_IS_SYMBOL_BROWSER(obj)		(GTK_CHECK_TYPE ((obj), GNOME_TYPE_SYMBOL_BROWSER))
 #define GNOME_IS_SYMBOL_BROWSER_CLASS(klass)	(GTK_CHECK_CLASS_TYPE ((obj), GNOME_TYPE_SYMBOL_BROWSER))
 
-typedef struct _GnomeSymbolBrowser        GnomeSymbolBrowser;
-typedef struct _GnomeSymbolBrowserPriv GnomeSymbolBrowserPriv;
-typedef struct _GnomeSymbolBrowserClass   GnomeSymbolBrowserClass;
+typedef struct _GnomeSymbolBrowser      GnomeSymbolBrowser;
+typedef struct _GnomeSymbolBrowserPriv  GnomeSymbolBrowserPriv;
+typedef struct _GnomeSymbolBrowserClass GnomeSymbolBrowserClass;
 
 struct _GnomeSymbolBrowser {
 	GtkVBox parent;
@@ -48,29 +48,22 @@ struct _GnomeSymbolBrowser {
 
 struct _GnomeSymbolBrowserClass {
 	GtkVBoxClass parent_class;
-	
-	void (*go_to) (GnomeSymbolBrowser* symbol_browser,
-			gchar* file,
-			glong line);
 };
 
-GtkType
-gnome_symbol_browser_get_type (void);
+GType      gnome_symbol_browser_get_type (void);
 
-GtkWidget*
-gnome_symbol_browser_new (void);
+GtkWidget *gnome_symbol_browser_new      (void);
 
-gboolean
-gnome_symbol_browser_open_dir(GnomeSymbolBrowser* sb, const gchar* dir);
+gboolean   gnome_symbol_browser_open_dir (GnomeSymbolBrowser *sb,
+					  const gchar        *dir);
 
-void
-gnome_symbol_browser_clear(GnomeSymbolBrowser* gsb);
+void       gnome_symbol_browser_clear    (GnomeSymbolBrowser *gsb);
 
-void
-gnome_symbol_browser_reset(GnomeSymbolBrowser* gsb);
+void       gnome_symbol_browser_reset    (GnomeSymbolBrowser *gsb);
 
-void
-gnome_symbol_browser_destroy (GtkObject *obj);
+void       gnome_symbol_browser_destroy  (GtkObject *obj);
+
+BonoboEventSource *gnome_symbol_browser_get_event_source (GnomeSymbolBrowser *gsb);
 
 #ifdef __cplusplus
 }

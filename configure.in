@@ -254,6 +254,7 @@ AC_SUBST(GAL_LIBS)
 PKG_CHECK_MODULES(GDL_DEPENDENCIES, 
 	gtk+-2.0 >= $GTK_REQUIRED 
 	libgnome-2.0 >= $GNOME_REQUIRED
+	libgnomeui-2.0 >= $GNOME_REQUIRED
 	libbonoboui-2.0 >= $BONOBOUI_REQUIRED
 	libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(GDL_DEPENDENCIES_CFLAGS)
@@ -295,6 +296,8 @@ AC_SUBST(gnomelocaledir)
 AC_OUTPUT([
 Makefile
 gdl/Makefile
+symbol-browser-control/Makefile
+symbol-browser-control/tagmanager/Makefile
 idl/Makefile
 po/Makefile.in 
 gdl.spec
