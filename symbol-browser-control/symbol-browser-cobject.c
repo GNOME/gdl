@@ -99,7 +99,7 @@ impl_open_directory (PortableServer_Servant servant,
 	cobj = GNOME_SYMBOL_BROWSER_COBJECT (bonobo_object_from_servant (servant));
 	gnome_symbol_browser_open_dir (GNOME_SYMBOL_BROWSER (cobj->symbol_browser),
 				       (gchar*) dir);
-	bonobo_object_unref(BONOBO_OBJECT(cobj));
+	/* bonobo_object_unref(BONOBO_OBJECT(cobj)); */
 }
 
 static void
@@ -107,12 +107,21 @@ impl_set_file (PortableServer_Servant servant,
 		     const CORBA_char      *filename,
 		     CORBA_Environment     *ev)
 {
+	gchar* file;
+	gchar* file_uri = "file://";
+	
 	GnomeSymbolBrowserCObject *cobj;
 
+	if (strncmp(filename, file_uri, strlen(file_uri)) == 0)
+		file = &filename[strlen(file_uri)];
+	else
+		file = filename;
+	
 	cobj = GNOME_SYMBOL_BROWSER_COBJECT (bonobo_object_from_servant (servant));
 	gnome_symbol_browser_set_file (GNOME_SYMBOL_BROWSER (cobj->symbol_browser),
-				       (gchar*) filename);
-	bonobo_object_unref(BONOBO_OBJECT(cobj));
+				       (gchar*) file);
+	g_message ("Symbol browser set file called.");
+	/*	bonobo_object_unref(BONOBO_OBJECT(cobj)); */
 }
 
 static void

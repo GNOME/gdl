@@ -97,8 +97,9 @@ on_control_set_frame (BonoboControl *control,
 					"/SymbolBrowserToolbar/FileSymbolList",
 					BONOBO_OBJREF (symbol_ctrl),
 					NULL);
-		bonobo_object_unref (BONOBO_OBJECT (symbol_ctrl));
-
+		
+		Bonobo_Unknown_unref (BONOBO_OBJREF (symbol_ctrl), &ev);
+		
 		bonobo_ui_component_thaw (component, &ev);
 	}
 	CORBA_exception_free (&ev);

@@ -1,3 +1,11 @@
+2002-04-15  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* symbol-browser-control/factory.c, 
+	symbol-browser-control/symbol-browser-cobject.c,
+	symbol-browser-control/test-symbol-browser.c:
+	Fixed a ref leak and added ability to recognize
+	file://... uri for setFile().
+	
 2002-04-14  Naba Kumar <kh_naba@users.sourceforge.net>
 
 	* idl/symbol-browser.idl: Added a new method called

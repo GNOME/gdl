@@ -327,6 +327,7 @@ main (int argc, char *argv[])
 		g_error ("Couldn't get event source for widget");
 	
 	Bonobo_Unknown_unref(control, &ev);
+	/* bonobo_object_release_unref (source, &ev); */
 	
 	g_object_set_data (G_OBJECT (win), "SymbolBrowser", wid);
 	bonobo_window_set_contents (BONOBO_WINDOW (win), wid);
