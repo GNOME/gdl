@@ -1,3 +1,9 @@
+2002-01-30  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl-1.0.pc.in: Added libglade dependency
+	* gdl/gdl-dock.c (gdl_dock_layout_build): Check the xml node's
+	name for dock items.
+
 2002-01-26  Dave Camp  <dave@ximian.com>
 
 	* gdl/Makefile.am: Remove gdl-file-selector-util.

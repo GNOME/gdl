@@ -697,7 +697,7 @@ gdl_dock_layout_build (GdlDock     *dock,
                     gdl_dock_unbind_item (dock, GDL_DOCK_ITEM (widget));
             };
 
-        } else {
+        } else if (!strcmp ("item", name)) {
             GdlDockItem *w;
             w = gdl_dock_get_item_by_name (
                 dock, (gchar *) xmlGetProp (node, "name"));
