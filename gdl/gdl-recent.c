@@ -457,18 +457,25 @@ gdl_recent_delete_from_list (GdlRecent  *recent,
 			     GSList     *list,
 			     const char *uri)
 {
-	GSList *l;
+	GSList *l, *ret_list;
 
+	/* Return list is maintained separately so that list
+	 with deleted node could be returned */
+	ret_list = list;
 	for (l = list; l != NULL; l = l->next) {
 		char *text = l->data;
 
 		if (!strcmp (text, uri)) {
-			l = g_slist_remove_link (list, l);
+			ret_list = g_slist_remove_link (ret_list, l);
 			g_free (text);
+			
+			/* Start the loop all over again to remove any more
+			  duplicates */
+			l = ret_list;
 		}
 	}
 
-	return list;
+	return ret_list;
 }
 
 static void

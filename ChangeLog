@@ -1,3 +1,9 @@
+2002-04-10  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* gdl/gdl-recent.c: Fixed a crash bug with tries to
+	return the same list from which the only element has
+	been removed (and hence freed).
+
 2002-04-10  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/Makefile.am: Added gdl-recent.[ch].
