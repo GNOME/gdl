@@ -31,7 +31,9 @@ scintilla_control_SOURCES = \
 	scintilla-editor-buffer.c \
 	scintilla-editor-buffer.h \
 	scintilla-editor-gutter.c \
-	scintilla-editor-gutter.h
+	scintilla-editor-gutter.h \
+	scintilla-find.c \
+	scintilla-find.h
 
 LEXER_OBJS = \
 	scintilla/LexCPP.o     \
@@ -65,3 +67,5 @@ oaf_in_files=Bonobo_Control_Scintilla.oaf.in
 oaf_DATA = $(oaf_in_files:.oaf.in=.oaf)
 
 @XML_I18N_MERGE_OAF_RULE@
+
+EXTRA_DIST=$(oaf_in_files) $(oaf_DATA)

@@ -10,6 +10,18 @@
                 <cmd name="EditPaste" _label="Paste"
       		 _tip="Paste the clipboard" pixtype="stock" pixname="Paste"
                  accel="*Control*v"/>
+
+		<cmd name="EditFind" _label="_Find..." 
+		 _tip="Find text in the document"
+		 pixtype="stock" pixname="Search" accel="*Control*f"/>
+
+		<cmd name="EditFindAgain" _label="Find A_gain" 
+		 _tip="Repeats last search for text in the document"
+		 pixtype="none" accel="*Control*g"/>
+
+		<cmd name="EditReplace" _label="_Replace..." 
+		 _tip="Replace text in the document"
+		 pixtype="stock" pixname="Search/Replace" accel="*Control*r"/>
 	</commands>
 	<menu>
 		<submenu name="Edit" _label="_Edit">
@@ -18,6 +30,12 @@
                 	        <menuitem name="EditCopy" verb="" _label="_Copy"/>
 	                        <menuitem name="EditPaste" verb="" _label="_Paste"/>
 		 	</placeholder>
+
+			<placeholder name="EditFindReplace">
+		                <menuitem name="EditFind" verb="" _label="_Find"/>
+		                <menuitem name="EditFindAgain" verb="" _label="Find A_gain"/>
+		                <menuitem name="EditReplace" verb="" _label="_Replace"/>
+			</placeholder>
 		</submenu>
 	</menu>
 
@@ -26,6 +44,11 @@
 	                        <menuitem name="EditCut" verb="" _label="C_ut"/>
                 	        <menuitem name="EditCopy" verb="" _label="_Copy"/>
 	                        <menuitem name="EditPaste" verb="" _label="_Paste"/>
+		</placeholder>
+
+		<placeholder name="EditFindReplace">
+		                <menuitem name="EditFind" verb="" _label="_Find"/>
+		                <menuitem name="EditReplace" verb="" _label="_Replace"/>
 		</placeholder>
 	</dockitem>
 </Root>

@@ -70,6 +70,8 @@ main (int argc, char *argv[])
     bonobo_activate ();
     
     win = bonobo_window_new ("scitest", "Scintilla Component Test");
+    gtk_signal_connect (GTK_OBJECT (win), "destroy", gtk_main_quit, NULL);
+
     container = bonobo_ui_container_new ();
     bonobo_ui_container_set_win (container, BONOBO_WINDOW (win));
     corba_container = bonobo_object_corba_objref (BONOBO_OBJECT (container));
@@ -78,7 +80,7 @@ main (int argc, char *argv[])
 
     bonobo_ui_util_set_ui (component, "/home/dave/cvs/scintilla-control", "test-ui.xml", "test");
 
-    sci = bonobo_widget_new_control ("OAFIID:control:scintilla:8e967999-d307-4a57-ae52-c1c2cb13b867", corba_container);
+    sci = bonobo_widget_new_control ("OAFIID:Bonobo_Control_Scintilla", corba_container);
     save_btn = gtk_button_new_with_label ("save");
     gtk_signal_connect (GTK_OBJECT (save_btn), "clicked",
 			GTK_SIGNAL_FUNC (save_clicked), &file);

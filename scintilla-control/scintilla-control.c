@@ -34,6 +34,7 @@
 #include "scintilla-persist-stream.h"
 #include "scintilla-editor-buffer.h"
 #include "scintilla-editor-gutter.h"
+#include "scintilla-find.h"
 
 #include <gdl/gdl-server-manager.h>
 
@@ -62,15 +63,22 @@ static void get_prop (BonoboPropertyBag *bag,
 
 static void notify_cb (ScintillaObject *sci, int wparam, void *lparam, 
                        gpointer user_data);
+static void destroy_cb (ScintillaObject *sci, gpointer data);
 
 static void cut_cb (GtkWidget *widget, ScintillaObject *sci);
 static void copy_cb (GtkWidget *widget, ScintillaObject *sci);
 static void paste_cb (GtkWidget *widget, ScintillaObject *sci);
+static void find_cb (GtkWidget *widget, ScintillaObject *sci);
+static void find_again_cb (GtkWidget *widget, ScintillaObject *sci);
+static void replace_cb (GtkWidget *widget, ScintillaObject *sci);
 
 BonoboUIVerb verbs[] = {
     BONOBO_UI_UNSAFE_VERB ("EditCut", cut_cb),
     BONOBO_UI_UNSAFE_VERB ("EditCopy", copy_cb),
     BONOBO_UI_UNSAFE_VERB ("EditPaste", paste_cb),
+    BONOBO_UI_UNSAFE_VERB ("EditFind", find_cb),
+    BONOBO_UI_UNSAFE_VERB ("EditFindAgain", find_again_cb),
+    BONOBO_UI_UNSAFE_VERB ("EditReplace", replace_cb),
     BONOBO_UI_VERB_END
 };
 
@@ -137,6 +145,9 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     
     gtk_signal_connect (GTK_OBJECT (sci), "notify",
                         GTK_SIGNAL_FUNC (notify_cb), NULL);
+
+    gtk_signal_connect (GTK_OBJECT (sci), "destroy",
+                        GTK_SIGNAL_FUNC (destroy_cb), NULL);
 
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINWIDTHN, 1, 30);
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINTYPEN, 1, SC_MARGIN_NUMBER);
@@ -294,6 +305,39 @@ void
 paste_cb (GtkWidget *widget, ScintillaObject *sci)
 {
     scintilla_send_message (sci, SCI_PASTE, 0, 0);
+}
+
+void
+find_cb (GtkWidget *widget, ScintillaObject *sci)
+{
+    run_find_dialog (sci);
+}
+
+void
+find_again_cb (GtkWidget *widget, ScintillaObject *sci)
+{
+    find_again (sci);
+}
+
+void
+replace_cb (GtkWidget *widget, ScintillaObject *sci)
+{
+    run_replace_dialog (sci);
+}
+
+static void
+destroy_cb (ScintillaObject *sci, gpointer data)
+{
+    ScintillaFindDialog *fd;
+    ScintillaReplaceDialog *rd;
+
+    fd = gtk_object_get_data (GTK_OBJECT (sci), "find_dialog");
+    if (fd)
+        scintilla_find_dialog_destroy (fd);
+
+    rd = gtk_object_get_data (GTK_OBJECT (sci), "replace_dialog");
+    if (rd)
+        scintilla_replace_dialog_destroy (rd);
 }
 
 

@@ -1,3 +1,8 @@
+2001-07-20  Dave Camp  <dave@ximian.com>
+
+        * Applied a patch from Gustavo M. Giraldez <gustavo.giraldez@gmx.net>
+	to implement "Search" and "Search and Replace" verbs.
+
 2001-07-09  Christopher R. Gabriel  <cgabriel@cgabriel.org>
 
 	* configure.in (ALL_LINGUAS): Added italian translation.
