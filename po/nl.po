@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GDL CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-16 11:37+0200\n"
+"POT-Creation-Date: 2004-01-13 04:00+0100\n"
 "PO-Revision-Date: 2003-01-23 09:11+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -25,11 +25,11 @@ msgstr "Grootte van de uitklapperpijl"
 
 # om in zeemanstermen te blijven zoude we het eigenlijk moeten
 # hebben over aanmeren en afmeren
-#: gdl/gdl-dock-item-grip.c:244
+#: gdl/gdl-dock-item-grip.c:247
 msgid "Dock the toolbar"
 msgstr "De werkbalk vastzetten"
 
-#: gdl/gdl-dock-item-grip.c:245
+#: gdl/gdl-dock-item-grip.c:248
 msgid "Un dock the toolbar"
 msgstr "De werkbalk vrijmaken"
 
@@ -137,55 +137,51 @@ msgstr "Vastzetten"
 msgid "Attempt to bind an unbound item %p"
 msgstr "Poging om een niet gebonden item %p te binden"
 
-#: gdl/gdl-dock-layout.c:125
+#: gdl/gdl-dock-layout.c:126
 msgid "Master"
 msgstr "Meester"
 
-#: gdl/gdl-dock-layout.c:126
+#: gdl/gdl-dock-layout.c:127
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "GdlDockMaster-object waaraan het layout-object is gebonden"
 
-#: gdl/gdl-dock-layout.c:133
+#: gdl/gdl-dock-layout.c:134
 msgid "Dirty"
 msgstr "Vuil"
 
-#: gdl/gdl-dock-layout.c:134
+#: gdl/gdl-dock-layout.c:135
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "Waar, indien de layout is veranderd en opgeslagen dient te worden in een "
 "bestand"
 
-#: gdl/gdl-dock-layout.c:447
-msgid "You must provide a name for the layout"
-msgstr "U moet een naam geven voor de layout"
-
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:625
+#: gdl/gdl-dock-layout.c:565
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Kon bestand '%s', met de layout van de gebruikersinterface, niet laden"
 
-#: gdl/gdl-dock-layout.c:680
+#: gdl/gdl-dock-layout.c:620
 msgid "Visible"
 msgstr "Zichtbaar"
 
-#: gdl/gdl-dock-layout.c:687
+#: gdl/gdl-dock-layout.c:627
 msgid "Item"
 msgstr "Item"
 
-#: gdl/gdl-dock-layout.c:737 gdl/gdl-dock-object.c:120
+#: gdl/gdl-dock-layout.c:710 gdl/gdl-dock-object.c:120
 msgid "Name"
 msgstr "Naam"
 
-#: gdl/gdl-dock-layout.c:776 gdl/layout.glade.h:2
+#: gdl/gdl-dock-layout.c:743 gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Dok-items"
 
-#: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
+#: gdl/gdl-dock-layout.c:749 gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Opgeslagen layouts"
 
-#: gdl/gdl-dock-layout.c:824
+#: gdl/gdl-dock-layout.c:791
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
@@ -194,7 +190,7 @@ msgstr ""
 "Tijdens het laden van de layout: onbekend hoe het dok-object met de bijnaam "
 "'%s'moet worden aangemaakt"
 
-#: gdl/gdl-dock-layout.c:1303
+#: gdl/gdl-dock-layout.c:1270
 msgid "Layout managment"
 msgstr "Layout-beheer"
 
@@ -447,28 +443,20 @@ msgstr "Het type waarmee de items worden genummerd"
 msgid "Open %s"
 msgstr "Open %s"
 
-#: gdl/gdl-icons.c:141 gdl/gdl-icons.c:142
+#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
 msgid "Icon size"
 msgstr "Pictogram-grootte"
 
-#: gdl/gdl-icons.c:147 gdl/gdl-icons.c:148
-msgid "Icon zoom"
-msgstr "Pictogram-zoom"
-
-#: gdl/layout.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: gdl/layout.glade.h:3
+#: gdl/layout.glade.h:2
 msgid "Layout Managment"
 msgstr "Layout-beheer"
 
 # typefout? moet het zijn _Lock?
-#: gdl/layout.glade.h:5
+#: gdl/layout.glade.h:4
 msgid "_Load"
 msgstr "_Laden"
 
-#: gdl/layout.glade.h:6
+#: gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "Dok-items _vastzetten"
 
@@ -513,112 +501,112 @@ msgstr "_Ga naar symbool"
 msgid "_View"
 msgstr "Beel_d"
 
-#: symbol-browser-control/symbol-browser.c:63
+#: symbol-browser-control/symbol-browser.c:65
 msgid "Unknown"
 msgstr "Onbekend"
 
 #. ! tm_tag_undef_t = 0, < Unknown type
-#: symbol-browser-control/symbol-browser.c:64
+#: symbol-browser-control/symbol-browser.c:66
 msgid "Classes"
 msgstr "Klassen"
 
 #. ! tm_tag_class_t = 1, < Class declaration
-#: symbol-browser-control/symbol-browser.c:65
+#: symbol-browser-control/symbol-browser.c:67
 msgid "Enums"
 msgstr "Opsoms"
 
 #. ! tm_tag_enum_t = 2, < Enum declaration
-#: symbol-browser-control/symbol-browser.c:66
+#: symbol-browser-control/symbol-browser.c:68
 msgid "Enumerators"
 msgstr "Opsommers"
 
 #. ! tm_tag_enumerator_t = 4, < Enumerator value
-#: symbol-browser-control/symbol-browser.c:67
+#: symbol-browser-control/symbol-browser.c:69
 msgid "Fields"
 msgstr "Velden"
 
 #. ! tm_tag_field_t = 8, < Field (Java only)
-#: symbol-browser-control/symbol-browser.c:68
+#: symbol-browser-control/symbol-browser.c:70
 msgid "Functions"
 msgstr "Functies"
 
 #. ! tm_tag_function_t = 16, < Function definition
-#: symbol-browser-control/symbol-browser.c:69
+#: symbol-browser-control/symbol-browser.c:71
 msgid "Interfaces"
 msgstr "Infterfaces"
 
 #. ! tm_tag_interface_t = 32, < Interface (Java only
-#: symbol-browser-control/symbol-browser.c:70
+#: symbol-browser-control/symbol-browser.c:72
 msgid "Members"
 msgstr "Leden"
 
 #. ! tm_tag_member_t = 64, < Member variable of class/struct
-#: symbol-browser-control/symbol-browser.c:71
+#: symbol-browser-control/symbol-browser.c:73
 msgid "Methods"
 msgstr "Methoden"
 
 #. ! tm_tag_method_t = 128, < Class method (Java only
-#: symbol-browser-control/symbol-browser.c:72
+#: symbol-browser-control/symbol-browser.c:74
 msgid "Namespaces"
 msgstr "Namespaces"
 
 #. ! tm_tag_namespace_t = 256, < Namespace declaration
-#: symbol-browser-control/symbol-browser.c:73
+#: symbol-browser-control/symbol-browser.c:75
 msgid "Packages"
 msgstr "Pakketten"
 
 #. ! tm_tag_package_t = 512, < Package (Java only)
-#: symbol-browser-control/symbol-browser.c:74
+#: symbol-browser-control/symbol-browser.c:76
 msgid "Prototypes"
 msgstr "Prototypen"
 
 #. ! tm_tag_prototype_t = 1024, < Function prototype
-#: symbol-browser-control/symbol-browser.c:75
+#: symbol-browser-control/symbol-browser.c:77
 msgid "Structs"
 msgstr "Structs"
 
 #. ! tm_tag_struct_t = 2048, < Struct declaration
-#: symbol-browser-control/symbol-browser.c:76
+#: symbol-browser-control/symbol-browser.c:78
 msgid "Typedefs"
 msgstr "Typedefs"
 
 #. ! tm_tag_typedef_t = 4096, < Typedef
-#: symbol-browser-control/symbol-browser.c:77
+#: symbol-browser-control/symbol-browser.c:79
 msgid "Unions"
 msgstr "Unions"
 
 #. ! tm_tag_union_t = 8192, !< Union
-#: symbol-browser-control/symbol-browser.c:78
+#: symbol-browser-control/symbol-browser.c:80
 msgid "Variables"
 msgstr "Variabelen"
 
 #. ! tm_tag_variable_t = 16384, < Variable
-#: symbol-browser-control/symbol-browser.c:79
+#: symbol-browser-control/symbol-browser.c:81
 msgid "ExternVars"
 msgstr "ExternVars"
 
 #. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
-#: symbol-browser-control/symbol-browser.c:80
+#: symbol-browser-control/symbol-browser.c:82
 msgid "Macros"
 msgstr "Macros"
 
 # moeten we dit wel vertalen?
 #. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
-#: symbol-browser-control/symbol-browser.c:81
+#: symbol-browser-control/symbol-browser.c:83
 msgid "MacrosWithArgs"
 msgstr "MacrosWithArgs"
 
-#: symbol-browser-control/symbol-browser.c:369
+#: symbol-browser-control/symbol-browser.c:378
 msgid "Tags"
 msgstr "Tags"
 
-#: symbol-browser-control/symbol-browser.c:377
-#: symbol-browser-control/symbol-browser.c:387
+#: symbol-browser-control/symbol-browser.c:386
+#: symbol-browser-control/symbol-browser.c:397
 msgid "Undefined"
 msgstr "Ongedefinieerd"
 
-#: symbol-browser-control/symbol-browser.c:379
-#: symbol-browser-control/symbol-browser.c:389
+#: symbol-browser-control/symbol-browser.c:388
+#: symbol-browser-control/symbol-browser.c:399
 msgid "<No Symbol>"
 msgstr "<geen symbool>"
 
@@ -649,7 +637,7 @@ msgstr "De hele boom bijwerken"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:7
 msgid "_Exit"
-msgstr "_Afsluiten"
+msgstr "A_fsluiten"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:8
 msgid "_File"
@@ -679,6 +667,15 @@ msgstr "Huidige bestand instellen..."
 msgid "Save file..."
 msgstr "Bestand opslaan..."
 
-#: symbol-browser-control/test-symbol-browser.c:292
+#: symbol-browser-control/test-symbol-browser.c:295
 msgid "Can't initialize bonobo!"
 msgstr "Kan bonobo niet initialiseren!"
+
+#~ msgid "You must provide a name for the layout"
+#~ msgstr "U moet een naam geven voor de layout"
+
+#~ msgid "Icon zoom"
+#~ msgstr "Pictogram-zoom"
+
+#~ msgid "*"
+#~ msgstr "*"
