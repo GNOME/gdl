@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-10 14:36+0100\n"
-"PO-Revision-Date: 2004-02-10 19:34+0100\n"
+"POT-Creation-Date: 2004-02-11 03:37+0100\n"
+"PO-Revision-Date: 2004-02-11 06:07+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,7 @@ msgstr "Zamknout"
 msgid "Attempt to bind an unbound item %p"
 msgstr "Pokus připojit nepřipojenou položku %p"
 
-#: gdl/gdl-dock-layout.c:125
+#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
 msgid "Master"
 msgstr "Master"
 
@@ -362,6 +362,10 @@ msgstr "Při získávání umístění potomka %p rodiče %p se stalo něco divn
 #: gdl/gdl-dock-tablabel.c:130
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Položka doku, která 'vlastní' tuto jmenovku záložky"
+
+#: gdl/gdl-dock-bar.c:89
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "Objekt GdlDockMaster, ke kterému je připojen widget lišty doku"
 
 #: gdl/gdl-dock.c:176
 msgid "Floating"
