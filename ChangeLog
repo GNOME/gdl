@@ -1,3 +1,9 @@
+2001-12-30  Dave Camp  <dave@ximian.com>
+
+	* Added the beginnings of the GdlDataView widget, which will 
+	ultimately be a structure browser similar to the widgets
+	used in ddd and gvd.
+
 2001-12-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* Port to Gnome 2 platform of the source root files and the gdl/

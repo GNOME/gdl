@@ -4,6 +4,10 @@ INCLUDES = \
 	-DGTK_DISABLE_DEPRECATED 			\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS)					\
+        -DPREFIX=\""$(prefix)"\"                        \
+        -DSYSCONFDIR=\""$(sysconfdir)"\"                \
+        -DDATADIR=\""$(datadir)"\"                      \
+        -DLIBDIR=\""$(libdir)"\"                        \
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la
@@ -19,6 +23,7 @@ CORBA_GENERATED = \
 BUILT_SOURCES=$(CORBA_GENERATED)
 
 idl_dir = $(top_srcdir)/idl
+
 IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/idl \
 	-I $(LIBBONOBO_IDL_DIR)  				\
 	-I $(BONOBO_ACTIVATION_IDL_DIR)
@@ -54,7 +59,7 @@ libgdl_1_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS)
 
-noinst_PROGRAMS=test-dock
+noinst_PROGRAMS=test-dock test-dataview
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-1.la $(XML_LIBS)
@@ -74,6 +79,21 @@ libgdlinclude_HEADERS = \
 	$(CORBA_GENERATED_HEADER_FILES) \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
+
+test_dataview_SOURCES = \
+	gdl-data-view.h \
+	gdl-data-view.c \
+	gdl-data-frame.h \
+	gdl-data-frame.c \
+	gdl-data-model.h \
+	gdl-data-model.c \
+	gdl-data-model-test.h \
+	gdl-data-model-test.c \
+	gdl-data-row.h \
+	gdl-data-row.c \
+	test-dataview.c
+
+test_dataview_LDADD = $(GDL_DEPENDENCIES_LIBS)
 
 # enumerations code generation
 
@@ -121,4 +141,3 @@ libgdlmarshal.c: Makefile.am libgdlmarshal.h
 		--prefix=gdl_marshal libgdlmarshal.list --body >> xgen-gmc \
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
-
