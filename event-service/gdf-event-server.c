@@ -79,7 +79,7 @@ main (int argc, char *argv[])
 	    CORBA_ORB_resolve_initial_references (oaf_orb_get (), 
                                               "RootPOA", &ev);	
 
-	factory = impl_Bonobo_GenericFactory__create (poa, &ev);
+	factory = impl_GNOME_ObjectFactory__create (poa, &ev);
 
 #if 0 /* goad stuff */
 	nameserver = gnome_name_service_get ();

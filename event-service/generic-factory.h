@@ -29,11 +29,11 @@
 #include <bonobo.h>
 
 typedef struct {
-    POA_Bonobo_GenericFactory servant;
+    POA_GNOME_ObjectFactory servant;
     PortableServer_POA poa;
-} impl_POA_Bonobo_GenericFactory;
+} impl_POA_GNOME_ObjectFactory;
 
-extern Bonobo_GenericFactory
-impl_Bonobo_GenericFactory__create (PortableServer_POA, CORBA_Environment *);
+extern GNOME_ObjectFactory
+impl_GNOME_ObjectFactory__create (PortableServer_POA, CORBA_Environment *);
 
 #endif /* GENERIC_FACTORY_H */
