@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtk+\n"
-"POT-Creation-Date: 2002-06-07 02:14+0200\n"
-"PO-Revision-Date: 2002-06-07 02:14+0200\n"
+"POT-Creation-Date: 2002-07-08 11:27+0200\n"
+"PO-Revision-Date: 2002-07-08 11:28+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -180,11 +180,11 @@ msgstr "Objekt"
 msgid "Name"
 msgstr "Namn"
 
-#: gdl/gdl-dock-layout.c:801
+#: gdl/gdl-dock-layout.c:801 gdl/layout.glade.h:2
 msgid "Dock items"
 msgstr "Dockobjekt"
 
-#: gdl/gdl-dock-layout.c:807
+#: gdl/gdl-dock-layout.c:807 gdl/layout.glade.h:4
 msgid "Saved layouts"
 msgstr "Sparade objekt"
 
@@ -475,6 +475,22 @@ msgstr "Typen med vilken objekten kommer att numreras."
 msgid "Open %s"
 msgstr "Öppna %s"
 
+#: gdl/layout.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: gdl/layout.glade.h:3
+msgid "Layout Managment"
+msgstr "Layouthantering"
+
+#: gdl/layout.glade.h:5
+msgid "_Load"
+msgstr "_Läs in"
+
+#: gdl/layout.glade.h:6
+msgid "_Lock dock items"
+msgstr "_Lås dockobjekt"
+
 #: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
 msgid "Factory for the Gnome Symbol Browser control."
 msgstr "Fabrik för Gnome-symbolbläddrarstyrenheten."
@@ -588,6 +604,9 @@ msgstr "Spara fil..."
 #: symbol-browser-control/test-symbol-browser.c:287
 msgid "Can't initialize bonobo!"
 msgstr "Kan inte initiera bonobo!"
+
+#~ msgid "Layout Management"
+#~ msgstr "Layouthantering"
 
 #~ msgid "If set, the dock item can be resized when docked in a panel"
 #~ msgstr ""
@@ -3078,9 +3097,6 @@ msgstr "Kan inte initiera bonobo!"
 
 #~ msgid "_Down"
 #~ msgstr "_Ned"
-
-#~ msgid "_Forward"
-#~ msgstr "_Framåt"
 
 #~ msgid "_Up"
 #~ msgstr "_Upp"
