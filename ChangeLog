@@ -1,3 +1,7 @@
+2003-02-05  Thomas Vander Stichele <thomas at apestaart dot org>
+
+        * configure.in: fix aclocal flags in maintainer mode
+
 2003-01-24  Daniel Yacob <locales@geez.org>
 
 	* configure.in: Added am to ALL_LINGUAS.

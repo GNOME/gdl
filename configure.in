@@ -18,6 +18,12 @@ GDL_VERSION=$GDL_MAJOR_VERSION.$GDL_MINOR_VERSION.$GDL_MICRO_VERSION
 
 AM_INIT_AUTOMAKE($PACKAGE, $GDL_VERSION)
 
+dnl with higher autotools, we can set ACLOCAL_AMFLAGS instead, which is
+dnl the better solution; this does the trick for automake-1.4
+dnl gnome-autogen.sh sets ACLOCAL_FLAGS, which points to the cvs gnome
+dnl autoconf macros
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
 AC_PROG_INTLTOOL
 
 AC_SUBST(GDL_MAJOR_VERSION)
