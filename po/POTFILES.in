@@ -1,2 +1,4 @@
 scintilla-control/scintilla-control.c
 scintilla-control/scintilla-ui.xml
+scintilla-control/Bonobo_Control_Scintilla.oaf.in
+scintilla-control/scintilla-find.c
