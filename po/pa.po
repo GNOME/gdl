@@ -1,0 +1,646 @@
+# translation of pa.po to Punjabi
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Amanpreet Singh Alam <aalam@redhat.com>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pa\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-20 03:31+0200\n"
+"PO-Revision-Date: 2004-11-04 17:04+0530\n"
+"Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
+"Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+
+#: gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "ਫੈਲਾਉ ਆਕਾਰ"
+
+#: gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "ਫੈਲਾਉ ਤੀਰ ਦਾ ਆਕਾਰ ਹੈ।"
+
+#: gdl/gdl-dock-item-grip.c:364
+msgid "Iconify"
+msgstr "ਆਈਕਾਨ"
+
+#: gdl/gdl-dock-item-grip.c:364
+msgid "Iconify this dock"
+msgstr ""
+
+#: gdl/gdl-dock-item-grip.c:366
+msgid "Close"
+msgstr "ਬੰਦ ਕਰੋ"
+
+#: gdl/gdl-dock-item-grip.c:366
+msgid "Close this dock"
+msgstr "ਇਹ ਡਾਕ ਬੰਦ ਕਰੋ"
+
+#: gdl/gdl-dock-item-grip.c:675 gdl/gdl-dock-tablabel.c:129
+msgid "Controlling dock item"
+msgstr "ਡੌਕ ਇਕਾਈ ਕੰਟਰੋਲ"
+
+#: gdl/gdl-dock-item-grip.c:676
+msgid "Dockitem which 'owns' this grip"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:242
+msgid "Orientation"
+msgstr "ਸਥਿਤੀ"
+
+#: gdl/gdl-dock-item.c:243
+msgid "Orientation of the docking item"
+msgstr "ਡੌਕ ਇਕਾਈ ਦੀ ਸਥਿਤੀ"
+
+#: gdl/gdl-dock-item.c:258
+msgid "Resizable"
+msgstr "ਮੁੜ-ਆਕਾਰ ਯੋਗ"
+
+#: gdl/gdl-dock-item.c:259
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:266
+msgid "Item behavior"
+msgstr "ਇਕਾਈ ਵਿਵਹਾਰ"
+
+#: gdl/gdl-dock-item.c:267
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
+msgid "Locked"
+msgstr "ਤਾਲਾਬੰਦ"
+
+#: gdl/gdl-dock-item.c:276
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:284
+msgid "Preferred width"
+msgstr "ਪਸੰਦੀਦਾ ਚੌੜਾਈ"
+
+#: gdl/gdl-dock-item.c:285
+msgid "Preferred width for the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:291
+msgid "Preferred height"
+msgstr "ਪਸੰਦੀਦਾ ਉਚਾਈ"
+
+#: gdl/gdl-dock-item.c:292
+msgid "Preferred height for the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:542
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+
+#: gdl/gdl-dock-item.c:549
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:1176
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr ""
+
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1258
+msgid "Hide"
+msgstr "ਓਹਲੇ"
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1264
+msgid "Lock"
+msgstr "ਤਾਲਾਬੰਦ"
+
+#: gdl/gdl-dock-item.c:1448
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
+msgid "Master"
+msgstr "ਮਾਸਟਰ"
+
+#: gdl/gdl-dock-layout.c:126
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:133
+msgid "Dirty"
+msgstr "ਭੱਦਾ"
+
+#: gdl/gdl-dock-layout.c:134
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr ""
+
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:564
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:619
+msgid "Visible"
+msgstr "ਦਿੱਖ"
+
+#: gdl/gdl-dock-layout.c:626
+msgid "Item"
+msgstr "ਇਕਾਈ"
+
+#: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "ਨਾਂ"
+
+#: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "ਡੌਕ ਇਕਾਈਆਂ"
+
+#: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "ਸੰਭਾਲੇ ਖਾਕੇ"
+
+#: gdl/gdl-dock-layout.c:790
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:1269
+msgid "Layout managment"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
+msgid "Default title"
+msgstr "ਮੂਲ ਸਿਰਲੇਖ"
+
+#: gdl/gdl-dock-master.c:135
+msgid "Default title for newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:142
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:730
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+
+#: gdl/gdl-dock-master.c:895
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+
+#: gdl/gdl-dock-notebook.c:135
+msgid "Page"
+msgstr "ਸਫਾ"
+
+#: gdl/gdl-dock-notebook.c:136
+msgid "The index of the current page"
+msgstr "ਮੌਜੂਦਾ ਸਫੇ ਦਾ ਤਤਕਰਾ"
+
+#: gdl/gdl-dock-object.c:121
+msgid "Unique name for identifying the dock object"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:128
+msgid "Long name"
+msgstr "ਲੰਮਾ ਨਾਂ"
+
+#: gdl/gdl-dock-object.c:129
+msgid "Human readable name for the dock object"
+msgstr "ਡੌਕ ਇਕਾਈ ਲ਼ਈ ਮਨੁੱਖੀ ਪੜਨਯੋਗ ਨਾਂ"
+
+#: gdl/gdl-dock-object.c:135
+msgid "Stock Icon"
+msgstr "ਸਟਾੱਕ ਆਈਕਾਨ"
+
+#: gdl/gdl-dock-object.c:136
+msgid "Stock icon for the dock object"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:142
+msgid "Dock master"
+msgstr "ਡੌਕ ਮਾਸਟਰ"
+
+#: gdl/gdl-dock-object.c:143
+msgid "Dock master this dock object is bound to"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:421
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:550
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:557
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:599
+#, c-format
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+
+#: gdl/gdl-dock-paned.c:133
+msgid "Position"
+msgstr "ਸਥਿਤੀ"
+
+#: gdl/gdl-dock-paned.c:134
+msgid "Position of the divider in pixels"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:128
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "ਮੇਜ਼ਬਾਨ"
+
+#: gdl/gdl-dock-placeholder.c:136
+msgid "The dock object this placeholder is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:143
+msgid "Next placement"
+msgstr "ਅੱਗੇ ਸਥਿਤੀ"
+
+#: gdl/gdl-dock-placeholder.c:144
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:305
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:419
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:440
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+
+#: gdl/gdl-dock-tablabel.c:130
+msgid "Dockitem which 'owns' this tablabel"
+msgstr ""
+
+#: gdl/gdl-dock-bar.c:89
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+
+#: gdl/gdl-dock.c:176
+msgid "Floating"
+msgstr "ਤਰਦਾ"
+
+#: gdl/gdl-dock.c:177
+msgid "Whether the dock is floating in its own window"
+msgstr ""
+
+#: gdl/gdl-dock.c:185
+msgid "Default title for the newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock.c:191
+msgid "Width"
+msgstr "ਚੌੜਾਈ"
+
+#: gdl/gdl-dock.c:192
+msgid "Width for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:199
+msgid "Height"
+msgstr "ਉਚਾਈ"
+
+#: gdl/gdl-dock.c:200
+msgid "Height for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:207
+msgid "Float X"
+msgstr "ਤਰਦਾ X"
+
+#: gdl/gdl-dock.c:208
+msgid "X coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:215
+msgid "Float Y"
+msgstr "ਤਰਦਾ Y"
+
+#: gdl/gdl-dock.c:216
+msgid "Y coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:497
+#, c-format
+msgid "Dock #%d"
+msgstr "ਡੌਕ #%d"
+
+#: gdl/gdl-recent.c:135
+msgid "GConf key"
+msgstr "GConf ਕੁੰਜੀ"
+
+#: gdl/gdl-recent.c:136
+msgid "The gconf key for storing the recent entries."
+msgstr ""
+
+#: gdl/gdl-recent.c:142
+msgid "Path"
+msgstr "ਮਾਰਗ"
+
+#: gdl/gdl-recent.c:143
+msgid "The path to put the menu items."
+msgstr ""
+
+#: gdl/gdl-recent.c:149
+msgid "Limit"
+msgstr "ਸੀਮਾ"
+
+#: gdl/gdl-recent.c:150
+msgid "The maximum number of items to be allowed in the list."
+msgstr ""
+
+#: gdl/gdl-recent.c:158
+msgid "List type"
+msgstr "ਸੂਚੀ ਕਿਸਮ"
+
+#: gdl/gdl-recent.c:159
+msgid "The type with which the items will be numbered."
+msgstr ""
+
+#: gdl/gdl-recent.c:408
+#, c-format
+msgid "Open %s"
+msgstr "%s ਖੋਲ੍ਹੋ"
+
+#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
+msgid "Icon size"
+msgstr "ਆਈਕਾਨ ਆਕਾਰ"
+
+#: gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "ਖਾਕਾ ਪ੍ਰਬੰਧਕ"
+
+#: gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "ਲੋਡ(_L)"
+
+#: gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "ਗਨੋਮ ਸੰਕੇਤ ਝਲਕਾਰਾ ਕੰਟਰੋਲ ਲਈ ਫੈਕਟਰੀ ਹੈ।"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr "ਗਨੋਮ ਸੰਕੇਤ ਝਲਕਾਰਾ ਕੰਟਰੋਲ"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr "ਗਨੋਮ ਸੰਕੇਤ ਝਲਕਾਰਾ ਕੰਟਰੋਲ ਫੈਕਟਰੀ"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr "ਗਨੋਮ ਸੰਕੇਤ ਝਲਕਾਰਾ ਹੈ।"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr "ਗੋਟੋ ਨਿਸ਼ਾਨ"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr "ਨਵੀਨੀਕਰਨ ਨਿਸ਼ਾਨ"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr "ਨਿਸ਼ਾਨ ਤੇ ਜਾਓ(_G)"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "ਵੇਖੋ(_V)"
+
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Unknown"
+msgstr "ਅਣਜਾਣ"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:66
+msgid "Classes"
+msgstr "ਸ੍ਰੇਣੀ"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Enums"
+msgstr "Enums"
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Enumerators"
+msgstr ""
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Fields"
+msgstr "ਖੇਤਰ"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Functions"
+msgstr "ਫੰਕਸ਼ਨ"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Interfaces"
+msgstr "ਇੰਟਰਫੇਸ"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Members"
+msgstr "ਮੈਂਬਰ"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:73
+msgid "Methods"
+msgstr "ਢੰਗ"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:74
+msgid "Namespaces"
+msgstr "ਨਾਂ-ਥਾਂ"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Packages"
+msgstr "ਪੈਕੇਜ"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Prototypes"
+msgstr "ਪ੍ਰੋਟੋ-ਟਾਇਪ"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Structs"
+msgstr "Structs"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Typedefs"
+msgstr "Typedefs"
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:79
+msgid "Unions"
+msgstr "Unions"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Variables"
+msgstr "ਵੇਰੀਬਲ"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:81
+msgid "ExternVars"
+msgstr ""
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:82
+msgid "Macros"
+msgstr "Macros"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:83
+msgid "MacrosWithArgs"
+msgstr "MacrosWithArgs"
+
+#: symbol-browser-control/symbol-browser.c:378
+msgid "Tags"
+msgstr "ਟੈਗ"
+
+#: symbol-browser-control/symbol-browser.c:386
+#: symbol-browser-control/symbol-browser.c:397
+msgid "Undefined"
+msgstr "ਨਾ-ਪ੍ਰਭਾਸ਼ਿਤ"
+
+#: symbol-browser-control/symbol-browser.c:388
+#: symbol-browser-control/symbol-browser.c:399
+msgid "<No Symbol>"
+msgstr "<No Symbol>"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "ਬੰਦ ਕਰੋ"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr "ਪ੍ਰੋਜੈਕਟ ਖੋਲ੍ਹੋ"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr "ਪ੍ਰੋਜੈਕਟ ਸੰਭਾਲੋ"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਨਿਰਧਾਰਿਤ ਕਰੋ"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "ਨਵੀਨੀਕਰਨ"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr "ਬਾਹਰ(_E)"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "ਫਾਇਲ(_F)"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr "ਪ੍ਰੋਜੈਕਟ ਖੋਲੋ(_O)"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr "ਪ੍ਰੋਜੈਕਟ ਸੰਭਾਲੋ(_S)"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਨਿਰਧਾਰਿਤ(_S)"
+
+#: symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr "ਫਾਇਲ ਖੋਲੋ..."
+
+#: symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਨਿਰਧਾਰਿਤ ਕਰੋ..."
+
+#: symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr "ਫਾਇਲ ਸੰਭਾਲੋ..."
+
+#: symbol-browser-control/test-symbol-browser.c:295
+msgid "Can't initialize bonobo!"
+msgstr ""
+

@@ -1,3 +1,7 @@
+2004-11-04	Amanpreet Singh Alam <aalam@redhat.com>
+	
+	* configure.in: pa is added to ALL_LINGUAS
+
 2004-04-02  Gareth Owen  <gowen72@yahoo.com>
 
 	* configure.in: Added en_GB to ALL_LINGUAS
