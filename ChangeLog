@@ -1,3 +1,9 @@
+2005-03-08  Naba Kumar  <naba@gnome.org>
+
+	Patch from: David A Knight  <david@ritter.demon.co.uk>
+	* gdl/gdl-dock-bar.[ch]: Added orientation get/set functions
+	to allow for horizontal/vertical layout -- bug #155339
+
 2004-12-25  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Add «nb» to ALL_LINGUAS.

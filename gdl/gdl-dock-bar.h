@@ -41,7 +41,7 @@ typedef struct _GdlDockBarClass   GdlDockBarClass;
 typedef struct _GdlDockBarPrivate GdlDockBarPrivate;
 
 struct _GdlDockBar {
-    GtkVBox parent;
+    GtkBox parent;
 
     GdlDock *dock;
 
@@ -52,9 +52,13 @@ struct _GdlDockBarClass {
     GtkVBoxClass parent_class;
 };
 
-GType      gdl_dock_bar_get_type       (void); 
+GType      gdl_dock_bar_get_type            (void); 
 
-GtkWidget *gdl_dock_bar_new            (GdlDock     *dock);
+GtkWidget *gdl_dock_bar_new                 (GdlDock     *dock);
+
+GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar);
+void           gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
+		                             GtkOrientation orientation);
 
 G_END_DECLS
 
