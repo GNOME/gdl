@@ -1,13 +1,15 @@
 # Czech translation of gdl
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2002, 2003, 2004 gdl'S COPYRIGHT HOLDER
+# Copyright (C) 2004 Miloslav Trmac <mitr@volny.cz>
 # This file is distributed under the same license as the PACKAGE package.
 # Miloslav Trmac <mitr@volny.cz>, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl VERSION\n"
-"POT-Creation-Date: 2003-02-06 10:58+0100\n"
-"PO-Revision-Date: 2003-02-07 17:04+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-24 03:54+0100\n"
+"PO-Revision-Date: 2004-01-25 01:56+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,11 +24,11 @@ msgstr "Velikost expandéru"
 msgid "Size of the expander arrow."
 msgstr "Velikost šipky expandéru."
 
-#: gdl/gdl-dock-item-grip.c:244
+#: gdl/gdl-dock-item-grip.c:247
 msgid "Dock the toolbar"
 msgstr "Zadokovat lištu nástrojů"
 
-#: gdl/gdl-dock-item-grip.c:245
+#: gdl/gdl-dock-item-grip.c:248
 msgid "Un dock the toolbar"
 msgstr "Oddokovat lištu nástrojů"
 
@@ -44,7 +46,8 @@ msgstr "Může měnit velikost"
 
 #: gdl/gdl-dock-item.c:259
 msgid "If set, the dock item can be resized when docked in a paned"
-msgstr "Je-li nastaveno, může být změněna velikost položky doku zadokované v panelu"
+msgstr ""
+"Je-li nastaveno, může být změněna velikost položky doku zadokované v panelu"
 
 #: gdl/gdl-dock-item.c:266
 msgid "Item behavior"
@@ -64,7 +67,7 @@ msgstr "Velikost úchytu"
 msgid "Size in pixels of the grip to drag the dock item"
 msgstr "Velikost v pixelech úchytu pro tažení položky doku"
 
-#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:143
+#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
 msgid "Locked"
 msgstr "Zamčená"
 
@@ -128,54 +131,50 @@ msgstr "Zamknout"
 msgid "Attempt to bind an unbound item %p"
 msgstr "Pokus připojit nepřipojenou položku %p"
 
-#: gdl/gdl-dock-layout.c:125
+#: gdl/gdl-dock-layout.c:126
 msgid "Master"
 msgstr "Master"
 
-#: gdl/gdl-dock-layout.c:126
+#: gdl/gdl-dock-layout.c:127
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Objekt GdlDockMaster, ke kterému je připojen objekt rozložení"
 
-#: gdl/gdl-dock-layout.c:133
+#: gdl/gdl-dock-layout.c:134
 msgid "Dirty"
 msgstr "Špinavý"
 
-#: gdl/gdl-dock-layout.c:134
+#: gdl/gdl-dock-layout.c:135
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "Pravda, jestliže se rozložení změnilo a je potřeba je uložit do souboru"
 
-#: gdl/gdl-dock-layout.c:447
-msgid "You must provide a name for the layout"
-msgstr "Musíte poskytnout název rozložení"
-
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:625
+#: gdl/gdl-dock-layout.c:565
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Nemohu načíst soubor rozložení uživatelského rozhraní '%s'"
 
-#: gdl/gdl-dock-layout.c:680
+#: gdl/gdl-dock-layout.c:620
 msgid "Visible"
 msgstr "Viditelný"
 
-#: gdl/gdl-dock-layout.c:687
+#: gdl/gdl-dock-layout.c:627
 msgid "Item"
 msgstr "Položka"
 
-#: gdl/gdl-dock-layout.c:737 gdl/gdl-dock-object.c:120
+#: gdl/gdl-dock-layout.c:710 gdl/gdl-dock-object.c:120
 msgid "Name"
 msgstr "Jméno"
 
-#: gdl/gdl-dock-layout.c:776 gdl/layout.glade.h:2
+#: gdl/gdl-dock-layout.c:743 gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Položky doku"
 
-#: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
+#: gdl/gdl-dock-layout.c:749 gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Uložená rozložení"
 
-#: gdl/gdl-dock-layout.c:824
+#: gdl/gdl-dock-layout.c:791
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
@@ -183,28 +182,25 @@ msgid ""
 msgstr ""
 "Při načítání rozložení: nevím, jak vytvořit objekt doku s přezdívkou '%s'"
 
-#: gdl/gdl-dock-layout.c:1303
+#: gdl/gdl-dock-layout.c:1270
 msgid "Layout managment"
 msgstr "Správa rozložení"
 
-#: gdl/gdl-dock-master.c:136 gdl/gdl-dock.c:185
+#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
 msgid "Default title"
 msgstr "Implicitní nadpis"
 
-#: gdl/gdl-dock-master.c:137
+#: gdl/gdl-dock-master.c:136
 msgid "Default title for newly created floating docks"
 msgstr "Implicitní nadpis nově vytvořených plovoucích doků"
 
-#: gdl/gdl-dock-master.c:144
+#: gdl/gdl-dock-master.c:143
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr ""
-"Je-li nastaveno na 1, všechny položky doku připojené k masteru jsou "
-"zamknuté; je-li 0, jsou všechny odemknuté; -1 indikuje nekonzistenci mezi "
-"položkami"
+msgstr "Je-li nastaveno na 1, všechny položky doku připojené k masteru jsou zamknuty; je-li 0, jsou všechny odemknuty; -1 indikuje nekonzistenci mezi položkami"
 
-#: gdl/gdl-dock-master.c:736
+#: gdl/gdl-dock-master.c:730
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -213,7 +209,7 @@ msgstr ""
 "master %p: nemohu přidat objekt %p[%s] do hashe. Položka (%p) s tímto jménem "
 "již existuje."
 
-#: gdl/gdl-dock-master.c:906
+#: gdl/gdl-dock-master.c:895
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -430,27 +426,19 @@ msgstr "Typ, kterým budou číslovány položky."
 msgid "Open %s"
 msgstr "Otevřít %s"
 
-#: gdl/gdl-icons.c:141 gdl/gdl-icons.c:142
+#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
 msgid "Icon size"
 msgstr "Velikost ikony"
 
-#: gdl/gdl-icons.c:147 gdl/gdl-icons.c:148
-msgid "Icon zoom"
-msgstr "Zvětšení ikony"
-
-#: gdl/layout.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: gdl/layout.glade.h:3
+#: gdl/layout.glade.h:2
 msgid "Layout Managment"
 msgstr "Správa rozložení"
 
-#: gdl/layout.glade.h:5
+#: gdl/layout.glade.h:4
 msgid "_Load"
 msgstr "_Načíst"
 
-#: gdl/layout.glade.h:6
+#: gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Zamknout položky doku"
 
@@ -494,111 +482,111 @@ msgstr "_Jít na symbol"
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: symbol-browser-control/symbol-browser.c:63
+#: symbol-browser-control/symbol-browser.c:65
 msgid "Unknown"
 msgstr "Neznámý"
 
 #. ! tm_tag_undef_t = 0, < Unknown type
-#: symbol-browser-control/symbol-browser.c:64
+#: symbol-browser-control/symbol-browser.c:66
 msgid "Classes"
 msgstr "Třídy"
 
 #. ! tm_tag_class_t = 1, < Class declaration
-#: symbol-browser-control/symbol-browser.c:65
+#: symbol-browser-control/symbol-browser.c:67
 msgid "Enums"
 msgstr "Enums"
 
 #. ! tm_tag_enum_t = 2, < Enum declaration
-#: symbol-browser-control/symbol-browser.c:66
+#: symbol-browser-control/symbol-browser.c:68
 msgid "Enumerators"
 msgstr "Enumerátory"
 
 #. ! tm_tag_enumerator_t = 4, < Enumerator value
-#: symbol-browser-control/symbol-browser.c:67
+#: symbol-browser-control/symbol-browser.c:69
 msgid "Fields"
 msgstr "Pole"
 
 #. ! tm_tag_field_t = 8, < Field (Java only)
-#: symbol-browser-control/symbol-browser.c:68
+#: symbol-browser-control/symbol-browser.c:70
 msgid "Functions"
 msgstr "Funkce"
 
 #. ! tm_tag_function_t = 16, < Function definition
-#: symbol-browser-control/symbol-browser.c:69
+#: symbol-browser-control/symbol-browser.c:71
 msgid "Interfaces"
 msgstr "Rozhraní"
 
 #. ! tm_tag_interface_t = 32, < Interface (Java only
-#: symbol-browser-control/symbol-browser.c:70
+#: symbol-browser-control/symbol-browser.c:72
 msgid "Members"
 msgstr "Položky"
 
 #. ! tm_tag_member_t = 64, < Member variable of class/struct
-#: symbol-browser-control/symbol-browser.c:71
+#: symbol-browser-control/symbol-browser.c:73
 msgid "Methods"
 msgstr "Metody"
 
 #. ! tm_tag_method_t = 128, < Class method (Java only
-#: symbol-browser-control/symbol-browser.c:72
+#: symbol-browser-control/symbol-browser.c:74
 msgid "Namespaces"
 msgstr "Prostory jmen"
 
 #. ! tm_tag_namespace_t = 256, < Namespace declaration
-#: symbol-browser-control/symbol-browser.c:73
+#: symbol-browser-control/symbol-browser.c:75
 msgid "Packages"
 msgstr "Balíčky"
 
 #. ! tm_tag_package_t = 512, < Package (Java only)
-#: symbol-browser-control/symbol-browser.c:74
+#: symbol-browser-control/symbol-browser.c:76
 msgid "Prototypes"
 msgstr "Prototypy"
 
 #. ! tm_tag_prototype_t = 1024, < Function prototype
-#: symbol-browser-control/symbol-browser.c:75
+#: symbol-browser-control/symbol-browser.c:77
 msgid "Structs"
 msgstr "Structs"
 
 #. ! tm_tag_struct_t = 2048, < Struct declaration
-#: symbol-browser-control/symbol-browser.c:76
+#: symbol-browser-control/symbol-browser.c:78
 msgid "Typedefs"
 msgstr "Typedefs"
 
 #. ! tm_tag_typedef_t = 4096, < Typedef
-#: symbol-browser-control/symbol-browser.c:77
+#: symbol-browser-control/symbol-browser.c:79
 msgid "Unions"
 msgstr "Unions"
 
 #. ! tm_tag_union_t = 8192, !< Union
-#: symbol-browser-control/symbol-browser.c:78
+#: symbol-browser-control/symbol-browser.c:80
 msgid "Variables"
 msgstr "Proměnné"
 
 #. ! tm_tag_variable_t = 16384, < Variable
-#: symbol-browser-control/symbol-browser.c:79
+#: symbol-browser-control/symbol-browser.c:81
 msgid "ExternVars"
 msgstr "ExternVars"
 
 #. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
-#: symbol-browser-control/symbol-browser.c:80
+#: symbol-browser-control/symbol-browser.c:82
 msgid "Macros"
 msgstr "Makra"
 
 #. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
-#: symbol-browser-control/symbol-browser.c:81
+#: symbol-browser-control/symbol-browser.c:83
 msgid "MacrosWithArgs"
 msgstr "MakraSArg"
 
-#: symbol-browser-control/symbol-browser.c:369
+#: symbol-browser-control/symbol-browser.c:378
 msgid "Tags"
 msgstr "Značky"
 
-#: symbol-browser-control/symbol-browser.c:377
-#: symbol-browser-control/symbol-browser.c:387
+#: symbol-browser-control/symbol-browser.c:386
+#: symbol-browser-control/symbol-browser.c:397
 msgid "Undefined"
 msgstr "Nedefinováno"
 
-#: symbol-browser-control/symbol-browser.c:379
-#: symbol-browser-control/symbol-browser.c:389
+#: symbol-browser-control/symbol-browser.c:388
+#: symbol-browser-control/symbol-browser.c:399
 msgid "<No Symbol>"
 msgstr "<Žádný symbol>"
 
@@ -658,6 +646,15 @@ msgstr "Nastavit současný soubor..."
 msgid "Save file..."
 msgstr "Uložit soubor..."
 
-#: symbol-browser-control/test-symbol-browser.c:292
+#: symbol-browser-control/test-symbol-browser.c:295
 msgid "Can't initialize bonobo!"
 msgstr "Nemohu inicializovat bonobo!"
+
+#~ msgid "You must provide a name for the layout"
+#~ msgstr "Musíte poskytnout název rozložení"
+
+#~ msgid "Icon zoom"
+#~ msgstr "Zvětšení ikony"
+
+#~ msgid "*"
+#~ msgstr "*"
