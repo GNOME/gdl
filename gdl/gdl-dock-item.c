@@ -1242,6 +1242,7 @@ gdl_dock_item_lock_cb (GtkWidget   *widget,
     g_return_if_fail (item != NULL);
 
     gdl_dock_item_lock (item);
+    g_signal_emit_by_name (item->dock, "layout_changed");
 }
 
 

@@ -22,7 +22,11 @@ CORBA_GENERATED = \
 	GDL-stubs.c \
 	GDL-skels.c
 
-BUILT_SOURCES=$(CORBA_GENERATED)
+BUILT_SOURCES = $(CORBA_GENERATED) \
+	libgdlmarshal.c \
+	libgdlmarshal.h \
+	libgdltypebuiltins.c \
+	libgdltypebuiltins.h
 
 idl_dir = $(top_srcdir)/idl
 
@@ -50,7 +54,6 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-paned.c \
 	gdl-dock-tablabel.c \
 	gdl-dock-layout.c \
-	gdl-file-selector-util.c \
 	libgdltypebuiltins.c \
 	libgdlmarshal.c
 
@@ -85,6 +88,11 @@ libgdlinclude_HEADERS = \
 
 gladedir = $(datadir)/gdl/glade
 glade_DATA = layout.glade
+
+EXTRA_DIST = libgdlmarshal.list \
+	tree-expand.xpm \
+	tree-contract.xpm \
+	layout.glade
 
 # layout.glade: layout.glade1 $(LIBGLADE_CONVERT)
 #	$(LIBGLADE_CONVERT) layout.glade1 > layout.glade.tmp && \
@@ -141,13 +149,13 @@ libgdltypebuiltins.h: $(libgdl_headers)
 
 libgdlmarshal.h: libgdlmarshal.list
 	@GLIB_GENMARSHAL@ \
-		--prefix=gdl_marshal libgdlmarshal.list --header > xgen-gmc \
+		--prefix=gdl_marshal $(srcdir)/libgdlmarshal.list --header > xgen-gmc \
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
 
 libgdlmarshal.c: libgdlmarshal.h
 	echo "#include \"libgdlmarshal.h\"" > xgen-gmc \
 	&& @GLIB_GENMARSHAL@ \
-		--prefix=gdl_marshal libgdlmarshal.list --body >> xgen-gmc \
+		--prefix=gdl_marshal $(srcdir)/libgdlmarshal.list --body >> xgen-gmc \
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc

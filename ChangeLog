@@ -1,3 +1,15 @@
+2002-02-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in, gdl/Makefile.am,
+	symbol-browser-control/Makefile.am,
+	symbol-browser-control/tagmanager/Makefile.am: Changes to make
+	distcheck pass
+
+	* gdl/Makefile.am: Removed gdl-file-selector-util.c from build
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_lock_cb): Emit
+	"layout_changed" on the dock.
+
 2002-02-14  Duarte Loreto <happyguy_pt@hotmail.com>
 
         * configure.in: Added pt (Portuguese) to ALL_LINGUAS

@@ -35,3 +35,5 @@ libctags_a_SOURCES = \
 	strlist.c\
 	vstring.c
 
+SUBDIRS = include
+

@@ -240,7 +240,7 @@ AM_PROG_LIBTOOL
 AM_SANITY_CHECK
 
 GNOME_PLATFORM_GNOME_2(yes)
-GNOME_COMPILE_WARNINGS(error)
+GNOME_COMPILE_WARNINGS(maximum)
 
 dnl ***************
 dnl GNOME Libraries 
@@ -298,9 +298,9 @@ Makefile
 gdl/Makefile
 symbol-browser-control/Makefile
 symbol-browser-control/tagmanager/Makefile
+symbol-browser-control/tagmanager/include/Makefile
 idl/Makefile
 po/Makefile.in 
 gdl.spec
 gdl-1.0.pc
 ])
-

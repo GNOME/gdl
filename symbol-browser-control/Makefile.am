@@ -42,7 +42,7 @@ gnome_symbol_browser_SOURCES = \
 gnome_symbol_browser_LDADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
 	../gdl/libgdl-1.la \
-	-L$(srcdir)/tagmanager\
+	-Ltagmanager/ \
 	-lctags
 
 noinst_PROGRAMS = test-symbol-browser
@@ -66,3 +66,8 @@ ui_DATA = gnome-symbol-browser.xml
 EXTRA_DIST = 	  	\
 	$(server_DATA) 	\
 	$(ui_DATA)
+
+dist-hook:
+	mkdir $(distdir)/pixmaps
+	for file in class.xpm enum.xpm extern_variable.xpm folder.xpm function.xpm macro.xpm member.xpm private.xpm protected.xpm public.xpm struct.xpm unknown.xpm variable.xpm; do cp -a $(srcdir)/pixmaps/$$file $(distdir)/pixmaps; done
+
