@@ -182,7 +182,7 @@ impl_delete (PortableServer_Servant servant,
     ScintillaEditorBuffer *eb = editor_buffer_from_servant (servant);
     long len = scintilla_send_message (eb->sci, SCI_GETTEXTLENGTH, 0, 0);
 
-    if (len - offset > count) {
+    if (len - offset < count) {
 	count = len - offset;
     }
     

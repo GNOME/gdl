@@ -1,3 +1,11 @@
+2001-03-18  Dirk Vangestel  <dirk.vangestel@advalvas.be>
+
+	* scintilla-control/scintilla-control.c (get_prop): Now returns line
+	number when asked. Added an offset to the line numbers.
+
+	* scintilla-control/scintilla-editor-buffer.c (impl_delete):
+	Correcting deleting part of the text.
+
 2001-03-14  Dirk Vangestel  <dirk.vangestel@advalvas.be>
 
 	* scintilla-control/scintilla-editor-buffer.c (impl_get_chars):

@@ -219,6 +219,8 @@ set_prop (BonoboPropertyBag *bag,
     case PROP_LINE_NUM :
     {
         long line = BONOBO_ARG_GET_LONG (arg);
+	/* scintilla line numbers start at 0 */
+	line--;
         scintilla_send_message (sci, SCI_GOTOLINE, line, 0);
         scintilla_send_message (sci, SCI_MOVECARETINSIDEVIEW, 0, 0);
         break;
@@ -258,7 +260,9 @@ get_prop (BonoboPropertyBag *bag,
     {
         long pos = scintilla_send_message (sci, SCI_GETCURRENTPOS, 0, 0);
         long line = scintilla_send_message (sci, SCI_LINEFROMPOSITION, pos, 0);
-        BONOBO_ARG_SET_LONG (arg, pos);
+	/* scintilla line numbers start at 0 */
+	line++;
+        BONOBO_ARG_SET_LONG (arg, line);
         break;
     }
     case PROP_SELECTION_START :
