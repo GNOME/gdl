@@ -1,196 +1,194 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# pclouds <pclouds@gmx.net>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl VERSION\n"
-"POT-Creation-Date: 2001-11-10 09:17-0500\n"
-"PO-Revision-Date: 2001-11-25 15:15GMT+0200\n"
-"Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
-"Language-Team: Azerbaijani Turkic <linuxaz@azerimail.net>\n"
+"POT-Creation-Date: 2002-05-13 01:31+0200\n"
+"PO-Revision-Date: 2002-05-31 21:40+0700\n"
+"Last-Translator: pclouds <pclouds@gmx.net>\n"
+"Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
 
 #: scintilla-control/scintilla-control.c:114
 msgid "Position in the buffer"
-msgstr "Bufer vəziyyəti"
+msgstr "Vị trí trong vùng đệm"
 
 #: scintilla-control/scintilla-control.c:118
 msgid "Current line number"
-msgstr "Cari sətir sırası"
+msgstr "Hàng hiện thời"
 
 #: scintilla-control/scintilla-control.c:122
 msgid "Beginning of the selection"
-msgstr "Seçkinin başı"
+msgstr "Bắt đầu vùng chọn"
 
 #: scintilla-control/scintilla-control.c:126
 msgid "End of the selection"
-msgstr "Seçkinin sonu"
+msgstr "Kết thúc vùng chọn"
 
 #: scintilla-control/scintilla-ui.xml.h:1
 msgid "C_ut"
-msgstr "Kə_s"
+msgstr "_Cắt"
 
 #: scintilla-control/scintilla-ui.xml.h:2
 msgid "Copy"
-msgstr "Köçürt"
+msgstr "Chép"
 
 #: scintilla-control/scintilla-ui.xml.h:3
 msgid "Copy the selection"
-msgstr "Seçkini köçürt"
+msgstr "Chép vùng chọn"
 
 #: scintilla-control/scintilla-ui.xml.h:4
 msgid "Cut"
-msgstr "Kəs"
+msgstr "Cắt"
 
 #: scintilla-control/scintilla-ui.xml.h:5
 msgid "Cut the selection"
-msgstr "Seçkini kəs"
+msgstr "Cắt vùng chọn"
 
 #: scintilla-control/scintilla-ui.xml.h:6
 msgid "Find A_gain"
-msgstr "Yenə Ax_tar"
+msgstr "Tìm tiế_p"
 
 #: scintilla-control/scintilla-ui.xml.h:7
 msgid "Find text in the document"
-msgstr "Sənəddəki mətni axtar"
+msgstr "Tìm chuỗi trong tài liệu"
 
 #: scintilla-control/scintilla-ui.xml.h:8
 msgid "Paste"
-msgstr "Yapışdır"
+msgstr "Dán"
 
 #: scintilla-control/scintilla-ui.xml.h:9
 msgid "Paste the clipboard"
-msgstr "Ara yaddaşı yapışdır"
+msgstr "Dán từ clipboard"
 
 #: scintilla-control/scintilla-ui.xml.h:10
 msgid "Repeats last search for text in the document"
-msgstr "Sənddəki axırıncı dəfə aparılan axtarışı təkrarlayar"
+msgstr "Lặp lại lần tìm kiếm chuỗi sau cùng trong tài liệu"
 
 #: scintilla-control/scintilla-ui.xml.h:11
 msgid "Replace text in the document"
-msgstr "Sənəddəki mətni əvəz et"
+msgstr "Thay thế chuỗi trong tài liệu"
 
 #: scintilla-control/scintilla-ui.xml.h:12
 msgid "_Copy"
-msgstr "_Köçürt"
+msgstr "_Sao chép"
 
 #: scintilla-control/scintilla-ui.xml.h:13
 msgid "_Edit"
-msgstr "_Düzəlt"
+msgstr "_Hiệu chỉnh"
 
 #: scintilla-control/scintilla-ui.xml.h:14
 msgid "_Find"
-msgstr "Axta_r"
+msgstr "_Tìm"
 
 #: scintilla-control/scintilla-ui.xml.h:15
 msgid "_Find..."
-msgstr "_Axtar..."
+msgstr "_Tìm..."
 
 #: scintilla-control/scintilla-ui.xml.h:16
 msgid "_Paste"
-msgstr "_Yapışdır"
+msgstr "_Dán"
 
 #: scintilla-control/scintilla-ui.xml.h:17
 msgid "_Replace"
-msgstr "Ə_vəz Et"
+msgstr "T_hay thế"
 
 #: scintilla-control/scintilla-ui.xml.h:18
 msgid "_Replace..."
-msgstr "Əvə_z Et..."
+msgstr "T_hay thế..."
 
 #: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:1
 msgid "Factory for the Scintilla control."
-msgstr "Scintilla idarəsi üçün emalatxana."
+msgstr "Factory của Điều khiển Scintilla."
 
 #: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:2
 msgid "Scintilla Editor"
-msgstr "Scintilla Editoru"
+msgstr "Bộ biên tập Scintilla"
 
 #: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:3
 msgid "Scintilla Factory"
-msgstr "Scintilla Emalatxanası"
+msgstr "Factory Scintilla."
 
 #: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:4
 msgid "Source"
-msgstr "Qaynaq"
+msgstr "Nguồn"
 
 #: scintilla-control/Bonobo_Control_Scintilla.oaf.in.h:5
 msgid "Syntax highlighting editor control."
-msgstr "Sintaksis işıqlandırmalı düzəliş idarəsi."
+msgstr "Điều khiển bộ biên tập điểm sáng cú pháp."
 
 #: scintilla-control/scintilla-find.c:105
 #: scintilla-control/scintilla-find.c:106
 msgid "Find"
-msgstr "Axtar"
+msgstr "Tìm"
 
 #: scintilla-control/scintilla-find.c:114
 #: scintilla-control/scintilla-find.c:345
 msgid "Find:"
-msgstr "Axtar:"
+msgstr "Tìm:"
 
 #: scintilla-control/scintilla-find.c:127
 #: scintilla-control/scintilla-find.c:371
 msgid "Case sensitive"
-msgstr "Böyük/kiçik hərfə həssas"
+msgstr "Phân biệt hoa/thường"
 
 #: scintilla-control/scintilla-find.c:130
 #: scintilla-control/scintilla-find.c:374
 msgid "Whole word"
-msgstr "Bütün söz"
+msgstr "Nguyên từ"
 
 #: scintilla-control/scintilla-find.c:133
 #: scintilla-control/scintilla-find.c:377
 msgid "Match word start"
-msgstr "Kəlmə halını müqayisə et"
+msgstr "So khớp đầu từ"
 
 #. search direction radio group
 #: scintilla-control/scintilla-find.c:137
 msgid "Direction"
-msgstr "Tərəf"
+msgstr "Hướng"
 
 #: scintilla-control/scintilla-find.c:144
 msgid "Forward"
-msgstr "İrəli"
+msgstr "Tới"
 
 #: scintilla-control/scintilla-find.c:148
 msgid "Backward"
-msgstr "Arxaya"
+msgstr "Lui"
 
 #: scintilla-control/scintilla-find.c:274
 msgid "Replace confirmation"
-msgstr "Əvəz etmə təsdiqi"
+msgstr "Xác nhận thay thế"
 
 #: scintilla-control/scintilla-find.c:275
 #: scintilla-control/scintilla-find.c:337
 msgid "Replace"
-msgstr "Əvəz Et"
+msgstr "Thay thế"
 
 #: scintilla-control/scintilla-find.c:276
 msgid "Replace All"
-msgstr "Hamısını Əvəz Et"
+msgstr "Thay thế tất cả"
 
 #: scintilla-control/scintilla-find.c:277
 msgid "Skip"
-msgstr "Nəzərə Alma"
+msgstr "Bỏ qua"
 
 #: scintilla-control/scintilla-find.c:280
 msgid "Found occurrence in document"
-msgstr "Sənəddə tapılan təkrarlanmalar"
+msgstr "Số lần tìm thấy trong tài liệu"
 
 #: scintilla-control/scintilla-find.c:336
 msgid "Find and Replace"
-msgstr "Axtar və Əvəz Et"
+msgstr "Tìm và thay thế"
 
 #: scintilla-control/scintilla-find.c:356
 msgid "Replace with:"
-msgstr "Bununla əvəz et:"
+msgstr "Thay bằng:"
 
 #. selection only checkbox
 #: scintilla-control/scintilla-find.c:381
 msgid "Selection only"
-msgstr "Təkcə seçkini"
-
+msgstr "Chỉ vùng chọn"

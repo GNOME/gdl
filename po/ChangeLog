@@ -1,3 +1,7 @@
+2002-06-04  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* vi.po: Added Vietnamese file
+
 2002-05-18  Carlos Perello Marin <carlos@gnome-db.org>
 
         * POTFILES.in: Fixed, sorry all strings will change :-(

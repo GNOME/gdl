@@ -1,3 +1,7 @@
+2002-06-04  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* configure.in: Added Vietnamese (vi) to ALL_LINGUAS
+
 2002-06-04  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-layout.h: API additions.
