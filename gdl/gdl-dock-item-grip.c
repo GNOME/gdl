@@ -58,16 +58,31 @@ gdl_dock_item_grip_get_title_area (GdlDockItemGrip *grip,
 {
     GtkWidget *widget = GTK_WIDGET (grip);
     gint       border = GTK_CONTAINER (grip)->border_width;
+    gint       alloc_height;
+
+    area->width = (widget->allocation.width - 2 * border);
+    
+    pango_layout_get_pixel_size (grip->_priv->title_layout, NULL, &alloc_height);
+    
+    if (GTK_WIDGET_VISIBLE (grip->_priv->close_button)) {
+        if (grip->_priv->close_button->allocation.height > alloc_height) {
+            alloc_height = grip->_priv->close_button->allocation.height;
+	}
+        area->width -= grip->_priv->close_button->allocation.width;
+    }
+    if (GTK_WIDGET_VISIBLE (grip->_priv->iconify_button)) {
+        if (grip->_priv->iconify_button->allocation.height > alloc_height) {
+	    alloc_height = grip->_priv->iconify_button->allocation.height;
+	}
+        area->width -= grip->_priv->iconify_button->allocation.width;
+    }
 
     area->x      = widget->allocation.x + border;
     area->y      = widget->allocation.y + border;
-    area->width  = (widget->allocation.width -
-                    2 * border -
-                    2 * grip->_priv->close_button->allocation.width);
-    area->height = grip->_priv->close_button->allocation.height;
+    area->height = alloc_height;
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-        area->x += 2 * grip->_priv->close_button->allocation.width;
+        area->x += (widget->allocation.width - 2 * border) - area->width;
 }
   
 static gint
@@ -355,15 +370,29 @@ gdl_dock_item_grip_item_notify (GObject    *master,
     grip = GDL_DOCK_ITEM_GRIP (data);
 
     g_object_get (master, "long_name", &name, "stock_id", &stock_id, NULL);
-    if (name) {
+    if (name && grip->_priv->title_layout) {
         g_object_unref (grip->_priv->title_layout);
         grip->_priv->title_layout = NULL;
         g_free (name);
     }
-    if (stock_id) {
+    if (stock_id && grip->_priv->title_layout) {
         g_object_unref (grip->_priv->icon_pixbuf);
         grip->_priv->icon_pixbuf = NULL;
         g_free (stock_id);
+    }
+    if (grip->_priv->close_button) {
+        if (GDL_DOCK_ITEM_CANT_CLOSE (grip->item)) {
+	    gtk_widget_hide (GTK_WIDGET (grip->_priv->close_button));
+	} else {
+	    gtk_widget_show (GTK_WIDGET (grip->_priv->close_button));
+	}
+    }
+    if (grip->_priv->iconify_button && grip->item) {
+        if (GDL_DOCK_ITEM_CANT_ICONIFY (grip->item)) {
+	    gtk_widget_hide (GTK_WIDGET (grip->_priv->iconify_button));
+	} else {
+	    gtk_widget_show (GTK_WIDGET (grip->_priv->iconify_button));
+	}
     }
 
     gtk_widget_queue_resize (GTK_WIDGET (grip));
@@ -426,6 +455,9 @@ gdl_dock_item_grip_set_property (GObject      *object,
                 g_signal_connect (grip->item, "notify::stock_id",
                                   G_CALLBACK (gdl_dock_item_grip_item_notify),
                                   grip);
+		g_signal_connect (grip->item, "notify::behavior",
+		                  G_CALLBACK (gdl_dock_item_grip_item_notify),
+				  grip);
             }
             break;
         default:
@@ -626,6 +658,8 @@ gdl_dock_item_grip_size_request (GtkWidget      *widget,
     GdlDockItemGrip *grip;
     GdkRectangle     title_rect;
     gchar           *stock_id;
+    gchar           *name;
+    gint             layout_height;
 
     g_return_if_fail (GDL_IS_DOCK_ITEM_GRIP (widget));
     g_return_if_fail (requisition != NULL);
@@ -636,18 +670,34 @@ gdl_dock_item_grip_size_request (GtkWidget      *widget,
     requisition->width = container->border_width * 2;
     requisition->height = container->border_width * 2;
 
+    if (!grip->_priv->title_layout) {
+        g_object_get (G_OBJECT (grip->item), "long_name", &name, NULL);
+        grip->_priv->title_layout = gtk_widget_create_pango_layout (widget,
+                                                                    name);
+        g_free (name);
+    }
+
+    pango_layout_get_pixel_size (grip->_priv->title_layout, NULL, &layout_height);
+
     if (GTK_WIDGET_VISIBLE (grip->_priv->close_button)) {
         gtk_widget_size_request (grip->_priv->close_button, &child_requisition);
 
         requisition->width += child_requisition.width;
-        requisition->height += child_requisition.height;
+	if (child_requisition.height > layout_height) {
+            layout_height = child_requisition.height;
+	}
     }
     
     if (GTK_WIDGET_VISIBLE (grip->_priv->iconify_button)) {
         gtk_widget_size_request (grip->_priv->iconify_button, &child_requisition);
 
         requisition->width += child_requisition.width;
+	if (child_requisition.height > layout_height) {
+	    layout_height = child_requisition.height;
+	}
     }
+
+    requisition->height += layout_height;
 
     gdl_dock_item_grip_get_title_area (grip, &title_rect);
     requisition->width += title_rect.width;
@@ -704,6 +754,7 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
     }
 
     if (GTK_WIDGET_VISIBLE (grip->_priv->iconify_button)) {
+        gtk_widget_size_request (grip->_priv->iconify_button, &button_requisition);
         if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
             child_allocation.x = allocation->x + (allocation->width -
                                   container->border_width -

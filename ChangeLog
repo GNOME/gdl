@@ -1,3 +1,14 @@
+2004-03-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_get_title_area)
+	(gdl_dock_item_grip_item_notify, gdl_dock_item_grip_set_property)
+	(gdl_dock_item_grip_size_request, gdl_dock_item_grip_size_allocate):
+	* gdl/gdl-dock-item.h: Patch by Todd Berman.  Adds two new behaviors
+	to hide the iconify and close button in the item handle.
+
+	* gdl/test-dock.c (main): Modify the behavior of a couple items to test
+	the new options.  Remove the log handlers code.
+
 2004-02-28  Adam Weinberger  <adamw@FreeBSD.org>
 
 	* configure.in: Added 'en_CA' (Canadian English) to ALL_LINGUAS.

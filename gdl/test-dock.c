@@ -16,39 +16,6 @@
 #include "gdl-dock-placeholder.h"
 #include "gdl-dock-bar.h"
 
-/* ---- this code is based on eel-debug by Darin Adler */
-
-static void
-log_handler (const char *domain,
-             GLogLevelFlags level,
-             const char *message,
-             gpointer data)
-{
-    g_log_default_handler (domain, level, message, data);
-    if ((level & (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING)) != 0) {
-        RETSIGTYPE (* saved_handler) (int);
-        
-        saved_handler = signal (SIGINT, SIG_IGN);
-        raise (SIGINT);
-        signal (SIGINT, saved_handler);
-    }
-}
-
-static void
-set_log_handler (const char *domain)
-{
-    g_log_set_handler (domain, G_LOG_LEVEL_MASK, log_handler, NULL);
-}
-
-static void
-setup_handlers ()
-{
-    set_log_handler ("");
-    set_log_handler ("GLib");
-    set_log_handler ("GLib-GObject");
-    set_log_handler ("Gtk");
-    set_log_handler ("Gdk");
-}
 
 /* ---- end of debugging code */
 
@@ -158,9 +125,7 @@ main (int argc, char **argv)
 
 	gtk_init (&argc, &argv);
 
-        setup_handlers ();
-        
-	/* window creation */
+        /* window creation */
 	win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	g_signal_connect (win, "delete_event", 
 			  G_CALLBACK (gtk_main_quit), NULL);
@@ -205,7 +170,8 @@ main (int argc, char **argv)
 
 	item3 = gdl_dock_item_new_with_stock ("item3", "Item #3",
 					      GTK_STOCK_CONVERT,
-					      GDL_DOCK_ITEM_BEH_NORMAL);
+					      GDL_DOCK_ITEM_BEH_NORMAL |
+					      GDL_DOCK_ITEM_BEH_CANT_CLOSE);
 	gtk_container_add (GTK_CONTAINER (item3), create_item ("Button 3"));
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item3), 
 			   GDL_DOCK_BOTTOM);
@@ -213,7 +179,8 @@ main (int argc, char **argv)
 
 	items [0] = gdl_dock_item_new_with_stock ("Item #4", "Item #4",
 						  GTK_STOCK_JUSTIFY_FILL,
-						  GDL_DOCK_ITEM_BEH_NORMAL);
+						  GDL_DOCK_ITEM_BEH_NORMAL |
+						  GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
 	gtk_container_add (GTK_CONTAINER (items [0]), create_text_item ());
 	gtk_widget_show (items [0]);
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (items [0]), GDL_DOCK_BOTTOM);
@@ -247,7 +214,7 @@ main (int argc, char **argv)
 	box = gtk_hbox_new (TRUE, 5);
 	gtk_box_pack_end (GTK_BOX (table), box, FALSE, FALSE, 0);
 
-	button = gtk_button_new_with_label ("Save Layout");
+	button = gtk_button_new_from_stock (GTK_STOCK_SAVE);
 	g_signal_connect (button, "clicked",
 			  G_CALLBACK (save_layout_cb), layout);
 	gtk_box_pack_end (GTK_BOX (box), button, FALSE, TRUE, 0);

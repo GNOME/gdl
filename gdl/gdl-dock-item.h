@@ -53,7 +53,9 @@ typedef enum {
     GDL_DOCK_ITEM_BEH_CANT_DOCK_BOTTOM = 1 << 5,
     GDL_DOCK_ITEM_BEH_CANT_DOCK_LEFT   = 1 << 6,
     GDL_DOCK_ITEM_BEH_CANT_DOCK_RIGHT  = 1 << 7,
-    GDL_DOCK_ITEM_BEH_CANT_DOCK_CENTER = 1 << 8
+    GDL_DOCK_ITEM_BEH_CANT_DOCK_CENTER = 1 << 8,
+    GDL_DOCK_ITEM_BEH_CANT_CLOSE       = 1 << 9,
+    GDL_DOCK_ITEM_BEH_CANT_ICONIFY     = 1 << 10
 } GdlDockItemBehavior;
 
 typedef enum {
@@ -118,6 +120,12 @@ struct _GdlDockItemClass {
     G_STMT_START { (GDL_DOCK_ITEM_FLAGS (item) &= ~(flag)); } G_STMT_END
 
 #define GDL_DOCK_ITEM_HAS_GRIP(item) (GDL_DOCK_ITEM_GET_CLASS (item)->has_grip)
+
+#define GDL_DOCK_ITEM_CANT_CLOSE(item) \
+    (((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_CLOSE) != 0)
+
+#define GDL_DOCK_ITEM_CANT_ICONIFY(item) \
+    (((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_ICONIFY) != 0)
 
 /* public interface */
  
