@@ -903,7 +903,8 @@ gdl_dock_layout_load (GdlDock *dock, xmlNodePtr node)
     }
     
     /* Show all items. */
-    gtk_widget_show_all (dock->root);
+    if (dock->root)
+        gtk_widget_show_all (dock->root);
 }
 
 void

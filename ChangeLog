@@ -1,3 +1,10 @@
+2001-11-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock.c (gdl_dock_layout_load): Test if we have docked
+	items to show.  
+	* gdl/gdl-server-manager.c (destroy_cb): Call
+	all_destroyed_callback only if set.
+	
 2001-11-15  Dave Camp  <dave@ximian.com>
 
 	* gdl/gdl-file-selector-util.c: Added file.  Copied from
