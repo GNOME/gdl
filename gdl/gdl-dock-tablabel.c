@@ -27,7 +27,6 @@
 #endif
 
 #include "gdl-i18n.h"
-#include <libgnome/gnome-macros.h>
 #include <gtk/gtk.h>
 
 #include "gdl-dock-tablabel.h"
@@ -95,8 +94,8 @@ static guint dock_tablabel_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private interface ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDockTablabel, gdl_dock_tablabel,
-                         GtkBin, GTK_TYPE_BIN);
+GDL_CLASS_BOILERPLATE (GdlDockTablabel, gdl_dock_tablabel,
+                       GtkBin, GTK_TYPE_BIN);
 
 static void
 gdl_dock_tablabel_class_init (GdlDockTablabelClass *klass)
@@ -389,7 +388,7 @@ gdl_dock_tablabel_expose (GtkWidget      *widget,
     g_return_val_if_fail (event != NULL, FALSE);
 
     if (GTK_WIDGET_VISIBLE (widget) && GTK_WIDGET_MAPPED (widget)) {
-        GNOME_CALL_PARENT (GTK_WIDGET_CLASS, expose_event, (widget, event));
+        GDL_CALL_PARENT (GTK_WIDGET_CLASS, expose_event, (widget, event));
         gdl_dock_tablabel_paint (widget, event);
     };
   
@@ -566,7 +565,7 @@ gdl_dock_tablabel_unrealize (GtkWidget *widget)
         tablabel->event_window = NULL;
     }
     
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, unrealize, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, unrealize, (widget));
 }
 
 static void  
@@ -574,7 +573,7 @@ gdl_dock_tablabel_map (GtkWidget *widget)
 {
     GdlDockTablabel *tablabel = GDL_DOCK_TABLABEL (widget);
     
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, map, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, map, (widget));
     
     gdk_window_show (tablabel->event_window);
 }
@@ -586,7 +585,7 @@ gdl_dock_tablabel_unmap (GtkWidget *widget)
 
     gdk_window_hide (tablabel->event_window);
 
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, unmap, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, unmap, (widget));
 }
 
 /* ----- Public interface ----- */

@@ -27,7 +27,6 @@
 #endif
 
 #include "gdl-i18n.h"
-#include <libgnome/gnome-macros.h>
 
 #include "gdl-tools.h"
 #include "gdl-dock-placeholder.h"
@@ -103,8 +102,8 @@ struct _GdlDockPlaceholderPrivate {
 
 /* ----- Private interface ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDockPlaceholder, gdl_dock_placeholder,
-			 GdlDockObject, GDL_TYPE_DOCK_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlDockPlaceholder, gdl_dock_placeholder,
+                       GdlDockObject, GDL_TYPE_DOCK_OBJECT);
 
 static void 
 gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
@@ -241,7 +240,7 @@ gdl_dock_placeholder_destroy (GtkObject *object)
         ph->_priv = NULL;
     }
 
-    GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
 }
 
 static void 

@@ -25,8 +25,8 @@
 #endif
 
 #include "gdl-i18n.h"
+#include "gdl-tools.h"
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-macros.h>
 #include <bonobo/bonobo-ui-component.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <string.h>
@@ -106,8 +106,7 @@ static void gdl_recent_notify_cb (GConfClient *client,
 				  gpointer     user_data);
 
 /* Boilerplate code. */
-GNOME_CLASS_BOILERPLATE (GdlRecent, gdl_recent,
-			 GObject, G_TYPE_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlRecent, gdl_recent, GObject, G_TYPE_OBJECT);
 
 /* Private routines */
 static void

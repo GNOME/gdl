@@ -25,9 +25,7 @@
 #endif
 
 #include "gdl-i18n.h"
-
-#include <libgnome/gnome-macros.h>
-
+#include "gdl-tools.h"
 #include "gdl-data-view.h"
 #include "gdl-data-frame.h"
 
@@ -57,8 +55,7 @@ typedef struct {
 static void gdl_data_view_instance_init (GdlDataView *dv);
 static void gdl_data_view_class_init (GdlDataViewClass *klass);
 
-GNOME_CLASS_BOILERPLATE (GdlDataView, gdl_data_view, 
-			 GtkLayout, GTK_TYPE_LAYOUT);
+GDL_CLASS_BOILERPLATE (GdlDataView, gdl_data_view, GtkLayout, GTK_TYPE_LAYOUT);
 
 
 #define GRID_SPACING 15
@@ -296,7 +293,7 @@ gdl_data_view_realize (GtkWidget *widget)
 	GList *l;
 	GdlDataView *view = GDL_DATA_VIEW (widget);
 	
-	GNOME_CALL_PARENT (GTK_WIDGET_CLASS, realize, (widget));
+	GDL_CALL_PARENT (GTK_WIDGET_CLASS, realize, (widget));
 
 	for (l = view->priv->widgets; l != NULL; l = l->next) {
 		ChildWidget *child = l->data;
@@ -338,7 +335,7 @@ gdl_data_view_size_allocate (GtkWidget *widget, GtkAllocation *alloc)
 		
 		gtk_widget_size_allocate (child->widget, &child_alloc);
 	}
-	GNOME_CALL_PARENT (GTK_WIDGET_CLASS, size_allocate, (widget, alloc));
+	GDL_CALL_PARENT (GTK_WIDGET_CLASS, size_allocate, (widget, alloc));
 }
 
 static void
@@ -394,7 +391,7 @@ gdl_data_view_destroy (GtkObject *obj)
 		g_free (dv->priv);
 		dv->priv = NULL;
 	}
-	GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (obj));
+	GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (obj));
 }
 
 static void

@@ -27,7 +27,6 @@
 #endif
 
 #include "gdl-i18n.h"
-#include <libgnome/gnome-macros.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -96,7 +95,7 @@ static guint gdl_dock_object_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private interface ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDockObject, gdl_dock_object, GtkContainer, GTK_TYPE_CONTAINER);
+GDL_CLASS_BOILERPLATE (GdlDockObject, gdl_dock_object, GtkContainer, GTK_TYPE_CONTAINER);
 
 static void
 gdl_dock_object_class_init (GdlDockObjectClass *klass)
@@ -253,7 +252,7 @@ gdl_dock_object_finalize (GObject *g_object)
     g_free (object->long_name);
     object->long_name = NULL;
 
-    GNOME_CALL_PARENT (G_OBJECT_CLASS, finalize, (g_object));
+    GDL_CALL_PARENT (G_OBJECT_CLASS, finalize, (g_object));
 }
 
 static void
@@ -290,7 +289,7 @@ gdl_dock_object_destroy (GtkObject *gtk_object)
     if (object->master)
         gdl_dock_object_unbind (object);
         
-    GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (gtk_object));
+    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (gtk_object));
 }
 
 static void
@@ -311,7 +310,7 @@ gdl_dock_object_show (GtkWidget *widget)
                                (GtkCallback) gdl_dock_object_foreach_automatic,
                                gtk_widget_show);
     }
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, show, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, show, (widget));
 }
 
 static void
@@ -322,7 +321,7 @@ gdl_dock_object_hide (GtkWidget *widget)
                                (GtkCallback) gdl_dock_object_foreach_automatic,
                                gtk_widget_hide);
     }
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, hide, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, hide, (widget));
 }
 
 static void

@@ -1,3 +1,33 @@
+2004-02-05  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	Changes to make GdlDock self contained and only requiring Gtk+,
+	libglade and libxml to build it.  This is so we can keep other
+	copies in sync with this module.
+
+	* gdl/gdl-tools.h: Added class boilerplate macros and base class
+	method invocation macros, copied from libbonobo and libgnome.
+
+	* gdl/gdl-combo-button.c:
+	* gdl/gdl-data-frame.c:
+	* gdl/gdl-data-row.c:
+	* gdl/gdl-data-view.c:
+	* gdl/gdl-dock-item-grip.c:
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-layout.c:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock-notebook.c:
+	* gdl/gdl-dock-object.c:
+	* gdl/gdl-dock-paned.c:
+	* gdl/gdl-dock-placeholder.c:
+	* gdl/gdl-dock-tablabel.c:
+	* gdl/gdl-dock.c:
+	* gdl/gdl-icons.c:
+	* gdl/gdl-recent.c:
+	s/GNOME_CLASS_BOILERPLATE/GDL_CLASS_BOILERPLATE/g
+	s/GNOME_CALL_PARENT/GDL_CALL_PARENT/g
+	s/GNOME_CALL_PARENT_WITH_DEFAULT/GDL_CALL_PARENT_WITH_DEFAULT/g
+	Removed <libgnome/gnome-macros.h> includes.
+	
 2004-02-01  Robert Sedak  <robert.sedak@sk.htnet.hr>
 
         * configure.in: Added "hr" (Croatian) to ALL_LINGUAS.

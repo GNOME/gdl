@@ -26,8 +26,8 @@
 #endif
 
 #include "gdl-i18n.h"
+#include "gdl-tools.h"
 #include <string.h>
-#include <libgnome/gnome-macros.h>
 #include <libgnomeui/gnome-icon-lookup.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include "gdl-icons.h"
@@ -48,7 +48,7 @@ struct _GdlIconsPrivate {
 	GHashTable *icons;
 };
 
-GNOME_CLASS_BOILERPLATE (GdlIcons, gdl_icons, GObject, G_TYPE_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlIcons, gdl_icons, GObject, G_TYPE_OBJECT);
 
 static void
 gdl_icons_get_property (GObject *object,

@@ -25,9 +25,8 @@
 #endif
 
 #include "gdl-i18n.h"
-
+#include "gdl-tools.h"
 #include <string.h>
-#include <libgnome/gnome-macros.h>
 
 #include "gdl-data-view.h"
 #include "gdl-data-frame.h"
@@ -57,8 +56,7 @@ static void gdl_data_frame_class_init (GdlDataFrameClass *klass);
 static void gdl_data_frame_instance_init (GdlDataFrame *obj);
 static void gdl_data_frame_finalize (GObject *object);
 
-GNOME_CLASS_BOILERPLATE (GdlDataFrame, gdl_data_frame, 
-			 GObject, G_TYPE_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlDataFrame, gdl_data_frame, GObject, G_TYPE_OBJECT);
 
 #define PAD 2
 #define BORDER 1
@@ -230,7 +228,7 @@ gdl_data_frame_finalize (GObject *object)
 		g_free (frame->priv);
 		frame->priv = NULL;
 	}
-	GNOME_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
+	GDL_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
 }
 
 void

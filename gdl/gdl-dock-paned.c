@@ -30,7 +30,6 @@
 #include <string.h>
 #include <gtk/gtkhpaned.h>
 #include <gtk/gtkvpaned.h>
-#include <libgnome/gnome-macros.h>
 
 #include "gdl-tools.h"
 #include "gdl-dock-paned.h"
@@ -91,7 +90,7 @@ enum {
 
 /* ----- Private functions ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDockPaned, gdl_dock_paned, GdlDockItem, GDL_TYPE_DOCK_ITEM);
+GDL_CLASS_BOILERPLATE (GdlDockPaned, gdl_dock_paned, GdlDockItem, GDL_TYPE_DOCK_ITEM);
 
 static void
 gdl_dock_paned_class_init (GdlDockPanedClass *klass)
@@ -225,7 +224,7 @@ gdl_dock_paned_constructor (GType                  type,
 {
     GObject *g_object;
     
-    g_object = GNOME_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
+    g_object = GDL_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
                                                constructor, 
                                                (type,
                                                 n_construct_properties,
@@ -293,7 +292,7 @@ gdl_dock_paned_destroy (GtkObject *object)
 
     /* we need to call the virtual first, since in GdlDockDestroy our
        children dock objects are detached */
-    GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
 
     /* after that we can remove the GtkNotebook */
     if (item->child) {
@@ -346,7 +345,7 @@ gdl_dock_paned_forall (GtkContainer *container,
 
     if (include_internals) {
         /* use GdlDockItem's forall */
-        GNOME_CALL_PARENT (GTK_CONTAINER_CLASS, forall, 
+        GDL_CALL_PARENT (GTK_CONTAINER_CLASS, forall, 
                            (container, include_internals, callback, callback_data));
     }
     else {
@@ -569,7 +568,7 @@ gdl_dock_paned_dock (GdlDockObject    *object,
 
     if (!done) {
         /* this will create another paned and reparent us there */
-        GNOME_CALL_PARENT (GDL_DOCK_OBJECT_CLASS, dock, (object, requestor, position,
+        GDL_CALL_PARENT (GDL_DOCK_OBJECT_CLASS, dock, (object, requestor, position,
                                                          other_data));
     }
     else {
@@ -615,7 +614,7 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
         }
     }
     
-    GNOME_CALL_PARENT (GDL_DOCK_ITEM_CLASS, set_orientation, (item, orientation));
+    GDL_CALL_PARENT (GDL_DOCK_ITEM_CLASS, set_orientation, (item, orientation));
 }
 
 static gboolean 

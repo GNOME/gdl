@@ -26,7 +26,6 @@
 
 #include "gdl-i18n.h"
 #include <gtk/gtknotebook.h>
-#include <libgnome/gnome-macros.h>
 
 #include "gdl-tools.h"
 #include "gdl-dock-notebook.h"
@@ -92,7 +91,7 @@ enum {
 
 /* ----- Private functions ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDockNotebook, gdl_dock_notebook, GdlDockItem, GDL_TYPE_DOCK_ITEM) ;
+GDL_CLASS_BOILERPLATE (GdlDockNotebook, gdl_dock_notebook, GdlDockItem, GDL_TYPE_DOCK_ITEM) ;
 
 static void
 gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
@@ -241,7 +240,7 @@ gdl_dock_notebook_destroy (GtkObject *object)
 
     /* we need to call the virtual first, since in GdlDockDestroy our
        children dock objects are detached */
-    GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
 
     /* after that we can remove the GtkNotebook */
     if (item->child) {
@@ -310,7 +309,7 @@ gdl_dock_notebook_forall (GtkContainer *container,
 
     if (include_internals) {
         /* use GdlDockItem's forall */
-        GNOME_CALL_PARENT (GTK_CONTAINER_CLASS, forall, 
+        GDL_CALL_PARENT (GTK_CONTAINER_CLASS, forall, 
                            (container, include_internals, callback, callback_data));
     }
     else {
@@ -397,7 +396,7 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
         }
     }
     else
-        GNOME_CALL_PARENT (GDL_DOCK_OBJECT_CLASS, dock,
+        GDL_CALL_PARENT (GDL_DOCK_OBJECT_CLASS, dock,
                            (object, requestor, position, other_data));
 }
 
@@ -412,7 +411,7 @@ gdl_dock_notebook_set_orientation (GdlDockItem    *item,
             gtk_notebook_set_tab_pos (GTK_NOTEBOOK (item->child), GTK_POS_LEFT);
     }
 
-    GNOME_CALL_PARENT (GDL_DOCK_ITEM_CLASS, set_orientation, (item, orientation));
+    GDL_CALL_PARENT (GDL_DOCK_ITEM_CLASS, set_orientation, (item, orientation));
 }
 
 static gboolean 
@@ -457,7 +456,7 @@ gdl_dock_notebook_present (GdlDockObject *object,
     if (i >= 0)
         gtk_notebook_set_current_page (GTK_NOTEBOOK (item->child), i);
 
-    GNOME_CALL_PARENT (GDL_DOCK_OBJECT_CLASS, present, (object, child));
+    GDL_CALL_PARENT (GDL_DOCK_OBJECT_CLASS, present, (object, child));
 }
 
 static gboolean 

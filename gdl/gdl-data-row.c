@@ -25,10 +25,10 @@
 #endif
 
 #include "gdl-i18n.h"
+#include "gdl-tools.h"
 #include "gdl-data-row.h"
 #include "gdl-data-model.h"
 
-#include <libgnome/gnome-macros.h>
 #include <gtk/gtktreemodel.h>
 #include <gtk/gtkcellrenderer.h>
 
@@ -73,8 +73,7 @@ struct _GdlDataRowPrivate {
 	gboolean selected;
 };
 
-GNOME_CLASS_BOILERPLATE (GdlDataRow, gdl_data_row,
-                         GObject, G_TYPE_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlDataRow, gdl_data_row, GObject, G_TYPE_OBJECT);
 
 
 static void

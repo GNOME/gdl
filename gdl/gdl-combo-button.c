@@ -23,7 +23,7 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <libgnome/gnome-macros.h>
+#include "gdl-tools.h"
 #include "gdl-combo-button.h"
 
 struct _GdlComboButtonPrivate {
@@ -35,7 +35,7 @@ struct _GdlComboButtonPrivate {
 	gboolean   menu_popped_up;
 };
 
-GNOME_CLASS_BOILERPLATE (GdlComboButton, gdl_combo_button, GtkHBox, GTK_TYPE_HBOX);
+GDL_CLASS_BOILERPLATE (GdlComboButton, gdl_combo_button, GtkHBox, GTK_TYPE_HBOX);
 
 static void
 default_button_clicked_cb (GtkButton *button,

@@ -34,7 +34,6 @@
 
 #include "gdl-i18n.h"
 #include <string.h>
-#include <libgnome/gnome-macros.h>
 #include <gdk/gdkkeysyms.h>
 
 #include "gdl-tools.h"
@@ -190,7 +189,7 @@ struct _GdlDockItemPrivate {
 
 /* ----- Private functions ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDockItem, gdl_dock_item, GdlDockObject, GDL_TYPE_DOCK_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlDockItem, gdl_dock_item, GdlDockObject, GDL_TYPE_DOCK_OBJECT);
 
 static void
 gdl_dock_item_class_init (GdlDockItemClass *klass)
@@ -376,7 +375,7 @@ gdl_dock_item_constructor (GType                  type,
 {
     GObject *g_object;
     
-    g_object = GNOME_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
+    g_object = GDL_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
                                                constructor, 
                                                (type,
                                                 n_construct_properties,
@@ -530,7 +529,7 @@ gdl_dock_item_destroy (GtkObject *object)
         g_free (priv);
     }
 
-    GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
 }
 
 static void 
@@ -853,7 +852,7 @@ gdl_dock_item_expose (GtkWidget      *widget,
 
     if (GTK_WIDGET_DRAWABLE (widget) && event->window == widget->window) {
         gdl_dock_item_paint (widget, event);
-        GNOME_CALL_PARENT (GTK_WIDGET_CLASS, expose_event, (widget, event));
+        GDL_CALL_PARENT (GTK_WIDGET_CLASS, expose_event, (widget, event));
     }
   
     return FALSE;
@@ -989,7 +988,7 @@ gdl_dock_item_key_press (GtkWidget   *widget,
     if (event_handled)
         return TRUE;
     else
-        return GNOME_CALL_PARENT_WITH_DEFAULT (GTK_WIDGET_CLASS,
+        return GDL_CALL_PARENT_WITH_DEFAULT (GTK_WIDGET_CLASS,
                                                key_press_event,
                                                (widget, event),
                                                FALSE);

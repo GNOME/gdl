@@ -27,7 +27,6 @@
 #endif
 
 #include "gdl-i18n.h"
-#include <libgnome/gnome-macros.h>
 #include <gdk/gdkx.h>
 
 #include "gdl-tools.h"
@@ -117,7 +116,7 @@ static guint master_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private interface ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDockMaster, gdl_dock_master, GObject, G_TYPE_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlDockMaster, gdl_dock_master, GObject, G_TYPE_OBJECT);
 
 static void
 gdl_dock_master_class_init (GdlDockMasterClass *klass)
@@ -293,7 +292,7 @@ gdl_dock_master_dispose (GObject *g_object)
         master->_priv = NULL;
     }
 
-    GNOME_CALL_PARENT (G_OBJECT_CLASS, dispose, (g_object));
+    GDL_CALL_PARENT (G_OBJECT_CLASS, dispose, (g_object));
 }
 
 static void 

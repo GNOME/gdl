@@ -21,7 +21,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkaccessible.h>
 #include <gtk/gtkbindings.h>
-#include <libgnome/gnome-macros.h>
 #include "gdl-dock-item.h"
 #include "gdl-dock-item-grip.h"
 #include "gdl-dock.h"
@@ -35,7 +34,7 @@ enum {
 };
 static guint signals [LAST_SIGNAL];
 
-GNOME_CLASS_BOILERPLATE (GdlDockItemGrip, gdl_dock_item_grip,
+GDL_CLASS_BOILERPLATE (GdlDockItemGrip, gdl_dock_item_grip,
 			 GtkWidget, GTK_TYPE_WIDGET);
 
 static gint
@@ -273,7 +272,7 @@ gdl_dock_item_grip_activate (GdlDockItemGrip *grip)
 static void
 gdl_dock_item_grip_dispose (GObject *object)
 {
-    GNOME_CALL_PARENT (G_OBJECT_CLASS, dispose, (object));
+    GDL_CALL_PARENT (G_OBJECT_CLASS, dispose, (object));
 }
 
 static void

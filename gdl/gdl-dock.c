@@ -28,7 +28,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gdk/gdkx.h>
-#include <libgnome/gnome-macros.h>
 
 #include "gdl-tools.h"
 #include "gdl-dock.h"
@@ -149,7 +148,7 @@ static guint dock_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private functions ----- */
 
-GNOME_CLASS_BOILERPLATE (GdlDock, gdl_dock, GdlDockObject, GDL_TYPE_DOCK_OBJECT);
+GDL_CLASS_BOILERPLATE (GdlDock, gdl_dock, GdlDockObject, GDL_TYPE_DOCK_OBJECT);
 
 static void
 gdl_dock_class_init (GdlDockClass *klass)
@@ -295,7 +294,7 @@ gdl_dock_constructor (GType                  type,
 {
     GObject *g_object;
     
-    g_object = GNOME_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
+    g_object = GDL_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
                                                constructor, 
                                                (type,
                                                 n_construct_properties,
@@ -440,7 +439,11 @@ gdl_dock_get_property  (GObject      *object,
                 g_object_get (GDL_DOCK_OBJECT (object)->master,
                               "default_title", &default_title,
                               NULL);
+#if GLIB_CHECK_VERSION(2,3,0)
                 g_value_take_string (value, default_title);
+#else
+                g_value_set_string_take_ownership (value, default_title);
+#endif
             }
             else
                 g_value_set_string (value, NULL);
@@ -537,7 +540,7 @@ gdl_dock_destroy (GtkObject *object)
         g_free (priv);
     }
     
-    GNOME_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
 }
 
 static void
@@ -607,7 +610,7 @@ gdl_dock_map (GtkWidget *widget)
 
     dock = GDL_DOCK (widget);
 
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, map, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, map, (widget));
 
     if (dock->root) {
         child = GTK_WIDGET (dock->root);
@@ -627,7 +630,7 @@ gdl_dock_unmap (GtkWidget *widget)
 
     dock = GDL_DOCK (widget);
 
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, unmap, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, unmap, (widget));
 
     if (dock->root) {
         child = GTK_WIDGET (dock->root);
@@ -657,7 +660,7 @@ gdl_dock_show (GtkWidget *widget)
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
     
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, show, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, show, (widget));
     
     dock = GDL_DOCK (widget);
     if (dock->_priv->floating && dock->_priv->window)
@@ -678,7 +681,7 @@ gdl_dock_hide (GtkWidget *widget)
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
     
-    GNOME_CALL_PARENT (GTK_WIDGET_CLASS, hide, (widget));
+    GDL_CALL_PARENT (GTK_WIDGET_CLASS, hide, (widget));
     
     dock = GDL_DOCK (widget);
     if (dock->_priv->floating && dock->_priv->window)
