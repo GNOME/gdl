@@ -1,3 +1,8 @@
+2003-01-20  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Removed quotes from GETTEXT_PACKAGE since it was
+	breaking the GNOME translation status pages (#103848).
+
 2003-01-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-dock-master.c: layout_changed signal is now emitted
