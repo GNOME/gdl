@@ -67,16 +67,12 @@ AC_PROG_CC
 AM_PROG_CC_STDC
 AC_HEADER_STDC
 
-dnl Checks for programs.
-AC_CHECK_PROG(GLIB_CONFIG, glib-config, true, false)
-
-dnl Checks for libraries.
-GLIB_LIBS="`glib-config --libs`"
+dnl Check for glib.
+PKG_CHECK_MODULES(GLIB, glib-2.0)
 AC_SUBST(GLIB_LIBS)
-
-dnl Checks for header files.
-GLIB_CFLAGS="`glib-config --cflags`"
 AC_SUBST(GLIB_CFLAGS)
+
+dnl Check for other things
 AC_CHECK_HEADERS(dirent.h fcntl.h fnmatch.h stat.h stdlib.h string.h)
 AC_CHECK_HEADERS(time.h types.h unistd.h)
 AC_CHECK_HEADERS(sys/dir.h sys/stat.h sys/times.h sys/types.h)

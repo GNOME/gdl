@@ -1,3 +1,8 @@
+2002-06-14  Dave Camp  <dave@ximian.com>
+
+	* configure.in: Applied a patch from Sven Herzberg
+	<herzi@myrealbox.com> to fix the glib check.
+
 2002-06-09  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/gdl-icons.c: (reload_theme): Use "file_views" gconf key instead
