@@ -1,3 +1,7 @@
+2003-06-14  Guntupalli Karunakar  <karunakar@freedomink.org>
+
+	* configure.in: Added "ml" in ALL_LINGUAS.
+
 2003-05-28  Danilo Šegan  <dsegan@gmx.net>
 
 	* configure.in (ALL_LINGUAS): Added "sr" and "sr@Latn".
