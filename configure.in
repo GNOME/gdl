@@ -296,7 +296,7 @@ AC_SUBST(GLIB_GENMARSHAL)
 GLIB_MKENUMS="`$PKG_CONFIG --variable=glib_mkenums glib-2.0`"
 AC_SUBST(GLIB_MKENUMS)
 
-ALL_LINGUAS="az cs da de el fr it pt ru sv vi"
+ALL_LINGUAS="az cs da de el es fr it pt ru sv vi"
 GETTEXT_PACKAGE=gdl-1
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Package name for gettext])
