@@ -74,45 +74,49 @@ set_language_properties (ScintillaObject *sci, const char *mime_type)
 	
 	/* Comment */
 	scintilla_send_message (sci, SCI_STYLESETFONT,1,(long)font);
-	scintilla_send_message (sci, SCI_STYLESETFORE,1,0x0000FF);
+	scintilla_send_message (sci, SCI_STYLESETFORE,1,0x007F00);
 	scintilla_send_message (sci, SCI_STYLESETITALIC,1,1);
 	
 	/* Line Comment */
 	scintilla_send_message (sci, SCI_STYLESETFONT,2,(long)font);
-	scintilla_send_message (sci, SCI_STYLESETFORE,2,0x0000AA);
+	scintilla_send_message (sci, SCI_STYLESETFORE,2,0x007F00);
 	scintilla_send_message (sci, SCI_STYLESETITALIC,2,1);
 	
 	/* Doc Comment */
 	scintilla_send_message (sci, SCI_STYLESETFONT,3,(long)font);
-	scintilla_send_message (sci, SCI_STYLESETFORE,3,0x0000AA);
+	scintilla_send_message (sci, SCI_STYLESETFORE,3,0x3F703F);
 	scintilla_send_message (sci, SCI_STYLESETITALIC,3,1);
 	
 	/* Number */
 	scintilla_send_message (sci, SCI_STYLESETFONT,4,(long)font);
+	scintilla_send_message (sci, SCI_STYLESETFORE,4,0x007F7F);
 
 	/* Keyword */
 	scintilla_send_message (sci, SCI_STYLESETFONT,5,(long)font);
-	scintilla_send_message (sci, SCI_STYLESETFORE,5,0xFF0000);
+	scintilla_send_message (sci, SCI_STYLESETFORE,5,0x00007F);
 	scintilla_send_message (sci, SCI_STYLESETBOLD,5,1);
         
 	/* Double quoted string */
 	scintilla_send_message (sci, SCI_STYLESETFONT,6,(long)font);
-	scintilla_send_message (sci, SCI_STYLESETFORE,6,0x00CC00);
+	scintilla_send_message (sci, SCI_STYLESETFORE,6,0x7F007F);
                 
 	/* Single quoted string */
 	scintilla_send_message (sci, SCI_STYLESETFONT,7,(long)font);
-	scintilla_send_message (sci, SCI_STYLESETFORE,7,0x00FF00);
+	scintilla_send_message (sci, SCI_STYLESETFORE,7,0x7F007F);
                 
 	/* UUID */
 	/* Preprocessor */
 	scintilla_send_message (sci, SCI_STYLESETFONT,9,(long)font);
-	scintilla_send_message (sci, SCI_STYLESETFORE,9,0x7F7F00);
+	scintilla_send_message (sci, SCI_STYLESETFORE,9,0x747F00);
                 
 	/* Operators */
 	scintilla_send_message (sci, SCI_STYLESETFONT,10,(long)font);
                 
 	/* Identifiers */
 	scintilla_send_message (sci, SCI_STYLESETFONT,11,(long)font);
+
+	/* Indentation guides */
+	scintilla_send_message (sci, SCI_STYLESETFORE,37,0xC0C0C0);
 
 	scintilla_send_message (sci, SCI_COLOURISE, 0, -1);
 }

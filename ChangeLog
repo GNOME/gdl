@@ -1,3 +1,18 @@
+2001-03-06  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla-highlight.c (set_language_properties): 
+	Slightly better default colors, and set the color for the Highlight
+	Guides.
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Connect
+	to the scintilla control's "notify" signal.
+	(scintilla_factory): Set all the right properties for doing code
+	folding on the scintilla widget, and enable Highlight Guides.
+	(expand): New function.
+	(fold_changed): New function.
+	(margin_click): New function.
+	(notify_cb): New function.
+
 2001-03-05  Dave Camp  <dave@ximian.com>
 
 	* scintilla-control/scintilla-control.c (set_prop): 

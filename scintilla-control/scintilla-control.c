@@ -59,6 +59,9 @@ static void get_prop (BonoboPropertyBag *bag,
                       CORBA_Environment *ev,
 		      gpointer user_data);
 
+static void notify_cb (ScintillaObject *sci, int wparam, void *lparam, 
+                       gpointer user_data);
+
 static void cut_cb (GtkWidget *widget, ScintillaObject *sci);
 static void copy_cb (GtkWidget *widget, ScintillaObject *sci);
 static void paste_cb (GtkWidget *widget, ScintillaObject *sci);
@@ -138,15 +141,18 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     bonobo_object_add_interface (BONOBO_OBJECT (control),
 				 BONOBO_OBJECT (buffer_impl));
 
+    gtk_signal_connect (GTK_OBJECT (sci), "notify",
+                        GTK_SIGNAL_FUNC (notify_cb), NULL);
+
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINWIDTHN, 1, 30);
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINTYPEN, 1, SC_MARGIN_NUMBER);
     scintilla_send_message (SCINTILLA(sci), SCI_SETFOLDFLAGS, 16, 0);
     
     scintilla_send_message (SCINTILLA(sci), SCI_SETPROPERTY, (long)"fold", (long)"1");
-    scintilla_send_message (SCINTILLA(sci), SCI_SETMODEVENTMASK, SC_MOD_CHANGEFOLD, 0);
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINWIDTHN, 2, 25);
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINTYPEN, 2, SC_MARGIN_SYMBOL);
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINMASKN, 2, SC_MASK_FOLDERS);
+    scintilla_send_message (SCINTILLA (sci), SCI_SETMODEVENTMASK, SC_MOD_CHANGEFOLD, 0);
     scintilla_send_message (SCINTILLA(sci), SCI_SETMARGINSENSITIVEN, 2, 1);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDEROPEN, SC_MARK_MINUS);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETFORE, SC_MARKNUM_FOLDEROPEN, LONG_MAX);
@@ -154,7 +160,8 @@ scintilla_factory (BonoboGenericFactory *fact, void *closure)
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERDEFINE, SC_MARKNUM_FOLDER, SC_MARK_PLUS);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETFORE, SC_MARKNUM_FOLDER, LONG_MAX);
     scintilla_send_message (SCINTILLA(sci), SCI_MARKERSETBACK, SC_MARKNUM_FOLDER, 0);
-
+    scintilla_send_message (SCINTILLA(sci), SCI_SETINDENTATIONGUIDES, 1, 0);
+    
     return BONOBO_OBJECT (control);
 }
 
@@ -313,3 +320,112 @@ main (int argc, char *argv[])
 
     return 0;
 }
+
+/* Most of what is below here is taken from SciTE */
+
+static void 
+expand (ScintillaObject *sci, 
+        int *line, gboolean do_expand, gboolean force, int vis_levels,
+        int level)
+{
+    int level_line;
+    int line_max_subord = scintilla_send_message (sci, SCI_GETLASTCHILD, 
+                                                  *line, level);
+    (*line)++;
+    while (*line <= line_max_subord) {
+        if (force) {
+            if (vis_levels > 0) 
+                scintilla_send_message (sci, SCI_SHOWLINES, *line, *line);
+            else 
+                scintilla_send_message (sci, SCI_HIDELINES, *line, *line);
+        } else {
+            if (do_expand)
+                scintilla_send_message (sci, SCI_SHOWLINES, *line, *line);
+        }
+        level_line = level;
+        if (level_line == -1) 
+            level_line = scintilla_send_message (sci, SCI_GETFOLDLEVEL, *line, 0);
+        if (level_line & SC_FOLDLEVELHEADERFLAG) {
+            if (force) {
+                if (vis_levels > 1) 
+                    scintilla_send_message (sci, SCI_SETFOLDEXPANDED, 
+                                            *line, 1);
+                else
+                    scintilla_send_message (sci, SCI_SETFOLDEXPANDED, *line, 0);
+                expand (sci, line, do_expand, force, vis_levels - 1, -1);
+            } else {
+                if (do_expand && scintilla_send_message (sci, SCI_GETFOLDEXPANDED, *line, 0)) {
+                    expand (sci, line, TRUE, force, vis_levels - 1, -1);
+                } else {
+                    expand (sci, line, FALSE, force, vis_levels - 1, -1);
+                }
+            }
+        } else {
+            (*line)++;
+        }
+    }            
+}
+
+static void
+fold_changed (ScintillaObject *sci, int line, int level_now, int level_prev)
+{
+    if (level_now & SC_FOLDLEVELHEADERFLAG) {
+        scintilla_send_message (sci, SCI_SETFOLDEXPANDED, line, 1);
+    } else if (level_prev & SC_FOLDLEVELHEADERFLAG) {
+        if (!scintilla_send_message (sci, SCI_GETFOLDEXPANDED, line, 0)) {
+            expand (sci, &line, TRUE, FALSE, 0, level_prev);
+        }
+    }
+}
+
+static void 
+margin_click (ScintillaObject *sci, int position, int modifiers) 
+{
+    int line_click = scintilla_send_message (sci, SCI_LINEFROMPOSITION,
+                                             position, 0);
+    if (scintilla_send_message (sci, SCI_GETFOLDLEVEL, line_click, 0) & SC_FOLDLEVELHEADERFLAG) {
+        if (modifiers & SCMOD_SHIFT) {
+            scintilla_send_message (sci, SCI_SETFOLDEXPANDED, line_click, 1);
+            expand (sci, &line_click, TRUE, TRUE, 100, -1);
+        } else if (modifiers & SCMOD_CTRL) {
+            if (scintilla_send_message (sci, SCI_GETFOLDEXPANDED, 
+                                        line_click, 0)) {
+                scintilla_send_message (sci, SCI_SETFOLDEXPANDED, 
+                                        line_click, 0);
+                expand (sci, &line_click, FALSE, TRUE, 0, -1);
+            } else {
+                scintilla_send_message (sci, SCI_SETFOLDEXPANDED, 
+                                        line_click, 1);
+                expand (sci, &line_click, TRUE, TRUE, 100, -1);
+            }
+        } else {
+            scintilla_send_message (sci, SCI_TOGGLEFOLD, line_click, 0);
+        }
+        
+    }           
+}
+
+static void
+notify_cb (ScintillaObject *sci, int wparam, void *lparam, 
+           gpointer user_data)
+{
+    struct SCNotification *notification = lparam;
+    int id = notification->nmhdr.code;
+
+    switch (id) {
+    case SCN_MARGINCLICK :
+        margin_click (sci, notification->position, notification->modifiers);
+        break;
+    case SCN_MODIFIED :
+        if (notification->modificationType == SC_MOD_CHANGEFOLD) {
+            g_print ("fold changed\n");
+            
+            fold_changed (sci,
+                          notification->line, 
+                          notification->foldLevelNow,
+                          notification->foldLevelPrev);
+        }
+        break;
+    }
+}
+
