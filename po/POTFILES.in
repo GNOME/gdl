@@ -1,4 +1,11 @@
-scintilla-control/scintilla-control.c
-scintilla-control/scintilla-ui.xml
+gdl/gdl-dock-item.c
+gdl/gdl-dock-notebook.c
+gdl/gdl-dock-paned.c
+gdl/gdl-dock.c
+gdl/gdl-file-selector-util.c
 scintilla-control/Bonobo_Control_Scintilla.oaf.in
+scintilla-control/scintilla-control.c
 scintilla-control/scintilla-find.c
+scintilla-control/scintilla-ui.xml
+symbol-browser-control/GNOME_Development_SymbolBrowser.oaf.in
+symbol-browser-control/gnome-symbol-browser.xml

@@ -1,2 +1,4 @@
 scintilla-control/test.c
-
+gdl/test-dock.c
+symbol-browser-control/test-symbol-browser-ui.xml
+symbol-browser-control/test-symbol-browser.c

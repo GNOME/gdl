@@ -1,6 +1,6 @@
-2001-12-21  gettextize  <bug-gnu-utils@gnu.org>
+2003-05-11  Abel Cheung  <maddog@linux.org.hk>
 
-	* Makefile.in.in: Upgrade to gettext-0.10.40.
+	* POTFILES.in, POTFILES.skip: Add various files.
 
 2001-12-14  Simos Xenitellis  <simos@hellug.gr>
 
