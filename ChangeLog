@@ -1,3 +1,9 @@
+2002-03-17  JP Rosevear  <jpr@ximian.com>
+
+	* Makefile.am: remove scintilla-control dir reference
+
+	* Remove scintilla stuff for good
+
 2002-03-16  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/Makefile.am: Added gdl-file-selector-util.[ch] back and also added
