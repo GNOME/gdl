@@ -1,3 +1,8 @@
+2002-02-06  JP Rosevear  <jpr@ximian.com>
+
+	* symbol-browser-control/Makefile.am: add "\" to continue
+	EXTRA_DIST
+
 2002-02-04  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* symbol-browser-control/symbol-browser-cobject.c: (impl_clear): Make

@@ -63,6 +63,6 @@ server_DATA = $(server_in_files:.server.in=.server)
 uidir = $(datadir)/gnome-2.0/ui
 ui_DATA = gnome-symbol-browser.xml
 
-EXTRA_DIST = 
-	$(server_DATA) \
+EXTRA_DIST = 	  	\
+	$(server_DATA) 	\
 	$(ui_DATA)
