@@ -1,3 +1,7 @@
+2001-01-10  JP Rosevear  <jpr@helixcode.com>
+
+	* scintilla-control/scintilla/ScintillaGTK.cxx: proper casting
+
 2001-01-06  Dave Camp  <dave@helixcode.com>
 
 	* scintilla-control/scintilla.oafinfo: Updated.

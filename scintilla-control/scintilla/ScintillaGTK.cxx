@@ -349,7 +349,7 @@ void ScintillaGTK::SetTicking(bool on) {
 	if (timer.ticking != on) {
 		timer.ticking = on;
 		if (timer.ticking) {
-			timer.tickerID = gtk_timeout_add(timer.tickSize, TimeOut, this);
+			timer.tickerID = gtk_timeout_add(timer.tickSize, (GSourceFunc)TimeOut, this);
 		} else {
 			gtk_timeout_remove(timer.tickerID);
 		}
@@ -1057,8 +1057,8 @@ guint scintilla_get_type() {
     		sizeof (ScintillaClass),
     		(GtkClassInitFunc) scintilla_class_init,
     		(GtkObjectInitFunc) scintilla_init,
-    		(GtkArgSetFunc) NULL,
-    		(GtkArgGetFunc) NULL,
+		/* reserved_1 */ NULL,
+		/* reserved_2 */ NULL,
     		0
 		};
 
