@@ -286,8 +286,12 @@ update_dock_items (GdlDockBar *dockbar)
     for (l = items; l != NULL; l = l->next) {
         GdlDockItem *item = GDL_DOCK_ITEM (l->data);
         
-        if (GDL_DOCK_ITEM_ICONIFIED (item))
-	        gdl_dock_bar_add_item (dockbar, item);
+        if (g_slist_index (dockbar->_priv->items, item) != -1 &&
+            !GDL_DOCK_ITEM_ICONIFIED (item))
+	    gdl_dock_bar_remove_item (dockbar, item);
+	else if (g_slist_index (dockbar->_priv->items, item) == -1 &&
+	    GDL_DOCK_ITEM_ICONIFIED (item))
+	    gdl_dock_bar_add_item (dockbar, item);
     }
     
     g_list_free (items);

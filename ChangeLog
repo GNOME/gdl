@@ -1,5 +1,12 @@
 2004-02-08  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
+	* gdl/gdl-dock-bar.c: (update_dock_items): Properly add/remove items
+	based on the ICONIFIED flag.
+	* gdl/gdl-dock-item.c: (gdl_dock_item_show_item): Unset the ICONIFIED
+	flag when showing an item.
+
+2004-02-08  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
 	* configure.in:
 	* gdl/Makefile.am:
 	* gdl/gdl-dock-bar.c:

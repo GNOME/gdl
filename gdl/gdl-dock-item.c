@@ -1604,6 +1604,8 @@ gdl_dock_item_show_item (GdlDockItem *item)
 {
     g_return_if_fail (item != NULL);
 
+    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
+
     if (item->_priv->ph) {
         gtk_container_add (GTK_CONTAINER (item->_priv->ph), GTK_WIDGET (item));
         g_object_unref (item->_priv->ph);
