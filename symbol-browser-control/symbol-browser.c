@@ -96,6 +96,8 @@ struct _GnomeSymbolBrowserPriv {
 	BonoboListener *listener;
 
 	BonoboEventSource *event_source;
+
+	GdlIcons *icons;
 };
 
 typedef enum {
@@ -118,7 +120,8 @@ static void gnome_symbol_browser_init       (GnomeSymbolBrowser      *sb);
 static void gnome_symbol_browser_finalize   (GObject *obj);
 
 
-static GdkPixbuf *get_image_for_type_key    (gchar     *type_name);
+static GdkPixbuf *get_image_for_type_key    (GnomeSymbolBrowser *gsb,
+					     gchar              *type_name);
 static gchar *get_tag_type_name             (TMTagType  type);
 static gchar *get_tag_type_name_key         (TMSymbol  *symbol);
 static gboolean gsb_goto_tag                (GnomeSymbolBrowser* gsb, const gchar* qual_name);
@@ -327,15 +330,15 @@ gsb_tree_node_set_pixbuf (GtkTreeViewColumn *tree_column,
 
 	switch (node->type) {
 	case GSB_TREE_FOLDER:
-		pixbuf = get_image_for_type_key ("Folders");
+		pixbuf = get_image_for_type_key (GNOME_SYMBOL_BROWSER (data), "Folders");
 		break;
 	case GSB_TREE_ROOT:
 		type_key = get_tag_type_name_key(node->symbol);
-		pixbuf = get_image_for_type_key (type_key);
+		pixbuf = get_image_for_type_key (GNOME_SYMBOL_BROWSER (data), type_key);
 		break;
 	case GSB_TREE_SYMBOL:
 		type_key = get_tag_type_name_key(node->symbol);
-		pixbuf = get_image_for_type_key (type_key);
+		pixbuf = get_image_for_type_key (GNOME_SYMBOL_BROWSER (data), type_key);
 		break;
 	}
 
@@ -443,7 +446,8 @@ row_activated_cb (GtkTreeView       *tree_view,
  * Utility Functions
  * ---------------------------------------------------------------------- */
 static GdkPixbuf *
-get_image_for_type_key (gchar *type_name_key) 
+get_image_for_type_key (GnomeSymbolBrowser *gsb,
+			gchar *type_name_key) 
 {
 	static GHashTable *icons = NULL;
 	GdkPixbuf *pixbuf;
@@ -452,10 +456,9 @@ get_image_for_type_key (gchar *type_name_key)
 		
 		icons = g_hash_table_new (g_str_hash, g_str_equal);
 		
-		pixbuf = gdl_icon_for_folder ();
+		pixbuf = gdl_icons_get_folder_icon (gsb->priv->icons);
+		g_object_ref (pixbuf);
 		g_hash_table_insert (icons, g_strdup ("Tags"), pixbuf);
-		
-		pixbuf = gdl_icon_for_folder ();
 		g_hash_table_insert (icons, g_strdup ("Folders"), pixbuf);
 		
 		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)sv_unknown_xpm);
@@ -838,7 +841,7 @@ gnome_symbol_browser_init (GnomeSymbolBrowser *sb)
 	gtk_tree_view_column_set_cell_data_func (column, 
 						 renderer, 
 						 gsb_tree_node_set_pixbuf, 
-						 NULL, 
+						 sb, 
 						 NULL);
 
 	renderer = gtk_cell_renderer_text_new ();
@@ -846,7 +849,7 @@ gnome_symbol_browser_init (GnomeSymbolBrowser *sb)
 	gtk_tree_view_column_set_cell_data_func (column, 
 						 renderer, 
 						 gsb_tree_node_set_text, 
-						 NULL, 
+						 sb, 
 						 NULL);
 
 	gtk_tree_view_append_column (GTK_TREE_VIEW (priv->tree), column);
@@ -870,6 +873,7 @@ gnome_symbol_browser_init (GnomeSymbolBrowser *sb)
 	priv->project = NULL;
 	priv->tm_file = NULL;
 	priv->event_source = bonobo_event_source_new ();
+	priv->icons = gdl_icons_new (24, 16.0);
 }
 
 static void
@@ -886,7 +890,8 @@ gnome_symbol_browser_finalize (GObject *object)
 	
 	g_hash_table_destroy (gsb->priv->symbol_hash);
 	gtk_widget_unref(gsb->priv->symbol_combo);
-	
+	g_object_unref (gsb->priv->icons);
+
 	g_free (gsb->priv);
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }

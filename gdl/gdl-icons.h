@@ -19,28 +19,47 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Authors: JP Rosevear, Dave Camp
+ * Authors: JP Rosevear, Dave Camp, Jeroen Zwartepoorte
  */
 
 #ifndef _GDL_ICONS_H_
 #define _GDL_ICONS_H_
 
-#include <glib.h>
+#include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
 
-GdkPixbuf *gdl_icon_for_folder (void);
-GdkPixbuf *gdl_icon_for_uri (const char *uri);
-GdkPixbuf *gdl_icon_for_special (const char *name);
-GdkPixbuf *gdl_icon_for_mime (const char *mime_type);
+#define GDL_TYPE_ICONS			(gdl_icons_get_type ())
+#define GDL_ICONS(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GDL_TYPE_ICONS, GdlIcons))
+#define GDL_ICONS_CLASS(obj)		(G_TYPE_CHECK_CLASS_CAST ((klass), GDL_TYPE_ICONS, GdlIconsClass))
+#define GDL_IS_ICONS(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDL_TYPE_ICONS))
+#define GDL_IS_ICONS_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((obj), GDL_TYPE_ICONS))
+
+typedef struct _GdlIcons		GdlIcons;
+typedef struct _GdlIconsPrivate		GdlIconsPrivate;
+typedef struct _GdlIconsClass		GdlIconsClass;
+
+struct _GdlIcons {
+	GObject parent;
+
+	GdlIconsPrivate *priv;
+};
+
+struct _GdlIconsClass {
+	GObjectClass parent_class;
+};
+
+GType gdl_icons_get_type             (void);
+GdlIcons *gdl_icons_new              (int         icon_size,
+				      double      icon_zoom);
+
+GdkPixbuf *gdl_icons_get_folder_icon (GdlIcons   *icons);
+GdkPixbuf *gdl_icons_get_uri_icon    (GdlIcons   *icons,
+				      const char *uri);
+GdkPixbuf *gdl_icons_get_mime_icon   (GdlIcons   *icons,
+				      const char *mime_type);
 
 G_END_DECLS
 
 #endif /* _GDL_ICONS_H_ */
-
-
-
-
-
-
