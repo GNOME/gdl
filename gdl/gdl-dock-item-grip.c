@@ -690,13 +690,13 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
         gtk_widget_size_request (grip->_priv->close_button, &button_requisition);
 
         if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
-            child_allocation.x = (allocation->width -
+            child_allocation.x = allocation->x + (allocation->width -
                                   container->border_width -
                                   button_requisition.width);
         else
-            child_allocation.x = container->border_width;
+            child_allocation.x = allocation->x + container->border_width;
 
-        child_allocation.y = container->border_width;
+        child_allocation.y = allocation->y + container->border_width;
         child_allocation.width = button_requisition.width;
         child_allocation.height = button_requisition.height;
 
@@ -705,13 +705,14 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
 
     if (GTK_WIDGET_VISIBLE (grip->_priv->iconify_button)) {
         if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
-            child_allocation.x = (allocation->width -
+            child_allocation.x = allocation->x + (allocation->width -
                                   container->border_width -
                                   2 * button_requisition.width);
         else
-            child_allocation.x = container->border_width + button_requisition.width;
+            child_allocation.x = allocation->x + container->border_width +
+                                 button_requisition.width;
 
-        child_allocation.y = container->border_width;
+        child_allocation.y = allocation->y + container->border_width;
         child_allocation.width = button_requisition.width;
         child_allocation.height = button_requisition.height;
 

@@ -44,6 +44,7 @@
 #include "gdl-dock-paned.h"
 #include "gdl-dock-tablabel.h"
 #include "gdl-dock-placeholder.h"
+#include "gdl-dock-master.h"
 #include "libgdltypebuiltins.h"
 #include "libgdlmarshal.h"
 
@@ -192,6 +193,8 @@ GDL_CLASS_BOILERPLATE (GdlDockItem, gdl_dock_item, GdlDockObject, GDL_TYPE_DOCK_
 static void
 gdl_dock_item_class_init (GdlDockItemClass *klass)
 {
+    static gboolean style_initialized = FALSE;
+    
     GObjectClass       *g_object_class;
     GtkObjectClass     *gtk_object_class;
     GtkWidgetClass     *widget_class;
@@ -333,6 +336,18 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     klass->dock_drag_motion = NULL;
     klass->dock_drag_end = NULL;
     klass->set_orientation = gdl_dock_item_real_set_orientation;
+
+    if (!style_initialized)
+    {
+        style_initialized = TRUE;
+        gtk_rc_parse_string (
+            "style \"gdl-dock-item-default\" {\n"
+            "xthickness = 0\n"
+            "ythickness = 0\n"
+            "}\n"
+            "class \"GdlDockItem\" "
+            "style : gtk \"gdl-dock-item-default\"\n");
+    }
 }
 
 static void
@@ -656,8 +671,8 @@ gdl_dock_item_size_request (GtkWidget      *widget,
             requisition->width = 0;
     }
 
-    requisition->width += GTK_CONTAINER (widget)->border_width * 2;
-    requisition->height += GTK_CONTAINER (widget)->border_width * 2;
+    requisition->width += (GTK_CONTAINER (widget)->border_width + widget->style->xthickness) * 2;
+    requisition->height += (GTK_CONTAINER (widget)->border_width + widget->style->ythickness) * 2;
 
     widget->requisition = *requisition;
 }
@@ -688,18 +703,18 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
 
         border_width = GTK_CONTAINER (widget)->border_width;
 
-        child_allocation.x = border_width;
-        child_allocation.y = border_width;
-        child_allocation.width = allocation->width - 2 * border_width;
-        child_allocation.height = allocation->height - 2 * border_width;
+        child_allocation.x = border_width + widget->style->xthickness;
+        child_allocation.y = border_width + widget->style->ythickness;
+        child_allocation.width = allocation->width
+            - 2 * (border_width + widget->style->xthickness);
+        child_allocation.height = allocation->height
+            - 2 * (border_width + widget->style->ythickness);
         
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
-            GtkAllocation grip_alloc = *allocation;
+            GtkAllocation grip_alloc = child_allocation;
             GtkRequisition grip_req;
             
             gtk_widget_size_request (item->_priv->grip, &grip_req);
-            
-            grip_alloc.x = grip_alloc.y = 0;
             
             if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
                 child_allocation.x += grip_req.width;
@@ -812,7 +827,6 @@ gdl_dock_item_style_set (GtkWidget *widget,
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
-    /* FIXME: maybe remove this method altogether and use the default implementation */
     if (GTK_WIDGET_REALIZED (widget) && !GTK_WIDGET_NO_WINDOW (widget)) {
         gtk_style_set_background (widget->style, widget->window,
                                   widget->state);

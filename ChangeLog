@@ -1,3 +1,20 @@
+2004-02-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	Patch by Jeroen Zwartepoorte and Gustavo Giráldez.
+	
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_size_allocate):
+	Offset child allocation by the given allocation coordinates.
+	
+	* gdl/gdl-dock-item.c (gdl_dock_item_class_init)
+	(gdl_dock_item_size_request, gdl_dock_item_size_allocate)
+	(gdl_dock_item_style_set): Setup a default style for the
+	GdlDockItem class which sets the xthickness/ythickness to 0. Use
+	the thickness for size_request and respect it in size_allocate.
+	
+	* gdl/gdl-dock-notebook.c (gdl_dock_notebook_class_init): Setup a
+	style for GdlDockItem objects docked inside GtkNotebooks so they
+	have a 2 pixel border around them.
+
 2004-02-08  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* gdl/gdl-dock-bar.c: (update_dock_items): Properly add/remove items

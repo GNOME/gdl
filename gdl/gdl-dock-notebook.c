@@ -96,6 +96,8 @@ GDL_CLASS_BOILERPLATE (GdlDockNotebook, gdl_dock_notebook, GdlDockItem, GDL_TYPE
 static void
 gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
 {
+    static gboolean style_initialized = FALSE;
+    
     GObjectClass       *g_object_class;
     GtkObjectClass     *gtk_object_class;
     GtkWidgetClass     *widget_class;
@@ -136,6 +138,18 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
                           0,
                           G_PARAM_READWRITE |
                           GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
+
+    if (!style_initialized) {
+        style_initialized = TRUE;
+        
+        gtk_rc_parse_string (
+            "style \"gdl-dock-notebook-default\" {\n"
+            "xthickness = 2\n"
+            "ythickness = 2\n"
+            "}\n"
+            "widget_class \"*.GtkNotebook.GdlDockItem\" "
+            "style : gtk \"gdl-dock-notebook-default\"\n");
+    }
 }
 
 static void 
@@ -254,7 +268,7 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
 {
     GdlDockNotebook *notebook;
     GtkWidget       *tablabel;
-
+    
     notebook = GDL_DOCK_NOTEBOOK (data);
 
     /* deactivate old tablabel */
