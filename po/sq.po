@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-28 03:20+0200\n"
+"POT-Creation-Date: 2004-08-18 03:23+0200\n"
 "PO-Revision-Date: 2004-07-01 17:47+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -32,7 +32,6 @@ msgstr "Ikonifikim"
 msgid "Iconify this dock"
 msgstr "Ikonifiko këtë qeli"
 
-#. GRUT modified this item
 #: gdl/gdl-dock-item-grip.c:366
 msgid "Close"
 msgstr "Mbyll"
@@ -645,4 +644,3 @@ msgstr ""
 #: symbol-browser-control/test-symbol-browser.c:295
 msgid "Can't initialize bonobo!"
 msgstr ""
-
