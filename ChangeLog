@@ -1,3 +1,10 @@
+2002-05-19  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-recent.c (gdl_recent_delete_from_list): Check if the
+	list after g_slist_delete_link is empty (fixes a crash when
+	re-opening the only item in the recent list) and use delete_link
+	instead of remove_link.
+
 2002-05-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/Makefile.am, gdl/gdl.h, gdl/gdl-dock-item.[ch],

@@ -467,12 +467,14 @@ gdl_recent_delete_from_list (GdlRecent  *recent,
 		char *text = l->data;
 
 		if (!strcmp (text, uri)) {
-			ret_list = g_slist_remove_link (ret_list, l);
+			ret_list = g_slist_delete_link (ret_list, l);
 			g_free (text);
 			
 			/* Start the loop all over again to remove any more
 			  duplicates */
 			l = ret_list;
+			if (!l)
+			    break;
 		}
 	}
 
