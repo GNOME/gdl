@@ -108,8 +108,8 @@ frame_at (GdlDataView *dv, int x, int y)
 	GList *l;
 	for (l = dv->priv->objects; l != NULL; l = l->next) {
 		GdlDataFrame *frame = l->data;
-		if (x >= frame->x && x <= frame->x + frame->width 
-		    && y >= frame->y && y <= frame->y + frame->height) {
+		if (x >= frame->area.x && x <= frame->area.x + frame->area.width 
+		    && y >= frame->area.y && y <= frame->area.y + frame->area.height) {
 			return frame;
 		}
 	}
@@ -214,11 +214,9 @@ gdl_data_view_set_model (GdlDataView *dv, GdlDataModel *model)
 
 		path_string = gtk_tree_path_to_string (path);
 		
-		frame = g_object_new (gdl_data_frame_get_type (),
-				      "x1", x, "y1", 5,
-				      "view", dv, 
-				      "path", path_string,
-				      NULL);
+		frame = gdl_data_frame_new (dv, path_string);
+		gdl_data_frame_set_position (frame, x, 5);
+
 		dv->priv->objects = g_list_append (dv->priv->objects,
 						   frame);
 		
