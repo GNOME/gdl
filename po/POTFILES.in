@@ -9,7 +9,6 @@ gdl/gdl-dock-paned.c
 gdl/gdl-dock-placeholder.c
 gdl/gdl-dock-tablabel.c
 gdl/gdl-dock.c
-gdl/gdl-file-selector-util.c
 gdl/gdl-recent.c
 gdl/gdl-icons.c
 gdl/layout.glade
