@@ -1,3 +1,7 @@
+2004-02-28  Adam Weinberger  <adamw@FreeBSD.org>
+
+	* configure.in: Added 'en_CA' (Canadian English) to ALL_LINGUAS.
+
 2004-02-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	Patch by Jeroen Zwartepoorte and Gustavo Giráldez.

@@ -1,3 +1,7 @@
+2004-02-28  Adam Weinberger  <adamw@FreeBSD.org>
+
+	* en_CA.po: Added Canadian English translation.
+
 2004-02-26  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Translation updated by Kees van den Broek.
