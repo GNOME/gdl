@@ -227,7 +227,7 @@ get_themed_icon_file_path (const char *theme_dir,
 			   const char *icon_name, 
 			   unsigned size)
 {
-	char *themed_icon_name, *path;
+	char *themed_icon_name, *path = NULL;
 	int i;
 
 	if (icon_name[0] == '/') {
@@ -251,13 +251,15 @@ get_themed_icon_file_path (const char *theme_dir,
 		}
 
 		if (g_file_test (path, G_FILE_TEST_EXISTS)) {
-			return path;
+			break;
 		}
 
 		g_free (path);
+		path = NULL;
 	}
+	g_free (themed_icon_name);
 	
-	return NULL;
+	return path;
 }
 
 
@@ -365,8 +367,9 @@ pixbuf_for_name (const char *name)
 		} else {
 			pixbuf = scale_icon (gdk_pixbuf_new_from_file (path, NULL));
 		}
+		g_free (path);
 	}
-
+	
 	if (!pixbuf) {
 		pixbuf = gdk_pixbuf_new_from_data (default_icon,
 						   GDK_COLORSPACE_RGB,

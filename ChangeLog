@@ -1,3 +1,8 @@
+2002-05-27  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-icons.c (get_themed_icon_file_path)
+	(pixbuf_for_name): Fixed a couple of memory leaks.
+
 2002-05-19  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
 
 	* gdl/gdl-recent.c (gdl_recent_delete_from_list): Check if the
