@@ -5,7 +5,7 @@
 
 #include <gtk/gtk.h>
 #include <gdl/gdl-dock-item.h>
-
+#include <libxml/tree.h>
 
 #define GDL_TYPE_DOCK            (gdl_dock_get_type ())
 #define GDL_DOCK(obj)            (GTK_CHECK_CAST ((obj), GDL_TYPE_DOCK, GdlDock))
@@ -23,6 +23,7 @@ struct _GdlDock {
     GtkWidget          *root;
     GList              *floating;
     GdlDockRequestInfo  possible_target;
+    GList              *items;
 
     /* auxiliary fields */
     gboolean            rect_drawn;
@@ -39,7 +40,12 @@ struct _GdlDockClass {
 
 GtkWidget     *gdl_dock_new               (void);
 
-guint          gdl_dock_get_type          (void);
+GtkType        gdl_dock_get_type          (void);
+
+void           gdl_dock_bind_item         (GdlDock          *dock,
+                                           GdlDockItem      *item);
+void           gdl_dock_unbind_item       (GdlDock          *dock,
+                                           GdlDockItem      *item);
 
 void           gdl_dock_add_item          (GdlDock          *dock,
                                            GdlDockItem      *item,
@@ -51,19 +57,13 @@ void           gdl_dock_add_floating_item (GdlDock        *dock,
                                            gint            y,
                                            GtkOrientation  orientatinon);
 
-GtkWidget     *gdl_dock_get_item_by_name  (GdlDock     *dock,
+GdlDockItem   *gdl_dock_get_item_by_name  (GdlDock     *dock,
                                            const gchar *name);
 
-void           gdl_dock_drag_begin        (GdlDock     *dock, 
-                                           GdlDockItem *widget);
-
-void           gdl_dock_drag_end          (GdlDock     *dock, 
-                                           GdlDockItem *widget);
-
-void           gdl_dock_drag_motion       (GdlDock     *dock, 
-                                           GdlDockItem *widget, 
-                                           gint         x, 
-                                           gint         y);
-
+void           gdl_dock_layout_load       (GdlDock    *dock,
+                                           xmlNodePtr  node);
+                                           
+void           gdl_dock_layout_save       (GdlDock    *dock,
+                                           xmlNodePtr  node);
 
 #endif

@@ -1,6 +1,7 @@
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locales"\" \
-	-I$(includedir) $(GNOME_INCLUDEDIR) $(BONOBO_CFLAGS) $(GNOME_CFLAGS)
+	-I$(includedir) $(GNOME_INCLUDEDIR) $(BONOBO_CFLAGS) $(GNOME_CFLAGS) \
+	$(XML_CFLAGS)
 
 lib_LTLIBRARIES = libgdl.la
 
@@ -28,16 +29,18 @@ libgdl_la_SOURCES = \
 	gdl-dock.c \
 	gdl-dock-item.c \
 	gdl-dock-notebook.c \
-	gdl-dock-paned.c
+	gdl-dock-paned.c \
+	gdl-dock-tablabel.c
 
 libgdl_la_LIBADD = \
 	$(BONOBO_LIBS) \
-	$(GNOME_LIBS)
+	$(GNOME_LIBS) \
+	$(XML_LIBS)
 
 noinst_PROGRAMS=test-dock
 
 test_dock_sources=test-dock.c
-test_dock_LDADD=libgdl.la
+test_dock_LDADD=libgdl.la $(XML_LIBS)
 
 libgdlincludedir = $(includedir)/gdl
 libgdlinclude_HEADERS = \
@@ -48,5 +51,6 @@ libgdlinclude_HEADERS = \
 	gdl-dock.h \
 	gdl-dock-item.h \
 	gdl-dock-notebook.h \
-	gdl-dock-paned.h
+	gdl-dock-paned.h \
+	gdl-dock-tablabel.h
 

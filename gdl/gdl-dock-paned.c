@@ -39,6 +39,7 @@
 
 #include <gtk/gtkstyle.h>
 #include "gdl-tools.h"
+#include "gdl-dock.h"
 #include "gdl-dock-paned.h"
 
 
@@ -95,12 +96,15 @@ static void     gdl_dock_paned_compute_position (GdlDockPaned *paned,
 static gint     gdl_dock_paned_quantized_size  (GdlDockPaned *paned,
                                                 int           size);
 static void     gdl_dock_paned_auto_reduce     (GdlDockItem *item);
-static gboolean gdl_dock_paned_drag_request    (GdlDockItem        *item, 
+static gboolean gdl_dock_paned_dock_request    (GdlDockItem        *item, 
                                                 gint                x,
                                                 gint                y, 
                                                 GdlDockRequestInfo *target);
 static void     gdl_dock_paned_set_orientation (GdlDockItem    *item,
                                                 GtkOrientation  orientation);
+static void     gdl_dock_paned_layout_save     (GdlDockItem *item,
+                                                xmlNodePtr   node);
+static void     gdl_dock_paned_hide            (GdlDockItem *item);
 
 static GdlDockItemClass *parent_class = NULL;
 
@@ -145,8 +149,10 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
     container_class->child_type = gdl_dock_paned_child_type;
 
     dock_item_class->auto_reduce = gdl_dock_paned_auto_reduce;
-    dock_item_class->drag_request = gdl_dock_paned_drag_request;
+    dock_item_class->dock_request = gdl_dock_paned_dock_request;
     dock_item_class->set_orientation = gdl_dock_paned_set_orientation;
+    dock_item_class->save_layout = gdl_dock_paned_layout_save;
+    dock_item_class->item_hide = gdl_dock_paned_hide;
     
     gtk_object_add_arg_type("GdlDockPaned::handle_size", GTK_TYPE_UINT,
                             GTK_ARG_READWRITE, ARG_HANDLE_SIZE);
@@ -486,31 +492,24 @@ gdl_dock_paned_compute_position (GdlDockPaned *paned,
                                  gint          child1_req,
                                  gint          child2_req)
 {
-    GtkArg   arg;
     gboolean child1_resize, child1_shrink;
     gboolean child2_resize, child2_shrink;
 
     g_return_if_fail (paned != NULL);
     g_return_if_fail (GDL_IS_DOCK_PANED (paned));
   
-    /* FIXME: i don't like the way this looks */
     child1_resize = child1_shrink = child2_resize = child2_shrink = TRUE;
-    if (paned->child1) {
-        arg.name = "resize";
-        gtk_object_arg_get (GTK_OBJECT (paned->child1), &arg, NULL);
-        child1_resize = GTK_VALUE_BOOL (arg);
-        arg.name = "shrink";
-        gtk_object_arg_get (GTK_OBJECT (paned->child1), &arg, NULL);
-        child1_shrink = GTK_VALUE_BOOL (arg);
-    };
-    if (paned->child2) {
-        arg.name = "resize";
-        gtk_object_arg_get (GTK_OBJECT (paned->child2), &arg, NULL);
-        child2_resize = GTK_VALUE_BOOL (arg);
-        arg.name = "shrink";
-        gtk_object_arg_get (GTK_OBJECT (paned->child2), &arg, NULL);
-        child2_shrink = GTK_VALUE_BOOL (arg);
-    };
+    if (paned->child1)
+        gtk_object_get (GTK_OBJECT (paned->child1), 
+                        "resize", &child1_resize,
+                        "shrink", &child1_shrink,
+                        NULL);
+
+    if (paned->child2)
+        gtk_object_get (GTK_OBJECT (paned->child2), 
+                        "resize", &child2_resize,
+                        "shrink", &child2_shrink,
+                        NULL);
 
     if (gdl_dock_paned_handle_shown (paned))
         allocation -= (gint) paned->handle_size;
@@ -640,8 +639,6 @@ gdl_dock_paned_size_allocate (GtkWidget     *widget,
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK_PANED (widget));
     g_return_if_fail (allocation != NULL);
-
-    GDL_TRACE ();
 
     paned = GDL_DOCK_PANED (widget);
 
@@ -1042,8 +1039,6 @@ gdl_dock_paned_auto_reduce (GdlDockItem *item)
 
     g_return_if_fail (GTK_WIDGET (item)->parent != NULL);
 
-    GDL_TRACE ();
-
     paned = GDL_DOCK_PANED (item);
 
     if (paned->child1 == NULL)
@@ -1066,7 +1061,7 @@ gdl_dock_paned_auto_reduce (GdlDockItem *item)
 #define SPLIT_RATIO  0.3
 
 static gboolean
-gdl_dock_paned_drag_request (GdlDockItem        *item, 
+gdl_dock_paned_dock_request (GdlDockItem        *item, 
                              gint                x,
                              gint                y, 
                              GdlDockRequestInfo *target)
@@ -1122,10 +1117,10 @@ gdl_dock_paned_drag_request (GdlDockItem        *item,
             snap = FALSE;
             /* FIXME: this is not very wise... we have the handle position */
             if (paned->child1) 
-                snap = gdl_dock_item_drag_request 
+                snap = gdl_dock_item_dock_request 
                     (GDL_DOCK_ITEM (paned->child1), dx + bw, dy + bw, target);
             if (!snap && paned->child2) {
-                snap = gdl_dock_item_drag_request
+                snap = gdl_dock_item_dock_request
                     (GDL_DOCK_ITEM (paned->child2), dx + bw, dy + bw, target);
                 if (snap) {
                     if (item->orientation == GTK_ORIENTATION_HORIZONTAL)
@@ -1174,6 +1169,72 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
     };
 }
 
+static void
+gdl_dock_paned_layout_save (GdlDockItem *item,
+                            xmlNodePtr   node)
+{
+    GdlDockPaned *paned;
+    xmlNodePtr paned_node;
+    gchar divider[8];
+
+    g_return_if_fail (item != NULL);
+    g_return_if_fail (GDL_IS_DOCK_PANED (item));
+    
+    paned = GDL_DOCK_PANED (item);
+    
+    /* Create "paned" node. */
+    paned_node = xmlNewChild (node, NULL, "paned", NULL);
+    if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
+        xmlSetProp (paned_node, "orientation", "horizontal");
+        sprintf (divider, "%i", GDL_DOCK_PANED (item)->handle_xpos);
+        xmlSetProp (paned_node, "divider", divider);
+    } else {
+        xmlSetProp (paned_node, "orientation", "vertical");    
+        sprintf (divider, "%i", GDL_DOCK_PANED (item)->handle_ypos);
+        xmlSetProp (paned_node, "divider", divider);
+    }
+
+    /* Save child1 layout. */
+    if (paned->child1)
+        gdl_dock_item_save_layout (GDL_DOCK_ITEM (paned->child1), paned_node);
+
+    /* Save child2 layout. */
+    if (paned->child2)
+        gdl_dock_item_save_layout (GDL_DOCK_ITEM (paned->child2), paned_node);
+}
+
+static void
+gdl_dock_paned_hide (GdlDockItem *item)
+{
+    GtkWidget    *parent, *real_parent;
+    GdlDockPaned *paned;
+
+    g_return_if_fail (item != NULL);
+    g_return_if_fail (GDL_IS_DOCK_PANED (item));
+
+    paned = GDL_DOCK_PANED (item);
+    real_parent = GTK_WIDGET (item)->parent;
+    GDL_DOCK_ITEM_GET_PARENT (item, parent);
+    
+    /* Unfloat item. */
+    if (GDL_DOCK_ITEM_IS_FLOATING (item))
+        gdl_dock_item_window_sink (item);
+    
+    /* Remove children. */
+    if (paned->child1)
+        gdl_dock_item_hide (GDL_DOCK_ITEM (paned->child1));
+    if (paned->child2)
+        gdl_dock_item_hide (GDL_DOCK_ITEM (paned->child2));
+
+    /* Remove item. */
+    if (real_parent)
+        gtk_container_remove (GTK_CONTAINER (real_parent),
+                              GTK_WIDGET (item));
+    /* Auto reduce parent. */
+    if (parent && GDL_IS_DOCK_ITEM (parent))
+        gdl_dock_item_auto_reduce (GDL_DOCK_ITEM (parent));
+}
+
 
 /* Public interface */
 
@@ -1216,14 +1277,24 @@ void
 gdl_dock_paned_add1 (GdlDockPaned *paned,
                      GtkWidget    *child)
 {
+    GdlDockItem *item;
+
     g_return_if_fail (paned != NULL);
     g_return_if_fail (GDL_IS_DOCK_PANED (paned));
     g_return_if_fail (GDL_IS_DOCK_ITEM (child));
+
+    item = GDL_DOCK_ITEM (child);
+    GDL_DOCK_ITEM_CHECK_AND_BIND (item, paned);
+
+    if (GDL_DOCK_ITEM_IS_FLOATING (item))
+        gdl_dock_item_window_sink (item);
 
     if (!paned->child1) {
         paned->child1 = child;
 
         gtk_widget_set_parent (child, GTK_WIDGET (paned));
+
+        gdl_dock_item_show_handle (item);
 
         if (GTK_WIDGET_REALIZED (child->parent))
             gtk_widget_realize (child);
@@ -1241,14 +1312,24 @@ void
 gdl_dock_paned_add2 (GdlDockPaned *paned,
                      GtkWidget *child)
 {
+    GdlDockItem *item;
+
     g_return_if_fail (paned != NULL);
     g_return_if_fail (GDL_IS_DOCK_PANED (paned));
     g_return_if_fail (GDL_IS_DOCK_ITEM (child));
+
+    item = GDL_DOCK_ITEM (child);
+    GDL_DOCK_ITEM_CHECK_AND_BIND (item, paned);
+
+    if (GDL_DOCK_ITEM_IS_FLOATING (item))
+        gdl_dock_item_window_sink (item);
 
     if (!paned->child2) {
         paned->child2 = child;
 
         gtk_widget_set_parent (child, GTK_WIDGET (paned));
+
+        gdl_dock_item_show_handle (item);
 
         if (GTK_WIDGET_REALIZED (child->parent))
             gtk_widget_realize (child);

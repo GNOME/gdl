@@ -27,7 +27,7 @@ struct _GdlDockNotebookClass {
 
 GtkWidget     *gdl_dock_notebook_new               (void);
 
-guint          gdl_dock_notebook_get_type          (void);
+GtkType        gdl_dock_notebook_get_type          (void);
 
 #endif
 

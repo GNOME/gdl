@@ -1,3 +1,34 @@
+2001-10-09  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* Lots of bugfixes and new features to GdlDock by Jeroen
+	Zwartepoorte <jeroen@xs4all.nl> and me, including:
+	
+	* gdl/gdl-dock.c: 
+	* gdl/gdl-dock.h: New docking layout saving/restoring using
+	an XML format  (functions gdl_dock_layout_{load,save}).
+	New methods gdl_dock_{bind,unbind}_item, to connect item signals
+	and to keep track of the items for layout managment.
+	New function: gdl_dock_get_item_by_name.
+	Implemented "layout_changed" signal emission.
+
+	* gdl/gdl-dock-tablabel.h:
+	* gdl/gdl-dock-tablabel.c: New files.  Implement a tablabel for 
+	GdlDockNotebooks with handles to drag the items.
+	
+	* gdl/gdl-dock-item.h:
+	* gdl/gdl-dock-item.c: 
+	* gdl/gdl-dock-paned.h:
+	* gdl/gdl-dock-paned.c:
+	* gdl/gdl-dock-notebook.h:
+	* gdl/gdl-dock-notebook.c: renamed "drag_request" signal and methods
+	to "dock_request".  New methods to support tablabels:
+	{get,set}_tablabel and {hide,show}_handle.
+	Implemented signals dock_drag_{begin,motion,end} to be used instead
+	of directly calling gdl_dock functions, and to provide customization.
+	Exposed several item properties by using GtkObject argument system.
+	New function: gdl_dock_item_hide.
+	Fixed popup menu and implemented "Hide" option.
+
 2001-10-03  Gustavo Giráldez <gustavo.giraldez@gmx.net>
 
        * gdl/gdl-dock.h: fixed bug to correctly position the xored
