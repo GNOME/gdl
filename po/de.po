@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# German gdl translation.
+# Copyright (C) 2000-2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gdl package.
+# Christian Neumair <chris@gnome-de.org>, 2002, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl HEAD\n"
-"POT-Creation-Date: 2002-07-18 18:04-0300\n"
-"PO-Revision-Date: 2002-08-28 13:24+0100\n"
-"Last-Translator: Christian Neumair <christian-neumair@web.de>\n"
+"POT-Creation-Date: 2003-01-04 00:24+0100\n"
+"PO-Revision-Date: 2003-01-04 00:24+0100\n"
+"Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,11 +16,11 @@ msgstr ""
 
 #: gdl/gdl-data-view.c:416
 msgid "Expander Size"
-msgstr "Expandergröße"
+msgstr "Ausklappergröße"
 
 #: gdl/gdl-data-view.c:417
 msgid "Size of the expander arrow."
-msgstr "Größe des Expanderpfeils"
+msgstr "Größe des Ausklapppfeils"
 
 #: gdl/gdl-dock-item-grip.c:239
 msgid "Dock the toolbar"
@@ -142,7 +142,7 @@ msgstr "Sperren"
 msgid "Attempt to bind an unbound item %p"
 msgstr "Versuch, ein unverbundenes Objekt %p anzubinden"
 
-# Master nicht �bersetzbar (�hnlich wie bei Datenspeicherung Master/Slave)?
+# Master nicht übersetzbar (ähnlich wie bei Datenspeicherung Master/Slave)?
 #: gdl/gdl-dock-layout.c:121
 msgid "Master"
 msgstr "Master"
@@ -169,7 +169,7 @@ msgstr "Sie müssen einen Namen für das Layout angeben"
 #: gdl/gdl-dock-layout.c:633
 #, c-format
 msgid "Could not load layout user interface file '%s'"
-msgstr "Layout-Benutzeroberflächendatei »%s« konnte nicht geladen werden"
+msgstr "Layout-Benutzeroberflächendatei Â»%sÂ« konnte nicht geladen werden"
 
 #: gdl/gdl-dock-layout.c:691
 msgid "Visible"
@@ -198,7 +198,7 @@ msgid ""
 "s'"
 msgstr ""
 "Problem: Beim Laden des Layouts: Es ist ungbekannt, wie ein Dock-Objekt mit "
-"Aliasnamen »%s« erstellt werden soll"
+"Aliasnamen Â»%sÂ« erstellt werden soll"
 
 #: gdl/gdl-dock-layout.c:1318
 msgid "Layout managment"
@@ -368,7 +368,7 @@ msgstr "Dock-Objekt wird gesteuert"
 
 #: gdl/gdl-dock-tablabel.c:126
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "Dock-Objekt, dem diese Reiterbeschriftung »gehört«"
+msgstr "Dock-Objekt, dem diese Reiterbeschriftung Â»gehörtÂ«"
 
 #: gdl/gdl-dock.c:172
 msgid "Floating"
@@ -425,7 +425,7 @@ msgid ""
 "A file named ''%s'' already exists.\n"
 "Do you want to replace it with the one you are saving?"
 msgstr ""
-"Es existiert bereits eine Datei namens »%s«\n"
+"Es existiert bereits eine Datei namens Â»%sÂ«\n"
 "Soll diese durch die ersetzt werden, die Sie speichern wollen?"
 
 #. Add Don't Replace button
@@ -485,7 +485,15 @@ msgstr "Der Typ mit dem die Objekte nummertiert werden"
 #: gdl/gdl-recent.c:405
 #, c-format
 msgid "Open %s"
-msgstr "%s Öffnen"
+msgstr "%s öffnen"
+
+#: gdl/gdl-icons.c:137 gdl/gdl-icons.c:138
+msgid "Icon size"
+msgstr "Icongröße"
+
+#: gdl/gdl-icons.c:143 gdl/gdl-icons.c:144
+msgid "Icon zoom"
+msgstr "Icon-Vergrößerung"
 
 #: gdl/layout.glade.h:1
 msgid "*"
@@ -543,17 +551,17 @@ msgstr "_Gehe zu Symbol"
 msgid "_View"
 msgstr "_Ansicht"
 
-#: symbol-browser-control/symbol-browser.c:362
+#: symbol-browser-control/symbol-browser.c:365
 msgid "Tags"
 msgstr "Tags"
 
-#: symbol-browser-control/symbol-browser.c:370
-#: symbol-browser-control/symbol-browser.c:380
+#: symbol-browser-control/symbol-browser.c:373
+#: symbol-browser-control/symbol-browser.c:383
 msgid "Undefined"
 msgstr "Nicht definiert"
 
-#: symbol-browser-control/symbol-browser.c:372
-#: symbol-browser-control/symbol-browser.c:382
+#: symbol-browser-control/symbol-browser.c:375
+#: symbol-browser-control/symbol-browser.c:385
 msgid "<No Symbol>"
 msgstr "<Keine Symbole>"
 
