@@ -121,7 +121,11 @@ gdl_dock_item_grip_expose (GtkWidget      *widget,
 
         pixbuf_rect.width = gdk_pixbuf_get_width (pixbuf);
         pixbuf_rect.height = gdk_pixbuf_get_height (pixbuf);
-        pixbuf_rect.x = widget->allocation.x + border;
+        if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+            pixbuf_rect.x = widget->allocation.x + widget->allocation.width -
+                border - pixbuf_rect.width;
+        else
+            pixbuf_rect.x = widget->allocation.x + border;
         pixbuf_rect.y = widget->allocation.y + border +
                         (widget->allocation.height - pixbuf_rect.height) / 2;
 
@@ -155,10 +159,10 @@ gdl_dock_item_grip_expose (GtkWidget      *widget,
         pango_layout_get_pixel_size (grip->_priv->title_layout, &layout_width,
                                      &layout_height);
 
-        if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
-            text_x = title_area.x + pixbuf_width;
-        else
+        if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
             text_x = title_area.x + title_area.width - layout_width - pixbuf_width;
+        else
+            text_x = title_area.x + pixbuf_width;
 
         text_y = title_area.y + (title_area.height - layout_height) / 2;
 
@@ -375,7 +379,7 @@ gdl_dock_item_grip_item_notify (GObject    *master,
         grip->_priv->title_layout = NULL;
         g_free (name);
     }
-    if (stock_id && grip->_priv->title_layout) {
+    if (stock_id && grip->_priv->icon_pixbuf) {
         g_object_unref (grip->_priv->icon_pixbuf);
         grip->_priv->icon_pixbuf = NULL;
         g_free (stock_id);
@@ -387,7 +391,7 @@ gdl_dock_item_grip_item_notify (GObject    *master,
 	    gtk_widget_show (GTK_WIDGET (grip->_priv->close_button));
 	}
     }
-    if (grip->_priv->iconify_button && grip->item) {
+    if (grip->_priv->iconify_button) {
         if (GDL_DOCK_ITEM_CANT_ICONIFY (grip->item)) {
 	    gtk_widget_hide (GTK_WIDGET (grip->_priv->iconify_button));
 	} else {
@@ -736,38 +740,40 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
 
     GTK_WIDGET_CLASS (parent_class)->size_allocate (widget, allocation);
 
+    if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+        child_allocation.x = allocation->x + container->border_width;
+    else
+        child_allocation.x = allocation->x + allocation->width - container->border_width;
+    child_allocation.y = allocation->y + container->border_width;
+
     if (GTK_WIDGET_VISIBLE (grip->_priv->close_button)) {
         gtk_widget_size_request (grip->_priv->close_button, &button_requisition);
 
-        if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
-            child_allocation.x = allocation->x + (allocation->width -
-                                  container->border_width -
-                                  button_requisition.width);
-        else
-            child_allocation.x = allocation->x + container->border_width;
+        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL)
+            child_allocation.x -= button_requisition.width;
 
-        child_allocation.y = allocation->y + container->border_width;
         child_allocation.width = button_requisition.width;
         child_allocation.height = button_requisition.height;
 
         gtk_widget_size_allocate (grip->_priv->close_button, &child_allocation);
+
+        if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+            child_allocation.x += button_requisition.width;
     }
 
     if (GTK_WIDGET_VISIBLE (grip->_priv->iconify_button)) {
         gtk_widget_size_request (grip->_priv->iconify_button, &button_requisition);
-        if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
-            child_allocation.x = allocation->x + (allocation->width -
-                                  container->border_width -
-                                  2 * button_requisition.width);
-        else
-            child_allocation.x = allocation->x + container->border_width +
-                                 button_requisition.width;
 
-        child_allocation.y = allocation->y + container->border_width;
+        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL)
+            child_allocation.x -= button_requisition.width;
+
         child_allocation.width = button_requisition.width;
         child_allocation.height = button_requisition.height;
 
         gtk_widget_size_allocate (grip->_priv->iconify_button, &child_allocation);
+
+        if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+            child_allocation.x += button_requisition.width;
     }
     
     if (grip->title_window) {

@@ -125,6 +125,8 @@ main (int argc, char **argv)
 
 	gtk_init (&argc, &argv);
 
+	/*gtk_widget_set_default_direction (GTK_TEXT_DIR_RTL);*/
+	
         /* window creation */
 	win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	g_signal_connect (win, "delete_event", 
