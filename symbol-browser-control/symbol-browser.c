@@ -28,7 +28,7 @@
 #include <tm_project.h>
 #include "symbol-browser.h"
 #include "../gdl/libgdlmarshal.h"
-#include "pixmaps/folder.xpm"
+#include "../gdl/gdl-icons.h"
 #include "pixmaps/class.xpm"
 #include "pixmaps/struct.xpm"
 #include "pixmaps/member.xpm"
@@ -442,9 +442,9 @@ get_image_for_type (gchar *type_name)
 
 	if (!icons) {
 		icons = g_hash_table_new (g_str_hash, g_str_equal);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)folder_xpm);
+		pixbuf = gdl_icon_for_folder ();
 		g_hash_table_insert (icons, g_strdup ("Tags"), pixbuf);
-		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)folder_xpm);
+		pixbuf = gdl_icon_for_folder ();
 		g_hash_table_insert (icons, g_strdup ("Folders"), pixbuf);
 		pixbuf = gdk_pixbuf_new_from_xpm_data ((const char**)unknown_xpm);
 		g_hash_table_insert (icons, g_strdup ("Undefined"), pixbuf);

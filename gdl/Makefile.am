@@ -10,6 +10,8 @@ INCLUDES = \
         -DSYSCONFDIR=\""$(sysconfdir)"\"                \
         -DDATADIR=\""$(datadir)"\"                      \
         -DLIBDIR=\""$(libdir)"\"                        \
+	-DNAUTILUS_THEMEDIR=\""$(NAUTILUS_THEMEDIR)"\"  \
+	-DGNOME_VFS_ICONDIR=\""$(GNOME_VFS_ICONDIR)"\"  \
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la
@@ -48,12 +50,15 @@ CLEANFILES = $(CORBA_GENERATED) 		\
 
 libgdl_1_la_SOURCES = \
 	$(CORBA_GENERATED) \
+	default-icon.c \
+	default-icon.h \
 	gdl-dock.c \
 	gdl-dock-item.c \
 	gdl-dock-notebook.c \
 	gdl-dock-paned.c \
 	gdl-dock-tablabel.c \
 	gdl-dock-layout.c \
+	gdl-icons.c \
 	libgdltypebuiltins.c \
 	libgdlmarshal.c
 
@@ -78,7 +83,8 @@ libgdl_headers = \
 	gdl-dock-notebook.h \
 	gdl-dock-paned.h \
 	gdl-dock-tablabel.h \
-	gdl-dock-layout.h
+	gdl-dock-layout.h \
+	gdl-icons.h
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
@@ -159,3 +165,5 @@ libgdlmarshal.c: libgdlmarshal.h
 		--prefix=gdl_marshal $(srcdir)/libgdlmarshal.list --body >> xgen-gmc \
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
+
+EXTRA_DIST=program.xpm static.xpm shared.xpm

@@ -1,3 +1,15 @@
+2002-03-10  Dave Camp  <dave@ximian.com>
+
+	* configure.in:  Require librsvg.
+	* gdl/Makefile.am: Add new files.
+	* symbol-browser-control/symbol-browser.c: (get_image_for_type): 
+	Use the gdl-icons to get the folder icon.
+	* gdl/gdl-icons.[ch]: 
+	* gdl/defailt-icon.[ch]: 
+	* gdl/program.xpm:
+	* gdl/shared.xpm:
+	* gdl/static.xpm: New files.
+
 2002-02-23  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
 
 	* symbol-browser-control/gnome-symbol-browser.xml: Move "FormatUpdate"
