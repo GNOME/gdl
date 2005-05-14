@@ -1,3 +1,16 @@
+Changes in 0.5.0:
+
+* Added orientation get/set functions to allow for horizontal/vertical layout,
+  thanks to David A Knight  <david@ritter.demon.co.uk>
+* Fix memory and tooltip object leaks.
+* Adds two new behaviors to hide the iconify and close button in item handle.
+* Properly add/remove items based on the ICONIFIED flag.
+* GdlDockItems can also have a stock_id now.
+* Added a new GdlDockBar widget	which displays iconified dockitems.
+* Improved GdlDock look (looks more like the Gimp's docking widget now).
+* Many bug fixes.
+* Updated translations: zh_CN, ca, hr, ga, en_GB, pa, nb, rw
+
 Changes in 0.4.0:
 
 * Use the GnomeIconTheme API in GdlIcon

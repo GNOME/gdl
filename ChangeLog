@@ -1,3 +1,10 @@
+2005-03-14  Naba Kumar  <naba@gnome.org>
+
+	* configure.in, NEWS: Bumpped version to 0.5.0 and prepared for
+	release.
+
+	* gdl/Makefile.am: Added image_DATA in EXTRA_DIST.
+	
 2005-04-01  Steve Murphy  <murf@e-tools.com>
 
         * configure.in: Added "rw" to ALL_LINGUAS.

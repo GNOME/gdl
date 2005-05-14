@@ -113,7 +113,8 @@ EXTRA_DIST = libgdlmarshal.list \
 	tree-expand.xpm \
 	tree-contract.xpm \
 	layout.glade \
-	program.xpm static.xpm shared.xpm
+	program.xpm static.xpm shared.xpm \
+	$(image_DATA)
 
 test_dataview_SOURCES = \
 	gdl-data-view.h \
