@@ -23,7 +23,6 @@
 #ifndef __GDL_H__
 #define __GDL_H__
 
-#include <gdl/GDL.h>
 #include <gdl/gdl-tools.h>
 #include <gdl/gdl-dock-object.h>
 #include <gdl/gdl-dock-master.h>

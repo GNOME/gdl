@@ -8,33 +8,13 @@ INCLUDES = \
 
 lib_LTLIBRARIES = libgdl-1.la
 
-CORBA_GENERATED_HEADER_FILES = GDL.h
-
-CORBA_GENERATED = \
-	$(CORBA_GENERATED_HEADER_FILES) \
-	GDL-common.c \
-	GDL-stubs.c \
-	GDL-skels.c
-
-BUILT_SOURCES = $(CORBA_GENERATED) \
+BUILT_SOURCES = \
 	libgdlmarshal.c \
 	libgdlmarshal.h \
 	libgdltypebuiltins.c \
 	libgdltypebuiltins.h
 
-idl_dir = $(top_srcdir)/idl
-
-IDL_FLAGS = -D__GDL_COMPILATION -I $(idl_dir) -I $(datadir)/idl \
-	-I $(LIBBONOBO_IDL_DIR)  				\
-	-I $(BONOBO_ACTIVATION_IDL_DIR)
-
-$(CORBA_GENERATED): $(idl_dir)/GDL.idl \
-		    $(idl_dir)/editor-buffer.idl \
-		    $(idl_dir)/editor-gutter.idl \
-	            $(idl_dir)/symbol-browser.idl 
-	$(ORBIT_IDL) $(IDL_FLAGS) $(idl_dir)/GDL.idl
-
-CLEANFILES = $(CORBA_GENERATED) 		\
+CLEANFILES =					\
 	libgdltypebuiltins.c			\
 	libgdltypebuiltins.h			\
 	libgdlmarshal.c				\
@@ -59,7 +39,6 @@ libgdl_headers = \
 	gdl-stock.h
 
 libgdl_1_la_SOURCES = \
-	$(CORBA_GENERATED) \
 	$(libgdl_headers) \
 	gdl-i18n.h \
 	gdl-i18n.c \
@@ -96,7 +75,6 @@ test_dock_LDADD=libgdl-1.la $(XML_LIBS)
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
-	$(CORBA_GENERATED_HEADER_FILES) \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
 

@@ -1,3 +1,11 @@
+2005-03-20  Naba Kumar  <naba@gnome.org>
+
+	* Makefile.am, configure.in, gdl/Makefile.am, gdl/gdl.h: Removed
+	corba generated codes for symbolbrowser, idl files, configure
+	codes for ctags and other deprecated stuffs.
+	
+	* gdl.spec.in: Fixed RPM package creation.
+
 === GDL 0.5.0 ===
 
 2005-03-14  Naba Kumar  <naba@gnome.org>

@@ -1,4 +1,4 @@
-SUBDIRS = idl gdl po
+SUBDIRS = gdl po
 
 EXTRA_DIST = 			\
 	MAINTAINERS		\

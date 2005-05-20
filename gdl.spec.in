@@ -70,12 +70,8 @@ make DESTDIR="$RPM_BUILD_ROOT" install
 %files
 %doc AUTHORS COPYING ChangeLog NEWS README
 %defattr (-, root, root)
-%{_prefix}/bin/*
-%{_prefix}/lib/bonobo/servers/*
 %{_prefix}/lib/lib*.so.*
-%{_prefix}/lib/pkgconfig/*
 %{_prefix}/share/gdl
-%{_prefix}/share/gnome-2.0/ui/*
 %{_prefix}/share/locale/*/LC_MESSAGES/*
 
 %files devel
@@ -84,7 +80,7 @@ make DESTDIR="$RPM_BUILD_ROOT" install
 %{_prefix}/lib/lib*.a
 %{_prefix}/lib/lib*.la
 %{_prefix}/lib/lib*.so
-%{_prefix}/share/idl/libgdl-1.0
+%{_prefix}/lib/pkgconfig/*
 
 %changelog
 * Tue Aug 10 2004 Pierre Sarrazin <http://sarrazip.com/>
