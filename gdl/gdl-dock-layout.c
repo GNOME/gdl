@@ -226,9 +226,9 @@ gdl_dock_layout_build_doc (GdlDockLayout *layout)
 {
     g_return_if_fail (layout->_priv->doc == NULL);
 
-    layout->_priv->doc = xmlNewDoc ("1.0");
+    layout->_priv->doc = xmlNewDoc (BAD_CAST "1.0");
     layout->_priv->doc->children = xmlNewDocNode (layout->_priv->doc, NULL, 
-                                                  ROOT_ELEMENT, NULL);
+                                                  BAD_CAST ROOT_ELEMENT, NULL);
 }
 
 static xmlNodePtr
@@ -246,9 +246,9 @@ gdl_dock_layout_find_layout (GdlDockLayout *layout,
     /* get document root */
     node = layout->_priv->doc->children;
     for (node = node->children; node; node = node->next) {
-        gchar *layout_name;
+        xmlChar *layout_name;
         
-        if (strcmp (node->name, LAYOUT_ELEMENT_NAME))
+        if (strcmp ((char*)node->name, LAYOUT_ELEMENT_NAME))
             /* skip non-layout element */
             continue;
 
@@ -256,8 +256,8 @@ gdl_dock_layout_find_layout (GdlDockLayout *layout,
         if (!name)
             break;
 
-        layout_name = xmlGetProp (node, NAME_ATTRIBUTE_NAME);
-        if (!strcmp (name, layout_name))
+        layout_name = xmlGetProp (node, BAD_CAST NAME_ATTRIBUTE_NAME);
+        if (!strcmp (name, (char*)layout_name))
             found = TRUE;
         xmlFree (layout_name);
 
@@ -660,7 +660,7 @@ cell_edited_cb (GtkCellRendererText *cell,
     g_free (name);
     g_return_if_fail (node != NULL);
 
-    xmlSetProp (node, NAME_ATTRIBUTE_NAME, new_text);
+    xmlSetProp (node, BAD_CAST NAME_ATTRIBUTE_NAME, BAD_CAST new_text);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, COLUMN_NAME, new_text,
                         COLUMN_EDITABLE, TRUE, -1);
 
@@ -769,15 +769,15 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
     GObjectClass  *object_class = NULL;
 
     GParamSpec   **props;
-    gint           n_props, i;
+    guint          n_props, i;
     GParameter    *params = NULL;
     gint           n_params = 0;
     GValue         serialized = { 0, };
     
-    object_name = xmlGetProp (node, GDL_DOCK_NAME_PROPERTY);
-    if (object_name && strlen (object_name) > 0) {
+    object_name = xmlGetProp (node, BAD_CAST GDL_DOCK_NAME_PROPERTY);
+    if (object_name && strlen ((char*)object_name) > 0) {
         /* the object must already be bound to the master */
-        object = gdl_dock_master_get_object (master, object_name);
+        object = gdl_dock_master_get_object (master, (char*)object_name);
 
         xmlFree (object_name);
         object_type = object ? G_TYPE_FROM_INSTANCE (object) : G_TYPE_NONE;
@@ -785,7 +785,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
     else {
         /* the object should be automatic, so create it by
            retrieving the object type from the dock registry */
-        object_type = gdl_dock_object_type_from_nick (node->name);
+        object_type = gdl_dock_object_type_from_nick ((char*)node->name);
         if (object_type == G_TYPE_NONE) {
             g_warning (_("While loading layout: don't know how to create "
                          "a dock object whose nick is '%s'"), node->name);
@@ -818,9 +818,9 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
             continue;
 
         /* get the property from xml if there is one */
-        xml_prop = xmlGetProp (node, props [i]->name);
+        xml_prop = xmlGetProp (node, BAD_CAST props [i]->name);
         if (xml_prop) {
-            g_value_set_static_string (&serialized, xml_prop);
+            g_value_set_static_string (&serialized, (char*)xml_prop);
             
             if (!GDL_DOCK_PARAM_CONSTRUCTION (props [i]) &&
                 (props [i]->flags & GDL_DOCK_PARAM_AFTER)) {
@@ -975,7 +975,7 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
     } *info = user_data, info_child;
 
     xmlNodePtr   node;
-    gint         n_props, i;
+    guint        n_props, i;
     GParamSpec **props;
     GValue       attr = { 0, };
     
@@ -984,8 +984,8 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
     
     node = xmlNewChild (info->where,
                         NULL,               /* ns */
-                        gdl_dock_object_nick_from_type (G_TYPE_FROM_INSTANCE (object)),
-                        NULL);              /* contents */
+                        BAD_CAST gdl_dock_object_nick_from_type (G_TYPE_FROM_INSTANCE (object)),
+                        BAD_CAST NULL);     /* contents */
 
     /* get object exported attributes */
     props = g_object_class_list_properties (G_OBJECT_GET_CLASS (object),
@@ -1009,7 +1009,7 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
             if (strcmp (p->name, GDL_DOCK_NAME_PROPERTY) ||
                 g_value_get_string (&v)) {
                 if (g_value_transform (&v, &attr))
-                    xmlSetProp (node, p->name, g_value_get_string (&attr));
+                    xmlSetProp (node, BAD_CAST p->name, BAD_CAST g_value_get_string (&attr));
             }
             
             /* free the parameter value */
@@ -1216,8 +1216,8 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
 
     /* create the new node */
     node = xmlNewChild (layout->_priv->doc->children, NULL, 
-                        LAYOUT_ELEMENT_NAME, NULL);
-    xmlSetProp (node, NAME_ATTRIBUTE_NAME, layout_name);
+                        BAD_CAST LAYOUT_ELEMENT_NAME, NULL);
+    xmlSetProp (node, BAD_CAST NAME_ATTRIBUTE_NAME, BAD_CAST layout_name);
 
     /* save the layout */
     gdl_dock_layout_save (layout->master, node);
@@ -1299,7 +1299,7 @@ gdl_dock_layout_load_from_file (GdlDockLayout *layout,
         if (layout->_priv->doc) {
             xmlNodePtr root = layout->_priv->doc->children;
             /* minimum validation: test the root element */
-            if (root && !strcmp (root->name, ROOT_ELEMENT)) {
+            if (root && !strcmp ((char*)root->name, ROOT_ELEMENT)) {
                 update_layouts_model (layout);
                 retval = TRUE;
             } else {
@@ -1363,14 +1363,14 @@ gdl_dock_layout_get_layouts (GdlDockLayout *layout,
 
     node = layout->_priv->doc->children;
     for (node = node->children; node; node = node->next) {
-        gchar *name;
+        xmlChar *name;
 
-        if (strcmp (node->name, LAYOUT_ELEMENT_NAME))
+        if (strcmp ((char*)node->name, LAYOUT_ELEMENT_NAME))
             continue;
 
-        name = xmlGetProp (node, NAME_ATTRIBUTE_NAME);
-        if (include_default || strcmp (name, DEFAULT_LAYOUT))
-            retval = g_list_prepend (retval, g_strdup (name));
+        name = xmlGetProp (node, BAD_CAST NAME_ATTRIBUTE_NAME);
+        if (include_default || strcmp ((char*)name, DEFAULT_LAYOUT))
+            retval = g_list_prepend (retval, g_strdup ((char*)name));
         xmlFree (name);
     };
     retval = g_list_reverse (retval);

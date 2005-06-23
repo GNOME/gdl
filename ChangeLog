@@ -1,3 +1,8 @@
+2005-06-23  Naba Kumar  <naba@gnome.org>
+
+	* gdl/gdl-dock-layout.c: gcc4 compile fixes. Patch from
+	David Malcolm  <dmalcolm@redhat.com>.
+
 2005-03-20  Naba Kumar  <naba@gnome.org>
 
 	* Makefile.am, configure.in, gdl/Makefile.am, gdl/gdl.h: Removed
