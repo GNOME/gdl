@@ -1,3 +1,10 @@
+=== GDL 0.6.0 ===
+
+2005-06-27  Naba Kumar  <naba@gnome.org>
+
+	* configure.in: Bumpped version to 0.6.0
+	* NEWS: Updated.
+
 2005-06-23  Naba Kumar  <naba@gnome.org>
 
 	* gdl/gdl-dock-layout.c: gcc4 compile fixes. Patch from

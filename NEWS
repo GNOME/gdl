@@ -1,3 +1,9 @@
+Changes in 0.6.0:
+
+* 64 bit arch fixes (thanks to David Malcolm)
+* Fixed RPM spec file.
+* Removed deprecated files from distribution.
+
 Changes in 0.5.0:
 
 * Added orientation get/set functions to allow for horizontal/vertical layout,
