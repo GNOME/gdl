@@ -1,3 +1,12 @@
+2005-07-06  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gdl/gdl-dock-master.c: (foreach_lock_unlock),
+	(gdl_dock_master_lock_unlock):
+	* gdl/gdl-dock-object.c: (gdl_dock_object_real_detach):
+	* gdl/gdl-dock-placeholder.c: (gdl_dock_placeholder_set_property): use
+	GINT_TO_POINTER instead of casting an int directly to a gpointer. Fixes
+	compilation with gcc4.
+
 === GDL 0.6.0 ===
 
 2005-06-27  Naba Kumar  <naba@gnome.org>

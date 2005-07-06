@@ -354,7 +354,7 @@ gdl_dock_object_real_detach (GdlDockObject *object,
     if (recursive && gdl_dock_object_is_compound (object)) {
         gtk_container_foreach (GTK_CONTAINER (object),
                                (GtkCallback) gdl_dock_object_detach,
-                               (gpointer) recursive);
+                               GINT_TO_POINTER (recursive));
     }
     
     /* detach the object itself */

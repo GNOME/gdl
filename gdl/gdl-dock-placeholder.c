@@ -187,7 +187,7 @@ gdl_dock_placeholder_set_property (GObject      *g_object,
             if (ph->_priv) {
                 ph->_priv->placement_stack =
                     g_slist_prepend (ph->_priv->placement_stack,
-                                     (gpointer) g_value_get_enum (value));
+                                     GINT_TO_POINTER (g_value_get_enum (value)));
             }
             break;
 	default:

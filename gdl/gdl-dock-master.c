@@ -306,7 +306,7 @@ foreach_lock_unlock (GdlDockItem *item,
     if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (item)))
         gtk_container_foreach (GTK_CONTAINER (item),
                                (GtkCallback) foreach_lock_unlock,
-                               (gpointer) locked);
+                               GINT_TO_POINTER (locked));
 }
 
 static void
@@ -324,7 +324,7 @@ gdl_dock_master_lock_unlock (GdlDockMaster *master,
     /* just to be sure hidden items are set too */
     gdl_dock_master_foreach (master,
                              (GFunc) foreach_lock_unlock,
-                             (gpointer) locked);
+                             GINT_TO_POINTER (locked));
 }
 
 static void
