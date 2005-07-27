@@ -1,3 +1,7 @@
+2005-07-27  Naba Kumar  <naba@gnome.org>
+
+	* configure.in,	gdl-1.0.pc.in, gdl.spec.in: Removed libbonobo dep.
+
 2005-07-06  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gdl/gdl-dock-master.c: (foreach_lock_unlock),

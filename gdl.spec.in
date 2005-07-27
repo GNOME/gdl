@@ -9,10 +9,8 @@ BuildRoot:	/var/tmp/%{name}-%{version}-root
 URL:		http://www.gnome.org
 Requires: 	gtk2 >= @GTK_REQUIRED@
 Requires: 	libgnomeui >= @GNOME_REQUIRED@
-Requires: 	libbonoboui >= @BONOBOUI_REQUIRED@
 Requires: 	libxml2 >= @XML_REQUIRED@
 Requires: 	libglade2 >= @LIBGLADE_REQUIRED@
-Requires: 	librsvg2 >= @LIBRSVG_REQUIRED@
 
 %description
 This package contains components and libraries that are intended to be
