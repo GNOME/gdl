@@ -1,0 +1,671 @@
+# translation of gdl.HEAD.po to Nepali
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Pawan Chitrakar <pawan@mpp.org.np>, 2005.
+# Shiva Prasad Pokharel <pokharelshiva@hotmail.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-24 19:20+0545\n"
+"PO-Revision-Date: 2005-06-29 13:56+0545\n"
+"Last-Translator: Shiva Prasad Pokharel <pokharelshiva@hotmail.com>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: Nplurals=2;plural=(n!=1)\n"
+
+#: ../gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "वृद्धिकारक आकार"
+
+#: ../gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "विस्तारक वाँणको आकार"
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify"
+msgstr "प्रतिमित"
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify this dock"
+msgstr "यो डकलाई प्रतिमित गर्नुहोस"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close"
+msgstr "बंद गर्नुस"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close this dock"
+msgstr "यो डकलाई वन्द गर्नुहोस"
+
+#: ../gdl/gdl-dock-item-grip.c:682 ../gdl/gdl-dock-tablabel.c:129
+msgid "Controlling dock item"
+msgstr "डक वस्तुलाई नियन्त्रण गर्दै"
+
+#: ../gdl/gdl-dock-item-grip.c:683
+msgid "Dockitem which 'owns' this grip"
+msgstr "यो ग्रिप आफ्नो भएको डक चीज"
+
+#: ../gdl/gdl-dock-item.c:241
+msgid "Orientation"
+msgstr "अभिमुखीकरण"
+
+#: ../gdl/gdl-dock-item.c:242
+msgid "Orientation of the docking item"
+msgstr "डक गरिरहेको चिजको अभिमुखिकरण"
+
+#: ../gdl/gdl-dock-item.c:257
+msgid "Resizable"
+msgstr "पुनराकृतिक"
+
+#: ../gdl/gdl-dock-item.c:258
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "यदि सेट गरियमा, जव टुक्रामा डक गरिन्छ,डक वस्तु पुन:आकार गर्न सकिन्छो "
+
+#: ../gdl/gdl-dock-item.c:265
+msgid "Item behavior"
+msgstr "चिज व्यावहार"
+
+#: ../gdl/gdl-dock-item.c:266
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"डक वस्तुको लागि साधारण व्यावहार(जस्तै.या यो उत्रोस,यदि यस्मा ताल्चा लगाईएमा,ईत्यादि।)"
+
+#: ../gdl/gdl-dock-item.c:274 ../gdl/gdl-dock-master.c:141
+msgid "Locked"
+msgstr "ताल्चा लगाईयो"
+
+#: ../gdl/gdl-dock-item.c:275
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "यदि सेट गरियमा, डक वस्तु वरिपरि लतार्न सकिन्न र यस्ले ग्रिप देखाउददैन"
+
+#: ../gdl/gdl-dock-item.c:283
+msgid "Preferred width"
+msgstr "रोजिएको चौडाइ"
+
+#: ../gdl/gdl-dock-item.c:284
+msgid "Preferred width for the dock item"
+msgstr "डक वस्तुको लागि छानियको चौडाई"
+
+#: ../gdl/gdl-dock-item.c:290
+msgid "Preferred height"
+msgstr "रोजिएको उचाइ"
+
+#: ../gdl/gdl-dock-item.c:291
+msgid "Preferred height for the dock item"
+msgstr "डक वस्तुको लागि छानियको उचाई"
+
+#: ../gdl/gdl-dock-item.c:541
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"तपाई डक वस्तु थप गर्न सक्नुहुन्न(%p प्रकारको %s) %s भित्र। जिडिएल डक वा अरु केहि मिश्रण "
+"डक वस्तु।"
+
+#: ../gdl/gdl-dock-item.c:548
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"%s मा %s प्रकार सगै विजेट जोड्न प्रयासरत, तर यस्ले मात्र एउटा विजेट एक पटकमा राख्न "
+"सक्छ, यसमा पहिले नै एउटा %s विजेट प्रकार छ "
+
+#: ../gdl/gdl-dock-item.c:1174
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "अमान्य डकि गर्ने रणनिति %s डक चिज प्रकार %s मा"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1257
+msgid "UnLock"
+msgstr "अनलक"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1264
+msgid "Hide"
+msgstr "लुकाउनु॒"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1269
+msgid "Lock"
+msgstr "बन्द गर्नु"
+
+#: ../gdl/gdl-dock-item.c:1474
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "अनवाउण्ड चिज %p लाई वाध्ने प्रयास"
+
+#: ../gdl/gdl-dock-layout.c:125 ../gdl/gdl-dock-bar.c:103
+msgid "Master"
+msgstr "प्रधान"
+
+#: ../gdl/gdl-dock-layout.c:126
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "जिडिएल प्रधान चीज जुन सजावट वस्तु टासिएको छ"
+
+#: ../gdl/gdl-dock-layout.c:133
+msgid "Dirty"
+msgstr "फोहोर"
+
+#: ../gdl/gdl-dock-layout.c:134
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "यदि सजावटहरु परिवर्तन भएमा र फाईलमा वचत गर्नु परेमा,सत्य"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:564
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "सजावट प्रयोगकर्ता ईन्टरफेस फाईल '%s' लोड गर्न सकेन"
+
+#: ../gdl/gdl-dock-layout.c:619
+msgid "Visible"
+msgstr "दृश्यात्मक"
+
+#: ../gdl/gdl-dock-layout.c:626
+msgid "Item"
+msgstr "चीज"
+
+#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "नाम"
+
+#: ../gdl/gdl-dock-layout.c:742 ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "जिर्णोद्वार कारखाना वस्तुहरू"
+
+#: ../gdl/gdl-dock-layout.c:748 ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "संचित गरिएको ढाँचाहरू"
+
+#: ../gdl/gdl-dock-layout.c:790
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"सजावट लोड गरेको वेलामा: कसरी डक वस्तु सृजना गर्ने जस्को वोलाउने नाम '%s' हो भन्ने थाहा "
+"हुदैन"
+
+#: ../gdl/gdl-dock-layout.c:1269
+msgid "Layout managment"
+msgstr "सजावट व्यावस्थापन"
+
+#: ../gdl/gdl-dock-master.c:134 ../gdl/gdl-dock.c:184
+msgid "Default title"
+msgstr "पूर्वनिर्धारित शिर्षक"
+
+#: ../gdl/gdl-dock-master.c:135
+msgid "Default title for newly created floating docks"
+msgstr "नयाँ सृजना गरियको तैरिरहेका डकहरुको लागी पूर्वनिर्धारित शिर्षक"
+
+#: ../gdl/gdl-dock-master.c:142
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"यदि यो १ मा सेट गरियो भने,मास्टर मा वाधिएका ा सवै चीजह लक हुन्छन, यदि यो ० मा "
+"गरियमा, सवै लकहरु खोलिन्छन; -१ ले चीजहरुमा अस्थिरता भन्ने जनाउछरु"
+
+#: ../gdl/gdl-dock-master.c:730
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"मास्टर  %p: %p[%s] हरुलाई द्रुतानुवेषक(ह्यास)मा थप गर्न असक्षम। त्याहाँ (%p) नामको चीज "
+"पहिले देखि नै छ।"
+
+#: ../gdl/gdl-dock-master.c:895
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"नयाँ डक नियन्त्रक %p स्वचालित हो। म्यानुअल डक वस्तुहरुलाई मात्र नियन्त्रकको रुपमा नाम "
+"दिनुपर्दछ।"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "Page"
+msgstr "पृष्ठ॒"
+
+#: ../gdl/gdl-dock-notebook.c:136
+msgid "The index of the current page"
+msgstr "विद्यमान पन्नाको विवरणिका"
+
+#: ../gdl/gdl-dock-object.c:121
+msgid "Unique name for identifying the dock object"
+msgstr "डक वस्तुलाई छुट्याउनको लागी नमुना नाम"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Long name"
+msgstr "लामो नाम"
+
+#: ../gdl/gdl-dock-object.c:129
+msgid "Human readable name for the dock object"
+msgstr "डक चीजको लागी मानव पढनयोग्य नाम"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock Icon"
+msgstr "छविचित्र संग्रह"
+
+#: ../gdl/gdl-dock-object.c:136
+msgid "Stock icon for the dock object"
+msgstr "डक वस्तुको लागी भण्डार प्रतिमा"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master"
+msgstr "डक मास्टर"
+
+#: ../gdl/gdl-dock-object.c:143
+msgid "Dock master this dock object is bound to"
+msgstr "डक मास्टरमा यो डक वस्तु वाधियको छ"
+
+#: ../gdl/gdl-dock-object.c:421
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"डक वस्तु %p(वस्तु प्रकार चाँही %s) भित्र जिडिएल_डक_वस्तु_डकमा वोलाउनुहोस जस्ले यो तरिका "
+"कार्वान्वयन गरेको छैन"
+
+#: ../gdl/gdl-dock-object.c:550
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr "नबाधिने वस्तु %p मा डक कार्यक्रम अनुरोध गरियो। अनुप्रयोग भाँचिएको हुनु पर्दछ"
+
+#: ../gdl/gdl-dock-object.c:557
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "%p वाट %p मा डक गर्न सकिदैन किनकी तिनिहरु मास्टरहरु संग संवन्धित छन"
+
+#: ../gdl/gdl-dock-object.c:599
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "पहिले देखि वाधिएको डक वस्तु%p(चालु मास्टर: %p) लाई %p मा वाध्ने प्रयास"
+
+#: ../gdl/gdl-dock-paned.c:133
+msgid "Position"
+msgstr "अवस्था"
+
+#: ../gdl/gdl-dock-paned.c:134
+msgid "Position of the divider in pixels"
+msgstr "भाजक को पिक्सेलमा अवस्था"
+
+#: ../gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr "टाँसिने"
+
+#: ../gdl/gdl-dock-placeholder.c:128
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"प्लेसहोल्डर ले यसको होस्टमा टाँसिन्छ कि वा श्रृङ्खलालाई माथी लैजान्छ कि जव होस्ट पुन डक "
+"गरिन्छ"
+
+#: ../gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "होस्ट"
+
+#: ../gdl/gdl-dock-placeholder.c:136
+msgid "The dock object this placeholder is attached to"
+msgstr "यो प्लेसहोल्डर मा टाँसिएका वस्तुलाई डक गर्नुहोस"
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Next placement"
+msgstr "अर्को स्थापना"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"यदि एउटा अनुरोध डक वाट हामिमा गरिन्छ भने एउटा वस्तुको अवस्था हाम्रो होस्टमा डक हुनेछ"
+
+#: ../gdl/gdl-dock-placeholder.c:305
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "नवाँधिएको प्लेसहोल्डरमा डक वस्तुलाई डक गर्ने प्रयास"
+
+#: ../gdl/gdl-dock-placeholder.c:419
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "(%p) वस्तुवाट चिनेको संकेत प्राप्त भयो जुन हाम्रो होस्ट %p होईन"
+
+#: ../gdl/gdl-dock-placeholder.c:440
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr "%p अभिभावक वाट %pको लागि वच्चा स्थापना प्राप्त गर्दा केही अचम्म भयो"
+
+#: ../gdl/gdl-dock-tablabel.c:130
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "डक चीज जुन 'आफ्नै' यो ट्यावतह हो"
+
+#: ../gdl/gdl-dock-bar.c:104
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "जिडिएल डक मास्टर वस्तु जुनमा डकपट्टी वेईज टाँसिएको हुन्छ"
+
+#: ../gdl/gdl-dock.c:176
+msgid "Floating"
+msgstr "ऊत्पावन"
+
+#: ../gdl/gdl-dock.c:177
+msgid "Whether the dock is floating in its own window"
+msgstr "डक आफ्नै सन्झ्यालमा ऊत्पावन ऊत्पावन हुदै छ कि"
+
+#: ../gdl/gdl-dock.c:185
+msgid "Default title for the newly created floating docks"
+msgstr "नयाँ सृजना गरियको ऊत्पावन डकहरुलाई पूर्वनिर्धारित शिर्षक"
+
+#: ../gdl/gdl-dock.c:191
+msgid "Width"
+msgstr "चौडाई"
+
+#: ../gdl/gdl-dock.c:192
+msgid "Width for the dock when it's of floating type"
+msgstr "जव यो ऊत्पावन प्रकारको हुन्छ,डकको लागि चौडाई"
+
+#: ../gdl/gdl-dock.c:199
+msgid "Height"
+msgstr "उचाई"
+
+#: ../gdl/gdl-dock.c:200
+msgid "Height for the dock when it's of floating type"
+msgstr "जव यो ऊत्पावन प्रकारको हुन्छ,डकको लागि उचाई"
+
+#: ../gdl/gdl-dock.c:207
+msgid "Float X"
+msgstr "ऊत्पावन एक्स"
+
+#: ../gdl/gdl-dock.c:208
+msgid "X coordinate for a floating dock"
+msgstr "ऊत्पावन डकको लागि एक्स समन्वय"
+
+#: ../gdl/gdl-dock.c:215
+msgid "Float Y"
+msgstr "वाईलाई ऊत्पावन गर्नुहोस"
+
+#: ../gdl/gdl-dock.c:216
+msgid "Y coordinate for a floating dock"
+msgstr "ऊत्पावन डकको लागि वाई समन्वय"
+
+#: ../gdl/gdl-dock.c:497
+#, c-format
+msgid "Dock #%d"
+msgstr "डक #%d"
+
+#: ../gdl/gdl-recent.c:135
+msgid "GConf key"
+msgstr "जिकन्फ.कुञ्ज"
+
+#: ../gdl/gdl-recent.c:136
+msgid "The gconf key for storing the recent entries."
+msgstr "संग्रहित चालु प्रविष्ठिहरुको लागी जिकन्फ.कुञ्ज।"
+
+#: ../gdl/gdl-recent.c:142
+msgid "Path"
+msgstr "बाटो"
+
+#: ../gdl/gdl-recent.c:143
+msgid "The path to put the menu items."
+msgstr "मेनु चीजहरु राख्नको लागी वाटो"
+
+#: ../gdl/gdl-recent.c:149
+msgid "Limit"
+msgstr "सिमा"
+
+#: ../gdl/gdl-recent.c:150
+msgid "The maximum number of items to be allowed in the list."
+msgstr "सुचिमा स्विकृत गर्नेो वस्तुहरुको अधिकतम संख्या।"
+
+#: ../gdl/gdl-recent.c:158
+msgid "List type"
+msgstr "सुची प्रकार"
+
+#: ../gdl/gdl-recent.c:159
+msgid "The type with which the items will be numbered."
+msgstr "प्रकार जस संग सगै चीजहरु अंकित हुन्छन।"
+
+#: ../gdl/gdl-recent.c:408
+#, c-format
+msgid "Open %s"
+msgstr "%s खोल्नुहोस"
+
+#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
+msgid "Icon size"
+msgstr "प्रतिमाको आकार"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "ढाँचा व्यवस्थापन"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_लोड"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "जिर्णोद्वार कारखाना वस्तुहरू बन्द गर्नुहोला"
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "जिनोम संकेत व्राउजर नियन्त्रण लागी फ्याक्ट्रि।"
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr "जिनोम संकेत व्राउजर नियन्त्रण"
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr "जिनोम संकेत व्राउजर नियन्त्रण फ्याकट्रि"
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr "जिनोम संकेत व्राउजर"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr "संकेतमा जानुहोस"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr "दृश्य संकेतमा जानुहोस"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr "संकेतहरु नविकरण गर्नुहोस"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr "संकेत वृक्षलाई नविकरण गर्नुहोस"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr "संकेतमा जानुहोस_"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "_दृष्य"
+
+#: ../symbol-browser-control/symbol-browser.c:65
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: ../symbol-browser-control/symbol-browser.c:66
+msgid "Classes"
+msgstr "वर्गहरु"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: ../symbol-browser-control/symbol-browser.c:67
+msgid "Enums"
+msgstr "इनम्स"
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: ../symbol-browser-control/symbol-browser.c:68
+msgid "Enumerators"
+msgstr "गणकहरु"
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: ../symbol-browser-control/symbol-browser.c:69
+msgid "Fields"
+msgstr "फाँटहरु"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: ../symbol-browser-control/symbol-browser.c:70
+msgid "Functions"
+msgstr "कार्यहरू"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: ../symbol-browser-control/symbol-browser.c:71
+msgid "Interfaces"
+msgstr "ईन्टरफेसहरु"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: ../symbol-browser-control/symbol-browser.c:72
+msgid "Members"
+msgstr "सदस्यहरू"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: ../symbol-browser-control/symbol-browser.c:73
+msgid "Methods"
+msgstr "तरिकाहरु"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: ../symbol-browser-control/symbol-browser.c:74
+msgid "Namespaces"
+msgstr "नामस्थानहरु"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: ../symbol-browser-control/symbol-browser.c:75
+msgid "Packages"
+msgstr "प्याकेजहरु"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: ../symbol-browser-control/symbol-browser.c:76
+msgid "Prototypes"
+msgstr "नमुनाहरु"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: ../symbol-browser-control/symbol-browser.c:77
+msgid "Structs"
+msgstr "स्ट्रक्टहरु"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: ../symbol-browser-control/symbol-browser.c:78
+msgid "Typedefs"
+msgstr "टाईपडेफ्स"
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: ../symbol-browser-control/symbol-browser.c:79
+msgid "Unions"
+msgstr "संघहरु"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: ../symbol-browser-control/symbol-browser.c:80
+msgid "Variables"
+msgstr "चलहरू"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: ../symbol-browser-control/symbol-browser.c:81
+msgid "ExternVars"
+msgstr "वाह्यवार्स"
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: ../symbol-browser-control/symbol-browser.c:82
+msgid "Macros"
+msgstr "म्याक्रोहरू"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: ../symbol-browser-control/symbol-browser.c:83
+msgid "MacrosWithArgs"
+msgstr "आर्ग संग मयाक्रोहरु"
+
+#: ../symbol-browser-control/symbol-browser.c:378
+msgid "Tags"
+msgstr "ट्याग"
+
+#: ../symbol-browser-control/symbol-browser.c:386
+#: ../symbol-browser-control/symbol-browser.c:397
+msgid "Undefined"
+msgstr "अपरिभाषित"
+
+#: ../symbol-browser-control/symbol-browser.c:388
+#: ../symbol-browser-control/symbol-browser.c:399
+msgid "<No Symbol>"
+msgstr "<No Symbol>"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "बाटो/निकास"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr "परियोजना खोल्नुहोला"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr "परियोजना वचत "
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr "चालु फाईललाई सेट गर्नुहोस"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "नविकरण"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr "पुरै वृक्षलाई नविकरण गर्नुहोस"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr "_वाहिर निस्कनुहोस"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "फाईल"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr "_परियोजना खोल्नुहोस"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr "_परियोजना वचत गर्नुहोस"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr "_चालु फाईललाई सेट गर्नुहोस"
+
+#: ../symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr "फाइल खोल्नुहोला..."
+
+#: ../symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr "चालु फाईललाई सेट गर्नुहोस..."
+
+#: ../symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr "फाईललाई वचत गर्नुहोस..."
+
+#: ../symbol-browser-control/test-symbol-browser.c:295
+msgid "Can't initialize bonobo!"
+msgstr "वोनोवो सुरुवात गर्न सकेन!"
