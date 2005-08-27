@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gdl Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-18 11:55+0000\n"
-"PO-Revision-Date: 2005-08-18 23:15+0930\n"
+"PO-Revision-Date: 2005-08-27 16:25+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -479,7 +479,7 @@ msgstr "Bộ tạo Điều khiển trình duyệt ký hiệu Gnome."
 
 #: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
 msgid "Gnome Symbol Browser."
-msgstr "Trình duyệt ký hiệu Gnome."
+msgstr "B94 duyệt ký hiệu Gnome."
 
 #: ../symbol-browser-control/gnome-symbol-browser.xml.h:1
 msgid "Goto Symbol"
