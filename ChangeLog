@@ -1,3 +1,8 @@
+2005-08-31  Naba Kumar  <naba@gnome.org>
+
+	* configure.in, gdl.spec.in, gdl-1.0.pc.in: Restored
+	libbonoboui dependency. Fixed bug #314367.
+	
 2005-08-24  Pawan Chitrakar  <pchitrakar@gmail.com>
 
 	* configure.in: Added ne in ALL_LINGUAS

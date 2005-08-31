@@ -9,6 +9,7 @@ BuildRoot:	/var/tmp/%{name}-%{version}-root
 URL:		http://www.gnome.org
 Requires: 	gtk2 >= @GTK_REQUIRED@
 Requires: 	libgnomeui >= @GNOME_REQUIRED@
+Requires:	libbonoboui >= @BONOBOUI_REQUIRED@
 Requires: 	libxml2 >= @XML_REQUIRED@
 Requires: 	libglade2 >= @LIBGLADE_REQUIRED@
 
