@@ -1,3 +1,24 @@
+2005-09-22  Naba Kumar  <naba@gnome.org>
+
+	Patch from: Erwin Rol <mailinglists@erwinrol.com>
+	* gdl/gdl-combo-button.c, gdl/gdl-combo-button.h,
+	gdl/gdl-dock-bar.c, gdl/gdl-dock-bar.h,
+	gdl/gdl-dock-layout.c, gdl/gdl-dock-layout.h,
+	gdl/gdl-dock-master.c, gdl/gdl-dock-master.h,
+	gdl/gdl-dock-notebook.c, gdl/gdl-dock-notebook.h,
+	gdl/gdl-dock-object.c, gdl/gdl-dock-object.h,
+	gdl/gdl-dock-paned.c, gdl/gdl-dock-paned.h,
+	gdl/gdl-dock-placeholder.c, gdl/gdl-dock-placeholder.h,
+	gdl/gdl-dock-tablabel.c, gdl/gdl-dock-tablabel.h,
+	gdl/gdl-dock.c, gdl/gdl-dock.h,
+	gdl/gdl-icons.c, gdl/gdl-stock.c,
+	gdl/gdl-stock.h, gdl/gdl-tools.c,
+	gdl/gdl-tools.h: Converted lisense to LGPL from GPL, bug #316850.
+	Authors approvals:
+	http://sourceforge.net/mailarchive/message.php?msg_id=13015638
+	http://sourceforge.net/mailarchive/message.php?msg_id=13020424
+	http://sourceforge.net/mailarchive/message.php?msg_id=13015024
+
 2005-08-31  Naba Kumar  <naba@gnome.org>
 
 	* configure.in, gdl.spec.in, gdl-1.0.pc.in: Restored
