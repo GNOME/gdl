@@ -1,3 +1,7 @@
+2006-03-16  Johannes Schmid <jhs@gnome.org>
+	
+	* autogen.sh: New autogen.sh, should work better
+
 2005-09-22  Naba Kumar  <naba@gnome.org>
 
 	Patch from: Erwin Rol <mailinglists@erwinrol.com>
