@@ -1,3 +1,7 @@
+2006-04-14  Ilkka Tuohela  <hile@iki.fi>
+
+	* configure.in: Added fi to ALL_LINGUAS
+
 2006-03-16  Johannes Schmid <jhs@gnome.org>
 	
 	* autogen.sh: New autogen.sh, should work better
