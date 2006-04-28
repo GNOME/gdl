@@ -1,3 +1,12 @@
+2006-04-28  Johannes Schmid <jhs@cvs.gnome.org>
+
+	* Makefile.am:
+	Fixed distcheck
+
+	* configure.in:
+	* NEWS
+	Bumped version to 0.6.1 - no major changes, just build fixes
+
 2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Remove obsolete entry for no_NO.

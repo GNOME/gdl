@@ -1,3 +1,7 @@
+Changes in 0.6.1
+
+* Only some build fixes and translation updates
+
 Changes in 0.6.0:
 
 * 64 bit arch fixes (thanks to David Malcolm)

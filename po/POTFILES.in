@@ -13,8 +13,3 @@ gdl/gdl-dock.c
 gdl/gdl-recent.c
 gdl/gdl-icons.c
 gdl/layout.glade
-symbol-browser-control/GNOME_Development_SymbolBrowser.server.in
-symbol-browser-control/gnome-symbol-browser.xml
-symbol-browser-control/symbol-browser.c
-symbol-browser-control/test-symbol-browser-ui.xml
-symbol-browser-control/test-symbol-browser.c
