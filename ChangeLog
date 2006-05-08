@@ -113,7 +113,7 @@
 	* symbol-browser-control/test-symbol-browser-ui.xml:
 	* symbol-browser-control/test-symbol-browser.c:
 
-	Created gdl-no-gnome branch:
+	Created gdl-gtk branch:
 	- remove symbol-browser-control (deprecated)
 	- Add conditional compile for GNOME/Bonobo
 
