@@ -25,6 +25,8 @@
 #define __GDL_TOOLS_H__
 
 #include <glib.h>
+#include <gtk/gtkwidget.h>
+#include <bonobo/bonobo-ui-component.h>
 
 /* FIXME: Toggle this */
 
@@ -171,6 +173,14 @@ typedef struct _GdlPixmap {
 
 #define GDL_PIXMAP(path,fname)	{ (path), (fname), NULL }
 #define GDL_PIXMAP_END		{ NULL, NULL, NULL }
+
+/* Takes an array of pixmaps, terminated by GDL_PIXMAP_END, and loads into uic */
+void gdl_pixmaps_update (BonoboUIComponent *uic,
+			 const char        *pixmap_dir,
+			 GdlPixmap         *pixcache);
+
+GtkWidget *gdl_button_new_with_stock_image (const char *text,
+					    const char *stock_id);
 
 G_END_DECLS
 
