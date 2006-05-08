@@ -175,3 +175,4 @@ typedef struct _GdlPixmap {
 G_END_DECLS
 
 #endif
+

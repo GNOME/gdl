@@ -5,7 +5,6 @@ dnl it too, or it will never make it into the spec file!
 dnl
 dnl ==========================================================================
 
-
 AC_PREREQ(2.53)
 AC_INIT(gdl)
 AM_CONFIG_HEADER(config.h)

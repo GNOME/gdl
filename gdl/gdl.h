@@ -33,5 +33,8 @@
 #include <gdl/gdl-dock-notebook.h>
 #include <gdl/gdl-dock-tablabel.h>
 #include <gdl/gdl-combo-button.h>
+/*#include <gdl/gdl-icons.h>
+  #include <gdl/gdl-recent.h>
+*/
 
 #endif
