@@ -4,7 +4,8 @@ INCLUDES = \
 	-DGDL_IMAGESDIR=\""$(gdl_images_dir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
-	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
+	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) \
+	$(GNOME_CFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la
 
@@ -23,7 +24,6 @@ CLEANFILES =					\
 libgdl_headers = \
 	gdl.h \
 	gdl-tools.h \
-	gdl-combo-button.h \
 	gdl-dock-object.h \
 	gdl-dock-master.h \
 	gdl-dock.h \
@@ -34,16 +34,19 @@ libgdl_headers = \
 	gdl-dock-layout.h \
 	gdl-dock-placeholder.h \
 	gdl-dock-bar.h \
-	gdl-icons.h \
-	gdl-recent.h \
+	gdl-combo-button.h \
 	gdl-stock.h
+
+if HAVE_GNOME
+libgdl_headers += \
+	gdl-icons.h \
+	gdl-recent.h
+endif
 
 libgdl_1_la_SOURCES = \
 	$(libgdl_headers) \
 	gdl-i18n.h \
 	gdl-i18n.c \
-	gdl-tools.c \
-	gdl-combo-button.c \
 	gdl-dock-object.c \
 	gdl-dock-master.c \
 	gdl-dock.c \
@@ -56,19 +59,29 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-layout.c \
 	gdl-dock-placeholder.c \
 	gdl-dock-bar.c \
-	gdl-icons.c \
-	gdl-recent.c \
+	gdl-combo-button.c \
 	gdl-stock.c \
 	libgdltypebuiltins.h \
 	libgdltypebuiltins.c \
 	libgdlmarshal.h \
 	libgdlmarshal.c
 
+if HAVE_GNOME
+libgdl_1_la_SOURCES += \
+	gdl-icons.c \
+	gdl-recent.c
+endif
+
 libgdl_1_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
-	$(XML_LIBS)
+	$(XML_LIBS) \
+	$(GNOME_LIBS)
 
-noinst_PROGRAMS=test-dock test-dataview test-combo-button
+noinst_PROGRAMS=test-dock test-combo-button
+
+if HAVE_GNOME
+	noinst_PROGRAMS += test-dataview
+endif
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-1.la $(XML_LIBS)
