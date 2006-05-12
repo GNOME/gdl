@@ -1,8 +1,11 @@
+2006-05-12  Johannes Schmid <jhs@cvs.gnome.org>
+	
+	* NEWS, MAINTAINERS: Updated
+
 2006-05-08  Johannes Schmid <jhs@cvs.gnome.org>
 
 	Revert changes from gdl-no-gnome in HEAD
 	* symbol-browser-control: Removed deprecated directory
-
 
 2006-04-28  Johannes Schmid <jhs@cvs.gnome.org>
 

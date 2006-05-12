@@ -1,6 +1,7 @@
 Changes in 0.6.1
 
-* Only some build fixes and translation updates
+* Some build fixes and translation updates
+* Removed deprecated symbol-browser-widget
 
 Changes in 0.6.0:
 
