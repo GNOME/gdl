@@ -2,6 +2,12 @@ Changes in 0.6.1
 
 * Some build fixes and translation updates
 * Removed deprecated symbol-browser-widget
+* Updated translations:
+    fi (Ilkka Tuohela  <hile@iki.fi>)
+    sv (Daniel Nylander  <po@danielnylander.se>)
+    es (Francisco Javier F. Serrador  <serrador@cvs.gnome.org>)
+    vi (Clytie Siddall <clytie@riverland.net.au>)
+    ne (Pawan Chitrakar  <pchitrakar@gmail.com>)
 
 Changes in 0.6.0:
 
