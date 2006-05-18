@@ -1,3 +1,17 @@
+2006-05-18  <robert.staudinger@gmail.com>
+
+	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>
+
+	* configure.in:
+	* gdl/Makefile.am:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock.c:
+	
+	Fix building on win32 (#342227)
+	Issues:
+	+ The preview rectangle is not visible.
+	+ The icons are not found when not in compile-time prefix
+
 2006-05-08  Johannes Schmid <jhs@cvs.gnome.org>
 
 	* configure.in:

@@ -4,8 +4,9 @@ INCLUDES = \
 	-DGDL_IMAGESDIR=\""$(gdl_images_dir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
-	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) \
-	$(GNOME_CFLAGS)
+	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) 	\
+	$(GNOME_CFLAGS)					\
+	$(EXTRA_CPPFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la
 
@@ -77,11 +78,9 @@ libgdl_1_la_LIBADD = \
 	$(XML_LIBS) \
 	$(GNOME_LIBS)
 
-noinst_PROGRAMS=test-dock test-combo-button
+libgdl_1_la_LDFLAGS = $(EXTRA_LDFLAGS)
 
-if HAVE_GNOME
-	noinst_PROGRAMS += test-dataview
-endif
+noinst_PROGRAMS=test-dock test-combo-button
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-1.la $(XML_LIBS)
@@ -107,6 +106,10 @@ EXTRA_DIST = libgdlmarshal.list \
 	program.xpm static.xpm shared.xpm \
 	$(image_DATA)
 
+if HAVE_GNOME
+
+noinst_PROGRAMS += test-dataview
+
 test_dataview_SOURCES = \
 	gdl-data-view.h \
 	gdl-data-view.c \
@@ -121,6 +124,8 @@ test_dataview_SOURCES = \
 	test-dataview.c
 
 test_dataview_LDADD = libgdl-1.la
+
+endif
 
 test_combo_button_SOURCES = test-combo-button.c
 test_combo_button_LDADD = libgdl-1.la
@@ -140,7 +145,7 @@ libgdltypebuiltins.c: $(libgdl_headers)
 			--vtail "  if (!type)\n" \
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
-		$(libgdl_headers) > xgen-gtbec \
+	$(libgdl_headers) > xgen-gtbec \
 	&& cp xgen-gtbec $(@F) \
 	&& rm -f xgen-gtbec
 

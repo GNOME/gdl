@@ -57,17 +57,11 @@ AC_TYPE_SIGNAL
 
 AC_PROG_CXX
 AC_STDC_HEADERS
-AM_PROG_LIBTOOL
 AM_SANITY_CHECK
 
-if test x$MAINT = x; then
-    GNOME_COMPILE_WARNINGS(error)
-    DEPRECATED_FLAGS="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -DBONOBO_DISABLE_DEPRECATED -DBONOBO_UI_DISABLE_DEPRECATED"
-else
-    GNOME_COMPILE_WARNINGS(maximum)
-    DEPRECATED_FLAGS=""
-fi
-AC_SUBST(DEPRECATED_FLAGS)
+AC_DISABLE_STATIC
+AC_LIBTOOL_WIN32_DLL
+AC_PROG_LIBTOOL
 
 
 dnl ***************
@@ -95,6 +89,7 @@ AC_ARG_ENABLE(gnome,
 	  fi ],
 	[ user_disabled_gnome=0 ])
 
+DEPRECATED_FLAGS=""
 AC_MSG_CHECKING(if gnome is disabled)
 if test "$user_disabled_gnome" = 1; then
 	AC_MSG_RESULT(yes)
@@ -109,9 +104,40 @@ else
 		[gnome="no"])
 	AC_SUBST(GNOME_CFLAGS)
 	AC_SUBST(GNOME_LIBS)
-fi
 
+	if test x$MAINT = x; then
+	    DEPRECATED_FLAGS="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -DBONOBO_DISABLE_DEPRECATED -DBONOBO_UI_DISABLE_DEPRECATED"
+	    # TODO specify flags per hand, no gnome-common on win32
+	    #GNOME_COMPILE_WARNINGS(error)
+	    #else
+	    # TODO GNOME_COMPILE_WARNINGS(maximum)
+	fi
+fi
+AC_SUBST(DEPRECATED_FLAGS)
 AM_CONDITIONAL(HAVE_GNOME, [test x$gnome = xyes])
+
+
+AC_MSG_CHECKING([for native Win32])
+case "$host" in
+  *-*-mingw*)
+    native_win32=yes
+    ;;
+  *)
+    native_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$native_win32])
+AM_CONDITIONAL(OS_WIN32, test "x$native_win32" = "xyes")
+
+EXTRA_CPPFLAGS=
+EXTRA_LDFLAGS=
+if test "x$native_win32" = "xyes"; then
+  EXTRA_CPPFLAGS="-mms-bitfields"
+  EXTRA_LDFLAGS="-no-undefined -Wl,--kill-at -Wl,--export-all-symbols"
+fi
+AC_SUBST(EXTRA_CPPFLAGS)
+AC_SUBST(EXTRA_LDFLAGS)
+
 
 # marshal and enum generators
 GLIB_GENMARSHAL="`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`"

@@ -26,7 +26,6 @@
 #endif
 
 #include "gdl-i18n.h"
-#include <gdk/gdkx.h>
 
 #include "gdl-tools.h"
 #include "gdl-dock-master.h"
@@ -582,7 +581,7 @@ gdl_dock_master_xor_rect (GdlDockMaster *master)
     }
     
     rect = &master->_priv->drag_request->rect;
-    window = gdk_window_lookup (gdk_x11_get_default_root_xwindow ());
+    window = gdk_window_lookup (gdk_get_default_root_window ());
 
     if (!master->_priv->root_xor_gc) {
         GdkGCValues values;
