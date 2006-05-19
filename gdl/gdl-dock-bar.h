@@ -39,6 +39,13 @@ typedef struct _GdlDockBar        GdlDockBar;
 typedef struct _GdlDockBarClass   GdlDockBarClass;
 typedef struct _GdlDockBarPrivate GdlDockBarPrivate;
 
+typedef enum {
+    GDL_DOCK_BAR_ICONS,
+    GDL_DOCK_BAR_TEXT,
+    GDL_DOCK_BAR_BOTH,
+    GDL_DOCK_BAR_AUTO
+} GdlDockBarStyle;
+
 struct _GdlDockBar {
     GtkBox parent;
 
@@ -57,7 +64,10 @@ GtkWidget *gdl_dock_bar_new                 (GdlDock     *dock);
 
 GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar);
 void           gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
-		                             GtkOrientation orientation);
+                                             GtkOrientation orientation);
+void           gdl_dock_bar_set_style       (GdlDockBar *dockbar,
+                                             GdlDockBarStyle style);
+GdlDockBarStyle gdl_dock_bar_get_style      (GdlDockBar *dockbar);
 
 G_END_DECLS
 

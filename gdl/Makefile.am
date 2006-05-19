@@ -118,6 +118,7 @@ libgdltypebuiltins.c: $(libgdl_headers)
 	@GLIB_MKENUMS@ \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"libgdltypebuiltins.h\"\n\n" \
+                        --fhead "#include \"gdl-dock-bar.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
 			--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \

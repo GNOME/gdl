@@ -1,3 +1,8 @@
+2006-05-19  Naba Kumar  <naba@gnome.org>
+
+	* gdl/Makefile.am, gdl/gdl-dock-bar.c, gdl/gdl-dock-bar.h,
+	gdl/test-dock.c: Added dockbar buttons style (icons/text/both/auto).
+
 === GDL 0.6.1 ===
 
 2005-10-15  Naba Kumar  <naba@gnome.org>

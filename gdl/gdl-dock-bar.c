@@ -31,10 +31,12 @@
 #include "gdl-dock.h"
 #include "gdl-dock-master.h"
 #include "gdl-dock-bar.h"
+#include "libgdltypebuiltins.h"
 
 enum {
     PROP_0,
     PROP_MASTER,
+    PROP_DOCKBAR_STYLE
 };
 
 /* ----- Private prototypes ----- */
@@ -59,10 +61,11 @@ static void  gdl_dock_bar_attach          (GdlDockBar      *dockbar,
 /* ----- Class variables and definitions ----- */
 
 struct _GdlDockBarPrivate {
-    GdlDockMaster *master;
-    GSList        *items;
-    GtkTooltips   *tooltips;
-    GtkOrientation orientation;
+    GdlDockMaster   *master;
+    GSList          *items;
+    GtkTooltips     *tooltips;
+    GtkOrientation   orientation;
+    GdlDockBarStyle  dockbar_style;
 };
 
 /* ----- Private functions ----- */
@@ -81,8 +84,9 @@ static void gdl_dock_bar_size_hrequest (GtkWidget *widget,
 		                       GtkRequisition *requisition );
 static void gdl_dock_bar_size_hallocate (GtkWidget *widget,
 		                       GtkAllocation *allocation );
-	
-static void
+static void update_dock_items (GdlDockBar *dockbar, gboolean full_update);
+
+void
 gdl_dock_bar_class_init (GdlDockBarClass *klass)
 {
     GObjectClass       *g_object_class;
@@ -105,6 +109,13 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
                              GDL_TYPE_DOCK_MASTER, 
                              G_PARAM_READWRITE));
 
+    g_object_class_install_property (
+        g_object_class, PROP_DOCKBAR_STYLE,
+        g_param_spec_enum ("dockbar-style", _("Dockbar style"),
+                           _("Dockbar style to show items on it"),
+                           GDL_TYPE_DOCK_BAR_STYLE,
+                           GDL_DOCK_BAR_BOTH,
+                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
     widget_class = GTK_WIDGET_CLASS (klass);
     widget_class->size_request = gdl_dock_bar_size_request;
@@ -119,6 +130,7 @@ gdl_dock_bar_instance_init (GdlDockBar *dockbar)
     dockbar->_priv->items = NULL;
     dockbar->_priv->tooltips = gtk_tooltips_new ();
     dockbar->_priv->orientation = GTK_ORIENTATION_VERTICAL;
+    dockbar->_priv->dockbar_style = GDL_DOCK_BAR_BOTH;
     g_object_ref (dockbar->_priv->tooltips);
     gtk_object_sink (GTK_OBJECT (dockbar->_priv->tooltips));
 }
@@ -134,6 +146,9 @@ gdl_dock_bar_get_property (GObject         *object,
     switch (prop_id) {
         case PROP_MASTER:
             g_value_set_object (value, dockbar->_priv->master);
+            break;
+        case PROP_DOCKBAR_STYLE:
+            g_value_set_enum (value, dockbar->_priv->dockbar_style);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -151,6 +166,10 @@ gdl_dock_bar_set_property (GObject         *object,
     switch (prop_id) {
         case PROP_MASTER:
             gdl_dock_bar_attach (dockbar, g_value_get_object (value));
+            break;
+        case PROP_DOCKBAR_STYLE:
+            dockbar->_priv->dockbar_style = g_value_get_enum (value);
+            update_dock_items (dockbar, TRUE);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -240,7 +259,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     GtkWidget *button;
     gchar *stock_id;
     gchar *name;
-    GtkWidget *image;
+    GtkWidget *image, *box, *label;
 
     g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
     g_return_if_fail (GDL_IS_DOCK_ITEM (item));
@@ -258,16 +277,38 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     button = gtk_button_new ();
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
     
+    if (dockbar->_priv->orientation == GTK_ORIENTATION_HORIZONTAL)
+        box = gtk_hbox_new (FALSE, 0);
+    else
+        box = gtk_vbox_new (FALSE, 0);
+    
     g_object_get (item, "stock_id", &stock_id, "long_name", &name, NULL);
-    if (stock_id) {
-        image = gtk_image_new_from_stock (stock_id,
-                                          GTK_ICON_SIZE_SMALL_TOOLBAR);
-        g_free (stock_id);
-    } else {
-        image = gtk_image_new_from_stock (GTK_STOCK_NEW,
-                                          GTK_ICON_SIZE_SMALL_TOOLBAR);
+
+    if (dockbar->_priv->dockbar_style == GDL_DOCK_BAR_TEXT ||
+        dockbar->_priv->dockbar_style == GDL_DOCK_BAR_BOTH) {
+        label = gtk_label_new (name);
+        if (dockbar->_priv->orientation == GTK_ORIENTATION_VERTICAL)
+            gtk_label_set_angle (GTK_LABEL (label), 90);
+        gtk_box_pack_start_defaults (GTK_BOX (box), label);
     }
-    gtk_container_add (GTK_CONTAINER (button), image);
+    
+    /* FIXME: For now AUTO behaves same as BOTH */
+    
+    if (dockbar->_priv->dockbar_style == GDL_DOCK_BAR_ICONS ||
+        dockbar->_priv->dockbar_style == GDL_DOCK_BAR_BOTH ||
+        dockbar->_priv->dockbar_style == GDL_DOCK_BAR_AUTO) {
+        if (stock_id) {
+            image = gtk_image_new_from_stock (stock_id,
+                                              GTK_ICON_SIZE_SMALL_TOOLBAR);
+            g_free (stock_id);
+        } else {
+            image = gtk_image_new_from_stock (GTK_STOCK_NEW,
+                                              GTK_ICON_SIZE_SMALL_TOOLBAR);
+        }
+        gtk_box_pack_start_defaults (GTK_BOX (box), image);
+    }
+    
+    gtk_container_add (GTK_CONTAINER (button), box);
     gtk_box_pack_start (GTK_BOX (dockbar), button, FALSE, FALSE, 0);
 
     gtk_tooltips_set_tip (priv->tooltips, button, name, name);
@@ -290,7 +331,7 @@ build_list (GdlDockObject *object, GList **list)
 }
 
 static void
-update_dock_items (GdlDockBar *dockbar)
+update_dock_items (GdlDockBar *dockbar, gboolean full_update)
 {
     GdlDockMaster *master;
     GList *items, *l;
@@ -306,17 +347,27 @@ update_dock_items (GdlDockBar *dockbar)
     items = NULL;
     gdl_dock_master_foreach (master, (GFunc) build_list, &items);
     
-    for (l = items; l != NULL; l = l->next) {
-        GdlDockItem *item = GDL_DOCK_ITEM (l->data);
-        
-        if (g_slist_index (dockbar->_priv->items, item) != -1 &&
-            !GDL_DOCK_ITEM_ICONIFIED (item))
-	    gdl_dock_bar_remove_item (dockbar, item);
-	else if (g_slist_index (dockbar->_priv->items, item) == -1 &&
-	    GDL_DOCK_ITEM_ICONIFIED (item))
-	    gdl_dock_bar_add_item (dockbar, item);
+    if (!full_update) {
+        for (l = items; l != NULL; l = l->next) {
+            GdlDockItem *item = GDL_DOCK_ITEM (l->data);
+            
+            if (g_slist_index (dockbar->_priv->items, item) != -1 &&
+                !GDL_DOCK_ITEM_ICONIFIED (item))
+                gdl_dock_bar_remove_item (dockbar, item);
+            else if (g_slist_index (dockbar->_priv->items, item) == -1 &&
+                GDL_DOCK_ITEM_ICONIFIED (item))
+                gdl_dock_bar_add_item (dockbar, item);
+        }
+    } else {
+        for (l = items; l != NULL; l = l->next) {
+            GdlDockItem *item = GDL_DOCK_ITEM (l->data);
+            
+            if (g_slist_index (dockbar->_priv->items, item) != -1)
+                gdl_dock_bar_remove_item (dockbar, item);
+            if (GDL_DOCK_ITEM_ICONIFIED (item))
+                gdl_dock_bar_add_item (dockbar, item);
+        }
     }
-    
     g_list_free (items);
 }
 
@@ -324,7 +375,7 @@ static void
 gdl_dock_bar_layout_changed_cb (GdlDockMaster *master,
                                 GdlDockBar    *dockbar)
 {
-    update_dock_items (dockbar);
+    update_dock_items (dockbar, FALSE);
 }
 
 static void
@@ -349,7 +400,7 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
                           dockbar);
     }
 
-    update_dock_items (dockbar);
+    update_dock_items (dockbar, FALSE);
 }
 
 static void gdl_dock_bar_size_request (GtkWidget *widget,
@@ -882,4 +933,3 @@ void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
 
     gtk_widget_queue_resize (GTK_WIDGET (dockbar));
 }
-
