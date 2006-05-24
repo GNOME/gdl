@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-13 16:08+0100\n"
-"PO-Revision-Date: 2005-11-13 16:08+0100\n"
+"POT-Creation-Date: 2006-05-24 22:39+0200\n"
+"PO-Revision-Date: 2006-05-24 22:40+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -154,7 +154,7 @@ msgstr "Bloquear"
 msgid "Attempt to bind an unbound item %p"
 msgstr "Se intentó vincular un elemento no vinculable %p"
 
-#: ../gdl/gdl-dock-layout.c:124 ../gdl/gdl-dock-bar.c:102
+#: ../gdl/gdl-dock-layout.c:124 ../gdl/gdl-dock-bar.c:106
 msgid "Master"
 msgstr "Dueño"
 
@@ -378,11 +378,19 @@ msgstr ""
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Elemento fijo que «posee» esta tablabel"
 
-#: ../gdl/gdl-dock-bar.c:103
+#: ../gdl/gdl-dock-bar.c:107
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr ""
 "Objeto GdlDockMaster al cual el widget de la barra de empotrado se encuentra "
 "adjunto"
+
+#: ../gdl/gdl-dock-bar.c:114
+msgid "Dockbar style"
+msgstr "Estilo de la barra de empotrado"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style to show items on it"
+msgstr "Estilo de la barra de empotrado para mostrar elementos en ella"
 
 #: ../gdl/gdl-dock.c:175
 msgid "Floating"
@@ -487,213 +495,146 @@ msgstr "_Cargar"
 msgid "_Lock dock items"
 msgstr "B_loquear los elementos fijos"
 
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
-msgid "Factory for the Gnome Symbol Browser control."
-msgstr "Fábrica para el control visor de símbolos de Gnome"
+#~ msgid "Factory for the Gnome Symbol Browser control."
+#~ msgstr "Fábrica para el control visor de símbolos de Gnome"
 
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
-msgid "Gnome Symbol Browser Control"
-msgstr "Control visor de símbolos de Gnome"
+#~ msgid "Gnome Symbol Browser Control"
+#~ msgstr "Control visor de símbolos de Gnome"
 
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
-msgid "Gnome Symbol Browser Control Factory"
-msgstr "Fábrica del control visor de símbolos de Gnome"
+#~ msgid "Gnome Symbol Browser Control Factory"
+#~ msgstr "Fábrica del control visor de símbolos de Gnome"
 
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
-msgid "Gnome Symbol Browser."
-msgstr "Visor de símbolos de Gnome."
+#~ msgid "Gnome Symbol Browser."
+#~ msgstr "Visor de símbolos de Gnome."
 
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:1
-msgid "Goto Symbol"
-msgstr "Ir al símbolo"
+#~ msgid "Goto Symbol"
+#~ msgstr "Ir al símbolo"
 
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:2
-msgid "Goto the displayed symbol"
-msgstr "Ir al símbolo mostrado"
+#~ msgid "Goto the displayed symbol"
+#~ msgstr "Ir al símbolo mostrado"
 
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:3
-msgid "Update Symbols"
-msgstr "Actualizar símbolos"
+#~ msgid "Update Symbols"
+#~ msgstr "Actualizar símbolos"
 
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:4
-msgid "Update the symbol tree"
-msgstr "Actualizar el árbol de símbolos"
+#~ msgid "Update the symbol tree"
+#~ msgstr "Actualizar el árbol de símbolos"
 
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:5
-msgid "_Goto to symbol"
-msgstr "Ir al _símbolo"
+#~ msgid "_Goto to symbol"
+#~ msgstr "Ir al _símbolo"
 
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:6
-msgid "_View"
-msgstr "_Vista"
+#~ msgid "_View"
+#~ msgstr "_Vista"
 
-#: ../symbol-browser-control/symbol-browser.c:65
-msgid "Unknown"
-msgstr "Desconocido"
+#~ msgid "Unknown"
+#~ msgstr "Desconocido"
 
-#. ! tm_tag_undef_t = 0, < Unknown type
-#: ../symbol-browser-control/symbol-browser.c:66
-msgid "Classes"
-msgstr "Clases"
+#~ msgid "Classes"
+#~ msgstr "Clases"
 
-#. ! tm_tag_class_t = 1, < Class declaration
-#: ../symbol-browser-control/symbol-browser.c:67
-msgid "Enums"
-msgstr "Enumerados"
+#~ msgid "Enums"
+#~ msgstr "Enumerados"
 
-#. ! tm_tag_enum_t = 2, < Enum declaration
-#: ../symbol-browser-control/symbol-browser.c:68
-msgid "Enumerators"
-msgstr "Enumeradores"
+#~ msgid "Enumerators"
+#~ msgstr "Enumeradores"
 
-#. ! tm_tag_enumerator_t = 4, < Enumerator value
-#: ../symbol-browser-control/symbol-browser.c:69
-msgid "Fields"
-msgstr "Campos"
+#~ msgid "Fields"
+#~ msgstr "Campos"
 
-#. ! tm_tag_field_t = 8, < Field (Java only)
-#: ../symbol-browser-control/symbol-browser.c:70
-msgid "Functions"
-msgstr "Funciones"
+#~ msgid "Functions"
+#~ msgstr "Funciones"
 
-#. ! tm_tag_function_t = 16, < Function definition
-#: ../symbol-browser-control/symbol-browser.c:71
-msgid "Interfaces"
-msgstr "Interfaces"
+#~ msgid "Interfaces"
+#~ msgstr "Interfaces"
 
-#. ! tm_tag_interface_t = 32, < Interface (Java only
-#: ../symbol-browser-control/symbol-browser.c:72
-msgid "Members"
-msgstr "Miembros"
+#~ msgid "Members"
+#~ msgstr "Miembros"
 
-#. ! tm_tag_member_t = 64, < Member variable of class/struct
-#: ../symbol-browser-control/symbol-browser.c:73
-msgid "Methods"
-msgstr "Métodos"
+#~ msgid "Methods"
+#~ msgstr "Métodos"
 
-#. ! tm_tag_method_t = 128, < Class method (Java only
-#: ../symbol-browser-control/symbol-browser.c:74
-msgid "Namespaces"
-msgstr "Espacio de nombres"
+#~ msgid "Namespaces"
+#~ msgstr "Espacio de nombres"
 
-#. ! tm_tag_namespace_t = 256, < Namespace declaration
-#: ../symbol-browser-control/symbol-browser.c:75
-msgid "Packages"
-msgstr "Paquetes"
+#~ msgid "Packages"
+#~ msgstr "Paquetes"
 
-#. ! tm_tag_package_t = 512, < Package (Java only)
-#: ../symbol-browser-control/symbol-browser.c:76
-msgid "Prototypes"
-msgstr "Prototipos"
+#~ msgid "Prototypes"
+#~ msgstr "Prototipos"
 
-#. ! tm_tag_prototype_t = 1024, < Function prototype
-#: ../symbol-browser-control/symbol-browser.c:77
-msgid "Structs"
-msgstr "Estructuras"
+#~ msgid "Structs"
+#~ msgstr "Estructuras"
 
-#. ! tm_tag_struct_t = 2048, < Struct declaration
-#: ../symbol-browser-control/symbol-browser.c:78
-msgid "Typedefs"
-msgstr "Definiciones de tipos"
+#~ msgid "Typedefs"
+#~ msgstr "Definiciones de tipos"
 
-#. ! tm_tag_typedef_t = 4096, < Typedef
-#: ../symbol-browser-control/symbol-browser.c:79
-msgid "Unions"
-msgstr "Uniones"
+#~ msgid "Unions"
+#~ msgstr "Uniones"
 
-#. ! tm_tag_union_t = 8192, !< Union
-#: ../symbol-browser-control/symbol-browser.c:80
-msgid "Variables"
-msgstr "Variables"
+#~ msgid "Variables"
+#~ msgstr "Variables"
 
-#. ! tm_tag_variable_t = 16384, < Variable
-#: ../symbol-browser-control/symbol-browser.c:81
-msgid "ExternVars"
-msgstr "Variables externas"
+#~ msgid "ExternVars"
+#~ msgstr "Variables externas"
 
-#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
-#: ../symbol-browser-control/symbol-browser.c:82
-msgid "Macros"
-msgstr "Macros"
+#~ msgid "Macros"
+#~ msgstr "Macros"
 
-#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
-#: ../symbol-browser-control/symbol-browser.c:83
-msgid "MacrosWithArgs"
-msgstr "Macros con argumentos"
+#~ msgid "MacrosWithArgs"
+#~ msgstr "Macros con argumentos"
 
-#: ../symbol-browser-control/symbol-browser.c:378
-msgid "Tags"
-msgstr "Marcas"
+#~ msgid "Tags"
+#~ msgstr "Marcas"
 
-#: ../symbol-browser-control/symbol-browser.c:386
-#: ../symbol-browser-control/symbol-browser.c:397
-msgid "Undefined"
-msgstr "Indefinido"
+#~ msgid "Undefined"
+#~ msgstr "Indefinido"
 
-#: ../symbol-browser-control/symbol-browser.c:388
-#: ../symbol-browser-control/symbol-browser.c:399
-msgid "<No Symbol>"
-msgstr "<No hay símbolos>"
+#~ msgid "<No Symbol>"
+#~ msgstr "<No hay símbolos>"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:1
-msgid "Exit"
-msgstr "Salir"
+#~ msgid "Exit"
+#~ msgstr "Salir"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:2
-msgid "Open Project"
-msgstr "Abrir proyecto"
+#~ msgid "Open Project"
+#~ msgstr "Abrir proyecto"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:3
-msgid "Save Project"
-msgstr "Guardar proyecto"
+#~ msgid "Save Project"
+#~ msgstr "Guardar proyecto"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:4
-msgid "Set Current File"
-msgstr "Definir el archivo actual"
+#~ msgid "Set Current File"
+#~ msgstr "Definir el archivo actual"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:5
-msgid "Update"
-msgstr "Actualizar"
+#~ msgid "Update"
+#~ msgstr "Actualizar"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:6
-msgid "Update the whole tree"
-msgstr "Actualizar todo el árbol"
+#~ msgid "Update the whole tree"
+#~ msgstr "Actualizar todo el árbol"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:7
-msgid "_Exit"
-msgstr "_Salir"
+#~ msgid "_Exit"
+#~ msgstr "_Salir"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:8
-msgid "_File"
-msgstr "_Archivo"
+#~ msgid "_File"
+#~ msgstr "_Archivo"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:9
-msgid "_Open Project"
-msgstr "Abrir _proyecto"
+#~ msgid "_Open Project"
+#~ msgstr "Abrir _proyecto"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:10
-msgid "_Save Project"
-msgstr "_Guardar proyecto"
+#~ msgid "_Save Project"
+#~ msgstr "_Guardar proyecto"
 
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:11
-msgid "_Set Current File"
-msgstr "_Definir el archivo activo"
+#~ msgid "_Set Current File"
+#~ msgstr "_Definir el archivo activo"
 
-#: ../symbol-browser-control/test-symbol-browser.c:168
-msgid "Open file..."
-msgstr "Abrir archivo..."
+#~ msgid "Open file..."
+#~ msgstr "Abrir archivo..."
 
-#: ../symbol-browser-control/test-symbol-browser.c:170
-msgid "Set current file..."
-msgstr "Definir el archivo activo..."
+#~ msgid "Set current file..."
+#~ msgstr "Definir el archivo activo..."
 
-#: ../symbol-browser-control/test-symbol-browser.c:172
-msgid "Save file..."
-msgstr "Guardar archivo..."
+#~ msgid "Save file..."
+#~ msgstr "Guardar archivo..."
 
-#: ../symbol-browser-control/test-symbol-browser.c:295
-msgid "Can't initialize bonobo!"
-msgstr "No se ha podido inicializar bonobo"
+#~ msgid "Can't initialize bonobo!"
+#~ msgstr "No se ha podido inicializar bonobo"
 
 #~ msgid "Dock the toolbar"
 #~ msgstr "Empotrar en la barra de herramientas"
