@@ -1,21 +1,21 @@
 # Vietnamese translation for GDL.
-# Copyright © 2005 Gnome i18n Project for Vietnamese.
+# Copyright © 2006 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
-# Clytie Siddall <clytie@riverland.net.au>, 2005.
-#
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2006.
+# 
 msgid ""
-msgstr ""
-"Project-Id-Version: gdl Gnome HEAD\n"
+""
+msgstr "Project-Id-Version: gdl Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-18 11:55+0000\n"
-"PO-Revision-Date: 2005-08-27 16:25+0930\n"
+"POT-Creation-Date: 2006-05-25 02:30+0200\n"
+"PO-Revision-Date: 2006-05-25 18:32+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: LocFactoryEditor 1.2.2\n"
+"X-Generator: LocFactoryEditor 1.6b36\n"
 
 #: ../gdl/gdl-data-view.c:418
 msgid "Expander Size"
@@ -41,7 +41,8 @@ msgstr "Đóng"
 msgid "Close this dock"
 msgstr "Đóng neo này"
 
-#: ../gdl/gdl-dock-item-grip.c:682 ../gdl/gdl-dock-tablabel.c:129
+#: ../gdl/gdl-dock-item-grip.c:682
+#: ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Mục neo điều khiển"
 
@@ -63,7 +64,8 @@ msgstr "Có thể đổi cỡ"
 
 #: ../gdl/gdl-dock-item.c:258
 msgid "If set, the dock item can be resized when docked in a paned"
-msgstr "Nếu lập thì mục neo có thể được lập lại kích thước khi nằm trên bảng điều khiển."
+msgstr "Nếu lập thì mục neo có thể được lập lại kích thước khi nằm trên bảng điều "
+"khiển."
 
 #: ../gdl/gdl-dock-item.c:265
 msgid "Item behavior"
@@ -73,10 +75,11 @@ msgstr "Ứng xử của mục"
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
-msgstr ""
-"Ứng xử chung của mục neo (v.d. nó có thể nổi hay không, nó được khóa hay không ...)"
+msgstr "Ứng xử chung của mục neo (v.d. nó có thể nổi hay không, nó được khóa hay "
+"không ...)"
 
-#: ../gdl/gdl-dock-item.c:274 ../gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-item.c:274
+#: ../gdl/gdl-dock-master.c:140
 msgid "Locked"
 msgstr "Được khóa"
 
@@ -106,34 +109,33 @@ msgstr "Chiều cao ưa thích của mục neo"
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
-msgstr ""
-"Không thể thêm đối tượng neo (%p của kiểu %s) trong một %s. Hãy dùng "
-"GdlDock hay một đối tượng neo phức hợp khác."
+msgstr "Không thể thêm đối tượng neo (%p của kiểu %s) trong một %s. Hãy dùng GdlDock "
+"hay một đối tượng neo phức hợp khác."
 
 #: ../gdl/gdl-dock-item.c:548
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
-msgstr ""
-"Đang cố thêm một ô điều khiển với kiểu %s vào %s, nhưng chỉ có thể chứa một ô điều khiển vào một thời điểm, nó đã chứa một ô điều kiển với kiểu %s."
+msgstr "Đang cố thêm một ô điều khiển với kiểu %s vào %s, nhưng chỉ có thể chứa một "
+"ô điều khiển vào một thời điểm, nó đã chứa một ô điều kiển với kiểu %s."
 
 #: ../gdl/gdl-dock-item.c:1174
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Không hỗ trợ chiến lược neo %s trong đối tượng neo của kiểu %s."
 
-#. UnLock menuitem
+#.UnLock menuitem
 #: ../gdl/gdl-dock-item.c:1257
 msgid "UnLock"
 msgstr "Mở khóa"
 
-#. Hide menuitem.
+#.Hide menuitem.
 #: ../gdl/gdl-dock-item.c:1264
 msgid "Hide"
 msgstr "Ẩn"
 
-#. Lock menuitem
+#.Lock menuitem
 #: ../gdl/gdl-dock-item.c:1269
 msgid "Lock"
 msgstr "Khóa"
@@ -143,271 +145,276 @@ msgstr "Khóa"
 msgid "Attempt to bind an unbound item %p"
 msgstr "Cố gắng tổ hợp một mục tự do %p."
 
-#: ../gdl/gdl-dock-layout.c:125 ../gdl/gdl-dock-bar.c:103
+#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-bar.c:106
 msgid "Master"
 msgstr "Chính"
 
-#: ../gdl/gdl-dock-layout.c:126
+#: ../gdl/gdl-dock-layout.c:125
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Đối tượng GdlDockMaster mà đối tượng bố trí được gắn kèm với nó."
 
-#: ../gdl/gdl-dock-layout.c:133
+#: ../gdl/gdl-dock-layout.c:132
 msgid "Dirty"
 msgstr "Bẩn"
 
-#: ../gdl/gdl-dock-layout.c:134
+#: ../gdl/gdl-dock-layout.c:133
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Đúng nếu các bố trí đã thay đổi và cần thiết được lưu vào tập tin."
 
-#. FIXME: pop up an error dialog
-#: ../gdl/gdl-dock-layout.c:564
+#.FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Không thể tải tập tin giao diện người dùng của bố trí « %s »."
 
-#: ../gdl/gdl-dock-layout.c:619
+#: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
 msgstr "Xem được"
 
-#: ../gdl/gdl-dock-layout.c:626
+#: ../gdl/gdl-dock-layout.c:625
 msgid "Item"
 msgstr "Mục"
 
-#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-layout.c:708
+#: ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Tên"
 
-#: ../gdl/gdl-dock-layout.c:742 ../gdl/layout.glade.h:1
+#: ../gdl/gdl-dock-layout.c:741
+#: ../gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Mục neo"
 
-#: ../gdl/gdl-dock-layout.c:748 ../gdl/layout.glade.h:3
+#: ../gdl/gdl-dock-layout.c:747
+#: ../gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Bố trí đã lưu"
 
-#: ../gdl/gdl-dock-layout.c:790
+#: ../gdl/gdl-dock-layout.c:789
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
-msgstr ""
-"Trong khi tải bố trí: không biết cách tạo đối tượng neo có tên hiệu « %s »."
+msgstr "Trong khi tải bố trí: không biết cách tạo đối tượng neo có tên hiệu « %s »."
 
-#: ../gdl/gdl-dock-layout.c:1269
+#: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
 msgstr "Quản lý bố trí"
 
-#: ../gdl/gdl-dock-master.c:134 ../gdl/gdl-dock.c:184
+#: ../gdl/gdl-dock-master.c:133
+#: ../gdl/gdl-dock.c:183
 msgid "Default title"
 msgstr "Tiêu đề mặc định"
 
-#: ../gdl/gdl-dock-master.c:135
+#: ../gdl/gdl-dock-master.c:134
 msgid "Default title for newly created floating docks"
 msgstr "Tiêu đề mặc định cho các neo nổi mới tạo"
 
-#: ../gdl/gdl-dock-master.c:142
+#: ../gdl/gdl-dock-master.c:141
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr ""
-"Lập			Kết quả\n"
+msgstr "Lập\t\t\tKết quả\n"
 "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-"   1			toàn bộ các mục neo tổ hợp với chủ chính được khóa\n"
-"   0			toàn bộ được mở khóa\n"
-" -1 			biểu thị sự mâu thuẫn giữa các mục"
+"   1\t\t\ttoàn bộ các mục neo tổ hợp với chủ chính được khóa\n"
+"   0\t\t\ttoàn bộ được mở khóa\n"
+" -1 \t\t\tbiểu thị sự mâu thuẫn giữa các mục"
 
-#: ../gdl/gdl-dock-master.c:730
+#: ../gdl/gdl-dock-master.c:729
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
-msgstr ""
-"Chủ chính %p: không thể thêm đối tượng %p[%s] vào băm. Đã có một mục với "
-"tên đó (%p)."
+msgstr "Chủ chính %p: không thể thêm đối tượng %p[%s] vào băm. Đã có một mục với tên "
+"đó (%p)."
 
-#: ../gdl/gdl-dock-master.c:895
+#: ../gdl/gdl-dock-master.c:894
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
-msgstr ""
-"Trình điều khiển neo mới %p là tự động. Chỉ các đối tượng neo thủ "
-"công nên là trình điều khiển có tên."
+msgstr "Trình điều khiển neo mới %p là tự động. Chỉ các đối tượng neo thủ công nên "
+"là trình điều khiển có tên."
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
 msgstr "Trang"
 
-#: ../gdl/gdl-dock-notebook.c:136
+#: ../gdl/gdl-dock-notebook.c:135
 msgid "The index of the current page"
 msgstr "Chỉ mục của trang hiện thời"
 
-#: ../gdl/gdl-dock-object.c:121
+#: ../gdl/gdl-dock-object.c:120
 msgid "Unique name for identifying the dock object"
 msgstr "Tên duy nhất để nhận diện đối tượng neo"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:127
 msgid "Long name"
 msgstr "Tên dài"
 
-#: ../gdl/gdl-dock-object.c:129
+#: ../gdl/gdl-dock-object.c:128
 msgid "Human readable name for the dock object"
 msgstr "Tên người có thể đọc được cho đối tượng neo."
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:134
 msgid "Stock Icon"
 msgstr "Biểu tượng thường"
 
-#: ../gdl/gdl-dock-object.c:136
+#: ../gdl/gdl-dock-object.c:135
 msgid "Stock icon for the dock object"
 msgstr "Biểu tượng thường cho đối tượng neo."
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:141
 msgid "Dock master"
 msgstr "Chủ chính neo"
 
-#: ../gdl/gdl-dock-object.c:143
+#: ../gdl/gdl-dock-object.c:142
 msgid "Dock master this dock object is bound to"
 msgstr "Chủ chính neo đối tượng neo này được tổ hợp với nó."
 
-#: ../gdl/gdl-dock-object.c:421
+#: ../gdl/gdl-dock-object.c:420
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
-msgstr ""
-"Gọi tới « gdl_dock_object_dock » trong đối tượng neo %p (kiểu đối tượng là %s) mà chưa thực thi phương pháp này."
+msgstr "Gọi tới « gdl_dock_object_dock » trong đối tượng neo %p (kiểu đối tượng là %s) mà chưa thực thi phương pháp này."
 
-#: ../gdl/gdl-dock-object.c:550
+#: ../gdl/gdl-dock-object.c:549
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
-msgstr ""
-"Thao tác neo được yêu cầu trong một đối tượng không tổ hợp %p. Ứng "
-"dụng có thể đổ vỡ."
+msgstr "Thao tác neo được yêu cầu trong một đối tượng không tổ hợp %p. Ứng dụng có "
+"thể đổ vỡ."
 
-#: ../gdl/gdl-dock-object.c:557
+#: ../gdl/gdl-dock-object.c:556
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Không thể neo %p vào %p vì chúng là của các chủ chính khác nhau."
 
-#: ../gdl/gdl-dock-object.c:599
+#: ../gdl/gdl-dock-object.c:598
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr ""
-"Cố tổ hợp %p với một đối tượng neo đã tổ hợp %p (chủ chính hiện thời là %p)."
+msgstr "Cố tổ hợp %p với một đối tượng neo đã tổ hợp %p (chủ chính hiện thời là %p)."
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
 msgstr "Vị trí"
 
-#: ../gdl/gdl-dock-paned.c:134
+#: ../gdl/gdl-dock-paned.c:133
 msgid "Position of the divider in pixels"
 msgstr "Vị trí bộ chia theo điểm ảnh."
 
-#: ../gdl/gdl-dock-placeholder.c:127
+#: ../gdl/gdl-dock-placeholder.c:126
 msgid "Sticky"
 msgstr "Bám dính"
 
-#: ../gdl/gdl-dock-placeholder.c:128
+#: ../gdl/gdl-dock-placeholder.c:127
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
-msgstr ""
-"Bộ giữ nơi sẽ bám dính tới chủ của nó hay chuyển tiếp thứ bậc khi chủ neo lại."
+msgstr "Bộ giữ nơi sẽ bám dính tới chủ của nó hay chuyển tiếp thứ bậc khi chủ neo "
+"lại."
 
-#: ../gdl/gdl-dock-placeholder.c:135
+#: ../gdl/gdl-dock-placeholder.c:134
 msgid "Host"
 msgstr "Chủ"
 
-#: ../gdl/gdl-dock-placeholder.c:136
+#: ../gdl/gdl-dock-placeholder.c:135
 msgid "The dock object this placeholder is attached to"
 msgstr "Đối tượng neo mà bộ giữ nơi này được gắn kèm với nó."
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:142
 msgid "Next placement"
 msgstr "Sự định vị kế"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:143
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
-msgstr ""
-"Vị trí một mục sẽ được neo tới chủ của chúng ta nếu một yêu cầu được thực "
+msgstr "Vị trí một mục sẽ được neo tới chủ của chúng ta nếu một yêu cầu được thực "
 "hiện để neo vào chúng ta."
 
-#: ../gdl/gdl-dock-placeholder.c:305
+#: ../gdl/gdl-dock-placeholder.c:304
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Cố neo một đối tượng neo vào vào một bộ giữ nơi không tổ hợp."
 
-#: ../gdl/gdl-dock-placeholder.c:419
+#: ../gdl/gdl-dock-placeholder.c:418
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr ""
-"Đã nhận tín hiệu tách ra từ một đối tượng (%p) không phải là của chủ chúng ta %p."
+msgstr "Đã nhận tín hiệu tách ra từ một đối tượng (%p) không phải là của chủ chúng "
+"ta %p."
 
-#: ../gdl/gdl-dock-placeholder.c:440
+#: ../gdl/gdl-dock-placeholder.c:439
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr "Gặp lỗi lạ khi nhận sự định vị con cho %p từ mẹ %p."
 
-#: ../gdl/gdl-dock-tablabel.c:130
+#: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Mục neo có « sở hữu » nhãn thanh này."
 
-#: ../gdl/gdl-dock-bar.c:104
+#: ../gdl/gdl-dock-bar.c:107
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "Đối tượng GdlDockMaster mà ô điều khiển thanh neo được gắn kèm với nó."
 
-#: ../gdl/gdl-dock.c:176
+#: ../gdl/gdl-dock-bar.c:114
+msgid "Dockbar style"
+msgstr "Kiểu dáng thanh neo"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style to show items on it"
+msgstr "Kiểu dáng hiển thị mục trên thanh neo"
+
+#: ../gdl/gdl-dock.c:175
 msgid "Floating"
 msgstr "Nổi"
 
-#: ../gdl/gdl-dock.c:177
+#: ../gdl/gdl-dock.c:176
 msgid "Whether the dock is floating in its own window"
 msgstr "Neo có nổi trong cửa sổ của riêng nó hay không."
 
-#: ../gdl/gdl-dock.c:185
+#: ../gdl/gdl-dock.c:184
 msgid "Default title for the newly created floating docks"
 msgstr "Tiêu đề mặc định cho các neo nổi mới tạo."
 
-#: ../gdl/gdl-dock.c:191
+#: ../gdl/gdl-dock.c:190
 msgid "Width"
 msgstr "Bề rộng"
 
-#: ../gdl/gdl-dock.c:192
+#: ../gdl/gdl-dock.c:191
 msgid "Width for the dock when it's of floating type"
 msgstr "Bề rộng của neo khi nó là kiểu nổi."
 
-#: ../gdl/gdl-dock.c:199
+#: ../gdl/gdl-dock.c:198
 msgid "Height"
 msgstr "Bề cao"
 
-#: ../gdl/gdl-dock.c:200
+#: ../gdl/gdl-dock.c:199
 msgid "Height for the dock when it's of floating type"
 msgstr "Bề cao của neo khi nó là kiểu nổi."
 
-#: ../gdl/gdl-dock.c:207
+#: ../gdl/gdl-dock.c:206
 msgid "Float X"
 msgstr "Tọa độ X"
 
-#: ../gdl/gdl-dock.c:208
+#: ../gdl/gdl-dock.c:207
 msgid "X coordinate for a floating dock"
 msgstr "Tọa độ X cho neo nổi."
 
-#: ../gdl/gdl-dock.c:215
+#: ../gdl/gdl-dock.c:214
 msgid "Float Y"
 msgstr "Tọa độ Y"
 
-#: ../gdl/gdl-dock.c:216
+#: ../gdl/gdl-dock.c:215
 msgid "Y coordinate for a floating dock"
 msgstr "Tọa độ Y cho sự neo nổi."
 
-#: ../gdl/gdl-dock.c:497
+#: ../gdl/gdl-dock.c:496
 #, c-format
 msgid "Dock #%d"
 msgstr "Neo #%d"
@@ -449,7 +456,8 @@ msgstr "Kiểu mà các mục sẽ được đánh số."
 msgid "Open %s"
 msgstr "Mở %s"
 
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
+#: ../gdl/gdl-icons.c:133
+#: ../gdl/gdl-icons.c:134
 msgid "Icon size"
 msgstr "Cỡ biểu tượng"
 
@@ -464,211 +472,3 @@ msgstr "_Tải"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Tải các mục neo"
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
-msgid "Factory for the Gnome Symbol Browser control."
-msgstr "Bộ tạo Điều khiển trình duyệt ký hiệu Gnome."
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
-msgid "Gnome Symbol Browser Control"
-msgstr "Điều khiển trình duyệt ký hiệu Gnome."
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
-msgid "Gnome Symbol Browser Control Factory"
-msgstr "Bộ tạo Điều khiển trình duyệt ký hiệu Gnome."
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
-msgid "Gnome Symbol Browser."
-msgstr "B94 duyệt ký hiệu Gnome."
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:1
-msgid "Goto Symbol"
-msgstr "Đi tới ký hiệu"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:2
-msgid "Goto the displayed symbol"
-msgstr "Đi tới ký hiệu được hiển thị"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:3
-msgid "Update Symbols"
-msgstr "Cập nhật các ký hiệu"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:4
-msgid "Update the symbol tree"
-msgstr "Cập nhật cây ký hiệu"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:5
-msgid "_Goto to symbol"
-msgstr "Đ_i tới ký hiệu"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:6
-msgid "_View"
-msgstr "_Xem"
-
-#: ../symbol-browser-control/symbol-browser.c:65
-msgid "Unknown"
-msgstr "Không biết"
-
-#. ! tm_tag_undef_t = 0, < Unknown type
-#: ../symbol-browser-control/symbol-browser.c:66
-msgid "Classes"
-msgstr "Hạng"
-
-#. ! tm_tag_class_t = 1, < Class declaration
-#: ../symbol-browser-control/symbol-browser.c:67
-msgid "Enums"
-msgstr "Liệt kê"
-
-#. ! tm_tag_enum_t = 2, < Enum declaration
-#: ../symbol-browser-control/symbol-browser.c:68
-msgid "Enumerators"
-msgstr "Bộ liệt kê"
-
-#. ! tm_tag_enumerator_t = 4, < Enumerator value
-#: ../symbol-browser-control/symbol-browser.c:69
-msgid "Fields"
-msgstr "Trường"
-
-#. ! tm_tag_field_t = 8, < Field (Java only)
-#: ../symbol-browser-control/symbol-browser.c:70
-msgid "Functions"
-msgstr "Hàm"
-
-#. ! tm_tag_function_t = 16, < Function definition
-#: ../symbol-browser-control/symbol-browser.c:71
-msgid "Interfaces"
-msgstr "Giao diện"
-
-#. ! tm_tag_interface_t = 32, < Interface (Java only
-#: ../symbol-browser-control/symbol-browser.c:72
-msgid "Members"
-msgstr "Thành viên"
-
-#. ! tm_tag_member_t = 64, < Member variable of class/struct
-#: ../symbol-browser-control/symbol-browser.c:73
-msgid "Methods"
-msgstr "Phương pháp"
-
-#. ! tm_tag_method_t = 128, < Class method (Java only
-#: ../symbol-browser-control/symbol-browser.c:74
-msgid "Namespaces"
-msgstr "Vùng tên"
-
-#. ! tm_tag_namespace_t = 256, < Namespace declaration
-#: ../symbol-browser-control/symbol-browser.c:75
-msgid "Packages"
-msgstr "Gói"
-
-#. ! tm_tag_package_t = 512, < Package (Java only)
-#: ../symbol-browser-control/symbol-browser.c:76
-msgid "Prototypes"
-msgstr "Nguyên mẫu"
-
-#. ! tm_tag_prototype_t = 1024, < Function prototype
-#: ../symbol-browser-control/symbol-browser.c:77
-msgid "Structs"
-msgstr "Cấu trúc"
-
-#. ! tm_tag_struct_t = 2048, < Struct declaration
-#: ../symbol-browser-control/symbol-browser.c:78
-msgid "Typedefs"
-msgstr "Định nghĩa kiểu"
-
-#. ! tm_tag_typedef_t = 4096, < Typedef
-#: ../symbol-browser-control/symbol-browser.c:79
-msgid "Unions"
-msgstr "Hợp"
-
-#. ! tm_tag_union_t = 8192, !< Union
-#: ../symbol-browser-control/symbol-browser.c:80
-msgid "Variables"
-msgstr "Biến"
-
-#. ! tm_tag_variable_t = 16384, < Variable
-#: ../symbol-browser-control/symbol-browser.c:81
-msgid "ExternVars"
-msgstr "Biến bên ngoài"
-
-#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
-#: ../symbol-browser-control/symbol-browser.c:82
-msgid "Macros"
-msgstr "Bộ lệnh"
-
-#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
-#: ../symbol-browser-control/symbol-browser.c:83
-msgid "MacrosWithArgs"
-msgstr "Bộ lệnh có tham số"
-
-#: ../symbol-browser-control/symbol-browser.c:378
-msgid "Tags"
-msgstr "Thẻ"
-
-#: ../symbol-browser-control/symbol-browser.c:386
-#: ../symbol-browser-control/symbol-browser.c:397
-msgid "Undefined"
-msgstr "Chưa xác định"
-
-#: ../symbol-browser-control/symbol-browser.c:388
-#: ../symbol-browser-control/symbol-browser.c:399
-msgid "<No Symbol>"
-msgstr "<Không có ký hiệu>"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:1
-msgid "Exit"
-msgstr "Thoát"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:2
-msgid "Open Project"
-msgstr "Mở dự án"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:3
-msgid "Save Project"
-msgstr "Lưu dự án"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:4
-msgid "Set Current File"
-msgstr "Lập tập tin hiện thời"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:5
-msgid "Update"
-msgstr "Cập nhật"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:6
-msgid "Update the whole tree"
-msgstr "Cập nhật toàn bộ cây"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:7
-msgid "_Exit"
-msgstr "T_hoát"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:8
-msgid "_File"
-msgstr "_Tập tin"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:9
-msgid "_Open Project"
-msgstr "_Mở dự án"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:10
-msgid "_Save Project"
-msgstr "_Lưu dự án"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:11
-msgid "_Set Current File"
-msgstr "_Lập tập tin hiện thời"
-
-#: ../symbol-browser-control/test-symbol-browser.c:168
-msgid "Open file..."
-msgstr "Mở tập tin..."
-
-#: ../symbol-browser-control/test-symbol-browser.c:170
-msgid "Set current file..."
-msgstr "Lập tập tin hiện thời..."
-
-#: ../symbol-browser-control/test-symbol-browser.c:172
-msgid "Save file..."
-msgstr "Lưu tập tin..."
-
-#: ../symbol-browser-control/test-symbol-browser.c:295
-msgid "Can't initialize bonobo!"
-msgstr "Không thể sơ khởi Bonobo."
