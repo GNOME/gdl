@@ -1392,7 +1392,7 @@ gdl_dock_item_showhide_grip (GdlDockItem *item)
     
     if (item->_priv->grip) {
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item) && 
-	    GDL_DOCK_ITEM_NOT_LOCKED(item))
+            GDL_DOCK_ITEM_NOT_LOCKED(item))
              cursor = gdk_cursor_new_for_display (display, GDK_HAND2);
     }
     if (item->_priv->grip && GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window)
@@ -1617,6 +1617,8 @@ gdl_dock_item_hide_item (GdlDockItem *item)
             g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
                           "sticky", FALSE,
                           "host", item,
+                          "width", GTK_WIDGET (item)->allocation.width,
+                          "height", GTK_WIDGET (item)->allocation.height,
                           NULL));
         g_object_ref (item->_priv->ph);
         gtk_object_sink (GTK_OBJECT (item->_priv->ph));
@@ -1634,7 +1636,7 @@ gdl_dock_item_hide_item (GdlDockItem *item)
     gdl_dock_object_detach (GDL_DOCK_OBJECT (item), TRUE);
 
     gtk_widget_hide (GTK_WIDGET (item));
-	
+
     gdl_dock_object_thaw (GDL_DOCK_OBJECT (item));
 }
 

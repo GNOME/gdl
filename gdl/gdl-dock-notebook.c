@@ -404,10 +404,17 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             if (other_data && G_VALUE_HOLDS (other_data, G_TYPE_INT))
                 position = g_value_get_int (other_data);
             
-            gtk_notebook_insert_page (GTK_NOTEBOOK (item->child), 
-                                      GTK_WIDGET (requestor), label,
-                                      position);
+            position = gtk_notebook_insert_page (GTK_NOTEBOOK (item->child), 
+                                                 GTK_WIDGET (requestor), label,
+                                                 position);
             GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
+            
+            /* Set current page to the newly docked widget. set current page
+             * really doesn't work if the page widget is not shown
+             */
+            gtk_widget_show (GTK_WIDGET (requestor));
+            gtk_notebook_set_current_page (GTK_NOTEBOOK (item->child),
+                                           position);
         }
     }
     else
@@ -417,7 +424,7 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
 
 static void
 gdl_dock_notebook_set_orientation (GdlDockItem    *item,
-				   GtkOrientation  orientation)
+                                   GtkOrientation  orientation)
 {
     if (item->child && GTK_IS_NOTEBOOK (item->child)) {
         if (orientation == GTK_ORIENTATION_HORIZONTAL)
