@@ -7,8 +7,8 @@ msgid ""
 ""
 msgstr "Project-Id-Version: gdl Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-25 02:30+0200\n"
-"PO-Revision-Date: 2006-05-25 18:32+0930\n"
+"POT-Creation-Date: 2006-05-27 02:29+0200\n"
+"PO-Revision-Date: 2006-05-27 18:07+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -307,47 +307,65 @@ msgstr "Vị trí"
 msgid "Position of the divider in pixels"
 msgstr "Vị trí bộ chia theo điểm ảnh."
 
-#: ../gdl/gdl-dock-placeholder.c:126
+#: ../gdl/gdl-dock-placeholder.c:135
 msgid "Sticky"
 msgstr "Bám dính"
 
-#: ../gdl/gdl-dock-placeholder.c:127
+#: ../gdl/gdl-dock-placeholder.c:136
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr "Bộ giữ nơi sẽ bám dính tới chủ của nó hay chuyển tiếp thứ bậc khi chủ neo "
 "lại."
 
-#: ../gdl/gdl-dock-placeholder.c:134
+#: ../gdl/gdl-dock-placeholder.c:143
 msgid "Host"
 msgstr "Chủ"
 
-#: ../gdl/gdl-dock-placeholder.c:135
+#: ../gdl/gdl-dock-placeholder.c:144
 msgid "The dock object this placeholder is attached to"
 msgstr "Đối tượng neo mà bộ giữ nơi này được gắn kèm với nó."
 
-#: ../gdl/gdl-dock-placeholder.c:142
+#: ../gdl/gdl-dock-placeholder.c:151
 msgid "Next placement"
 msgstr "Sự định vị kế"
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:152
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr "Vị trí một mục sẽ được neo tới chủ của chúng ta nếu một yêu cầu được thực "
 "hiện để neo vào chúng ta."
 
-#: ../gdl/gdl-dock-placeholder.c:304
+#: ../gdl/gdl-dock-placeholder.c:161
+#: ../gdl/gdl-dock.c:190
+msgid "Width"
+msgstr "Bề rộng"
+
+#: ../gdl/gdl-dock-placeholder.c:162
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Độ rộng của ô điều khiển khi được gắn kết đến bộ giữ chỗ"
+
+#: ../gdl/gdl-dock-placeholder.c:169
+#: ../gdl/gdl-dock.c:198
+msgid "Height"
+msgstr "Bề cao"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Độ cao của ô điều khiển khi được gắn kết đến bộ giữ chỗ"
+
+#: ../gdl/gdl-dock-placeholder.c:446
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Cố neo một đối tượng neo vào vào một bộ giữ nơi không tổ hợp."
 
-#: ../gdl/gdl-dock-placeholder.c:418
+#: ../gdl/gdl-dock-placeholder.c:570
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "Đã nhận tín hiệu tách ra từ một đối tượng (%p) không phải là của chủ chúng "
 "ta %p."
 
-#: ../gdl/gdl-dock-placeholder.c:439
+#: ../gdl/gdl-dock-placeholder.c:595
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -382,17 +400,9 @@ msgstr "Neo có nổi trong cửa sổ của riêng nó hay không."
 msgid "Default title for the newly created floating docks"
 msgstr "Tiêu đề mặc định cho các neo nổi mới tạo."
 
-#: ../gdl/gdl-dock.c:190
-msgid "Width"
-msgstr "Bề rộng"
-
 #: ../gdl/gdl-dock.c:191
 msgid "Width for the dock when it's of floating type"
 msgstr "Bề rộng của neo khi nó là kiểu nổi."
-
-#: ../gdl/gdl-dock.c:198
-msgid "Height"
-msgstr "Bề cao"
 
 #: ../gdl/gdl-dock.c:199
 msgid "Height for the dock when it's of floating type"
