@@ -1,4 +1,16 @@
-2006-05-18  <robert.staudinger@gmail.com>
+2006-06-01  Johannes Schmid <jhs@cvs.gnome.org>
+
+	* gdl/Makefile.am: Fixed
+	* autogen.sh: Changed from AM_PROG_LIBTOOL to AC_PROG_LIBTOOL
+
+2006-06-01  Robert Staudinger <robert.staudinger@gmail.com>
+
+	* gdl/Makefile.am:
+	Some build fixes for mingw 
+	* gdl/gdl-stock.h:
+	Load stock icons correctly even if not in installation path
+
+2006-05-18  Robert Staudinger <robert.staudinger@gmail.com>
 
 	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>
 

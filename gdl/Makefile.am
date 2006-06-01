@@ -1,7 +1,6 @@
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"Gdl\"				\
 	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
-	-DGDL_IMAGESDIR=\""$(gdl_images_dir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) 	\
@@ -14,7 +13,8 @@ BUILT_SOURCES = \
 	libgdlmarshal.c \
 	libgdlmarshal.h \
 	libgdltypebuiltins.c \
-	libgdltypebuiltins.h
+	libgdltypebuiltins.h \
+	gdl-stock-icons.h
 
 CLEANFILES =					\
 	libgdltypebuiltins.c			\
@@ -36,7 +36,8 @@ libgdl_headers = \
 	gdl-dock-placeholder.h \
 	gdl-dock-bar.h \
 	gdl-combo-button.h \
-	gdl-stock.h
+	gdl-stock.h \
+	gdl-stock-icons.h
 
 if HAVE_GNOME
 libgdl_headers += \
@@ -85,6 +86,31 @@ noinst_PROGRAMS=test-dock test-combo-button
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-1.la $(XML_LIBS)
 
+test_combo_button_SOURCES = test-combo-button.c
+test_combo_button_LDADD = libgdl-1.la
+
+if HAVE_GNOME
+
+	noinst_PROGRAMS += test-dataview
+
+
+	test_dataview_SOURCES = \
+		gdl-data-view.h \
+		gdl-data-view.c \
+		gdl-data-frame.h \
+		gdl-data-frame.c \
+		gdl-data-model.h \
+		gdl-data-model.c \
+		gdl-data-model-test.h \
+		gdl-data-model-test.c \
+		gdl-data-row.h \
+		gdl-data-row.c \
+		test-dataview.c
+
+	test_dataview_LDADD = libgdl-1.la
+
+endif
+
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
 	$(libgdl_headers) \
@@ -93,8 +119,12 @@ libgdlinclude_HEADERS = \
 gladedir = $(datadir)/gdl/glade
 glade_DATA = layout.glade
 
-imagedir = $(gdl_images_dir)
-image_DATA = \
+STOCK_ICONS = \
+	stock_close_icon stock-close-12.png \
+	stock_menu_left_icon stock-menu-left-12.png \
+	stock_menu_right_icon stock-menu-right-12.png
+
+STOCK_IMAGES = \
 	stock-close-12.png \
 	stock-menu-left-12.png \
 	stock-menu-right-12.png
@@ -104,31 +134,7 @@ EXTRA_DIST = libgdlmarshal.list \
 	tree-contract.xpm \
 	layout.glade \
 	program.xpm static.xpm shared.xpm \
-	$(image_DATA)
-
-if HAVE_GNOME
-
-noinst_PROGRAMS += test-dataview
-
-test_dataview_SOURCES = \
-	gdl-data-view.h \
-	gdl-data-view.c \
-	gdl-data-frame.h \
-	gdl-data-frame.c \
-	gdl-data-model.h \
-	gdl-data-model.c \
-	gdl-data-model-test.h \
-	gdl-data-model-test.c \
-	gdl-data-row.h \
-	gdl-data-row.c \
-	test-dataview.c
-
-test_dataview_LDADD = libgdl-1.la
-
-endif
-
-test_combo_button_SOURCES = test-combo-button.c
-test_combo_button_LDADD = libgdl-1.la
+	$(STOCK_IMAGES)
 
 # enumerations code generation
 
@@ -145,7 +151,7 @@ libgdltypebuiltins.c: $(libgdl_headers)
 			--vtail "  if (!type)\n" \
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
-	$(libgdl_headers) > xgen-gtbec \
+		$(libgdl_headers) > xgen-gtbec \
 	&& cp xgen-gtbec $(@F) \
 	&& rm -f xgen-gtbec
 
@@ -177,4 +183,5 @@ libgdlmarshal.c: libgdlmarshal.h
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
 
-
+gdl-stock-icons.h: $(STOCK_IMAGES)
+	gdk-pixbuf-csource --raw --build-list $(STOCK_ICONS) > $@
