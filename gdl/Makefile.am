@@ -1,10 +1,11 @@
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"Gdl\"				\
 	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
-	-DGDL_IMAGESDIR=\""$(gdl_images_dir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
-	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS)
+	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) 	\
+	$(GNOME_CFLAGS)					\
+	$(EXTRA_CPPFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la
 
@@ -12,7 +13,8 @@ BUILT_SOURCES = \
 	libgdlmarshal.c \
 	libgdlmarshal.h \
 	libgdltypebuiltins.c \
-	libgdltypebuiltins.h
+	libgdltypebuiltins.h \
+	gdl-stock-icons.h
 
 CLEANFILES =					\
 	libgdltypebuiltins.c			\
@@ -23,7 +25,6 @@ CLEANFILES =					\
 libgdl_headers = \
 	gdl.h \
 	gdl-tools.h \
-	gdl-combo-button.h \
 	gdl-dock-object.h \
 	gdl-dock-master.h \
 	gdl-dock.h \
@@ -34,16 +35,19 @@ libgdl_headers = \
 	gdl-dock-layout.h \
 	gdl-dock-placeholder.h \
 	gdl-dock-bar.h \
-	gdl-icons.h \
-	gdl-recent.h \
-	gdl-stock.h
+	gdl-combo-button.h \
+	gdl-stock.h \
+	gdl-stock-icons.h
+
+if HAVE_GNOME
+libgdl_headers += \
+	gdl-icons.h
+endif
 
 libgdl_1_la_SOURCES = \
 	$(libgdl_headers) \
 	gdl-i18n.h \
 	gdl-i18n.c \
-	gdl-tools.c \
-	gdl-combo-button.c \
 	gdl-dock-object.c \
 	gdl-dock-master.c \
 	gdl-dock.c \
@@ -56,22 +60,54 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-layout.c \
 	gdl-dock-placeholder.c \
 	gdl-dock-bar.c \
-	gdl-icons.c \
-	gdl-recent.c \
+	gdl-combo-button.c \
 	gdl-stock.c \
 	libgdltypebuiltins.h \
 	libgdltypebuiltins.c \
 	libgdlmarshal.h \
 	libgdlmarshal.c
 
+if HAVE_GNOME
+libgdl_1_la_SOURCES += \
+	gdl-icons.c
+endif
+
 libgdl_1_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
-	$(XML_LIBS)
+	$(XML_LIBS) \
+	$(GNOME_LIBS)
 
-noinst_PROGRAMS=test-dock test-dataview test-combo-button
+libgdl_1_la_LDFLAGS = $(EXTRA_LDFLAGS)
+
+noinst_PROGRAMS=test-dock test-combo-button
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-1.la $(XML_LIBS)
+
+test_combo_button_SOURCES = test-combo-button.c
+test_combo_button_LDADD = libgdl-1.la
+
+if HAVE_GNOME
+
+	noinst_PROGRAMS += test-dataview
+
+
+	test_dataview_SOURCES = \
+		gdl-data-view.h \
+		gdl-data-view.c \
+		gdl-data-frame.h \
+		gdl-data-frame.c \
+		gdl-data-model.h \
+		gdl-data-model.c \
+		gdl-data-model-test.h \
+		gdl-data-model-test.c \
+		gdl-data-row.h \
+		gdl-data-row.c \
+		test-dataview.c
+
+	test_dataview_LDADD = libgdl-1.la
+
+endif
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
@@ -81,8 +117,12 @@ libgdlinclude_HEADERS = \
 gladedir = $(datadir)/gdl/glade
 glade_DATA = layout.glade
 
-imagedir = $(gdl_images_dir)
-image_DATA = \
+STOCK_ICONS = \
+	stock_close_icon stock-close-12.png \
+	stock_menu_left_icon stock-menu-left-12.png \
+	stock_menu_right_icon stock-menu-right-12.png
+
+STOCK_IMAGES = \
 	stock-close-12.png \
 	stock-menu-left-12.png \
 	stock-menu-right-12.png
@@ -92,25 +132,7 @@ EXTRA_DIST = libgdlmarshal.list \
 	tree-contract.xpm \
 	layout.glade \
 	program.xpm static.xpm shared.xpm \
-	$(image_DATA)
-
-test_dataview_SOURCES = \
-	gdl-data-view.h \
-	gdl-data-view.c \
-	gdl-data-frame.h \
-	gdl-data-frame.c \
-	gdl-data-model.h \
-	gdl-data-model.c \
-	gdl-data-model-test.h \
-	gdl-data-model-test.c \
-	gdl-data-row.h \
-	gdl-data-row.c \
-	test-dataview.c
-
-test_dataview_LDADD = libgdl-1.la
-
-test_combo_button_SOURCES = test-combo-button.c
-test_combo_button_LDADD = libgdl-1.la
+	$(STOCK_IMAGES)
 
 # enumerations code generation
 
@@ -118,7 +140,6 @@ libgdltypebuiltins.c: $(libgdl_headers)
 	@GLIB_MKENUMS@ \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"libgdltypebuiltins.h\"\n\n" \
-                        --fhead "#include \"gdl-dock-bar.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
 			--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
@@ -159,4 +180,7 @@ libgdlmarshal.c: libgdlmarshal.h
 		--prefix=gdl_marshal $(srcdir)/libgdlmarshal.list --body >> xgen-gmc \
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
+
+gdl-stock-icons.h: $(STOCK_IMAGES)
+	gdk-pixbuf-csource --raw --build-list $(STOCK_ICONS) > $@
 

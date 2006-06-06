@@ -26,7 +26,6 @@
 #include "gdl-i18n.h"
 #include <stdlib.h>
 #include <string.h>
-#include <gdk/gdkx.h>
 
 #include "gdl-tools.h"
 #include "gdl-dock.h"

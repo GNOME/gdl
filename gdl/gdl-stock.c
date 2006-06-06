@@ -26,46 +26,47 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkiconfactory.h>
 #include "gdl-stock.h"
+#include "gdl-stock-icons.h"
 
 static GtkIconFactory *gdl_stock_factory = NULL;
 
 static struct {
 	const gchar *stock_id;
-	const gchar *filename;
+	const guint8 *icon_data;
+	const guint data_size;
 }
 gdl_icons[] = 
 {
-	{ GDL_STOCK_CLOSE, "stock-close-12.png" },
-	{ GDL_STOCK_MENU_LEFT, "stock-menu-left-12.png" },
-	{ GDL_STOCK_MENU_RIGHT, "stock-menu-right-12.png" }
+	{ GDL_STOCK_CLOSE, stock_close_icon, sizeof (stock_close_icon) },
+	{ GDL_STOCK_MENU_LEFT, stock_menu_left_icon, sizeof (stock_menu_left_icon) },
+	{ GDL_STOCK_MENU_RIGHT, stock_menu_right_icon, sizeof (stock_menu_right_icon) }
 };
 
 static void
-icon_set_from_file (GtkIconSet       *set,
-		    const gchar      *filename,
+icon_set_from_data (GtkIconSet       *set,
+		    const guint8     *icon_data,
+		    const guint       data_size,
 		    GtkIconSize       size,
 		    gboolean          fallback)
 {
 	GtkIconSource *source;
 	GdkPixbuf     *pixbuf;
-	gchar         *path;
+	GError        *err = NULL;
 
 	source = gtk_icon_source_new ();
 
 	gtk_icon_source_set_size (source, size);
 	gtk_icon_source_set_size_wildcarded (source, FALSE);
 	
-	path = g_build_filename (GDL_IMAGESDIR, filename, NULL);
-	pixbuf = gdk_pixbuf_new_from_file (path, NULL);
-	if (!pixbuf) {
-	    g_warning ("Unable to load stock icon %s", path);
+	pixbuf = gdk_pixbuf_new_from_inline (data_size, icon_data, FALSE, &err);
+	if (err) {
+	    g_warning (err->message);
+	    g_error_free (err);
+	    err = NULL;
 	    g_object_unref (source);
-	    g_free (path);
 	    return;
 	}
 	
-	g_free (path);
-
 	gtk_icon_source_set_pixbuf (source, pixbuf);
 	
 	g_object_unref (pixbuf);
@@ -83,7 +84,8 @@ icon_set_from_file (GtkIconSet       *set,
 static void
 add_icon (GtkIconFactory *factory,
 	  const gchar    *stock_id,
-	  const gchar    *filename)
+	  const guint8   *icon_data, 
+	  const guint     data_size)
 {
 	GtkIconSet *set;
 	gboolean    fallback = FALSE;
@@ -98,7 +100,7 @@ add_icon (GtkIconFactory *factory,
 		fallback = TRUE;
 	}
 	
-	icon_set_from_file (set, filename, GTK_ICON_SIZE_MENU, fallback);
+	icon_set_from_data (set, icon_data, data_size, GTK_ICON_SIZE_MENU, fallback);
 }
 
 void
@@ -115,7 +117,8 @@ gdl_stock_init (void)
 	for (i = 0; i < G_N_ELEMENTS (gdl_icons); i++) {
 		add_icon (gdl_stock_factory,
 			  gdl_icons[i].stock_id,
-			  gdl_icons[i].filename);
+			  gdl_icons[i].icon_data, 
+			  gdl_icons[i].data_size);
 	}
 
 	gtk_icon_factory_add_default (gdl_stock_factory);

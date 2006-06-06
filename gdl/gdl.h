@@ -32,8 +32,7 @@
 #include <gdl/gdl-dock-paned.h>
 #include <gdl/gdl-dock-notebook.h>
 #include <gdl/gdl-dock-tablabel.h>
-#include <gdl/gdl-recent.h>
-#include <gdl/gdl-icons.h>
+#include <gdl/gdl-dock-bar.h>
 #include <gdl/gdl-combo-button.h>
 
 #endif

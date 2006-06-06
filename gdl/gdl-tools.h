@@ -185,3 +185,4 @@ GtkWidget *gdl_button_new_with_stock_image (const char *text,
 G_END_DECLS
 
 #endif
+
