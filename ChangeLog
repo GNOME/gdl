@@ -1,3 +1,7 @@
+2006-06-13  Johannes Schmid <jhs@cvs.gnome.org>
+	
+	* configure.in: Fixed configure script (#344678)
+
 2006-06-01  Johannes Schmid <jhs@cvs.gnome.org>
 
 	* autogen.sh:
