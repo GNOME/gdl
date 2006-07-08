@@ -490,7 +490,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     }
     else {
         GList *l;
-        
+
         /* try to dock the item in all the docks in the ring in turn */
         for (l = master->toplevel_docks; l; l = l->next) {
             dock = GDL_DOCK (l->data);
@@ -505,10 +505,15 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
                 break;
         }
     }
-    
+
+  
     if (!may_dock) {
         GtkRequisition req;
-        
+	/* Special case for GdlDockItems : they must respect the flags */
+	if(GDL_IS_DOCK_ITEM(item)
+	&& GDL_DOCK_ITEM(item)->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING)
+	    return;
+
         dock = NULL;
         my_request.target = GDL_DOCK_OBJECT (
             gdl_dock_object_get_toplevel (request->applicant));
@@ -527,7 +532,15 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
 
         g_value_init (&my_request.extra, GDK_TYPE_RECTANGLE);
         g_value_set_boxed (&my_request.extra, &my_request.rect);
-    };
+    }
+    /* if we want to enforce GDL_DOCK_ITEM_BEH_NEVER_FLOATING		*/
+    /* the item must remain attached to the controller, otherwise	*/
+    /* it could be inserted in another floating dock			*/
+    /* so check for the flag at this moment				*/
+    else if(GDL_IS_DOCK_ITEM(item)
+	&& GDL_DOCK_ITEM(item)->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING
+	&& dock != GDL_DOCK(master->controller))
+	
 
     if (!(my_request.rect.x == request->rect.x &&
           my_request.rect.y == request->rect.y &&

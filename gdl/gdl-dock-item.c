@@ -1466,10 +1466,11 @@ gdl_dock_item_dock_to (GdlDockItem      *item,
     g_return_if_fail (item != NULL);
     g_return_if_fail (item != target);
     g_return_if_fail (target != NULL || position == GDL_DOCK_FLOATING);
-    
+    g_return_if_fail ((item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) == 0 || position != GDL_DOCK_FLOATING);
+
     if (position == GDL_DOCK_FLOATING || !target) {
         GdlDockObject *controller;
-        
+
         if (!gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
             g_warning (_("Attempt to bind an unbound item %p"), item);
             return;
@@ -1611,15 +1612,32 @@ gdl_dock_item_hide_item (GdlDockItem *item)
        restore the position later */
     if (!GDL_DOCK_OBJECT_AUTOMATIC (item)) {
         if (item->_priv->ph)
-            g_object_unref (item->_priv->ph);
+			g_object_unref (item->_priv->ph); 
         
+		gboolean isFloating = FALSE;
+		gint width, height, x, y = 0;
+		
+		GdlDock* dock=NULL;
+		if (dock = GDL_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item)))){
+			g_object_get (dock,
+						  "floating", &isFloating, 
+						  "width", &width,
+						  "height",&height,
+						  "floatx",&x,
+						  "floaty",&y,
+						  NULL);
+		}
         item->_priv->ph = GDL_DOCK_PLACEHOLDER (
             g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
                           "sticky", FALSE,
                           "host", item,
-                          "width", GTK_WIDGET (item)->allocation.width,
-                          "height", GTK_WIDGET (item)->allocation.height,
-                          NULL));
+                          "width", width,
+                          "height", height,
+						  "floating", isFloating,
+						  "floatx", x,
+						  "floaty", y,
+						  NULL));
+		
         g_object_ref (item->_priv->ph);
         gtk_object_sink (GTK_OBJECT (item->_priv->ph));
     }
@@ -1655,20 +1673,48 @@ gdl_dock_item_show_item (GdlDockItem *item)
     g_return_if_fail (item != NULL);
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
-
+			
     if (item->_priv->ph) {
-        gtk_container_add (GTK_CONTAINER (item->_priv->ph), GTK_WIDGET (item));
+		gboolean isFloating=FALSE;
+		gint width,height,x,y=0;
+		g_object_get (G_OBJECT(item->_priv->ph),
+					  "width", &width,
+					  "height", &height,
+					  "floating",&isFloating,
+					  "floatx", &x,
+					  "floaty", &y,
+					  NULL);
+		if (isFloating) {
+			GdlDockObject *controller = gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (item));
+			gdl_dock_add_floating_item (GDL_DOCK (controller),
+										item, x, y, width, height);
+        }else{
+			gtk_container_add (GTK_CONTAINER (item->_priv->ph), GTK_WIDGET (item));
+		}
         g_object_unref (item->_priv->ph);
         item->_priv->ph = NULL;
     }
     else if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
-        GdlDockObject *toplevel = gdl_dock_master_get_controller (
-            GDL_DOCK_OBJECT_GET_MASTER (item));
-        if (toplevel) {
+        GdlDockObject *toplevel;
+
+	toplevel = gdl_dock_master_get_controller (
+	            GDL_DOCK_OBJECT_GET_MASTER (item));
+ 
+	if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
+	    g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
+			GDL_DOCK_OBJECT(item)->name);
+	}
+	else if(toplevel) {
             gdl_dock_object_dock (toplevel, GDL_DOCK_OBJECT (item),
                                   GDL_DOCK_FLOATING, NULL);
         }
+	else
+	    g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
+
     }
+    else
+	g_warning("GdlDockItem %s is not bound. It cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
+
     gtk_widget_show (GTK_WIDGET (item));
 }
 

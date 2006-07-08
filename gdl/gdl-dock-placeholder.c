@@ -86,7 +86,10 @@ enum {
     PROP_HOST,
     PROP_NEXT_PLACEMENT,
     PROP_WIDTH,
-    PROP_HEIGHT
+    PROP_HEIGHT,
+	PROP_FLOATING,
+	PROP_FLOAT_X,
+	PROP_FLOAT_Y
 };
 
 struct _GdlDockPlaceholderPrivate {
@@ -106,6 +109,11 @@ struct _GdlDockPlaceholderPrivate {
     /* connected signal handlers */
     guint             host_detach_handler;
     guint             host_dock_handler;
+	
+	/* Window Coordinates if Dock was floating */
+	gboolean    	floating;
+	gint              floatx;
+	gint              floaty;
 };
 
 
@@ -133,45 +141,67 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
     g_object_class_install_property (
         g_object_class, PROP_STICKY,
         g_param_spec_boolean ("sticky", _("Sticky"),
-                              _("Whether the placeholder will stick to its host or "
-                                "move up the hierarchy when the host is redocked"),
-                              FALSE,
-                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+        					_("Whether the placeholder will stick to its host or "
+                			"move up the hierarchy when the host is redocked"),
+							FALSE,
+       						G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
     
     g_object_class_install_property (
-        g_object_class, PROP_HOST,
+    	g_object_class, PROP_HOST,
         g_param_spec_object ("host", _("Host"),
-                             _("The dock object this placeholder is attached to"),
-                             GDL_TYPE_DOCK_OBJECT,
-                             G_PARAM_READWRITE));
+                            _("The dock object this placeholder is attached to"),
+                            GDL_TYPE_DOCK_OBJECT,
+                            G_PARAM_READWRITE));
     
     /* this will return the top of the placement stack */
     g_object_class_install_property (
         g_object_class, PROP_NEXT_PLACEMENT,
         g_param_spec_enum ("next_placement", _("Next placement"),
-                           _("The position an item will be docked to our host if a "
-                             "request is made to dock to us"),
-                           GDL_TYPE_DOCK_PLACEMENT,
-                           GDL_DOCK_CENTER,
-                           G_PARAM_READWRITE |
-                           GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
+         					_("The position an item will be docked to our host if a "
+           					"request is made to dock to us"),
+                           	GDL_TYPE_DOCK_PLACEMENT,
+                           	GDL_DOCK_CENTER,
+                           	G_PARAM_READWRITE |
+                           	GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
     
     g_object_class_install_property (
         g_object_class, PROP_WIDTH,
         g_param_spec_int ("width", _("Width"),
-                          _("Width for the widget when it's attached to the placeholder"),
-                          -1, G_MAXINT, -1,
-                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
-                          GDL_DOCK_PARAM_EXPORT));
+                          	_("Width for the widget when it's attached to the placeholder"),
+                          	-1, G_MAXINT, -1,
+                          	G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
+                          	GDL_DOCK_PARAM_EXPORT));
     
     g_object_class_install_property (
         g_object_class, PROP_HEIGHT,
         g_param_spec_int ("height", _("Height"),
-                          _("Height for the widget when it's attached to the placeholder"),
-                          -1, G_MAXINT, -1,
-                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
-                          GDL_DOCK_PARAM_EXPORT));
+                     		_("Height for the widget when it's attached to the placeholder"),
+                          	-1, G_MAXINT, -1,
+                          	G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
+                          	GDL_DOCK_PARAM_EXPORT));
+	g_object_class_install_property (
+        g_object_class, PROP_FLOATING,
+		g_param_spec_boolean ("floating", _("Floating Toplevel"),
+                            _("Whether the placeholder is standing in for a "
+                            "floating toplevel dock"),
+                            FALSE,
+                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	g_object_class_install_property (
+        g_object_class, PROP_FLOAT_X,
+        g_param_spec_int ("floatx", _("X-Coordinate"),
+                          	_("X-Coordinate fow dock when floating"),
+                          	-1, G_MAXINT, -1,
+                          	G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY |
+                          	GDL_DOCK_PARAM_EXPORT));
+	g_object_class_install_property (
+        g_object_class, PROP_FLOAT_Y,
+        g_param_spec_int ("floaty", _("Y-Coordinate"),
+                          	_("Y-Coordinate fow dock when floating"),
+                          	-1, G_MAXINT, -1,
+                          	G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY |
+                          	GDL_DOCK_PARAM_EXPORT));
     
+	
     gtk_object_class->destroy = gdl_dock_placeholder_destroy;
     container_class->add = gdl_dock_placeholder_add;
     
@@ -209,8 +239,8 @@ gdl_dock_placeholder_set_property (GObject      *g_object,
             break;
         case PROP_NEXT_PLACEMENT:
             if (ph->_priv) {
-                ph->_priv->placement_stack =
-                    g_slist_prepend (ph->_priv->placement_stack,
+            	ph->_priv->placement_stack =
+            			g_slist_prepend (ph->_priv->placement_stack,
                                      GINT_TO_POINTER (g_value_get_enum (value)));
             }
             break;
@@ -220,9 +250,18 @@ gdl_dock_placeholder_set_property (GObject      *g_object,
         case PROP_HEIGHT:
             ph->_priv->height = g_value_get_int (value);
             break;
+		case PROP_FLOATING:
+			ph->_priv->floating = g_value_get_boolean (value);
+			break;
+		case PROP_FLOAT_X:
+			ph->_priv->floatx = g_value_get_int (value);
+			break;
+		case PROP_FLOAT_Y:
+			ph->_priv->floaty = g_value_get_int (value);
+			break;
         default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
-            break;
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
+			break;
     }
 }
 
@@ -258,6 +297,15 @@ gdl_dock_placeholder_get_property (GObject    *g_object,
             break;
         case PROP_HEIGHT:
             g_value_set_int (value, ph->_priv->height);
+            break;
+		case PROP_FLOATING:
+			g_value_set_boolean (value, ph->_priv->floating);
+			break;
+		case PROP_FLOAT_X:
+            g_value_set_int (value, ph->_priv->floatx);
+            break;
+        case PROP_FLOAT_Y:
+            g_value_set_int (value, ph->_priv->floaty);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
@@ -487,8 +535,8 @@ gdl_dock_placeholder_present (GdlDockObject *object,
     return;
 }
 
-/* ----- Public interface ----- */
-
+/* ----- Public interface ----- */ 
+								   
 GtkWidget * 
 gdl_dock_placeholder_new (gchar            *name,
                           GdlDockObject    *object,

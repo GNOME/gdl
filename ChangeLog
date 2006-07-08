@@ -1,3 +1,13 @@
+2006-07-08  Fredrik Axelsson <fraxbe@gmail.com>
+
+	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>
+
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock-placeholder.c:
+	
+	Make Gdl able to restore "floating" docks
+
 2006-06-13  Johannes Schmid <jhs@cvs.gnome.org>
 	
 	* configure.in: Fixed configure script (#344678)
