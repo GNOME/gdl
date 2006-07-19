@@ -1141,8 +1141,14 @@ gdl_dock_item_dock (GdlDockObject    *object,
 {
     GdlDockObject *new_parent, *parent;
     gboolean       add_ourselves_first;
-    
+
+    guint	   available_space=0;
+    gint	   pref_size=-1;
+    guint	   splitpos=0;
+    GtkRequisition req;
+  	
     parent = gdl_dock_object_get_parent_object (object);
+    gdl_dock_item_preferred_size (GDL_DOCK_ITEM (requestor), &req);
 
     switch (position) {
         case GDL_DOCK_TOP:
@@ -1152,6 +1158,9 @@ gdl_dock_item_dock (GdlDockObject    *object,
                                        "orientation", GTK_ORIENTATION_VERTICAL,
                                        NULL);
             add_ourselves_first = (position == GDL_DOCK_BOTTOM);
+            if (parent)
+            	available_space=GTK_WIDGET(parent)->allocation.height;
+            pref_size = req.height;
             break;
         case GDL_DOCK_LEFT:
         case GDL_DOCK_RIGHT:
@@ -1159,6 +1168,9 @@ gdl_dock_item_dock (GdlDockObject    *object,
                                        "orientation", GTK_ORIENTATION_HORIZONTAL,
                                        NULL);
             add_ourselves_first = (position == GDL_DOCK_RIGHT);
+            if(parent)
+            	available_space = GTK_WIDGET(parent)->allocation.width;
+            pref_size = req.width;
             break;
         case GDL_DOCK_CENTER:
             new_parent = g_object_new (gdl_dock_object_type_from_nick ("notebook"),
@@ -1198,9 +1210,11 @@ gdl_dock_item_dock (GdlDockObject    *object,
     if (add_ourselves_first) {
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (object));
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (requestor));
+	splitpos = available_space - pref_size;
     } else {
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (requestor));
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (object));
+        splitpos = pref_size;
     }
 
     /* add the new parent to the parent */
@@ -1218,6 +1232,8 @@ gdl_dock_item_dock (GdlDockObject    *object,
         g_object_set (G_OBJECT (new_parent),
                       "position", g_value_get_uint (other_data),
                       NULL);
+    }else if (splitpos > 0 && splitpos < available_space) {
+			g_object_set (G_OBJECT (new_parent), "position", splitpos, NULL);
     }
     
     GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_IN_REFLOW);
@@ -1615,10 +1631,12 @@ gdl_dock_item_hide_item (GdlDockItem *item)
 			g_object_unref (item->_priv->ph); 
         
 		gboolean isFloating = FALSE;
-		gint width, height, x, y = 0;
+		gint width=0, height=0, x=0, y = 0;
 		
-		GdlDock* dock=NULL;
-		if (dock = GDL_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item)))){
+		
+		if( GDL_IS_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item))))
+		{
+			GdlDock* dock = GDL_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item)));
 			g_object_get (dock,
 						  "floating", &isFloating, 
 						  "width", &width,
@@ -1626,6 +1644,9 @@ gdl_dock_item_hide_item (GdlDockItem *item)
 						  "floatx",&x,
 						  "floaty",&y,
 						  NULL);
+		}else{
+			item->_priv->preferred_width=GTK_WIDGET (item)->allocation.width;
+			item->_priv->preferred_height=GTK_WIDGET (item)->allocation.height;
 		}
         item->_priv->ph = GDL_DOCK_PLACEHOLDER (
             g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
@@ -1637,7 +1658,6 @@ gdl_dock_item_hide_item (GdlDockItem *item)
 						  "floatx", x,
 						  "floaty", y,
 						  NULL));
-		
         g_object_ref (item->_priv->ph);
         gtk_object_sink (GTK_OBJECT (item->_priv->ph));
     }
@@ -1676,7 +1696,7 @@ gdl_dock_item_show_item (GdlDockItem *item)
 			
     if (item->_priv->ph) {
 		gboolean isFloating=FALSE;
-		gint width,height,x,y=0;
+		gint width = 0, height = 0, x= 0, y = 0;
 		g_object_get (G_OBJECT(item->_priv->ph),
 					  "width", &width,
 					  "height", &height,

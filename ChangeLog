@@ -1,3 +1,12 @@
+2006-07-19  Fredrik Axelsson <fraxbe@gmail.com>
+
+	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>
+
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-master.c
+	- Fixed a type which prevent the preview window from beeing shown
+	- Fixed restoring of splitter positions
+
 2006-07-08  Fredrik Axelsson <fraxbe@gmail.com>
 
 	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>

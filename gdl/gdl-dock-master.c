@@ -540,7 +540,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     else if(GDL_IS_DOCK_ITEM(item)
 	&& GDL_DOCK_ITEM(item)->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING
 	&& dock != GDL_DOCK(master->controller))
-	
+	    return;
 
     if (!(my_request.rect.x == request->rect.x &&
           my_request.rect.y == request->rect.y &&
@@ -594,7 +594,7 @@ gdl_dock_master_xor_rect (GdlDockMaster *master)
     }
     
     rect = &master->_priv->drag_request->rect;
-    window = gdk_window_lookup (gdk_get_default_root_window ());
+    window = gdk_get_default_root_window ();
 
     if (!master->_priv->root_xor_gc) {
         GdkGCValues values;
