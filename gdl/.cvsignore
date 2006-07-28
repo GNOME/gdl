@@ -15,3 +15,4 @@ libgdltypebuiltins.*
 layout.xml
 test-dataview
 test-combo-button
+gdl-stock-icons.h
