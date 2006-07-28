@@ -1,3 +1,8 @@
+2006-07-28  Johannes Schmid <jhs@gnome.org>
+
+	* configure.in: Fixed --disable-gnome
+	* autogen.sh: Always use automake-1.9
+
 2006-07-19  Fredrik Axelsson <fraxbe@gmail.com>
 
 	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>

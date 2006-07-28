@@ -1,6 +1,8 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
 
+AUTOMAKE=automake-1.9
+
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
@@ -67,9 +69,9 @@ fi
   }
 }
 
-(automake --version) < /dev/null > /dev/null 2>&1 || {
+($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
   echo
-  echo "**Error**: You must have \`automake' installed."
+  echo "**Error**: You must have $AUTOMAKE installed."
   echo "You can get it from: ftp://ftp.gnu.org/pub/gnu/"
   DIE=1
   NO_AUTOMAKE=yes
@@ -136,7 +138,7 @@ do
 	autoheader
       fi
       echo "Running automake --gnu $am_opt ..."
-      automake --add-missing --gnu $am_opt
+      $AUTOMAKE --add-missing --gnu $am_opt
       echo "Running autoconf ..."
       autoconf
     )
