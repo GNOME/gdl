@@ -1,3 +1,10 @@
+2006-07-31  Johannes Schmid <jhs@gnome.org>
+
+	* gdl/gdl-tools.c (removed):
+	* gdl/gdl-tools.h:
+	
+	Removed bonobo-depency in gdl-tools.h and remove gdl-tools.c
+
 2006-07-28  Johannes Schmid <jhs@gnome.org>
 
 	* configure.in: Fixed --disable-gnome
