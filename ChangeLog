@@ -1,3 +1,12 @@
+2006-09-18  Johannes Schmid <jhs@gnome.org>
+
+	* configure.in:
+	* gdl-gnome-1.0.pc.in (added):
+	* gdl/Makefile.am:
+	
+	Split the library into libgdl (gtk only) and libgdl-gnome (with gnome support)
+	Bumped version to 0.7.0 (because of obvious API changes)
+	
 2006-07-31  Johannes Schmid <jhs@gnome.org>
 
 	* gdl/gdl-tools.c (removed):

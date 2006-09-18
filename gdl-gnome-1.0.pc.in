@@ -4,9 +4,9 @@ libdir=@libdir@
 includedir=@includedir@/libgdl-1.0
 idldir=@datadir@/idl/libgdl-1.0
 
-Name: gdl
-Description: Gnome DevTool Libraries
-Version: @VERSION@@GTK_ONLY@
+Name: gdl-gnome
+Description: Gnome DevTool Libraries - Gnome part
+Version: @VERSION@
 Requires: libbonoboui-2.0 libgnome-2.0 gtk+-2.0 libxml-2.0 libglade-2.0
-Libs: -L${libdir} -lgdl-1
+Libs: -L${libdir} -lgdl-1 -lgdl-gnome-1
 Cflags: -I${includedir}

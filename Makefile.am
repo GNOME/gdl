@@ -9,7 +9,7 @@ EXTRA_DIST = 			\
 	intltool-update.in
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gdl-1.0.pc
+pkgconfig_DATA = gdl-1.0.pc gdl-gnome-1.0.pc
 
 CLEANFILES = gdl-1.0.pc intltool-extract intltool-merge intltool-update
 
