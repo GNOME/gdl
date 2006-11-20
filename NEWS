@@ -1,3 +1,11 @@
+Changes in 0.7.0
+
+* Added support to build without GNOME
+* Split into libgdl and libgdl-gnome
+* Removed some deprecated API
+* Bug fixes for window positioning (thanks for the patches)
+* Some fixes to build system
+
 Changes in 0.6.1
 
 * Some build fixes and translation updates
