@@ -1,3 +1,11 @@
+2006-12-03  Nickolay V. Shmyrev  <nshmyrev@yandex.ru>
+
+	* POTFILES.in:
+	* POTFILES.skip:
+	
+	Remove deleted files from POTFILES. Fixes
+	bug #377062.
+
 2006-11-22  Gabor Kelemen  <kelemeng@gnome.hu>
 
 	* hu.po: Translation added.
