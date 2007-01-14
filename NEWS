@@ -5,7 +5,10 @@ Changes in 0.7.0
 * Removed some deprecated API
 * Bug fixes for window positioning (thanks for the patches)
 * Some fixes to build system
-
+* Added dockbar style setting.
+* Restore dockitem demensions when showing them.
+* Improved restoring dockitem placements when showing them.
+ 
 Changes in 0.6.1
 
 * Some build fixes and translation updates
