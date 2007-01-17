@@ -933,3 +933,16 @@ void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
 
     gtk_widget_queue_resize (GTK_WIDGET (dockbar));
 }
+
+void gdl_dock_bar_set_style(GdlDockBar* dockbar,
+			    GdlDockBarStyle style)
+{
+    g_object_set(G_OBJECT(dockbar), "dockbar-style", style, NULL);
+}
+
+GdlDockBarStyle gdl_dock_bar_get_style(GdlDockBar* dockbar)
+{
+    GdlDockBarStyle style;
+    g_object_get(G_OBJECT(dockbar), "dockbar-style", &style, NULL);
+    return style;
+}

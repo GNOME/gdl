@@ -1,3 +1,10 @@
+2007-01-17  Johannes Schmid <jhs@gnome.org>
+
+  * gdl/gdl-dock-bar.c
+  * gdl/test-dock.c:
+  
+  Added gdl_dock_bar_set/get_style (fix #397562)
+
 2007-01-16  Pema Geyleg  <pema.geyleg@gmail.com>
 
 	* configure.in: Added 'dz' to ALL_LINGUAS.

@@ -16,6 +16,7 @@
 #include "gdl-dock-placeholder.h"
 #include "gdl-dock-bar.h"
 
+#include <glib.h>
 
 /* ---- end of debugging code */
 
@@ -147,6 +148,7 @@ main (int argc, char **argv)
 
 	/* create the dockbar */
 	dockbar = gdl_dock_bar_new (GDL_DOCK (dock));
+  gdl_dock_bar_set_style(GDL_DOCK_BAR(dockbar), GDL_DOCK_BAR_TEXT);
 
 	box = gtk_hbox_new (FALSE, 5);
 	gtk_box_pack_start (GTK_BOX (table), box, TRUE, TRUE, 0);
