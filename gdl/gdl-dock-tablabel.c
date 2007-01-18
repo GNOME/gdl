@@ -204,8 +204,8 @@ gdl_dock_tablabel_set_property (GObject      *object,
 
                 g_object_get (tablabel->item,
                               "locked", &locked,
-                              "long_name", &long_name,
-                              "grip_size", &tablabel->drag_handle_size,
+                              "long-name", &long_name,
+                              "grip-size", &tablabel->drag_handle_size,
                               NULL);
 
                 if (locked)
@@ -257,8 +257,8 @@ gdl_dock_tablabel_item_notify (GObject    *master,
     
     g_object_get (master,
                   "locked", &locked,
-                  "grip_size", &tablabel->drag_handle_size,
-                  "long_name", &label,
+                  "grip-size", &tablabel->drag_handle_size,
+                  "long-name", &label,
                   NULL);
 
     if (locked)
@@ -372,7 +372,7 @@ gdl_dock_tablabel_paint (GtkWidget      *widget,
         gtk_paint_handle (widget->style, widget->window, 
                           tablabel->active ? GTK_STATE_NORMAL : GTK_STATE_ACTIVE, 
                           GTK_SHADOW_NONE,
-                          &dest, widget, "dock_tablabel",
+                          &dest, widget, "dock-tablabel",
                           rect.x, rect.y, rect.width, rect.height,
                           GTK_ORIENTATION_VERTICAL);
     };

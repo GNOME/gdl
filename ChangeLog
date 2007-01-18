@@ -1,9 +1,40 @@
+2007-01-18  Johannes Schmid <jhs@gnome.org>
+
+	* po/LINGUAS
+	* configure.in
+	* autogen.sh:
+	Applied http://live.gnome.org/GnomeGoals/PoLinguas
+	Bumped version to 0.7.1
+	
+	* NEWS:
+	Updated for release
+
+2007-01-17  Nickolay V. Shmyrev <nshmyrev@yandex.ru>
+
+	Reviewed by Johannes Schmid <jhs@gnome.org>:
+	* gdl/README.gdl-dock
+	* gdl/gdl-combo-button.c
+	* gdl/gdl-data-view.c
+	* gdl/gdl-dock-bar.c
+	* gdl/gdl-dock-item-grip.c
+	* gdl/gdl-dock-item.c
+	* gdl/gdl-dock-layout.c
+	* gdl/gdl-dock-master.c
+	* gdl/gdl-dock-notebook.c
+	* gdl/gdl-dock-object.c
+	* gdl/gdl-dock-paned.c
+	* gdl/gdl-dock-placeholder.c
+	* gdl/gdl-dock-tablabel.c
+	* gdl/gdl-dock.c
+	
+	Bug 381845 – Grip doesn't change the title when long_name is changed
+
 2007-01-17  Johannes Schmid <jhs@gnome.org>
 
-  * gdl/gdl-dock-bar.c
-  * gdl/test-dock.c:
-  
-  Added gdl_dock_bar_set/get_style (fix #397562)
+	* gdl/gdl-dock-bar.c
+	* gdl/test-dock.c:
+
+	Added gdl_dock_bar_set/get_style (fix #397562)
 
 2007-01-16  Pema Geyleg  <pema.geyleg@gmail.com>
 

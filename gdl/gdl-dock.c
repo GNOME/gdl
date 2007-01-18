@@ -179,7 +179,7 @@ gdl_dock_class_init (GdlDockClass *klass)
     
     g_object_class_install_property (
         g_object_class, PROP_DEFAULT_TITLE,
-        g_param_spec_string ("default_title", _("Default title"),
+        g_param_spec_string ("default-title", _("Default title"),
                              _("Default title for the newly created floating docks"),
                              NULL,
                              G_PARAM_READWRITE));
@@ -243,7 +243,7 @@ gdl_dock_class_init (GdlDockClass *klass)
     /* signals */
 
     dock_signals [LAYOUT_CHANGED] = 
-        g_signal_new ("layout_changed", 
+        g_signal_new ("layout-changed", 
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (GdlDockClass, layout_changed),
@@ -340,7 +340,7 @@ gdl_dock_constructor (GType                  type,
             /* set the title and connect to the long_name notify queue
                so we can reset the title when this prop changes */
             gdl_dock_set_title (dock);
-            g_signal_connect (dock, "notify::long_name",
+            g_signal_connect (dock, "notify::long-name",
                               (GCallback) gdl_dock_notify_cb, NULL);
             
             /* set transient for the first dock if that is a non-floating dock */
@@ -385,7 +385,7 @@ gdl_dock_set_property  (GObject      *object,
         case PROP_DEFAULT_TITLE:
             if (GDL_DOCK_OBJECT (object)->master)
                 g_object_set (GDL_DOCK_OBJECT (object)->master,
-                              "default_title", g_value_get_string (value),
+                              "default-title", g_value_get_string (value),
                               NULL);
             break;
         case PROP_WIDTH:
@@ -435,7 +435,7 @@ gdl_dock_get_property  (GObject      *object,
             if (GDL_DOCK_OBJECT (object)->master) {
                 gchar *default_title;
                 g_object_get (GDL_DOCK_OBJECT (object)->master,
-                              "default_title", &default_title,
+                              "default-title", &default_title,
                               NULL);
 #if GLIB_CHECK_VERSION(2,3,0)
                 g_value_take_string (value, default_title);
@@ -478,12 +478,12 @@ gdl_dock_set_title (GdlDock *dock)
         title = object->long_name;
     }
     else if (object->master) {
-        g_object_get (object->master, "default_title", &title, NULL);
+        g_object_get (object->master, "default-title", &title, NULL);
         free_title = TRUE;
     }
 
     if (!title && dock->root) {
-        g_object_get (dock->root, "long_name", &title, NULL);
+        g_object_get (dock->root, "long-name", &title, NULL);
         free_title = TRUE;
     }
     

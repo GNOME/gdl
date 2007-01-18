@@ -156,7 +156,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
     /* this will return the top of the placement stack */
     g_object_class_install_property (
         g_object_class, PROP_NEXT_PLACEMENT,
-        g_param_spec_enum ("next_placement", _("Next placement"),
+        g_param_spec_enum ("next-placement", _("Next placement"),
          					_("The position an item will be docked to our host if a "
            					"request is made to dock to us"),
                            	GDL_TYPE_DOCK_PLACEMENT,
@@ -555,11 +555,11 @@ gdl_dock_placeholder_new (gchar            *name,
         gdl_dock_placeholder_attach (ph, object);
         if (position == GDL_DOCK_NONE)
             position = GDL_DOCK_CENTER;
-        g_object_set (G_OBJECT (ph), "next_placement", position, NULL);
+        g_object_set (G_OBJECT (ph), "next-placement", position, NULL);
         if (GDL_IS_DOCK (object)) {
             /* the top placement will be consumed by the toplevel
                dock, so add a dummy placement */
-            g_object_set (G_OBJECT (ph), "next_placement", GDL_DOCK_CENTER, NULL);
+            g_object_set (G_OBJECT (ph), "next-placement", GDL_DOCK_CENTER, NULL);
         }
         /* try a recursion */
         do_excursion (ph);

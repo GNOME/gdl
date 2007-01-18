@@ -1,3 +1,11 @@
+Changes in 0.7.1
+
+* Use canonical property names (#381845)
+* fix undefined symbol in python bindings (#397562)
+* New translation: dz (Pema Geyleg  <pema.geyleg@gmail.com>)
+
+This release is meant a bug-fix release for proper python-binding
+
 Changes in 0.7.0
 
 * Added support to build without GNOME

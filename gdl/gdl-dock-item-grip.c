@@ -85,14 +85,14 @@ ensure_title_and_icon_pixbuf (GdlDockItemGrip *grip)
     
     /* get long name property from the dock object */
     if (!grip->_priv->title) {
-        g_object_get (G_OBJECT (grip->item), "long_name", &grip->_priv->title, NULL);
+        g_object_get (G_OBJECT (grip->item), "long-name", &grip->_priv->title, NULL);
         if (!grip->_priv->title)
             grip->_priv->title = g_strdup ("");
     }
 
     /* retrieve stock pixbuf, if any */
     if (!grip->_priv->icon_pixbuf_valid) {
-        g_object_get (G_OBJECT (grip->item), "stock_id", &stock_id, NULL);
+        g_object_get (G_OBJECT (grip->item), "stock-id", &stock_id, NULL);
         
         if (stock_id) {
             grip->_priv->icon_pixbuf = gtk_widget_render_icon (GTK_WIDGET (grip),
@@ -185,7 +185,7 @@ gdl_dock_item_grip_item_notify (GObject    *master,
     
     grip = GDL_DOCK_ITEM_GRIP (data);
 
-    if (strcmp (pspec->name, "stock_id") == 0) {
+    if (strcmp (pspec->name, "stock-id") == 0) {
         if (grip->_priv->icon_pixbuf) {
             g_object_unref (grip->_priv->icon_pixbuf);
             grip->_priv->icon_pixbuf = NULL;
@@ -193,11 +193,13 @@ gdl_dock_item_grip_item_notify (GObject    *master,
         grip->_priv->icon_pixbuf_valid = FALSE;
         ensure_title_and_icon_pixbuf (grip);
 
-    } else if (strcmp (pspec->name, "long_name") == 0) {
+    } else if (strcmp (pspec->name, "long-name") == 0) {
         g_free (grip->_priv->title);
+        g_object_unref (grip->_priv->title_layout);
+        grip->_priv->title_layout = NULL;
         grip->_priv->title = NULL;
         ensure_title_and_icon_pixbuf (grip);
-
+	gtk_widget_queue_draw (GTK_WIDGET (grip));
     } else if (strcmp (pspec->name, "behavior") == 0) {
 	cursor = FALSE;
         if (grip->_priv->close_button) {

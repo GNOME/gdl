@@ -186,7 +186,7 @@ gdl_dock_notebook_instance_init (GdlDockNotebook *notebook)
     item->child = gtk_notebook_new ();
     gtk_widget_set_parent (item->child, GTK_WIDGET (notebook));
     gtk_notebook_set_tab_pos (GTK_NOTEBOOK (item->child), GTK_POS_BOTTOM);
-    g_signal_connect (item->child, "switch_page",
+    g_signal_connect (item->child, "switch-page",
                       (GCallback) gdl_dock_notebook_switch_page_cb, (gpointer) item);
     g_signal_connect (item->child, "notify::page",
                       (GCallback) gdl_dock_notebook_notify_cb, (gpointer) item);
@@ -288,7 +288,7 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
     if (GDL_DOCK_ITEM_USER_ACTION (notebook) &&
         GDL_DOCK_OBJECT (notebook)->master)
         g_signal_emit_by_name (GDL_DOCK_OBJECT (notebook)->master,
-                               "layout_changed");
+                               "layout-changed");
 }
 
 static void
@@ -388,7 +388,7 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             
             label = gdl_dock_item_get_tablabel (requestor_item);
             if (!label) {
-                g_object_get (requestor_item, "long_name", &name, NULL);
+                g_object_get (requestor_item, "long-name", &name, NULL);
                 label = gtk_label_new (name);
                 g_free (name);
                 gdl_dock_item_set_tablabel (requestor_item, label);

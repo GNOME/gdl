@@ -280,14 +280,14 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
 
     g_object_class_install_property (
         g_object_class, PROP_PREFERRED_WIDTH,
-        g_param_spec_int ("preferred_width", _("Preferred width"),
+        g_param_spec_int ("preferred-width", _("Preferred width"),
                           _("Preferred width for the dock item"),
                           -1, G_MAXINT, -1,
                           G_PARAM_READWRITE));
 
     g_object_class_install_property (
         g_object_class, PROP_PREFERRED_HEIGHT,
-        g_param_spec_int ("preferred_height", _("Preferred height"),
+        g_param_spec_int ("preferred-height", _("Preferred height"),
                           _("Preferred height for the dock item"),
                           -1, G_MAXINT, -1,
                           G_PARAM_READWRITE));
@@ -295,7 +295,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     /* signals */
     
     gdl_dock_item_signals [DOCK_DRAG_BEGIN] = 
-        g_signal_new ("dock_drag_begin",
+        g_signal_new ("dock-drag-begin",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_FIRST,
                       G_STRUCT_OFFSET (GdlDockItemClass, dock_drag_begin),
@@ -306,7 +306,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                       0);
 
     gdl_dock_item_signals [DOCK_DRAG_MOTION] = 
-        g_signal_new ("dock_drag_motion",
+        g_signal_new ("dock-drag-motion",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_FIRST,
                       G_STRUCT_OFFSET (GdlDockItemClass, dock_drag_motion),
@@ -426,7 +426,7 @@ gdl_dock_item_set_property  (GObject      *g_object,
             if ((old_beh ^ item->behavior) & GDL_DOCK_ITEM_BEH_LOCKED) {
                 if (GDL_DOCK_OBJECT_GET_MASTER (item))
                     g_signal_emit_by_name (GDL_DOCK_OBJECT_GET_MASTER (item),
-                                           "layout_changed");
+                                           "layout-changed");
                 g_object_notify (g_object, "locked");
                 gdl_dock_item_showhide_grip (item);
             }
@@ -448,7 +448,7 @@ gdl_dock_item_set_property  (GObject      *g_object,
 
                 if (GDL_DOCK_OBJECT_GET_MASTER (item))
                     g_signal_emit_by_name (GDL_DOCK_OBJECT_GET_MASTER (item),
-                                           "layout_changed");
+                                           "layout-changed");
             }
             break;
         }
@@ -1443,7 +1443,7 @@ gdl_dock_item_new (const gchar         *name,
 
     item = GDL_DOCK_ITEM (g_object_new (GDL_TYPE_DOCK_ITEM, 
                                         "name", name, 
-                                        "long_name", long_name,
+                                        "long-name", long_name,
                                         "behavior", behavior,
                                         NULL));
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_AUTOMATIC);
@@ -1462,8 +1462,8 @@ gdl_dock_item_new_with_stock (const gchar         *name,
 
     item = GDL_DOCK_ITEM (g_object_new (GDL_TYPE_DOCK_ITEM, 
                                         "name", name, 
-                                        "long_name", long_name,
-                                        "stock_id", stock_id,
+                                        "long-name", long_name,
+                                        "stock-id", stock_id,
                                         "behavior", behavior,
                                         NULL));
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_AUTOMATIC);

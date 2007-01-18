@@ -282,7 +282,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     else
         box = gtk_vbox_new (FALSE, 0);
     
-    g_object_get (item, "stock_id", &stock_id, "long_name", &name, NULL);
+    g_object_get (item, "stock-id", &stock_id, "long-name", &name, NULL);
 
     if (dockbar->_priv->dockbar_style == GDL_DOCK_BAR_TEXT ||
         dockbar->_priv->dockbar_style == GDL_DOCK_BAR_BOTH) {
@@ -395,7 +395,7 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
     dockbar->_priv->master = master;
     if (dockbar->_priv->master) {
         g_object_ref (dockbar->_priv->master);
-        g_signal_connect (dockbar->_priv->master, "layout_changed",
+        g_signal_connect (dockbar->_priv->master, "layout-changed",
                           G_CALLBACK (gdl_dock_bar_layout_changed_cb),
                           dockbar);
     }

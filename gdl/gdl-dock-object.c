@@ -124,14 +124,14 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
 
     g_object_class_install_property (
         g_object_class, PROP_LONG_NAME,
-        g_param_spec_string ("long_name", _("Long name"),
+        g_param_spec_string ("long-name", _("Long name"),
                              _("Human readable name for the dock object"),
                              NULL,
                              G_PARAM_READWRITE));
 
     g_object_class_install_property (
         g_object_class, PROP_STOCK_ID,
-        g_param_spec_string ("stock_id", _("Stock Icon"),
+        g_param_spec_string ("stock-id", _("Stock Icon"),
                              _("Stock icon for the dock object"),
                              NULL,
                              G_PARAM_READWRITE));

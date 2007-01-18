@@ -336,7 +336,7 @@ update_items_model (GdlDockLayout *layout)
                 if (l) {
                     /* found, update data */
                     g_object_get (item, 
-                                  "long_name", &long_name, 
+                                  "long-name", &long_name, 
                                   "locked", &locked, 
                                   NULL);
                     gtk_list_store_set (store, &iter, 
@@ -368,7 +368,7 @@ update_items_model (GdlDockLayout *layout)
         GdlDockObject *object = l->data;
         
         g_object_get (object, 
-                      "long_name", &long_name, 
+                      "long-name", &long_name, 
                       "locked", &locked, 
                       NULL);
         gtk_list_store_append (store, &iter);
@@ -692,7 +692,7 @@ gdl_dock_layout_construct_layouts_ui (GdlDockLayout *layout)
     ui_data->layout = layout;
     g_object_add_weak_pointer (G_OBJECT (layout),
                                (gpointer *) &ui_data->layout);
-    g_object_set_data (G_OBJECT (container), "ui_data", ui_data);
+    g_object_set_data (G_OBJECT (container), "ui-data", ui_data);
     
     /* get ui widget references */
     layouts_list = glade_xml_get_widget (gui, "layouts_list");
@@ -1151,7 +1151,7 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
     layout->master = master;
     if (layout->master) {
         g_object_ref (layout->master);
-        g_signal_connect (layout->master, "layout_changed",
+        g_signal_connect (layout->master, "layout-changed",
                           (GCallback) gdl_dock_layout_layout_changed_cb,
                           layout);
     }

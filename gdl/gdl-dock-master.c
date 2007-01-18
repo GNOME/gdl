@@ -129,7 +129,7 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
 
     g_object_class_install_property (
         g_object_class, PROP_DEFAULT_TITLE,
-        g_param_spec_string ("default_title", _("Default title"),
+        g_param_spec_string ("default-title", _("Default title"),
                              _("Default title for newly created floating docks"),
                              NULL,
                              G_PARAM_READWRITE));
@@ -144,7 +144,7 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
                           G_PARAM_READWRITE));
 
     master_signals [LAYOUT_CHANGED] = 
-        g_signal_new ("layout_changed", 
+        g_signal_new ("layout-changed", 
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (GdlDockMasterClass, layout_changed),
@@ -630,10 +630,10 @@ gdl_dock_master_layout_changed (GdlDockMaster *master)
 {
     g_return_if_fail (GDL_IS_DOCK_MASTER (master));
 
-    /* emit "layout_changed" on the controller to notify the user who
+    /* emit "layout-changed" on the controller to notify the user who
      * normally shouldn't have access to us */
     if (master->controller)
-        g_signal_emit_by_name (master->controller, "layout_changed");
+        g_signal_emit_by_name (master->controller, "layout-changed");
 
     /* remove the idle handler if there is one */
     if (master->_priv->idle_layout_changed_id) {

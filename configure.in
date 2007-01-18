@@ -11,7 +11,7 @@ AM_CONFIG_HEADER(config.h)
 
 GDL_MAJOR_VERSION=0
 GDL_MINOR_VERSION=7
-GDL_MICRO_VERSION=0
+GDL_MICRO_VERSION=1
 PACKAGE=gdl
 GDL_VERSION=$GDL_MAJOR_VERSION.$GDL_MINOR_VERSION.$GDL_MICRO_VERSION
 
@@ -22,8 +22,6 @@ dnl the better solution; this does the trick for automake-1.4
 dnl gnome-autogen.sh sets ACLOCAL_FLAGS, which points to the cvs gnome
 dnl autoconf macros
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
-
-AC_PROG_INTLTOOL
 
 AC_SUBST(GDL_MAJOR_VERSION)
 AC_SUBST(GDL_MINOR_VERSION)
@@ -139,10 +137,11 @@ AC_SUBST(GLIB_GENMARSHAL)
 GLIB_MKENUMS="`$PKG_CONFIG --variable=glib_mkenums glib-2.0`"
 AC_SUBST(GLIB_MKENUMS)
 
-ALL_LINGUAS="am az ca cs da de dz el en_CA en_GB es fi fr ga hr hu it ja mk ml nb ne nl pa pl pt pt_BR ru rw sk sq sr sr@Latn sv vi zh_CN"
+ALL_LINGUAS=""
 GETTEXT_PACKAGE=gdl-1
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
+IT_PROG_INTLTOOL([0.35.0])
 
 AM_GLIB_GNU_GETTEXT
 AM_GLIB_DEFINE_LOCALEDIR(GNOMELOCALEDIR)

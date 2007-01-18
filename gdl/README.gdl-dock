@@ -47,7 +47,7 @@ A DockObject has:
 - a name.  If the object is manual the name can be used to recall the
   object from any other object in the ring ("name" property).
 
-- a long, descriptive name ("long_name" property).
+- a long, descriptive name ("long-name" property).
 
 A DockObject can be:
 
@@ -139,7 +139,7 @@ GdlDock
   "floating" (gboolean, construct-only): whether the dock is floating in
   its own window or not.
 
-  "default_title" (gchar, read-write): title for new floating docks.
+  "default-title" (gchar, read-write): title for new floating docks.
   This property is proxied to the master, which truly holds it.  
 
 The title for the floating docks is: the user supplied title
@@ -149,7 +149,7 @@ The title for the floating docks is: the user supplied title
 
 - Signals:
 
-  "layout_changed": emitted when the user changed the layout of the
+  "layout-changed": emitted when the user changed the layout of the
   dock somehow.
 
 

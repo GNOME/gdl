@@ -414,7 +414,7 @@ gdl_data_view_class_init (GdlDataViewClass *klass)
 	object_class->destroy = gdl_data_view_destroy;
 
 	gtk_widget_class_install_style_property (widget_class,
-						 g_param_spec_int ("expander_size",
+						 g_param_spec_int ("expander-size",
 								   _("Expander Size"),
 								   _("Size of the expander arrow."),
 								   0, 

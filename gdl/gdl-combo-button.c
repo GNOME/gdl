@@ -50,7 +50,7 @@ default_button_clicked_cb (GtkButton *button,
 
 	if (!priv->menu_popped_up)
 		g_signal_emit_by_name (G_OBJECT (combo),
-				       "activate_default", NULL);
+				       "activate-default", NULL);
 }
 
 static gboolean
@@ -245,7 +245,7 @@ gdl_combo_button_class_init (GdlComboButtonClass *klass)
 
 	object_class->destroy = gdl_combo_button_destroy;
 
-	g_signal_new ("activate_default",
+	g_signal_new ("activate-default",
 		      G_TYPE_FROM_CLASS (klass),
 		      G_SIGNAL_RUN_FIRST,
 		      G_STRUCT_OFFSET (GdlComboButtonClass, activate_default),

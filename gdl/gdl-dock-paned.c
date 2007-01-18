@@ -178,7 +178,7 @@ gdl_dock_paned_button_cb (GtkWidget      *widget,
             if (paned->position_changed) {
                 /* emit pending layout changed signal to track separator position */
                 if (GDL_DOCK_OBJECT (paned)->master)
-                    g_signal_emit_by_name (GDL_DOCK_OBJECT (paned)->master, "layout_changed");
+                    g_signal_emit_by_name (GDL_DOCK_OBJECT (paned)->master, "layout-changed");
                 paned->position_changed = FALSE;
             }
         }
