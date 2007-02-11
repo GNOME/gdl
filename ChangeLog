@@ -1,3 +1,10 @@
+=== gdl 0.7.2 ===
+
+2007-02-11  Naba Kumar  <naba@gnome.org>
+
+	* configure.in: Bumped version to 0.7.2
+	* NEWS: Updated for the release.
+	
 2007-02-01  Johannes Schmid <jhs@gnome.org>
 
 	* Makefile.am:
