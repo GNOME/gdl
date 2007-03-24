@@ -3,6 +3,7 @@
  * gdl-dock-item.c
  *
  * Author: Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ *         Naba Kumar  <naba@gnome.org>
  *
  * Based on GnomeDockItem/BonoboDockItem.  Original copyright notice follows.
  *
@@ -48,6 +49,7 @@
 #include "libgdltypebuiltins.h"
 #include "libgdlmarshal.h"
 
+#define NEW_DOCK_ITEM_RATIO 0.3
 
 /* ----- Private prototypes ----- */
 
@@ -689,6 +691,10 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
 
     widget->allocation = *allocation;
 
+    /* Once size is allocated, preferred size is no longer necessary */
+    item->_priv->preferred_height = -1;
+    item->_priv->preferred_width = -1;
+    
     if (GTK_WIDGET_REALIZED (widget))
         gdk_window_move_resize (widget->window,
                                 widget->allocation.x,
@@ -1145,35 +1151,118 @@ gdl_dock_item_dock (GdlDockObject    *object,
     guint	   available_space=0;
     gint	   pref_size=-1;
     guint	   splitpos=0;
-    GtkRequisition req;
-  	
+    GtkRequisition req, object_req, parent_req;
+    
     parent = gdl_dock_object_get_parent_object (object);
     gdl_dock_item_preferred_size (GDL_DOCK_ITEM (requestor), &req);
-
+    gdl_dock_item_preferred_size (GDL_DOCK_ITEM (object), &object_req);
+    if (GDL_IS_DOCK_ITEM (parent))
+        gdl_dock_item_preferred_size (GDL_DOCK_ITEM (parent), &parent_req);
+    else
+    {
+        parent_req.height = GTK_WIDGET (parent)->allocation.height;
+        parent_req.width = GTK_WIDGET (parent)->allocation.width;
+    }
+    
+    /* If preferred size is not set on the requestor (perhaps a new item),
+     * then estimate and set it. The default value (either 0 or 1 pixels) is
+     * not any good.
+     */
+    switch (position) {
+        case GDL_DOCK_TOP:
+        case GDL_DOCK_BOTTOM:
+            if (req.width < 2)
+            {
+                req.width = object_req.width;
+                g_object_set (requestor, "preferred-width", req.width, NULL);
+            }
+            if (req.height < 2)
+            {
+                req.height = NEW_DOCK_ITEM_RATIO * object_req.height;
+                g_object_set (requestor, "preferred-height", req.height, NULL);
+            }
+            if (req.width > 1)
+                g_object_set (object, "preferred-width", req.width, NULL);
+            if (req.height > 1)
+                g_object_set (object, "preferred-height",
+                              object_req.height - req.height, NULL);
+            break;
+        case GDL_DOCK_LEFT:
+        case GDL_DOCK_RIGHT:
+            if (req.height < 2)
+            {
+                req.height = object_req.height;
+                g_object_set (requestor, "preferred-height", req.height, NULL);
+            }
+            if (req.width < 2)
+            {
+                req.width = NEW_DOCK_ITEM_RATIO * object_req.width;
+                g_object_set (requestor, "preferred-width", req.width, NULL);
+            }
+            if (req.height > 1)
+                g_object_set (object, "preferred-height", req.height, NULL);
+            if (req.width > 1)
+                g_object_set (object, "preferred-width",
+                          object_req.width - req.width, NULL);
+            break;
+        case GDL_DOCK_CENTER:
+            if (req.height < 2)
+            {
+                req.height = object_req.height;
+                g_object_set (requestor, "preferred-height", req.height, NULL);
+            }
+            if (req.width < 2)
+            {
+                req.width = object_req.width;
+                g_object_set (requestor, "preferred-width", req.width, NULL);
+            }
+            if (req.height > 1)
+                g_object_set (object, "preferred-height", req.height, NULL);
+            if (req.width > 1)
+                g_object_set (object, "preferred-width", req.width, NULL);
+            break;
+        default: 
+        {
+            GEnumClass *enum_class = G_ENUM_CLASS (g_type_class_ref (GDL_TYPE_DOCK_PLACEMENT));
+            GEnumValue *enum_value = g_enum_get_value (enum_class, position);
+            const gchar *name = enum_value ? enum_value->value_name : NULL;
+            
+            g_warning (_("Unsupported docking strategy %s in dock object of type %s"),
+                       name,  G_OBJECT_TYPE_NAME (object));
+            g_type_class_unref (enum_class);
+            return;
+        }
+    }
     switch (position) {
         case GDL_DOCK_TOP:
         case GDL_DOCK_BOTTOM:
             /* get a paned style dock object */
             new_parent = g_object_new (gdl_dock_object_type_from_nick ("paned"),
                                        "orientation", GTK_ORIENTATION_VERTICAL,
+                                       "preferred-width", object_req.width,
+                                       "preferred-height", object_req.height,
                                        NULL);
             add_ourselves_first = (position == GDL_DOCK_BOTTOM);
             if (parent)
-            	available_space=GTK_WIDGET(parent)->allocation.height;
+                available_space = parent_req.height;
             pref_size = req.height;
             break;
         case GDL_DOCK_LEFT:
         case GDL_DOCK_RIGHT:
             new_parent = g_object_new (gdl_dock_object_type_from_nick ("paned"),
                                        "orientation", GTK_ORIENTATION_HORIZONTAL,
+                                       "preferred-width", object_req.width,
+                                       "preferred-height", object_req.height,
                                        NULL);
             add_ourselves_first = (position == GDL_DOCK_RIGHT);
             if(parent)
-            	available_space = GTK_WIDGET(parent)->allocation.width;
+                available_space = parent_req.width;
             pref_size = req.width;
             break;
         case GDL_DOCK_CENTER:
             new_parent = g_object_new (gdl_dock_object_type_from_nick ("notebook"),
+                                       "preferred-width", object_req.width,
+                                       "preferred-height", object_req.height,
                                        NULL);
             add_ourselves_first = TRUE;
             break;
@@ -1181,7 +1270,7 @@ gdl_dock_item_dock (GdlDockObject    *object,
         {
             GEnumClass *enum_class = G_ENUM_CLASS (g_type_class_ref (GDL_TYPE_DOCK_PLACEMENT));
             GEnumValue *enum_value = g_enum_get_value (enum_class, position);
-            gchar *name = enum_value ? enum_value->value_name : NULL;
+            const gchar *name = enum_value ? enum_value->value_name : NULL;
             
             g_warning (_("Unsupported docking strategy %s in dock object of type %s"),
                        name,  G_OBJECT_TYPE_NAME (object));

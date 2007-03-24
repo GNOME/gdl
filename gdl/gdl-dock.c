@@ -3,7 +3,8 @@
  * This file is part of the GNOME Devtools Libraries.
  *
  * Copyright (C) 2002 Gustavo Giráldez <gustavo.giraldez@gmx.net>
- *
+ *               2007 Naba Kumar  <naba@gnome.org>
+ * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -1054,6 +1055,153 @@ gdl_dock_new_from (GdlDock  *original,
     return GTK_WIDGET (new_dock);
 }
 
+/* Depending on where the dock item (where new item will be docked) locates
+ * in the dock, we might need to change the docking placement. If the
+ * item is does not touches the center of dock, the new-item-to-dock would
+ * require a center dock on this item.
+ */
+static GdlDockPlacement
+gdl_dock_refine_placement (GdlDock *dock, GdlDockItem *dock_item,
+                           GdlDockPlacement placement)
+{
+    GtkRequisition object_size;
+    
+    gdl_dock_item_preferred_size (dock_item, &object_size);
+    g_return_val_if_fail (GTK_WIDGET (dock)->allocation.width > 0, placement);
+    g_return_val_if_fail (GTK_WIDGET (dock)->allocation.height > 0, placement);
+    g_return_val_if_fail (object_size.width > 0, placement);
+    g_return_val_if_fail (object_size.height > 0, placement);
+
+    if (placement == GDL_DOCK_LEFT || placement == GDL_DOCK_RIGHT) {
+        /* Check if dock_object touches center in terms of width */
+        if (GTK_WIDGET (dock)->allocation.width/2 > object_size.width) {
+            return GDL_DOCK_CENTER;
+        }
+    } else if (placement == GDL_DOCK_TOP || placement == GDL_DOCK_BOTTOM) {
+        /* Check if dock_object touches center in terms of height */
+        if (GTK_WIDGET (dock)->allocation.height/2 > object_size.height) {
+            return GDL_DOCK_CENTER;
+        }
+    }
+    return placement;
+}
+
+/* Determines the larger item of the two based on the placement:
+ * for left/right placement, height determines it.
+ * for top/bottom placement, width determines it.
+ * for center placement, area determines it.
+ */
+static GdlDockItem*
+gdl_dock_select_larger_item (GdlDockItem *dock_item_1,
+                             GdlDockItem *dock_item_2,
+                             GdlDockPlacement placement,
+                             gint level /* for debugging */)
+{
+    GtkRequisition size_1, size_2;
+    
+    g_return_val_if_fail (dock_item_1 != NULL, dock_item_2);
+    g_return_val_if_fail (dock_item_2 != NULL, dock_item_1);
+    
+    gdl_dock_item_preferred_size (dock_item_1, &size_1);
+    gdl_dock_item_preferred_size (dock_item_2, &size_2);
+    
+    g_return_val_if_fail (size_1.width > 0, dock_item_2);
+    g_return_val_if_fail (size_1.height > 0, dock_item_2);
+    g_return_val_if_fail (size_2.width > 0, dock_item_1);
+    g_return_val_if_fail (size_2.height > 0, dock_item_1);
+    
+    if (placement == GDL_DOCK_LEFT || placement == GDL_DOCK_RIGHT)
+    {
+        /* For left/right placement, height is what matters */
+        return (size_1.height >= size_2.height?
+                    dock_item_1 : dock_item_2);
+    } else if (placement == GDL_DOCK_TOP || placement == GDL_DOCK_BOTTOM)
+    {
+        /* For top/bottom placement, width is what matters */
+        return (size_1.width >= size_2.width?
+                    dock_item_1 : dock_item_2);
+    } else if (placement == GDL_DOCK_CENTER) {
+        /* For center place, area is what matters */
+        return ((size_1.width * size_1.height)
+                    >= (size_2.width * size_2.height)?
+                    dock_item_1 : dock_item_2);
+    } else {
+        g_warning ("Should not reach here: %s:%d", __FUNCTION__, __LINE__);
+    }
+    return dock_item_1;
+}
+
+/* Determines the best dock item to dock a new item with the given placement.
+ * It traverses the dock tree and (based on the placement) tries to find
+ * the best located item wrt to the placement. The approach is to find the
+ * largest item on/around the placement side (for side placements) and to
+ * find the largest item for center placement. In most situations, this is
+ * what user wants and the heuristic should be therefore sufficient.
+ */
+static GdlDockItem*
+gdl_dock_find_best_placement_item (GdlDockItem *dock_item,
+                                   GdlDockPlacement placement,
+                                   gint level /* for debugging */)
+{
+    GdlDockItem *ret_item = NULL;
+    
+    if (GDL_IS_DOCK_PANED (dock_item))
+    {
+        GtkOrientation orientation;
+        GdlDockItem *dock_item_1, *dock_item_2;
+        GList* children;
+        
+        children = gtk_container_get_children (GTK_CONTAINER (dock_item));
+        
+        g_assert (g_list_length (children) == 2);
+        
+        g_object_get (dock_item, "orientation", &orientation, NULL);
+        if ((orientation == GTK_ORIENTATION_HORIZONTAL &&
+             placement == GDL_DOCK_LEFT) ||
+            (orientation == GTK_ORIENTATION_VERTICAL &&
+             placement == GDL_DOCK_TOP)) {
+            /* Return left or top pane widget */
+            ret_item =
+                gdl_dock_find_best_placement_item (GDL_DOCK_ITEM
+                                                   (children->data),
+                                                   placement, level + 1);
+        } else if ((orientation == GTK_ORIENTATION_HORIZONTAL &&
+                    placement == GDL_DOCK_RIGHT) ||
+                   (orientation == GTK_ORIENTATION_VERTICAL &&
+                    placement == GDL_DOCK_BOTTOM)) {
+                        /* Return right or top pane widget */
+            ret_item =
+                gdl_dock_find_best_placement_item (GDL_DOCK_ITEM
+                                                   (children->next->data),
+                                                   placement, level + 1);
+        } else {
+            /* Evaluate which of the two sides is bigger */
+            dock_item_1 =
+                gdl_dock_find_best_placement_item (GDL_DOCK_ITEM
+                                                   (children->data),
+                                                   placement, level + 1);
+            dock_item_2 =
+                gdl_dock_find_best_placement_item (GDL_DOCK_ITEM
+                                                   (children->next->data),
+                                                   placement, level + 1);
+            ret_item = gdl_dock_select_larger_item (dock_item_1,
+                                                    dock_item_2,
+                                                    placement, level);
+        }
+        g_list_free (children);
+    }
+    else if (GDL_IS_DOCK_ITEM (dock_item))
+    {
+        ret_item = dock_item;
+    }
+    else
+    {
+        /* should not be here */
+        g_warning ("Should not reach here: %s:%d", __FUNCTION__, __LINE__);
+    }
+    return ret_item;
+}
+
 void
 gdl_dock_add_item (GdlDock          *dock,
                    GdlDockItem      *item,
@@ -1067,10 +1215,25 @@ gdl_dock_add_item (GdlDock          *dock,
         gdl_dock_add_floating_item (dock, item, 0, 0, -1, -1);
 
     else {
+        GdlDockItem *best_dock_item;
         /* Non-floating item. */
-        gdl_dock_object_dock (GDL_DOCK_OBJECT (dock),
-                              GDL_DOCK_OBJECT (item),
-                              placement, NULL);
+        if (dock->root) {
+            GdlDockPlacement local_placement;
+            GtkRequisition preferred_size;
+            
+            best_dock_item =
+                gdl_dock_find_best_placement_item (GDL_DOCK_ITEM (dock->root),
+                                                   placement, 0);
+            local_placement = gdl_dock_refine_placement (dock, best_dock_item,
+                                                         placement);
+            gdl_dock_object_dock (GDL_DOCK_OBJECT (best_dock_item),
+                                  GDL_DOCK_OBJECT (item),
+                                  local_placement, NULL);
+        } else {
+            gdl_dock_object_dock (GDL_DOCK_OBJECT (dock),
+                                  GDL_DOCK_OBJECT (item),
+                                  placement, NULL);
+        }
     }
 }
 

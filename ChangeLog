@@ -1,3 +1,12 @@
+2007-03-24  Naba Kumar  <naba@gnome.org>
+	
+	* gdl/gdl-dock-item.c, gdl-dock.c: Implemented a heuristic
+	algorithm to determin best docking place for new items. Improved
+	'preferred size' negotiation for dock items (required in the
+	algorithm.
+	
+	* configure.in: Bumped version to 0.7.3
+	
 === gdl 0.7.2 ===
 
 2007-02-11  Naba Kumar  <naba@gnome.org>
