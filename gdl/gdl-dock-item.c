@@ -445,7 +445,7 @@ gdl_dock_item_set_property  (GObject      *g_object,
                 item->behavior &= ~GDL_DOCK_ITEM_BEH_LOCKED;
 
             if (old_beh ^ item->behavior) {
-		gdl_dock_item_showhide_grip (item);
+                gdl_dock_item_showhide_grip (item);
                 g_object_notify (g_object, "behavior");
 
                 if (GDL_DOCK_OBJECT_GET_MASTER (item))
@@ -1299,7 +1299,7 @@ gdl_dock_item_dock (GdlDockObject    *object,
     if (add_ourselves_first) {
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (object));
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (requestor));
-	splitpos = available_space - pref_size;
+        splitpos = available_space - pref_size;
     } else {
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (requestor));
         gtk_container_add (GTK_CONTAINER (new_parent), GTK_WIDGET (object));
@@ -1321,8 +1321,8 @@ gdl_dock_item_dock (GdlDockObject    *object,
         g_object_set (G_OBJECT (new_parent),
                       "position", g_value_get_uint (other_data),
                       NULL);
-    }else if (splitpos > 0 && splitpos < available_space) {
-			g_object_set (G_OBJECT (new_parent), "position", splitpos, NULL);
+    } else if (splitpos > 0 && splitpos < available_space) {
+        g_object_set (G_OBJECT (new_parent), "position", splitpos, NULL);
     }
     
     GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_IN_REFLOW);
@@ -1357,25 +1357,25 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
                                    GTK_WIDGET (item),
                                    gdl_dock_item_detach_menu);
         
-	if (item->behavior & GDL_DOCK_ITEM_BEH_LOCKED) {
+        if (item->behavior & GDL_DOCK_ITEM_BEH_LOCKED) {
             /* UnLock menuitem */
             mitem = gtk_menu_item_new_with_label (_("UnLock"));
             gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), 
-			           mitem);
+                                   mitem);
             g_signal_connect (mitem, "activate",
                               G_CALLBACK (gdl_dock_item_unlock_cb), item);
-	} else {
+        } else {
             /* Hide menuitem. */
             mitem = gtk_menu_item_new_with_label (_("Hide"));
             gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
             g_signal_connect (mitem, "activate", 
                               G_CALLBACK (gdl_dock_item_hide_cb), item);
-	    /* Lock menuitem */
+            /* Lock menuitem */
             mitem = gtk_menu_item_new_with_label (_("Lock"));
             gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
             g_signal_connect (mitem, "activate",
                               G_CALLBACK (gdl_dock_item_lock_cb), item);
-	}
+        }
     }
 
     /* Show popup menu. */
@@ -1717,36 +1717,35 @@ gdl_dock_item_hide_item (GdlDockItem *item)
        restore the position later */
     if (!GDL_DOCK_OBJECT_AUTOMATIC (item)) {
         if (item->_priv->ph)
-			g_object_unref (item->_priv->ph); 
+            g_object_unref (item->_priv->ph); 
         
-		gboolean isFloating = FALSE;
-		gint width=0, height=0, x=0, y = 0;
-		
-		
-		if( GDL_IS_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item))))
-		{
-			GdlDock* dock = GDL_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item)));
-			g_object_get (dock,
-						  "floating", &isFloating, 
-						  "width", &width,
-						  "height",&height,
-						  "floatx",&x,
-						  "floaty",&y,
-						  NULL);
-		}else{
-			item->_priv->preferred_width=GTK_WIDGET (item)->allocation.width;
-			item->_priv->preferred_height=GTK_WIDGET (item)->allocation.height;
-		}
+        gboolean isFloating = FALSE;
+        gint width=0, height=0, x=0, y = 0;
+        
+        if (GDL_IS_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item))))
+        {
+            GdlDock* dock = GDL_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item)));
+            g_object_get (dock,
+                          "floating", &isFloating, 
+                          "width", &width,
+                          "height",&height,
+                          "floatx",&x,
+                          "floaty",&y,
+                          NULL);
+        } else {
+            item->_priv->preferred_width=GTK_WIDGET (item)->allocation.width;
+            item->_priv->preferred_height=GTK_WIDGET (item)->allocation.height;
+        }
         item->_priv->ph = GDL_DOCK_PLACEHOLDER (
             g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
                           "sticky", FALSE,
                           "host", item,
                           "width", width,
                           "height", height,
-						  "floating", isFloating,
-						  "floatx", x,
-						  "floaty", y,
-						  NULL));
+                          "floating", isFloating,
+                          "floatx", x,
+                          "floaty", y,
+                          NULL));
         g_object_ref (item->_priv->ph);
         gtk_object_sink (GTK_OBJECT (item->_priv->ph));
     }
@@ -1782,48 +1781,48 @@ gdl_dock_item_show_item (GdlDockItem *item)
     g_return_if_fail (item != NULL);
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
-			
+    
     if (item->_priv->ph) {
-		gboolean isFloating=FALSE;
-		gint width = 0, height = 0, x= 0, y = 0;
-		g_object_get (G_OBJECT(item->_priv->ph),
-					  "width", &width,
-					  "height", &height,
-					  "floating",&isFloating,
-					  "floatx", &x,
-					  "floaty", &y,
-					  NULL);
-		if (isFloating) {
-			GdlDockObject *controller = gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (item));
-			gdl_dock_add_floating_item (GDL_DOCK (controller),
-										item, x, y, width, height);
-        }else{
-			gtk_container_add (GTK_CONTAINER (item->_priv->ph), GTK_WIDGET (item));
-		}
+        gboolean isFloating=FALSE;
+        gint width = 0, height = 0, x= 0, y = 0;
+        g_object_get (G_OBJECT(item->_priv->ph),
+                      "width", &width,
+                      "height", &height,
+                      "floating",&isFloating,
+                      "floatx", &x,
+                      "floaty", &y,
+                      NULL);
+        if (isFloating) {
+            GdlDockObject *controller =
+                gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (item));
+            gdl_dock_add_floating_item (GDL_DOCK (controller),
+                                        item, x, y, width, height);
+        } else {
+            gtk_container_add (GTK_CONTAINER (item->_priv->ph),
+                               GTK_WIDGET (item));
+        }
         g_object_unref (item->_priv->ph);
         item->_priv->ph = NULL;
-    }
-    else if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
+        
+    } else if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
         GdlDockObject *toplevel;
-
-	toplevel = gdl_dock_master_get_controller (
-	            GDL_DOCK_OBJECT_GET_MASTER (item));
- 
-	if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
-	    g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
-			GDL_DOCK_OBJECT(item)->name);
-	}
-	else if(toplevel) {
+        
+        toplevel = gdl_dock_master_get_controller
+                        (GDL_DOCK_OBJECT_GET_MASTER (item));
+        
+        if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
+            g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
+                      GDL_DOCK_OBJECT(item)->name);
+        } else if (toplevel) {
             gdl_dock_object_dock (toplevel, GDL_DOCK_OBJECT (item),
                                   GDL_DOCK_FLOATING, NULL);
-        }
-	else
-	    g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
-
-    }
-    else
-	g_warning("GdlDockItem %s is not bound. It cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
-
+        } else
+            g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
+        
+    } else
+        g_warning("GdlDockItem %s is not bound. It cannot be shown.\n",
+                  GDL_DOCK_OBJECT(item)->name);
+    
     gtk_widget_show (GTK_WIDGET (item));
 }
 
@@ -1855,8 +1854,7 @@ gdl_dock_item_set_default_position (GdlDockItem   *item,
             g_object_ref (reference);
             gtk_object_sink (GTK_OBJECT (reference));
             item->_priv->ph = GDL_DOCK_PLACEHOLDER (reference);
-        }
-        else {
+        } else {
             item->_priv->ph = GDL_DOCK_PLACEHOLDER (
                 g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
                               "sticky", TRUE,

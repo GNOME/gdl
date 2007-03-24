@@ -1,3 +1,7 @@
+2007-03-25  Naba Kumar  <naba@gnome.org>
+	
+	* gdl/gdl-dock-item.c: Fixed indentation.
+	
 2007-03-24  Naba Kumar  <naba@gnome.org>
 	
 	* gdl/gdl-dock-item.c, gdl-dock.c: Implemented a heuristic
