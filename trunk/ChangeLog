@@ -1,0 +1,1758 @@
+=== gdl 0.7.3 ===
+
+2007-03-25  Naba Kumar  <naba@gnome.org>
+	
+	* NEWS: Updated for release.
+	* gdl/gdl-dock-item.c: Fixed indentation.
+	
+2007-03-24  Naba Kumar  <naba@gnome.org>
+	
+	* gdl/gdl-dock-item.c, gdl-dock.c: Implemented a heuristic
+	algorithm to determin best docking place for new items. Improved
+	'preferred size' negotiation for dock items (required in the
+	algorithm.
+	
+	* configure.in: Bumped version to 0.7.3
+	
+=== gdl 0.7.2 ===
+
+2007-02-11  Naba Kumar  <naba@gnome.org>
+
+	* configure.in: Bumped version to 0.7.2
+	* NEWS: Updated for the release.
+	
+2007-02-01  Johannes Schmid <jhs@gnome.org>
+
+	* Makefile.am:
+	Install gdl-gnome.pc only if build with gnome support (#403044)
+
+=== gdl 0.7.1 ===
+
+2007-01-18  Johannes Schmid <jhs@gnome.org>
+
+	* po/LINGUAS
+	* configure.in
+	* autogen.sh:
+	Applied http://live.gnome.org/GnomeGoals/PoLinguas
+	Bumped version to 0.7.1
+	
+	* NEWS:
+	Updated for release
+
+2007-01-17  Nickolay V. Shmyrev <nshmyrev@yandex.ru>
+
+	Reviewed by Johannes Schmid <jhs@gnome.org>:
+	* gdl/README.gdl-dock
+	* gdl/gdl-combo-button.c
+	* gdl/gdl-data-view.c
+	* gdl/gdl-dock-bar.c
+	* gdl/gdl-dock-item-grip.c
+	* gdl/gdl-dock-item.c
+	* gdl/gdl-dock-layout.c
+	* gdl/gdl-dock-master.c
+	* gdl/gdl-dock-notebook.c
+	* gdl/gdl-dock-object.c
+	* gdl/gdl-dock-paned.c
+	* gdl/gdl-dock-placeholder.c
+	* gdl/gdl-dock-tablabel.c
+	* gdl/gdl-dock.c
+	
+	Bug 381845 – Grip doesn't change the title when long_name is changed
+
+2007-01-17  Johannes Schmid <jhs@gnome.org>
+
+	* gdl/gdl-dock-bar.c
+	* gdl/test-dock.c:
+
+	Added gdl_dock_bar_set/get_style (fix #397562)
+
+2007-01-16  Pema Geyleg  <pema.geyleg@gmail.com>
+
+	* configure.in: Added 'dz' to ALL_LINGUAS.
+
+=== GDL 0.7.0 ===
+
+2007-01-14  Naba Kumar  <naba@gnome.org>
+
+	* NEWS: updated for 0.7.0 release.
+	
+2006-09-18  Johannes Schmid <jhs@gnome.org>
+
+	* configure.in:
+	* gdl-gnome-1.0.pc.in (added):
+	* gdl/Makefile.am:
+	
+	Split the library into libgdl (gtk only) and libgdl-gnome (with gnome support)
+	Bumped version to 0.7.0 (because of obvious API changes)
+	
+2006-07-31  Johannes Schmid <jhs@gnome.org>
+
+	* gdl/gdl-tools.c (removed):
+	* gdl/gdl-tools.h:
+	
+	Removed bonobo-depency in gdl-tools.h and remove gdl-tools.c
+
+2006-07-28  Johannes Schmid <jhs@gnome.org>
+
+	* configure.in: Fixed --disable-gnome
+	* autogen.sh: Always use automake-1.9
+
+2006-07-19  Fredrik Axelsson <fraxbe@gmail.com>
+
+	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>
+
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-master.c
+	- Fixed a type which prevent the preview window from beeing shown
+	- Fixed restoring of splitter positions
+
+2006-07-08  Fredrik Axelsson <fraxbe@gmail.com>
+
+	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>
+
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock-placeholder.c:
+	
+	Make Gdl able to restore "floating" docks
+
+2006-06-13  Johannes Schmid <jhs@cvs.gnome.org>
+	
+	* configure.in: Fixed configure script (#344678)
+
+2006-06-01  Johannes Schmid <jhs@cvs.gnome.org>
+
+	* autogen.sh:
+	* configure.in:
+	* gdl/Makefile.am:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock.c:
+	* gdl/gdl-stock.c:
+	* gdl/gdl-tools.h:
+	* gdl/gdl.h:
+
+	* gdl/gdl-recent.c:
+	* gdl/gdl-recent.h:
+	Removed: Use GtkRecent instead
+
+	Merged gdl-gtk to HEAD
+
+2006-05-25  Naba Kumar  <naba@gnome.org>
+
+	* gdl/gdl-dock-item.c, gdl/gdl-dock-placeholder.c:
+	Added width and height properties for placeholer
+	and restore the dock item dimension when they are attached to
+	the placeholder. Set placeholder width/height when items are
+	hidden. Prevent placeholders to lose their hosts when the dock
+	is reduced to the the root.
+	
+	* gdl/gdl-dock-notebook.c: Set the newly docked widget to
+	current page.
+
+2006-05-19  Naba Kumar  <naba@gnome.org>
+
+	* gdl/Makefile.am, gdl/gdl-dock-bar.c, gdl/gdl-dock-bar.h,
+	gdl/test-dock.c: Added dockbar buttons style (icons/text/both/auto).
+
+=== GDL 0.6.1 ===
+
+2005-10-15  Naba Kumar  <naba@gnome.org>
+
+	* NEWS: More updates.
+	
+2006-05-12  Johannes Schmid <jhs@cvs.gnome.org>
+	
+	* NEWS, MAINTAINERS: Updated
+
+2006-06-01  Johannes Schmid <jhs@cvs.gnome.org>
+
+	* gdl/Makefile.am: Fixed
+	* autogen.sh: Changed from AM_PROG_LIBTOOL to AC_PROG_LIBTOOL
+
+2006-06-01  Robert Staudinger <robert.staudinger@gmail.com>
+
+	* gdl/Makefile.am:
+	Some build fixes for mingw 
+	* gdl/gdl-stock.h:
+	Load stock icons correctly even if not in installation path
+
+2006-05-18  Robert Staudinger <robert.staudinger@gmail.com>
+
+	reviewed by: Johannes Schmid <jhs@cvs.gnome.org>
+
+	* configure.in:
+	* gdl/Makefile.am:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock.c:
+	
+	Fix building on win32 (#342227)
+	Issues:
+	+ The preview rectangle is not visible.
+	+ The icons are not found when not in compile-time prefix
+
+2006-05-08  Johannes Schmid <jhs@cvs.gnome.org>
+
+	* symbol-browser-control: Removed deprecated directory
+
+	* configure.in:
+	* gdl/Makefile.am:
+	* gdl/gdl-tools.c:
+	* gdl/gdl-tools.h:
+	* gdl/gdl.h:
+	* idl/.cvsignore:
+	* idl/GDL.idl:
+	* idl/Makefile.am:
+	* idl/editor-buffer.idl:
+	* idl/editor-gutter.idl:
+	* idl/symbol-browser.idl:
+	* symbol-browser-control/.cvsignore:
+	* symbol-browser-control/GNOME_Development_SymbolBrowser.server.in:
+	* symbol-browser-control/Makefile.am:
+	* symbol-browser-control/factory.c:
+	* symbol-browser-control/gnome-symbol-browser.xml:
+	* symbol-browser-control/pixmaps/.cvsignore:
+	* symbol-browser-control/pixmaps/Makefile.am:
+	* symbol-browser-control/pixmaps/sv_class.xpm:
+	* symbol-browser-control/pixmaps/sv_enum.xpm:
+	* symbol-browser-control/pixmaps/sv_enumerator.xpm:
+	* symbol-browser-control/pixmaps/sv_function.xpm:
+	* symbol-browser-control/pixmaps/sv_macro.xpm:
+	* symbol-browser-control/pixmaps/sv_private_fun.xpm:
+	* symbol-browser-control/pixmaps/sv_private_var.xpm:
+	* symbol-browser-control/pixmaps/sv_protected_fun.xpm:
+	* symbol-browser-control/pixmaps/sv_protected_var.xpm:
+	* symbol-browser-control/pixmaps/sv_public_fun.xpm:
+	* symbol-browser-control/pixmaps/sv_public_var.xpm:
+	* symbol-browser-control/pixmaps/sv_static_fun.xpm:
+	* symbol-browser-control/pixmaps/sv_static_var.xpm:
+	* symbol-browser-control/pixmaps/sv_struct.xpm:
+	* symbol-browser-control/pixmaps/sv_typedef.xpm:
+	* symbol-browser-control/pixmaps/sv_unknown.xpm:
+	* symbol-browser-control/pixmaps/sv_variable.xpm:
+	* symbol-browser-control/symbol-browser-cobject.c:
+	* symbol-browser-control/symbol-browser-cobject.h:
+	* symbol-browser-control/symbol-browser.c:
+	* symbol-browser-control/symbol-browser.h:
+	* symbol-browser-control/tagmanager/.cvsignore:
+	* symbol-browser-control/tagmanager/Makefile.am:
+	* symbol-browser-control/tagmanager/args.c:
+	* symbol-browser-control/tagmanager/args.h:
+	* symbol-browser-control/tagmanager/asm.c:
+	* symbol-browser-control/tagmanager/asp.c:
+	* symbol-browser-control/tagmanager/awk.c:
+	* symbol-browser-control/tagmanager/beta.c:
+	* symbol-browser-control/tagmanager/c.c:
+	* symbol-browser-control/tagmanager/cobol.c:
+	* symbol-browser-control/tagmanager/ctags.c:
+	* symbol-browser-control/tagmanager/ctags.h:
+	* symbol-browser-control/tagmanager/debug.c:
+	* symbol-browser-control/tagmanager/debug.h:
+	* symbol-browser-control/tagmanager/eiffel.c:
+	* symbol-browser-control/tagmanager/entry.c:
+	* symbol-browser-control/tagmanager/entry.h:
+	* symbol-browser-control/tagmanager/fortran.c:
+	* symbol-browser-control/tagmanager/general.h:
+	* symbol-browser-control/tagmanager/get.c:
+	* symbol-browser-control/tagmanager/get.h:
+	* symbol-browser-control/tagmanager/include/.cvsignore:
+	* symbol-browser-control/tagmanager/include/Makefile.am:
+	* symbol-browser-control/tagmanager/include/tm_file_entry.h:
+	* symbol-browser-control/tagmanager/include/tm_project.h:
+	* symbol-browser-control/tagmanager/include/tm_source_file.h:
+	* symbol-browser-control/tagmanager/include/tm_symbol.h:
+	* symbol-browser-control/tagmanager/include/tm_tag.h:
+	* symbol-browser-control/tagmanager/include/tm_tagmanager.h:
+	* symbol-browser-control/tagmanager/include/tm_work_object.h:
+	* symbol-browser-control/tagmanager/include/tm_workspace.h:
+	* symbol-browser-control/tagmanager/keyword.c:
+	* symbol-browser-control/tagmanager/keyword.h:
+	* symbol-browser-control/tagmanager/lisp.c:
+	* symbol-browser-control/tagmanager/lua.c:
+	* symbol-browser-control/tagmanager/main.h:
+	* symbol-browser-control/tagmanager/make.c:
+	* symbol-browser-control/tagmanager/options.c:
+	* symbol-browser-control/tagmanager/options.h:
+	* symbol-browser-control/tagmanager/parse.c:
+	* symbol-browser-control/tagmanager/parse.h:
+	* symbol-browser-control/tagmanager/parsers.h:
+	* symbol-browser-control/tagmanager/pascal.c:
+	* symbol-browser-control/tagmanager/perl.c:
+	* symbol-browser-control/tagmanager/php.c:
+	* symbol-browser-control/tagmanager/python.c:
+	* symbol-browser-control/tagmanager/read.c:
+	* symbol-browser-control/tagmanager/read.h:
+	* symbol-browser-control/tagmanager/regex.c:
+	* symbol-browser-control/tagmanager/rexx.c:
+	* symbol-browser-control/tagmanager/ruby.c:
+	* symbol-browser-control/tagmanager/scheme.c:
+	* symbol-browser-control/tagmanager/sh.c:
+	* symbol-browser-control/tagmanager/slang.c:
+	* symbol-browser-control/tagmanager/sort.c:
+	* symbol-browser-control/tagmanager/sort.h:
+	* symbol-browser-control/tagmanager/strlist.c:
+	* symbol-browser-control/tagmanager/strlist.h:
+	* symbol-browser-control/tagmanager/tcl.c:
+	* symbol-browser-control/tagmanager/tm_file_entry.c:
+	* symbol-browser-control/tagmanager/tm_project.c:
+	* symbol-browser-control/tagmanager/tm_source_file.c:
+	* symbol-browser-control/tagmanager/tm_symbol.c:
+	* symbol-browser-control/tagmanager/tm_tag.c:
+	* symbol-browser-control/tagmanager/tm_tagmanager.c:
+	* symbol-browser-control/tagmanager/tm_work_object.c:
+	* symbol-browser-control/tagmanager/tm_workspace.c:
+	* symbol-browser-control/tagmanager/vim.c:
+	* symbol-browser-control/tagmanager/vstring.c:
+	* symbol-browser-control/tagmanager/vstring.h:
+	* symbol-browser-control/tagmanager/yacc.c:
+	* symbol-browser-control/test-symbol-browser-ui.xml:
+	* symbol-browser-control/test-symbol-browser.c:
+
+	Created gdl-gtk branch:
+	- remove symbol-browser-control (deprecated)
+	- Add conditional compile for GNOME/Bonobo
+
+2006-04-28  Johannes Schmid <jhs@cvs.gnome.org>
+
+	* Makefile.am:
+	Fixed distcheck
+
+	* configure.in:
+	* NEWS
+	Bumped version to 0.6.1 - no major changes, just build fixes
+
+2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Remove obsolete entry for no_NO.
+	* po/no.po: And the translation.
+
+2006-04-14  Ilkka Tuohela  <hile@iki.fi>
+
+	* configure.in: Added fi to ALL_LINGUAS
+
+2006-03-16  Johannes Schmid <jhs@gnome.org>
+	
+	* autogen.sh: New autogen.sh, should work better
+
+2005-09-22  Naba Kumar  <naba@gnome.org>
+
+	Patch from: Erwin Rol <mailinglists@erwinrol.com>
+	* gdl/gdl-combo-button.c, gdl/gdl-combo-button.h,
+	gdl/gdl-dock-bar.c, gdl/gdl-dock-bar.h,
+	gdl/gdl-dock-layout.c, gdl/gdl-dock-layout.h,
+	gdl/gdl-dock-master.c, gdl/gdl-dock-master.h,
+	gdl/gdl-dock-notebook.c, gdl/gdl-dock-notebook.h,
+	gdl/gdl-dock-object.c, gdl/gdl-dock-object.h,
+	gdl/gdl-dock-paned.c, gdl/gdl-dock-paned.h,
+	gdl/gdl-dock-placeholder.c, gdl/gdl-dock-placeholder.h,
+	gdl/gdl-dock-tablabel.c, gdl/gdl-dock-tablabel.h,
+	gdl/gdl-dock.c, gdl/gdl-dock.h,
+	gdl/gdl-icons.c, gdl/gdl-stock.c,
+	gdl/gdl-stock.h, gdl/gdl-tools.c,
+	gdl/gdl-tools.h: Converted lisense to LGPL from GPL, bug #316850.
+	Authors approvals:
+	http://sourceforge.net/mailarchive/message.php?msg_id=13015638
+	http://sourceforge.net/mailarchive/message.php?msg_id=13020424
+	http://sourceforge.net/mailarchive/message.php?msg_id=13015024
+
+2005-08-31  Naba Kumar  <naba@gnome.org>
+
+	* configure.in, gdl.spec.in, gdl-1.0.pc.in: Restored
+	libbonoboui dependency. Fixed bug #314367.
+	
+2005-08-24  Pawan Chitrakar  <pchitrakar@gmail.com>
+
+	* configure.in: Added ne in ALL_LINGUAS
+
+2005-07-27  Naba Kumar  <naba@gnome.org>
+
+	* configure.in,	gdl-1.0.pc.in, gdl.spec.in: Removed libbonobo dep.
+
+2005-07-06  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gdl/gdl-dock-master.c: (foreach_lock_unlock),
+	(gdl_dock_master_lock_unlock):
+	* gdl/gdl-dock-object.c: (gdl_dock_object_real_detach):
+	* gdl/gdl-dock-placeholder.c: (gdl_dock_placeholder_set_property): use
+	GINT_TO_POINTER instead of casting an int directly to a gpointer. Fixes
+	compilation with gcc4.
+
+=== GDL 0.6.0 ===
+
+2005-06-27  Naba Kumar  <naba@gnome.org>
+
+	* configure.in: Bumpped version to 0.6.0
+	* NEWS: Updated.
+
+2005-06-23  Naba Kumar  <naba@gnome.org>
+
+	* gdl/gdl-dock-layout.c: gcc4 compile fixes. Patch from
+	David Malcolm  <dmalcolm@redhat.com>.
+
+2005-03-20  Naba Kumar  <naba@gnome.org>
+
+	* Makefile.am, configure.in, gdl/Makefile.am, gdl/gdl.h: Removed
+	corba generated codes for symbolbrowser, idl files, configure
+	codes for ctags and other deprecated stuffs.
+	
+	* gdl.spec.in: Fixed RPM package creation.
+
+=== GDL 0.5.0 ===
+
+2005-03-14  Naba Kumar  <naba@gnome.org>
+
+	* configure.in, NEWS: Bumpped version to 0.5.0 and prepared for
+	release.
+
+	* gdl/Makefile.am: Added image_DATA in EXTRA_DIST.
+	
+2005-04-01  Steve Murphy  <murf@e-tools.com>
+
+        * configure.in: Added "rw" to ALL_LINGUAS.
+
+2005-03-08  Naba Kumar  <naba@gnome.org>
+
+	* configure.in, Makefile.am: Disabling symbol-browser build as it
+	has been deprecated. Eventually, it will be removed.
+
+	Patch from: Pierre Sarrazin  <sarrazip@sarrazip.com>
+	* gdl.spec.in: Updated and fixed rpm spec file.
+	
+	Patch from: David A Knight  <david@ritter.demon.co.uk>
+	* gdl/gdl-dock-item.c: Fixed to enable hide/show of GdlDockItem
+	to be detected. Bug #143471.
+	
+	Patch from: David A Knight  <david@ritter.demon.co.uk>
+	* gdl/gdl-dock-item-grip.c, gdl/gdl-dock-item.[ch],
+	gdl/gdl-dock-master.c: The attached patch modifies the behaviour
+	of GdlDockItem/GdlDockItemGrip so that even when locked the grip
+	bar is always displayed. To allow items to not have a grip bar
+	at all a new behaviour is also added, GDL_DOCK_ITEM_BEH_NO_GRIP,
+	as the locked status can no longer be used for this. Bug #143475
+	
+	Patch from: David A Knight  <david@ritter.demon.co.uk>
+	* gdl/gdl-dock-bar.[ch]: Added orientation get/set functions
+	to allow for horizontal/vertical layout -- bug #155339
+
+2004-12-25  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Add «nb» to ALL_LINGUAS.
+
+2004-11-04	Amanpreet Singh Alam <aalam@redhat.com>
+	
+	* configure.in: pa is added to ALL_LINGUAS
+
+2004-04-02  Gareth Owen  <gowen72@yahoo.com>
+
+	* configure.in: Added en_GB to ALL_LINGUAS
+
+2004-03-10 Alastair McKinstry <mckinstry@computer.org>
+
+	* configure.in: Added "ga" to ALL_LINGUAS.
+
+2004-03-05  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/Makefile.am: Don't install gdl-dock-item-grip.h
+	
+	* gdl/gdl-dock-bar.c (gdl_dock_bar_instance_init)
+	(gdl_dock_bar_destroy, gdl_dock_bar_add_item): Fix memory and
+	tooltip object leaks.
+	
+	* gdl/gdl-dock-item-grip.h:
+	* gdl/gdl-dock-item-grip.c: Remove unused a11y code.  Will have to
+	implement it later, but for now it clutters the source file.
+	Moved stock icons initialization to class_init.
+	(ensure_title_and_icon_pixbuf): Move Pango layout and pixbuf
+	creation to this function.
+	(gdl_dock_item_grip_expose): Simplify logic and use
+	ensure_title_and_icon_pixbuf.
+	(gdl_dock_item_grip_realize, gdl_dock_item_grip_size_request)
+	(gdl_dock_item_grip_item_notify): Ditto
+	(ellipsize_layout, gdl_dock_item_grip_size_allocate): Title
+	ellipsizing code.
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_button_changed): Check for
+	grip->title_window before resetting the cursor.
+
+	* gdl/gdl-dock-object.c (gdl_dock_object_finalize): Free the
+	stock_id property.
+
+2004-03-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-master.c (gdl_dock_master_drag_motion): When
+	traversing the widget hierarchy looking for a dock to request
+	docking ignore those docks not belonging to ourselves.
+
+2004-03-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_expose)
+	(gdl_dock_item_grip_item_notify, gdl_dock_item_grip_size_allocate):
+	Fix some RTL issues and the positioning for the iconify button when
+	the close is hidden.
+
+2004-03-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_get_title_area)
+	(gdl_dock_item_grip_item_notify, gdl_dock_item_grip_set_property)
+	(gdl_dock_item_grip_size_request, gdl_dock_item_grip_size_allocate):
+	* gdl/gdl-dock-item.h: Patch by Todd Berman.  Adds two new behaviors
+	to hide the iconify and close button in the item handle.
+
+	* gdl/test-dock.c (main): Modify the behavior of a couple items to test
+	the new options.  Remove the log handlers code.
+
+2004-02-28  Adam Weinberger  <adamw@FreeBSD.org>
+
+	* configure.in: Added 'en_CA' (Canadian English) to ALL_LINGUAS.
+
+2004-02-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	Patch by Jeroen Zwartepoorte and Gustavo Giráldez.
+	
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_size_allocate):
+	Offset child allocation by the given allocation coordinates.
+	
+	* gdl/gdl-dock-item.c (gdl_dock_item_class_init)
+	(gdl_dock_item_size_request, gdl_dock_item_size_allocate)
+	(gdl_dock_item_style_set): Setup a default style for the
+	GdlDockItem class which sets the xthickness/ythickness to 0. Use
+	the thickness for size_request and respect it in size_allocate.
+	
+	* gdl/gdl-dock-notebook.c (gdl_dock_notebook_class_init): Setup a
+	style for GdlDockItem objects docked inside GtkNotebooks so they
+	have a 2 pixel border around them.
+
+2004-02-08  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-dock-bar.c: (update_dock_items): Properly add/remove items
+	based on the ICONIFIED flag.
+	* gdl/gdl-dock-item.c: (gdl_dock_item_show_item): Unset the ICONIFIED
+	flag when showing an item.
+
+2004-02-08  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* configure.in:
+	* gdl/Makefile.am:
+	* gdl/gdl-dock-bar.c:
+	* gdl/gdl-dock-bar.h:
+	* gdl/gdl-dock-item-grip.c: (gdl_dock_item_grip_get_title_area),
+	(gdl_dock_item_grip_expose), (gdl_dock_item_grip_item_notify),
+	(gdl_dock_item_grip_destroy), (gdl_dock_item_grip_set_property),
+	(gdl_dock_item_grip_close_clicked),
+	(gdl_dock_item_grip_iconify_clicked),
+	(gdl_dock_item_grip_instance_init), (gdl_dock_item_grip_realize),
+	(gdl_dock_item_grip_unrealize), (gdl_dock_item_grip_map),
+	(gdl_dock_item_grip_unmap), (gdl_dock_item_grip_size_request),
+	(gdl_dock_item_grip_size_allocate), (gdl_dock_item_grip_add),
+	(gdl_dock_item_grip_remove), (gdl_dock_item_grip_forall),
+	(gdl_dock_item_grip_child_type), (gdl_dock_item_grip_class_init),
+	(gdl_dock_item_grip_new):
+	* gdl/gdl-dock-item-grip.h:
+	* gdl/gdl-dock-item.c: (gdl_dock_item_class_init),
+	(gdl_dock_item_instance_init), (gdl_dock_item_set_property),
+	(gdl_dock_item_get_property), (gdl_dock_item_size_request),
+	(gdl_dock_item_size_allocate), (gdl_dock_item_button_changed),
+	(gdl_dock_item_motion), (gdl_dock_item_tab_button),
+	(gdl_dock_item_showhide_grip), (gdl_dock_item_new),
+	(gdl_dock_item_new_with_stock), (gdl_dock_item_iconify_item):
+	* gdl/gdl-dock-item.h:
+	* gdl/gdl-dock-notebook.c: (gdl_dock_notebook_class_init),
+	(gdl_dock_notebook_instance_init), (gdl_dock_notebook_dock):
+	* gdl/gdl-dock-object.c: (gdl_dock_object_class_init),
+	(gdl_dock_object_set_property), (gdl_dock_object_get_property):
+	* gdl/gdl-dock-object.h:
+	* gdl/gdl-dock.c: (gdl_dock_size_request),
+	(gdl_dock_size_allocate), (gdl_dock_xor_rect):
+	* gdl/gdl-dock.h:
+	* gdl/gdl-stock.c: (icon_set_from_file), (add_icon),
+	(gdl_stock_init):
+	* gdl/gdl-stock.h:
+	* gdl/stock-close-12.png:
+	* gdl/stock-menu-left-12.png:
+	* gdl/stock-menu-right-12.png:
+	* gdl/test-dock.c: (main):
+	
+	Improved GdlDock look (looks more like the Gimp's docking widget now).
+	GdlDockItems can also have a stock_id now. Added a new GdlDockBar widget
+	which displays iconified dockitems.
+
+2004-02-05  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	Changes to make GdlDock self contained and only requiring Gtk+,
+	libglade and libxml to build it.  This is so we can keep other
+	copies in sync with this module.
+
+	* gdl/gdl-tools.h: Added class boilerplate macros and base class
+	method invocation macros, copied from libbonobo and libgnome.
+
+	* gdl/gdl-combo-button.c:
+	* gdl/gdl-data-frame.c:
+	* gdl/gdl-data-row.c:
+	* gdl/gdl-data-view.c:
+	* gdl/gdl-dock-item-grip.c:
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-layout.c:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock-notebook.c:
+	* gdl/gdl-dock-object.c:
+	* gdl/gdl-dock-paned.c:
+	* gdl/gdl-dock-placeholder.c:
+	* gdl/gdl-dock-tablabel.c:
+	* gdl/gdl-dock.c:
+	* gdl/gdl-icons.c:
+	* gdl/gdl-recent.c:
+	s/GNOME_CLASS_BOILERPLATE/GDL_CLASS_BOILERPLATE/g
+	s/GNOME_CALL_PARENT/GDL_CALL_PARENT/g
+	s/GNOME_CALL_PARENT_WITH_DEFAULT/GDL_CALL_PARENT_WITH_DEFAULT/g
+	Removed <libgnome/gnome-macros.h> includes.
+	
+2004-02-01  Robert Sedak  <robert.sedak@sk.htnet.hr>
+
+        * configure.in: Added "hr" (Croatian) to ALL_LINGUAS.
+
+2004-01-13  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-master.c (gdl_dock_master_drag_motion): Fix for
+	strict aliasing compiler warning.
+
+2003-12-29  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Require libgnomeui 2.5.0.
+
+2003-12-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-icons.h:
+	* gdl/gdl-icons.c: Ported to GtkIconTheme.  Use new gobject's
+	class private data (g_type_class_add_private, etc.).  Removed
+	"icon_zoom" property.
+	(gdl_icons_new): Take one parameter instead of two.
+	
+	* symbol-browser-control/symbol-browser.c: Ported from symbol
+	combo to GtkComboBox.
+
+	* symbol-browser-control/symbol-browser-cobject.h: 
+	* symbol-browser-control/symbol-browser-cobject.c: Ported from
+	BonoboXObject to BonoboObject.
+
+	* configure.in: Added DEPRECATED_FLAGS.  Define DEPRECATED_FLAGS
+	and error compiler warnings only in maintainer mode.  Require Gtk+
+	2.3.0.
+	
+	* gdl/gdl-tools.c (gdl_pixmaps_free): Fix inverted precondition.
+
+	* gdl/gdl-dock.c (gdl_dock_get_property): Replace deprecated
+	g_value_set_string_take_ownership with g_value_take_string.
+
+	* symbol-browser-control/test-symbol-browser.c: 
+	* symbol-browser-control/factory.c: 
+	* gdl/test-dataview.c: 
+	* gdl/gdl-dock-item-grip.c: 
+	* gdl/gdl-data-model-test.c: 
+	* gdl/gdl-data-frame.c: Fix compiler warnings.
+
+2003-11-27  Jordi Mallach  <jordi@sindominio.net>
+
+	* configure.in (ALL_LINGUAS): Added "ca" (Catalan).
+
+2003-09-13  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/Makefile.am: Added gdl-combo-button.[ch] and test case.
+	* gdl/gdl-combo-button.c: New widget that is a button with an extra
+	button next to it which can popup a menu.
+	* gdl/gdl-combo-button.h:
+	* gdl/gdl-tools.c: (gdl_pixmaps_free), (gdl_pixmaps_update):
+	* gdl/gdl-tools.h: Added GdlPixmap utility. Copied from Evolution. Used
+	for setting pixmaps in a bonoboui application.
+	* gdl/gdl.h:
+	* gdl/test-combo-button.c: (combo_button_activate_default_cb),
+	(main):
+
+2003-08-10  Wang Jian  <lark@linux.net.cn>
+
+	* configure.in: Added "zh_CN" to ALL_LINGUAS.
+
+2003-08-07  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* NEWS: (late) update.
+
+=== GDL 0.4.0 ===
+	
+2003-08-06  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Bumped version number for new release.
+	* AUTHORS: Updated.
+	
+2003-07-26  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-dock-layout.c: (gdl_dock_layout_build_models),
+	(update_layouts_model), (cell_edited_cb),
+	(gdl_dock_layout_construct_layouts_ui): Use COLUMN_EDITABLE of the
+	hardcoded "1".
+	* gdl/gdl-icons.c: (gdl_icons_instance_init): Enable SVG icon themes
+	(patch by John Palmieri (#117301)).
+
+2003-07-25  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* configure.in: Added Macedonian (mk) to ALL_LINGUAS
+
+2003-07-22  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-dock-layout.c: (gdl_dock_layout_build_models),
+	(update_layouts_model), (cell_edited_cb),
+	(gdl_dock_layout_construct_layouts_ui),
+	(gdl_dock_layout_get_layouts_ui):
+	* gdl/layout.glade:
+	* gdl/test-dock.c: (save_layout_cb), (main):
+
+	HIGify the layout manager GUI.
+
+2003-07-21  Artur Flinta  <aflinta@cvs.gnome.org>
+
+        * configure.in: Added "pl" in ALL_LINGUAS.
+
+2003-06-14  Guntupalli Karunakar  <karunakar@freedomink.org>
+
+	* configure.in: Added "ml" in ALL_LINGUAS.
+
+2003-05-28  Danilo Šegan  <dsegan@gmx.net>
+
+	* configure.in (ALL_LINGUAS): Added "sr" and "sr@Latn".
+
+2003-05-13  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Updated required versions for dependencies.
+
+2003-05-13  Marcel Telka  <marcel@telka.sk>
+
+	* configure.in (ALL_LINGUAS): Added "sk".
+
+2003-04-20  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-master.c: Don't set object->master to NULL when
+	disposing the master.  Instead call gdl_dock_object_unbind() so
+	the dock object can unregister the weak pointer.  That simplifies
+	the remove and dispose methods a bit.
+	
+2003-04-20  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-master.c (gdl_dock_master_drag_motion): Plugged a
+	memory leak.
+	
+2003-04-05  Takeshi AIHANA <aihana@gnome.gr.jp>
+
+	* configure.in: Added "ja" to ALL_LINGUAS.
+
+2003-03-27  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
+
+	* configure.in (ALL_LINGUAS): Added "pt_BR".
+
+2003-02-05  Thomas Vander Stichele <thomas at apestaart dot org>
+
+        * configure.in: fix aclocal flags in maintainer mode
+
+2003-01-24  Daniel Yacob <locales@geez.org>
+
+	* configure.in: Added am to ALL_LINGUAS.
+
+2003-01-23  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in (ALL_LINGUAS): Added "no".
+	
+2003-01-20  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* configure.in: Added Dutch (nl) to ALL_LINGUAS
+
+2003-01-20  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Removed quotes from GETTEXT_PACKAGE since it was
+	breaking the GNOME translation status pages (#103848).
+
+2003-01-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-master.c: layout_changed signal is now emitted
+	whenever some item is docked or detached, either by the user or
+	programatically.  Previously, it was only emitted when the user
+	changed the layout.  Also, the signal is emitted in an idle
+	handler to prevent multiple emission.  The global "locked"
+	property is now calculated more efficiently, and only reflects the
+	locked state for items which can be locked, i.e. those which have
+	a grip.
+	(gdl_dock_master_add): Connect to "dock" and "detach" signals and
+	"locked" notify for every dock item added to track layout changes
+	and global "locked" property.
+	(gdl_dock_master_remove): Queue a "layout_changed" signal and
+	notify "locked" property if appropiate.
+
+	* gdl/gdl-dock-layout.c: Items tree model updates are now
+	incremental, not clear and fill.  Models are created when the
+	layout object is created and are updated whenever we receive
+	a layout_changed signal from the master.
+	(gdl_dock_layout_layout_changed_cb): Update items model.
+	(gdl_dock_layout_attach): Idem.
+
+	* gdl/gdl-dock-item.c: Removed GdlDockItemMenuData structure used
+	to hold popup information, since it's no longer necessary.  The
+	"layout_changed" signal in the dock master is no longer emitted in
+	lock_cb and hide_cb methods, since that's now tracked by the
+	master itself.
+	(gdl_dock_item_set_property): Emit layout_changed in the dock
+	master when the locked property changes.
+		
+	* gdl/gdl-dock.c (gdl_dock_floating_window_delete_event_cb): Don't
+	emit layout_changed in the master, since that's now handled
+	transparently.
+
+2003-01-12  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Removed old macros and dependencies.
+
+	* gdl/default-icon.[ch]:
+	* gdl/layout.glade1:
+	* gdl/gdl-file-selector-util.[ch]: Removed obsolete files from CVS.
+
+	* gdl/gdl-i18n.[ch]: New files used for internationalization of
+	the library.
+
+	* symbol-browser-control/Makefile.am:
+	* gdl/Makefile.am: Removed old defines.  Removed files from build.
+	Added files necessary for internationalization.
+
+	* gdl/gdl-data-frame.[ch]:
+	* gdl/gdl-data-model-test.c:
+	* gdl/gdl-data-model.c:
+	* gdl/gdl-data-row.[ch]:
+	* gdl/gdl-data-view.[ch]:
+	* gdl/gdl-dock-item-grip.c:
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-layout.c:
+	* gdl/gdl-dock-master.c:
+	* gdl/gdl-dock-notebook.c:
+	* gdl/gdl-dock-object.c:
+	* gdl/gdl-dock-paned.c:
+	* gdl/gdl-dock-placeholder.c:
+	* gdl/gdl-dock-tablabel.c:
+	* gdl/gdl-dock.c:
+	* gdl/gdl-icons.c:
+	* gdl/gdl-recent.c:
+	* gdl/gdl-tools.[ch]:
+	* symbol-browser-control/factory.c:
+	* symbol-browser-control/symbol-browser.[ch]:
+	* symbol-browser-control/test-symbol-browser.c: Fix up files for
+	i18n.  Include config.h file.  Remove some unnecessary includes.
+	
+2003-01-07  German Poo-Caaman~o <gpoo@ubiobio.cl>
+
+	* configure.in: Added Spanish (es) to ALL_LINGUAS.
+
+2003-01-03  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* configure.in: Update GNOME_REQUIRED to 2.1.0.
+	* gdl/gdl-icons.c: (gdl_icons_get_property),
+	(gdl_icons_set_property), (theme_changed_cb),
+	(gdl_icons_instance_init), (gdl_icons_get_mime_icon): Fix mem leaks,
+	possible infinite recursion, destroy icon cache on theme change and
+	missing invalid property warning.
+
+2002-12-27  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-icons.c: (gdl_icons_get_property),
+	(gdl_icons_set_property), (gdl_icons_dispose),
+	(gdl_icons_class_init), (gdl_icons_instance_init), (gdl_icons_new),
+	(gdl_icons_get_folder_icon), (gdl_icons_get_uri_icon),
+	(gdl_icons_get_mime_icon): Use the new GnomeIconTheme API.
+	* gdl/gdl-icons.h: New GdlIcons class with dispose handler for cleanup.
+	* symbol-browser-control/symbol-browser.c:
+	(gsb_tree_node_set_pixbuf), (get_image_for_type_key),
+	(gnome_symbol_browser_init), (gnome_symbol_browser_finalize):
+	Uses the new gdl-icons API.
+
+2002-12-23  Miloslav Trmac  <mitr@volny.cz>
+
+	* configure.in (ALL_LINGUAS): Added Czech (cs).
+
+2002-11-23  Christophe Merlet  <redfox@redfoxcenter.org>
+
+	* configure.in (ALL_LINGUAS): Added French (fr).
+
+2002-10-29  Jean Schurger <jschurger@schurger.org>
+
+	* configure.in: updated for gdl.spec.in
+	* gdl.spec.in: updated for gnome 2
+
+2002-09-26  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* README, NEWS: updated for new release
+
+2002-09-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in: Removed acconfig.h in favor of defining templates
+	in the configure script directly (to conform with autoconf >= 2.52).
+	Changes to make compatible with autoconf 2.13.
+	
+2002-09-20  Gustavo Giraldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-placeholder.h: Added missing G_END_DECLS.
+	* configure.in:
+	* symbol-browser-control/Makefile.am:
+	* symbol-browser-control/pixmaps/Makefile.am: Created Makefile.am
+	for the pixmaps directory.
+
+2002-08-28  Christian Neumair  <christian-neumair@web.de>
+
+	* configure.in (ALL_LINGUAS): Added German (de).
+
+2002-06-14  Dave Camp  <dave@ximian.com>
+
+	* configure.in: Applied a patch from Sven Herzberg
+	<herzi@myrealbox.com> to fix the glib check.
+
+2002-06-09  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-icons.c: (reload_theme): Use "file_views" gconf key instead
+	of older "file-views" key from gnome1 era.
+
+2002-06-04  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* configure.in: Added Vietnamese (vi) to ALL_LINGUAS
+
+2002-06-04  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-layout.h: API additions.
+	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_ui): Splitted
+	in gdl_dock_layout_construct_items_ui and
+	gdl_dock_layout_construct_layouts_ui to support the two new API
+	functions.
+	(gdl_dock_layout_get_items_ui, gdl_dock_layout_get_layouts_ui):
+	New API functions.
+	* gdl/layout.glade: Minor cosmetic and naming fixes.
+	
+2002-06-01  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock.c (gdl_dock_set_title)
+	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_ui):
+	Fixed a couple of memory leaks.
+
+2002-05-27  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-icons.c (get_themed_icon_file_path)
+	(pixbuf_for_name): Fixed a couple of memory leaks.
+
+2002-05-19  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-recent.c (gdl_recent_delete_from_list): Check if the
+	list after g_slist_delete_link is empty (fixes a crash when
+	re-opening the only item in the recent list) and use delete_link
+	instead of remove_link.
+
+2002-05-12  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/Makefile.am, gdl/gdl.h, gdl/gdl-dock-item.[ch],
+	gdl/gdl-dock-paned.[ch], gdl/gdl-dock-notebook.[ch],
+	gdl/gdl-dock.[ch], gdl/gdl-dock-tablabel.[ch],
+	gdl/gdl-dock-layout.[ch], gdl/layout.glade, gdl/test-dock.c,
+	gdl/libgdlmarshal.list: New GdlDock widget architecture (see
+	gdl/README.gdl-dock).
+
+	* gdl/gdl-dock-object.[ch], gdl/gdl-dock-master.[ch],
+	gdl/gdl-dock-item-grip.[ch], gdl/gdl-dock-placeholder.[ch]: New
+	files for GdlDock.
+
+	* gdl/README.gdl-dock: New file, merged relevant entries from
+	TODO.gdl-dock (now removed).
+	
+	* gdl/gdl-recent.c (gdl_recent_get_list_type): Fixed compiler
+	warning.
+
+	* gdl/gdl-tools.h: Added two convenience macros GDL_CALL_VIRTUAL
+	and GDL_CALL_VIRTUAL_WITH_DEFAULT.
+
+2002-04-20  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/gdl-recent.c: Added James Willcox <jwillcox@cs.indiana.edu>
+	(original author of gnome-recent on which gedit-recent is based, on
+	which gdl-recent is based) to copyright list.
+	* gdl/gdl-recent.h: Idem.
+
+2002-04-15  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* symbol-browser-control/factory.c, 
+	symbol-browser-control/symbol-browser-cobject.c,
+	symbol-browser-control/test-symbol-browser.c:
+	Fixed a ref leak and added ability to recognize
+	file://... uri for setFile().
+	
+2002-04-14  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* idl/symbol-browser.idl: Added a new method called
+	setFile(), which is used to set the current file.
+	
+	* symbol-browser-control/tagmanager/include/tm_tag.h,
+	  symbol-browser-control/tagmanager/tm_tag.c: 
+	Removed static qualifier from tm_tag_type_name() and
+	availed it's prototype for use in outside code. also
+	created reverse map function tm_tag_type_name();
+	
+	* symbol-browser-control/test-symbol-browser.{c,h},
+	  symbol-browser-control/symbol-browser.{c,h},
+	  symbol-browser-control/symbol-browser-cobject.{c,h},
+	  symbol-browser-control/Makefile.am:
+	Added Per file Symbol browsing. with a new toolbar
+	for symbol browser for listing per file symbol browsing.
+	
+	* symbol-browser-control/gnome-symbol-browser.xml:
+	Added a new dockitem (toolbar) for file symbol browser.
+
+2002-04-12  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* symbol-browser-control/tagmanager/include/*.h,
+	  symbol-browser-control/tagmanager/include/Makefile.am,
+	  symbol-browser-control/tagmanager/*.[h,c],
+	  symbol-browser-control/tagmanager/Makefile.am:
+	  Upgraded tagmanager to 0.6 version. Added/removed many files.
+	  
+	* symbol-browser-control/pixmaps/*.xpm: Removed old icon files.
+	* symbol-browser-control/pixmaps/sv_*.xpm: Added new icon files.
+	
+	* symbol-browser-control/test-symbol-browser.c,
+	  symbol-browser-control/symbol-browser.{c,h},
+	  symbol-browser-control/symbol-browser-cobject.{c,h}:
+	  
+	  Adjusted to the new tagmanager. Added more c types
+	  (enums, typedef etc) and organized all of
+	  them in sub folders to improve visibility and clarity.   
+	  s/GtkObject/GObject/ as the derivative class for BonoboXObject
+	  (clears compiler warnings). Cleaned ref/unref issues with
+	  symbol-browser-control.
+	
+2002-04-10  Naba Kumar <kh_naba@users.sourceforge.net>
+
+	* gdl/gdl-recent.c: Fixed a crash bug with tries to
+	return the same list from which the only element has
+	been removed (and hence freed).
+
+2002-04-10  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/Makefile.am: Added gdl-recent.[ch].
+	* gdl/gdl-recent.c: New class for displaying recent files/projects.
+	* gdl/gdl-recent.h: Idem.
+	* gdl/gdl.h: Added new header files.
+
+2002-04-09  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-icons.c (remove_icon_file_name_suffix): Fix the string
+	comparison.
+
+	* gdl/gdl-data-view.c (gdl_data_view_class_init): Add an 
+	expander_size style property.
+
+	* gdl/gdl-data-row.c: Remove the custom expand and remove pixbufs,
+	and draw the expander with gtk.
+
+2002-04-09  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-dock-notebook.c (gdl_dock_notebook_bring_to_front): New
+	function.
+
+	* gdl/gdl-dock.c (gdl_dock_bring_to_front): New function.
+
+2002-03-17  JP Rosevear  <jpr@ximian.com>
+
+	* Makefile.am: remove scintilla-control dir reference
+
+	* Remove scintilla stuff for good
+
+2002-03-16  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* gdl/Makefile.am: Added gdl-file-selector-util.[ch] back and also added
+	gdl-tools.c
+	* gdl/gdl-file-selector-util.c: (listener_cb),
+	(replace_existing_file), (ok_clicked_cb), (concat_dir_and_file),
+	(create_gtk_selector), (run_file_selector),
+	(gdl_file_selector_open), (gdl_file_selector_open_multi),
+	(gdl_file_selector_save): Ported to GTK+ 2.0 and added replace dialog
+	if you selected a file in a save dialog that already exists.
+	* gdl/gdl-tools.h: Added gdl_button_new_with_stock_image method.
+	* gdl/gdl-tools.c: Idem.
+
+2002-03-10  Dave Camp  <dave@ximian.com>
+
+	* configure.in:  Require librsvg.
+	* gdl/Makefile.am: Add new files.
+	* symbol-browser-control/symbol-browser.c: (get_image_for_type): 
+	Use the gdl-icons to get the folder icon.
+	* gdl/gdl-icons.[ch]: 
+	* gdl/defailt-icon.[ch]: 
+	* gdl/program.xpm:
+	* gdl/shared.xpm:
+	* gdl/static.xpm: New files.
+
+2002-02-23  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* symbol-browser-control/gnome-symbol-browser.xml: Move "FormatUpdate"
+	menuitem to the "View" menu
+
+2002-02-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* configure.in, gdl/Makefile.am,
+	symbol-browser-control/Makefile.am,
+	symbol-browser-control/tagmanager/Makefile.am: Changes to make
+	distcheck pass
+
+	* gdl/Makefile.am: Removed gdl-file-selector-util.c from build
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_lock_cb): Emit
+	"layout_changed" on the dock.
+
+2002-02-14  Duarte Loreto <happyguy_pt@hotmail.com>
+
+        * configure.in: Added pt (Portuguese) to ALL_LINGUAS
+
+2002-02-06  JP Rosevear  <jpr@ximian.com>
+
+	* symbol-browser-control/Makefile.am: add "\" to continue
+	EXTRA_DIST
+
+2002-02-04  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* symbol-browser-control/symbol-browser-cobject.c: (impl_clear): Make
+	it actually do something.
+
+2002-02-03  Jeroen Zwartepoorte  <jeroen@xs4all.nl>
+
+	* Makefile.am: Added symbol-browser-control back.
+	* configure.in: Idem.
+	* symbol-browser-control/Makefile.am: Idem.
+	* symbol-browser-control/factory.c: (on_format_update),
+	(on_control_set_frame), (on_control_destroy), (control_factory):
+	* symbol-browser-control/symbol-browser-cobject.c: Ported to gnome2.
+	(gnome_symbol_browser_cobject_class_init),
+	(gnome_symbol_browser_cobject_init),
+	(gnome_symbol_browser_cobject_destroy), (impl_open_directory),
+	(impl_clear), (impl_update), (impl_update_file),
+	(impl_remove_file), (impl_save),
+	(gnome_symbol_browser_cobject_new): Moved to BonoboXObject.
+	* symbol-browser-control/symbol-browser-cobject.h: Idem.
+	* symbol-browser-control/symbol-browser.c: Ported to GtkTreeView.
+	(gnome_symbol_browser_class_init), (gnome_symbol_browser_init),
+	(destroy_symbol_data_cb), (gsb_update_tree), (gsb_insert_nodes),
+	(get_sub_node), (gsb_sub_node_data_new), (gsb_tree_node_data_new),
+	(gsb_tree_node_data_free), (gsb_tree_node_data_copy),
+	(gsb_tree_node_data_get_type), (gsb_tree_node_set_pixbuf),
+	(gsb_tree_node_set_text), (row_activated_cb), (get_image_for_type),
+	(get_tag_type_name), (symbol_print), (gnome_symbol_browser_new),
+	(gnome_symbol_browser_get_type), (gnome_symbol_browser_destroy),
+	(gnome_symbol_browser_reset), (gnome_symbol_browser_open_dir),
+	(gnome_symbol_browser_clear),
+	(gnome_symbol_browser_get_event_source): Ported to GtkTreeView. Uses
+	BonoboEventSource now instead of events via PropertyBags.
+	* symbol-browser-control/symbol-browser.h: Added get_event_source
+	method.
+	* symbol-browser-control/test-symbol-browser.c: (load_file),
+	(open_or_save_dialog), (open_file_cb), (save_file_cb), (exit_cb),
+	(event_cb), (main): Ported to gnome2, displays message dialog when
+	user selects a symbol.
+
+2002-02-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_lock, gdl_dock_item_unlock,
+	gdl_dock_item_lock_cb): New functions.
+	(gdl_dock_item_set_property): Resize widget if changed locked
+	behavior.
+	(gdl_dock_item_popup_menu): Added "Lock" menu item.
+	(gdl_dock_item_button_changed): Only activate popup is clicked on
+	the drag handle.
+	(gdl_dock_item_save_layout): Save locked attribute.  
+	* gdl/gdl-dock-layout.c (gdl_dock_layout_construct_dialog): Added
+	"Locked" column.
+	Use xmlFree instead of free in a couple of places.
+	(gdl_dock_layout_update_items_model): New function to update
+	checkboxes after loading a layout.
+	* gdl/gdl-dock-notebook.c (gdl_dock_notebook_save_layout): Save
+	locked attribute.
+	* gdl/gdl-dock-tablabel.c (gdl_dock_master_changed_behavior):
+	New function, notify callback.
+	Added "master" property, which keeps a weak pointer to the
+	dockitem which "owns" the tablabel.
+	* gdl/gdl-dock.c (gdl_dock_build_layout, gdl_dock_load_layout):
+	Call xmlFree on strings got from xmlGetProp.  Restore locked
+	attribute.
+
+2002-01-30  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl-1.0.pc.in: Added libglade dependency
+	* gdl/gdl-dock.c (gdl_dock_layout_build): Check the xml node's
+	name for dock items.
+
+2002-01-26  Dave Camp  <dave@ximian.com>
+
+	* gdl/Makefile.am: Remove gdl-file-selector-util.
+	* gdl/gdl-data-frame.c (gdl_data_frame_draw): Only render things that 
+	are inside the expose area.
+	(gdl_data_frame_finalize): Don't free the no-longer-existant path.
+	(gdl_data_frame_button_press): Removed most of the implementation.
+	(gdl_data_frame_new): Take a GdkDataRow instead of a path.
+	* gdl/gdl-data-model-test.c (get_value): Make one value a boolean.
+	(get_renderer): Added the is_editable field and set appropriately.
+	* gdl/gdl-data-model.c (gdl_data_model_get_renderer): Added an
+	is_editable field.
+	* gdl/gdl-data-row.c (load_path): Pass the is_editable flag.
+	(gdl_data_row_render): Render the selection and focus if necessary.
+	(button_press_event): New function.
+	(gdl_data_row_event): New function.
+	(gdl_data_row_get_cell_area): New function.
+	(gdl_data_row_set_selected): Set priv->selected to the selected argment instead
+	of hard-coding FALSE.
+	(gdl_data_row_set_focused): New function.
+	(gdl_data_row_get_title): New function.
+	* gdl/gdl-data-view.c (expose_frames): New function, moved from
+	expose_children.
+	(expose_widgets): New function.
+	(gdl_data_view_expose): Use expose_frames and expose_widgets, 
+	(frame_at): Use priv->frames instead of priv->objects.
+	(row_at): New function.
+	(gdl_data_view_put): New function.
+	(stop_editing): New function.
+	(remove_widget_cb): New function.
+	(button_press_event_cb): Handle editing if appropriate.
+	(gdl_data_view_realize): New function.
+	(gdl_data_view_size_request): New function.
+	(gdl_data_view_size_allocate): New function
+	(gdl_data_view_forall): New function.
+	(gdl_data_view_remove): New function.
+	(gdl_data_view_destroy): Updated.
+	(gdl_data_view_class_init): Initialize GtkContainer methods.
+	(gdl_data_view_set_model): Create toplevel rows and give them frames
+	rather than letting the frames create rows.
+	(gdl_data_view_layout): Use priv->frames instead of priv->objects.
+
+2002-01-27  Mikael Hallendal  <micke@codefactory.se>
+
+	* gdl/gdl-data-view.c (gdl_data_view_set_model): cast to the
+	  correct type.
+	
+	* gdl/gdl-file-selector-util.h: don't include
+	  libgnome/gnome-defs.h
+
+2002-01-13  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-layout.[ch]: New files.  Object which wraps layout
+	managment stuff for the dock.
+
+	* gdl/layout.glade: Layout manager interface file.
+
+	* gdl/test-dock.c: Removed layout saving/restoring stuff, replaced
+	with GdlDockLayout object.
+	
+	* configure.in:	Added libglade dependency.
+
+	* gdl/Makefile.am: Added GdlDockLayout.  Added
+	GDK_DISABLE_DEPRECATED flag.
+
+	* gdl/gdl-dock-item.c
+	  gdl/gdl-dock-paned.c
+	  gdl/gdl-dock.c: Replaced GDK deprecated function calls.
+	
+2002-01-12  Dave Camp  <dave@ximian.com>
+
+	* configure.in: Cleaned up some variables being used before AC_INIT,
+	which seemed to break things.
+
+2001-12-30  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-data-frame.c (gdl_data_frame_class_init): Initialize the
+	finalize member.
+	(gdl_data_frame_finalize): New function.
+
+	* gdl/gdl-data-view.c (gdl_data_view_destroy): Unref all the 
+	frames and the pixbufs.
+
+	* gdl/gdl-data-row.c (load_path): Duplicate the name and 
+	renderer_field strings, and ref/sink the cell renderer.
+	(unload_path): Free the renderer field and subrows.
+	(gdl_data_row_finalize): Call unload_path, and unref the model.
+	(gdl_data_row_new): Ref the model.
+
+2001-12-30  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-data-frame.c: Replaced frame->[x,y,width,height] with a 
+	GdkRectangle called area.  Also got rid of the property code, as this
+	is an object for internal use of the widget only.
+	(gdl_data_frame_layout): Reflect area change.
+	(gdl_data_frame_new): New function.
+	(setup_layout): New function.
+	(setup_path): New function.
+	(gdl_data_frame_class_init): Don't initialize the properties.
+
+	* gdl/gdl-data-view.c (frame_at): Use frame->area instead of
+	frame->[x,y,width,height].
+	(gdl_data_view_set_model): Use gdl_data_frame_new and 
+	gdl_data_frame_set_position.
+
+2001-12-30  Dave Camp  <dave@ximian.com>
+
+	* Added the beginnings of the GdlDataView widget, which will 
+	ultimately be a structure browser similar to the widgets
+	used in ddd and gvd.
+
+2001-12-21  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* Port to Gnome 2 platform of the source root files and the gdl/
+	directory.
+
+	* gdl-1.0.pc.in
+	gdl/libgdlmarshal.list: New files
+
+	* gdlConf.sh.in
+	gdl.m4: Removed files
+
+	* autogen.sh: Changed to use gnome2 macros.
+	
+	* configure.in: gettext renamed to gdl-1. Disabled build of
+	scintilla-control and symbol-browser-control.  
+	Version bumped to 0.3.0
+	
+	* gdl/Makefile.am: Generate glib enums and marshals.  Library
+	renamed to libgdl-1.  Headers are installed in
+	$(includedir)/libgdl-1.0/gdl.  IDL files are installed in
+	$(datadir)/idl/libgdl-1.0
+
+	* gdl/gdl-server-manager.[ch]: Removed files
+
+	* Changes to GdlDock: Type system changed to GType.  Replaced old
+	Gtk arg system with new GObject property system.  Gtk signal
+	system changed to GObject signal system.  Removed draw virtuals,
+	made expose-event handlers work correctly.  Fixed a couple of
+	object reference bugs (sink tablabels and bound items, unbind
+	items when destroying the dock).  
+
+	* gdl/gdl-dock.c: libxml2 API changes.
+
+	* gdl/gdl-dock-notebook.c: Fixed forall virtual.  Moved internal
+	GtkNotebook creation to gdl_dock_notebook_init function (it was in
+	gdl_dock_notebook_new)
+
+	* gdl/gdl-dock-tablabel.c: Tablabel handle doesn't have a shadow
+	anymore, so it's more flat
+	
+2001-12-20 Naba Kumar <kh_naba@yahoo.com>
+
+	* .cvsignore
+	Update file.
+
+2001-12-20 Naba Kumar <kh_naba@yahoo.com>
+
+	* symbol-browser/.cvsignore
+	  symbol-browser/tagmanager/.cvsignore
+	  symbol-browser/tagmanager/include/.cvsignore
+	Added files.
+
+2001-12-20 Naba Kumar <kh_naba@yahoo.com>
+
+	* Makefile.am:
+	Added Module symbol-browser
+
+	* configure.in:
+	Added library checks for glib and gal.
+	Added ctags configuration checks to be used with
+	symbol-browser.
+	Added configure outputs for symbol-browser.
+
+	* acconfig.h:
+	Added undefs for ctags configuration.
+
+	* idl/symbol-browser.idl, idl/Makefile.am,
+	  gdl/Makefile.am, idl/GDL.idl:
+	Added symbol-browser.idl
+
+	* symbol-browser/*/*/*
+	Added symbol-browser module.
+
+2001-12-09  Simos Xenitellis  <simos@hellug.gr>
+
+	* configure.in: Added "el" to ALL_LINGUAS.
+
+2001-12-09  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock-item.c (gdl_dock_item_get_arg): g_strdup long_name
+	argument return.
+	(gdl_dock_item_save_position): If saving floating position
+	correctly set the position struct field.
+	(gdl_dock_item_restore_position): Check for NULL target when docking.
+	(gdl_dock_item_set_default_position): New function.
+
+	* gdl/gdl-dock-item.h: Fixed GDL_DOCK_ITEM_IS_SHOWN macro.  Added
+	gdl_dock_item_set_default_position function.
+
+	* gdl/gdl-dock-tablabel.c (gdl_dock_tablabel_paint): Use flat_box
+	instead of box for the label background.
+
+	* gdl/gdl-dock.c (gdl_dock_layout_load): Use the node's children
+	to build the layout instead of the node itself, which is
+	semantically more correct.
+	
+	* gdl/test-dock.c: Fix gdl_dock_layout_load call.
+		
+2001-12-02  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/TODO.gdl-dock: Updated
+	* gdl/gdl-dock-item.[ch]:
+	Removed location menu option functions and struct fields.
+	Removed some (already fixed) FIXMEs.
+	(gdl_dock_item_save_position, gdl_dock_item_restore_position):
+	New docked position save/restore functions.
+	(gdl_dock_item_get_pos_hint): New class virtual method to support 
+	position saving: returns a hinted relative position of the item to 
+	another	named item.
+	(gdl_dock_item_{dock,undock}_cb): Dock/Undock menu items
+	callbacks.
+	(gdl_dock_item_dock_to): Save docked position if item wants to
+	float.  Containers can no longer be nested inside notebooks: the
+	item is docked relative to the container notebook in such case.
+	(gdl_dock_item_hide): Save current dock position.
+	(gdl_dock_item_show): New function, to show a previously hidden,
+	via gdl_dock_item_hide, item.
+	* gdl/gdl-dock-notebook.c: Implemented get_pos_hint virtual.
+	(gdl_dock_notebook_add): create default label from long name if
+	available.
+	* gdl/gdl-dock-paned.c: Implemented get_pos_hint virtual.
+	* gdl/gdl-dock-tablabel.c (gdl_dock_tablabel_size_allocate):
+	Fixed allocation bug related to unsigned arithmetic operations.
+	* gdl/gdl-dock.[ch] (gdl_dock_get_named_items): New function.
+	
+2001-11-18  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock.c (gdl_dock_layout_load): Test if we have docked
+	items to show.  
+	* gdl/gdl-server-manager.c (destroy_cb): Call
+	all_destroyed_callback only if set.
+	
+2001-11-15  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-file-selector-util.c: Added file.  Copied from
+	libgnomefilesel.
+
+	* gdl/Makefile.am: Build gdl-file-selector-util.c.
+
+2001-11-10  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* gdl/gdl-dock.c (gdl_dock_layout_build): changed signature and
+	reorganized function to avoid creating empty docking containers.
+	(gdl_dock_bind_item): check for dockitem name duplication.
+	* gdl/gdl-dock-item.c (gdl_dock_item_hide_cb): save pointer to
+	dock before calling hide to emit signal later.
+	* gdl/gdl-dock-notebook.c: removed auto_reduce debug message.
+	Create the GtkNotebook with scrollable tabs.
+	
+2001-10-28  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "da" to ALL_LINGUAS.
+
+2001-10-09  Gustavo Giráldez  <gustavo.giraldez@gmx.net>
+
+	* Lots of bugfixes and new features to GdlDock by Jeroen
+	Zwartepoorte <jeroen@xs4all.nl> and me, including:
+	
+	* gdl/gdl-dock.c: 
+	* gdl/gdl-dock.h: New docking layout saving/restoring using
+	an XML format  (functions gdl_dock_layout_{load,save}).
+	New methods gdl_dock_{bind,unbind}_item, to connect item signals
+	and to keep track of the items for layout managment.
+	New function: gdl_dock_get_item_by_name.
+	Implemented "layout_changed" signal emission.
+
+	* gdl/gdl-dock-tablabel.h:
+	* gdl/gdl-dock-tablabel.c: New files.  Implement a tablabel for 
+	GdlDockNotebooks with handles to drag the items.
+	
+	* gdl/gdl-dock-item.h:
+	* gdl/gdl-dock-item.c: 
+	* gdl/gdl-dock-paned.h:
+	* gdl/gdl-dock-paned.c:
+	* gdl/gdl-dock-notebook.h:
+	* gdl/gdl-dock-notebook.c: renamed "drag_request" signal and methods
+	to "dock_request".  New methods to support tablabels:
+	{get,set}_tablabel and {hide,show}_handle.
+	Implemented signals dock_drag_{begin,motion,end} to be used instead
+	of directly calling gdl_dock functions, and to provide customization.
+	Exposed several item properties by using GtkObject argument system.
+	New function: gdl_dock_item_hide.
+	Fixed popup menu and implemented "Hide" option.
+
+2001-10-03  Gustavo Giráldez <gustavo.giraldez@gmx.net>
+
+       * gdl/gdl-dock.h: fixed bug to correctly position the xored
+       rectangle for the possible docking position when the dock is
+       not at the origin of its GdkWindow.
+
+2001-10-02  JP Rosevear  <jpr@ximian.com>
+
+	* scintilla-control/scintilla/Makefile.am: build static libtools
+	libs
+
+	* scintilla-control/Makefile.am: use static libtools libs for
+	libtool 1.3.x
+
+2001-09-30  Dave Camp  <dave@ximian.com>
+
+	* gdl/gdl-dock-notebook.c: 
+	* gdl/gdl-dock-notebook.h: 
+	* gdl/gdl-dock-paned.c: 
+	* gdl/gdl-dock-paned.h: 
+	* gdl/gdl-dock-item.c: 
+	* gdl/gdl-dock-item.h: 
+	* gdl/gdl-dock.c: 
+	* gdl/gdl-dock.h: New docking widget by Gustavo M. Giraldez and Jeroen
+	Zwartepoorte.
+
+	* gdl/Makefile.am: Build the GdlDock widget.
+
+	* scintilla-control/Makefile.am: Build libscintilla-control.la instead
+	of scintilla-control.
+
+	* scintilla-control/scintilla-control.c: Use BONOBO_OAF_SHLIB_FACTORY
+	instead of BONOBO_OAF_FACTORY.
+
+	* scintilla-control/Bonobo_Control_Scintilla.oaf.in: Change the 
+	scintilla component from an exe component to a shlib component.
+
+	* scintilla-control/scintilla-ui.xml: Changed the edit toolbar to be in
+	band 2.
+
+2001-08-25  Jeroen Zwartepoorte <jeroen@xs4all.nl>
+
+        * scintilla-control/scintilla-ui.xml: Added EditorStats statusbar item.
+        
+        * scintilla-control/scintilla-control.c: Implemented EditorStats 
+        statusbar item. Displays "lines:columns" information.
+
+2001-08-28  Fatih Demir <kabalak@gtranslator.org>
+
+	* configure.in: Moved "AM_PROG_XML_I18N_TOOLS" after AC_INIT.
+
+2001-08-26  JP Rosevear  <jpr@ximian.com>
+
+	* scintilla-control/scintilla-ui.xml: update place holder name to
+	match gtkhtml (which we will guess in the standard
+
+2001-08-08  Jens Finke <jens@gnome.org>
+
+	* Makefile.am (EXTRA_DIST): Added *.spec[.in] and xml-i18n-*.in
+	files.
+
+	* configure.in: Added *_REQUIRED variables and appropriate
+	AC_SUBST calls, use *_REQUIRED vars in CHECK_LIB macro, generate
+	gdl.spec.
+
+	* scintilla-control/Makefile.am: Removed duplicated EXTRA_DIST.
+	
+	* gdl.spec.in: New file.
+
+2001-07-20  Dave Camp  <dave@ximian.com>
+
+        * Applied a patch from Gustavo M. Giraldez <gustavo.giraldez@gmx.net>
+	to implement "Search" and "Search and Replace" verbs.
+
+2001-07-09  Christopher R. Gabriel  <cgabriel@cgabriel.org>
+
+	* configure.in (ALL_LINGUAS): Added italian translation.
+
+2001-07-07  Dave Camp  <dave@ximian.com>
+
+	* configure.in: Include a renamed copy of GDL_CHECK_LIB here, and
+	use that instead.
+	
+2001-07-07  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/test.c: Changed to reflect idl changes.
+
+	* scintilla-control/scintilla-persist-stream.c (impl_load): Removed
+	the unused data variable.
+
+	* scintilla-control/scintilla-editor-gutter.c: Replaced
+	scintilla_editor_gutter_get_type with a BONOBO_X_TYPE_FUNC_FULL 
+	macro.
+
+	* scintilla-control/scintilla-editor-buffer.c: Changed to reflect
+	idl changes, and BonoboXObjectified.
+
+	* scintilla-control/scintilla-control.c: Replaced
+	init_scintilla_control_factory() and main() with
+	BONOBO_OAF_FACTORY.
+	(scintilla_factory): Marked the property description strings for
+	translation.
+
+	* scintilla-control/Makefile.am: Translate and install
+	Bonobo_Control_Scintilla.oaf.in instead of installing
+	scintilla.oafinfo.
+
+	* idl/editor-buffer.idl: Put EditorBuffer int the GNOME::Development
+	namespace and studlycapsify it.
+
+	* gdl/Makefile.am (IDL_FLAGS): Fixed a typo (s/dil/idl/).
+
+	* configure.in: Use GDL_CHECK_LIB for all the library checks, 
+	use AM_PROG_XML_I18N_TOOLS.
+
+	* gdl.m4: New file.
+
+	* Makefile.am: Install gdl.m4.
+
+	* AUTHORS, MAINTAINERS, README: updated.	
+
+2001-06-21  JP Rosevear  <jpr@ximian.com>
+
+	* gdl/gdl-tools.h: s/GDF/GDL
+
+2001-07-06  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla/Makefile.am (libscintilla_widget_a_SOURCES): Added the .h files.
+
+2001-06-19  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla/ScintillaGTK.cxx
+	(ScintillaGtk::size_request): Call size_request on the scrollbars.
+
+	* scintilla-control/scintilla-editor-gutter.c: Formatting changes.
+
+2001-05-12  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Unref
+	the property bag after adding it to the control.
+	(scintilla_factory): Create the gutter implementation.
+	(scintilla_factory): Use arrows instead of + and - for the
+	folding.
+	(main): Create a running context and run gtk_main_quit on its
+	last_unref signal.
+
+	* scintilla-control/scintilla/ScintillaGTK.cxx: Changed the default 
+	requisition.
+	
+	* scintilla-control/Makefile.am (scintilla_control_SOURCES): Build
+	scintilla-editor-gutter.[ch].
+
+	* scintilla-control/scintilla-editor-gutter.[ch]: New files.
+
+	* idl/editor-gutter.idl: New file.
+
+	* idl/GDL.idl: Include editor-gutter.idl
+
+	* lib/Makefile.am (libgdl_la_SOURCES): Depend on editor-gutter.idl.
+
+2001-03-18  Dirk Vangestel  <dirk.vangestel@advalvas.be>
+
+	* scintilla-control/scintilla-control.c (get_prop): Now returns line
+	number when asked. Added an offset to the line numbers.
+
+	* scintilla-control/scintilla-editor-buffer.c (impl_delete):
+	Correcting deleting part of the text.
+
+2001-03-14  Dirk Vangestel  <dirk.vangestel@advalvas.be>
+
+	* scintilla-control/scintilla-editor-buffer.c (impl_get_chars):
+	Corrected getting only part of the text.
+
+2001-03-06  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla-highlight.c (set_language_properties): 
+	Slightly better default colors, and set the color for the Highlight
+	Guides.
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Connect
+	to the scintilla control's "notify" signal.
+	(scintilla_factory): Set all the right properties for doing code
+	folding on the scintilla widget, and enable Highlight Guides.
+	(expand): New function.
+	(fold_changed): New function.
+	(margin_click): New function.
+	(notify_cb): New function.
+
+2001-03-05  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla-control.c (set_prop): 
+	(get_prop): Fixed the prototypes of these functions.
+
+2001-03-05  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla/ScintillaGTK.cxx (SizeRequest): Request 
+	more sane values.
+
+2001-03-05  Dave Camp  <dave@ximian.com>
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Add the
+	line_num property.
+	(set_prop): 
+	(get_prop): Implemented the line_num property.
+
+2001-03-05  JP Rosevear  <jpr@ximian.com>
+
+	* scintilla-control/scintilla-highlight.c
+	(set_language_properties): don't just set basic properties if
+	there are keywords
+
+2001-03-01  Ian McKellar  <ian@eazel.com>
+
+	* scintilla-control/scintilla.oafinfo:
+	Added a nautilus:view_as_name property to the oafinfo file so that
+	the Scintilla component can be used as a Nautilus view.
+	
+2001-02-28  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "sv" to ALL_LINGUAS.
+
+2001-01-10  JP Rosevear  <jpr@helixcode.com>
+
+	* scintilla-control/scintilla/ScintillaGTK.cxx: proper casting
+
+2001-01-06  Dave Camp  <dave@helixcode.com>
+
+	* scintilla-control/scintilla.oafinfo: Updated.
+
+	* scintilla-control/scintilla-persist-file.c: Moved highlighting
+	functions to scintilla-highlight.h
+	(impl_load): call set_language_properties() with the mime type of the
+	file.
+	
+	* scintilla-control/scintilla-control.c (scintilla_factory): Add the
+	PersistStream interface to the control.
+
+	* scintilla-control/scintilla-persist-stream.[ch]: New file.
+
+	* scintilla-control/scintilla-highlight.[ch]: New file.
+
+	* configure.in: check for gnome-vfs.
+
+2000-12-18  JP Rosevear  <jpr@helixcode.com>
+
+	* scintilla-control/scintilla-ui.xml: Fix toolbar placement
+
+2000-12-18  Dave Camp  <dave@helixcode.com>
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Set the
+	width of the line number margin.
+
+2000-12-03  Dave Camp  <dave@helixcode.com>
+
+	* idl/GDL.idl: Don't include the event channel idl.
+
+2000-12-02  Dave Camp  <dave@helixcode.com>
+
+	* scintilla-control/scintilla-ui.xml: Added toolbar items.
+
+	* scintilla-control/scintilla-editor-buffer.c (impl_get_chars): 
+	Renamed from impl_read().
+	(impl_insert): Changed to reflect idl changes.
+	(init_editor_buffer_corba_class): s/read/get_chars/.
+
+	* scintilla-control/scintilla-control.c (scintilla_factory): Added 
+	selection_start and selection_end properties.
+	(scintilla_activate_cb): Rearrange the freezing.
+	(get_prop): Implement the selection_start and selection_end props.
+
+	* idl/editor-buffer.idl: Replaced read() with get_chars().
+	Take a null-terminated string for insert().
+
+	* gdl/Makefile.am (libgdlinclude_HEADERS): Install 
+	CORBA_GENERATED_HEADER_FILES
+
+2000-11-11  JP Rosevear  <jpr@helixcode.com>
+
+	* NEWS: Remove borrowed cruft

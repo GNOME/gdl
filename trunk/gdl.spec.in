@@ -1,0 +1,90 @@
+Name:		gdl
+Summary:	Components and library for GNOME development tools.
+Version:	@GDL_VERSION@
+Release:	1
+License:	GPL
+Group:		Development/Libraries
+Source:		%{name}-%{version}.tar.gz
+BuildRoot:	/var/tmp/%{name}-%{version}-root
+URL:		http://www.gnome.org
+Requires: 	gtk2 >= @GTK_REQUIRED@
+Requires: 	libgnomeui >= @GNOME_REQUIRED@
+Requires:	libbonoboui >= @BONOBOUI_REQUIRED@
+Requires: 	libxml2 >= @XML_REQUIRED@
+Requires: 	libglade2 >= @LIBGLADE_REQUIRED@
+
+%description
+This package contains components and libraries that are intended to be
+shared between GNOME development tools, including gnome-build and anjuta2.
+
+The current pieces of GDL include:
+
+# - A code-editing bonbono component based on the Scintilla
+#   widget (scintilla-control).
+#
+Now the editor widget is the glimmer component that use gtksourceview
+
+ - A utility library that also contains the stubs and skels for
+   the above components (gdl).
+
+
+%package devel
+Summary:	Libraries and include files for gdl.
+Group:		Development/Libraries
+Requires:	%{name} = %{version}
+
+%description devel
+Libraries and header files if you want to make use of the gdl library in your
+own programs.
+
+
+%prep
+%setup -q
+
+%build
+./configure --prefix=%{_prefix} \
+    --bindir=%{_bindir} --mandir=%{_mandir} \
+    --localstatedir=%{_localstatedir} --libdir=%{_libdir} \
+    --datadir=%{_datadir} --includedir=%{_includedir} \
+    --sysconfdir=%{_sysconfdir}
+
+CFLAGS="$RPM_OPT_FLAGS" make
+
+%install
+[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
+
+make DESTDIR="$RPM_BUILD_ROOT" install
+
+
+%clean
+[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+
+%files
+%doc AUTHORS COPYING ChangeLog NEWS README
+%defattr (-, root, root)
+%{_prefix}/lib/lib*.so.*
+%{_prefix}/share/gdl
+%{_prefix}/share/locale/*/LC_MESSAGES/*
+
+%files devel
+%defattr (-, root, root)
+%{_prefix}/include/libgdl-1.0
+%{_prefix}/lib/lib*.a
+%{_prefix}/lib/lib*.la
+%{_prefix}/lib/lib*.so
+%{_prefix}/lib/pkgconfig/*
+
+%changelog
+* Tue Aug 10 2004 Pierre Sarrazin <http://sarrazip.com/>
+- Update for version 0.4.0
+* Tue Oct 24 2002 Jean Schurger <jschurger@schurger.org
+- Update for gnome 2 version
+* Wed Aug 8 2001 Jens Finke <jens@gnome.org>
+- created spec file

@@ -1,0 +1,649 @@
+# gdl sk.po
+# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gdl package.
+# Marcel Telka <marcel@telka.sk>, 2003, 2004.
+#
+# $Id: sk.po,v 1.2 2004/10/13 04:12:21 marcel Exp $
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-13 05:32+0200\n"
+"PO-Revision-Date: 2004-10-13 06:09+0200\n"
+"Last-Translator: Marcel Telka <marcel@telka.sk>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "Veľkosť expandera"
+
+#: gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "Veľkosť šípky expandera."
+
+#: gdl/gdl-dock-item-grip.c:364
+#, fuzzy
+msgid "Iconify"
+msgstr "Veľkosť ikony"
+
+#: gdl/gdl-dock-item-grip.c:364
+msgid "Iconify this dock"
+msgstr ""
+
+#: gdl/gdl-dock-item-grip.c:366
+msgid "Close"
+msgstr "Zatvoriť"
+
+#: gdl/gdl-dock-item-grip.c:366
+msgid "Close this dock"
+msgstr ""
+
+#: gdl/gdl-dock-item-grip.c:675 gdl/gdl-dock-tablabel.c:129
+msgid "Controlling dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item-grip.c:676
+msgid "Dockitem which 'owns' this grip"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:242
+msgid "Orientation"
+msgstr "Orientácia"
+
+#: gdl/gdl-dock-item.c:243
+msgid "Orientation of the docking item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:258
+msgid "Resizable"
+msgstr "Je možné zmeniť veľkosť"
+
+#: gdl/gdl-dock-item.c:259
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:266
+msgid "Item behavior"
+msgstr "Správanie položky"
+
+#: gdl/gdl-dock-item.c:267
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
+msgid "Locked"
+msgstr "Zamknuté"
+
+#: gdl/gdl-dock-item.c:276
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Ak je nastavené, položka pruhu nemôže byť presunutá a nezobrazuje držadlo"
+
+#: gdl/gdl-dock-item.c:284
+msgid "Preferred width"
+msgstr "Preferovaná šírka"
+
+#: gdl/gdl-dock-item.c:285
+msgid "Preferred width for the dock item"
+msgstr "Preferovaná šírka pre položku pruhu"
+
+#: gdl/gdl-dock-item.c:291
+msgid "Preferred height"
+msgstr "Preferovaná výška"
+
+#: gdl/gdl-dock-item.c:292
+msgid "Preferred height for the dock item"
+msgstr "Preferovaná výška pre položku pruhu"
+
+#: gdl/gdl-dock-item.c:542
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+
+#: gdl/gdl-dock-item.c:549
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:1176
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr ""
+
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1258
+msgid "Hide"
+msgstr "Skryť"
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1264
+msgid "Lock"
+msgstr "Zamknúť"
+
+#: gdl/gdl-dock-item.c:1448
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
+msgid "Master"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:126
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:133
+msgid "Dirty"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:134
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Pravda, ak bolo rozmiestnenie zmenené a je potrebné ho uložiť do súboru"
+
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:564
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "Nepodarilo sa načítať súbor rozmiestnenia používateľského rozhrania '%s'"
+
+#: gdl/gdl-dock-layout.c:619
+msgid "Visible"
+msgstr "Viditeľný"
+
+#: gdl/gdl-dock-layout.c:626
+msgid "Item"
+msgstr "Položka"
+
+#: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "Názov"
+
+#: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:790
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:1269
+msgid "Layout managment"
+msgstr "Správa rozmiestnenia"
+
+#: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
+msgid "Default title"
+msgstr "Predvolený titulok"
+
+#: gdl/gdl-dock-master.c:135
+msgid "Default title for newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:142
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:730
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+
+#: gdl/gdl-dock-master.c:895
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+
+#: gdl/gdl-dock-notebook.c:135
+msgid "Page"
+msgstr "Strana"
+
+#: gdl/gdl-dock-notebook.c:136
+msgid "The index of the current page"
+msgstr "Index aktuálnej strany"
+
+#: gdl/gdl-dock-object.c:121
+msgid "Unique name for identifying the dock object"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:128
+msgid "Long name"
+msgstr "Dlhý názov"
+
+#: gdl/gdl-dock-object.c:129
+msgid "Human readable name for the dock object"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:135
+msgid "Stock Icon"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:136
+msgid "Stock icon for the dock object"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:142
+msgid "Dock master"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:143
+msgid "Dock master this dock object is bound to"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:421
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:550
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:557
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:599
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+
+#: gdl/gdl-dock-paned.c:133
+msgid "Position"
+msgstr "Poloha"
+
+#: gdl/gdl-dock-paned.c:134
+msgid "Position of the divider in pixels"
+msgstr "Poloha oddeľovača v bodoch"
+
+#: gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:128
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "Hostiteľ"
+
+#: gdl/gdl-dock-placeholder.c:136
+msgid "The dock object this placeholder is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:143
+msgid "Next placement"
+msgstr "Ďalšie umiestnenie"
+
+#: gdl/gdl-dock-placeholder.c:144
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:305
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:419
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:440
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+
+#: gdl/gdl-dock-tablabel.c:130
+msgid "Dockitem which 'owns' this tablabel"
+msgstr ""
+
+#: gdl/gdl-dock-bar.c:89
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+
+#: gdl/gdl-dock.c:176
+msgid "Floating"
+msgstr "Plávajúci"
+
+#: gdl/gdl-dock.c:177
+msgid "Whether the dock is floating in its own window"
+msgstr ""
+
+#: gdl/gdl-dock.c:185
+msgid "Default title for the newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock.c:191
+msgid "Width"
+msgstr "Šírka"
+
+#: gdl/gdl-dock.c:192
+msgid "Width for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:199
+msgid "Height"
+msgstr "Výška"
+
+#: gdl/gdl-dock.c:200
+msgid "Height for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:207
+msgid "Float X"
+msgstr "Plávajúce X"
+
+#: gdl/gdl-dock.c:208
+msgid "X coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:215
+msgid "Float Y"
+msgstr "Plávajúce Y"
+
+#: gdl/gdl-dock.c:216
+msgid "Y coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:497
+#, c-format
+msgid "Dock #%d"
+msgstr ""
+
+#: gdl/gdl-recent.c:135
+msgid "GConf key"
+msgstr "Kľúč GConf"
+
+#: gdl/gdl-recent.c:136
+msgid "The gconf key for storing the recent entries."
+msgstr "Kľúč gconf pre ukladanie najnovších položiek."
+
+#: gdl/gdl-recent.c:142
+msgid "Path"
+msgstr "Cesta"
+
+#: gdl/gdl-recent.c:143
+msgid "The path to put the menu items."
+msgstr "Cesta, kam umiestniť položky menu."
+
+#: gdl/gdl-recent.c:149
+msgid "Limit"
+msgstr "Limit"
+
+#: gdl/gdl-recent.c:150
+msgid "The maximum number of items to be allowed in the list."
+msgstr "Maximlny počet položiek, ktoré môžu byť v zozname."
+
+#: gdl/gdl-recent.c:158
+msgid "List type"
+msgstr "Typ zoznamu"
+
+#: gdl/gdl-recent.c:159
+msgid "The type with which the items will be numbered."
+msgstr "Spôsob, akým budú číslované položky."
+
+#: gdl/gdl-recent.c:408
+#, c-format
+msgid "Open %s"
+msgstr "Otvoriť %s"
+
+#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
+msgid "Icon size"
+msgstr "Veľkosť ikony"
+
+#: gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Správa rozmiestnenia"
+
+#: gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Načítať"
+
+#: gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr "Prehliadač Gnome symbolov."
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr "Prejsť na symbol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr "Prejsť na zobrazený symbol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr "Aktualizovať symboly"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr "Aktualizovať strom symbolov"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr "_Prejsť na symbol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "_Zobraziť"
+
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Unknown"
+msgstr "Neznáme"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:66
+msgid "Classes"
+msgstr "Triedy"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Enums"
+msgstr "Vymenovania"
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Enumerators"
+msgstr "Vymenovávač"
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Fields"
+msgstr "Polia"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Functions"
+msgstr "Funkcie"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Interfaces"
+msgstr "Rozhrania"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Members"
+msgstr "Členovia"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:73
+msgid "Methods"
+msgstr "Metódy"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:74
+msgid "Namespaces"
+msgstr "Priestory mien"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Packages"
+msgstr "Balíky"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Prototypes"
+msgstr "Prototypy"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Structs"
+msgstr "Štruktúry"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Typedefs"
+msgstr "Definície typov"
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:79
+msgid "Unions"
+msgstr "Unióny"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Variables"
+msgstr "Premenné"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:81
+msgid "ExternVars"
+msgstr "ExternéPremenné"
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:82
+msgid "Macros"
+msgstr "Makrá"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:83
+msgid "MacrosWithArgs"
+msgstr "MakráSParametrami"
+
+#: symbol-browser-control/symbol-browser.c:378
+msgid "Tags"
+msgstr "Značky"
+
+#: symbol-browser-control/symbol-browser.c:386
+#: symbol-browser-control/symbol-browser.c:397
+msgid "Undefined"
+msgstr "Nedefinované"
+
+#: symbol-browser-control/symbol-browser.c:388
+#: symbol-browser-control/symbol-browser.c:399
+msgid "<No Symbol>"
+msgstr "<Bez symbolu>"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "Koniec"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr "Otvoriť projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr "Uložiť projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr "Nastaviť aktuálny súbor"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "Aktualizovať"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr "Aktualizovať celý strom"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr "_Koniec"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "_Súbor"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr "_Otvoriť projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr "_Uložiť projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr "_Nastaviť aktuálny súbor"
+
+#: symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr "Otvoriť súbor..."
+
+#: symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr "Nastaviť aktuálny súbor..."
+
+#: symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr "Uložiť súbor..."
+
+#: symbol-browser-control/test-symbol-browser.c:295
+msgid "Can't initialize bonobo!"
+msgstr "Nemôžem inicializovať bonobo!"

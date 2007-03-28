@@ -1,0 +1,675 @@
+# Finnish messages for gdl
+# Copyright (C) Ilkka Tuohela 
+# This file is distributed under the same license as the gdl package.
+# Ilkka Tuohela <hile@iki.fi>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-04-16 18:17+0300\n"
+"PO-Revision-Date: 2006-04-16 18:30+0300\n"
+"Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
+"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "Laajentimen koko"
+
+#: ../gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "Laajennusnuolen koko."
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify"
+msgstr "Pienennä"
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify this dock"
+msgstr "Pienennä tämä kelkka"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close"
+msgstr "Sulje"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close this dock"
+msgstr "Sulje tämä kelkka"
+
+#: ../gdl/gdl-dock-item-grip.c:682 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Ohjaava kelkan kohta"
+
+#: ../gdl/gdl-dock-item-grip.c:683
+msgid "Dockitem which 'owns' this grip"
+msgstr "Kelkan kohta, joka 'omistaa' tämän kahvan"
+
+#: ../gdl/gdl-dock-item.c:241
+msgid "Orientation"
+msgstr "Suunta"
+
+#: ../gdl/gdl-dock-item.c:242
+msgid "Orientation of the docking item"
+msgstr "Kelkan kohdan suunta"
+
+#: ../gdl/gdl-dock-item.c:257
+msgid "Resizable"
+msgstr "Kokoa voi muuttaa"
+
+#: ../gdl/gdl-dock-item.c:258
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "Jos asetettu, voi kelkan kohdan kokoa muuttaa kun kohta on liitetty"
+
+#: ../gdl/gdl-dock-item.c:265
+msgid "Item behavior"
+msgstr "Kohdan toiminta"
+
+#: ../gdl/gdl-dock-item.c:266
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Kelkan kohdan yleinen toiminta, esimerkiksi onko se kelluva, lukittu jne."
+
+#: ../gdl/gdl-dock-item.c:274 ../gdl/gdl-dock-master.c:140
+msgid "Locked"
+msgstr "Lukittu"
+
+#: ../gdl/gdl-dock-item.c:275
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "Jos asetettu, kelkan kohtaa ei voi raahata eikä sille näytetä kahvaa"
+
+#: ../gdl/gdl-dock-item.c:283
+msgid "Preferred width"
+msgstr "Haluttu leveys"
+
+#: ../gdl/gdl-dock-item.c:284
+msgid "Preferred width for the dock item"
+msgstr "Kelkan kohdan haluttu leveys"
+
+#: ../gdl/gdl-dock-item.c:290
+msgid "Preferred height"
+msgstr "Haluttu korkeus"
+
+#: ../gdl/gdl-dock-item.c:291
+msgid "Preferred height for the dock item"
+msgstr "Kelkan kohdan haluttu leveys"
+
+#: ../gdl/gdl-dock-item.c:541
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Et voi lisätä kelkan kohdetta (%p tyyppiä %s) kohteen %s sisään. Käytä "
+"GdlDockia tai jotain muuta yhdistettyä kelkan kohdetta."
+
+#: ../gdl/gdl-dock-item.c:548
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Yritettiin lisätä ikkunaelementti tyyppiä %s kohteeseen %s, mutta se voi "
+"sisältää vain yhden ikkunaelementin kerrallaan: se sisältää jo elementin "
+"tyyppiä %s"
+
+#: ../gdl/gdl-dock-item.c:1174
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "Liittämistapa %s ei ole tuettu kelkan oliossa tyyppiä %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1257
+msgid "UnLock"
+msgstr "Poista lukitus"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1264
+msgid "Hide"
+msgstr "Piilota"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1269
+msgid "Lock"
+msgstr "Lukitse"
+
+#: ../gdl/gdl-dock-item.c:1474
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Yritettiin sitoa sitomaton kohta %p"
+
+#: ../gdl/gdl-dock-layout.c:124 ../gdl/gdl-dock-bar.c:102
+msgid "Master"
+msgstr "Isäntä"
+
+#: ../gdl/gdl-dock-layout.c:125
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "GdlDockMaster-olio, johon asettelun oliot liitetään"
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "Dirty"
+msgstr "Likainen"
+
+#: ../gdl/gdl-dock-layout.c:133
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Tosi, jos asettelut ovat muuttuneet ja ne pitäisi tallentaa tiedostoon"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "Asettelun käyttöliittymätiedostoa \"%s\" ei voitu ladata"
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "Näkyvissä"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "Kohta"
+
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "Nimi"
+
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "Kelkan kohdat"
+
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "Tallennetut asettelut"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"Ladattaessa asettelua ei voitu selvittää kuinka ladata kelkan kohta jonka "
+"lempinimi on \"%s\""
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "Asettelujen hallinta"
+
+#: ../gdl/gdl-dock-master.c:133 ../gdl/gdl-dock.c:183
+msgid "Default title"
+msgstr "Oletusotsikko"
+
+#: ../gdl/gdl-dock-master.c:134
+msgid "Default title for newly created floating docks"
+msgstr "Oletusotsikko uusille kelluville kelkoille"
+
+#: ../gdl/gdl-dock-master.c:141
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Jos arvo on 1, kaikki kelkan isäntää liitetyt kohteet on lukittu; jos 0, "
+"kaikki ovat lukitsematta; -1 ilmoittaa epätäsmällisyydestä kohteiden kesken"
+
+#: ../gdl/gdl-dock-master.c:729
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"isäntä %p: ei voida lisätä oliota %p[%s] hajautustauluun. Tällä nimellä on "
+"jo kohde (%p)."
+
+#: ../gdl/gdl-dock-master.c:894
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"Uusi kelkan ohjain %p on automaattinen. Vain manuaalisia kelkan kohteita "
+"tulisi nimetä ohjaimeksi."
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "Sivu"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "Tämänhetkisen sivun sisällysluettelo"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "Yksilöllinen nimi kelkan kohdan tunnistamiseen"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "Pitkä nimi"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr "Ihmisenysätävällinen nimi kelkan kohteelle"
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "Oletuskuvake"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "Oletuskuvake kelkan kohteille"
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "Kelkan isäntä"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr "Kelkan isäntä, johon tämän kelkan osat liitetään"
+
+#: ../gdl/gdl-dock-object.c:420
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Kutsu gdl_dock_object_dock kelkan oliossa %p (oliotyyppi %s), joka ei ole "
+"toteuttanut tätä metodia"
+
+#: ../gdl/gdl-dock-object.c:549
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"Kelkan toimintoa pyydetty sitomattomalle oliolle %p. Sovellus vo kaatua"
+
+#: ../gdl/gdl-dock-object.c:556
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Ei voida liittää %p kohtaan %p, koska ne kuuluvat eri isännille"
+
+#: ../gdl/gdl-dock-object.c:598
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"Yritettiin sitoa kelkkaan %p aiemmin sidottu kelkan kohde %p (nykyinen "
+"isäntä %p)"
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position"
+msgstr "Sijainti"
+
+#: ../gdl/gdl-dock-paned.c:133
+msgid "Position of the divider in pixels"
+msgstr "Erottimen sijainti pikseleinä"
+
+#: ../gdl/gdl-dock-placeholder.c:126
+msgid "Sticky"
+msgstr "Tahmea"
+
+#: ../gdl/gdl-dock-placeholder.c:127
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Onko kiinnityspaikka sidottu isäntäänsä, vai siiryykö se ylös hierarkiassa "
+"kun isäntä liitetään uudestaan"
+
+#: ../gdl/gdl-dock-placeholder.c:134
+msgid "Host"
+msgstr "Isäntä"
+
+#: ../gdl/gdl-dock-placeholder.c:135
+msgid "The dock object this placeholder is attached to"
+msgstr "Kelkan olio, johon tämä kiinnityspaikka sidotaan"
+
+#: ../gdl/gdl-dock-placeholder.c:142
+msgid "Next placement"
+msgstr "Seuraava sijoitus"
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"Kohteen sijainti on liitetty isäntään, jos pyyntö liittyä meihin on tehty"
+
+#: ../gdl/gdl-dock-placeholder.c:304
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Yritettiin liittää kelkan kohde sitomattomaan kiinnityspaikkaan"
+
+#: ../gdl/gdl-dock-placeholder.c:418
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "Saatiin irroitussignaali kohteelta (%p) joka ei ole oma isäntä %p"
+
+#: ../gdl/gdl-dock-placeholder.c:439
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Jotain outoa tapahtui haettaessa lapsen sijoitusta kohteelle %p vanhemmalta %"
+"p"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Kelkan kohta joka 'omistaa' tämän välilehtiotsikon"
+
+#: ../gdl/gdl-dock-bar.c:103
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "GdlDockMaster-olio, johon kelkkapalkin elementti on liitetty"
+
+#: ../gdl/gdl-dock.c:175
+msgid "Floating"
+msgstr "Kelluva"
+
+#: ../gdl/gdl-dock.c:176
+msgid "Whether the dock is floating in its own window"
+msgstr "Kelluuko kelkka omassa ikkunassaan"
+
+#: ../gdl/gdl-dock.c:184
+msgid "Default title for the newly created floating docks"
+msgstr "Oletusotsikko uusille kelluville kelkoille"
+
+#: ../gdl/gdl-dock.c:190
+msgid "Width"
+msgstr "Leveys"
+
+#: ../gdl/gdl-dock.c:191
+msgid "Width for the dock when it's of floating type"
+msgstr "Kelkan leveys, kun kelkka on kelluva"
+
+#: ../gdl/gdl-dock.c:198
+msgid "Height"
+msgstr "Korkeus"
+
+#: ../gdl/gdl-dock.c:199
+msgid "Height for the dock when it's of floating type"
+msgstr "Kelkan korkeus, kun kelkka on kelluva"
+
+#: ../gdl/gdl-dock.c:206
+msgid "Float X"
+msgstr "Kelluva X"
+
+#: ../gdl/gdl-dock.c:207
+msgid "X coordinate for a floating dock"
+msgstr "Kelluvan kelkan X-koordinaatti"
+
+#: ../gdl/gdl-dock.c:214
+msgid "Float Y"
+msgstr "Kelluva Y"
+
+#: ../gdl/gdl-dock.c:215
+msgid "Y coordinate for a floating dock"
+msgstr "Kelluvan kelkan Y-koordinaatti"
+
+#: ../gdl/gdl-dock.c:496
+#, c-format
+msgid "Dock #%d"
+msgstr "Kelkka #%d"
+
+#: ../gdl/gdl-recent.c:135
+msgid "GConf key"
+msgstr "GConf-avain"
+
+#: ../gdl/gdl-recent.c:136
+msgid "The gconf key for storing the recent entries."
+msgstr "GConf-avain äskettäisten kohteiden tallennukseen."
+
+#: ../gdl/gdl-recent.c:142
+msgid "Path"
+msgstr "Polku"
+
+#: ../gdl/gdl-recent.c:143
+msgid "The path to put the menu items."
+msgstr "Polku, johon valikon kohdat laitetaan."
+
+#: ../gdl/gdl-recent.c:149
+msgid "Limit"
+msgstr "Rajoitus"
+
+#: ../gdl/gdl-recent.c:150
+msgid "The maximum number of items to be allowed in the list."
+msgstr "Suurin sallittu lukumäärä kohteta listassa."
+
+#: ../gdl/gdl-recent.c:158
+msgid "List type"
+msgstr "Listan tyyppi"
+
+#: ../gdl/gdl-recent.c:159
+msgid "The type with which the items will be numbered."
+msgstr "Tyyppi, jonka perusteella lista numeroidaan."
+
+#: ../gdl/gdl-recent.c:408
+#, c-format
+msgid "Open %s"
+msgstr "Avaa %s"
+
+#: ../gdl/gdl-icons.c:133 ../gdl/gdl-icons.c:134
+msgid "Icon size"
+msgstr "Kuvakkeen koko"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Asettelun hallinta"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Lataa"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "_Lukitse kelkan kohdat"
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "Gnomen symboliselaimen ohjaimen tehdas."
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr "Gnomen symboliselaimen ohjain"
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr "Gnomen symboliselaimen ohjaimen tehdas"
+
+#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr "Gnomen symboliselain."
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr "Siirry symboliin"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr "Siirry näytettyyn symboliin"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr "Päivitä symbolit"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr "Päivitä symbolipuu"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr "_Siirry symboliin"
+
+#: ../symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "_Näytä"
+
+#: ../symbol-browser-control/symbol-browser.c:65
+msgid "Unknown"
+msgstr "Tuntematon"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: ../symbol-browser-control/symbol-browser.c:66
+msgid "Classes"
+msgstr "Luokat"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: ../symbol-browser-control/symbol-browser.c:67
+msgid "Enums"
+msgstr "Enum:it"
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: ../symbol-browser-control/symbol-browser.c:68
+msgid "Enumerators"
+msgstr "Numeroijat"
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: ../symbol-browser-control/symbol-browser.c:69
+msgid "Fields"
+msgstr "Kentät"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: ../symbol-browser-control/symbol-browser.c:70
+msgid "Functions"
+msgstr "Funktiot"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: ../symbol-browser-control/symbol-browser.c:71
+msgid "Interfaces"
+msgstr "Liittymät"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: ../symbol-browser-control/symbol-browser.c:72
+msgid "Members"
+msgstr "Jäsenet"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: ../symbol-browser-control/symbol-browser.c:73
+msgid "Methods"
+msgstr "Metodit"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: ../symbol-browser-control/symbol-browser.c:74
+msgid "Namespaces"
+msgstr "Nimiavaruudet"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: ../symbol-browser-control/symbol-browser.c:75
+msgid "Packages"
+msgstr "Paketit"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: ../symbol-browser-control/symbol-browser.c:76
+msgid "Prototypes"
+msgstr "Prototyypit"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: ../symbol-browser-control/symbol-browser.c:77
+msgid "Structs"
+msgstr "Rakenteet"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: ../symbol-browser-control/symbol-browser.c:78
+msgid "Typedefs"
+msgstr "Typedefit"
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: ../symbol-browser-control/symbol-browser.c:79
+msgid "Unions"
+msgstr "Unionit"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: ../symbol-browser-control/symbol-browser.c:80
+msgid "Variables"
+msgstr "Muuttujat"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: ../symbol-browser-control/symbol-browser.c:81
+msgid "ExternVars"
+msgstr "ExternVar:it"
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: ../symbol-browser-control/symbol-browser.c:82
+msgid "Macros"
+msgstr "Makrot"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: ../symbol-browser-control/symbol-browser.c:83
+msgid "MacrosWithArgs"
+msgstr "Makrot argumenteilla"
+
+#: ../symbol-browser-control/symbol-browser.c:378
+msgid "Tags"
+msgstr "Tagit"
+
+#: ../symbol-browser-control/symbol-browser.c:386
+#: ../symbol-browser-control/symbol-browser.c:397
+msgid "Undefined"
+msgstr "Määrittelemätön"
+
+#: ../symbol-browser-control/symbol-browser.c:388
+#: ../symbol-browser-control/symbol-browser.c:399
+msgid "<No Symbol>"
+msgstr "<Ei symbolia>"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "Lopeta"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr "Avaa projekti"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr "Tallenna projekti"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr "Aseta nykyinen tiedosto"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "Päivitä"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr "Päivitä koko puu"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr "_Lopeta"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "_Tiedosto"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr "_Avaa projekti"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr "_Tallenna projekti"
+
+#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr "_Aseta nykyinen tiedosto"
+
+#: ../symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr "Avaa tiedosto..."
+
+#: ../symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr "Aseta nykyinen tiedosto..."
+
+#: ../symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr "Tallenna tiedosto..."
+
+#: ../symbol-browser-control/test-symbol-browser.c:295
+msgid "Can't initialize bonobo!"
+msgstr "Bonoboa ei voi alustaa!"

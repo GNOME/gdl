@@ -1,0 +1,788 @@
+# translation of gdl to Kinyarwanda.
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gdl package.
+# Steve Murphy <murf@e-tools.com>, 2005
+# Steve performed initial rough translation from compendium built from translations provided by the following translators:
+# Philibert Ndandali  <ndandali@yahoo.fr>, 2005.
+# Viateur MUGENZI <muvia1@yahoo.fr>, 2005.
+# Noëlla Mupole <s24211045@tuks.co.za>, 2005.
+# Carole Karema <karemacarole@hotmail.com>, 2005.
+# JEAN BAPTISTE NGENDAHAYO <ngenda_denis@yahoo.co.uk>, 2005.
+# Augustin KIBERWA  <akiberwa@yahoo.co.uk>, 2005.
+# Donatien NSENGIYUMVA <ndonatienuk@yahoo.co.uk>, 2005..
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-04-01 12:06-0700\n"
+"PO-Revision-Date: 2005-03-31 20:55-0700\n"
+"Last-Translator: Steve Murphy <murf@e-tools.com>\n"
+"Language-Team: Kinyarwanda <translation-team-rw@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"ULL NAME <EMAIL@ADDRESS>\n"
+
+#: gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr ""
+
+#: gdl/gdl-data-view.c:419
+#, fuzzy
+msgid "Size of the expander arrow."
+msgstr "Bya i Akambi"
+
+#: gdl/gdl-dock-item-grip.c:371
+msgid "Iconify"
+msgstr ""
+
+#: gdl/gdl-dock-item-grip.c:371
+#, fuzzy
+msgid "Iconify this dock"
+msgstr "iyi"
+
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\macrodlg.src:RID_MACROCHOOSER.RID_PB_CLOSE.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\macrodlg.src:RID_STR_CLOSE.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\moduldlg.src:RID_TP_MODULS.RID_PB_CLOSE.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\moduldlg.src:RID_TP_LIBS.RID_PB_CLOSE.text
+#: gdl/gdl-dock-item-grip.c:373
+msgid "Close"
+msgstr "Gufunga"
+
+#: gdl/gdl-dock-item-grip.c:373
+#, fuzzy
+msgid "Close this dock"
+msgstr "Funga iyi"
+
+#: gdl/gdl-dock-item-grip.c:682 gdl/gdl-dock-tablabel.c:129
+#, fuzzy
+msgid "Controlling dock item"
+msgstr "Ikintu"
+
+#: gdl/gdl-dock-item-grip.c:683
+#, fuzzy
+msgid "Dockitem which 'owns' this grip"
+msgstr "iyi"
+
+#: gdl/gdl-dock-item.c:241
+msgid "Orientation"
+msgstr "Icyerekezo"
+
+#: gdl/gdl-dock-item.c:242
+#, fuzzy
+msgid "Orientation of the docking item"
+msgstr "Bya i Ikintu"
+
+#: gdl/gdl-dock-item.c:257
+msgid "Resizable"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:258
+#, fuzzy
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "Gushyiraho i Ikintu Ryari: in a"
+
+#: gdl/gdl-dock-item.c:265
+#, fuzzy
+msgid "Item behavior"
+msgstr "imyitwarire"
+
+#: gdl/gdl-dock-item.c:266
+#, fuzzy
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr "E."
+
+# 3625
+#: gdl/gdl-dock-item.c:274 gdl/gdl-dock-master.c:141
+msgid "Locked"
+msgstr "Gifunze"
+
+#: gdl/gdl-dock-item.c:275
+#, fuzzy
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "Gushyiraho i Ikintu Na Garagaza a"
+
+#: gdl/gdl-dock-item.c:283
+#, fuzzy
+msgid "Preferred width"
+msgstr "Ubugari"
+
+#: gdl/gdl-dock-item.c:284
+#, fuzzy
+msgid "Preferred width for the dock item"
+msgstr "Ubugari kugirango i Ikintu"
+
+#: gdl/gdl-dock-item.c:290
+#, fuzzy
+msgid "Preferred height"
+msgstr "Ubuhagarike"
+
+#: gdl/gdl-dock-item.c:291
+#, fuzzy
+msgid "Preferred height for the dock item"
+msgstr "Ubuhagarike kugirango i Ikintu"
+
+#: gdl/gdl-dock-item.c:541
+#, fuzzy, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Kongeramo a Igikoresho Bya Ubwoko Mo Imbere a a Cyangwa Ikindi Igikoresho"
+
+#: gdl/gdl-dock-item.c:548
+#, fuzzy, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr "Kuri Kongeramo a Na: Ubwoko Kuri a ku a Igihe Kirimo a Bya Ubwoko"
+
+#: gdl/gdl-dock-item.c:1174
+#, fuzzy, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "in Igikoresho Bya Ubwoko"
+
+#. UnLock menuitem
+#: gdl/gdl-dock-item.c:1257
+msgid "UnLock"
+msgstr ""
+
+# basctl/source\basicide\basidesh.src:RID_POPUP_TABBAR.SID_BASICIDE_HIDECURPAGE.text
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1264
+msgid "Hide"
+msgstr "Gushisha"
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1269
+msgid "Lock"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:1474
+#, fuzzy, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Kuri Ikintu"
+
+#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:103
+#, fuzzy
+msgid "Master"
+msgstr "Mugenga"
+
+#: gdl/gdl-dock-layout.c:126
+#, fuzzy
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "Igikoresho i Imigaragarire Igikoresho ni Kuri"
+
+#: gdl/gdl-dock-layout.c:133
+msgid "Dirty"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:134
+#, fuzzy
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "NIBA i Imigaragarire Byahinduwe Na Kuri Kuri a IDOSIYE"
+
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:564
+#, fuzzy, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "OYA Ibirimo Imigaragarire Ukoresha: IDOSIYE"
+
+# 6488
+#: gdl/gdl-dock-layout.c:619
+msgid "Visible"
+msgstr "kigaragara"
+
+#: gdl/gdl-dock-layout.c:626
+msgid "Item"
+msgstr "Ikintu"
+
+#: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "Izina"
+
+#: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
+#, fuzzy
+msgid "Saved layouts"
+msgstr "Imigaragarire"
+
+#: gdl/gdl-dock-layout.c:790
+#, fuzzy, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr "Itangira... Imigaragarire Kuri Kurema a Igikoresho bya ni"
+
+#: gdl/gdl-dock-layout.c:1269
+msgid "Layout managment"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
+#, fuzzy
+msgid "Default title"
+msgstr "Umutwe"
+
+#: gdl/gdl-dock-master.c:135
+#, fuzzy
+msgid "Default title for newly created floating docks"
+msgstr "Umutwe kugirango Byaremwe Bihindagurika"
+
+#: gdl/gdl-dock-master.c:142
+#, fuzzy
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr "ni Gushyiraho Kuri 1. Byose i Kuri i Mugenga Gifunze NIBA 0 Byose 1. i"
+
+#: gdl/gdl-dock-master.c:730
+#, fuzzy, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr "Mugenga Kuri Kongeramo Igikoresho Kuri i ni Ikintu Na: Izina:"
+
+#: gdl/gdl-dock-master.c:895
+#, fuzzy, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr "Gishya ni Byikoresha Bikorwa Ibintu"
+
+# basctl/source\basicide\basidesh.src:RID_STR_PAGE.text
+#: gdl/gdl-dock-notebook.c:135
+msgid "Page"
+msgstr "Ipaji"
+
+#: gdl/gdl-dock-notebook.c:136
+#, fuzzy
+msgid "The index of the current page"
+msgstr "Umubarendanga Bya i KIGEZWEHO Ipaji"
+
+#: gdl/gdl-dock-object.c:121
+#, fuzzy
+msgid "Unique name for identifying the dock object"
+msgstr "Izina: kugirango i Igikoresho"
+
+#: gdl/gdl-dock-object.c:128
+#, fuzzy
+msgid "Long name"
+msgstr "Izina:"
+
+#: gdl/gdl-dock-object.c:129
+#, fuzzy
+msgid "Human readable name for the dock object"
+msgstr "Izina: kugirango i Igikoresho"
+
+#: gdl/gdl-dock-object.c:135
+msgid "Stock Icon"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:136
+#, fuzzy
+msgid "Stock icon for the dock object"
+msgstr "Agashushondanga kugirango i Igikoresho"
+
+#: gdl/gdl-dock-object.c:142
+#, fuzzy
+msgid "Dock master"
+msgstr "Mugenga"
+
+#: gdl/gdl-dock-object.c:143
+#, fuzzy
+msgid "Dock master this dock object is bound to"
+msgstr "Mugenga iyi Igikoresho ni Kuri"
+
+#: gdl/gdl-dock-object.c:421
+#, fuzzy, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr "Kuri in a Igikoresho Igikoresho Ubwoko ni iyi Uburyo"
+
+#: gdl/gdl-dock-object.c:550
+#, fuzzy, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr "in a Igikoresho Porogaramu"
+
+#: gdl/gdl-dock-object.c:557
+#, fuzzy, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Kuri Kuri"
+
+#: gdl/gdl-dock-object.c:599
+#, fuzzy, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "Kuri Kuri Igikoresho KIGEZWEHO Mugenga"
+
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.WriterObject.Table.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.WriterObject.Frame.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.OfficeObject.Calc.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.OfficeObject.Draw.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.OfficeObject.Chart.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.OfficeObject.Image.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.OfficeObject.Formula.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.OfficeObject.Impress.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Insert.Caption.OfficeObject.OLEMisc.Settings.Position.text
+# #-#-#-#-#  officecfg.pot (PACKAGE VERSION)  #-#-#-#-#
+# officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....BusinessCard.BusinessAddress.Position.text
+#: gdl/gdl-dock-paned.c:133
+msgid "Position"
+msgstr "Ibirindiro"
+
+#: gdl/gdl-dock-paned.c:134
+#, fuzzy
+msgid "Position of the divider in pixels"
+msgstr "Bya i in Pigiseli"
+
+#: gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:128
+#, fuzzy
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"i Akarindamwanya Gufatisha Kuri Ubuturo Cyangwa Kwimura Hejuru i Ryari: i "
+"Ubuturo ni"
+
+# svx/source\options\optinet2.src:RID_SVXPAGE_INET_SCRIPTING.LB_NETACCESS.3.text
+#: gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "Ubuturo"
+
+#: gdl/gdl-dock-placeholder.c:136
+#, fuzzy
+msgid "The dock object this placeholder is attached to"
+msgstr "Igikoresho iyi Akarindamwanya ni Kuri"
+
+#: gdl/gdl-dock-placeholder.c:143
+#, fuzzy
+msgid "Next placement"
+msgstr "Ishyira mu mwanya"
+
+#: gdl/gdl-dock-placeholder.c:144
+#, fuzzy
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr "Ibirindiro Ikintu Kuri Ubuturo NIBA a Kubaza... ni Kuri Kuri RW"
+
+#: gdl/gdl-dock-placeholder.c:305
+#, fuzzy
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Kuri a Igikoresho Kuri Akarindamwanya"
+
+#: gdl/gdl-dock-placeholder.c:419
+#, fuzzy, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "a Gukuraho... Bivuye Igikoresho ni OYA Ubuturo"
+
+#: gdl/gdl-dock-placeholder.c:440
+#, fuzzy, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr "i Ishyira mu mwanya kugirango Bivuye"
+
+#: gdl/gdl-dock-tablabel.c:130
+#, fuzzy
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "iyi"
+
+#: gdl/gdl-dock-bar.c:104
+#, fuzzy
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "Igikoresho i ni Kuri"
+
+# vcl/source\src\helptext.src:SV_HELPTEXT_SPLITFLOATING.text
+#: gdl/gdl-dock.c:176
+msgid "Floating"
+msgstr "Bihindagurika"
+
+#: gdl/gdl-dock.c:177
+#, fuzzy
+msgid "Whether the dock is floating in its own window"
+msgstr "i ni Bihindagurika in Idirishya"
+
+#: gdl/gdl-dock.c:185
+#, fuzzy
+msgid "Default title for the newly created floating docks"
+msgstr "Umutwe kugirango i Byaremwe Bihindagurika"
+
+#: gdl/gdl-dock.c:191
+msgid "Width"
+msgstr "Ubugari"
+
+#: gdl/gdl-dock.c:192
+#, fuzzy
+msgid "Width for the dock when it's of floating type"
+msgstr "kugirango i Ryari: Bya Bihindagurika Ubwoko"
+
+#: gdl/gdl-dock.c:199
+msgid "Height"
+msgstr "Ubuhagarike"
+
+#: gdl/gdl-dock.c:200
+#, fuzzy
+msgid "Height for the dock when it's of floating type"
+msgstr "kugirango i Ryari: Bya Bihindagurika Ubwoko"
+
+#: gdl/gdl-dock.c:207
+msgid "Float X"
+msgstr ""
+
+#: gdl/gdl-dock.c:208
+#, fuzzy
+msgid "X coordinate for a floating dock"
+msgstr "kugirango a Bihindagurika"
+
+#: gdl/gdl-dock.c:215
+msgid "Float Y"
+msgstr ""
+
+#: gdl/gdl-dock.c:216
+#, fuzzy
+msgid "Y coordinate for a floating dock"
+msgstr "kugirango a Bihindagurika"
+
+#: gdl/gdl-dock.c:497
+#, c-format
+msgid "Dock #%d"
+msgstr ""
+
+#: gdl/gdl-recent.c:135
+#, fuzzy
+msgid "GConf key"
+msgstr "Urufunguzo"
+
+#: gdl/gdl-recent.c:136
+#, fuzzy
+msgid "The gconf key for storing the recent entries."
+msgstr "Urufunguzo kugirango i Ibyinjijwe"
+
+#: gdl/gdl-recent.c:142
+msgid "Path"
+msgstr "Inzira"
+
+#: gdl/gdl-recent.c:143
+#, fuzzy
+msgid "The path to put the menu items."
+msgstr "Inzira Kuri Gushyira i Ibikubiyemo"
+
+#: gdl/gdl-recent.c:149
+msgid "Limit"
+msgstr ""
+
+#: gdl/gdl-recent.c:150
+#, fuzzy
+msgid "The maximum number of items to be allowed in the list."
+msgstr "Kinini Umubare Bya Kuri in i Urutonde"
+
+#: gdl/gdl-recent.c:158
+#, fuzzy
+msgid "List type"
+msgstr "Ubwoko bwa lisiti"
+
+#: gdl/gdl-recent.c:159
+#, fuzzy
+msgid "The type with which the items will be numbered."
+msgstr "Ubwoko Na: i Iriho Imibare"
+
+# sfx2/source\appl\minbox.src:RID_MAIL_INBOX.BTN_MAILINBOX_OPEN.text
+#: gdl/gdl-recent.c:408
+#, fuzzy, c-format
+msgid "Open %s"
+msgstr "Gufungura..."
+
+# offmgr/source\offapp\dialog\optgdlg.src:OFA_TP_VIEW.FT_BIG.text
+#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
+#, fuzzy
+msgid "Icon size"
+msgstr "Ingano y'agashushondanga"
+
+#: gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr ""
+
+# basctl/source\basicide\basidesh.src:RID_STR_OPEN.text
+#: gdl/layout.glade.h:4
+#, fuzzy
+msgid "_Load"
+msgstr "Ibirimo"
+
+#: gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+#, fuzzy
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "kugirango i Igenzura"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+#, fuzzy
+msgid "Goto the displayed symbol"
+msgstr "i IKIMENYETSO"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+#, fuzzy
+msgid "Update the symbol tree"
+msgstr "i IKIMENYETSO"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+#, fuzzy
+msgid "_Goto to symbol"
+msgstr "Kuri IKIMENYETSO"
+
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\basidesh.src:RID_BASICMENU.MN_VIEW.text
+# #-#-#-#-#  basctl.pot (PACKAGE VERSION)  #-#-#-#-#
+# basctl/source\basicide\basidesh.src:RID_BASICPLUGINMENU.MN_PLVIEW.text
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+#, fuzzy
+msgid "_View"
+msgstr "Kureba"
+
+# filter/source\xsltdialog\xmlfilterdialogstrings.src:STR_UNKNOWN_APPLICATION.text
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Unknown"
+msgstr "Kitazwi"
+
+# sc/source\ui\src\scfuncs.src:RID_SC_FUNCTION_DESCRIPTIONS2.SC_OPCODE_FREQUENCY.4.text
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:66
+#, fuzzy
+msgid "Classes"
+msgstr "Inzego"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Enums"
+msgstr ""
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Enumerators"
+msgstr ""
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Fields"
+msgstr "Imyanya"
+
+# #-#-#-#-#  dbaccess.pot (PACKAGE VERSION)  #-#-#-#-#
+# dbaccess/source/ui/inc/toolbox.hrc:MID_DBUI_QUERY_VIEW_FUNCTIONS.text
+# #-#-#-#-#  dbaccess.pot (PACKAGE VERSION)  #-#-#-#-#
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Functions"
+msgstr "Imimaro"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Interfaces"
+msgstr ""
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Members"
+msgstr ""
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:73
+msgid "Methods"
+msgstr ""
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:74
+#, fuzzy
+msgid "Namespaces"
+msgstr "Imyanyazina"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Packages"
+msgstr ""
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Prototypes"
+msgstr ""
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Structs"
+msgstr ""
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Typedefs"
+msgstr ""
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:79
+msgid "Unions"
+msgstr ""
+
+# starmath/source\smres.src:RID_FONTMENU.Variablen.text
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Variables"
+msgstr "Ibihinduka"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:81
+msgid "ExternVars"
+msgstr ""
+
+# basctl/source\basicide\basidesh.src:RID_BASICIDE_OBJECTBAR.SID_BASICIDE_CHOOSEMACRO.text
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:82
+msgid "Macros"
+msgstr "Makoro"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:83
+msgid "MacrosWithArgs"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:378
+msgid "Tags"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:386
+#: symbol-browser-control/symbol-browser.c:397
+#, fuzzy
+msgid "Undefined"
+msgstr "kidasobanuye"
+
+#: symbol-browser-control/symbol-browser.c:388
+#: symbol-browser-control/symbol-browser.c:399
+msgid "<No Symbol>"
+msgstr ""
+
+# #-#-#-#-#  setup2.pot (PACKAGE VERSION)  #-#-#-#-#
+# setup2/source\ui\app.src:STR_RESTART_BTN_NO.text
+# #-#-#-#-#  setup2.pot (PACKAGE VERSION)  #-#-#-#-#
+# setup2/source\ui\pages\phavefun.src:RESID_PAGE_PAGEHAVEFUN.STR_LOGOUT_BTN_NO.text
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "Gusohoka"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+#, fuzzy
+msgid "Save Project"
+msgstr "Kubika"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+#, fuzzy
+msgid "Set Current File"
+msgstr "Idosiye"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "Kuvugurura"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+#, fuzzy
+msgid "Update the whole tree"
+msgstr "i"
+
+# #-#-#-#-#  setup2.pot (PACKAGE VERSION)  #-#-#-#-#
+# setup2/source\ui\app.src:STR_RESTART_BTN_NO.text
+# #-#-#-#-#  setup2.pot (PACKAGE VERSION)  #-#-#-#-#
+# setup2/source\ui\pages\phavefun.src:RESID_PAGE_PAGEHAVEFUN.STR_LOGOUT_BTN_NO.text
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+#, fuzzy
+msgid "_Exit"
+msgstr "Gusohoka"
+
+# sc/source\ui\src\globstr.src:RID_GLOBSTR.STR_HFCMD_FILE.text
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+#, fuzzy
+msgid "_File"
+msgstr "IDOSIYE"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+#, fuzzy
+msgid "_Save Project"
+msgstr "Kubika"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+#, fuzzy
+msgid "_Set Current File"
+msgstr "Idosiye"
+
+#: symbol-browser-control/test-symbol-browser.c:168
+#, fuzzy
+msgid "Open file..."
+msgstr "Fungura Idosiye..."
+
+#: symbol-browser-control/test-symbol-browser.c:170
+#, fuzzy
+msgid "Set current file..."
+msgstr "KIGEZWEHO IDOSIYE"
+
+#: symbol-browser-control/test-symbol-browser.c:172
+#, fuzzy
+msgid "Save file..."
+msgstr "Bika idosiye"
+
+#: symbol-browser-control/test-symbol-browser.c:295
+#, fuzzy
+msgid "Can't initialize bonobo!"
+msgstr "gutangiza"

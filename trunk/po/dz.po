@@ -1,0 +1,434 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl.HEAD.pot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-01 12:48+0100\n"
+"PO-Revision-Date: 2007-01-11 10:24+0530\n"
+"Last-Translator: sonam pelden <sonaa_peldn@yahoo.com>\n"
+"Language-Team: Dzongkha <pgeyleg@dit.gov.bt>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Poedit-Language: Dzongkha\n"
+"X-Poedit-Country: Bhutan\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "འཕར་བྱེད་ཀྱི་ཚད་"
+
+#: ../gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "འཕར་བྱེད་མདའ་རྟགས་ཀྱི་ཚད།"
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify"
+msgstr "ངོས་དཔར་བཟོ་ནི་"
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify this dock"
+msgstr "ཌོཀ་འདི་ངོས་དཔར་བཟོ་"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close"
+msgstr "ཁ་བསྡམས་"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close this dock"
+msgstr "ཌོཀ་འདི་ཁ་བསྡམས་"
+
+#: ../gdl/gdl-dock-item-grip.c:682
+#: ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "ཌོཀ་རྣམ་གྲངས་འདི་ཚད་འཛིན་འབད་དོ་"
+
+#: ../gdl/gdl-dock-item-grip.c:683
+msgid "Dockitem which 'owns' this grip"
+msgstr "དམ་བཟུང་འདི་ 'བདག་དབང་བཟུང་མི་' ཌོཀ་རྣམ་གྲངས་"
+
+#: ../gdl/gdl-dock-item.c:241
+msgid "Orientation"
+msgstr "ཕྱོགས་"
+
+#: ../gdl/gdl-dock-item.c:242
+msgid "Orientation of the docking item"
+msgstr "ཌོཀ་ཀིང་རྣམ་གྲངས་ཀྱི་ཕྱོགས་"
+
+#: ../gdl/gdl-dock-item.c:257
+msgid "Resizable"
+msgstr "ཚད་བསྐྱར་བཟོ་འབད་ཚུགསཔ་"
+
+#: ../gdl/gdl-dock-item.c:258
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "གཞི་སྒྲིག་འབད་དེ་ཡོད་པ་ཅིན་  ཌོཀ་རྣམ་གྲངས་འདི་  པཱནཌི་ནང་ཌོཀ་འབདཝ་ད་ ཚད་བསྐྱར་བཟོ་འབད་ཚུགས་"
+
+#: ../gdl/gdl-dock-item.c:265
+msgid "Item behavior"
+msgstr "རྣམ་གྲངས་ཀྱི་སྤྱོད་ལམ་"
+
+#: ../gdl/gdl-dock-item.c:266
+msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
+msgstr "ཌོཀ་རྣམ་གྲངས་ཀྱི་དོན་ལུ་  ཡོངས་ཁྱབ་སྤྱོད་ལམ་  (i.e. ཌོཀ་འབད་དེ་ཡོད་པ་ཅིན་ལ་སོགས་པ་  དེ་གིས་ལྡིང་རུང་མ་ལྡིང་རུང་)"
+
+#: ../gdl/gdl-dock-item.c:274
+#: ../gdl/gdl-dock-master.c:139
+msgid "Locked"
+msgstr "ལྡེ་མིག་མ་"
+
+#: ../gdl/gdl-dock-item.c:275
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "གཞི་སྒྲིག་འབད་དེ་ཡོད་པ་ཅིན་  ཌོཀ་རྣམ་གྲངས་འདི་  མཐའ་འཁོར་ལུ་འདྲུད་མི་ཚུགས་ནི་དང་  དེ་གིས་དམ་བཟུང་མི་སྟོན་"
+
+#: ../gdl/gdl-dock-item.c:283
+msgid "Preferred width"
+msgstr "དགའ་གདམ་བརྐྱབ་ཡོད་པའི་ རྒྱ་ཚད་"
+
+#: ../gdl/gdl-dock-item.c:284
+msgid "Preferred width for the dock item"
+msgstr "ཌོཀ་རྣམ་གྲངས་ཀྱི་དོན་ལུ་  དགའ་གདམ་བརྐྱབ་ཡོད་པའི་རྒྱ་ཚད་"
+
+#: ../gdl/gdl-dock-item.c:290
+msgid "Preferred height"
+msgstr "དགའ་གདམ་བརྐྱབ་ཡོད་པའི་མཐོ་ཚད་"
+
+#: ../gdl/gdl-dock-item.c:291
+msgid "Preferred height for the dock item"
+msgstr "ཌོཀ་རྣམ་གྲངས་ཀྱི་དོན་ལུ་  དགའ་གདམ་བརྐྱབ་ཡོད་པའི་མཐོ་ཚད་"
+
+#: ../gdl/gdl-dock-item.c:541
+#, c-format
+msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
+msgstr "ཁྱོད་ཀྱིས་ ཌོཀ་དངོས་པོ་(%p of type %s) འདི་ %s ནང་ཁ་སྐོང་བརྐྱབ་མི་ཚུགས། ཇི་ཌི་ཨེལ་ཌོཀ་ཡང་ན་  ཌོཀ་དངོས་པོའི་ས་ཁོངས་ལ་ལོ་ཅིག་ལག་ལེན་འཐབ།"
+
+#: ../gdl/gdl-dock-item.c:548
+#, c-format
+msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
+msgstr "ཝི་གེཊི་ཅིག་  %sདབྱེ་བ་ཅིག་དང་ཅིག་ཁར་  %s ཅིག་ལུ་ཁ་སྐོང་བརྐྱབ་ནི་དཔའ་བཅམ་དོ་  དེ་འབདཝ་ད་  དེ་གིས་ཚར་ཅིག་ལུ་ཝི་གེཊི་གཅིག་རྐྱངམ་ཅིག་གནས་ཚུགས; དེ་ལུ་ཧེ་མ་ལས་རང་ %s དབྱེ་བའི་ཝི་གེཊི་ཅིག་གནས་ཏེ་ཡོད།"
+
+#: ../gdl/gdl-dock-item.c:1186
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "རྒྱབ་སྐྱོར་མེད་པའི་ ཌོཀ་ཀིང་ཐབས་འཇུས་ %s འདི་  %s དབྱེ་བའི་ཌོཀ་དངོས་པོ་ནང་"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1273
+msgid "UnLock"
+msgstr "ལྡེ་མིག་ཕྱེ་"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1280
+msgid "Hide"
+msgstr "སྦ་བཞག་"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1285
+msgid "Lock"
+msgstr "ལྡེ་མིག་མ་"
+
+#: ../gdl/gdl-dock-item.c:1491
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "བཅད་མཚམས་མེད་པའི་རྣམ་གྲངས་ %p ཅིག་བསྡམ་ནི་ལུ་དཔའ་བཅམ་"
+
+#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-bar.c:106
+msgid "Master"
+msgstr "ཨམ་"
+
+#: ../gdl/gdl-dock-layout.c:125
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "བཀོད་སྒྲིག་དངོས་པོ་འདི་མཉམ་སྦྲགས་འབད་ཡོད་པའི་  ཇི་ཌི་ཨེལ་ཌོཀ་ཨམ་གྱི་དངོས་པོ་"
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "Dirty"
+msgstr "བཙོག་པ་"
+
+#: ../gdl/gdl-dock-layout.c:133
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "བཀོད་སྒྲིག་ཚུ་བསྒྱུར་བཅོས་འབད་ཡོདཔ་དང་  ཡིག་སྣོད་ལུ་སྲུང་བཞག་འབད་དགོ་ནི་ཨིན་པ་ཅིན་བདེན་"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "བཀོད་སྒྲིག་ལག་ལེན་པའི་ ངོས་འདྲ་བའི་ཡིག་སྣོད་ '%s' མངོན་གསལ་འབད་མ་ཚུགས་"
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "མཐོང་ཚུགསཔ་"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "རྣམ་གྲངས་"
+
+#: ../gdl/gdl-dock-layout.c:708
+#: ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "མིང་"
+
+#: ../gdl/gdl-dock-layout.c:741
+#: ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "ཌོཀ་རྣམ་གྲངས་ཚུ་"
+
+#: ../gdl/gdl-dock-layout.c:747
+#: ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "སྲུང་བཞག་འབད་ཡོད་པའི་བཀོད་སྒྲིག་ཚུ་"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
+msgstr "བཀོད་སྒྲིག་འདི་མངོན་གསལ་འབདཝ་ད: ནིཀ་འདི་ '%s' ཨིན་པའི་ཌོཀ་དངོས་པོ་ཅིག་གསར་བསྐྲུན་འབད་མ་ཤེས་"
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "བཀོད་སྒྲིག་གི་འཛིན་སྐྱོང་"
+
+#: ../gdl/gdl-dock-master.c:132
+#: ../gdl/gdl-dock.c:182
+msgid "Default title"
+msgstr "སྔོན་སྒྲིག་གི་མགོ་མིང་"
+
+#: ../gdl/gdl-dock-master.c:133
+msgid "Default title for newly created floating docks"
+msgstr "ཌོཀསི་ལྡིང་མི་གསརཔ་གསར་བསྐྲུན་འབད་ཡོད་མི་གི་དོན་ལུ་  སྔོན་སྒྲིག་མགོ་མིང་"
+
+#: ../gdl/gdl-dock-master.c:140
+msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr "༡་ ལུ་གཞི་སྒྲིག་འབད་དེ་ཡོད་པ་ཅིན་  ཨམ་ལུ་གནས་ཏེ་ཡོད་མི་  ཌོཀ་རྣམ་གྲངས་ཚུ་ཆ་མཉམ་ལྡེ་མིག་བརྐྱབ་འོང་; དེ་ ༠་ ཨིན་པ་ཅིན་  ཆ་མཉམ་ལྡེ་མིག་ཕྱེ་འོང་; -1 དེ་གིས་  རྣམ་གྲངས་ཚུ་གི་གྱལ་ལས་མཐུན་མིན་གྱི་བརྡ་སྟོནམ་ཨིན་"
+
+#: ../gdl/gdl-dock-master.c:741
+#, c-format
+msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
+msgstr "%pཨམ: དངོས་པོ་%p[%s] འདི་ཨང་རྟགས་ལུ་ཁ་སྐོང་བརྐྱབ་མ་ཚུགས།  མིང་(%p)འདི་ཡོད་མི་རྣམ་གྲངས་འདི་  ཧེ་མ་ལས་རང་འདུག།"
+
+#: ../gdl/gdl-dock-master.c:906
+#, c-format
+msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
+msgstr "ཌོཀ་ཚད་འཛིན་འབད་མི་གསརཔ་ %p འདི་རང་བཞིན་ཨིན་མས།  ལག་ཐོག་ཌོཀ་གི་དངོས་པོ་ཚུ་རྐྱངམ་ཅིག་  ཚད་འཛིན་ཨིན་ཟེར་མིང་བཏགས་དགོ།"
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "ཤོག་ལེབ་"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "ད་ལྟོའི་ཤོག་ལེབ་ཀྱི་ཟུར་ཐོ་"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "ཌོཀ་དངོས་པོ་འདི་ངོས་འཛིན་འབད་ནིའི་དོན་ལུ་  མཐུན་མོང་མ་ཡིན་པའི་མིང་"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "མིང་རིངམ་"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr "ཌོཀ་དངོས་པོའི་དོན་ལུ་  མི་གིས་ལྷག་ཚུགས་པའི་མིང་"
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "ཅ་མཛོད་ཀྱི་ངོས་དཔར་"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "ཌོཀ་དངོས་པོའི་དོན་ལུ་  ཅ་མཛོད་ཀྱི་ངོས་དཔར་"
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "ཌོཀ་ཨམ་"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr "ཌོཀ་དངོས་པོ་འདི་གནས་དགོ་པའི་  ཌོཀ་ཨམ་"
+
+#: ../gdl/gdl-dock-object.c:420
+#, c-format
+msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
+msgstr "གཞི་བཙུག་མ་འབད་བར་ཡོད་མི་ཐབས་ལམ་  ཌོཀ་དངོས་པོ་ %p (དངོས་པོའི་དབྱེ་བ་འདི་ %s) ནང་གི་gdl_dock_object_dock ལུ་ཀཱལ་འབད།"
+
+#: ../gdl/gdl-dock-object.c:549
+#, c-format
+msgid "Dock operation requested in a non-bound object %p. The application might crash"
+msgstr "གནས་ཏེ་མེད་པའི་དངོས་པོ་ %p ཅིག་ནང་ཞུ་བ་འབད་དེ་ཡོད་པའི་  ཌོཀ་བཀོལ་སྤྱོདཔ།  གློག་རིམ་འདི་བརྡབ་འཁྲུག་བྱུང་འོང་"
+
+#: ../gdl/gdl-dock-object.c:556
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr " %p འདི་ %p ལུ་ཌོཀ་འབད་མི་ཚུགས་  ག་ཅི་འབད་ཟེར་བ་ཅིན་  དེ་ཚུ་  ཨམ་སོ་སོ་ལུ་གྲངས་སུ་གཏོགས་ནི་ཨིན་"
+
+#: ../gdl/gdl-dock-object.c:598
+#, c-format
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "ཧེ་མ་ལས་གནས་དགོ་པའི་ ཌོཀ་དངོས་པོ་ %p (ད་ལྟོའི་ཨམ: %p) འདི་  %p ལུ་བསྡམས་ནི་ལུ་དཔའ་བཅམ་"
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position"
+msgstr "གནས་ས་"
+
+#: ../gdl/gdl-dock-paned.c:133
+msgid "Position of the divider in pixels"
+msgstr "པིག་སེལ་ཚུ་ནང་བཅད་མཚམས་ཀྱི་གནས་ས་"
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Sticky"
+msgstr "རྩི་ཅན་"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
+msgstr "ཧོསཊི་འདི་སླར་ཌོཀ་འབདཝ་ད་  གནས་ས་འཛིན་མི་དེ་གིས་  དེའི་ཧོསཊི་ཡང་ན་ སྡེ་རིམ་ལུ་སྤོ་བཤུད་འབད་རུང་མ་འབད་རུང་"
+
+#: ../gdl/gdl-dock-placeholder.c:151
+msgid "Host"
+msgstr "ཧོསཊི་"
+
+#: ../gdl/gdl-dock-placeholder.c:152
+msgid "The dock object this placeholder is attached to"
+msgstr "གནས་ས་འཛིན་མི་འདི་མཉམ་སྦྲགས་འབད་ཡོད་པའི་  ཌོཀ་དངོས་པོ་"
+
+#: ../gdl/gdl-dock-placeholder.c:159
+msgid "Next placement"
+msgstr "ཤུལ་མའི་གནས་ས་"
+
+#: ../gdl/gdl-dock-placeholder.c:160
+msgid "The position an item will be docked to our host if a request is made to dock to us"
+msgstr "ཞུ་བ་འདི་ང་བཅས་ལུ་ཌོཀ་འབད་བཅུག་པ་ཅིན་  རྣམ་གྲངས་འདི་ང་བཅས་ཀྱི་ཧོསཊི་ལུ་ཌོཀ་འབད་ནི་ཨིན་པའི་  གནས་ས་  "
+
+#: ../gdl/gdl-dock-placeholder.c:169
+#: ../gdl/gdl-dock.c:189
+msgid "Width"
+msgstr "རྒྱ་ཚད་"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "གནས་ས་འཛིན་མི་ལུ་མཉམ་སྦྲགས་འབདཝ་ད་གི་  ཝི་གེཊི་གི་དོན་ལུ་རྒྱ་ཚད་"
+
+#: ../gdl/gdl-dock-placeholder.c:177
+#: ../gdl/gdl-dock.c:197
+msgid "Height"
+msgstr "མཐོ་ཚད་"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "དེ་གནས་ས་འཛིན་མི་ལུ་མཉམ་སྦྲགས་འབདཝ་ད་  ཝི་གེཊི་གི་དོན་ལུ་མཐོ་ཚད་"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "མགོའི་གནས་རིམ་ལྡིང་མི་"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "མགོའི་གནས་རིམ་ཌོཀ་ལྡིང་མི་ཅིག་གི་དོན་ལུ་  གནས་ས་འཛིན་མི་འདི་ཡོད་རུང་མེད་རུང་"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "ཨེགསི་- ཆ་སྙོམས་"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate fow dock when floating"
+msgstr "ལྡིང་བའི་བསྒང་  ཨེགསི་-ཆ་སྙོམས་ཀྱི་ཕའོ་ཌོཀ་"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "ཨེགསི་-ཆ་སྙོམས་"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate fow dock when floating"
+msgstr "ལྡིང་བའི་བསྒང་ ཝའི་-ཆ་སྙོམས་ཀྱི་ཕའོ་ཌོཀ་"
+
+#: ../gdl/gdl-dock-placeholder.c:494
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "ཚད་མེད་པའི་གནས་ས་འཛིན་མི་ཅིག་ལུ་  ཌོཀ་རྣམ་གྲངས་ཅིག་ཌོཀ་འབད་ནི་དཔའ་བཅམ་ད་"
+
+#: ../gdl/gdl-dock-placeholder.c:618
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "ང་བཅས་ཀྱི་ཧོསཊི་ %p མེན་མི་  དངོས་པོ་ (%p) ལས་  ཁ་འཕྱལ་བརྡ་རྟགས་འདི་ཐོབ་ཅི་"
+
+#: ../gdl/gdl-dock-placeholder.c:643
+#, c-format
+msgid "Something weird happened while getting the child placement for %p from parent %p"
+msgstr "%p གི་དོན་ལུ་  རྩ་ལག་ %p ལས་ཆ་ལག་བཙུག་བཞག་ལེནམ་ད་  ཝེརཌི་ཅིག་བྱུང་ནུག་"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "མཆོང་ལྡེའི་ཁ་ཡིག་འདི་ 'བདག་དབང་བཟུང་མི' གི་ཌོཀ་རྣམ་གྲངས་"
+
+#: ../gdl/gdl-dock-bar.c:107
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "ཌོཀ་ཕྲ་རིང་གི་ཝི་གེཊི་འདི་མཉམ་སྦྲགས་འབད་ཡོད་པའི་ ཇི་ཌི་ཨེལ་ཌོཀ་ཨམ་གྱི་དངོས་པོ་"
+
+#: ../gdl/gdl-dock-bar.c:114
+msgid "Dockbar style"
+msgstr "ཌོཀ་ཕྲ་རིང་གི་བཟོ་རྣམ་"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style to show items on it"
+msgstr "རྣམ་གྲངས་ཚུ་དེ་གུ་སྟོན་ནི་གི་  ཌོཀ་ཕྲ་རིང་གི་བཟོ་རྣམ་"
+
+#: ../gdl/gdl-dock.c:174
+msgid "Floating"
+msgstr "ལྡིང་ནི་"
+
+#: ../gdl/gdl-dock.c:175
+msgid "Whether the dock is floating in its own window"
+msgstr "ཌོཀ་འདི་དེ་ཉིད་ཀྱི་སྒོ་སྒྲིག་ནང་ལུ་ལྡིང་དེ་ཡོད་རུང་མེད་རུང་"
+
+#: ../gdl/gdl-dock.c:183
+msgid "Default title for the newly created floating docks"
+msgstr "ལྡིང་ནི་གི་ཌོཀ་གསརཔ་གསར་བསྐྲུན་འབད་ཡོད་མི་གི་དོན་ལུ་  སྔོན་སྒྲིག་གི་མགོ་མིང་"
+
+#: ../gdl/gdl-dock.c:190
+msgid "Width for the dock when it's of floating type"
+msgstr "དེ་ལྡིང་ནི་གི་དབྱེ་བའི་ནང་ཨིནམ་ད་  ཌོཀ་གི་དོན་ལུ་རྒྱ་ཚད་"
+
+#: ../gdl/gdl-dock.c:198
+msgid "Height for the dock when it's of floating type"
+msgstr "ལྡིང་ནི་གི་དབྱེ་བ་ཨིནམ་ད་  ཌོཀ་དེ་གི་མཐོ་ཚད་"
+
+#: ../gdl/gdl-dock.c:205
+msgid "Float X"
+msgstr "ཨེགསི་ལྡིང་"
+
+#: ../gdl/gdl-dock.c:206
+msgid "X coordinate for a floating dock"
+msgstr "ལྡིང་ནི་གི་ཌོཀ་ཅིག་གི་དོན་ལུ་  ཨེགསི་ཆ་སྙོམས་"
+
+#: ../gdl/gdl-dock.c:213
+msgid "Float Y"
+msgstr "ཝའི་ལྡིང་ནི་"
+
+#: ../gdl/gdl-dock.c:214
+msgid "Y coordinate for a floating dock"
+msgstr "ལྡིང་ནི་ཌོཀ་ཅིག་གི་དོན་ལུ་  ཝའི་ཆ་སྙོམས་"
+
+#: ../gdl/gdl-dock.c:495
+#, c-format
+msgid "Dock #%d"
+msgstr "#%d ཌོཀ་འབད་"
+
+#: ../gdl/gdl-icons.c:133
+#: ../gdl/gdl-icons.c:134
+msgid "Icon size"
+msgstr "ངོས་དཔར་གྱི་ཚད་"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "བཀོད་སྒྲིག་གི་འཛིན་སྐྱོང་"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "མངོན་གསལ་འབད། (_L)"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "ཌོཀ་རྣམ་གྲངས་ཚུ་བསྡམས། (_L)"
+

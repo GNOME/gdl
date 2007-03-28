@@ -1,0 +1,654 @@
+# Translation of gdl to Croatiann
+# Copyright (C) Croatiann team
+# Translators: Automatski Prijevod <>,Danijel Studen <dstuden@vuka.hr>,Denis Lackovic <delacko@fly.srk.fer.hr>,Diana Ćorluka <dina@iskrameco.hr>,Ivan Jankovic <rbrrneck@gmx.net>,Jerko Škifić <skific@riteh.hr>,Mato Kutlić <mate@iskraemeco.hr>,pr pr <delacko@192.168.0.1>,Robert Sedak <robert.sedak@sk.tel.hr>,
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl 0\n"
+"POT-Creation-Date: 2004-03-20 14:47+0100\n"
+"PO-Revision-Date: 2004-03-20 14:47+CET\n"
+"Last-Translator: auto\n"
+"Language-Team: Croatian <lokalizacija@linux.hr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: TransDict server\n"
+
+#: gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "Veličina razgranika"
+
+#: gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "Veličina strelice ekspandiranja."
+
+#: gdl/gdl-dock-item-grip.c:364
+msgid "Iconify"
+msgstr "Napravi ga sličicom"
+
+#: gdl/gdl-dock-item-grip.c:364
+msgid "Iconify this dock"
+msgstr "Postavi sličicu za ovaj priključak"
+
+#: gdl/gdl-dock-item-grip.c:366
+msgid "Close"
+msgstr "Zatvori"
+
+#: gdl/gdl-dock-item-grip.c:366
+msgid "Close this dock"
+msgstr "Zatvori ovaj priključak"
+
+#: gdl/gdl-dock-item-grip.c:675 gdl/gdl-dock-tablabel.c:129
+msgid "Controlling dock item"
+msgstr "Upravljanje elementom pripajanja"
+
+#: gdl/gdl-dock-item-grip.c:676
+msgid "Dockitem which 'owns' this grip"
+msgstr "Element za pripajanje koji je \"vlasnik\" ove oznake okvira"
+
+#: gdl/gdl-dock-item.c:242
+msgid "Orientation"
+msgstr "Orijentacija"
+
+#: gdl/gdl-dock-item.c:243
+msgid "Orientation of the docking item"
+msgstr "Orijentacija stavki na ploči"
+
+#: gdl/gdl-dock-item.c:258
+msgid "Resizable"
+msgstr "Može se mijenjati veličina"
+
+#: gdl/gdl-dock-item.c:259
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr """Ako je omogućeno, stavci ploče može se promenjeniti veličina kada se "
+"pripoji"
+
+#: gdl/gdl-dock-item.c:266
+msgid "Item behavior"
+msgstr "Ponašanje kolačića"
+
+#: gdl/gdl-dock-item.c:267
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Osnovno ponašanje za stavku (npr. može li biti plutajuća, je li "
+"zaključana, itd.)"
+
+#: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
+msgid "Locked"
+msgstr "Zaključano"
+
+#: gdl/gdl-dock-item.c:276
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr """Ako je postavljeno, pripojena stavka se ne može pomicati i neće imati "
+"hvataljku"
+
+#: gdl/gdl-dock-item.c:284
+msgid "Preferred width"
+msgstr "Najpogodnija širina"
+
+#: gdl/gdl-dock-item.c:285
+msgid "Preferred width for the dock item"
+msgstr "Željena širina za stavku ploče"
+
+#: gdl/gdl-dock-item.c:291
+msgid "Preferred height"
+msgstr "Preporučena visina"
+
+#: gdl/gdl-dock-item.c:292
+msgid "Preferred height for the dock item"
+msgstr "Željena visina za stavku ploče"
+
+#: gdl/gdl-dock-item.c:542
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Ne možete dodati sidrišni objekt (%p tipa %s) unutar %s. Koristite GdlDock ili "
+"neki drugi objekt sidrišta."
+
+#: gdl/gdl-dock-item.c:549
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Pokušavanje dodavanja elementa tipa %s u %s, ali on može sadržavati samo jedan "
+"element; već sadrži element tipa %s"
+
+#: gdl/gdl-dock-item.c:1176
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "Strategija pripajanja %s nije podržana u objektu ploče tipa %s"
+
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1258
+msgid "Hide"
+msgstr "Sakrij"
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1264
+msgid "Lock"
+msgstr "Zaključano"
+
+#: gdl/gdl-dock-item.c:1448
+msgid "Attempt to bind an unbound item %p"
+msgstr "Pokušaj ugradnje bezgranične stavke %p"
+
+#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
+msgid "Master"
+msgstr "Glavno"
+
+#: gdl/gdl-dock-layout.c:126
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "GdlDockMaster objekt za koji je privezan objekt rasporeda"
+
+#: gdl/gdl-dock-layout.c:133
+msgid "Dirty"
+msgstr "Prvi"
+
+#: gdl/gdl-dock-layout.c:134
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Postavljeno ukoliko su rasporedi izmjenjeni i treba ih spremiti u datoteku"
+
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:564
+msgid "Could not load layout user interface file '%s'"
+msgstr "Ne mogu otvoriti otvoriti datoteku: %s"
+
+#: gdl/gdl-dock-layout.c:619
+msgid "Visible"
+msgstr "Vidljivo"
+
+#: gdl/gdl-dock-layout.c:626
+msgid "Item"
+msgstr "Stavka"
+
+#: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "Ime"
+
+#: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "Stranice sa kolačićima"
+
+#: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "Spremi kao"
+
+#: gdl/gdl-dock-layout.c:790
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"Prilikom učitavanja rasporeda: ne znam kako stvoriti objekt za pripajanje "
+"čiji je nadimak \"%s\""
+
+#: gdl/gdl-dock-layout.c:1269
+msgid "Layout managment"
+msgstr "Upravljanje rasporedom"
+
+#: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
+msgid "Default title"
+msgstr "Uobičajena vrsta pisma (font)"
+
+#: gdl/gdl-dock-master.c:135
+msgid "Default title for newly created floating docks"
+msgstr "Uobičajeni naslov za novostvorene plutajuće objekte za pripajanje"
+
+#: gdl/gdl-dock-master.c:142
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Ukoliko je postavljeno na 1, svi objekti za pripajanje vezani za glavni su "
+"zaključani; ukoliko je 0, svi su otključani; -1 označava nedosljednost među "
+"stavkama"
+
+#: gdl/gdl-dock-master.c:730
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"glavni %p: ne može dodati objekt %p[%s] u hash tablicu.  Već postoji stavka "
+"tog imena (%p)."
+
+#: gdl/gdl-dock-master.c:895
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"Novi upravljač pripajanjem %p je automatski.  Samo ručni objekti za "
+"pripajanje trebaju biti označeni kao upravljači."
+
+#: gdl/gdl-dock-notebook.c:135
+msgid "Page"
+msgstr "Stranica"
+
+#: gdl/gdl-dock-notebook.c:136
+msgid "The index of the current page"
+msgstr "Indeks odabrane strane"
+
+#: gdl/gdl-dock-object.c:121
+msgid "Unique name for identifying the dock object"
+msgstr "Jedinstveni naziv za identifikaciju objekta ploče"
+
+#: gdl/gdl-dock-object.c:128
+msgid "Long name"
+msgstr "Pregledaj ime_na"
+
+#: gdl/gdl-dock-object.c:129
+msgid "Human readable name for the dock object"
+msgstr "Ljudski razumljivo ima za objekt pripajanja"
+
+#: gdl/gdl-dock-object.c:135
+msgid "Stock Icon"
+msgstr "Sličica dionice"
+
+#: gdl/gdl-dock-object.c:136
+msgid "Stock icon for the dock object"
+msgstr "Sličica dionice za objekt pripajanja"
+
+#: gdl/gdl-dock-object.c:142
+msgid "Dock master"
+msgstr "Upravitelj pripajanjem"
+
+#: gdl/gdl-dock-object.c:143
+msgid "Dock master this dock object is bound to"
+msgstr "Upravitelj pripajanjem na koji je ovaj objekt pripojen"
+
+#: gdl/gdl-dock-object.c:421
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Poziv funkciji gdl_dock_object_dock u objektu za pripajanje %p (tip objekta "
+"je %s) koji nije implementirao ovu metodu"
+
+#: gdl/gdl-dock-object.c:550
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"Pokušaj izvođenja operacije pripajanja u nepovezanom objektu %p. Program "
+"se može srušiti."
+
+#: gdl/gdl-dock-object.c:557
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Ne mogu pripojiti %p na %p zato što pripadaju raznim glavnim objektima"
+
+#: gdl/gdl-dock-object.c:599
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr """Pokušaj vezivanja na %p već vezanog objekta za pripajanje %p (trenutno "
+"glavni: %p)"
+
+#: gdl/gdl-dock-paned.c:133
+msgid "Position"
+msgstr "Položaj"
+
+#: gdl/gdl-dock-paned.c:134
+msgid "Position of the divider in pixels"
+msgstr "Pozicija djelitelja u pikselima"
+
+#: gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr "Ljepljiv"
+
+#: gdl/gdl-dock-placeholder.c:128
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Hoće li se ovo rezerviano mjesto držati uz svog domaćina ili pomaknuti gore u "
+"hijerarhiji kada se domaćin odvoji"
+
+#: gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "Računalo"
+
+#: gdl/gdl-dock-placeholder.c:136
+msgid "The dock object this placeholder is attached to"
+msgstr "Objekt za pripajanje na koji je ovo rezervirano mjesto vezano"
+
+#: gdl/gdl-dock-placeholder.c:143
+msgid "Next placement"
+msgstr "Sljedeći raspored"
+
+#: gdl/gdl-dock-placeholder.c:144
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"Pozicija na koju će stavka biti pripojena domaćinu ako je napravljen zahtjev za "
+"pripajanje nama"
+
+#: gdl/gdl-dock-placeholder.c:305
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Pokušaj pripajanja objekta za pripajanje nevezanom rezerviranom mesta"
+
+#: gdl/gdl-dock-placeholder.c:419
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "Primljen je signal za odvajanje od objekta (%p) koji nije naš domaćin %p"
+
+#: gdl/gdl-dock-placeholder.c:440
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Nešto čudno se dogodilo pri dohvatu položaja sadržanog elementa %p od "
+"roditelja %p"
+
+#: gdl/gdl-dock-tablabel.c:130
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Element za pripajanje koji je \"vlasnik\" ove oznake taba"
+
+#: gdl/gdl-dock-bar.c:89
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "GdlDockMaster objekt za koji je privezan objekt dockbar"
+
+#: gdl/gdl-dock.c:176
+msgid "Floating"
+msgstr "Plutanje"
+
+#: gdl/gdl-dock.c:177
+msgid "Whether the dock is floating in its own window"
+msgstr "Odvoji ovaj tab u vlastiti prozor"
+
+#: gdl/gdl-dock.c:185
+msgid "Default title for the newly created floating docks"
+msgstr "Uobičajeni naslov za novostvorene plutajuće objekte za pripajanje"
+
+#: gdl/gdl-dock.c:191
+msgid "Width"
+msgstr "Širina"
+
+#: gdl/gdl-dock.c:192
+msgid "Width for the dock when it's of floating type"
+msgstr "Širina objekta za pripajanje kada je plutajući"
+
+#: gdl/gdl-dock.c:199
+msgid "Height"
+msgstr "Visina"
+
+#: gdl/gdl-dock.c:200
+msgid "Height for the dock when it's of floating type"
+msgstr "Visin objekta za pripajanje kada je plutajući"
+
+#: gdl/gdl-dock.c:207
+msgid "Float X"
+msgstr "Plutajući X"
+
+#: gdl/gdl-dock.c:208
+msgid "X coordinate for a floating dock"
+msgstr "X koordinata plutajućeg objekta za pripajanje"
+
+#: gdl/gdl-dock.c:215
+msgid "Float Y"
+msgstr "Plutajući Y"
+
+#: gdl/gdl-dock.c:216
+msgid "Y coordinate for a floating dock"
+msgstr "Y koordinata plutajućeg objekta za pripajanje"
+
+#: gdl/gdl-dock.c:497
+msgid "Dock #%d"
+msgstr "Pripajanje #%d"
+
+#: gdl/gdl-recent.c:135
+msgid "GConf key"
+msgstr "GConf ključ"
+
+#: gdl/gdl-recent.c:136
+msgid "The gconf key for storing the recent entries."
+msgstr "gconf tipka za spremanje nedavnih unosa."
+
+#: gdl/gdl-recent.c:142
+msgid "Path"
+msgstr "Putanja"
+
+#: gdl/gdl-recent.c:143
+msgid "The path to put the menu items."
+msgstr "Uzorak za smještaj u izbornik stavke."
+
+#: gdl/gdl-recent.c:149
+msgid "Limit"
+msgstr "Linije"
+
+#: gdl/gdl-recent.c:150
+msgid "The maximum number of items to be allowed in the list."
+msgstr "Maksimalni broj stavki dozvoljenih u popisu."
+
+#: gdl/gdl-recent.c:158
+msgid "List type"
+msgstr "Ispiši vrstu"
+
+#: gdl/gdl-recent.c:159
+msgid "The type with which the items will be numbered."
+msgstr "Tip kojim će se pobrojati stavke."
+
+#: gdl/gdl-recent.c:408
+msgid "Open %s"
+msgstr "Otvori %s"
+
+#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
+msgid "Icon size"
+msgstr "Veličina sličice"
+
+#: gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Upravljanje rasporedom"
+
+#: gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Učitaj"
+
+#: gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "_Zaključaj stavku sidrišta"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "Tvornica za kontrolu Gnome preglednika simbola."
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr "Element za razgledavanje Gnome simbola"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr "Proizvodnja elementa za razgledanje Gnome simbola"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr "Razgledanje Gnome simbola."
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr "Idi na simbol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr "Idi na prikazani simbol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr "Ažuriranje simbola"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr "Ažuriranje stabla simbola"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr "_Idi na simbol"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "P_ogled"
+
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:66
+msgid "Classes"
+msgstr "Klase"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Enums"
+msgstr "Enums"
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Enumerators"
+msgstr "Nabrajatelji"
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Fields"
+msgstr "Polja"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Functions"
+msgstr "Funkcije"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Interfaces"
+msgstr "Sučelje"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Members"
+msgstr "Članovi"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:73
+msgid "Methods"
+msgstr "Metode"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:74
+msgid "Namespaces"
+msgstr "Prostori za ime"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Packages"
+msgstr "Paketi"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Prototypes"
+msgstr "Prototipovi"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Structs"
+msgstr "Strukture"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Typedefs"
+msgstr "Definicije tipova"
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:79
+msgid "Unions"
+msgstr "Skupovi"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Variables"
+msgstr "Varijable"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:81
+msgid "ExternVars"
+msgstr "Vanjske varijable"
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:82
+msgid "Macros"
+msgstr "Makronaredbe"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:83
+msgid "MacrosWithArgs"
+msgstr "MacrosWithArgs"
+
+#: symbol-browser-control/symbol-browser.c:378
+msgid "Tags"
+msgstr "Tagovi"
+
+#: symbol-browser-control/symbol-browser.c:386
+#: symbol-browser-control/symbol-browser.c:397
+msgid "Undefined"
+msgstr "Neodređeno"
+
+#: symbol-browser-control/symbol-browser.c:388
+#: symbol-browser-control/symbol-browser.c:399
+msgid "<No Symbol>"
+msgstr "<Nema Simbola>"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "Izlaz"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr "Otvori projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr "Spremiti projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr "Postavi tekuću datoteku"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "Ažuriraj"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr "Ažuriranje cijelog stabla"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr "_Izlaz"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "_Datoteka"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr "_Otvori projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr "_Spremi projekt"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr "_Postavi trenutnu datoteku"
+
+#: symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr "Otvori datoteku..."
+
+#: symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr "Postavi trenutnu datoteku..."
+
+#: symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr "Spremi datoteku..."
+
+#: symbol-browser-control/test-symbol-browser.c:295
+msgid "Can't initialize bonobo!"
+msgstr "Ne mogu inicijalizirati bonobo!"
+

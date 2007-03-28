@@ -1,0 +1,484 @@
+# Vietnamese translation for GDL.
+# Copyright © 2006 Gnome i18n Project for Vietnamese.
+# Nguyễn Thái Ngọc Duy <pclouds@gmx.net>, 2002.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2006.
+# 
+msgid ""
+""
+msgstr "Project-Id-Version: gdl Gnome HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-05-27 02:29+0200\n"
+"PO-Revision-Date: 2006-05-27 18:07+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: LocFactoryEditor 1.6b36\n"
+
+#: ../gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "Cỡ mũi tên bung"
+
+#: ../gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "Kích thước của mũi tên bung."
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify"
+msgstr "Hiện là biểu tượng"
+
+#: ../gdl/gdl-dock-item-grip.c:371
+msgid "Iconify this dock"
+msgstr "Hiện neo này là biểu tượng"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close"
+msgstr "Đóng"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Close this dock"
+msgstr "Đóng neo này"
+
+#: ../gdl/gdl-dock-item-grip.c:682
+#: ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Mục neo điều khiển"
+
+#: ../gdl/gdl-dock-item-grip.c:683
+msgid "Dockitem which 'owns' this grip"
+msgstr "Mục neo « sở hữu » móc này."
+
+#: ../gdl/gdl-dock-item.c:241
+msgid "Orientation"
+msgstr "Hướng"
+
+#: ../gdl/gdl-dock-item.c:242
+msgid "Orientation of the docking item"
+msgstr "Hướng của mục neo"
+
+#: ../gdl/gdl-dock-item.c:257
+msgid "Resizable"
+msgstr "Có thể đổi cỡ"
+
+#: ../gdl/gdl-dock-item.c:258
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "Nếu lập thì mục neo có thể được lập lại kích thước khi nằm trên bảng điều "
+"khiển."
+
+#: ../gdl/gdl-dock-item.c:265
+msgid "Item behavior"
+msgstr "Ứng xử của mục"
+
+#: ../gdl/gdl-dock-item.c:266
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr "Ứng xử chung của mục neo (v.d. nó có thể nổi hay không, nó được khóa hay "
+"không ...)"
+
+#: ../gdl/gdl-dock-item.c:274
+#: ../gdl/gdl-dock-master.c:140
+msgid "Locked"
+msgstr "Được khóa"
+
+#: ../gdl/gdl-dock-item.c:275
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "Nếu lập thì mục neo không thể được kéo xung quanh và sẽ không hiện móc."
+
+#: ../gdl/gdl-dock-item.c:283
+msgid "Preferred width"
+msgstr "Bề rộng ưa thích"
+
+#: ../gdl/gdl-dock-item.c:284
+msgid "Preferred width for the dock item"
+msgstr "Bề rộng ưa thích của mục neo"
+
+#: ../gdl/gdl-dock-item.c:290
+msgid "Preferred height"
+msgstr "Chiều cao ưa thích"
+
+#: ../gdl/gdl-dock-item.c:291
+msgid "Preferred height for the dock item"
+msgstr "Chiều cao ưa thích của mục neo"
+
+#: ../gdl/gdl-dock-item.c:541
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr "Không thể thêm đối tượng neo (%p của kiểu %s) trong một %s. Hãy dùng GdlDock "
+"hay một đối tượng neo phức hợp khác."
+
+#: ../gdl/gdl-dock-item.c:548
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr "Đang cố thêm một ô điều khiển với kiểu %s vào %s, nhưng chỉ có thể chứa một "
+"ô điều khiển vào một thời điểm, nó đã chứa một ô điều kiển với kiểu %s."
+
+#: ../gdl/gdl-dock-item.c:1174
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "Không hỗ trợ chiến lược neo %s trong đối tượng neo của kiểu %s."
+
+#.UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1257
+msgid "UnLock"
+msgstr "Mở khóa"
+
+#.Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1264
+msgid "Hide"
+msgstr "Ẩn"
+
+#.Lock menuitem
+#: ../gdl/gdl-dock-item.c:1269
+msgid "Lock"
+msgstr "Khóa"
+
+#: ../gdl/gdl-dock-item.c:1474
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Cố gắng tổ hợp một mục tự do %p."
+
+#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-bar.c:106
+msgid "Master"
+msgstr "Chính"
+
+#: ../gdl/gdl-dock-layout.c:125
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "Đối tượng GdlDockMaster mà đối tượng bố trí được gắn kèm với nó."
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "Dirty"
+msgstr "Bẩn"
+
+#: ../gdl/gdl-dock-layout.c:133
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Đúng nếu các bố trí đã thay đổi và cần thiết được lưu vào tập tin."
+
+#.FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "Không thể tải tập tin giao diện người dùng của bố trí « %s »."
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "Xem được"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "Mục"
+
+#: ../gdl/gdl-dock-layout.c:708
+#: ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "Tên"
+
+#: ../gdl/gdl-dock-layout.c:741
+#: ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "Mục neo"
+
+#: ../gdl/gdl-dock-layout.c:747
+#: ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "Bố trí đã lưu"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr "Trong khi tải bố trí: không biết cách tạo đối tượng neo có tên hiệu « %s »."
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "Quản lý bố trí"
+
+#: ../gdl/gdl-dock-master.c:133
+#: ../gdl/gdl-dock.c:183
+msgid "Default title"
+msgstr "Tiêu đề mặc định"
+
+#: ../gdl/gdl-dock-master.c:134
+msgid "Default title for newly created floating docks"
+msgstr "Tiêu đề mặc định cho các neo nổi mới tạo"
+
+#: ../gdl/gdl-dock-master.c:141
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr "Lập\t\t\tKết quả\n"
+"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+"   1\t\t\ttoàn bộ các mục neo tổ hợp với chủ chính được khóa\n"
+"   0\t\t\ttoàn bộ được mở khóa\n"
+" -1 \t\t\tbiểu thị sự mâu thuẫn giữa các mục"
+
+#: ../gdl/gdl-dock-master.c:729
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr "Chủ chính %p: không thể thêm đối tượng %p[%s] vào băm. Đã có một mục với tên "
+"đó (%p)."
+
+#: ../gdl/gdl-dock-master.c:894
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr "Trình điều khiển neo mới %p là tự động. Chỉ các đối tượng neo thủ công nên "
+"là trình điều khiển có tên."
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "Trang"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "Chỉ mục của trang hiện thời"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "Tên duy nhất để nhận diện đối tượng neo"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "Tên dài"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr "Tên người có thể đọc được cho đối tượng neo."
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "Biểu tượng thường"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "Biểu tượng thường cho đối tượng neo."
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "Chủ chính neo"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr "Chủ chính neo đối tượng neo này được tổ hợp với nó."
+
+#: ../gdl/gdl-dock-object.c:420
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr "Gọi tới « gdl_dock_object_dock » trong đối tượng neo %p (kiểu đối tượng là %s) mà chưa thực thi phương pháp này."
+
+#: ../gdl/gdl-dock-object.c:549
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr "Thao tác neo được yêu cầu trong một đối tượng không tổ hợp %p. Ứng dụng có "
+"thể đổ vỡ."
+
+#: ../gdl/gdl-dock-object.c:556
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Không thể neo %p vào %p vì chúng là của các chủ chính khác nhau."
+
+#: ../gdl/gdl-dock-object.c:598
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "Cố tổ hợp %p với một đối tượng neo đã tổ hợp %p (chủ chính hiện thời là %p)."
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position"
+msgstr "Vị trí"
+
+#: ../gdl/gdl-dock-paned.c:133
+msgid "Position of the divider in pixels"
+msgstr "Vị trí bộ chia theo điểm ảnh."
+
+#: ../gdl/gdl-dock-placeholder.c:135
+msgid "Sticky"
+msgstr "Bám dính"
+
+#: ../gdl/gdl-dock-placeholder.c:136
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr "Bộ giữ nơi sẽ bám dính tới chủ của nó hay chuyển tiếp thứ bậc khi chủ neo "
+"lại."
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Host"
+msgstr "Chủ"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid "The dock object this placeholder is attached to"
+msgstr "Đối tượng neo mà bộ giữ nơi này được gắn kèm với nó."
+
+#: ../gdl/gdl-dock-placeholder.c:151
+msgid "Next placement"
+msgstr "Sự định vị kế"
+
+#: ../gdl/gdl-dock-placeholder.c:152
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr "Vị trí một mục sẽ được neo tới chủ của chúng ta nếu một yêu cầu được thực "
+"hiện để neo vào chúng ta."
+
+#: ../gdl/gdl-dock-placeholder.c:161
+#: ../gdl/gdl-dock.c:190
+msgid "Width"
+msgstr "Bề rộng"
+
+#: ../gdl/gdl-dock-placeholder.c:162
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Độ rộng của ô điều khiển khi được gắn kết đến bộ giữ chỗ"
+
+#: ../gdl/gdl-dock-placeholder.c:169
+#: ../gdl/gdl-dock.c:198
+msgid "Height"
+msgstr "Bề cao"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Độ cao của ô điều khiển khi được gắn kết đến bộ giữ chỗ"
+
+#: ../gdl/gdl-dock-placeholder.c:446
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Cố neo một đối tượng neo vào vào một bộ giữ nơi không tổ hợp."
+
+#: ../gdl/gdl-dock-placeholder.c:570
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "Đã nhận tín hiệu tách ra từ một đối tượng (%p) không phải là của chủ chúng "
+"ta %p."
+
+#: ../gdl/gdl-dock-placeholder.c:595
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr "Gặp lỗi lạ khi nhận sự định vị con cho %p từ mẹ %p."
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Mục neo có « sở hữu » nhãn thanh này."
+
+#: ../gdl/gdl-dock-bar.c:107
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "Đối tượng GdlDockMaster mà ô điều khiển thanh neo được gắn kèm với nó."
+
+#: ../gdl/gdl-dock-bar.c:114
+msgid "Dockbar style"
+msgstr "Kiểu dáng thanh neo"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style to show items on it"
+msgstr "Kiểu dáng hiển thị mục trên thanh neo"
+
+#: ../gdl/gdl-dock.c:175
+msgid "Floating"
+msgstr "Nổi"
+
+#: ../gdl/gdl-dock.c:176
+msgid "Whether the dock is floating in its own window"
+msgstr "Neo có nổi trong cửa sổ của riêng nó hay không."
+
+#: ../gdl/gdl-dock.c:184
+msgid "Default title for the newly created floating docks"
+msgstr "Tiêu đề mặc định cho các neo nổi mới tạo."
+
+#: ../gdl/gdl-dock.c:191
+msgid "Width for the dock when it's of floating type"
+msgstr "Bề rộng của neo khi nó là kiểu nổi."
+
+#: ../gdl/gdl-dock.c:199
+msgid "Height for the dock when it's of floating type"
+msgstr "Bề cao của neo khi nó là kiểu nổi."
+
+#: ../gdl/gdl-dock.c:206
+msgid "Float X"
+msgstr "Tọa độ X"
+
+#: ../gdl/gdl-dock.c:207
+msgid "X coordinate for a floating dock"
+msgstr "Tọa độ X cho neo nổi."
+
+#: ../gdl/gdl-dock.c:214
+msgid "Float Y"
+msgstr "Tọa độ Y"
+
+#: ../gdl/gdl-dock.c:215
+msgid "Y coordinate for a floating dock"
+msgstr "Tọa độ Y cho sự neo nổi."
+
+#: ../gdl/gdl-dock.c:496
+#, c-format
+msgid "Dock #%d"
+msgstr "Neo #%d"
+
+#: ../gdl/gdl-recent.c:135
+msgid "GConf key"
+msgstr "Khóa GConf"
+
+#: ../gdl/gdl-recent.c:136
+msgid "The gconf key for storing the recent entries."
+msgstr "Khóa GConf để lưu trữ các mục nhập hiện tại."
+
+#: ../gdl/gdl-recent.c:142
+msgid "Path"
+msgstr "Đường dẫn"
+
+#: ../gdl/gdl-recent.c:143
+msgid "The path to put the menu items."
+msgstr "Đường dẫn để đặt các mục trình đơn."
+
+#: ../gdl/gdl-recent.c:149
+msgid "Limit"
+msgstr "Giới hạn"
+
+#: ../gdl/gdl-recent.c:150
+msgid "The maximum number of items to be allowed in the list."
+msgstr "Số tối đa của các mục được phép trong danh sách."
+
+#: ../gdl/gdl-recent.c:158
+msgid "List type"
+msgstr "Kiểu danh sách"
+
+#: ../gdl/gdl-recent.c:159
+msgid "The type with which the items will be numbered."
+msgstr "Kiểu mà các mục sẽ được đánh số."
+
+#: ../gdl/gdl-recent.c:408
+#, c-format
+msgid "Open %s"
+msgstr "Mở %s"
+
+#: ../gdl/gdl-icons.c:133
+#: ../gdl/gdl-icons.c:134
+msgid "Icon size"
+msgstr "Cỡ biểu tượng"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Quản lý bố trí"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Tải"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "_Tải các mục neo"
