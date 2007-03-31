@@ -25,6 +25,7 @@
 #include "gdl-stock.h"
 #include "gdl-tools.h"
 
+#define ALIGN_BORDER 5
 
 enum {
     PROP_0,
@@ -55,7 +56,7 @@ gdl_dock_item_grip_get_title_area (GdlDockItemGrip *grip,
     gint       border = GTK_CONTAINER (grip)->border_width;
     gint       alloc_height;
 
-    area->width = (widget->allocation.width - 2 * border);
+    area->width = (widget->allocation.width - 2 * border - ALIGN_BORDER);
     
     pango_layout_get_pixel_size (grip->_priv->title_layout, NULL, &alloc_height);
     
@@ -68,7 +69,7 @@ gdl_dock_item_grip_get_title_area (GdlDockItemGrip *grip,
         area->width -= grip->_priv->iconify_button->allocation.width;
     }
 
-    area->x      = widget->allocation.x + border;
+    area->x      = widget->allocation.x + border + ALIGN_BORDER;
     area->y      = widget->allocation.y + border;
     area->height = alloc_height;
 
@@ -124,7 +125,6 @@ gdl_dock_item_grip_expose (GtkWidget      *widget,
     gint             text_y;
 
     grip = GDL_DOCK_ITEM_GRIP (widget);
-
     gdl_dock_item_grip_get_title_area (grip, &title_area);
 
     if (grip->_priv->icon_pixbuf) {
@@ -474,7 +474,7 @@ gdl_dock_item_grip_size_request (GtkWidget      *widget,
     container = GTK_CONTAINER (widget);
     grip = GDL_DOCK_ITEM_GRIP (widget);
     
-    requisition->width = container->border_width * 2;
+    requisition->width = container->border_width * 2 + ALIGN_BORDER;
     requisition->height = container->border_width * 2;
 
     ensure_title_and_icon_pixbuf (grip);
@@ -557,7 +557,7 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
     GTK_WIDGET_CLASS (parent_class)->size_allocate (widget, allocation);
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-        child_allocation.x = allocation->x + container->border_width;
+        child_allocation.x = allocation->x + container->border_width + ALIGN_BORDER;
     else
         child_allocation.x = allocation->x + allocation->width - container->border_width;
     child_allocation.y = allocation->y + container->border_width;
