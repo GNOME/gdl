@@ -1,3 +1,21 @@
+2007-04-03  Naba Kumar  <naba.kumar@gnome.org>
+
+	* configure.in: Added HAVE_GNOME config define.
+	
+	* gdl/gdl-dock-item.c: (gdl_dock_item_size_allocate): Do not
+	allocate negative size to child.
+	
+	* (added) gdl/gdl-switcher.[ch], gdl/gdl.h, gdl/Makefile.am:
+	Added a notebook like
+	widget (derived from GtkNotebook) which has self organizing buttons
+	instead of tabs. It can also become gtknotebook if show-tabs is
+	enabled on it. Also the buttons can be configure to take icon-only,
+	text-only, both or GNOME desktop setting for toolbars (default).
+
+	* gdl/gdl-dock-notebook.c: (gdl_dock_notebook_instance_init),
+	(gdl_dock_notebook_dock): Use the new GdlSwitcher widget instead of
+	GtkNotebook.
+	
 2007-01-01  Naba Kumar  <naba@gnome.org>
 
 	* gdl/gdl-dock-item-grip.c: Added a 5 px alignment just

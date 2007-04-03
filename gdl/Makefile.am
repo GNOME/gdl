@@ -36,6 +36,7 @@ libgdl_headers = \
 	gdl-dock-placeholder.h \
 	gdl-dock-bar.h \
 	gdl-combo-button.h \
+	gdl-switcher.h \
 	gdl-stock.h \
 	gdl-stock-icons.h
 
@@ -56,6 +57,7 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-placeholder.c \
 	gdl-dock-bar.c \
 	gdl-combo-button.c \
+	gdl-switcher.c \
 	gdl-stock.c \
 	libgdltypebuiltins.h \
 	libgdltypebuiltins.c \

@@ -24,7 +24,7 @@
 #endif
 
 #include "gdl-i18n.h"
-#include <gtk/gtknotebook.h>
+#include "gdl-switcher.h"
 
 #include "gdl-tools.h"
 #include "gdl-dock-notebook.h"
@@ -183,7 +183,7 @@ gdl_dock_notebook_instance_init (GdlDockNotebook *notebook)
     item = GDL_DOCK_ITEM (notebook);
 
     /* create the container notebook */
-    item->child = gtk_notebook_new ();
+    item->child = gdl_switcher_new ();
     gtk_widget_set_parent (item->child, GTK_WIDGET (notebook));
     gtk_notebook_set_tab_pos (GTK_NOTEBOOK (item->child), GTK_POS_BOTTOM);
     g_signal_connect (item->child, "switch-page",
@@ -382,15 +382,15 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
         else {
             GdlDockItem *item = GDL_DOCK_ITEM (object);
             GdlDockItem *requestor_item = GDL_DOCK_ITEM (requestor);
-            gchar       *name;
+            gchar       *long_name, *stock_id;
             GtkWidget   *label;
             gint         position = -1;
             
+            g_object_get (requestor_item, "long-name", &long_name,
+                          "stock-id", &stock_id, NULL);
             label = gdl_dock_item_get_tablabel (requestor_item);
             if (!label) {
-                g_object_get (requestor_item, "long-name", &name, NULL);
-                label = gtk_label_new (name);
-                g_free (name);
+                label = gtk_label_new (long_name);
                 gdl_dock_item_set_tablabel (requestor_item, label);
             }
 #if 0
@@ -404,9 +404,11 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             if (other_data && G_VALUE_HOLDS (other_data, G_TYPE_INT))
                 position = g_value_get_int (other_data);
             
-            position = gtk_notebook_insert_page (GTK_NOTEBOOK (item->child), 
+            position = gdl_switcher_insert_page (GDL_SWITCHER (item->child), 
                                                  GTK_WIDGET (requestor), label,
-                                                 position);
+                                                 long_name, long_name,
+                                                 stock_id, position);
+            
             GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
             
             /* Set current page to the newly docked widget. set current page
@@ -415,6 +417,8 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             gtk_widget_show (GTK_WIDGET (requestor));
             gtk_notebook_set_current_page (GTK_NOTEBOOK (item->child),
                                            position);
+            g_free (long_name);
+            g_free (stock_id);
         }
     }
     else

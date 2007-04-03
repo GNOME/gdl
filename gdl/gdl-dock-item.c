@@ -733,6 +733,11 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
             if (item->_priv->grip)
                 gtk_widget_size_allocate (item->_priv->grip, &grip_alloc);
         }
+        /* Allocation can't be negative */
+        if (child_allocation.width < 0)
+            child_allocation.width = 0;
+        if (child_allocation.height < 0)
+            child_allocation.height = 0;
         gtk_widget_size_allocate (item->child, &child_allocation);
     }
 }
