@@ -32,7 +32,7 @@
 #include "gdl-dock.h"
 #include "gdl-dock-item.h"
 #include "libgdlmarshal.h"
-
+#include "libgdltypebuiltins.h"
 
 /* ----- Private prototypes ----- */
 
@@ -70,12 +70,16 @@ static void     gdl_dock_master_xor_rect      (GdlDockMaster      *master);
 
 static void     gdl_dock_master_layout_changed (GdlDockMaster     *master);
 
+static void gdl_dock_master_set_switcher_style (GdlDockMaster *master,
+                                                GdlSwitcherStyle switcher_style);
+
 /* ----- Private data types and variables ----- */
 
 enum {
     PROP_0,
     PROP_DEFAULT_TITLE,
-    PROP_LOCKED
+    PROP_LOCKED,
+    PROP_SWITCHER_STYLE
 };
 
 enum {
@@ -103,6 +107,8 @@ struct _GdlDockMasterPrivate {
      */
     GHashTable     *locked_items;
     GHashTable     *unlocked_items;
+    
+    GdlSwitcherStyle switcher_style;
 };
 
 #define COMPUTE_LOCKED(master)                                          \
@@ -143,6 +149,14 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
                           -1, 1, 0,
                           G_PARAM_READWRITE));
 
+    g_object_class_install_property (
+        g_object_class, PROP_SWITCHER_STYLE,
+        g_param_spec_enum ("switcher-style", _("Switcher Style"),
+                           _("Switcher buttons style"),
+                           GDL_TYPE_SWITCHER_STYLE,
+                           GDL_SWITCHER_STYLE_BOTH,
+                           G_PARAM_READWRITE));
+
     master_signals [LAYOUT_CHANGED] = 
         g_signal_new ("layout-changed", 
                       G_TYPE_FROM_CLASS (klass),
@@ -168,7 +182,7 @@ gdl_dock_master_instance_init (GdlDockMaster *master)
     
     master->_priv = g_new0 (GdlDockMasterPrivate, 1);
     master->_priv->number = 1;
-
+    master->_priv->switcher_style = GDL_SWITCHER_STYLE_BOTH;
     master->_priv->locked_items = g_hash_table_new (g_direct_hash, g_direct_equal);
     master->_priv->unlocked_items = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
@@ -342,6 +356,9 @@ gdl_dock_master_set_property  (GObject      *object,
             if (g_value_get_int (value) >= 0)
                 gdl_dock_master_lock_unlock (master, (g_value_get_int (value) > 0));
             break;
+        case PROP_SWITCHER_STYLE:
+            gdl_dock_master_set_switcher_style (master, g_value_get_enum (value));
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
@@ -362,6 +379,9 @@ gdl_dock_master_get_property  (GObject      *object,
             break;
         case PROP_LOCKED:
             g_value_set_int (value, COMPUTE_LOCKED (master));
+            break;
+        case PROP_SWITCHER_STYLE:
+            g_value_set_enum (value, master->_priv->switcher_style);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -791,6 +811,14 @@ gdl_dock_master_add (GdlDockMaster *master,
             item_notify_cb (object, NULL, master);
         }
         
+        /* If the item is notebook, set the switcher style */
+        if (GDL_IS_DOCK_NOTEBOOK (object) &&
+            GDL_IS_SWITCHER (GDL_DOCK_ITEM (object)->child))
+        {
+            g_object_set (GDL_DOCK_ITEM (object)->child, "switcher-style",
+                          master->_priv->switcher_style, NULL);
+        }
+        
         /* post a layout_changed emission if the item is not automatic
          * (since it should be added to the items model) */
         if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
@@ -916,4 +944,47 @@ gdl_dock_master_set_controller (GdlDockMaster *master,
         /* no controller, no master */
         g_object_unref (master);
     }
+}
+
+static void
+set_switcher_style_foreach (GtkWidget *obj, gpointer user_data)
+{
+    GdlSwitcherStyle style = GPOINTER_TO_INT (user_data);
+    
+    if (!GDL_IS_DOCK_ITEM (obj))
+        return;
+    
+    if (GDL_IS_DOCK_NOTEBOOK (obj)) {
+        
+        GtkWidget *child = GDL_DOCK_ITEM (obj)->child;
+        if (GDL_IS_SWITCHER (child)) {
+            
+            g_object_set (child, "switcher-style", style, NULL);
+        }
+    } else if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (obj))) {
+        
+        gtk_container_foreach (GTK_CONTAINER (obj),
+                               set_switcher_style_foreach,
+                               user_data);
+    }
+}
+
+static void
+gdl_dock_master_set_switcher_style (GdlDockMaster *master,
+                                    GdlSwitcherStyle switcher_style)
+{
+    GList *l;
+    g_return_if_fail (GDL_IS_DOCK_MASTER (master));
+    
+    master->_priv->switcher_style = switcher_style;
+    for (l = master->toplevel_docks; l; l = l->next) {
+        GdlDock *dock = GDL_DOCK (l->data);
+        if (dock->root)
+            set_switcher_style_foreach (GTK_WIDGET (dock->root),
+                                        GINT_TO_POINTER (switcher_style));
+    }
+
+    /* just to be sure hidden items are set too */
+    gdl_dock_master_foreach (master, (GFunc) set_switcher_style_foreach,
+                             GINT_TO_POINTER (switcher_style));
 }

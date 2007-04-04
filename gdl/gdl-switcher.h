@@ -27,6 +27,8 @@
 
 #include <gtk/gtknotebook.h>
 
+G_BEGIN_DECLS
+
 #define GDL_TYPE_SWITCHER            (gdl_switcher_get_type ())
 #define GDL_SWITCHER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GDL_TYPE_SWITCHER, GdlSwitcher))
 #define GDL_SWITCHER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GDL_TYPE_SWITCHER, GdlSwitcherClass))
@@ -38,11 +40,12 @@ typedef struct _GdlSwitcherPrivate GdlSwitcherPrivate;
 typedef struct _GdlSwitcherClass   GdlSwitcherClass;
 
 typedef enum {
-    GDL_SWITCHER_MODE_TEXT,
-    GDL_SWITCHER_MODE_ICON,
-    GDL_SWITCHER_MODE_BOTH,
-    GDL_SWITCHER_MODE_TOOLBAR
-} GdlSwitcherMode;
+    GDL_SWITCHER_STYLE_TEXT,
+    GDL_SWITCHER_STYLE_ICON,
+    GDL_SWITCHER_STYLE_BOTH,
+    GDL_SWITCHER_STYLE_TOOLBAR,
+    GDL_SWITCHER_STYLE_TABS
+} GdlSwitcherStyle;
 
 struct _GdlSwitcher {
     GtkNotebook parent;
@@ -52,8 +55,6 @@ struct _GdlSwitcher {
 
 struct _GdlSwitcherClass {
     GtkNotebookClass parent_class;
-
-    void (* button_selected) (GdlSwitcher *switcher, int id);
 };
 
 GType      gdl_switcher_get_type     (void);
@@ -66,10 +67,6 @@ gint       gdl_switcher_insert_page  (GdlSwitcher *switcher,
                                       const gchar *tooltips,
                                       const gchar *stock_id,
                                       gint position);
-
-void       gdl_switcher_set_mode     (GdlSwitcher *switcher,
-                                      GdlSwitcherMode mode);
-
-GdlSwitcherMode gdl_switcher_get_mode (GdlSwitcher *switcher);
+G_END_DECLS
 
 #endif /* _GDL_SWITCHER_H_ */

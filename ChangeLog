@@ -1,3 +1,29 @@
+2007-04-04  Naba Kumar  <naba.kumar@gnome.org>
+
+	* gdl/gdl-dock-master.c: (gdl_dock_master_class_init),
+	(gdl_dock_master_instance_init), (gdl_dock_master_set_property),
+	(gdl_dock_master_get_property), (gdl_dock_master_add),
+	(set_switcher_style_foreach), (gdl_dock_master_set_switcher_style):
+	Added a properly 'switcher-style' that sets the global switcher
+	style for all notebook items.
+	
+	* gdl/gdl-switcher.c: (layout_buttons),
+	(gdl_switcher_set_property), (gdl_switcher_get_property),
+	(gdl_switcher_class_init), (gdl_switcher_instance_init),
+	(gdl_switcher_add_button), (set_switcher_style_internal),
+	(style_changed_notify), (gdl_switcher_set_style),
+	(gdl_switcher_get_style), gdl/gdl-switcher.h: Renamed 'mode' to
+	'style' and added a GDL_SWITCHER_STYLE_TABS. Set/get style as
+	property.
+	
+	* gdl/test-dock.c: (on_style_button_toggled),
+	(create_style_button), (create_styles_item), (main): Added
+	switcher style test code.
+	
+	* gdl/gdl-dock-paned.c: (gdl_dock_paned_dock): Got proper pane
+	resizing patch from screem's version of gdl (which was in turn
+	taken from monodevelop).
+
 2007-04-03  Naba Kumar  <naba.kumar@gnome.org>
 
 	* configure.in: Added HAVE_GNOME config define.

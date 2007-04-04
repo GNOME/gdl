@@ -15,11 +15,74 @@
 #include "gdl-dock-layout.h"
 #include "gdl-dock-placeholder.h"
 #include "gdl-dock-bar.h"
+#include "gdl-switcher.h"
 
 #include <glib.h>
 
 /* ---- end of debugging code */
 
+static void
+on_style_button_toggled (GtkRadioButton *button, GdlDock *dock)
+{
+	gboolean active;
+	GdlDockMaster *master = GDL_DOCK_OBJECT_GET_MASTER (dock);
+	GdlSwitcherStyle style =
+		GPOINTER_TO_INT (g_object_get_data (G_OBJECT (button),
+						    "__style_id"));
+	active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	if (active) {
+	    g_object_set (master, "switcher-style", style, NULL);
+	}
+}
+
+static GtkWidget *
+create_style_button (GtkWidget *dock, GtkWidget *box, GtkWidget *group,
+		     GdlSwitcherStyle style, const gchar *style_text)
+{
+	GdlSwitcherStyle current_style;
+	GtkWidget *button1;
+	GdlDockMaster *master = GDL_DOCK_OBJECT_GET_MASTER (dock);
+	
+	g_object_get (master, "switcher-style", &current_style, NULL);
+	button1 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (group),
+						   style_text);
+	gtk_widget_show (button1);
+	g_object_set_data (G_OBJECT (button1), "__style_id",
+			   GINT_TO_POINTER (style));
+	if (current_style == style) {
+	    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button1), TRUE);
+	}
+	g_signal_connect (button1, "toggled",
+			  G_CALLBACK (on_style_button_toggled),
+			  dock);
+	gtk_box_pack_start (GTK_BOX (box), button1, FALSE, FALSE, 0);
+	return button1;
+}
+
+static GtkWidget *
+create_styles_item (GtkWidget *dock)
+{
+	GtkWidget *vbox1;
+	GtkWidget *group;
+	
+	vbox1 = gtk_vbox_new (FALSE, 0);
+	gtk_widget_show (vbox1);
+
+	group = create_style_button (dock, vbox1, NULL,
+				     GDL_SWITCHER_STYLE_ICON, "Only icon");
+	group = create_style_button (dock, vbox1, group,
+				     GDL_SWITCHER_STYLE_TEXT, "Only text");
+	group = create_style_button (dock, vbox1, group,
+				     GDL_SWITCHER_STYLE_BOTH,
+				     "Both icons and texts");
+	group = create_style_button (dock, vbox1, group,
+				     GDL_SWITCHER_STYLE_TOOLBAR,
+				     "Desktop toolbar style");
+	group = create_style_button (dock, vbox1, group,
+				     GDL_SWITCHER_STYLE_TABS,
+				     "Notebook tabs");
+	return vbox1;
+}
 
 static GtkWidget *
 create_item (const gchar *button_title)
@@ -163,11 +226,11 @@ main (int argc, char **argv)
 			   GDL_DOCK_TOP);
 	gtk_widget_show (item1);
 
-	item2 = gdl_dock_item_new_with_stock ("item2", "Item #2 has some large title",
+	item2 = gdl_dock_item_new_with_stock ("item2", "Item #2: Select the switcher style for notebooks",
 					      GTK_STOCK_EXECUTE,
 					      GDL_DOCK_ITEM_BEH_NORMAL);
 	g_object_set (item2, "resize", FALSE, NULL);
-	gtk_container_add (GTK_CONTAINER (item2), create_item ("Button 2"));
+	gtk_container_add (GTK_CONTAINER (item2), create_styles_item (dock));
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2), 
 			   GDL_DOCK_RIGHT);
 	gtk_widget_show (item2);
