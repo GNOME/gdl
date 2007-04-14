@@ -1,3 +1,8 @@
+2007-04-14  Djihed Afifi <djihed@gmail.com> 
+
+	* ar.po: Added Arabic Translation.
+	* LINGUAS: Added ar.
+
 2007-01-24  David Lodge <dave@cirt.net>
 
 	* en_GB.po: Updated English (British) translation
