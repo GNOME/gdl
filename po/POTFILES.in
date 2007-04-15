@@ -11,4 +11,5 @@ gdl/gdl-dock-tablabel.c
 gdl/gdl-dock-bar.c
 gdl/gdl-dock.c
 gdl/gdl-icons.c
+gdl/gdl-switcher.c
 gdl/layout.glade
