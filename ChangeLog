@@ -1,4 +1,11 @@
-2007-04-04  Naba Kumar  <naba.kumar@gnome.org>
+=== gdl 0.7.4 ===
+
+2007-05-06  Naba Kumar  <naba@gnome.org>
+
+	* configure.in: Bumped version to 0.7.4
+	* NEWS: Updated
+
+2007-04-04  Naba Kumar  <naba@gnome.org>
 
 	* gdl/gdl-dock-master.c: (gdl_dock_master_class_init),
 	(gdl_dock_master_instance_init), (gdl_dock_master_set_property),
@@ -24,7 +31,7 @@
 	resizing patch from screem's version of gdl (which was in turn
 	taken from monodevelop).
 
-2007-04-03  Naba Kumar  <naba.kumar@gnome.org>
+2007-04-03  Naba Kumar  <naba@gnome.org>
 
 	* configure.in: Added HAVE_GNOME config define.
 	
