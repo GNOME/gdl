@@ -37,6 +37,9 @@
 
 #include "libgdlmarshal.h"
 
+#ifndef __FUNCTION__
+#define __FUNCTION__ __func__
+#endif
 
 /* ----- Private prototypes ----- */
 

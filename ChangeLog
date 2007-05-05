@@ -5,6 +5,9 @@
 	* configure.in: Bumped version to 0.7.4
 	* NEWS: Updated
 
+	Patch from Halton Huo:
+	* gdl/gdl-dock.c: Fixed __FUNCTION__ macro for sun.
+
 2007-04-04  Naba Kumar  <naba@gnome.org>
 
 	* gdl/gdl-dock-master.c: (gdl_dock_master_class_init),
