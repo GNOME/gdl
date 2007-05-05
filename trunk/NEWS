@@ -1,0 +1,81 @@
+Changes in 0.7.4
+
+* Added a button-like tab switcher widget for notebook docks.
+* Panes now resize proportionately.
+* Fixed resizing error.
+
+Changes in 0.7.3
+
+* Improved docking algorithm
+
+Changes in 0.7.2
+
+* Install gdl-gnome.pc only if build with gnome support (bug #403044)
+* Translation updates: en_GB, sv, ja
+
+Changes in 0.7.1
+
+* Use canonical property names (#381845)
+* fix undefined symbol in python bindings (#397562)
+* New translation: dz (Pema Geyleg  <pema.geyleg@gmail.com>)
+
+This release is meant a bug-fix release for proper python-binding
+
+Changes in 0.7.0
+
+* Added support to build without GNOME
+* Split into libgdl and libgdl-gnome
+* Removed some deprecated API
+* Bug fixes for window positioning (thanks for the patches)
+* Some fixes to build system
+* Added dockbar style setting.
+* Restore dockitem demensions when showing them.
+* Improved restoring dockitem placements when showing them.
+ 
+Changes in 0.6.1
+
+* Some build fixes and translation updates
+* Removed deprecated symbol-browser-widget
+* Updated translations:
+    fi (Ilkka Tuohela  <hile@iki.fi>)
+    sv (Daniel Nylander  <po@danielnylander.se>)
+    es (Francisco Javier F. Serrador  <serrador@cvs.gnome.org>)
+    vi (Clytie Siddall <clytie@riverland.net.au>)
+    ne (Pawan Chitrakar  <pchitrakar@gmail.com>)
+
+Changes in 0.6.0:
+
+* 64 bit arch fixes (thanks to David Malcolm)
+* Fixed RPM spec file.
+* Removed deprecated files from distribution.
+
+Changes in 0.5.0:
+
+* Added orientation get/set functions to allow for horizontal/vertical layout,
+  thanks to David A Knight  <david@ritter.demon.co.uk>
+* Fix memory and tooltip object leaks.
+* Adds two new behaviors to hide the iconify and close button in item handle.
+* Properly add/remove items based on the ICONIFIED flag.
+* GdlDockItems can also have a stock_id now.
+* Added a new GdlDockBar widget	which displays iconified dockitems.
+* Improved GdlDock look (looks more like the Gimp's docking widget now).
+* Many bug fixes.
+* Updated translations: zh_CN, ca, hr, ga, en_GB, pa, nb, rw
+
+Changes in 0.4.0:
+
+* Use the GnomeIconTheme API in GdlIcon
+* i18n work in all parts of the library
+* Changed semantics of the "layout_changed" signal in the dock layout
+  object and improved the global "locked" property behavior
+* HIGified layout manager dialog
+* Enable SVG icon themes in GdlIcon
+
+Major changes since 0.1.0:
+
+* GNOME2 port
+* Scintilla editing component is no longer available
+* New symbol browser component
+* New docking widget
+* Beginnings of a data display widget 
+

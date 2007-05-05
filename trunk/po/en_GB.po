@@ -1,0 +1,543 @@
+# English (British) translation.
+# Copyright (C) 2004 THE gdl'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gdl package.
+# Gareth Owen <gowen72@yahoo.com>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-01-24 07:18+0000\n"
+"PO-Revision-Date: 2007-01-24 07:18-0000\n"
+"Last-Translator: David Lodge <dave@cirt.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "Expander Size"
+
+#: ../gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "Size of the expander arrow."
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Iconify"
+msgstr "Iconify"
+
+#: ../gdl/gdl-dock-item-grip.c:373
+msgid "Iconify this dock"
+msgstr "Iconify this dock"
+
+#: ../gdl/gdl-dock-item-grip.c:375
+msgid "Close"
+msgstr "Close"
+
+#: ../gdl/gdl-dock-item-grip.c:375
+msgid "Close this dock"
+msgstr "Close this dock"
+
+#: ../gdl/gdl-dock-item-grip.c:684
+#: ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Controlling dock item"
+
+#: ../gdl/gdl-dock-item-grip.c:685
+msgid "Dockitem which 'owns' this grip"
+msgstr "Dockitem which 'owns' this grip"
+
+#: ../gdl/gdl-dock-item.c:241
+msgid "Orientation"
+msgstr "Orientation"
+
+#: ../gdl/gdl-dock-item.c:242
+msgid "Orientation of the docking item"
+msgstr "Orientation of the docking item"
+
+#: ../gdl/gdl-dock-item.c:257
+msgid "Resizable"
+msgstr "Resizable"
+
+#: ../gdl/gdl-dock-item.c:258
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "If set, the dock item can be resized when docked in a paned"
+
+#: ../gdl/gdl-dock-item.c:265
+msgid "Item behavior"
+msgstr "Item behaviour"
+
+#: ../gdl/gdl-dock-item.c:266
+msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
+msgstr "General behaviour for the dock item (i.e. whether it can float, if it's locked, etc.)"
+
+#: ../gdl/gdl-dock-item.c:274
+#: ../gdl/gdl-dock-master.c:139
+msgid "Locked"
+msgstr "Locked"
+
+#: ../gdl/gdl-dock-item.c:275
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "If set, the dock item cannot be dragged around and it doesn't show a grip"
+
+#: ../gdl/gdl-dock-item.c:283
+msgid "Preferred width"
+msgstr "Preferred width"
+
+#: ../gdl/gdl-dock-item.c:284
+msgid "Preferred width for the dock item"
+msgstr "Preferred width for the dock item"
+
+#: ../gdl/gdl-dock-item.c:290
+msgid "Preferred height"
+msgstr "Preferred height"
+
+#: ../gdl/gdl-dock-item.c:291
+msgid "Preferred height for the dock item"
+msgstr "Preferred height for the dock item"
+
+#: ../gdl/gdl-dock-item.c:541
+#, c-format
+msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
+msgstr "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
+
+#: ../gdl/gdl-dock-item.c:548
+#, c-format
+msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
+msgstr "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
+
+#: ../gdl/gdl-dock-item.c:1186
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "Unsupported docking strategy %s in dock object of type %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1273
+msgid "UnLock"
+msgstr "UnLock"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1280
+msgid "Hide"
+msgstr "Hide"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1285
+msgid "Lock"
+msgstr "Lock"
+
+#: ../gdl/gdl-dock-item.c:1491
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Attempt to bind an unbound item %p"
+
+#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-bar.c:106
+msgid "Master"
+msgstr "Master"
+
+#: ../gdl/gdl-dock-layout.c:125
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "GdlDockMaster object which the layout object is attached to"
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "Dirty"
+msgstr "Dirty"
+
+#: ../gdl/gdl-dock-layout.c:133
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "True if the layouts have changed and need to be saved to a file"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "Could not load layout user interface file '%s'"
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "Visible"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "Item"
+
+#: ../gdl/gdl-dock-layout.c:708
+#: ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "Name"
+
+#: ../gdl/gdl-dock-layout.c:741
+#: ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "Dock items"
+
+#: ../gdl/gdl-dock-layout.c:747
+#: ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "Saved layouts"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
+msgstr "While loading layout: don't know how to create a dock object whose nick is '%s'"
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "Layout managment"
+
+#: ../gdl/gdl-dock-master.c:132
+#: ../gdl/gdl-dock.c:182
+msgid "Default title"
+msgstr "Default title"
+
+#: ../gdl/gdl-dock-master.c:133
+msgid "Default title for newly created floating docks"
+msgstr "Default title for newly created floating docks"
+
+#: ../gdl/gdl-dock-master.c:140
+msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
+
+#: ../gdl/gdl-dock-master.c:741
+#, c-format
+msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
+msgstr "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
+
+#: ../gdl/gdl-dock-master.c:906
+#, c-format
+msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
+msgstr "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "Page"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "The index of the current page"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "Unique name for identifying the dock object"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "Long name"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr "Human readable name for the dock object"
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "Stock Icon"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "Stock icon for the dock object"
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "Dock master"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr "Dock master this dock object is bound to"
+
+#: ../gdl/gdl-dock-object.c:420
+#, c-format
+msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
+msgstr "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
+
+#: ../gdl/gdl-dock-object.c:549
+#, c-format
+msgid "Dock operation requested in a non-bound object %p. The application might crash"
+msgstr "Dock operation requested in a non-bound object %p. The application might crash"
+
+#: ../gdl/gdl-dock-object.c:556
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Cannot dock %p to %p because they belong to different masters"
+
+#: ../gdl/gdl-dock-object.c:598
+#, c-format
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position"
+msgstr "Position"
+
+#: ../gdl/gdl-dock-paned.c:133
+msgid "Position of the divider in pixels"
+msgstr "Position of the divider in pixels"
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Sticky"
+msgstr "Sticky"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
+msgstr "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
+
+#: ../gdl/gdl-dock-placeholder.c:151
+msgid "Host"
+msgstr "Host"
+
+#: ../gdl/gdl-dock-placeholder.c:152
+msgid "The dock object this placeholder is attached to"
+msgstr "The dock object this placeholder is attached to"
+
+#: ../gdl/gdl-dock-placeholder.c:159
+msgid "Next placement"
+msgstr "Next placement"
+
+#: ../gdl/gdl-dock-placeholder.c:160
+msgid "The position an item will be docked to our host if a request is made to dock to us"
+msgstr "The position an item will be docked to our host if a request is made to dock to us"
+
+#: ../gdl/gdl-dock-placeholder.c:169
+#: ../gdl/gdl-dock.c:189
+msgid "Width"
+msgstr "Width"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Width for the widget when it's attached to the placeholder"
+
+#: ../gdl/gdl-dock-placeholder.c:177
+#: ../gdl/gdl-dock.c:197
+msgid "Height"
+msgstr "Height"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Height for the widget when it's attached to the placeholder"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "Floating Toplevel"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "Whether the placeholder is standing in for a floating toplevel dock"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "X Co-ordinate"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate fow dock when floating"
+msgstr "X-Coordinate fow dock when floating"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Y Co-ordinate"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate fow dock when floating"
+msgstr "Y-Coordinate fow dock when floating"
+
+#: ../gdl/gdl-dock-placeholder.c:494
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Attempt to dock a dock object to an unbound placeholder"
+
+#: ../gdl/gdl-dock-placeholder.c:618
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "Got a detach signal from an object (%p) who is not our host %p"
+
+#: ../gdl/gdl-dock-placeholder.c:643
+#, c-format
+msgid "Something weird happened while getting the child placement for %p from parent %p"
+msgstr "Something weird happened while getting the child placement for %p from parent %p"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Dockitem which 'owns' this tablabel"
+
+#: ../gdl/gdl-dock-bar.c:107
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "GdlDockMaster object which the dockbar widget is attached to"
+
+#: ../gdl/gdl-dock-bar.c:114
+msgid "Dockbar style"
+msgstr "Dockbar style"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style to show items on it"
+msgstr "Dockbar style to show items on it"
+
+#: ../gdl/gdl-dock.c:174
+msgid "Floating"
+msgstr "Floating"
+
+#: ../gdl/gdl-dock.c:175
+msgid "Whether the dock is floating in its own window"
+msgstr "Whether the dock is floating in its own window"
+
+#: ../gdl/gdl-dock.c:183
+msgid "Default title for the newly created floating docks"
+msgstr "Default title for the newly created floating docks"
+
+#: ../gdl/gdl-dock.c:190
+msgid "Width for the dock when it's of floating type"
+msgstr "Width for the dock when it's of floating type"
+
+#: ../gdl/gdl-dock.c:198
+msgid "Height for the dock when it's of floating type"
+msgstr "Height for the dock when it's of floating type"
+
+#: ../gdl/gdl-dock.c:205
+msgid "Float X"
+msgstr "Float X"
+
+#: ../gdl/gdl-dock.c:206
+msgid "X coordinate for a floating dock"
+msgstr "X coordinate for a floating dock"
+
+#: ../gdl/gdl-dock.c:213
+msgid "Float Y"
+msgstr "Float Y"
+
+#: ../gdl/gdl-dock.c:214
+msgid "Y coordinate for a floating dock"
+msgstr "Y coordinate for a floating dock"
+
+#: ../gdl/gdl-dock.c:495
+#, c-format
+msgid "Dock #%d"
+msgstr "Dock #%d"
+
+#: ../gdl/gdl-icons.c:133
+#: ../gdl/gdl-icons.c:134
+msgid "Icon size"
+msgstr "Icon size"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Layout Managment"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Load"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "_Lock dock items"
+
+#~ msgid "GConf key"
+#~ msgstr "GConf key"
+#~ msgid "The gconf key for storing the recent entries."
+#~ msgstr "The gconf key for storing the recent entries."
+#~ msgid "Path"
+#~ msgstr "Path"
+#~ msgid "The path to put the menu items."
+#~ msgstr "The path to put the menu items."
+#~ msgid "Limit"
+#~ msgstr "Limit"
+#~ msgid "The maximum number of items to be allowed in the list."
+#~ msgstr "The maximum number of items to be allowed in the list."
+#~ msgid "List type"
+#~ msgstr "List type"
+#~ msgid "The type with which the items will be numbered."
+#~ msgstr "The type with which the items will be numbered."
+#~ msgid "Open %s"
+#~ msgstr "Open %s"
+#~ msgid "Factory for the Gnome Symbol Browser control."
+#~ msgstr "Factory for the Gnome Symbol Browser control."
+#~ msgid "Gnome Symbol Browser Control"
+#~ msgstr "Gnome Symbol Browser Control"
+#~ msgid "Gnome Symbol Browser Control Factory"
+#~ msgstr "Gnome Symbol Browser Control Factory"
+#~ msgid "Gnome Symbol Browser."
+#~ msgstr "Gnome Symbol Browser."
+#~ msgid "Goto Symbol"
+#~ msgstr "Goto Symbol"
+#~ msgid "Goto the displayed symbol"
+#~ msgstr "Goto the displayed symbol"
+#~ msgid "Update Symbols"
+#~ msgstr "Update Symbols"
+#~ msgid "Update the symbol tree"
+#~ msgstr "Update the symbol tree"
+#~ msgid "_Goto to symbol"
+#~ msgstr "_Goto to symbol"
+#~ msgid "_View"
+#~ msgstr "_View"
+#~ msgid "Unknown"
+#~ msgstr "Unknown"
+#~ msgid "Classes"
+#~ msgstr "Classes"
+#~ msgid "Enums"
+#~ msgstr "Enums"
+#~ msgid "Enumerators"
+#~ msgstr "Enumerators"
+#~ msgid "Fields"
+#~ msgstr "Fields"
+#~ msgid "Functions"
+#~ msgstr "Functions"
+#~ msgid "Interfaces"
+#~ msgstr "Interfaces"
+#~ msgid "Members"
+#~ msgstr "Members"
+#~ msgid "Methods"
+#~ msgstr "Methods"
+#~ msgid "Namespaces"
+#~ msgstr "Namespaces"
+#~ msgid "Packages"
+#~ msgstr "Packages"
+#~ msgid "Prototypes"
+#~ msgstr "Prototypes"
+#~ msgid "Structs"
+#~ msgstr "Structs"
+#~ msgid "Typedefs"
+#~ msgstr "Typedefs"
+#~ msgid "Unions"
+#~ msgstr "Unions"
+#~ msgid "Variables"
+#~ msgstr "Variables"
+#~ msgid "ExternVars"
+#~ msgstr "ExternVars"
+#~ msgid "Macros"
+#~ msgstr "Macros"
+#~ msgid "MacrosWithArgs"
+#~ msgstr "MacrosWithArgs"
+#~ msgid "Tags"
+#~ msgstr "Tags"
+#~ msgid "Undefined"
+#~ msgstr "Undefined"
+#~ msgid "<No Symbol>"
+#~ msgstr "<No Symbol>"
+#~ msgid "Exit"
+#~ msgstr "Exit"
+#~ msgid "Open Project"
+#~ msgstr "Open Project"
+#~ msgid "Save Project"
+#~ msgstr "Save Project"
+#~ msgid "Set Current File"
+#~ msgstr "Set Current File"
+#~ msgid "Update"
+#~ msgstr "Update"
+#~ msgid "Update the whole tree"
+#~ msgstr "Update the whole tree"
+#~ msgid "_Exit"
+#~ msgstr "_Exit"
+#~ msgid "_File"
+#~ msgstr "_File"
+#~ msgid "_Open Project"
+#~ msgstr "_Open Project"
+#~ msgid "_Save Project"
+#~ msgstr "_Save Project"
+#~ msgid "_Set Current File"
+#~ msgstr "_Set Current File"
+#~ msgid "Open file..."
+#~ msgstr "Open file..."
+#~ msgid "Set current file..."
+#~ msgstr "Set current file..."
+#~ msgid "Save file..."
+#~ msgstr "Save file..."
+#~ msgid "Can't initialize bonobo!"
+#~ msgstr "Can't initialise bonobo!"
+

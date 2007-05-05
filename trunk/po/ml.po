@@ -1,0 +1,648 @@
+# translation of gdl.HEAD.ml.po to 
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# FSF-India <locale@gnu.org.in>, 2003.
+# Suresh Valiya Parambil <mvpsuresh@yahoo.com>, 2003
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl.HEAD.ml\n"
+"POT-Creation-Date: 2003-06-06 04:02+0200\n"
+"PO-Revision-Date: 2003-07-02 22:04-0600\n"
+"Last-Translator: Suresh Valiya Parambil <mvpsuresh@yahoo.com>\n"
+"Language-Team:  <ml@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0\n"
+
+#: gdl/gdl-data-view.c:421
+msgid "Expander Size"
+msgstr "വികസിതരൂപം"
+
+#: gdl/gdl-data-view.c:422
+msgid "Size of the expander arrow."
+msgstr "വികസിത ശരത്തിന്റെ വലിപ്പം"
+
+#: gdl/gdl-dock-item-grip.c:244
+#, fuzzy
+msgid "Dock the toolbar"
+msgstr "എങ്ങനെ ഉപകരണപ്പട്ട വരയ‌്ക്കാം"
+
+#: gdl/gdl-dock-item-grip.c:245
+#, fuzzy
+msgid "Un dock the toolbar"
+msgstr "എങ്ങനെ ഉപകരണപ്പട്ട വരയ‌്ക്കാം"
+
+#: gdl/gdl-dock-item.c:242
+msgid "Orientation"
+msgstr "സ്ഥാന നിര്ണ്ണയം"
+
+#: gdl/gdl-dock-item.c:243
+msgid "Orientation of the docking item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:258
+msgid "Resizable"
+msgstr "വലിപ്പം മാറ്റാവുന്ന"
+
+#: gdl/gdl-dock-item.c:259
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:266
+msgid "Item behavior"
+msgstr "ഇനത്തിന്റെ സ്വഭാവം"
+
+#: gdl/gdl-dock-item.c:267
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:275
+msgid "Grip size"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:276
+msgid "Size in pixels of the grip to drag the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
+msgid "Locked"
+msgstr "പൂട്ടി"
+
+#: gdl/gdl-dock-item.c:283
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:291
+#, fuzzy
+msgid "Preferred width"
+msgstr "സ്ഥിര വീതി"
+
+#: gdl/gdl-dock-item.c:292
+msgid "Preferred width for the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:298
+#, fuzzy
+msgid "Preferred height"
+msgstr "തിരനോട്ട ഉയരം"
+
+#: gdl/gdl-dock-item.c:299
+msgid "Preferred height for the dock item"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:546
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+
+#: gdl/gdl-dock-item.c:553
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+
+#: gdl/gdl-dock-item.c:1149
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr ""
+
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1231
+msgid "Hide"
+msgstr "ഒളിയ്‍ക്കുക"
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1237
+msgid "Lock"
+msgstr "പൂട്ട്"
+
+#: gdl/gdl-dock-item.c:1404
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:125
+#, fuzzy
+msgid "Master"
+msgstr "ഒട്ടിപ്പ്"
+
+#: gdl/gdl-dock-layout.c:126
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:133
+msgid "Dirty"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:134
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:447
+msgid "You must provide a name for the layout"
+msgstr ""
+
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:625
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:680
+msgid "Visible"
+msgstr "ദൃശ്യമായ"
+
+#: gdl/gdl-dock-layout.c:687
+msgid "Item"
+msgstr "ഇനം"
+
+#: gdl/gdl-dock-layout.c:737 gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "പേര‍്"
+
+#: gdl/gdl-dock-layout.c:776 gdl/layout.glade.h:2
+msgid "Dock items"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
+msgid "Saved layouts"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:824
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+
+#: gdl/gdl-dock-layout.c:1303
+msgid "Layout managment"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
+msgid "Default title"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:136
+msgid "Default title for newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:143
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+
+#: gdl/gdl-dock-master.c:730
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+
+#: gdl/gdl-dock-master.c:895
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+
+#: gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "താള്"
+
+#: gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "നിലവിലുള്ള താളിന്റെ സൂചിക"
+
+#: gdl/gdl-dock-object.c:121
+msgid "Unique name for identifying the dock object"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:128
+msgid "Long name"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:129
+msgid "Human readable name for the dock object"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:135
+msgid "Dock master"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:136
+msgid "Dock master this dock object is bound to"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:405
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:534
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:541
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr ""
+
+#: gdl/gdl-dock-object.c:583
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+
+#: gdl/gdl-dock-paned.c:134
+msgid "Position"
+msgstr "സ്ഥാനം:"
+
+#: gdl/gdl-dock-paned.c:135
+msgid "Position of the divider in pixels"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr "ഒട്ടുന്ന"
+
+#: gdl/gdl-dock-placeholder.c:128
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "തലവന്"
+
+#: gdl/gdl-dock-placeholder.c:136
+msgid "The dock object this placeholder is attached to"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:143
+msgid "Next placement"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:144
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:305
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:419
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+
+#: gdl/gdl-dock-placeholder.c:440
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+
+#: gdl/gdl-dock-tablabel.c:130
+msgid "Controlling dock item"
+msgstr ""
+
+#: gdl/gdl-dock-tablabel.c:131
+msgid "Dockitem which 'owns' this tablabel"
+msgstr ""
+
+#: gdl/gdl-dock.c:177
+msgid "Floating"
+msgstr "ഒഴുകുന്ന"
+
+#: gdl/gdl-dock.c:178
+msgid "Whether the dock is floating in its own window"
+msgstr ""
+
+#: gdl/gdl-dock.c:186
+msgid "Default title for the newly created floating docks"
+msgstr ""
+
+#: gdl/gdl-dock.c:192
+msgid "Width"
+msgstr "വീതി"
+
+#: gdl/gdl-dock.c:193
+msgid "Width for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:200
+msgid "Height"
+msgstr "ഉയരം"
+
+#: gdl/gdl-dock.c:201
+msgid "Height for the dock when it's of floating type"
+msgstr ""
+
+#: gdl/gdl-dock.c:208
+msgid "Float X"
+msgstr ""
+
+#: gdl/gdl-dock.c:209
+msgid "X coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:216
+msgid "Float Y"
+msgstr ""
+
+#: gdl/gdl-dock.c:217
+msgid "Y coordinate for a floating dock"
+msgstr ""
+
+#: gdl/gdl-dock.c:494
+#, c-format
+msgid "Dock #%d"
+msgstr ""
+
+#: gdl/gdl-recent.c:136
+msgid "GConf key"
+msgstr ""
+
+#: gdl/gdl-recent.c:137
+msgid "The gconf key for storing the recent entries."
+msgstr ""
+
+#: gdl/gdl-recent.c:143
+msgid "Path"
+msgstr "വഴി"
+
+#: gdl/gdl-recent.c:144
+msgid "The path to put the menu items."
+msgstr ""
+
+#: gdl/gdl-recent.c:150
+msgid "Limit"
+msgstr ""
+
+#: gdl/gdl-recent.c:151
+msgid "The maximum number of items to be allowed in the list."
+msgstr ""
+
+#: gdl/gdl-recent.c:159
+msgid "List type"
+msgstr ""
+
+#: gdl/gdl-recent.c:160
+msgid "The type with which the items will be numbered."
+msgstr ""
+
+#: gdl/gdl-recent.c:409
+#, c-format
+msgid "Open %s"
+msgstr "%s തുറക്കുക"
+
+#: gdl/gdl-icons.c:141 gdl/gdl-icons.c:142
+msgid "Icon size"
+msgstr "സൂചക വലിപ്പം"
+
+#: gdl/gdl-icons.c:147 gdl/gdl-icons.c:148
+msgid "Icon zoom"
+msgstr ""
+
+#: gdl/layout.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: gdl/layout.glade.h:3
+msgid "Layout Managment"
+msgstr ""
+
+#: gdl/layout.glade.h:5
+msgid "_Load"
+msgstr ""
+
+#: gdl/layout.glade.h:6
+msgid "_Lock dock items"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr ""
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr ""
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "കാഴ്ച"
+
+#: symbol-browser-control/symbol-browser.c:63
+msgid "Unknown"
+msgstr "അറിയപ്പെടാത്ത"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:64
+msgid "Classes"
+msgstr ""
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Enums"
+msgstr ""
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:66
+msgid "Enumerators"
+msgstr ""
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Fields"
+msgstr ""
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Functions"
+msgstr ""
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Interfaces"
+msgstr ""
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Members"
+msgstr ""
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Methods"
+msgstr ""
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Namespaces"
+msgstr ""
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:73
+#, fuzzy
+msgid "Packages"
+msgstr "പൊതി"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:74
+msgid "Prototypes"
+msgstr ""
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Structs"
+msgstr ""
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Typedefs"
+msgstr ""
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Unions"
+msgstr ""
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Variables"
+msgstr ""
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:79
+msgid "ExternVars"
+msgstr ""
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Macros"
+msgstr ""
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:81
+msgid "MacrosWithArgs"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:369
+msgid "Tags"
+msgstr "അനുബന്ധങ്ങള്"
+
+#: symbol-browser-control/symbol-browser.c:377
+#: symbol-browser-control/symbol-browser.c:387
+msgid "Undefined"
+msgstr ""
+
+#: symbol-browser-control/symbol-browser.c:379
+#: symbol-browser-control/symbol-browser.c:389
+msgid "<No Symbol>"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "പുറത്ത് കടക്കുക"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr " പ്രൊജക്ട് തുറക്കുക"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "പരിഷ്ക്കരിക്കുക"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "ശേഖരം"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr ""
+
+#: symbol-browser-control/test-symbol-browser.c:292
+msgid "Can't initialize bonobo!"
+msgstr ""

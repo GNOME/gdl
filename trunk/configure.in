@@ -1,0 +1,168 @@
+dnl ==========================================================================
+dnl
+dnl If you add a version number here, you *must* add an AC_SUBST line for
+dnl it too, or it will never make it into the spec file!
+dnl
+dnl ==========================================================================
+
+AC_PREREQ(2.53)
+AC_INIT(gdl)
+AM_CONFIG_HEADER(config.h)
+
+GDL_MAJOR_VERSION=0
+GDL_MINOR_VERSION=7
+GDL_MICRO_VERSION=4
+PACKAGE=gdl
+GDL_VERSION=$GDL_MAJOR_VERSION.$GDL_MINOR_VERSION.$GDL_MICRO_VERSION
+
+AM_INIT_AUTOMAKE($PACKAGE, $GDL_VERSION)
+
+dnl with higher autotools, we can set ACLOCAL_AMFLAGS instead, which is
+dnl the better solution; this does the trick for automake-1.4
+dnl gnome-autogen.sh sets ACLOCAL_FLAGS, which points to the cvs gnome
+dnl autoconf macros
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
+AC_SUBST(GDL_MAJOR_VERSION)
+AC_SUBST(GDL_MINOR_VERSION)
+AC_SUBST(GDL_MICRO_VERSION)
+AC_SUBST(GDL_VERSION)
+
+SNAPSHOT=0_`date +%Y%m%d_%H%M%S`_cvs
+AC_SUBST(SNAPSHOT)
+
+GTK_REQUIRED=2.4.0
+GNOME_REQUIRED=2.6.0
+XML_REQUIRED=2.2.8
+LIBGLADE_REQUIRED=2.0.0
+GNOME_VFS_REQUIRED=2.6.0
+
+AC_SUBST(GTK_REQUIRED)
+AC_SUBST(GNOME_REQUIRED)
+AC_SUBST(XML_REQUIRED)
+AC_SUBST(LIBGLADE_REQUIRED)
+
+AM_MAINTAINER_MODE
+
+AC_ISC_POSIX
+AC_PROG_CC
+
+AC_CHECK_HEADERS([libintl.h])
+AC_TYPE_SIGNAL
+
+AC_PROG_CXX
+AC_STDC_HEADERS
+AM_SANITY_CHECK
+
+AC_DISABLE_STATIC
+AC_LIBTOOL_WIN32_DLL
+AC_PROG_LIBTOOL
+
+
+dnl ***************
+dnl GTK Libraries 
+dnl ***************
+
+PKG_CHECK_MODULES(XML, libxml-2.0 >= $XML_REQUIRED)
+AC_SUBST(XML_CFLAGS)
+AC_SUBST(XML_LIBS)
+
+PKG_CHECK_MODULES(GDL_DEPENDENCIES, 
+	gtk+-2.0 >= $GTK_REQUIRED 
+	libglade-2.0 >= $LIBGLADE_REQUIRED)
+AC_SUBST(GDL_DEPENDENCIES_CFLAGS)
+AC_SUBST(GDL_DEPENDENCIES_LIBS)
+
+dnl ****************
+dnl GNOME Libraries
+dnl ****************
+
+
+AC_ARG_ENABLE(gnome,
+	[ --disable-gnome	Compile without gnome support], 
+	[ if test "$enableval" = "no"; then
+		user_disabled_gnome=1
+	  fi ],
+	[ user_disabled_gnome=0 ])
+
+DEPRECATED_FLAGS=""
+AC_MSG_CHECKING(if gnome is disabled)
+if test "$user_disabled_gnome" = 1; then
+	AC_MSG_RESULT(yes)
+	gnome="no"
+else
+	AC_MSG_RESULT(no)
+	
+	PKG_CHECK_MODULES(GNOME,
+		[libgnomeui-2.0 >= $GNOME_REQUIRED, 
+		gnome-vfs-2.0 >= $GNOME_VFS_REQUIRED],
+		[gnome="yes"],
+		[gnome="no"])
+	AC_SUBST(GNOME_CFLAGS)
+	AC_SUBST(GNOME_LIBS)
+	AC_DEFINE_UNQUOTED(HAVE_GNOME, 1, [GNOME support enabled])
+fi
+
+AM_CONDITIONAL(HAVE_GNOME, [test x$gnome = xyes])
+
+
+if test x$MAINT = x; then
+	DEPRECATED_FLAGS="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -DBONOBO_DISABLE_DEPRECATED -DBONOBO_UI_DISABLE_DEPRECATED"
+	AC_SUBST(DEPRECATED_FLAGS)
+fi
+
+AC_MSG_CHECKING([for native Win32])
+case "$host" in
+  *-*-mingw*)
+    native_win32=yes
+    ;;
+  *)
+    native_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$native_win32])
+AM_CONDITIONAL(OS_WIN32, test "x$native_win32" = "xyes")
+
+EXTRA_CPPFLAGS=
+EXTRA_LDFLAGS=
+if test "x$native_win32" = "xyes"; then
+  EXTRA_CPPFLAGS="-mms-bitfields"
+  EXTRA_LDFLAGS="-no-undefined -Wl,--kill-at -Wl,--export-all-symbols"
+fi
+AC_SUBST(EXTRA_CPPFLAGS)
+AC_SUBST(EXTRA_LDFLAGS)
+
+# marshal and enum generators
+GLIB_GENMARSHAL="`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`"
+AC_SUBST(GLIB_GENMARSHAL)
+GLIB_MKENUMS="`$PKG_CONFIG --variable=glib_mkenums glib-2.0`"
+AC_SUBST(GLIB_MKENUMS)
+
+ALL_LINGUAS=""
+GETTEXT_PACKAGE=gdl-1
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
+IT_PROG_INTLTOOL([0.35.0])
+
+AM_GLIB_GNU_GETTEXT
+AM_GLIB_DEFINE_LOCALEDIR(GNOMELOCALEDIR)
+
+dnl Set PREFIX
+if test "x${prefix}" = "xNONE"; then
+  packageprefix=${ac_default_prefix}
+else
+  packageprefix=${prefix}
+fi
+
+# images directory
+gdl_images_dir="${packageprefix}/share/gdl/images"
+AC_SUBST(gdl_images_dir)
+
+AC_OUTPUT([
+Makefile
+gdl/Makefile
+po/Makefile.in 
+gdl.spec
+gdl-1.0.pc
+gdl-gnome-1.0.pc
+])

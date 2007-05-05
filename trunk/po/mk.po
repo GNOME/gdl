@@ -1,0 +1,666 @@
+# translation of gdl.HEAD.po to
+# translation of gdl.HEAD.po to Macedonian
+# translation of gdl.HEAD.po to
+# This file is distributed under the same license as the PACKAGE package.
+# Aleksandar Nikov, 2003
+# Georgi Stanojevsi <бла>, 2003
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2003
+# Глигор Костоски <gigo@ajvar.com.mk>, 2003
+# Ivan Stojmirov <stojmir@linux.net.mk>, 2003
+# Arangel Angov <ufo@linux.net.mk>, 2003
+# Georgi Stanojevsi <бла>, 2003
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-13 20:07+0200\n"
+"PO-Revision-Date: 2003-06-15 23:02+0000\n"
+"Last-Translator: Georgi Stanojevsi <бла>\n"
+"Language-Team: Macedonian <lug@lists.linux.net.mk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0.1\n"
+
+#: gdl/gdl-data-view.c:421
+msgid "Expander Size"
+msgstr "Големина на ширењето"
+
+#: gdl/gdl-data-view.c:422
+msgid "Size of the expander arrow."
+msgstr "Големина на стрелката за ширење"
+
+#: gdl/gdl-dock-item-grip.c:244
+msgid "Dock the toolbar"
+msgstr "Паркирај го алатникот"
+
+#: gdl/gdl-dock-item-grip.c:245
+msgid "Un dock the toolbar"
+msgstr "Одпаркирај го алатникот"
+
+#: gdl/gdl-dock-item.c:242
+msgid "Orientation"
+msgstr "Ориентација"
+
+#: gdl/gdl-dock-item.c:243
+msgid "Orientation of the docking item"
+msgstr "Ориентација на закотвениот елемент"
+
+#: gdl/gdl-dock-item.c:258
+msgid "Resizable"
+msgstr "Со променлива големина"
+
+#: gdl/gdl-dock-item.c:259
+msgid "If set, the dock item can be resized when docked in a paned"
+msgstr "Ако е поставено, елементот може да се зголемува/намалува кога е закотвен во панел"
+
+#: gdl/gdl-dock-item.c:266
+msgid "Item behavior"
+msgstr "Однесувањето на објектот"
+
+#: gdl/gdl-dock-item.c:267
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr "Општо однесување за закотвениот објект (т.е. дали може да лебди ако е заклучено и.т.н.)"
+
+#: gdl/gdl-dock-item.c:275
+msgid "Grip size"
+msgstr "Grip size"
+
+#: gdl/gdl-dock-item.c:276
+msgid "Size in pixels of the grip to drag the dock item"
+msgstr "Големина во пиксели од границата за да се влече закотвениот објект"
+
+#: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:142
+msgid "Locked"
+msgstr "Заклучено"
+
+#: gdl/gdl-dock-item.c:283
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "ако е поставено, иконата неможе да биде влечена "
+
+#: gdl/gdl-dock-item.c:291
+msgid "Preferred width"
+msgstr "Посакувана широчина"
+
+#: gdl/gdl-dock-item.c:292
+msgid "Preferred width for the dock item"
+msgstr "Посакувана широчина за паркираниот елемент"
+
+#: gdl/gdl-dock-item.c:298
+msgid "Preferred height"
+msgstr "Преферирана висина"
+
+#: gdl/gdl-dock-item.c:299
+msgid "Preferred height for the dock item"
+msgstr "Посакувана висина за паркираниот елемент"
+
+#: gdl/gdl-dock-item.c:546
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Не може да додадеш паркирачки објект (%p од тип %s) во %s. Употреби GdlDock или "
+"друг врзувачк објект."
+
+#: gdl/gdl-dock-item.c:553
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Обидот да се додаде елемент со тип %s на %s, но може да содржи само еден "
+"елемент во момент; веќе содржи елемент од тип %s"
+
+#: gdl/gdl-dock-item.c:1149
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "Неподдржана стратегија за паркирање %s во паркирачки објект од тип %s"
+
+#. Hide menuitem.
+#: gdl/gdl-dock-item.c:1231
+msgid "Hide"
+msgstr "Скриј"
+
+#. Lock menuitem
+#: gdl/gdl-dock-item.c:1237
+msgid "Lock"
+msgstr "Заклучи"
+
+#: gdl/gdl-dock-item.c:1404
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Обид да се поврзе неповрзан елемент %p"
+
+#: gdl/gdl-dock-layout.c:125
+msgid "Master"
+msgstr "Главен"
+
+#: gdl/gdl-dock-layout.c:126
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "GdlDockMaster објектот за кој објектот за распоред е поврзан"
+
+#: gdl/gdl-dock-layout.c:133
+msgid "Dirty"
+msgstr "Нечисто"
+
+#: gdl/gdl-dock-layout.c:134
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Точно ако изгледот се променил и треба да се сними во датотека"
+
+#: gdl/gdl-dock-layout.c:447
+msgid "You must provide a name for the layout"
+msgstr "Мораш да дадеш име за изгледот"
+
+#. FIXME: pop up an error dialog
+#: gdl/gdl-dock-layout.c:625
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "Не може да се вчита датотеката за изглед '%s'"
+
+#: gdl/gdl-dock-layout.c:680
+msgid "Visible"
+msgstr "Видливо"
+
+#: gdl/gdl-dock-layout.c:687
+msgid "Item"
+msgstr "Елемент"
+
+#: gdl/gdl-dock-layout.c:737 gdl/gdl-dock-object.c:120
+msgid "Name"
+msgstr "Име"
+
+#: gdl/gdl-dock-layout.c:776 gdl/layout.glade.h:2
+msgid "Dock items"
+msgstr "Паркирани елементи"
+
+#: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
+msgid "Saved layouts"
+msgstr "Снимени изгледи"
+
+#: gdl/gdl-dock-layout.c:824
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"Додека вчитува изглед: не знам како да креирам паркирачки елемент чив "
+"надимак е '%s'"
+
+#: gdl/gdl-dock-layout.c:1303
+msgid "Layout managment"
+msgstr "Модифицирање на изглед"
+
+#: gdl/gdl-dock-master.c:135 gdl/gdl-dock.c:185
+msgid "Default title"
+msgstr "Стандардно име"
+
+#: gdl/gdl-dock-master.c:136
+msgid "Default title for newly created floating docks"
+msgstr "Стандардно име за ново-креирани лебдечки паркиралишта"
+
+#: gdl/gdl-dock-master.c:143
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Ако е наместено на 1, сите паркирани елементи врзани за главниот се заклученич "
+"ако е 0, сите се одклучени -1 покажува непостојаност меѓу елементите"
+
+#: gdl/gdl-dock-master.c:730
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"главен %p: неможе да го додаде објектот %p[%s] во hash табелата.  Веќе "
+"постои елемент со тоа име(%p)."
+
+#: gdl/gdl-dock-master.c:895
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"Новиот паркирашки контролер %p е автоматски.  Само рачните паркирачки објекти "
+"треба да се нарекуваат контролери."
+
+#: gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "Страница"
+
+#: gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "Индексот на тековната страница"
+
+#: gdl/gdl-dock-object.c:121
+msgid "Unique name for identifying the dock object"
+msgstr "Единствено име за препознавање на паркирачкиот објект"
+
+#: gdl/gdl-dock-object.c:128
+msgid "Long name"
+msgstr "Долго име"
+
+#: gdl/gdl-dock-object.c:129
+msgid "Human readable name for the dock object"
+msgstr "Име читливо за човек за паркирачкиот  објект"
+
+#: gdl/gdl-dock-object.c:135
+msgid "Dock master"
+msgstr "Главен паркинг"
+
+#: gdl/gdl-dock-object.c:136
+msgid "Dock master this dock object is bound to"
+msgstr "Dock master овој објект за закотвување е поврзан со"
+
+#: gdl/gdl-dock-object.c:405
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Повик до gdl_dock_object_dock во објектот за закотвување %p (типот на објектот е %s) "
+"во кој не е сеуште вклучен овој метод"
+
+#: gdl/gdl-dock-object.c:534
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr "Опеарција за закотвување побарана за невалиден објект %p. Програмата може да се урне"
+
+#: gdl/gdl-dock-object.c:541
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Неможе да го закотвам %p во %p бидејќи се на различни главни апликации"
+
+#: gdl/gdl-dock-object.c:583
+#, c-format
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "Проба да го поврзе %p со веќе постоечки објект  %p (моментална главна апликација %p)"
+
+#: gdl/gdl-dock-paned.c:134
+msgid "Position"
+msgstr "Позиција"
+
+#: gdl/gdl-dock-paned.c:135
+msgid "Position of the divider in pixels"
+msgstr "Позиција од делителот во пиксели"
+
+#: gdl/gdl-dock-placeholder.c:127
+msgid "Sticky"
+msgstr "Лепливо"
+
+#: gdl/gdl-dock-placeholder.c:128
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Дали  држачот ќе остане со својот домаќин или ќе оди нагоре по хиреархијата "
+"кога домаќинот ќе биде повторно закотвен"
+
+#: gdl/gdl-dock-placeholder.c:135
+msgid "Host"
+msgstr "Хост"
+
+#: gdl/gdl-dock-placeholder.c:136
+msgid "The dock object this placeholder is attached to"
+msgstr "Објектот за закотвување за чиј покажувач на положбата е поврзан"
+
+#: gdl/gdl-dock-placeholder.c:143
+msgid "Next placement"
+msgstr "Следно поставување"
+
+#: gdl/gdl-dock-placeholder.c:144
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"Позицијата на овој елемент  ќе биде закотвена на нашиот домаќин ако некој побара да "
+"биде закотвен со нас"
+
+#: gdl/gdl-dock-placeholder.c:305
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Пробано да се закотви закотвувачки објект на неограничен поставувач"
+
+#: gdl/gdl-dock-placeholder.c:419
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "Добив сигнал да се откачам од објект (%p) кој не е нашиот домаќин %p"
+
+#: gdl/gdl-dock-placeholder.c:440
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr "Нешто чудно се случи додека ги добивавме подредените поставуања за %p од родителот %p"
+
+#: gdl/gdl-dock-tablabel.c:130
+msgid "Controlling dock item"
+msgstr "Контролирање на закотвувачкиот елемент"
+
+#: gdl/gdl-dock-tablabel.c:131
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Закотвувачкиот елемент кој е сопственик на оваа табела"
+
+#: gdl/gdl-dock.c:177
+msgid "Floating"
+msgstr "Лебдење"
+
+#: gdl/gdl-dock.c:178
+msgid "Whether the dock is floating in its own window"
+msgstr "Дали закотвеното лебди во сопствениот прозорец"
+
+#: gdl/gdl-dock.c:186
+msgid "Default title for the newly created floating docks"
+msgstr "Преддефинираниот наслов за ново креираниот лебдечки елемент"
+
+#: gdl/gdl-dock.c:192
+msgid "Width"
+msgstr "Ширина"
+
+#: gdl/gdl-dock.c:193
+msgid "Width for the dock when it's of floating type"
+msgstr "Ширина за објектот кога е од лебдечки тип"
+
+#: gdl/gdl-dock.c:200
+msgid "Height"
+msgstr "Висина"
+
+#: gdl/gdl-dock.c:201
+msgid "Height for the dock when it's of floating type"
+msgstr "Должина за објектот кој е од лебдечки тип"
+
+#: gdl/gdl-dock.c:208
+msgid "Float X"
+msgstr "Децимален Х"
+
+#: gdl/gdl-dock.c:209
+msgid "X coordinate for a floating dock"
+msgstr "Х координати за лебдечкиот часовник"
+
+#: gdl/gdl-dock.c:216
+msgid "Float Y"
+msgstr "Y за лебдење"
+
+#: gdl/gdl-dock.c:217
+msgid "Y coordinate for a floating dock"
+msgstr "Y координатата за лебдечкиот часовник"
+
+#: gdl/gdl-dock.c:494
+#, c-format
+msgid "Dock #%d"
+msgstr "Закотвувач #%d"
+
+#: gdl/gdl-recent.c:136
+msgid "GConf key"
+msgstr "GConf клуч"
+
+#: gdl/gdl-recent.c:137
+msgid "The gconf key for storing the recent entries."
+msgstr "Клучот во GConf за зачувување на последните промени"
+
+#: gdl/gdl-recent.c:143
+msgid "Path"
+msgstr "Патека"
+
+#: gdl/gdl-recent.c:144
+msgid "The path to put the menu items."
+msgstr "Патеката да се стават елементите од мениот"
+
+#: gdl/gdl-recent.c:150
+msgid "Limit"
+msgstr "Ограничување"
+
+#: gdl/gdl-recent.c:151
+msgid "The maximum number of items to be allowed in the list."
+msgstr "Максималниот број на елементи дозволени за листата"
+
+#: gdl/gdl-recent.c:159
+msgid "List type"
+msgstr "Тип на листата"
+
+#: gdl/gdl-recent.c:160
+msgid "The type with which the items will be numbered."
+msgstr "Типот со кој елементите ќе бидат нумерирани"
+
+#: gdl/gdl-recent.c:409
+#, c-format
+msgid "Open %s"
+msgstr "Отвори %s"
+
+#: gdl/gdl-icons.c:141 gdl/gdl-icons.c:142
+msgid "Icon size"
+msgstr "Големина на икона"
+
+#: gdl/gdl-icons.c:147 gdl/gdl-icons.c:148
+msgid "Icon zoom"
+msgstr "Зумирање на икона"
+
+#: gdl/layout.glade.h:1
+msgid "*"
+msgstr "*"
+
+#: gdl/layout.glade.h:3
+msgid "Layout Managment"
+msgstr "Менаџирање на поставеноста"
+
+#: gdl/layout.glade.h:5
+msgid "_Load"
+msgstr "_Вчитај"
+
+#: gdl/layout.glade.h:6
+msgid "_Lock dock items"
+msgstr "_Заклучи ги елементите"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
+msgid "Factory for the Gnome Symbol Browser control."
+msgstr "Фабрика за GnomeSymbolBrowser контролите"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
+msgid "Gnome Symbol Browser Control"
+msgstr "Gnome Symbol Browser Control"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
+msgid "Gnome Symbol Browser Control Factory"
+msgstr "Gnome Контрола"
+
+#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
+msgid "Gnome Symbol Browser."
+msgstr "Прелистува за Gnome симболите."
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:1
+msgid "Goto Symbol"
+msgstr "Симбол за прескокнување"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:2
+msgid "Goto the displayed symbol"
+msgstr "Оди до прикажаниот симбол"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:3
+msgid "Update Symbols"
+msgstr "Замени ги симболите со најнови"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:4
+msgid "Update the symbol tree"
+msgstr "Замени го дрвото со симболи со најновите"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:5
+msgid "_Goto to symbol"
+msgstr "_Скокни до симболот"
+
+#: symbol-browser-control/gnome-symbol-browser.xml.h:6
+msgid "_View"
+msgstr "_Преглед"
+
+#: symbol-browser-control/symbol-browser.c:63
+msgid "Unknown"
+msgstr "Непознато"
+
+#. ! tm_tag_undef_t = 0, < Unknown type
+#: symbol-browser-control/symbol-browser.c:64
+msgid "Classes"
+msgstr "Класи"
+
+#. ! tm_tag_class_t = 1, < Class declaration
+#: symbol-browser-control/symbol-browser.c:65
+msgid "Enums"
+msgstr "Енумерации"
+
+#. ! tm_tag_enum_t = 2, < Enum declaration
+#: symbol-browser-control/symbol-browser.c:66
+msgid "Enumerators"
+msgstr "Енумератори"
+
+#. ! tm_tag_enumerator_t = 4, < Enumerator value
+#: symbol-browser-control/symbol-browser.c:67
+msgid "Fields"
+msgstr "Полиња"
+
+#. ! tm_tag_field_t = 8, < Field (Java only)
+#: symbol-browser-control/symbol-browser.c:68
+msgid "Functions"
+msgstr "Функции"
+
+#. ! tm_tag_function_t = 16, < Function definition
+#: symbol-browser-control/symbol-browser.c:69
+msgid "Interfaces"
+msgstr "Интерфејси"
+
+#. ! tm_tag_interface_t = 32, < Interface (Java only
+#: symbol-browser-control/symbol-browser.c:70
+msgid "Members"
+msgstr "Членови"
+
+#. ! tm_tag_member_t = 64, < Member variable of class/struct
+#: symbol-browser-control/symbol-browser.c:71
+msgid "Methods"
+msgstr "Методи"
+
+#. ! tm_tag_method_t = 128, < Class method (Java only
+#: symbol-browser-control/symbol-browser.c:72
+msgid "Namespaces"
+msgstr "Просто за имиња"
+
+#. ! tm_tag_namespace_t = 256, < Namespace declaration
+#: symbol-browser-control/symbol-browser.c:73
+msgid "Packages"
+msgstr "Пакети"
+
+#. ! tm_tag_package_t = 512, < Package (Java only)
+#: symbol-browser-control/symbol-browser.c:74
+msgid "Prototypes"
+msgstr "Прототипи"
+
+#. ! tm_tag_prototype_t = 1024, < Function prototype
+#: symbol-browser-control/symbol-browser.c:75
+msgid "Structs"
+msgstr "Структури"
+
+#. ! tm_tag_struct_t = 2048, < Struct declaration
+#: symbol-browser-control/symbol-browser.c:76
+msgid "Typedefs"
+msgstr "Дефиниции за тип"
+
+#. ! tm_tag_typedef_t = 4096, < Typedef
+#: symbol-browser-control/symbol-browser.c:77
+msgid "Unions"
+msgstr "Унии"
+
+#. ! tm_tag_union_t = 8192, !< Union
+#: symbol-browser-control/symbol-browser.c:78
+msgid "Variables"
+msgstr "Променливи"
+
+#. ! tm_tag_variable_t = 16384, < Variable
+#: symbol-browser-control/symbol-browser.c:79
+msgid "ExternVars"
+msgstr "Надворешни променливи"
+
+#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
+#: symbol-browser-control/symbol-browser.c:80
+msgid "Macros"
+msgstr "Макроа"
+
+#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
+#: symbol-browser-control/symbol-browser.c:81
+msgid "MacrosWithArgs"
+msgstr "Макроа со аргументи"
+
+#: symbol-browser-control/symbol-browser.c:369
+msgid "Tags"
+msgstr "Тагови"
+
+#: symbol-browser-control/symbol-browser.c:377
+#: symbol-browser-control/symbol-browser.c:387
+msgid "Undefined"
+msgstr "Недефинирано"
+
+#: symbol-browser-control/symbol-browser.c:379
+#: symbol-browser-control/symbol-browser.c:389
+msgid "<No Symbol>"
+msgstr "<No Symbol>"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
+msgid "Exit"
+msgstr "Излез"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
+msgid "Open Project"
+msgstr "Отвори"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
+msgid "Save Project"
+msgstr "Зачувај"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
+msgid "Set Current File"
+msgstr "Постави ја моменталната датотека"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
+msgid "Update"
+msgstr "Надградба"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
+msgid "Update the whole tree"
+msgstr "Надгради го целото дрво"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
+msgid "_Exit"
+msgstr "_Излези"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
+msgid "_File"
+msgstr "_Датотека"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
+msgid "_Open Project"
+msgstr "_Отвори проект"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
+msgid "_Save Project"
+msgstr "_Зачувај го проектот"
+
+#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
+msgid "_Set Current File"
+msgstr "_Постави ја сегашната датотека"
+
+#: symbol-browser-control/test-symbol-browser.c:168
+msgid "Open file..."
+msgstr "Отвори датотека..."
+
+#: symbol-browser-control/test-symbol-browser.c:170
+msgid "Set current file..."
+msgstr "Постави ја моменталната датотека..."
+
+#: symbol-browser-control/test-symbol-browser.c:172
+msgid "Save file..."
+msgstr "Зачувај датотека..."
+
+#: symbol-browser-control/test-symbol-browser.c:292
+msgid "Can't initialize bonobo!"
+msgstr "Немеможам да го вклучам bonobo!"
+
