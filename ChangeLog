@@ -2,7 +2,7 @@
 
 2007-05-06  Naba Kumar  <naba@gnome.org>
 	
-	* configure.in: Fixes build failure.
+	* configure.in: Fixes build failure. Bumped version.
 	* NEWS: Updated
 
 === gdl 0.7.4 ===
