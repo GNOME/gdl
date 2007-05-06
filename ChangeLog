@@ -1,3 +1,10 @@
+=== gdl 0.7.5 ===
+
+2007-05-06  Naba Kumar  <naba@gnome.org>
+	
+	* configure.in: Fixes build failure.
+	* NEWS: Updated
+
 === gdl 0.7.4 ===
 
 2007-05-06  Naba Kumar  <naba@gnome.org>

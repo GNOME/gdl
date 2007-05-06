@@ -1,3 +1,7 @@
+Changes in 0.7.5
+
+* Fixes build failure
+
 Changes in 0.7.4
 
 * Added a button-like tab switcher widget for notebook docks.
