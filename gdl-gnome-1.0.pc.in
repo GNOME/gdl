@@ -7,6 +7,6 @@ idldir=@datadir@/idl/libgdl-1.0
 Name: gdl-gnome
 Description: Gnome DevTool Libraries - Gnome part
 Version: @VERSION@
-Requires: libbonoboui-2.0 libgnome-2.0 gtk+-2.0 libxml-2.0 libglade-2.0
-Libs: -L${libdir} -lgdl-1 -lgdl-gnome-1
+Requires: libgnomeui-2.0 gnome-vfs-2.0 gtk+-2.0 gdl-1.0
+Libs: -L${libdir} -lgdl-gnome-1
 Cflags: -I${includedir}

@@ -83,6 +83,7 @@ libgdl_gnome_1_la_SOURCES = \
 	gdl-icons.c
 
 libgdl_gnome_1_la_LIBADD = \
+	libgdl-1.la \
 	$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS) \
 	$(GNOME_LIBS)

@@ -126,10 +126,10 @@ AC_MSG_RESULT([$native_win32])
 AM_CONDITIONAL(OS_WIN32, test "x$native_win32" = "xyes")
 
 EXTRA_CPPFLAGS=
-EXTRA_LDFLAGS=
+EXTRA_LDFLAGS="-no-undefined"
 if test "x$native_win32" = "xyes"; then
   EXTRA_CPPFLAGS="-mms-bitfields"
-  EXTRA_LDFLAGS="-no-undefined -Wl,--kill-at -Wl,--export-all-symbols"
+  EXTRA_LDFLAGS="$EXTRA_LDFLAGS -Wl,--kill-at -Wl,--export-all-symbols"
 fi
 AC_SUBST(EXTRA_CPPFLAGS)
 AC_SUBST(EXTRA_LDFLAGS)
