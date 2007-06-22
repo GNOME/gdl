@@ -1,3 +1,7 @@
+2007-06-22  Naba Kumar  <naba@gnome.org>
+
+	* autogen.sh: Fixes bug 407400 – autogen.sh fails on Solaris find.
+
 2007-05-07  Naba Kumar  <naba@gnome.org>
 
 	Patch from  Cygwin Ports maintainer  <yselkowitz@users.sourceforge.net>:

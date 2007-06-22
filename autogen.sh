@@ -98,7 +98,8 @@ if test -z "$*"; then
   echo
 fi
 
-for coin in `find $srcdir -path $srcdir/CVS -prune -o -name configure.in -print`
+configure_files="`find $srcdir -name '{arch}' -prune -o -name '_darcs' -prune -o -name '.??*' -prune -o -name configure.ac -print -o -name configure.in -print`"
+for coin in $configure_files
 do 
   dr=`dirname $coin`
   if test -f $dr/NO-AUTO-GEN; then
