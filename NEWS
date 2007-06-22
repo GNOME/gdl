@@ -1,3 +1,8 @@
+Changes in 0.7.6
+
+* SUN build fixes
+* Cygwin build fixes
+
 Changes in 0.7.5
 
 * Fixes build failure

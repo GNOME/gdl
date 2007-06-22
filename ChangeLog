@@ -1,5 +1,8 @@
 2007-06-22  Naba Kumar  <naba.kumar@gnome.org>
 
+	* NEWS: Updated
+	* configure.in: Bumped version to 0.7.6
+
 	Patch from Halton Huo:
 	* gdl/gdl-dock-item.c: (gdl_dock_item_expose), 
 	gdl/gdl-dock-tablabel.c: (gdl_dock_tablabel_expose),
