@@ -872,7 +872,7 @@ gdl_dock_item_expose (GtkWidget      *widget,
 
     if (GTK_WIDGET_DRAWABLE (widget) && event->window == widget->window) {
         gdl_dock_item_paint (widget, event);
-        GDL_CALL_PARENT (GTK_WIDGET_CLASS, expose_event, (widget, event));
+        GDL_CALL_PARENT_GBOOLEAN(GTK_WIDGET_CLASS, expose_event, (widget,event));
     }
   
     return FALSE;

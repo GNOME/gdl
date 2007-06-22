@@ -387,7 +387,7 @@ gdl_dock_tablabel_expose (GtkWidget      *widget,
     g_return_val_if_fail (event != NULL, FALSE);
 
     if (GTK_WIDGET_VISIBLE (widget) && GTK_WIDGET_MAPPED (widget)) {
-        GDL_CALL_PARENT (GTK_WIDGET_CLASS, expose_event, (widget, event));
+        GDL_CALL_PARENT_GBOOLEAN(GTK_WIDGET_CLASS, expose_event, (widget,event));
         gdl_dock_tablabel_paint (widget, event);
     };
   

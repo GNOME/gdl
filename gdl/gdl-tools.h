@@ -137,7 +137,11 @@ type_as_function ## _get_type (void)                                            
  * the _WITH_DEFAULT version for that */
 #define GDL_CALL_PARENT(parent_class_cast, name, args)          \
 	((parent_class_cast(parent_class)->name != NULL) ?      \
-	 parent_class_cast(parent_class)->name args : (void)0)
+	 parent_class_cast(parent_class)->name args : (void *)0)
+
+#define GDL_CALL_PARENT_GBOOLEAN(parent_class_cast, name, args)          \
+       ((parent_class_cast(parent_class)->name != NULL) ?      \
+        parent_class_cast(parent_class)->name args : (gboolean)0)
 
 /* Same as above, but in case there is no implementation, it evaluates
  * to def_return */

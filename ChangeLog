@@ -1,3 +1,11 @@
+2007-06-22  Naba Kumar  <naba.kumar@gnome.org>
+
+	Patch from Halton Huo:
+	* gdl/gdl-dock-item.c: (gdl_dock_item_expose), 
+	gdl/gdl-dock-tablabel.c: (gdl_dock_tablabel_expose),
+	gdl/gdl-tools.h: Bug #407393 – (void)0 will cause build fail on
+	Sun cc
+
 2007-06-22  Naba Kumar  <naba@gnome.org>
 
 	* autogen.sh: Fixes bug 407400 – autogen.sh fails on Solaris find.
