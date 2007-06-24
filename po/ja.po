@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-20 00:24+0900\n"
-"PO-Revision-Date: 2007-01-20 00:24+0900\n"
+"POT-Creation-Date: 2007-06-24 21:36+0900\n"
+"PO-Revision-Date: 2007-06-24 21:36+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -48,62 +48,62 @@ msgstr "コントロールするドッキング・アイテム"
 msgid "Dockitem which 'owns' this grip"
 msgstr "このグリップを所有している組み込みアイテムです"
 
-#: ../gdl/gdl-dock-item.c:241
+#: ../gdl/gdl-dock-item.c:243
 msgid "Orientation"
 msgstr "向き"
 
-#: ../gdl/gdl-dock-item.c:242
+#: ../gdl/gdl-dock-item.c:244
 msgid "Orientation of the docking item"
 msgstr "アイテムをドッキングする向きです"
 
-#: ../gdl/gdl-dock-item.c:257
+#: ../gdl/gdl-dock-item.c:259
 msgid "Resizable"
 msgstr "サイズ変更可能"
 
-#: ../gdl/gdl-dock-item.c:258
+#: ../gdl/gdl-dock-item.c:260
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr ""
 "有効にすると、ウィンドウの中にドッキングした時にアイテムのサイズを変更できま"
 "す"
 
-#: ../gdl/gdl-dock-item.c:265
+#: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
 msgstr "アイテムの挙動"
 
-#: ../gdl/gdl-dock-item.c:266
+#: ../gdl/gdl-dock-item.c:268
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "ドッキングするアイテムの一般的な挙動 (可動式か、固定式か) を設定します"
 
-#: ../gdl/gdl-dock-item.c:274 ../gdl/gdl-dock-master.c:139
+#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "ロック"
 
-#: ../gdl/gdl-dock-item.c:275
+#: ../gdl/gdl-dock-item.c:277
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "有効にすると、ドッキングしたアイテムをドラッグできなくなり、把手も表示しませ"
 "ん"
 
-#: ../gdl/gdl-dock-item.c:283
+#: ../gdl/gdl-dock-item.c:285
 msgid "Preferred width"
 msgstr "優先する幅"
 
-#: ../gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:286
 msgid "Preferred width for the dock item"
 msgstr "ドッキングするアイテムで優先する幅です"
 
-#: ../gdl/gdl-dock-item.c:290
+#: ../gdl/gdl-dock-item.c:292
 msgid "Preferred height"
 msgstr "優先する高さ"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:293
 msgid "Preferred height for the dock item"
 msgstr "ドッキングするアイテムで優先する高さです"
 
-#: ../gdl/gdl-dock-item.c:541
+#: ../gdl/gdl-dock-item.c:543
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -112,7 +112,7 @@ msgstr ""
 "ドック・オブジェクト(%p 種類:%s) を %s の中に追加できません。GdlDock もしくは"
 "他の複合型のドック・オブジェクトを利用して下さい。"
 
-#: ../gdl/gdl-dock-item.c:548
+#: ../gdl/gdl-dock-item.c:550
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -121,28 +121,28 @@ msgstr ""
 "%s のウィジットを %s に追加しようとしていますが、これは同時に一つのウィジット"
 "しか保持できません; 既に %s のウィジットを保持しています"
 
-#: ../gdl/gdl-dock-item.c:1186
+#: ../gdl/gdl-dock-item.c:1235 ../gdl/gdl-dock-item.c:1280
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "%2$s のドック・オブジェクトは %1$s のドッキング形式をサポートしていません"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1273
+#: ../gdl/gdl-dock-item.c:1367
 msgid "UnLock"
 msgstr "ロック解除"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1280
+#: ../gdl/gdl-dock-item.c:1374
 msgid "Hide"
 msgstr "隠す"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1285
+#: ../gdl/gdl-dock-item.c:1379
 msgid "Lock"
 msgstr "ロック"
 
-#: ../gdl/gdl-dock-item.c:1491
+#: ../gdl/gdl-dock-item.c:1585
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "未バインドのアイテム %p のバインドを試みます"
@@ -205,15 +205,15 @@ msgstr ""
 msgid "Layout managment"
 msgstr "レイアウトの管理"
 
-#: ../gdl/gdl-dock-master.c:132 ../gdl/gdl-dock.c:182
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "デフォルトのタイトル"
 
-#: ../gdl/gdl-dock-master.c:133
+#: ../gdl/gdl-dock-master.c:139
 msgid "Default title for newly created floating docks"
 msgstr "新しく生成した可動式のドックのデフォルトのタイトル"
 
-#: ../gdl/gdl-dock-master.c:140
+#: ../gdl/gdl-dock-master.c:146
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -222,7 +222,15 @@ msgstr ""
 "れます; 0 の場合は、全てのドッキング・アイテムの固定は解除されます; -1 の場"
 "合、アイテムが整列して表示されなくなります"
 
-#: ../gdl/gdl-dock-master.c:741
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+msgid "Switcher Style"
+msgstr "スイッチャーのスタイル"
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+msgid "Switcher buttons style"
+msgstr "スィッチャー・ボタンのスタイルです"
+
+#: ../gdl/gdl-dock-master.c:761
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -231,7 +239,7 @@ msgstr ""
 "マスタ %p: オブジェクト %p[%s] をハッシュに追加できません。その名前を持つアイ"
 "テム (%p) が既に存在します。"
 
-#: ../gdl/gdl-dock-master.c:906
+#: ../gdl/gdl-dock-master.c:934
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -346,7 +354,7 @@ msgid ""
 msgstr ""
 "ドックするリクエストがあった時に、アイテムがドックされる場所を指定します"
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:189
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "幅"
 
@@ -354,7 +362,7 @@ msgstr "幅"
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "ドックを格納した時のウィジェットの幅です"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:197
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "高さ"
 
@@ -424,43 +432,43 @@ msgstr "ドックバーのスタイル"
 msgid "Dockbar style to show items on it"
 msgstr "ドックバーに表示するアイテムのスタイルです"
 
-#: ../gdl/gdl-dock.c:174
+#: ../gdl/gdl-dock.c:178
 msgid "Floating"
 msgstr "可動式"
 
-#: ../gdl/gdl-dock.c:175
+#: ../gdl/gdl-dock.c:179
 msgid "Whether the dock is floating in its own window"
 msgstr "ドックを取り外してウィンドウ上を移動できるかどうかです"
 
-#: ../gdl/gdl-dock.c:183
+#: ../gdl/gdl-dock.c:187
 msgid "Default title for the newly created floating docks"
 msgstr "新しく生成した可動式ドックのデフォルトのタイトルです"
 
-#: ../gdl/gdl-dock.c:190
+#: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
 msgstr "ドックを取り外した時の幅です"
 
-#: ../gdl/gdl-dock.c:198
+#: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
 msgstr "ドックを取り外した時の高さです"
 
-#: ../gdl/gdl-dock.c:205
+#: ../gdl/gdl-dock.c:209
 msgid "Float X"
 msgstr "可動時のＸ座標"
 
-#: ../gdl/gdl-dock.c:206
+#: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
 msgstr "取り外したドックのＸ座標です"
 
-#: ../gdl/gdl-dock.c:213
+#: ../gdl/gdl-dock.c:217
 msgid "Float Y"
 msgstr "Ｙ座標"
 
-#: ../gdl/gdl-dock.c:214
+#: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
 msgstr "取り外したドックのＹ座標です"
 
-#: ../gdl/gdl-dock.c:495
+#: ../gdl/gdl-dock.c:499
 #, c-format
 msgid "Dock #%d"
 msgstr "ドック #%d"
