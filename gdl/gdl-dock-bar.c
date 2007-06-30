@@ -57,6 +57,8 @@ static void  gdl_dock_bar_destroy         (GtkObject       *object);
 
 static void  gdl_dock_bar_attach          (GdlDockBar      *dockbar,
                                            GdlDockMaster   *master);
+static void gdl_dock_bar_remove_item      (GdlDockBar      *dockbar,
+                                           GdlDockItem     *item);
 
 /* ----- Class variables and definitions ----- */
 
@@ -177,12 +179,26 @@ gdl_dock_bar_set_property (GObject         *object,
 }
 
 static void
+on_dock_item_foreach_disconnect (GdlDockItem *item, GdlDockBar *dock_bar)
+{
+    g_signal_handlers_disconnect_by_func (item, gdl_dock_bar_remove_item,
+                                          dock_bar);
+}
+
+static void
 gdl_dock_bar_destroy (GtkObject *object)
 {
     GdlDockBar *dockbar = GDL_DOCK_BAR (object);
 
     if (dockbar->_priv) {
         GdlDockBarPrivate *priv = dockbar->_priv;
+
+        if (priv->items) {
+            g_slist_foreach (priv->items,
+                             (GFunc) on_dock_item_foreach_disconnect,
+                             object);
+            g_slist_free (priv->items);
+        }
         
         if (priv->master) {
             g_signal_handlers_disconnect_matched (priv->master,
@@ -228,6 +244,9 @@ gdl_dock_bar_remove_item (GdlDockBar  *dockbar,
     g_assert (button != NULL);
     gtk_container_remove (GTK_CONTAINER (dockbar), button);
     g_object_set_data (G_OBJECT (item), "GdlDockBarButton", NULL);
+    g_signal_handlers_disconnect_by_func (item,
+                                          G_CALLBACK (gdl_dock_bar_remove_item),
+                                          dockbar);
 }
 
 static void
@@ -320,6 +339,11 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
                       G_CALLBACK (gdl_dock_bar_item_clicked), item);
 
     gtk_widget_show_all (button);
+    
+    /* Set up destroy notify */
+    g_signal_connect_swapped (item, "destroy",
+                              G_CALLBACK (gdl_dock_bar_remove_item),
+                              dockbar);
 }
 
 static void

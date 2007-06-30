@@ -1,3 +1,11 @@
+2007-06-30  Naba Kumar  <naba.kumar@gnome.org>
+
+	* gdl/gdl-dock-bar.c: (on_dock_item_foreach_disconnect),
+	(gdl_dock_bar_destroy), (gdl_dock_bar_remove_item),
+	(gdl_dock_bar_add_item): Removed minimized buttons from dockbar when
+	corresponding dockitem is destroyed. Fixes bug #317004 - Crash when
+	maximizaing widget that has been already removed
+
 2007-06-22  Naba Kumar  <naba.kumar@gnome.org>
 
 	* NEWS: Updated
