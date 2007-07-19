@@ -1,3 +1,8 @@
+2007-07-19  Johannes Schmid <jhs@gnome.org>
+
+	* gdl/gdl-switcher.c: (layout_buttons):
+	Fixed crasher in button layout
+
 2007-06-30  Naba Kumar  <naba.kumar@gnome.org>
 
 	* gdl/gdl-dock-bar.c: (on_dock_item_foreach_disconnect),

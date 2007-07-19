@@ -285,6 +285,8 @@ layout_buttons (GdlSwitcher *switcher)
     }
 
     rows_count = num_btns / btns_per_row;
+    if (num_btns % btns_per_row != 0)
+	rows_count++;
     
     /* Assign buttons to rows */
     rows = g_new0 (GSList *, rows_count);
