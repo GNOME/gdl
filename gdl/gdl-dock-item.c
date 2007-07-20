@@ -438,7 +438,6 @@ gdl_dock_item_set_property  (GObject      *g_object,
         case PROP_LOCKED:
         {
             GdlDockItemBehavior old_beh = item->behavior;
-            g_message("GDL is locked %d", g_value_get_boolean(value)); 
 
             if (g_value_get_boolean (value))
                 item->behavior |= GDL_DOCK_ITEM_BEH_LOCKED;
