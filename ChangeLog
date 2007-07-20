@@ -1,3 +1,10 @@
+2007-07-21  Johannes Schmid <jhs@gnome.org>
+
+	* configure.in:
+	Removed GTK_DISABLE_DEPRECATED from CFLAGS because it will break
+	with Gtk+ >= 2.10. There is a patch to move to the new tooltips
+	API attached to bug #457562
+
 2007-07-19  Johannes Schmid <jhs@gnome.org>
 
 	* gdl/gdl-switcher.c: (layout_buttons):
