@@ -1,3 +1,5 @@
+=== gdl 0.7.7 ===
+
 2007-08-14  Naba Kumar  <naba@gnome.org>
 
 	* configure.in: Bumped version to 0.7.7
@@ -26,6 +28,8 @@
 	(gdl_dock_bar_add_item): Removed minimized buttons from dockbar when
 	corresponding dockitem is destroyed. Fixes bug #317004 - Crash when
 	maximizaing widget that has been already removed
+
+=== gdl 0.7.6 ===
 
 2007-06-22  Naba Kumar  <naba.kumar@gnome.org>
 
