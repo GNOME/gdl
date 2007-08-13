@@ -1,3 +1,11 @@
+Changes in 0.7.7
+
+* Fixes Bug #407393 – (void)0 will cause build fail on Sun cc.
+* Fixes build for Gtk+ >= 2.10
+* Fixed crasher in button layout
+* Fixes bug #317004 - Crash when maximizaing widget that has been
+  already removed
+
 Changes in 0.7.6
 
 * SUN build fixes

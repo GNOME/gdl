@@ -1,5 +1,8 @@
 2007-08-14  Naba Kumar  <naba@gnome.org>
 
+	* configure.in: Bumped version to 0.7.7
+	* NEWS: Updated.
+
 	Patch from Halton Huo:
 	* gdl/gdl-tools.h: Fixes Bug #407393 – (void)0 will cause build fail on
 	Sun cc.
