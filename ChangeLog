@@ -1,3 +1,9 @@
+2007-08-14  Naba Kumar  <naba@gnome.org>
+
+	Patch from Halton Huo:
+	* gdl/gdl-tools.h: Fixes Bug #407393 – (void)0 will cause build fail on
+	Sun cc.
+
 2007-07-21  Johannes Schmid <jhs@gnome.org>
 
 	* configure.in:
