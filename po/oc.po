@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gdl 0.3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-02-01 20:40+0100\n"
-"PO-Revision-Date: 2007-08-07 14:02+0200\n"
+"PO-Revision-Date: 2007-08-19 18:38+0200\n"
 "Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: gdl/gdl-dock-item.c:282 gdl/gdl-dock-master.c:143
 msgid "Locked"
-msgstr ""
+msgstr "Varrolhat"
 
 #: gdl/gdl-dock-item.c:283
 msgid ""
@@ -374,7 +374,7 @@ msgstr ""
 
 #: gdl/gdl-recent.c:136
 msgid "GConf key"
-msgstr ""
+msgstr "Clau GConf"
 
 #: gdl/gdl-recent.c:137
 msgid "The gconf key for storing the recent entries."
@@ -615,7 +615,7 @@ msgstr "_Fichièr"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:9
 msgid "_Open Project"
-msgstr ""
+msgstr "_Dobrir un projècte"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:10
 msgid "_Save Project"
@@ -635,7 +635,7 @@ msgstr ""
 
 #: symbol-browser-control/test-symbol-browser.c:172
 msgid "Save file..."
-msgstr ""
+msgstr "Enregistrar lo fichièr..."
 
 #: symbol-browser-control/test-symbol-browser.c:292
 msgid "Can't initialize bonobo!"
