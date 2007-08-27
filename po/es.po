@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-05 03:15+0100\n"
-"PO-Revision-Date: 2007-06-15 16:20+0200\n"
+"POT-Creation-Date: 2007-06-16 03:15+0100\n"
+"PO-Revision-Date: 2007-08-27 14:35+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Redimensionable"
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr ""
 "Si esta activado, el elemento empotrable puede ser redimensionado cuando "
-"seempotra en un panel"
+"se empotra en un panel"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -207,7 +207,7 @@ msgstr ""
 msgid "Layout managment"
 msgstr "Administración de la colocación"
 
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:183
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "Título predeterminado"
 
@@ -224,11 +224,11 @@ msgstr ""
 "principalson bloqueados; si es 0 todos son desbloqueados, -1 indica una "
 "inconsistencia entre los elementos."
 
-#: ../gdl/gdl-dock-master.c:154
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
 msgid "Switcher Style"
 msgstr "Estilo del selector"
 
-#: ../gdl/gdl-dock-master.c:155
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
 msgid "Switcher buttons style"
 msgstr "Estilo de los botones del selector"
 
@@ -333,7 +333,7 @@ msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-"Define si el contenedor se pegará a su anfitrión o subirá por lajerarquía "
+"Define si el contenedor se pegará a su anfitrión o subirá por la jerarquía "
 "cuando el anfitrión sea re-empotrado"
 
 #: ../gdl/gdl-dock-placeholder.c:151
@@ -356,7 +356,7 @@ msgstr ""
 "La posición en la cual un elemento será empotrado a nuestro anfitrión si se "
 "hace una petición para empotrar."
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:190
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "Anchura"
 
@@ -364,7 +364,7 @@ msgstr "Anchura"
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Anchura para el widget cuando está adjuntado al lugar reservado"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:198
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "Altura"
 
@@ -379,7 +379,7 @@ msgstr "Nivel superior flotante"
 #: ../gdl/gdl-dock-placeholder.c:185
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr ""
-"Insica si el lugar reservado está esperando para un empotrable flotante de "
+"Indica si el lugar reservado está esperando para un empotrable flotante de "
 "nivel superior"
 
 #: ../gdl/gdl-dock-placeholder.c:191
@@ -418,7 +418,7 @@ msgstr ""
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "Elemento fijo que «posee» esta tablabel"
+msgstr "Elemento fijo que «posee» esta etiqueta de solapa"
 
 #: ../gdl/gdl-dock-bar.c:107
 msgid "GdlDockMaster object which the dockbar widget is attached to"
@@ -434,43 +434,43 @@ msgstr "Estilo de la barra de empotrado"
 msgid "Dockbar style to show items on it"
 msgstr "Estilo de la barra de empotrado para mostrar elementos en ella"
 
-#: ../gdl/gdl-dock.c:175
+#: ../gdl/gdl-dock.c:178
 msgid "Floating"
 msgstr "Flotante"
 
-#: ../gdl/gdl-dock.c:176
+#: ../gdl/gdl-dock.c:179
 msgid "Whether the dock is floating in its own window"
 msgstr "Define si el empotrable es flotante en su propia ventana"
 
-#: ../gdl/gdl-dock.c:184
+#: ../gdl/gdl-dock.c:187
 msgid "Default title for the newly created floating docks"
 msgstr "Título predeterminado para los nuevos empotrables creados recientemente"
 
-#: ../gdl/gdl-dock.c:191
+#: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
 msgstr "Anchura para el empotrable cuando es del tipo flotante"
 
-#: ../gdl/gdl-dock.c:199
+#: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
 msgstr "Altura del empotrable cuando es del tipo flotante"
 
-#: ../gdl/gdl-dock.c:206
+#: ../gdl/gdl-dock.c:209
 msgid "Float X"
 msgstr "X Flotante"
 
-#: ../gdl/gdl-dock.c:207
+#: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
 msgstr "Coordenada X para un empotrable flotante"
 
-#: ../gdl/gdl-dock.c:214
+#: ../gdl/gdl-dock.c:217
 msgid "Float Y"
 msgstr "Y Flotante"
 
-#: ../gdl/gdl-dock.c:215
+#: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
 msgstr "Coordenada Y para un empotrable flotante"
 
-#: ../gdl/gdl-dock.c:496
+#: ../gdl/gdl-dock.c:499
 #, c-format
 msgid "Dock #%d"
 msgstr "Empotrable #%d"
