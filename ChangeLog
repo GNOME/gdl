@@ -1,3 +1,13 @@
+2007-09-24  Johannes Schmid <jhs@gnome.org>
+
+	* gdl/gdl-icons.c:
+	Do not ref/unref icon theme as GTK+ docs stricly say you should not do that!
+	
+	* configure.in:
+	Disable deprecated flags completely until #457562 is fixed
+
+	* MAINTAINERS: stick to GNOME convention to allow commit
+
 === gdl 0.7.7 ===
 
 2007-08-14  Naba Kumar  <naba@gnome.org>

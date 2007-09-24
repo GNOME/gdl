@@ -107,7 +107,8 @@ gdl_icons_dispose (GObject *object)
 	GdlIconsPrivate *priv = GDL_ICONS_GET_PRIVATE (object);
 
 	if (priv->icon_theme) {
-		g_object_unref (priv->icon_theme);
+		/* Don't do that - look a GTK+ docs */
+		/* g_object_unref (priv->icon_theme); */
 		priv->icon_theme = NULL;
 	}
 	
@@ -145,7 +146,8 @@ gdl_icons_instance_init (GdlIcons *icons)
 
 	priv->icon_theme = gtk_icon_theme_get_default ();
 	/* gtk_icon_theme_get_default() does not ref the returned object */
-	g_object_ref (priv->icon_theme);
+	/* but API docs state the you should NOT ref it */
+	/* g_object_ref (priv->icon_theme);*/
 	g_signal_connect_object (G_OBJECT (priv->icon_theme), "changed",
 				 G_CALLBACK (theme_changed_cb), icons, 0);
 	priv->icons = g_hash_table_new_full (g_str_hash, g_str_equal,
