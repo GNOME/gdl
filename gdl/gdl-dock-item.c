@@ -751,7 +751,7 @@ gdl_dock_item_map (GtkWidget *widget)
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
     GTK_WIDGET_SET_FLAGS (widget, GTK_MAPPED);
-    
+
     item = GDL_DOCK_ITEM (widget);
 
     gdk_window_show (widget->window);
@@ -765,8 +765,6 @@ gdl_dock_item_map (GtkWidget *widget)
         && GTK_WIDGET_VISIBLE (item->_priv->grip)
         && !GTK_WIDGET_MAPPED (item->_priv->grip))
         gtk_widget_map (item->_priv->grip);
-    
-    GTK_WIDGET_CLASS (parent_class)->map (widget);
 }
 
 static void
@@ -777,7 +775,7 @@ gdl_dock_item_unmap (GtkWidget *widget)
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
-    //GTK_WIDGET_UNSET_FLAGS (widget, GTK_MAPPED);
+    GTK_WIDGET_UNSET_FLAGS (widget, GTK_MAPPED);
     
     item = GDL_DOCK_ITEM (widget);
 
@@ -785,8 +783,6 @@ gdl_dock_item_unmap (GtkWidget *widget)
 
     if (item->_priv->grip)
         gtk_widget_unmap (item->_priv->grip);
-    
-    GTK_WIDGET_CLASS (parent_class)->unmap (widget);
 }
 
 static void
