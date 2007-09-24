@@ -750,7 +750,7 @@ gdl_dock_item_map (GtkWidget *widget)
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
-    //GTK_WIDGET_SET_FLAGS (widget, GTK_MAPPED);
+    GTK_WIDGET_SET_FLAGS (widget, GTK_MAPPED);
     
     item = GDL_DOCK_ITEM (widget);
 
