@@ -767,7 +767,7 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
     gtk_container_add (GTK_CONTAINER (button_widget), hbox);
     gtk_widget_show (hbox);
 
-    icon_widget = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+    icon_widget = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_MENU);
     gtk_widget_show (icon_widget);
     
     if (!label) {

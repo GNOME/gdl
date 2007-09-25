@@ -1,3 +1,8 @@
+2007-09-25  Johannes Schmid <jhs@gnome.org>
+
+	* gdl/gdl-switcher.c:
+	Use smaller icons to not waste too much screen space
+
 2007-09-24  Johannes Schmid <jhs@gnome.org>
 
 	* gdl/gdl-icons.c:
