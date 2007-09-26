@@ -1,3 +1,9 @@
+2007-09-26  Johannes Schmid <jhs@gnome.org>
+
+	* autogen.sh:
+	Fixed #468645 and #452331 by using gnome-autogen.sh instead
+	of a buggy custom implementation
+
 2007-09-25  Johannes Schmid <jhs@gnome.org>
 
 	* gdl/gdl-switcher.c:
