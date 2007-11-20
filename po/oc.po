@@ -1,20 +1,23 @@
+# translation of oc.po to Occitan
 # Occitan translation of gdl.
-# Copyright (C) 2002-2003 Free Software Foundation, Inc.
+# Copyright (C) 2002-2003, 2007 Free Software Foundation, Inc.
 #
 # Yannig MARCHEGAY (yannig@marchegay.org) - 2006-2007
 #
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl 0.3.0\n"
+"Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-02-01 20:40+0100\n"
-"PO-Revision-Date: 2007-08-19 18:38+0200\n"
-"Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org>\n"
-"Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"PO-Revision-Date: 2007-11-20 14:30+0100\n"
+"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
+"Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);"
+"Plural-Forms: nplurals=2; plural=(n > 1);X-Generator: KBabel 1.11.4\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: gdl/gdl-data-view.c:421
 msgid "Expander Size"
@@ -42,7 +45,7 @@ msgstr ""
 
 #: gdl/gdl-dock-item.c:258
 msgid "Resizable"
-msgstr ""
+msgstr "Visible"
 
 #: gdl/gdl-dock-item.c:259
 msgid "If set, the dock item can be resized when docked in a paned"
@@ -71,8 +74,7 @@ msgid "Locked"
 msgstr "Varrolhat"
 
 #: gdl/gdl-dock-item.c:283
-msgid ""
-"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 
 #: gdl/gdl-dock-item.c:291
@@ -127,7 +129,7 @@ msgstr ""
 
 #: gdl/gdl-dock-layout.c:125
 msgid "Master"
-msgstr ""
+msgstr "Mètre"
 
 #: gdl/gdl-dock-layout.c:126
 msgid "GdlDockMaster object which the layout object is attached to"
@@ -143,7 +145,7 @@ msgstr ""
 
 #: gdl/gdl-dock-layout.c:447
 msgid "You must provide a name for the layout"
-msgstr ""
+msgstr "Vous devez fournir un nom pour cet agencement"
 
 #. FIXME: pop up an error dialog
 #: gdl/gdl-dock-layout.c:625
@@ -169,7 +171,7 @@ msgstr ""
 
 #: gdl/gdl-dock-layout.c:782 gdl/layout.glade.h:4
 msgid "Saved layouts"
-msgstr ""
+msgstr "Enregistrar lo document"
 
 #: gdl/gdl-dock-layout.c:824
 #, c-format
@@ -259,8 +261,7 @@ msgstr ""
 
 #: gdl/gdl-dock-object.c:583
 #, c-format
-msgid ""
-"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 
 #: gdl/gdl-dock-paned.c:134
@@ -427,7 +428,7 @@ msgstr ""
 
 #: gdl/layout.glade.h:5
 msgid "_Load"
-msgstr "_Cargar"
+msgstr "_Carga"
 
 #: gdl/layout.glade.h:6
 msgid "_Lock dock items"
@@ -471,7 +472,7 @@ msgstr ""
 
 #: symbol-browser-control/gnome-symbol-browser.xml.h:6
 msgid "_View"
-msgstr "_Mostrar"
+msgstr "_Visualizacion"
 
 #: symbol-browser-control/symbol-browser.c:63
 msgid "Unknown"
@@ -500,7 +501,7 @@ msgstr "Camps"
 #. ! tm_tag_field_t = 8, < Field (Java only)
 #: symbol-browser-control/symbol-browser.c:68
 msgid "Functions"
-msgstr "Foncions"
+msgstr "Foncion"
 
 #. ! tm_tag_function_t = 16, < Function definition
 #: symbol-browser-control/symbol-browser.c:69
@@ -591,7 +592,7 @@ msgstr "Dobrir un projècte"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:3
 msgid "Save Project"
-msgstr ""
+msgstr "Enregistrer le projet"
 
 #: symbol-browser-control/test-symbol-browser-ui.xml.h:4
 msgid "Set Current File"
@@ -641,30 +642,3 @@ msgstr "Enregistrar lo fichièr..."
 msgid "Can't initialize bonobo!"
 msgstr ""
 
-#~ msgid "Dock"
-#~ msgstr "Attacher"
-
-#~ msgid "Undock"
-#~ msgstr "Détacher"
-
-#~ msgid ""
-#~ "A file named ''%s'' already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "Un fichier nommé « %s » existe déjà.\n"
-#~ "Voulez vous le remplacer par celui que vous êtes en train d'enregistrer ?"
-
-#~ msgid "Do_n't replace"
-#~ msgstr "_Ne pas replacer"
-
-#~ msgid "_Replace"
-#~ msgstr "_Replacer"
-
-#~ msgid "Select a file to open"
-#~ msgstr "Sélectionner un fichier à ouvrir"
-
-#~ msgid "Select files to open"
-#~ msgstr "Sélectionner des fichiers à ouvrir"
-
-#~ msgid "Select a filename to save"
-#~ msgstr "Sélectionner un nom de fichier à enregister"
