@@ -74,7 +74,6 @@ typedef struct _GdlDockLayoutUIData GdlDockLayoutUIData;
 
 struct _GdlDockLayoutUIData {
     GdlDockLayout    *layout;
-    
     GtkWidget        *locked_check;
     GtkTreeSelection *selection;
 };

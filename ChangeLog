@@ -1,3 +1,12 @@
+2007-12-16  Johannes Schmid <jhs@gnome.org>
+
+	* gdl/gdl-dock-item.c: (gdl_dock_item_dock):
+	* gdl/gdl-dock-layout.c:
+	* gdl/gdl-dock-object.c: (gdl_dock_object_real_reduce),
+	(gdl_dock_object_detach):
+	
+	Backported several small improvements from Monodevelop
+
 2007-09-26  Johannes Schmid <jhs@gnome.org>
 
 	Patch by <genbell@tiscali.it>:
