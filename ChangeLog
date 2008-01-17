@@ -1,3 +1,8 @@
+2008-01-18  Naba Kumar  <naba@gnome.org>
+
+	* gdl/gdl-dock-placeholder.c: (gdl_dock_placeholder_class_init):
+	Fixes bug #509950 - L10N: typos in some messages (fow -> for)
+
 2007-12-16  Johannes Schmid <jhs@gnome.org>
 
 	* gdl/gdl-dock-item.c: (gdl_dock_item_dock):
