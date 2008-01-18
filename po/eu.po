@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-16 18:58+0100\n"
-"PO-Revision-Date: 2008-01-16 18:58+0100\n"
+"POT-Creation-Date: 2008-01-18 18:00+0100\n"
+"PO-Revision-Date: 2008-01-18 18:02+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -385,19 +385,19 @@ msgstr "Goi-mailako atrakagarri mugikorrean egongo den leku-marka ala ez"
 
 #: ../gdl/gdl-dock-placeholder.c:191
 msgid "X-Coordinate"
-msgstr "X-koordenatua"
+msgstr "X koordenatua"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate fow dock when floating"
-msgstr "Atrakagarriaren X-koordenatua mugikorra denean"
+msgid "X-Coordinate for dock when floating"
+msgstr "Atrakagarri mugikorraren X koordenatua"
 
 #: ../gdl/gdl-dock-placeholder.c:198
 msgid "Y-Coordinate"
-msgstr "Y-koordenatua"
+msgstr "Y koordenatua"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate fow dock when floating"
-msgstr "Atrakagarriaren X-koordenatua mugikorra denean"
+msgid "Y-Coordinate for dock when floating"
+msgstr "Atrakagarri mugikorraren Y koordenatua"
 
 #: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
