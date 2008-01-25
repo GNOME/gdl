@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 13:44+0200\n"
+"POT-Creation-Date: 2008-01-25 16:16+0200\n"
 "PO-Revision-Date: 2008-01-25 16:45+0400\n"
 "Last-Translator: Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <linux@linux.org.ua>\n"
@@ -72,7 +72,8 @@ msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
-"Загальна поведінка dock-елемента (наприклад, чи може він бути плаваючим, або заблокованим, тощо.)"
+"Загальна поведінка dock-елемента (наприклад, чи може він бути плаваючим, або "
+"заблокованим, тощо.)"
 
 #: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
@@ -82,7 +83,8 @@ msgstr "Заблокований"
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
-"Якщо встановлено, елемент не може бути перетягнений навколо та не відображає елемент"
+"Якщо встановлено, елемент не може бути перетягнений навколо та не відображає "
+"елемент"
 
 #: ../gdl/gdl-dock-item.c:285
 msgid "Preferred width"
@@ -106,8 +108,8 @@ msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
-"Ви не можете додати dock об'єкт (%p типу %s) до %s. Використовуйте GdlDock або "
-"деякий інший складений dock-об'єкт."
+"Ви не можете додати dock об'єкт (%p типу %s) до %s. Використовуйте GdlDock "
+"або деякий інший складений dock-об'єкт."
 
 #: ../gdl/gdl-dock-item.c:550
 #, c-format
@@ -115,8 +117,8 @@ msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"Спроба додати віджет з типом %s до a %s, але він може містити лише один віджет "
-"одночасно; він вже містить віджет типу %s"
+"Спроба додати віджет з типом %s до a %s, але він може містити лише один "
+"віджет одночасно; він вже містить віджет типу %s"
 
 #: ../gdl/gdl-dock-item.c:1235 ../gdl/gdl-dock-item.c:1285
 #, c-format
@@ -149,7 +151,8 @@ msgstr "Головний"
 
 #: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "Об'єкт GdlDockMaster до якого прив'язаний об'єкт визначення розташування"
+msgstr ""
+"Об'єкт GdlDockMaster до якого прив'язаний об'єкт визначення розташування"
 
 #: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
@@ -157,7 +160,9 @@ msgstr "Змінено"
 
 #: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr "Значення Істина, якщо розташування було змінено та треба зберегти його у файл."
+msgstr ""
+"Значення Істина, якщо розташування було змінено та треба зберегти його у "
+"файл."
 
 #. FIXME: pop up an error dialog
 #: ../gdl/gdl-dock-layout.c:563
@@ -191,8 +196,8 @@ msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
-"При завантаженні розташування: невідомо як створювати dock-об'єкт, чий псевдонім - '%"
-"s'"
+"При завантаженні розташування: невідомо як створювати dock-об'єкт, чий "
+"псевдонім - '%s'"
 
 #: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
@@ -211,8 +216,9 @@ msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"Якщо встановлення у 1, блокуються усі dock-елементи, що прив'язані до головного; якщо дорівнює "
-"0 - всі розблоковані; -1 означає неузгодженість елементів"
+"Якщо встановлення у 1, блокуються усі dock-елементи, що прив'язані до "
+"головного; якщо дорівнює 0 - всі розблоковані; -1 означає неузгодженість "
+"елементів"
 
 #: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:706
 msgid "Switcher Style"
@@ -228,7 +234,8 @@ msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
-"головний %p: не вдається додати об'єкт %p[%s] до хешу.  Вже є елемент з такою назвою (%p)."
+"головний %p: не вдається додати об'єкт %p[%s] до хешу.  Вже є елемент з "
+"такою назвою (%p)."
 
 #: ../gdl/gdl-dock-master.c:934
 #, c-format
@@ -236,7 +243,8 @@ msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
-"Новий керуючий dock-елемент %p є автоматичним.  Лише ручні dock-об'єкти можуть бути іменованими керуючими елементами."
+"Новий керуючий dock-елемент %p є автоматичним.  Лише ручні dock-об'єкти "
+"можуть бути іменованими керуючими елементами."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -289,19 +297,22 @@ msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
-"Спроба виконати dock-операцію для не відповідного об'єкту %p. Програма може завершитися аварійно"
+"Спроба виконати dock-операцію для не відповідного об'єкту %p. Програма може "
+"завершитися аварійно"
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "Не вдається додати dock %p до %p, вони належать до різних головних об'єктів"
+msgstr ""
+"Не вдається додати dock %p до %p, вони належать до різних головних об'єктів"
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
-"Спроба прив'язати %p до вже прив'язаного dock-об'єкту %p (поточний головний: %p)"
+"Спроба прив'язати %p до вже прив'язаного dock-об'єкту %p (поточний головний: "
+"%p)"
 
 #: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
@@ -320,8 +331,8 @@ msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-"Чи поле прилипає до свого головного елементу, або ж переміщується у ієрархії, коли "
-"вузол повторно додається до dock-області"
+"Чи поле прилипає до свого головного елементу, або ж переміщується у "
+"ієрархії, коли вузол повторно додається до dock-області"
 
 #: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
@@ -339,7 +350,9 @@ msgstr "Наступне розміщення"
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
-msgstr "Позиція елементу, який додається до dock-області вузла, якщо зроблено запит на приєднання до нього"
+msgstr ""
+"Позиція елементу, який додається до dock-області вузла, якщо зроблено запит "
+"на приєднання до нього"
 
 #: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
@@ -396,7 +409,8 @@ msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr ""
-"Трапилось щось дивне при розміщенні дочірнього елементу для %p у батьківському %p"
+"Трапилось щось дивне при розміщенні дочірнього елементу для %p у "
+"батьківському %p"
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
@@ -443,7 +457,7 @@ msgid "X coordinate for a floating dock"
 msgstr "Координата X для плаваючої області"
 
 #: ../gdl/gdl-dock.c:217
-msgid "Float "
+msgid "Float Y"
 msgstr "Плаваюча координата Y"
 
 #: ../gdl/gdl-dock.c:218
@@ -470,5 +484,3 @@ msgstr "_Завантажити"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Блокувати dock-елементи"
-
-
