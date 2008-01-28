@@ -1150,7 +1150,8 @@ gdl_dock_item_dock (GdlDockObject    *object,
                     GdlDockPlacement  position,
                     GValue           *other_data)
 {
-    GdlDockObject *new_parent, *parent, *requestor_parent;
+    GdlDockObject *new_parent = NULL;
+    GdlDockObject *parent, *requestor_parent;
     gboolean       add_ourselves_first = FALSE;
 
     guint	   available_space=0;

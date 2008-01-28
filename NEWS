@@ -1,3 +1,14 @@
+Changes in 0.7.8
+
+* Disable deprecated flags completely until #457562 is fixed
+* Do not ref/unref icon theme.
+* Use smaller icons to not waste too much screen space
+* Fixed #468645 and #452331 by using gnome-autogen.sh
+* Fix #462537 – GdlDockItemGrip notification callback
+* Backported several small improvements from Monodevelop
+* Fixes bug #509950 - L10N: typos in some messages (fow -> for)
+* Translation updates: es, vi, ar, sl, bg, ko, nb, oc, ar, eu, sv, uk
+
 Changes in 0.7.7
 
 * Fixes Bug #407393 – (void)0 will cause build fail on Sun cc.
