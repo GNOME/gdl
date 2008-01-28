@@ -7,6 +7,7 @@ Changes in 0.7.8
 * Fix #462537 – GdlDockItemGrip notification callback
 * Backported several small improvements from Monodevelop
 * Fixes bug #509950 - L10N: typos in some messages (fow -> for)
+* Silenced some compiler warnings.
 * Translation updates: es, vi, ar, sl, bg, ko, nb, oc, ar, eu, sv, uk
 
 Changes in 0.7.7
