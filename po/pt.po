@@ -1,76 +1,76 @@
 # gdl's Portuguese Translation
-# Copyright © 2002, 2003, 2004 gdl.
+# Copyright © 2002, 2003, 2004, 2008 gdl.
 # This file is distributed under the same license as the gdl package.
 # Paulo Silva <paulojjs@yahoo.com>, 2002
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2003, 2004.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2003, 2004, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.8\n"
+"Project-Id-Version: 2.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-19 22:55+0100\n"
-"PO-Revision-Date: 2004-08-19 23:15+0000\n"
+"POT-Creation-Date: 2008-02-01 23:14+0000\n"
+"PO-Revision-Date: 2008-02-01 23:30+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdl/gdl-data-view.c:418
+#: ../gdl/gdl-data-view.c:418
 msgid "Expander Size"
 msgstr "Tamanho do Expansor"
 
-#: gdl/gdl-data-view.c:419
+#: ../gdl/gdl-data-view.c:419
 msgid "Size of the expander arrow."
 msgstr "Tamanho da seta do expansor."
 
-#: gdl/gdl-dock-item-grip.c:364
+#: ../gdl/gdl-dock-item-grip.c:373
 msgid "Iconify"
 msgstr "Reduzir a ícone"
 
-#: gdl/gdl-dock-item-grip.c:364
+#: ../gdl/gdl-dock-item-grip.c:373
 msgid "Iconify this dock"
 msgstr "Reduzir a ícone este anexável"
 
-#: gdl/gdl-dock-item-grip.c:366
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Close"
 msgstr "Fechar"
 
-#: gdl/gdl-dock-item-grip.c:366
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Close this dock"
 msgstr "Fechar este anexável"
 
-#: gdl/gdl-dock-item-grip.c:675 gdl/gdl-dock-tablabel.c:129
+#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Item anexável controlador"
 
-#: gdl/gdl-dock-item-grip.c:676
+#: ../gdl/gdl-dock-item-grip.c:685
 msgid "Dockitem which 'owns' this grip"
 msgstr "Item anexável que 'detém' este manípulo"
 
-#: gdl/gdl-dock-item.c:242
+#: ../gdl/gdl-dock-item.c:243
 msgid "Orientation"
 msgstr "Orientação"
 
-#: gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:244
 msgid "Orientation of the docking item"
 msgstr "Orientação do item anexável"
 
-#: gdl/gdl-dock-item.c:258
+#: ../gdl/gdl-dock-item.c:259
 msgid "Resizable"
 msgstr "Redimensionável"
 
-#: gdl/gdl-dock-item.c:259
+#: ../gdl/gdl-dock-item.c:260
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr ""
 "Se definido, o item anexável pode ser redimensionado quando anexado a um "
 "painel"
 
-#: gdl/gdl-dock-item.c:266
+#: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
 msgstr "Comportamento do item"
 
-#: gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:268
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -78,33 +78,34 @@ msgstr ""
 "Comportamento geral do item anexável (por ex. se pode flutuar, se está "
 "trancado, etc.)"
 
-#: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "Trancado"
 
-#: gdl/gdl-dock-item.c:276
+#: ../gdl/gdl-dock-item.c:277
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
-"Se definido, o item anexável não pode ser arrastado e não apresenta um manípulo"
+"Se definido, o item anexável não pode ser arrastado e não apresenta um "
+"manípulo"
 
-#: gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:285
 msgid "Preferred width"
 msgstr "Largura preferida"
 
-#: gdl/gdl-dock-item.c:285
+#: ../gdl/gdl-dock-item.c:286
 msgid "Preferred width for the dock item"
 msgstr "Largura preferida para o item anexável"
 
-#: gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:292
 msgid "Preferred height"
 msgstr "Altura preferida"
 
-#: gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:293
 msgid "Preferred height for the dock item"
 msgstr "Altura preferida para o item anexável"
 
-#: gdl/gdl-dock-item.c:542
+#: ../gdl/gdl-dock-item.c:543
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -113,173 +114,187 @@ msgstr ""
 "Não pode adicionar um objecto anexável (%p do tipo %s) dentro de um %s. "
 "Utilize um GdlDock ou outro objecto anexável composto."
 
-#: gdl/gdl-dock-item.c:549
+#: ../gdl/gdl-dock-item.c:550
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"A tentar adicionar um widget com o tipo %s a %s, mas apenas pode conter um "
-"widget de cada vez; já contém um widget do tipo %s"
+"A tentar adicionar um widget com o tipo %s a um %s, mas este apenas pode "
+"conter um widget de cada vez; já contém um widget do tipo %s"
 
-#: gdl/gdl-dock-item.c:1176
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "Estratégia de anexação %s não suportada pelo objecto anexável do tipo %s"
 
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1390
+msgid "UnLock"
+msgstr "Destrancar"
+
 #. Hide menuitem.
-#: gdl/gdl-dock-item.c:1258
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Esconder"
 
 #. Lock menuitem
-#: gdl/gdl-dock-item.c:1264
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Trancar"
 
-#: gdl/gdl-dock-item.c:1448
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
-msgstr "A tentar associar um item desassociado %p"
+msgstr "Tentativa de associar um item desassociado %p"
 
-#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
 msgid "Master"
 msgstr "Mestre"
 
-#: gdl/gdl-dock-layout.c:126
+#: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Objecto GdlDockMaster a que o objecto de disposição está anexado"
 
-#: gdl/gdl-dock-layout.c:133
+#: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
 msgstr "Alterado"
 
-#: gdl/gdl-dock-layout.c:134
+#: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
-"Verdadeiro se as disposições foram alteradas e têm de ser gravadas para ficheiro"
+"Verdadeiro se as disposições foram alteradas e têm de ser gravadas para um "
+"ficheiro"
 
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:564
+#: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Incapaz de ler o ficheiro de disposição de utilizador '%s'"
 
-#: gdl/gdl-dock-layout.c:619
+#: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
 msgstr "Visível"
 
-#: gdl/gdl-dock-layout.c:626
+#: ../gdl/gdl-dock-layout.c:625
 msgid "Item"
 msgstr "Item"
 
-#: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Nome"
 
-#: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Itens anexáveis"
 
-#: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Disposições gravadas"
 
-#: gdl/gdl-dock-layout.c:790
+#: ../gdl/gdl-dock-layout.c:789
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
-"Ao ler a disposição: desconhece-se como criar um objecto anexável cuja alcunha "
-"é '%s'"
+"Ao ler a disposição: desconhece-se como criar um objecto anexável cuja "
+"alcunha é '%s'"
 
-#: gdl/gdl-dock-layout.c:1269
+#: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
 msgstr "Gestão de disposições"
 
-#: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "Título por omissão"
 
-#: gdl/gdl-dock-master.c:135
+#: ../gdl/gdl-dock-master.c:139
 msgid "Default title for newly created floating docks"
 msgstr "Título por omissão para novos anexáveis flutuantes"
 
-#: gdl/gdl-dock-master.c:142
+#: ../gdl/gdl-dock-master.c:146
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
 "Se definido como 1, todos os itens anexáveis ligados ao mestre estão "
-"trancados; se 0, estão todos destrancados; -1 indica inconsistência "
-"entre itens"
+"trancados; se 0, estão todos destrancados; -1 indica inconsistência entre "
+"itens"
 
-#: gdl/gdl-dock-master.c:730
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+msgid "Switcher Style"
+msgstr "Estilo do Alternador"
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+msgid "Switcher buttons style"
+msgstr "Estilo dos botões de alternar"
+
+#: ../gdl/gdl-dock-master.c:761
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
-"mestre %p: incapaz de adicionar o objecto %p[%s] à pilha.  Já existe um item "
+"mestre %p: incapaz de adicionar o objecto %p[%s] à pilha. Já existe um item "
 "com esse nome (%p)."
 
-#: gdl/gdl-dock-master.c:895
+#: ../gdl/gdl-dock-master.c:934
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
-"O novo controlador de anexáveis %p é automático.  Apenas objectos anexáveis "
+"O novo controlador de anexáveis %p é automático. Apenas objectos anexáveis "
 "manuais deverão ser denominados controladores."
 
-#: gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
 msgstr "Página"
 
-#: gdl/gdl-dock-notebook.c:136
+#: ../gdl/gdl-dock-notebook.c:135
 msgid "The index of the current page"
 msgstr "O índice da página actual"
 
-#: gdl/gdl-dock-object.c:121
+#: ../gdl/gdl-dock-object.c:120
 msgid "Unique name for identifying the dock object"
 msgstr "Nome único para identificar o objecto anexável"
 
-#: gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:127
 msgid "Long name"
 msgstr "Nome extenso"
 
-#: gdl/gdl-dock-object.c:129
+#: ../gdl/gdl-dock-object.c:128
 msgid "Human readable name for the dock object"
 msgstr "Nome humanamente legível do objecto anexável"
 
-#: gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:134
 msgid "Stock Icon"
 msgstr "Ícone Base"
 
-#: gdl/gdl-dock-object.c:136
+#: ../gdl/gdl-dock-object.c:135
 msgid "Stock icon for the dock object"
 msgstr "Ícone base do objecto anexável"
 
-#: gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:141
 msgid "Dock master"
 msgstr "Mestre de anexáveis"
 
-#: gdl/gdl-dock-object.c:143
+#: ../gdl/gdl-dock-object.c:142
 msgid "Dock master this dock object is bound to"
 msgstr "Mestre de anexáveis a que este objecto está associado"
 
-#: gdl/gdl-dock-object.c:421
+#: ../gdl/gdl-dock-object.c:444
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Chamada a gdl_dock_object_dock no objecto anexável %p (tipo de objecto é %s) "
+"Chamada a gdl_dock_object_dock num objecto anexável %p (tipo de objecto é %s) "
 "que não possui este método implementado"
 
-#: gdl/gdl-dock-object.c:550
+#: ../gdl/gdl-dock-object.c:576
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -288,389 +303,186 @@ msgstr ""
 "Operação de anexação pedida a um objecto %p desassociado. A aplicação poderá "
 "terminar em erro"
 
-#: gdl/gdl-dock-object.c:557
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Incapaz de anexar %p a %p pois pertencem a mestres diferentes"
 
-#: gdl/gdl-dock-object.c:599
+#: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
-"Tentativa de associar a %p um objecto anexável %p já associado (mestre actual: %p)"
+"Tentativa de associar a %p um objecto anexável %p já associado (mestre "
+"actual: %p)"
 
-#: gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
 msgstr "Posição"
 
-#: gdl/gdl-dock-paned.c:134
+#: ../gdl/gdl-dock-paned.c:133
 msgid "Position of the divider in pixels"
 msgstr "Posição do divisor em pixels"
 
-#: gdl/gdl-dock-placeholder.c:127
+#: ../gdl/gdl-dock-placeholder.c:143
 msgid "Sticky"
 msgstr "Persistente"
 
-#: gdl/gdl-dock-placeholder.c:128
+#: ../gdl/gdl-dock-placeholder.c:144
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-"Se o repositório se manterá persistente relativamente ao hospedeiro ou se irá "
-"mover acima na hierarquia se o hospedeiro for reanexado"
+"Se o repositório se manterá persistente relativamente ao hospedeiro ou se "
+"irá mover acima na hierarquia se o hospedeiro for reanexado"
 
-#: gdl/gdl-dock-placeholder.c:135
+#: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
 msgstr "Hospedeiro"
 
-#: gdl/gdl-dock-placeholder.c:136
+#: ../gdl/gdl-dock-placeholder.c:152
 msgid "The dock object this placeholder is attached to"
 msgstr "O objecto anexável a que este repositório está anexado"
 
-#: gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:159
 msgid "Next placement"
 msgstr "Colocação seguinte"
 
-#: gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:160
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
-"A posição em que um item será anexado ao nosso hospedeiro se nos for efectuado "
-"um pedido de anexação"
+"A posição em que um item será anexado ao nosso hospedeiro se nos for "
+"efectuado um pedido de anexação"
 
-#: gdl/gdl-dock-placeholder.c:305
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+msgid "Width"
+msgstr "Largura"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Largura do widget quando anexado ao repositório"
+
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+msgid "Height"
+msgstr "Altura"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Altura do widget quando anexado ao repositório"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "Flutuante de Nível de Topo"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "Se o repositório está a funcionar como um repositório de anexáveis de topo"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "Coordenada-X"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate for dock when floating"
+msgstr "Coordenada-X para um anexável quando a flutuar"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Coordenada-Y"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate for dock when floating"
+msgstr "Coordenada-Y para um anexável quando a flutuar"
+
+#: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Tentativa de anexar um objecto anexável a um repositório desassociado"
 
-#: gdl/gdl-dock-placeholder.c:419
+#: ../gdl/gdl-dock-placeholder.c:618
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 "Obtido um sinal de desassociar de um objecto (%p) que não é o hospedeiro %p"
 
-#: gdl/gdl-dock-placeholder.c:440
+#: ../gdl/gdl-dock-placeholder.c:643
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr "Resultado anormal ao obter a colocação de filho para %p do pai %p"
 
-#: gdl/gdl-dock-tablabel.c:130
+#: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Item anexável que 'detém' esta etiqueta de separador"
 
-#: gdl/gdl-dock-bar.c:89
+#: ../gdl/gdl-dock-bar.c:109
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "Objecto GdlDockMaster a que o objecto de disposição está anexado"
 
-#: gdl/gdl-dock.c:176
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "Estilo da barra de anexação"
+
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "Estilo da barra de anexação onde apresentar itens"
+
+#: ../gdl/gdl-dock.c:178
 msgid "Floating"
 msgstr "Flutuante"
 
-#: gdl/gdl-dock.c:177
+#: ../gdl/gdl-dock.c:179
 msgid "Whether the dock is floating in its own window"
-msgstr "Se o anexável está a flutuar na sua própria janela"
+msgstr "Se o anexável está ou não a flutuar na sua própria janela"
 
-#: gdl/gdl-dock.c:185
+#: ../gdl/gdl-dock.c:187
 msgid "Default title for the newly created floating docks"
 msgstr "Título por omissão para os novos anexos flutuantes"
 
-#: gdl/gdl-dock.c:191
-msgid "Width"
-msgstr "Largura"
-
-#: gdl/gdl-dock.c:192
+#: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
 msgstr "Largura do anexável quando é do tipo flutuante"
 
-#: gdl/gdl-dock.c:199
-msgid "Height"
-msgstr "Altura"
-
-#: gdl/gdl-dock.c:200
+#: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
 msgstr "Altura do anexável quando é do tipo flutuante"
 
-#: gdl/gdl-dock.c:207
+#: ../gdl/gdl-dock.c:209
 msgid "Float X"
 msgstr "Flutuante X"
 
-#: gdl/gdl-dock.c:208
+#: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
-msgstr "Coordenada X para um anexável flutuante"
+msgstr "Coordenada X de um anexável flutuante"
 
-#: gdl/gdl-dock.c:215
+#: ../gdl/gdl-dock.c:217
 msgid "Float Y"
 msgstr "Flutuante Y"
 
-#: gdl/gdl-dock.c:216
+#: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
-msgstr "Coordenada Y para um anexável flutuante"
+msgstr "Coordenada Y de um anexável flutuante"
 
-#: gdl/gdl-dock.c:497
+#: ../gdl/gdl-dock.c:499
 #, c-format
 msgid "Dock #%d"
 msgstr "Anexável Nº%d"
 
-#: gdl/gdl-recent.c:135
-msgid "GConf key"
-msgstr "Chave GConf"
-
-#: gdl/gdl-recent.c:136
-msgid "The gconf key for storing the recent entries."
-msgstr "A chave gconf onde armazenar as entradas recentes."
-
-#: gdl/gdl-recent.c:142
-msgid "Path"
-msgstr "Caminho"
-
-#: gdl/gdl-recent.c:143
-msgid "The path to put the menu items."
-msgstr "O caminho onde colocar os itens de menu."
-
-#: gdl/gdl-recent.c:149
-msgid "Limit"
-msgstr "Limite"
-
-#: gdl/gdl-recent.c:150
-msgid "The maximum number of items to be allowed in the list."
-msgstr "O número máximo de itens a serem permitidos na lista."
-
-#: gdl/gdl-recent.c:158
-msgid "List type"
-msgstr "Tipo de lista"
-
-#: gdl/gdl-recent.c:159
-msgid "The type with which the items will be numbered."
-msgstr "O tipo com que os itens serão numerados."
-
-#: gdl/gdl-recent.c:408
-#, c-format
-msgid "Open %s"
-msgstr "Abrir %s"
-
-#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
+#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
 msgid "Icon size"
 msgstr "Tamanho do ícone"
 
-#: gdl/layout.glade.h:2
+#: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
 msgstr "Gestão de Disposições"
 
-#: gdl/layout.glade.h:4
+#: ../gdl/layout.glade.h:4
 msgid "_Load"
 msgstr "_Ler"
 
-#: gdl/layout.glade.h:5
+#: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Trancar os itens anexáveis"
 
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
-msgid "Factory for the Gnome Symbol Browser control."
-msgstr "Fábrica para o controlo de Navegador de Símbolos Gnome."
-
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
-msgid "Gnome Symbol Browser Control"
-msgstr "Controlo de Navegador de Símbolos Gnome"
-
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
-msgid "Gnome Symbol Browser Control Factory"
-msgstr "Fábrica de Controlo de Navegador de Símbolos Gnome"
-
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
-msgid "Gnome Symbol Browser."
-msgstr "Navegador de Símbolos Gnome."
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:1
-msgid "Goto Symbol"
-msgstr "Ir Para o Símbolo"
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:2
-msgid "Goto the displayed symbol"
-msgstr "Ir para o símbolo apresentado"
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:3
-msgid "Update Symbols"
-msgstr "Actualizar os Símbolos"
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:4
-msgid "Update the symbol tree"
-msgstr "Actualizar a árvore de símbolos"
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:5
-msgid "_Goto to symbol"
-msgstr "_Ir para o símbolo"
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:6
-msgid "_View"
-msgstr "_Ver"
-
-#: symbol-browser-control/symbol-browser.c:65
-msgid "Unknown"
-msgstr "Desconhecido"
-
-#. ! tm_tag_undef_t = 0, < Unknown type
-#: symbol-browser-control/symbol-browser.c:66
-msgid "Classes"
-msgstr "Classes"
-
-#. ! tm_tag_class_t = 1, < Class declaration
-#: symbol-browser-control/symbol-browser.c:67
-msgid "Enums"
-msgstr "Enums"
-
-#. ! tm_tag_enum_t = 2, < Enum declaration
-#: symbol-browser-control/symbol-browser.c:68
-msgid "Enumerators"
-msgstr "Enumeradores"
-
-#. ! tm_tag_enumerator_t = 4, < Enumerator value
-#: symbol-browser-control/symbol-browser.c:69
-msgid "Fields"
-msgstr "Campos"
-
-#. ! tm_tag_field_t = 8, < Field (Java only)
-#: symbol-browser-control/symbol-browser.c:70
-msgid "Functions"
-msgstr "Funções"
-
-#. ! tm_tag_function_t = 16, < Function definition
-#: symbol-browser-control/symbol-browser.c:71
-msgid "Interfaces"
-msgstr "Interfaces"
-
-#. ! tm_tag_interface_t = 32, < Interface (Java only
-#: symbol-browser-control/symbol-browser.c:72
-msgid "Members"
-msgstr "Membros"
-
-#. ! tm_tag_member_t = 64, < Member variable of class/struct
-#: symbol-browser-control/symbol-browser.c:73
-msgid "Methods"
-msgstr "Métodos"
-
-#. ! tm_tag_method_t = 128, < Class method (Java only
-#: symbol-browser-control/symbol-browser.c:74
-msgid "Namespaces"
-msgstr "Espaços de Nomes"
-
-#. ! tm_tag_namespace_t = 256, < Namespace declaration
-#: symbol-browser-control/symbol-browser.c:75
-msgid "Packages"
-msgstr "Pacotes"
-
-#. ! tm_tag_package_t = 512, < Package (Java only)
-#: symbol-browser-control/symbol-browser.c:76
-msgid "Prototypes"
-msgstr "Protótipos"
-
-#. ! tm_tag_prototype_t = 1024, < Function prototype
-#: symbol-browser-control/symbol-browser.c:77
-msgid "Structs"
-msgstr "Estruturas"
-
-#. ! tm_tag_struct_t = 2048, < Struct declaration
-#: symbol-browser-control/symbol-browser.c:78
-msgid "Typedefs"
-msgstr "Typedefs"
-
-#. ! tm_tag_typedef_t = 4096, < Typedef
-#: symbol-browser-control/symbol-browser.c:79
-msgid "Unions"
-msgstr "Uniões"
-
-#. ! tm_tag_union_t = 8192, !< Union
-#: symbol-browser-control/symbol-browser.c:80
-msgid "Variables"
-msgstr "Variáveis"
-
-#. ! tm_tag_variable_t = 16384, < Variable
-#: symbol-browser-control/symbol-browser.c:81
-msgid "ExternVars"
-msgstr "Var Externas"
-
-#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
-#: symbol-browser-control/symbol-browser.c:82
-msgid "Macros"
-msgstr "Macros"
-
-#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
-#: symbol-browser-control/symbol-browser.c:83
-msgid "MacrosWithArgs"
-msgstr "Macros Com Arg"
-
-#: symbol-browser-control/symbol-browser.c:378
-msgid "Tags"
-msgstr "Etiquetas"
-
-#: symbol-browser-control/symbol-browser.c:386
-#: symbol-browser-control/symbol-browser.c:397
-msgid "Undefined"
-msgstr "Indefinido"
-
-#: symbol-browser-control/symbol-browser.c:388
-#: symbol-browser-control/symbol-browser.c:399
-msgid "<No Symbol>"
-msgstr "<Sem Símbolo>"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
-msgid "Exit"
-msgstr "Sair"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
-msgid "Open Project"
-msgstr "Abrir um Projecto"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
-msgid "Save Project"
-msgstr "Gravar um Projecto"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
-msgid "Set Current File"
-msgstr "Definir o Ficheiro Actual"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
-msgid "Update"
-msgstr "Actualizar"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
-msgid "Update the whole tree"
-msgstr "Actualizar toda a árvore"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
-msgid "_Exit"
-msgstr "_Sair"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
-msgid "_File"
-msgstr "_Ficheiro"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
-msgid "_Open Project"
-msgstr "_Abrir um Projecto"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
-msgid "_Save Project"
-msgstr "_Gravar um Projecto"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
-msgid "_Set Current File"
-msgstr "_Definir o Ficheiro Actual"
-
-#: symbol-browser-control/test-symbol-browser.c:168
-msgid "Open file..."
-msgstr "Abrir um ficheiro..."
-
-#: symbol-browser-control/test-symbol-browser.c:170
-msgid "Set current file..."
-msgstr "Definir o ficheiro actual..."
-
-#: symbol-browser-control/test-symbol-browser.c:172
-msgid "Save file..."
-msgstr "Gravar um ficheiro..."
-
-#: symbol-browser-control/test-symbol-browser.c:295
-msgid "Can't initialize bonobo!"
-msgstr "Incapaz de inicializar o bonobo!"
