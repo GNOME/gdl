@@ -8,32 +8,28 @@ msgstr ""
 "Project-Id-Version: Arabic\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-31 08:07+0000\n"
-"PO-Revision-Date: 2008-01-12 20:52+0100\n"
-"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
+"PO-Revision-Date: 2008-02-02 14:07-0000\n"
+"Last-Translator: Abou Manal <aboumanal@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gdl/gdl-data-view.c:418
-#, fuzzy
 msgid "Expander Size"
-msgstr "موسّع"
+msgstr "حجم الموسّع"
 
 #: ../gdl/gdl-data-view.c:419
-#, fuzzy
 msgid "Size of the expander arrow."
-msgstr "حجم نافذة المحادثة"
+msgstr "حجم نافذة المُوسع"
 
 #: ../gdl/gdl-dock-item-grip.c:373
-#, fuzzy
 msgid "Iconify"
-msgstr "جعل القائمة أيقونة"
+msgstr "أَيْقَنة"
 
 #: ../gdl/gdl-dock-item-grip.c:373
-#, fuzzy
 msgid "Iconify this dock"
-msgstr "أيقونة لهذه النافذة"
+msgstr "أيقنة هذا الحوض"
 
 #: ../gdl/gdl-dock-item-grip.c:375
 msgid "Close"
@@ -43,14 +39,14 @@ msgstr "أغلق"
 msgid "Close this dock"
 msgstr "أغلق هذا الحوض"
 
-#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
-#, fuzzy
+#: ../gdl/gdl-dock-item-grip.c:684
+#: ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
-msgstr "سِمة التحكّم"
+msgstr "التحكّم في عنصر الحوض"
 
 #: ../gdl/gdl-dock-item-grip.c:685
 msgid "Dockitem which 'owns' this grip"
-msgstr ""
+msgstr "عنصر الحوض الذي ’يمتلك’ هذه القبضة"
 
 #: ../gdl/gdl-dock-item.c:243
 msgid "Orientation"
@@ -66,26 +62,24 @@ msgstr "قابل للتحجيم"
 
 #: ../gdl/gdl-dock-item.c:260
 msgid "If set, the dock item can be resized when docked in a paned"
-msgstr ""
+msgstr " إذا ما تم تعيينه، فإنه يمكن إعادة تحجيم عنصر الإرساء عند   "
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
 msgstr "سلوك العنصر"
 
 #: ../gdl/gdl-dock-item.c:268
-msgid ""
-"General behavior for the dock item (i.e. whether it can float, if it's "
-"locked, etc.)"
-msgstr ""
+msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
+msgstr "السلوك العام لعنصر الحوض (هل يمكن أن يكون عائما، إذا ما هو مقفل، الخ.)"
 
-#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:276
+#: ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "مقفل"
 
 #: ../gdl/gdl-dock-item.c:277
-msgid ""
-"If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr ""
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "إذا ما تم ضبطه، فإن عنصر الحوض لا يمكن سحبه ولا يظهر القبضة"
 
 #: ../gdl/gdl-dock-item.c:285
 msgid "Preferred width"
@@ -105,22 +99,19 @@ msgstr "الإرتفاع المفضّل لعنصر الحوض"
 
 #: ../gdl/gdl-dock-item.c:543
 #, c-format
-msgid ""
-"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
-"some other compound dock object."
-msgstr ""
+msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
+msgstr "لا يمكن إظافة كائن حوضي (%p من نوع %s) داخل %s. استخدم GdlDock أو كائن حوضي مركب آخر."
 
 #: ../gdl/gdl-dock-item.c:550
 #, c-format
-msgid ""
-"Attempting to add a widget with type %s to a %s, but it can only contain one "
-"widget at a time; it already contains a widget of type %s"
-msgstr ""
+msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
+msgstr "محاولة إظافة ويدجت من نوع %s إلى %s، الذي لا يمكنه احتواء أكثر من ويدجت واحد في نفس الوقت؛ فهو يحتوي بالفعل على ويدجت من نوع %s"
 
-#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1236
+#: ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr ""
+msgstr "استراتيجية إرساء غير مدعومة %s لكائن حوضي من نوع %s"
 
 #. UnLock menuitem
 #: ../gdl/gdl-dock-item.c:1390
@@ -140,16 +131,16 @@ msgstr "اقفل"
 #: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
-msgstr ""
+msgstr "محاولة تقييد عنصر غير مقيد %p"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:123
+#: ../gdl/gdl-dock-bar.c:108
 msgid "Master"
 msgstr "رئيس"
 
 #: ../gdl/gdl-dock-layout.c:124
-#, fuzzy
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "مفتاح GConf الذي يتبع محرّر الخاصية هذا."
+msgstr "كائن GdlDockMaster الذي سيُرفق به كائن التنسيق"
 
 # I avoided literal...
 #: ../gdl/gdl-dock-layout.c:131
@@ -158,7 +149,7 @@ msgstr "قوي"
 
 #: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr ""
+msgstr "صحيح إن كانت التنسيقات قد تغيرت وتحتاج إلى الحفظ على ملف"
 
 #. FIXME: pop up an error dialog
 #: ../gdl/gdl-dock-layout.c:563
@@ -174,30 +165,32 @@ msgstr "مرئي"
 msgid "Item"
 msgstr "عنصر"
 
-#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:708
+#: ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "إسم"
 
-#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
+#: ../gdl/gdl-dock-layout.c:741
+#: ../gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "عناصر الحوض"
 
-#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
+#: ../gdl/gdl-dock-layout.c:747
+#: ../gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "التصاميم المحفوظة"
 
 #: ../gdl/gdl-dock-layout.c:789
 #, c-format
-msgid ""
-"While loading layout: don't know how to create a dock object whose nick is '%"
-"s'"
-msgstr ""
+msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
+msgstr "أثناء تحميل التنسيق: لا أعرف كيفية إنشاء كائن حوضي لقبه هو '%s'"
 
 #: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
 msgstr "إدارة التصميم"
 
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:138
+#: ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "العنوان الإفتراضي"
 
@@ -206,32 +199,28 @@ msgid "Default title for newly created floating docks"
 msgstr "العنوان الافتراضي للأحواض الطافية الجديدة"
 
 #: ../gdl/gdl-dock-master.c:146
-msgid ""
-"If is set to 1, all the dock items bound to the master are locked; if it's "
-"0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr ""
+msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr "إذا ما تم تعيينها إلى 1، فإن كل عناصر الحوض المُقيدة إلى الرئيس تُقفل؛ وأما لو كان 0، فكلها غير مقفلة؛ 1- تعني وجود تعارض بين العناصر"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+#: ../gdl/gdl-dock-master.c:154
+#: ../gdl/gdl-switcher.c:704
 msgid "Switcher Style"
 msgstr "اسلوب التبديل"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+#: ../gdl/gdl-dock-master.c:155
+#: ../gdl/gdl-switcher.c:705
 msgid "Switcher buttons style"
 msgstr "أسلوب زر المبدّل"
 
 #: ../gdl/gdl-dock-master.c:761
 #, c-format
-msgid ""
-"master %p: unable to add object %p[%s] to the hash.  There already is an "
-"item with that name (%p)."
-msgstr ""
+msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
+msgstr "الرئيس %p : تعذر إظافة الكائن %p[%s] إلى التجزئة. يوجد بالفعل عنصر بهذا الاسم (%p).  "
 
 #: ../gdl/gdl-dock-master.c:934
 #, c-format
-msgid ""
-"The new dock controller %p is automatic.  Only manual dock objects should be "
-"named controller."
-msgstr ""
+msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
+msgstr "مراقب الحوض الجديد %p أوتوماتيكي. وحدها كائنات الحوض اليدوية يمكن تسميتها مراقب."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -242,80 +231,68 @@ msgid "The index of the current page"
 msgstr "دليل الصفحة الحالية"
 
 #: ../gdl/gdl-dock-object.c:120
-#, fuzzy
 msgid "Unique name for identifying the dock object"
-msgstr "رقم فريد يعرف المظروف"
+msgstr "اسم فريد يُعرِّف الكائن الحوضي"
 
 #: ../gdl/gdl-dock-object.c:127
 msgid "Long name"
 msgstr "اسم طويل"
 
 #: ../gdl/gdl-dock-object.c:128
-#, fuzzy
 msgid "Human readable name for the dock object"
-msgstr "إسم الطور الذي يمكن لفرد قرائته"
+msgstr "إسم من أجل الكائن الحوضي يُمكِن لفرد قرائته "
 
 #: ../gdl/gdl-dock-object.c:134
 msgid "Stock Icon"
 msgstr "أيقونة من المخزون"
 
 #: ../gdl/gdl-dock-object.c:135
-#, fuzzy
 msgid "Stock icon for the dock object"
-msgstr "انتقي خطا للملاحظة اللاصقة"
+msgstr "أيقونة المخزون للكائن الحوضي"
 
 #: ../gdl/gdl-dock-object.c:141
-#, fuzzy
 msgid "Dock master"
-msgstr "نسبة التردد"
+msgstr "الحوض الرئيسي"
 
 #: ../gdl/gdl-dock-object.c:142
 msgid "Dock master this dock object is bound to"
-msgstr ""
+msgstr "الحوض الرئيسي المُقيَّد به هذا العنصر الحوضي"
 
 #: ../gdl/gdl-dock-object.c:444
 #, c-format
-msgid ""
-"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
-"hasn't implemented this method"
-msgstr ""
+msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
+msgstr "نداء gdl_dock_object_dock في كائن الحوض %p ( نوع الكائن هو %s) الذي لم يُطبق هذه الطريقة"
 
 #: ../gdl/gdl-dock-object.c:576
 #, c-format
-msgid ""
-"Dock operation requested in a non-bound object %p. The application might "
-"crash"
-msgstr ""
+msgid "Dock operation requested in a non-bound object %p. The application might crash"
+msgstr "عملية الحوض المطلوبة في كائن غير مُقيَّد %p. التطبيق قد ينهار"
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr ""
+msgstr "لا يمكن إرساء %p إلى %p لأنهما ينتميان لرئيسين مختلفين"
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
-msgid ""
-"Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr ""
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "محاولة التقييد إلى %p كائن حوضي %p مُقيَّد بالفعل (الرئيس الحالي: %p)"
 
 #: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
 msgstr "الموقع"
 
 #: ../gdl/gdl-dock-paned.c:133
-#, fuzzy
 msgid "Position of the divider in pixels"
-msgstr "موضع نافذة الفيديو المحلي"
+msgstr "موضع المُقَسِّم بالبيكسيلات"
 
 #: ../gdl/gdl-dock-placeholder.c:143
 msgid "Sticky"
 msgstr "لاصق"
 
 #: ../gdl/gdl-dock-placeholder.c:144
-msgid ""
-"Whether the placeholder will stick to its host or move up the hierarchy when "
-"the host is redocked"
-msgstr ""
+msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
+msgstr "فيما إذا كان ماسك المكان سيلتصق بمضيفه أو سينتقل إلى الأعلى في الشجرة إذا ما تم إعادة إرساء المضيف"
 
 #: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
@@ -323,88 +300,79 @@ msgstr "مضيف"
 
 #: ../gdl/gdl-dock-placeholder.c:152
 msgid "The dock object this placeholder is attached to"
-msgstr ""
+msgstr "الكائن الحوضي الذي يرتبط به ماسك المكان"
 
 #: ../gdl/gdl-dock-placeholder.c:159
-#, fuzzy
 msgid "Next placement"
-msgstr "_البديل"
+msgstr "الموضع الموالي"
 
 #: ../gdl/gdl-dock-placeholder.c:160
-msgid ""
-"The position an item will be docked to our host if a request is made to dock "
-"to us"
-msgstr ""
+msgid "The position an item will be docked to our host if a request is made to dock to us"
+msgstr "الموضع الذي سيتم فيه إرساء عنصر ما إلى مضيفنا إذا ما قُدِّم طلب للإرساء إلينا"
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:169
+#: ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "العرض"
 
 #: ../gdl/gdl-dock-placeholder.c:170
 msgid "Width for the widget when it's attached to the placeholder"
-msgstr ""
+msgstr "عرض الويدجت حين إرفاقه بماسك المكان"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:177
+#: ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "ارتفاع"
 
 #: ../gdl/gdl-dock-placeholder.c:178
 msgid "Height for the widget when it's attached to the placeholder"
-msgstr ""
+msgstr "ارتفاع الويدجت حين إرفتقه بماسك المكان"
 
 #: ../gdl/gdl-dock-placeholder.c:184
-#, fuzzy
 msgid "Floating Toplevel"
-msgstr "تركيز في المستوى الأعلى"
+msgstr "مستوى أعلى عائم"
 
 #: ../gdl/gdl-dock-placeholder.c:185
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
-msgstr ""
+msgstr "فيما إذا كان ماسك المكان يقبل أن يكون حوضا جدريا عائما "
 
 #: ../gdl/gdl-dock-placeholder.c:191
-#, fuzzy
 msgid "X-Coordinate"
-msgstr "إحداثية"
+msgstr "إحداثية X"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-#, fuzzy
 msgid "X-Coordinate for dock when floating"
-msgstr "إحداثي الشريط السيني"
+msgstr "إحداثية X للحوض حين يطفو"
 
 #: ../gdl/gdl-dock-placeholder.c:198
-#, fuzzy
 msgid "Y-Coordinate"
-msgstr "إحداثية"
+msgstr "إحداثية Y"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-#, fuzzy
 msgid "Y-Coordinate for dock when floating"
-msgstr "إحداثي الشريط الصادي"
+msgstr "إحداثية Y للحوض حين يطفو"
 
 #: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr ""
+msgstr "محاولة إرساء كائن حوضي إلى ماسك مكان غير مُقيَّد"
 
 #: ../gdl/gdl-dock-placeholder.c:618
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr ""
+msgstr "الحصول على إشارة فك الارتباط من العنصر (%p) الذي ليس بمضيفنا %p"
 
 #: ../gdl/gdl-dock-placeholder.c:643
 #, c-format
-msgid ""
-"Something weird happened while getting the child placement for %p from "
-"parent %p"
-msgstr ""
+msgid "Something weird happened while getting the child placement for %p from parent %p"
+msgstr "حصل شيء غريب أثناء تلقي موقع التابع لِفائدة %p من الأصل %p "
 
 #: ../gdl/gdl-dock-tablabel.c:129
-#, fuzzy
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "مدير هذا المشروع."
+msgstr "عنصر الحوض الذي ’يملك’ لصيقة اللسان هذه "
 
 #: ../gdl/gdl-dock-bar.c:109
 msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr ""
+msgstr "كائن GdlDockMaster المُرفقُ له ويدجت شريط الارساء"
 
 #: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style"
@@ -412,56 +380,51 @@ msgstr "أسلوب الحوض"
 
 #: ../gdl/gdl-dock-bar.c:117
 msgid "Dockbar style to show items on it"
-msgstr ""
+msgstr "نمط شريط الارساء لإظهار العناصر عليه"
 
 #: ../gdl/gdl-dock.c:178
 msgid "Floating"
 msgstr "طافية"
 
 #: ../gdl/gdl-dock.c:179
-#, fuzzy
 msgid "Whether the dock is floating in its own window"
-msgstr "ما اذا يكون تركيز الإدخال ضمن GtkWindow الحالي"
+msgstr "فيما إذا كان الحوض يطفو في النافذة الخاصة به"
 
 #: ../gdl/gdl-dock.c:187
-#, fuzzy
 msgid "Default title for the newly created floating docks"
-msgstr "المسار الافتراضي لنافذة تصفّح الملفات."
+msgstr "العنوان الافتراضي للأحواض العائمة المنشئة حديثا "
 
 #: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
-msgstr ""
+msgstr "عرض الحوض إذا كان من النوعية العائمة"
 
 #: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
-msgstr ""
+msgstr "ارتفاع الحوض حين يكون من النوع العائم"
 
 #: ../gdl/gdl-dock.c:209
-#, fuzzy
 msgid "Float X"
-msgstr "طفو"
+msgstr " طفو X"
 
 #: ../gdl/gdl-dock.c:210
-#, fuzzy
 msgid "X coordinate for a floating dock"
-msgstr "إحداثي الشريط السيني"
+msgstr "إحداثية X للحوض العائم"
 
 #: ../gdl/gdl-dock.c:217
-#, fuzzy
 msgid "Float Y"
-msgstr "طفو"
+msgstr "  طفو Y"
 
 #: ../gdl/gdl-dock.c:218
-#, fuzzy
 msgid "Y coordinate for a floating dock"
-msgstr "إحداثي الشريط الصادي"
+msgstr "إحداثي الحوض الصادي"
 
 #: ../gdl/gdl-dock.c:499
 #, c-format
 msgid "Dock #%d"
 msgstr "حوض #%d"
 
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
+#: ../gdl/gdl-icons.c:134
+#: ../gdl/gdl-icons.c:135
 msgid "Icon size"
 msgstr "حجم الأيقونة"
 
@@ -476,3 +439,4 @@ msgstr "_حمل"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "أ_قفل عناصر الحوض"
+
