@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-17 23:06+0000\n"
-"PO-Revision-Date: 2008-01-18 11:49+0100\n"
+"POT-Creation-Date: 2008-02-04 10:34+0000\n"
+"PO-Revision-Date: 2008-02-04 12:10+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español <<gnome-es-list@gnome.org>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,10 +65,8 @@ msgid "Resizable"
 msgstr "Redimensionable"
 
 #: ../gdl/gdl-dock-item.c:260
-msgid "If set, the dock item can be resized when docked in a paned"
-msgstr ""
-"Si esta activado, el elemento empotrable puede ser redimensionado cuando se "
-"empotra en un panel"
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr "Si esta activado, el elemento empotrable se puede redimensionar cuando está empotrado en un widget GtkPanel"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -126,7 +124,7 @@ msgstr ""
 "Se intentó añadir un widget con tipo %s a un %s, pero éste sólo puede "
 "contener un widget a la vez, ya contiene un widget de tipo %s"
 
-#: ../gdl/gdl-dock-item.c:1235 ../gdl/gdl-dock-item.c:1285
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
@@ -134,21 +132,21 @@ msgstr ""
 "%s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1389
+#: ../gdl/gdl-dock-item.c:1390
 msgid "UnLock"
 msgstr "Desbloquear"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1396
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Ocultar"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1401
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Bloquear"
 
-#: ../gdl/gdl-dock-item.c:1607
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Se intentó vincular un elemento no vinculable %p"
@@ -225,11 +223,11 @@ msgstr ""
 "principalson bloqueados; si es 0 todos son desbloqueados, -1 indica una "
 "inconsistencia entre los elementos."
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:706
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
 msgid "Switcher Style"
 msgstr "Estilo del selector"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:707
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
 msgid "Switcher buttons style"
 msgstr "Estilo de los botones del selector"
 
