@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
+  <bookinfo>
+    <title>gdl Reference Manual</title>
+    <releaseinfo>
+      for gdl 1.0
+    </releaseinfo>
+  </bookinfo>
+
+  <chapter id="gdl-main">
+    <title>Gdl - Gnome Development/Docking library</title>
+    <xi:include href="xml/gdl-dock-layout.xml"/>
+    <xi:include href="xml/gdl-dock-master.xml"/>
+    <xi:include href="xml/gdl-dock-item-grip.xml"/>
+    <xi:include href="xml/gdl-icons.xml"/>
+    <xi:include href="xml/gdl-dock-item.xml"/>
+    <xi:include href="xml/gdl-dock.xml"/>
+    <xi:include href="xml/gdl-dock-object.xml"/>
+    <xi:include href="xml/gdl-dock-tablabel.xml"/>
+    <xi:include href="xml/gdl-dock-notebook.xml"/>
+    <xi:include href="xml/gdl-dock-placeholder.xml"/>
+    <xi:include href="xml/gdl-combo-button.xml"/>
+    <xi:include href="xml/gdl-dock-paned.xml"/>
+    <xi:include href="xml/gdl-dock-bar.xml"/>
+    <xi:include href="xml/gdl-switcher.xml"/>
+    <xi:include href="xml/gdl-stock.xml"/>
+    <xi:include href="xml/gdl-tools.xml"/>
+  </chapter>
+</book>

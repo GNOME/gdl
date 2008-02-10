@@ -1,3 +1,16 @@
+2008-02-10  Johannes Schmid <jhs@gnome.org>
+
+	* Makefile.am:
+	* configure.in:
+	* docs/reference/Makefile.am:
+	* docs/reference/gdl-docs.sgml:
+	* docs/reference/gdl-sections.txt:
+	* docs/reference/gdl.types:
+	Added gtk-doc documentation (currently 12% coverage...)
+	
+	* gdl/gdl-tools.h:
+	Silece a gtk-doc warning
+
 2008-02-04  Johannes Schmid <jhs@gnome.org>
 
 	Patch from Og Maciel <ogmaciel@gnome.org>:
