@@ -161,7 +161,7 @@ gdl_images_dir="${packageprefix}/share/gdl/images"
 AC_SUBST(gdl_images_dir)
 
 # check for gtk-doc
-GTK_DOC_CHECK(1.9)
+GTK_DOC_CHECK(1.4)
 
 AC_OUTPUT([
 Makefile

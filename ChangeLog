@@ -1,5 +1,9 @@
 === gdl 0.7.9 ===
 
+2008-02-11  Naba Kumar  <naba@gnome.org>
+
+	* configure.in: Used smaller gtk-doc version requirement.
+
 2008-02-11  Johannes Schmid <jhs@gnome.org>
 
 	* NEWS:
