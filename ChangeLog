@@ -1,3 +1,8 @@
+2008-02-11  Johannes Schmid <jhs@gnome.org>
+
+	* docs/reference/Makefile.am:
+	Do not check for incomplete documentation status
+
 2008-02-10  Johannes Schmid <jhs@gnome.org>
 
 	* Makefile.am:
