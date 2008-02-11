@@ -3,14 +3,14 @@
                "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
   <bookinfo>
-    <title>gdl Reference Manual</title>
+    <title>GDL Reference Manual</title>
     <releaseinfo>
       for gdl 1.0
     </releaseinfo>
   </bookinfo>
 
   <chapter id="gdl-main">
-    <title>Gdl - Gnome Development/Docking library</title>
+    <title>GDL - Gnome Development/Docking library</title>
     <xi:include href="xml/gdl-dock-layout.xml"/>
     <xi:include href="xml/gdl-dock-master.xml"/>
     <xi:include href="xml/gdl-dock-item-grip.xml"/>

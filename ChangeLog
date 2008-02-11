@@ -1,3 +1,14 @@
+=== gdl 0.7.9 ===
+
+2008-02-11  Johannes Schmid <jhs@gnome.org>
+
+	* NEWS:
+	* configure.in:
+	Updated for release
+	
+	* docs/reference/gdl-docs.sgml:
+	Make it look a bit prettier
+
 2008-02-11  Johannes Schmid <jhs@gnome.org>
 
 	* docs/reference/Makefile.am:
