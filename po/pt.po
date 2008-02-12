@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-01 23:14+0000\n"
-"PO-Revision-Date: 2008-02-01 23:30+0000\n"
+"POT-Creation-Date: 2008-02-12 23:22+0000\n"
+"PO-Revision-Date: 2008-02-12 23:25+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -61,10 +61,10 @@ msgid "Resizable"
 msgstr "Redimensionável"
 
 #: ../gdl/gdl-dock-item.c:260
-msgid "If set, the dock item can be resized when docked in a paned"
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Se definido, o item anexável pode ser redimensionado quando anexado a um "
-"painel"
+"widget GtkPanel"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -291,8 +291,8 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Chamada a gdl_dock_object_dock num objecto anexável %p (tipo de objecto é %s) "
-"que não possui este método implementado"
+"Chamada a gdl_dock_object_dock num objecto anexável %p (tipo de objecto é %"
+"s) que não possui este método implementado"
 
 #: ../gdl/gdl-dock-object.c:576
 #, c-format
@@ -378,7 +378,8 @@ msgstr "Flutuante de Nível de Topo"
 
 #: ../gdl/gdl-dock-placeholder.c:185
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
-msgstr "Se o repositório está a funcionar como um repositório de anexáveis de topo"
+msgstr ""
+"Se o repositório está a funcionar como um repositório de anexáveis de topo"
 
 #: ../gdl/gdl-dock-placeholder.c:191
 msgid "X-Coordinate"
@@ -485,4 +486,3 @@ msgstr "_Ler"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Trancar os itens anexáveis"
-
