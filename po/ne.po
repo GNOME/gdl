@@ -1,26 +1,26 @@
 # translation of gdl.HEAD.ne.po to Nepali
-# translation of gdl.HEAD.po to Nepali
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+#
 # Pawan Chitrakar <pawan@mpp.org.np>, 2005.
 # Shiva Prasad Pokharel <pokharelshiva@hotmail.com>, 2005.
 # Jaydeep Bhusal <zaydeep@hotmail.com>, 2005.
 # Kapil Timilsina <lipak21@gmail.com>, 2005.
 # Mahesh subedi <submanesh@hotmail.com>, 2006.
-#
+# Shyam Krishna Bal <balshyam24@yahoo.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD.ne\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-15 10:30+0200\n"
-"PO-Revision-Date: 2006-06-05 16:42+0545\n"
-"Last-Translator: Mahesh subedi <submanesh@hotmail.com>\n"
+"POT-Creation-Date: 2007-04-05 03:15+0100\n"
+"PO-Revision-Date: 2007-12-16 19:49+0545\n"
+"Last-Translator: Shyam Krishna Bal <balshyam24@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
-"Plural-Forms: nplurals=2;plural=(n!=1)\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n !=1\n"
 
 #: ../gdl/gdl-data-view.c:418
 msgid "Expander Size"
@@ -28,53 +28,53 @@ msgstr "विस्तारक आकार"
 
 #: ../gdl/gdl-data-view.c:419
 msgid "Size of the expander arrow."
-msgstr "विस्तारक बाँणको आकार"
+msgstr "विस्तारक बाँणको आकार "
 
-#: ../gdl/gdl-dock-item-grip.c:371
+#: ../gdl/gdl-dock-item-grip.c:373
 msgid "Iconify"
 msgstr "आईकोनिफाइ"
 
-#: ../gdl/gdl-dock-item-grip.c:371
+#: ../gdl/gdl-dock-item-grip.c:373
 msgid "Iconify this dock"
 msgstr "यो डकलाई आईकोनिफाइ गर्नुहोस्"
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Close"
 msgstr "बन्द गर्नुहोस्"
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Close this dock"
 msgstr "यो डकलाई बन्द गर्नुहोस्"
 
-#: ../gdl/gdl-dock-item-grip.c:682 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "डक वस्तुलाई नियन्त्रण गर्दै"
 
-#: ../gdl/gdl-dock-item-grip.c:683
+#: ../gdl/gdl-dock-item-grip.c:685
 msgid "Dockitem which 'owns' this grip"
 msgstr "डकवस्तु जसले सो ग्रिप स्वामित्वमा लिन्छ"
 
-#: ../gdl/gdl-dock-item.c:241
+#: ../gdl/gdl-dock-item.c:243
 msgid "Orientation"
 msgstr "अभिमुखिकरण"
 
-#: ../gdl/gdl-dock-item.c:242
+#: ../gdl/gdl-dock-item.c:244
 msgid "Orientation of the docking item"
 msgstr "डक गरिरहेको वस्तुको अभिमुखिकरण"
 
-#: ../gdl/gdl-dock-item.c:257
+#: ../gdl/gdl-dock-item.c:259
 msgid "Resizable"
 msgstr "पुनराकृतिक"
 
-#: ../gdl/gdl-dock-item.c:258
+#: ../gdl/gdl-dock-item.c:260
 msgid "If set, the dock item can be resized when docked in a paned"
 msgstr "यदि सेट गरिएमा, जब टुक्रामा डक गरिन्छ, डक वस्तु पुन:आकार गर्न सकिन्छ"
 
-#: ../gdl/gdl-dock-item.c:265
+#: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
-msgstr "वस्तु ब्यवहार"
+msgstr "वस्तु व्यवहार"
 
-#: ../gdl/gdl-dock-item.c:266
+#: ../gdl/gdl-dock-item.c:268
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -82,31 +82,31 @@ msgstr ""
 "डक वस्तुका लागि साधारण ब्यवहार (जस्तै. या यो उत्रोस, यदि यसमा ताल्चा लगाईएमा, "
 "ईत्यादि)"
 
-#: ../gdl/gdl-dock-item.c:274 ../gdl/gdl-dock-master.c:140
+#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
-msgstr "ताल्चा लगाईयो"
+msgstr "ताल्चा लगाइयो"
 
-#: ../gdl/gdl-dock-item.c:275
+#: ../gdl/gdl-dock-item.c:277
 msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "यदि सेट गरिएमा, डक वस्तु वरिपरि तान्न सकिन्न र यसले ग्रिप देखाउँदैन"
 
-#: ../gdl/gdl-dock-item.c:283
+#: ../gdl/gdl-dock-item.c:285
 msgid "Preferred width"
-msgstr "उपयुक्त्त चौडाइ"
+msgstr "उपयुक्त चौडाइ"
 
-#: ../gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:286
 msgid "Preferred width for the dock item"
-msgstr "डक वस्तुका लागि उपयुक्त्त चौडाइ"
+msgstr "डक वस्तुका लागि उपयुक्त चौडाइ"
 
-#: ../gdl/gdl-dock-item.c:290
+#: ../gdl/gdl-dock-item.c:292
 msgid "Preferred height"
-msgstr "उपयुक्त्त उचाइ"
+msgstr "उपयुक्त उचाइ"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:293
 msgid "Preferred height for the dock item"
-msgstr "डक वस्तुका लागि उपयुक्त्त उचाइ"
+msgstr "डक वस्तुका लागि उपयुक्त उचाइ"
 
-#: ../gdl/gdl-dock-item.c:541
+#: ../gdl/gdl-dock-item.c:543
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -115,43 +115,43 @@ msgstr ""
 "तपाईँ डक वस्तु थप गर्न सक्नुहुन्न (%p प्रकारको %s) %s भित्र। जिडिएल डक वा अरु केही मिश्रण "
 "डक वस्तु।"
 
-#: ../gdl/gdl-dock-item.c:548
+#: ../gdl/gdl-dock-item.c:550
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
 "%s मा %s प्रकार सगै विजेट जोड्न प्रयासरत, तर यसले मात्र एउटा विजेट एक पटकमा राख्न "
-"सक्छ, यसमा पहिले नै एउटा %s विजेट प्रकार छ "
+"सक्छ, यसमा पहिले नै एउटा %s विजेट प्रकार छ"
 
-#: ../gdl/gdl-dock-item.c:1174
+#: ../gdl/gdl-dock-item.c:1235 ../gdl/gdl-dock-item.c:1280
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "अमान्य डकिङ गर्ने रणनिति %s डक वस्तु प्रकार %s मा"
+msgstr "%s प्रकारको डक वस्तुमा असमर्थित डकिङ रणनीति %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1257
+#: ../gdl/gdl-dock-item.c:1367
 msgid "UnLock"
 msgstr "ताल्चा खोल्नुहोस"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1264
+#: ../gdl/gdl-dock-item.c:1374
 msgid "Hide"
 msgstr "लुकाउनुहोस्"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1269
+#: ../gdl/gdl-dock-item.c:1379
 msgid "Lock"
 msgstr "ताल्चा लगाउनुहोस्"
 
-#: ../gdl/gdl-dock-item.c:1474
+#: ../gdl/gdl-dock-item.c:1585
 #, c-format
 msgid "Attempt to bind an unbound item %p"
-msgstr "अनवाउण्ड वस्तु %p लाई बाइन्ड गर्ने प्रयत्न गर्नुहोस् "
+msgstr "अनवाउण्ड वस्तु %p लाई बाइन्ड गर्ने प्रयत्न गर्नुहोस्"
 
-#: ../gdl/gdl-dock-layout.c:124 ../gdl/gdl-dock-bar.c:102
+#: ../gdl/gdl-dock-layout.c:124 ../gdl/gdl-dock-bar.c:106
 msgid "Master"
-msgstr "मास्टर"
+msgstr "मुख्य"
 
 #: ../gdl/gdl-dock-layout.c:125
 msgid "GdlDockMaster object which the layout object is attached to"
@@ -163,7 +163,7 @@ msgstr "फोहोर"
 
 #: ../gdl/gdl-dock-layout.c:133
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr "यदि सजावटहरू परिवर्तन भएमा र फाइलमा बचत गर्नु परेमा सहि"
+msgstr "यदि सजावटहरू परिवर्तन गरिएको छ र फाइलमा बचत गर्न आवश्यक छ भने सही छ"
 
 #. FIXME: pop up an error dialog
 #: ../gdl/gdl-dock-layout.c:563
@@ -189,7 +189,7 @@ msgstr "डक वस्तुहरू"
 
 #: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
 msgid "Saved layouts"
-msgstr "बचत गरिएको सजावटहरू"
+msgstr "बचत गरिएका सजावटहरू"
 
 #: ../gdl/gdl-dock-layout.c:789
 #, c-format
@@ -197,22 +197,22 @@ msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
-"सजावट लोड गरेको बेलामा: कसरी डक वस्तु सिर्जना गर्ने जसको बोलाउने नाम '%s' हो भन्ने थाहा "
-"हुँदैन"
+"सजावट लोड गरेको बेलामा: कसरी डक वस्तु सिर्जना गर्ने जसको बोलाउने नाम '%s' हो भन्ने "
+"थाहा हुँदैन"
 
 #: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
-msgstr "सजावट ब्यवस्थापन"
+msgstr "सजावट व्यवस्थापन"
 
-#: ../gdl/gdl-dock-master.c:133 ../gdl/gdl-dock.c:183
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:183
 msgid "Default title"
 msgstr "पूर्वनिर्धारित शीर्षक"
 
-#: ../gdl/gdl-dock-master.c:134
+#: ../gdl/gdl-dock-master.c:139
 msgid "Default title for newly created floating docks"
 msgstr "नयाँ सिर्जना गरिएको तैरिरहेका डकहरूका लागि पूर्वनिर्धारित शीर्षक"
 
-#: ../gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-master.c:146
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -220,14 +220,22 @@ msgstr ""
 "यदि यो १ मा सेट गरियो भने, मास्टरमा बाँधिएका सबै वस्तुहरू लक हुन्छन, यदि यो ० मा "
 "गरिएमा, सबै लकहरू खोलिन्छन; -१ ले वस्तुहरूमा अस्थिरता भन्ने जनाउँछ"
 
-#: ../gdl/gdl-dock-master.c:729
+#: ../gdl/gdl-dock-master.c:154
+msgid "Switcher Style"
+msgstr "स्वीचर शैली"
+
+#: ../gdl/gdl-dock-master.c:155
+msgid "Switcher buttons style"
+msgstr "स्वीचर बटन शैली"
+
+#: ../gdl/gdl-dock-master.c:761
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr "मास्टर  %p: %p[%s] हरूलाई ह्यासमा थप गर्न अक्षम। त्यहाँ (%p) नामको वस्तु पहिले देखि नै छ।"
 
-#: ../gdl/gdl-dock-master.c:894
+#: ../gdl/gdl-dock-master.c:934
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -291,7 +299,7 @@ msgstr "नबाधिने वस्तु %p मा डक कार्य�
 #: ../gdl/gdl-dock-object.c:556
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "%p बाट %p मा डक गर्न सकिँदैन किनकि तिनिहरू मास्टरहरूसँग  सम्बन्धित छन्"
+msgstr "%p बाट %p मा डक गर्न सकिँदैन किनकि तिनीहरू भिन्न भिन्नै मस्टरहरूसँग  सम्बन्धित छन्"
 
 #: ../gdl/gdl-dock-object.c:598
 #, c-format
@@ -300,50 +308,90 @@ msgstr "पहिले देखि बाँधिएको डक वस्�
 
 #: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
-msgstr "स्थिती"
+msgstr "स्थिति"
 
 #: ../gdl/gdl-dock-paned.c:133
 msgid "Position of the divider in pixels"
-msgstr "भाज फलको पिक्सेलमा स्थिती"
+msgstr "भाज फलको पिक्सेलमा स्थिति"
 
-#: ../gdl/gdl-dock-placeholder.c:126
+#: ../gdl/gdl-dock-placeholder.c:143
 msgid "Sticky"
 msgstr "टाँसिने"
 
-#: ../gdl/gdl-dock-placeholder.c:127
+#: ../gdl/gdl-dock-placeholder.c:144
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr "होस्ट रिडक भएको बेला प्लेसहोल्डर कि त आफ्नो होस्टमा टाँसिन्छ वा अनुक्रम माथि जान्छ"
 
-#: ../gdl/gdl-dock-placeholder.c:134
+#: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
 msgstr "होस्ट"
 
-#: ../gdl/gdl-dock-placeholder.c:135
+#: ../gdl/gdl-dock-placeholder.c:152
 msgid "The dock object this placeholder is attached to"
 msgstr "यो प्लेसहोल्डरमा टाँसिएका वस्तुलाई डक गर्नुहोस्"
 
-#: ../gdl/gdl-dock-placeholder.c:142
+#: ../gdl/gdl-dock-placeholder.c:159
 msgid "Next placement"
-msgstr "अर्को स्थापना"
+msgstr "पछिल्लो स्थापना"
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:160
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
-msgstr "यदि एउटा अनुरोध डकबाट हामीलाई गरिन्छ भने एउटा वस्तुको स्थिती हाम्रो होस्टमा डक हुँनेछ"
+msgstr "यदि एउटा अनुरोध डकबाट हामीलाई गरिन्छ भने एउटा वस्तुको स्थिति हाम्रो होस्टमा डक हुनेछ"
 
-#: ../gdl/gdl-dock-placeholder.c:304
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:190
+msgid "Width"
+msgstr "चौडाइ"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "यो प्लेसहोल्डरमा संलग्न हुँदा विजेटका लागि चौडाइ"
+
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:198
+msgid "Height"
+msgstr "उचाइ"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "यो प्लेसहोल्डरमा संलग्न हुँदा विजेटका लागि उचाइ"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "उत्प्लावन उच्च तह"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "प्लेसहोल्डर उत्प्लवान उच्च तह डकका लागि उभिरहेको छ छैन"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "एक्स समकक्ष"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate fow dock when floating"
+msgstr "उत्प्लवान हुँदा एक्स समकक्ष फो डक"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "वाइ समकक्ष"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate fow dock when floating"
+msgstr "उत्प्लवान हुँदा वाइ समकक्ष फो डक"
+
+#: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "नबाँधिएको प्लेसहोल्डरमा डक वस्तुलाई डक गर्ने प्रयास"
 
-#: ../gdl/gdl-dock-placeholder.c:418
+#: ../gdl/gdl-dock-placeholder.c:618
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "(%p) वस्तुबाट चिनेको सङ्केत प्राप्त भयो जुन हाम्रो होस्ट %p होइन"
 
-#: ../gdl/gdl-dock-placeholder.c:439
+#: ../gdl/gdl-dock-placeholder.c:643
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -352,11 +400,19 @@ msgstr "%p अभिभावकबाट %p का लागि बच्चा
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "डक वस्तु जुन 'आफ्नै' यो ट्याबतह हो"
+msgstr "डक वस्तु जुन 'आफ्नै' यो ट्याब तह हो"
 
-#: ../gdl/gdl-dock-bar.c:103
+#: ../gdl/gdl-dock-bar.c:107
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "जिडिएल डक मास्टर वस्तु जुनमा डकपट्टी विजेट टाँसिएको हुन्छ"
+
+#: ../gdl/gdl-dock-bar.c:114
+msgid "Dockbar style"
+msgstr "डकबार शैली"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style to show items on it"
+msgstr "यसमा वस्तुहरू देखाउन डकबार शैली"
 
 #: ../gdl/gdl-dock.c:175
 msgid "Floating"
@@ -364,23 +420,15 @@ msgstr "उत्प्लावन"
 
 #: ../gdl/gdl-dock.c:176
 msgid "Whether the dock is floating in its own window"
-msgstr "डक आफ्नै सञ्झ्यालमा उत्प्लावन हुँदैछ कि"
+msgstr "डक आफ्नै सञ्झ्यालमा उत्प्लावन हुँदैछ या छैन"
 
 #: ../gdl/gdl-dock.c:184
 msgid "Default title for the newly created floating docks"
 msgstr "नयाँ सिर्जना गरिएको उत्प्लावन डकहरूलाई पूर्वनिर्धारित शीर्षक"
 
-#: ../gdl/gdl-dock.c:190
-msgid "Width"
-msgstr "चौडाइ"
-
 #: ../gdl/gdl-dock.c:191
 msgid "Width for the dock when it's of floating type"
 msgstr "जब यो उत्प्लावन प्रकारको हुन्छ डकका लागि चौडाइ"
-
-#: ../gdl/gdl-dock.c:198
-msgid "Height"
-msgstr "उचाइ"
 
 #: ../gdl/gdl-dock.c:199
 msgid "Height for the dock when it's of floating type"
@@ -388,61 +436,24 @@ msgstr "जव यो उत्प्लावन प्रकारको ह�
 
 #: ../gdl/gdl-dock.c:206
 msgid "Float X"
-msgstr "फ्लोट X"
+msgstr "फ्लोट एक्स"
 
 #: ../gdl/gdl-dock.c:207
 msgid "X coordinate for a floating dock"
-msgstr "उत्प्लावन डकका लागि X समन्वय"
+msgstr "उत्प्लावन डकका लागि एक्स समकक्ष"
 
 #: ../gdl/gdl-dock.c:214
 msgid "Float Y"
-msgstr "Y फ्लोट गर्नुहोस्"
+msgstr "वाइ फ्लोट गर्नुहोस्"
 
 #: ../gdl/gdl-dock.c:215
 msgid "Y coordinate for a floating dock"
-msgstr "उत्प्लावन डकका लागि Y समन्वय"
+msgstr "उत्प्लावन डकका लागि वाइ समकक्ष"
 
 #: ../gdl/gdl-dock.c:496
 #, c-format
 msgid "Dock #%d"
 msgstr "डक #%d"
-
-#: ../gdl/gdl-recent.c:135
-msgid "GConf key"
-msgstr "जिकन्फ कुञ्जी"
-
-#: ../gdl/gdl-recent.c:136
-msgid "The gconf key for storing the recent entries."
-msgstr "भण्डारण गर्नका लागि हालको प्रविष्टहरूका लागि जिकन्फ.कुञ्जी"
-
-#: ../gdl/gdl-recent.c:142
-msgid "Path"
-msgstr "मार्ग"
-
-#: ../gdl/gdl-recent.c:143
-msgid "The path to put the menu items."
-msgstr "मेनु वस्तुहरू राख्नका लागि मार्ग"
-
-#: ../gdl/gdl-recent.c:149
-msgid "Limit"
-msgstr "सीमा"
-
-#: ../gdl/gdl-recent.c:150
-msgid "The maximum number of items to be allowed in the list."
-msgstr "सूचीमा स्विकृत गर्ने वस्तुहरूको अधिकतम संङ्ख्या"
-
-#: ../gdl/gdl-recent.c:158
-msgid "List type"
-msgstr "सूची प्रकार"
-
-#: ../gdl/gdl-recent.c:159
-msgid "The type with which the items will be numbered."
-msgstr "प्रकार जससँग सँगै वस्तुहरू अंकित हुन्छन्।"
-
-#: ../gdl/gdl-recent.c:408
-#, c-format
-msgid "Open %s"
-msgstr "%s खोल्नुहोस्"
 
 #: ../gdl/gdl-icons.c:133 ../gdl/gdl-icons.c:134
 msgid "Icon size"
@@ -450,7 +461,7 @@ msgstr "प्रतिमाको आकार"
 
 #: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
-msgstr "सजावट ब्यवस्थापन"
+msgstr "सजावट व्यवस्थापन"
 
 #: ../gdl/layout.glade.h:4
 msgid "_Load"
