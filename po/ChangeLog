@@ -1,4 +1,8 @@
-2008-02-17  Djihed Afifi <djihed@gmail.com> 
+2008-02-18  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* nl.po: Updated Dutch translation by Wouter Bolsterlee.
+
+2008-02-17  Djihed Afifi <djihed@gmail.com>
 
 	* ar.po: Updated Arabic Translation by Djihed Afifi.
 
@@ -116,7 +120,7 @@
 
 	* ar.po: Updated Arabic Translation by Djihed Afifi.
 
-2007-09-15   Clytie Siddall <clytie@riverland.net.au>
+2007-09-15  Clytie Siddall <clytie@riverland.net.au>
 
 	* vi.po: Updated Vietnamese translation.
 
@@ -135,8 +139,8 @@
 
 2007-07-27  Raivis Dejus  <orvils@gmail.com>
 
-        * lv.po: Added Latvian Translation.
-        * LINGUAS: Added Latvian Translation.
+	* lv.po: Added Latvian Translation.
+	* LINGUAS: Added Latvian Translation.
 
 2007-06-24  Takeshi AIHANA <takeshi.aihana@gmail.com>
 
@@ -148,7 +152,7 @@
 
 2007-06-15  Jorge Gonzalez <jorgegonz@svn.gnome.org>
 
-        * es.po: Updated Spanish translation
+	* es.po: Updated Spanish translation
 
 2007-04-22  Djihed Afifi <djihed@gmail.com> 
 
@@ -234,7 +238,7 @@
 
 2006-04-12  Daniel Nylander  <po@danielnylander.se>
 
-        * sv.po: Updated Swedish translation
+	* sv.po: Updated Swedish translation
 	
 2005-11-13  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
 
@@ -242,7 +246,7 @@
 
 2005-08-27  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-08-24  Pawan Chitrakar  <pchitrakar@gmail.com>
 
@@ -250,7 +254,7 @@
 
 2005-08-18  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-05-17  Takeshi AIHANA <aihana@gnome.gr.jp>
 
@@ -258,7 +262,7 @@
 
 2005-04-01  Steve Murphy  <murf@e-tools.com>
 
-        * rw.po: Added Kinyarwanda translation.
+	* rw.po: Added Kinyarwanda translation.
 
 2005-03-11  Miloslav Trmac  <mitr@volny.cz>
 
@@ -438,7 +442,7 @@
 2003-05-14  Guntupalli Karunakar  <karunakar@freedomink.org>
 
 	* ml.po: Added Malayalam translation by
-	 FSF-India <locale@gnu.org.in>.
+	FSF-India <locale@gnu.org.in>.
 
 2003-05-28  Danilo Šegan  <dsegan@gmx.net>
 
@@ -461,21 +465,21 @@
 
 2003-03-21  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation.
+	* es.po: Updated Spanish translation.
 
 2003-03-17  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation by 
-                 Francisco Javier Fernandez <serrador@arrakis.es>
+	* es.po: Updated Spanish translation by 
+	Francisco Javier Fernandez <serrador@arrakis.es>
 
 2003-03-14  Pablo Gonzalo del Campo  <pablodc@bigfoot.com>
 
-        * es.po: Updated Spanish translation by
-          Francisco Javier Fernandez <serrador@arrakis.es>.
+	* es.po: Updated Spanish translation by
+	Francisco Javier Fernandez <serrador@arrakis.es>.
 
 2003-03-11  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Updated Portuguese translation.
+	* pt.po: Updated Portuguese translation.
 
 2003-02-07  Miloslav Trmac  <mitr@volny.cz>
 
@@ -588,11 +592,11 @@
 
 2002-05-18  Carlos Perello Marin <carlos@gnome-db.org>
 
-        * POTFILES.in: Fixed, sorry all strings will change :-(
+	* POTFILES.in: Fixed, sorry all strings will change :-(
 
 2002-02-14  Duarte Loreto <happyguy_pt@hotmail.com>
 
-        * pt.po: Added Portugues translation by Paulo Silva <paulojjs@yahoo.com>
+	* pt.po: Added Portugues translation by Paulo Silva <paulojjs@yahoo.com>
 
 2001-12-14  Simos Xenitellis  <simos@hellug.gr>
 
@@ -639,15 +643,15 @@
 2000-12-18  Valek Filippov  <frob@df.ru>
 	
 	Fixed ChangeLog, fixed name of module in update.pl.
-        Added some scripts from  Kenneth Christiansen <kenneth@gnu.org>
+	Added some scripts from  Kenneth Christiansen <kenneth@gnu.org>
 
-        * desk.pl, update.pl: Two new scripts for helping
-        translation/i18n maintainance of Gal
-        
-        * README.tools: Added readme file, which explains the
-        use of the newly checked in po tools.      
+	* desk.pl, update.pl: Two new scripts for helping
+	translation/i18n maintainance of Gal
+
+	* README.tools: Added readme file, which explains the
+	use of the newly checked in po tools.
 
 	* da.po: Added Danish translation
 
-        * POTFILES.in: Overall prepared for translations of gal
+	* POTFILES.in: Overall prepared for translations of gal
 
