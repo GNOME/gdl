@@ -1,3 +1,8 @@
+2008-02-18  Sébastien Granjoux  <seb.sfo@free.fr>
+
+	* gdl/gdl-dock-item-grip.c:
+	Avoid glib critical warnings
+
 === gdl 0.7.9 ===
 
 2008-02-11  Naba Kumar  <naba@gnome.org>
