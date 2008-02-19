@@ -1,15 +1,15 @@
 # Copyright (C) 2002-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, 2007.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2008.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-18 03:16+0100\n"
-"PO-Revision-Date: 2007-11-23 16:04+0100\n"
+"POT-Creation-Date: 2008-02-04 10:34+0000\n"
+"PO-Revision-Date: 2008-02-19 13:25+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -66,8 +66,8 @@ msgid "Resizable"
 msgstr "Spremenljive velikosti"
 
 #: ../gdl/gdl-dock-item.c:260
-msgid "If set, the dock item can be resized when docked in a paned"
-msgstr "Izbrana možnost omogoča spreminjanje velikosti predmeta sidrišča znotraj pladnja"
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr "Izbrana možnost omogoča razširitev zasidranega predmeta znotraj gradnika GtkPanel"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -112,84 +112,84 @@ msgstr "Mogoče je dodati predmet sidrišča (%p vrste %s) znotraj %s. Uporabite
 msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
 msgstr "Poskus dodajanja gradnika vrste %s na %s, vendar ta lahko vsebuje sočasno le en gradnik; trenutno je vezan gradnik vrste %s"
 
-#: ../gdl/gdl-dock-item.c:1235
-#: ../gdl/gdl-dock-item.c:1280
+#: ../gdl/gdl-dock-item.c:1236
+#: ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nepodprt način sidranja %s v predmet sidrišča vrste %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1367
+#: ../gdl/gdl-dock-item.c:1390
 msgid "UnLock"
 msgstr "Odkleni"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1374
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Skrij"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1379
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Zakleni"
 
-#: ../gdl/gdl-dock-item.c:1585
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Poskus vezave nevezanega predmeta %p"
 
-#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-layout.c:123
 #: ../gdl/gdl-dock-bar.c:108
 msgid "Master"
 msgstr "Glavni predmet"
 
-#: ../gdl/gdl-dock-layout.c:125
+#: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Predmet GdlDockMaster na katerega je vezan predmet razporeditve"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
 msgstr "Umazano"
 
-#: ../gdl/gdl-dock-layout.c:133
+#: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Ustrezno kadar so razporeditve spremenjene in morajo biti shranjene v datoteko"
 
 #. FIXME: pop up an error dialog
-#: ../gdl/gdl-dock-layout.c:564
+#: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Ni mogoče naložiti datoteke razporeditve uporabniškega vmesnika '%s'"
 
-#: ../gdl/gdl-dock-layout.c:619
+#: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
 msgstr "Vidno"
 
-#: ../gdl/gdl-dock-layout.c:626
+#: ../gdl/gdl-dock-layout.c:625
 msgid "Item"
 msgstr "Predmet"
 
-#: ../gdl/gdl-dock-layout.c:709
+#: ../gdl/gdl-dock-layout.c:708
 #: ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Ime"
 
-#: ../gdl/gdl-dock-layout.c:742
+#: ../gdl/gdl-dock-layout.c:741
 #: ../gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Sidranje predmetov"
 
-#: ../gdl/gdl-dock-layout.c:748
+#: ../gdl/gdl-dock-layout.c:747
 #: ../gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Shranjene razporeditve"
 
-#: ../gdl/gdl-dock-layout.c:790
+#: ../gdl/gdl-dock-layout.c:789
 #, c-format
 msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
 msgstr "Med nalaganjem razporeditve: ni mogoče ustvariti predmeta sidrišča katerega vzdevek je '%s'"
 
-#: ../gdl/gdl-dock-layout.c:1269
+#: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
 msgstr "Upravljanje razporeditev"
 
@@ -207,12 +207,12 @@ msgid "If is set to 1, all the dock items bound to the master are locked; if it'
 msgstr "Vrednost določena na 1 zaklepa predmete na glavno sidrišče, vrednost 0 predmete ohrani odklenjene, vrednost -1 pa predstavlja prosto nastavitev zaklepanja"
 
 #: ../gdl/gdl-dock-master.c:154
-#: ../gdl/gdl-switcher.c:706
+#: ../gdl/gdl-switcher.c:704
 msgid "Switcher Style"
 msgstr "Slog preklopnika"
 
 #: ../gdl/gdl-dock-master.c:155
-#: ../gdl/gdl-switcher.c:707
+#: ../gdl/gdl-switcher.c:705
 msgid "Switcher buttons style"
 msgstr "Slog gumbov preklopnika"
 
@@ -262,22 +262,22 @@ msgstr "Glavno sidrišče"
 msgid "Dock master this dock object is bound to"
 msgstr "Glavno sidrišče na katerega je vezan predmet sidrišča"
 
-#: ../gdl/gdl-dock-object.c:420
+#: ../gdl/gdl-dock-object.c:444
 #, c-format
 msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
 msgstr "Klic gdl_dock_object_dock znotraj predmeta sidrišča %p (vrsta predmeta je %s) ni vstavil načina."
 
-#: ../gdl/gdl-dock-object.c:549
+#: ../gdl/gdl-dock-object.c:576
 #, c-format
 msgid "Dock operation requested in a non-bound object %p. The application might crash"
 msgstr "Zahteva za sidranje na nevezni predmet %p. Program se lahko sesuje."
 
-#: ../gdl/gdl-dock-object.c:556
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Ni mogoče sidrati %p na %p saj pripadata različnim glavnim predmetom"
 
-#: ../gdl/gdl-dock-object.c:598
+#: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr "Poskus vezave na %p že sidranega predmeta %p (trenutni glavni predmet: %p)"
@@ -345,7 +345,7 @@ msgid "X-Coordinate"
 msgstr "X koordinata"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate fow dock when floating"
+msgid "X-Coordinate for dock when floating"
 msgstr "Koordinata X za plavajoče sidrišče"
 
 #: ../gdl/gdl-dock-placeholder.c:198
@@ -353,7 +353,7 @@ msgid "Y-Coordinate"
 msgstr "Y koordinata"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate fow dock when floating"
+msgid "Y-Coordinate for dock when floating"
 msgstr "Koordinata Y za plavajoče sidrišče"
 
 #: ../gdl/gdl-dock-placeholder.c:494
