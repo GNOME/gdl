@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-27 13:28+0100\n"
+"POT-Creation-Date: 2008-02-19 20:20+0100\n"
 "PO-Revision-Date: 2007-12-27 13:34+0100\n"
 "Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
@@ -24,27 +24,27 @@ msgstr ""
 msgid "Size of the expander arrow."
 msgstr ""
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify"
 msgstr ""
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify this dock"
 msgstr ""
 
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close"
 msgstr "Tampar"
 
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close this dock"
 msgstr ""
 
-#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr ""
 
-#: ../gdl/gdl-dock-item-grip.c:685
+#: ../gdl/gdl-dock-item-grip.c:687
 msgid "Dockitem which 'owns' this grip"
 msgstr ""
 
@@ -61,7 +61,7 @@ msgid "Resizable"
 msgstr "Visible"
 
 #: ../gdl/gdl-dock-item.c:260
-msgid "If set, the dock item can be resized when docked in a paned"
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 
 #: ../gdl/gdl-dock-item.c:267
@@ -113,27 +113,27 @@ msgid ""
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
 
-#: ../gdl/gdl-dock-item.c:1235 ../gdl/gdl-dock-item.c:1285
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1389
+#: ../gdl/gdl-dock-item.c:1390
 msgid "UnLock"
 msgstr "Desvarrolhar"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1396
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Amagar"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1401
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Varrolhar"
 
-#: ../gdl/gdl-dock-item.c:1607
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr ""
@@ -205,11 +205,11 @@ msgid ""
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:706
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
 msgid "Switcher Style"
 msgstr ""
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:707
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
 msgid "Switcher buttons style"
 msgstr ""
 
@@ -353,7 +353,7 @@ msgid "X-Coordinate"
 msgstr ""
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate fow dock when floating"
+msgid "X-Coordinate for dock when floating"
 msgstr ""
 
 #: ../gdl/gdl-dock-placeholder.c:198
@@ -361,7 +361,7 @@ msgid "Y-Coordinate"
 msgstr ""
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate fow dock when floating"
+msgid "Y-Coordinate for dock when floating"
 msgstr ""
 
 #: ../gdl/gdl-dock-placeholder.c:494
