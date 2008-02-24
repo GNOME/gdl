@@ -3,19 +3,21 @@
 # This file is distributed under the same license as the gdl package.
 # Christian Neumair <chris@gnome-de.org>, 2002, 2003.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
+# Hendrik Brandt <heb@gnome-de.org>, 2008.
+# Hendrik Richter <hendrikr@gnome.org>, 2008.
 # 
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl\n"
+"Project-Id-Version: gdl trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-10 09:28+0100\n"
-"PO-Revision-Date: 2006-06-15 16:20+0200\n"
-"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
+"POT-Creation-Date: 2008-02-24 16:29+0100\n"
+"PO-Revision-Date: 2008-02-24 19:39+0100\n"
+"Last-Translator: Hendrik Brandt <heb@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../gdl/gdl-data-view.c:418
 msgid "Expander Size"
@@ -25,53 +27,52 @@ msgstr "Ausklappergröße"
 msgid "Size of the expander arrow."
 msgstr "Größe des Ausklapppfeils"
 
-#: ../gdl/gdl-dock-item-grip.c:371
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify"
-msgstr "Icongröße"
+msgstr "Zu Symbol"
 
-#: ../gdl/gdl-dock-item-grip.c:371
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify this dock"
-msgstr "Dieses Dock auf Icongröße verkleinern"
+msgstr "Dieses Dock auf Symbolgröße verkleinern"
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close"
 msgstr "Schließen"
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close this dock"
 msgstr "Dieses Dock schließen"
 
-#: ../gdl/gdl-dock-item-grip.c:682 ../gdl/gdl-dock-tablabel.c:129
+#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Dock-Objekt wird gesteuert"
 
-#: ../gdl/gdl-dock-item-grip.c:683
+#: ../gdl/gdl-dock-item-grip.c:687
 msgid "Dockitem which 'owns' this grip"
 msgstr "Dock-Objekt, dem dieser Griff »gehört«"
 
-#: ../gdl/gdl-dock-item.c:241
+#: ../gdl/gdl-dock-item.c:243
 msgid "Orientation"
 msgstr "Ausrichtung"
 
-#: ../gdl/gdl-dock-item.c:242
+#: ../gdl/gdl-dock-item.c:244
 msgid "Orientation of the docking item"
 msgstr "Ausrichtung des Dock-Objekts"
 
-#: ../gdl/gdl-dock-item.c:257
+#: ../gdl/gdl-dock-item.c:259
 msgid "Resizable"
 msgstr "Größe veränderbar"
 
-#: ../gdl/gdl-dock-item.c:258
-msgid "If set, the dock item can be resized when docked in a paned"
-msgstr ""
-"Falls gesetzt, kann die Größe des Dock-Objekts verändert werden, wenn es in "
-"einem Fenster angedockt wird "
+#: ../gdl/gdl-dock-item.c:260
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr "Falls gesetzt, kann die Größe des Dock-Objekts verändert werden, wenn es in "
+"einem GtkPanel-Widget angedockt ist"
 
-#: ../gdl/gdl-dock-item.c:265
+#: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
 msgstr "Objektverhalten"
 
-#: ../gdl/gdl-dock-item.c:266
+#: ../gdl/gdl-dock-item.c:268
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -79,34 +80,34 @@ msgstr ""
 "Allgemeines Verhalten für das Dock-Objekt (also ob es schweben kann, es "
 "gesperrt ist, u.s.w.)"
 
-#: ../gdl/gdl-dock-item.c:274 ../gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "Gesperrt"
 
-#: ../gdl/gdl-dock-item.c:275
+#: ../gdl/gdl-dock-item.c:277
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Falls gesetzt, kann das Dock-Objekt nicht verschoben werden und zeigt keinen "
 "Griff"
 
-#: ../gdl/gdl-dock-item.c:283
+#: ../gdl/gdl-dock-item.c:285
 msgid "Preferred width"
 msgstr "Bevorzugte Breite"
 
-#: ../gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:286
 msgid "Preferred width for the dock item"
 msgstr "Bevorzugte Breite des Dock-Objekts"
 
-#: ../gdl/gdl-dock-item.c:290
+#: ../gdl/gdl-dock-item.c:292
 msgid "Preferred height"
 msgstr "Bevorzugte Höhe"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:293
 msgid "Preferred height for the dock item"
 msgstr "Bevorzugte Höhe des Dock-Objekts"
 
-#: ../gdl/gdl-dock-item.c:541
+#: ../gdl/gdl-dock-item.c:543
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -115,116 +116,123 @@ msgstr ""
 "Sie können kein Dock-Objekt (%p des Typs %s) in einem %s hinzufügen. "
 "Verwenden Sie ein GdlDock oder ein anderes zusammengesetztes Dock-Objekt"
 
-#: ../gdl/gdl-dock-item.c:548
+#: ../gdl/gdl-dock-item.c:550
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
-msgstr ""
-"Versuch, ein Widget des Typs %s zu einem %s hinzuzufügen, aber es kann immer "
-"lediglich ein Widget enthalten; es enthält bereits ein Widget des Typs %s"
+msgstr "Es wurde versucht, ein Widget vom Typ %s zu einem %s hinzuzufügen, "
+"dieses kann aber immer nur ein Widget enthalten. Es enthält bereits ein Widget vom Typ %s"
 
-#: ../gdl/gdl-dock-item.c:1174
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nicht unterstützte Dock-Strategie %s in Dock-Objekt des Typs %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1257
+#: ../gdl/gdl-dock-item.c:1390
 msgid "UnLock"
 msgstr "Freigeben"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1264
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Verbergen"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1269
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Sperren"
 
-#: ../gdl/gdl-dock-item.c:1474
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Versuch, ein unverbundenes Objekt %p anzubinden"
 
 # Master nicht übersetzbar (ähnlich wie bei Datenspeicherung Master/Slave)?
-#: ../gdl/gdl-dock-layout.c:125 ../gdl/gdl-dock-bar.c:103
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
 msgid "Master"
 msgstr "Master"
 
-#: ../gdl/gdl-dock-layout.c:126
+#: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "GdlDockMaster-Objekt, an den das Layout-Objekt angehängt wird"
 
-#: ../gdl/gdl-dock-layout.c:133
+#: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
 msgstr "Schmutzig"
 
-#: ../gdl/gdl-dock-layout.c:134
+#: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "Wahr falls die Layout verändert wurden und in eine Datei gespeichert werden "
 "müssen"
 
 #. FIXME: pop up an error dialog
-#: ../gdl/gdl-dock-layout.c:564
+#: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Layout-Benutzeroberflächendatei »%s« konnte nicht geladen werden"
 
-#: ../gdl/gdl-dock-layout.c:619
+#: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
 msgstr "Sichtbar"
 
-#: ../gdl/gdl-dock-layout.c:626
+#: ../gdl/gdl-dock-layout.c:625
 msgid "Item"
 msgstr "Objekt"
 
-#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Name"
 
-#: ../gdl/gdl-dock-layout.c:742 ../gdl/layout.glade.h:1
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Dock-Objekte"
 
-#: ../gdl/gdl-dock-layout.c:748 ../gdl/layout.glade.h:3
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Gespeicherte Layouts"
 
-#: ../gdl/gdl-dock-layout.c:790
+#: ../gdl/gdl-dock-layout.c:789
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
-"Problem: Beim Laden des Layouts: Es ist ungbekannt, wie ein Dock-Objekt mit "
-"Aliasnamen »%s« erstellt werden soll"
+"Problem beim Laden des Layouts: Es ist unbekannt, wie ein Dock-Objekt mit "
+"dem Alias »%s« erstellt werden soll"
 
-#: ../gdl/gdl-dock-layout.c:1269
+#: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
 msgstr "Layout-Verwaltung"
 
-#: ../gdl/gdl-dock-master.c:134 ../gdl/gdl-dock.c:184
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "Vorgegebener Titel"
 
-#: ../gdl/gdl-dock-master.c:135
+#: ../gdl/gdl-dock-master.c:139
 msgid "Default title for newly created floating docks"
 msgstr "Vorgegebener Titel für neu erstellte freischwebende Docks"
 
-#: ../gdl/gdl-dock-master.c:142
+#: ../gdl/gdl-dock-master.c:146
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"Falls auf 1 gesetzt, werden alle an den Master angebundene Dock-Objekte "
-"gesperrt; Falls auf 0 gesetzt, sind alle nicht gesperrt; -1 zeigt "
+"Falls auf »1« gesetzt, werden alle an den Master angebundene Dock-Objekte "
+"gesperrt; falls auf »0« gesetzt, sind alle nicht gesperrt; »-1« zeigt "
 "Inkonsistenz unter den Objekten an"
 
-#: ../gdl/gdl-dock-master.c:730
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+msgid "Switcher Style"
+msgstr "Umschalterstil"
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+msgid "Switcher buttons style"
+msgstr "Stil des Umschalteknopf"
+
+#: ../gdl/gdl-dock-master.c:761
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -233,7 +241,7 @@ msgstr ""
 "Master %p: Objekt %p[%s] konnte nicht zum Hash hinzugefügt werden. Es gibt "
 "bereits ein gleichnamiges Objekt (%p)."
 
-#: ../gdl/gdl-dock-master.c:895
+#: ../gdl/gdl-dock-master.c:934
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -242,43 +250,43 @@ msgstr ""
 "Die neue Dock-Steuerung %p ist automatisch. Nur manuelle Dock-Objekte "
 "sollten zur Steuerung ernannt werden"
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
 msgstr "Seite"
 
-#: ../gdl/gdl-dock-notebook.c:136
+#: ../gdl/gdl-dock-notebook.c:135
 msgid "The index of the current page"
 msgstr "Der Index der aktuellen Seite"
 
-#: ../gdl/gdl-dock-object.c:121
+#: ../gdl/gdl-dock-object.c:120
 msgid "Unique name for identifying the dock object"
-msgstr "Einmaliger Name zur Identifikation des Dock-Objekts"
+msgstr "Eindeutiger Name zur Identifikation des Dock-Objekts"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:127
 msgid "Long name"
 msgstr "Langer Name"
 
-#: ../gdl/gdl-dock-object.c:129
+#: ../gdl/gdl-dock-object.c:128
 msgid "Human readable name for the dock object"
 msgstr "Leserlicher Name des Dock-Objekts"
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:134
 msgid "Stock Icon"
-msgstr "Standardicon"
+msgstr "Standardsymbol"
 
-#: ../gdl/gdl-dock-object.c:136
+#: ../gdl/gdl-dock-object.c:135
 msgid "Stock icon for the dock object"
-msgstr "Standardicon für das Dock-Objekt"
+msgstr "Standardsymbol für das Dock-Objekt"
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:141
 msgid "Dock master"
 msgstr "Dock-Master"
 
-#: ../gdl/gdl-dock-object.c:143
+#: ../gdl/gdl-dock-object.c:142
 msgid "Dock master this dock object is bound to"
 msgstr "Dock-Master, an den dieses Dock-Objekt angebunden ist"
 
-#: ../gdl/gdl-dock-object.c:421
+#: ../gdl/gdl-dock-object.c:444
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -287,7 +295,7 @@ msgstr ""
 "Rückfrage an gdl_dock_objekt_dock in einem Dock-Objekt %p (Objekttyp ist %"
 "s), welches diese Methode nicht implementiert"
 
-#: ../gdl/gdl-dock-object.c:550
+#: ../gdl/gdl-dock-object.c:576
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -296,14 +304,14 @@ msgstr ""
 "Dock-Operation in einem unverbundenen Objekt %p angefordert. Die Anwendung "
 "stürzt möglicherweise ab"
 
-#: ../gdl/gdl-dock-object.c:557
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "Dock %p konnte nicht an %p angedockt werden, da sie zu unterschiedlichen "
 "Mastern gehören"
 
-#: ../gdl/gdl-dock-object.c:599
+#: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -311,20 +319,20 @@ msgstr ""
 "Versuch, ein bereits angebundenes Objekt an %p anzubinden (%p, aktueller "
 "Master: %p)"
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
 msgstr "Position"
 
-#: ../gdl/gdl-dock-paned.c:134
+#: ../gdl/gdl-dock-paned.c:133
 msgid "Position of the divider in pixels"
 msgstr "Position des Teilers in Pixeln"
 
-#: ../gdl/gdl-dock-placeholder.c:127
+#: ../gdl/gdl-dock-placeholder.c:143
 msgid "Sticky"
 msgstr "Klebrig"
 
 # CHECK
-#: ../gdl/gdl-dock-placeholder.c:128
+#: ../gdl/gdl-dock-placeholder.c:144
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
@@ -332,20 +340,20 @@ msgstr ""
 "Ob der Platzhalter beim erneuten Andocken seines Hosts bei diesem bleiben "
 "oder in der Hierarchie aufsteigen soll"
 
-#: ../gdl/gdl-dock-placeholder.c:135
+#: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
 msgstr "Rechner"
 
-#: ../gdl/gdl-dock-placeholder.c:136
+#: ../gdl/gdl-dock-placeholder.c:152
 msgid "The dock object this placeholder is attached to"
 msgstr "Das Dock-Objekt, an den dieser Platzhalter angehängt wird"
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:159
 msgid "Next placement"
 msgstr "Nächste Platzieren"
 
 # CHECK
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:160
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
@@ -353,18 +361,57 @@ msgstr ""
 "Die Position, an die ein Objekt an unseren Host angedockt wird, falls eine "
 "Anfrage zum andocken an uns gemacht wurde"
 
-#: ../gdl/gdl-dock-placeholder.c:305
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+msgid "Width"
+msgstr "Breite"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Breite des Widgets, wenn es mit dem Platzhalter verbunden wird"
+
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+msgid "Height"
+msgstr "Höhe"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Höhe des Widgets, wenn es mit dem Platzhalter verbunden wird"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "Freischwebend immer sichtbar"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "Legt fest, ob der Platzhalter für ein schwebendes immer sichtbares Dock steht"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "X-Koordinate"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate for dock when floating"
+msgstr "X-Koordinate eines freischwebenden Docks"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Y-Koordinate"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate for dock when floating"
+msgstr "Y-Koordinate eines freischwebenden Docks"
+
+#: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Versuch, ein Dock-Objekt an einen unverbundenen Platzhalter anzudocken"
 
 # CHECK
-#: ../gdl/gdl-dock-placeholder.c:419
+#: ../gdl/gdl-dock-placeholder.c:618
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr ""
-"Löse-Signal von einem Objekt (%p) erhalten, das nicht unser Host %p ist"
+msgstr "Es wurde ein Ablösesignal von einem Objekt (%p) erhalten, das nicht unser Host %p ist"
 
-#: ../gdl/gdl-dock-placeholder.c:440
+#: ../gdl/gdl-dock-placeholder.c:643
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -373,103 +420,66 @@ msgstr ""
 "Beim Erhalten der Kindplatzierung für %p vom Elternobjekt %p ist etwas "
 "seltsames passiert"
 
-#: ../gdl/gdl-dock-tablabel.c:130
+#: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Dock-Objekt, dem diese Reiterbeschriftung »gehört«"
 
-#: ../gdl/gdl-dock-bar.c:104
+#: ../gdl/gdl-dock-bar.c:109
 msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "GdlDockMaster-Objekt, an welches das Dockleisten-Widget angehängt wird"
+msgstr "GdlDockMaster-Objekt, an welches das Dockleisten-Widget angehängt wirdgggg"
 
-#: ../gdl/gdl-dock.c:176
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "Dockleistenstil"
+
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "Dockleistenstil mit dem Einträge angezeigt werden"
+
+#: ../gdl/gdl-dock.c:178
 msgid "Floating"
 msgstr "Freischwebend"
 
-#: ../gdl/gdl-dock.c:177
+#: ../gdl/gdl-dock.c:179
 msgid "Whether the dock is floating in its own window"
 msgstr "Ob das Dock frei in seinem eigenen Fenster schwebt"
 
-#: ../gdl/gdl-dock.c:185
+#: ../gdl/gdl-dock.c:187
 msgid "Default title for the newly created floating docks"
 msgstr "Vorgegebener Titel für die neu erzeugten, freischebenden Docks."
 
-#: ../gdl/gdl-dock.c:191
-msgid "Width"
-msgstr "Breite"
-
-#: ../gdl/gdl-dock.c:192
+#: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
 msgstr "Breite des Docks, wenn es den Typ freischwebend hat"
 
-#: ../gdl/gdl-dock.c:199
-msgid "Height"
-msgstr "Höhe"
-
-#: ../gdl/gdl-dock.c:200
+#: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
 msgstr "Höhe des Docks, wenn es den Typ freischwebend hat"
 
-#: ../gdl/gdl-dock.c:207
+#: ../gdl/gdl-dock.c:209
 msgid "Float X"
 msgstr "Schwebend X"
 
-#: ../gdl/gdl-dock.c:208
+#: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
 msgstr "X-Koordinate eines freischebenden Docks"
 
-#: ../gdl/gdl-dock.c:215
+#: ../gdl/gdl-dock.c:217
 msgid "Float Y"
 msgstr "Schwebend X"
 
-#: ../gdl/gdl-dock.c:216
+#: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
 msgstr "Y-Koordinate eines freischebenden Docks"
 
-#: ../gdl/gdl-dock.c:497
+#: ../gdl/gdl-dock.c:499
 #, c-format
 msgid "Dock #%d"
-msgstr "Dock #%d"
-
-#: ../gdl/gdl-recent.c:135
-msgid "GConf key"
-msgstr "GConf-Schlüssel"
-
-#: ../gdl/gdl-recent.c:136
-msgid "The gconf key for storing the recent entries."
-msgstr "Der GConf-Schlüssel, um die letzten Einträge zu speichern."
-
-#: ../gdl/gdl-recent.c:142
-msgid "Path"
-msgstr "Pfad"
-
-#: ../gdl/gdl-recent.c:143
-msgid "The path to put the menu items."
-msgstr "Der Pfad zum Speichern der Menüobjekte"
-
-#: ../gdl/gdl-recent.c:149
-msgid "Limit"
-msgstr "Obergrenze"
-
-#: ../gdl/gdl-recent.c:150
-msgid "The maximum number of items to be allowed in the list."
-msgstr "Die maximale Anzahl an in der Liste erlaubten Objekten."
-
-#: ../gdl/gdl-recent.c:158
-msgid "List type"
-msgstr "Listentyp"
-
-#: ../gdl/gdl-recent.c:159
-msgid "The type with which the items will be numbered."
-msgstr "Der Typ mit dem die Objekte nummertiert werden"
-
-#: ../gdl/gdl-recent.c:408
-#, c-format
-msgid "Open %s"
-msgstr "%s öffnen"
+msgstr "Dock Nr. %d"
 
 #: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
 msgid "Icon size"
-msgstr "Icongröße"
+msgstr "Symbolgröße"
 
 #: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
@@ -482,262 +492,4 @@ msgstr "_Laden"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "Dock-Objekte _sperren"
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
-msgid "Factory for the Gnome Symbol Browser control."
-msgstr "Fabrik der GNOME-Symbolbrowser-Steuerung"
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
-msgid "Gnome Symbol Browser Control"
-msgstr "GNOME-Symbolbrowser-Steuerung"
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
-msgid "Gnome Symbol Browser Control Factory"
-msgstr "GNOME-Symbolbrowser-Steuerungsfabrik"
-
-#: ../symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
-msgid "Gnome Symbol Browser."
-msgstr "GNOME-Symbolbrowser"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:1
-msgid "Goto Symbol"
-msgstr "Gehe zu Symbol"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:2
-msgid "Goto the displayed symbol"
-msgstr "Zum angezeigten Symbol gehen"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:3
-msgid "Update Symbols"
-msgstr "Symbole aktualisieren"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:4
-msgid "Update the symbol tree"
-msgstr "Den Symbolbaum aktualisieren"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:5
-msgid "_Goto to symbol"
-msgstr "_Gehe zu Symbol"
-
-#: ../symbol-browser-control/gnome-symbol-browser.xml.h:6
-msgid "_View"
-msgstr "_Ansicht"
-
-#: ../symbol-browser-control/symbol-browser.c:65
-msgid "Unknown"
-msgstr "Unbekannt"
-
-#. ! tm_tag_undef_t = 0, < Unknown type
-#: ../symbol-browser-control/symbol-browser.c:66
-msgid "Classes"
-msgstr "Klassen"
-
-#. ! tm_tag_class_t = 1, < Class declaration
-#: ../symbol-browser-control/symbol-browser.c:67
-msgid "Enums"
-msgstr "Aufzählungen"
-
-# CHECK
-#. ! tm_tag_enum_t = 2, < Enum declaration
-#: ../symbol-browser-control/symbol-browser.c:68
-msgid "Enumerators"
-msgstr "Aufzähler"
-
-#. ! tm_tag_enumerator_t = 4, < Enumerator value
-#: ../symbol-browser-control/symbol-browser.c:69
-msgid "Fields"
-msgstr "Felder"
-
-#. ! tm_tag_field_t = 8, < Field (Java only)
-#: ../symbol-browser-control/symbol-browser.c:70
-msgid "Functions"
-msgstr "Funktionen"
-
-# CHECK - Oberflächen?
-#. ! tm_tag_function_t = 16, < Function definition
-#: ../symbol-browser-control/symbol-browser.c:71
-msgid "Interfaces"
-msgstr "Schnittstellen"
-
-#. ! tm_tag_interface_t = 32, < Interface (Java only
-#: ../symbol-browser-control/symbol-browser.c:72
-msgid "Members"
-msgstr "Mitglieder"
-
-#. ! tm_tag_member_t = 64, < Member variable of class/struct
-#: ../symbol-browser-control/symbol-browser.c:73
-msgid "Methods"
-msgstr "Methoden"
-
-#. ! tm_tag_method_t = 128, < Class method (Java only
-#: ../symbol-browser-control/symbol-browser.c:74
-msgid "Namespaces"
-msgstr "Namensräume"
-
-#. ! tm_tag_namespace_t = 256, < Namespace declaration
-#: ../symbol-browser-control/symbol-browser.c:75
-msgid "Packages"
-msgstr "Pakete"
-
-#. ! tm_tag_package_t = 512, < Package (Java only)
-#: ../symbol-browser-control/symbol-browser.c:76
-msgid "Prototypes"
-msgstr "Prototypen"
-
-#. ! tm_tag_prototype_t = 1024, < Function prototype
-#: ../symbol-browser-control/symbol-browser.c:77
-msgid "Structs"
-msgstr "Structs"
-
-#. ! tm_tag_struct_t = 2048, < Struct declaration
-#: ../symbol-browser-control/symbol-browser.c:78
-msgid "Typedefs"
-msgstr "Typedefs"
-
-#. ! tm_tag_typedef_t = 4096, < Typedef
-#: ../symbol-browser-control/symbol-browser.c:79
-msgid "Unions"
-msgstr "Unions"
-
-#. ! tm_tag_union_t = 8192, !< Union
-#: ../symbol-browser-control/symbol-browser.c:80
-msgid "Variables"
-msgstr "Variablen"
-
-#. ! tm_tag_variable_t = 16384, < Variable
-#: ../symbol-browser-control/symbol-browser.c:81
-msgid "ExternVars"
-msgstr "ExterneVariablen"
-
-#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
-#: ../symbol-browser-control/symbol-browser.c:82
-msgid "Macros"
-msgstr "Makros"
-
-#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
-#: ../symbol-browser-control/symbol-browser.c:83
-msgid "MacrosWithArgs"
-msgstr "MakrosmitArgumenten"
-
-#: ../symbol-browser-control/symbol-browser.c:378
-msgid "Tags"
-msgstr "Tags"
-
-#: ../symbol-browser-control/symbol-browser.c:386
-#: ../symbol-browser-control/symbol-browser.c:397
-msgid "Undefined"
-msgstr "Nicht definiert"
-
-#: ../symbol-browser-control/symbol-browser.c:388
-#: ../symbol-browser-control/symbol-browser.c:399
-msgid "<No Symbol>"
-msgstr "<Keine Symbole>"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:1
-msgid "Exit"
-msgstr "Beenden"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:2
-msgid "Open Project"
-msgstr "Projekt öffnen"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:3
-msgid "Save Project"
-msgstr "Projekt speichern"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:4
-msgid "Set Current File"
-msgstr "Aktuelle Datei festlegen"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:5
-msgid "Update"
-msgstr "Aktualisieren"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:6
-msgid "Update the whole tree"
-msgstr "Den gesamten Baum aktualisieren"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:7
-msgid "_Exit"
-msgstr "_Beenden"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:8
-msgid "_File"
-msgstr "_Datei"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:9
-msgid "_Open Project"
-msgstr "Projekt ö_ffnen"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:10
-msgid "_Save Project"
-msgstr "Projekt _speichern"
-
-#: ../symbol-browser-control/test-symbol-browser-ui.xml.h:11
-msgid "_Set Current File"
-msgstr "Aktuelle Datei _festlegen"
-
-#: ../symbol-browser-control/test-symbol-browser.c:168
-msgid "Open file..."
-msgstr "Datei öffnen …"
-
-#: ../symbol-browser-control/test-symbol-browser.c:170
-msgid "Set current file..."
-msgstr "Aktuelle Datei festlegen"
-
-#: ../symbol-browser-control/test-symbol-browser.c:172
-msgid "Save file..."
-msgstr "Datei speichern …"
-
-#: ../symbol-browser-control/test-symbol-browser.c:295
-msgid "Can't initialize bonobo!"
-msgstr "Bonobo konnte nicht initialisiert werden!"
-
-#~ msgid "Dock the toolbar"
-#~ msgstr "Die Toolbar andocken"
-
-#~ msgid "Un dock the toolbar"
-#~ msgstr "Die Werkzeugleiste lösen"
-
-#~ msgid "Grip size"
-#~ msgstr "Griffgröße"
-
-#~ msgid "Size in pixels of the grip to drag the dock item"
-#~ msgstr "Größe des Griffs zum Anpacken des Dock-Objekts in Pixeln"
-
-#~ msgid "You must provide a name for the layout"
-#~ msgstr "Sie müssen einen Namen für das Layout angeben"
-
-#~ msgid "Icon zoom"
-#~ msgstr "Icon-Vergrößerung"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Dock"
-#~ msgstr "Andocken"
-
-#~ msgid ""
-#~ "A file named ''%s'' already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "Es existiert bereits eine Datei namens Â»%sÂ«\n"
-#~ "Soll diese durch die ersetzt werden, die Sie speichern wollen?"
-
-#~ msgid "Do_n't replace"
-#~ msgstr "_Nicht ersetzen"
-
-#~ msgid "_Replace"
-#~ msgstr "_Ersetzen"
-
-#~ msgid "Select a file to open"
-#~ msgstr "Wählen Sie eine zu öffnende Datei"
-
-#~ msgid "Select files to open"
-#~ msgstr "Wählen Sie die zu öffnenden Dateien"
-
-#~ msgid "Select a filename to save"
-#~ msgstr "Wählen Sie einen Dateinamen zum Speichern"
-
-
 
