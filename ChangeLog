@@ -1,3 +1,10 @@
+=== gdl 0.7.10 ===
+
+2008-02-25  Naba Kumar  <naba@gnome.org>
+
+	* NEWS: Updated
+	* configure.in: Bumped version to 0.7.10
+
 2008-02-18  Sébastien Granjoux  <seb.sfo@free.fr>
 
 	* gdl/gdl-dock-item-grip.c:
