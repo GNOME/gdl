@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-04 10:34+0000\n"
-"PO-Revision-Date: 2008-03-01 01:52+0100\n"
+"POT-Creation-Date: 2008-03-01 00:53+0000\n"
+"PO-Revision-Date: 2008-03-02 18:38+0100\n"
 "Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -31,27 +31,27 @@ msgstr "Големина на ширењето"
 msgid "Size of the expander arrow."
 msgstr "Големина на стрелката за ширење"
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify"
 msgstr "Иконизирај"
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify this dock"
 msgstr "Иконизирај го паркиралиштето"
 
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close"
 msgstr "Затвори"
 
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close this dock"
 msgstr "Затвори го ова паркиралиште"
 
-#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Контролирање на закотвувачкиот елемент"
 
-#: ../gdl/gdl-dock-item-grip.c:685
+#: ../gdl/gdl-dock-item-grip.c:687
 msgid "Dockitem which 'owns' this grip"
 msgstr "Закотвувачкиот елемент кој е сопственик на оваа табела"
 
@@ -69,7 +69,9 @@ msgstr "Со променлива големина"
 
 #: ../gdl/gdl-dock-item.c:260
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr "Ако е поставено, елементот може да се зголемува/намалува кога е во GtkPanel графичка контрола"
+msgstr ""
+"Ако е поставено, елементот може да се зголемува/намалува кога е во GtkPanel "
+"графичка контрола"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -376,7 +378,7 @@ msgstr "Лебдечко најгорно ниво"
 
 #: ../gdl/gdl-dock-placeholder.c:185
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
-msgstr ""
+msgstr "Дали држачот на место стои во на најгорното ниво на паркиралиште"
 
 #: ../gdl/gdl-dock-placeholder.c:191
 msgid "X-Coordinate"
