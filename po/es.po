@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-04 10:34+0000\n"
-"PO-Revision-Date: 2008-02-04 12:10+0100\n"
+"POT-Creation-Date: 2008-02-04 11:16+0000\n"
+"PO-Revision-Date: 2008-03-02 13:22+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,9 @@ msgstr "Redimensionable"
 
 #: ../gdl/gdl-dock-item.c:260
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr "Si esta activado, el elemento empotrable se puede redimensionar cuando está empotrado en un widget GtkPanel"
+msgstr ""
+"Si esta activado, el elemento empotrable se puede redimensionar cuando está "
+"empotrado en un widget GtkPanel"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -246,7 +248,7 @@ msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
-"El nuevo controlador de empotrables %p es automático.  Sóloőlos objetos "
+"El nuevo controlador de empotrables %p es automático.  Sólo los objetos "
 "empotrados manuales deberían ser llamados controlador."
 
 #: ../gdl/gdl-dock-notebook.c:134
@@ -353,7 +355,7 @@ msgid ""
 "to us"
 msgstr ""
 "La posición en la cual un elemento será empotrado a nuestro anfitrión si se "
-"hace una petición para empotrar."
+"hace una petición para empotrar"
 
 #: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
