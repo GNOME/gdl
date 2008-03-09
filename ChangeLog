@@ -1,3 +1,10 @@
+=== gdl 0.7.11 ===
+
+2008-03-09  Naba Kumar  <naba@gnome.org>
+
+	* NEWS: Updated (translation updates only)
+	* configure.in: Bumped version to 0.7.11
+
 === gdl 0.7.10 ===
 
 2008-02-25  Naba Kumar  <naba@gnome.org>
