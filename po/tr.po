@@ -1,14 +1,14 @@
-# translation of gdl.HEAD.po to Turkish
+# translation of tr.po to Turkish
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Baris Cicek <baris@teamforce.name.tr>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl.HEAD\n"
+"Project-Id-Version: tr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-31 20:13+0200\n"
-"PO-Revision-Date: 2008-01-27 01:08+0200\n"
+"POT-Creation-Date: 2008-03-11 18:49+0200\n"
+"PO-Revision-Date: 2008-03-11 18:50+0200\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,27 +25,27 @@ msgstr "Genişletici Boyutu"
 msgid "Size of the expander arrow."
 msgstr "Genişletici okunun boyutu."
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify"
 msgstr "Simgeleştir"
 
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:375
 msgid "Iconify this dock"
 msgstr "Bu sabitlenmişi simgelendir"
 
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close"
 msgstr "Kapat"
 
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:377
 msgid "Close this dock"
 msgstr "Bu sabitlenmişi kapat"
 
-#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Sabitlenmiş öğe kontrolü"
 
-#: ../gdl/gdl-dock-item-grip.c:685
+#: ../gdl/gdl-dock-item-grip.c:687
 msgid "Dockitem which 'owns' this grip"
 msgstr "Bu tutaca 'sahip' dockitem"
 
@@ -62,9 +62,9 @@ msgid "Resizable"
 msgstr "Yeniden boyutlanabilir"
 
 #: ../gdl/gdl-dock-item.c:260
-msgid "If set, the dock item can be resized when docked in a paned"
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
-"Eğer atanmışsa, sabitlenmiş öğe panel içinde sabitlenmişse yeniden "
+"Eğer atanmışsa, sabitlenmiş öğe GtkPanel parçası içinde sabitlenmişse yeniden "
 "boyutlandırılabilir"
 
 #: ../gdl/gdl-dock-item.c:267
@@ -84,8 +84,7 @@ msgid "Locked"
 msgstr "Kilitli"
 
 #: ../gdl/gdl-dock-item.c:277
-msgid ""
-"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "Eğer atanmışsa, sabitlenmiş öğe taşınabilir ve bir grip göstermez"
 
 #: ../gdl/gdl-dock-item.c:285
@@ -125,8 +124,7 @@ msgstr ""
 #: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr ""
-"%2$s türündeki sabitleme nesnesinde desteklenmeyen sabitleme stratejisi %1$s"
+msgstr "%2$s türündeki sabitleme nesnesinde desteklenmeyen sabitleme stratejisi %1$s"
 
 #. UnLock menuitem
 #: ../gdl/gdl-dock-item.c:1390
@@ -296,8 +294,7 @@ msgstr ""
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
-msgstr ""
-"Bağlanmamış nesne %p içinde sabitleme işlemi istenmiş. Uygulama çakabilir"
+msgstr "Bağlanmamış nesne %p içinde sabitleme işlemi istenmiş. Uygulama çakabilir"
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
@@ -308,8 +305,7 @@ msgstr ""
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
-msgid ""
-"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 "Zaten bağlı olan bağlama nesnesi %2$p ile %1$p bağlama denemesi (mevcut ana: "
 "%3$p)"
@@ -482,3 +478,4 @@ msgstr "_Yükle"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "Sabitleme öğelerini _kilitle"
+
