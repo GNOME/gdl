@@ -1,6 +1,10 @@
 2008-05-06  Johannes Schmid  <jhs@gnome.org>
 
-	reviewed by: <delete if not using a buddy>
+	Patch from Yuriy Penkin <yuriy.penkin@gmail.com>:
+	* configure.in:
+	#529457 – Superfluous condition?	
+
+2008-05-06  Johannes Schmid  <jhs@gnome.org>
 
 	* configure.in: Bump version to 2.23.0 (following GNOME cycle),
 	bumped Gtk+ requirement to 2.12.0 and readded DISABLE_DEPRECATED

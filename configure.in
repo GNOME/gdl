@@ -102,7 +102,6 @@ else
 		[gnome="no"])
 	AC_SUBST(GNOME_CFLAGS)
 	AC_SUBST(GNOME_LIBS)
-	AC_DEFINE_UNQUOTED(HAVE_GNOME, 1, [GNOME support enabled])
 fi
 
 AM_CONDITIONAL(HAVE_GNOME, [test x$gnome = xyes])
