@@ -1,3 +1,27 @@
+2008-05-06  Johannes Schmid  <jhs@gnome.org>
+
+	reviewed by: <delete if not using a buddy>
+
+	* configure.in: Bump version to 2.23.0 (following GNOME cycle),
+	bumped Gtk+ requirement to 2.12.0 and readded DISABLE_DEPRECATED
+	
+	Patch from Jan Arne Petersen
+	* gdl/gdl-dock-bar.c (gdl_dock_bar_instance_init),
+	(gdl_dock_bar_destroy), (gdl_dock_bar_add_item):
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_destroy),
+	(gdl_dock_item_grip_instance_init):
+	* gdl/gdl-switcher.c (button_new), (button_free),
+	(gdl_switcher_class_init), (gdl_switcher_add_button),
+	(set_switcher_style_internal):
+	
+	Port to the GtkTooltip API (fixes #457562)
+	
+	* gdl/gdl-switcher.c:
+	Use smaller buttons to waste less space
+	
+	* gdl/gdl-dock-item.c
+	gtk_notebook_set_page() -> gtk_notebook_set_current_page() to fix build
+
 === gdl 0.7.11 ===
 
 2008-03-09  Naba Kumar  <naba@gnome.org>

@@ -78,7 +78,6 @@ typedef struct {
     GtkWidget *icon;
     GtkWidget *arrow;
     GtkWidget *hbox;
-    GtkTooltips *tooltips;
     int id;
 } Button;
 
@@ -107,7 +106,7 @@ GDL_CLASS_BOILERPLATE (GdlSwitcher, gdl_switcher, GtkNotebook, GTK_TYPE_NOTEBOOK
 
 static Button *
 button_new (GtkWidget *button_widget, GtkWidget *label, GtkWidget *icon,
-            GtkTooltips *tooltips, GtkWidget *arrow, GtkWidget *hbox, int id)
+            GtkWidget *arrow, GtkWidget *hbox, int id)
 {
     Button *button = g_new (Button, 1);
 
@@ -116,7 +115,6 @@ button_new (GtkWidget *button_widget, GtkWidget *label, GtkWidget *icon,
     button->icon = icon;
     button->arrow = arrow;
     button->hbox = hbox;
-    button->tooltips = tooltips;
     button->id = id;
 
     g_object_ref (button_widget);
@@ -124,7 +122,6 @@ button_new (GtkWidget *button_widget, GtkWidget *label, GtkWidget *icon,
     g_object_ref (icon);
     g_object_ref (arrow);
     g_object_ref (hbox);
-    g_object_ref (tooltips);
 
     return button;
 }
@@ -136,7 +133,6 @@ button_free (Button *button)
     g_object_unref (button->label);
     g_object_unref (button->icon);
     g_object_unref (button->hbox);
-    g_object_unref (button->tooltips);
     g_free (button);
 }
 
@@ -706,6 +702,15 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
                            GDL_TYPE_SWITCHER_STYLE,
                            GDL_SWITCHER_STYLE_BOTH,
                            G_PARAM_READWRITE));
+    
+    gtk_rc_parse_string ("style \"gdl-button-style\"\n"
+                         "{\n"
+                         "GtkWidget::focus-padding = 1\n"
+                         "GtkWidget::focus-line-width = 1\n"
+                         "xthickness = 0\n"
+                         "ythickness = 0\n"
+                         "}\n"
+                         "widget \"*.gdl-button\" style \"gdl-button-style\"");
 }
 
 static void
@@ -747,14 +752,16 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
                          const gchar *tooltips, const gchar *stock_id,
                          gint switcher_id)
 {
+    GtkWidget *event_box;
     GtkWidget *button_widget;
     GtkWidget *hbox;
     GtkWidget *icon_widget;
     GtkWidget *label_widget;
     GtkWidget *arrow;
-    GtkTooltips *button_tooltips;
     
     button_widget = gtk_toggle_button_new ();
+    gtk_widget_set_name (button_widget, "gdl-button");
+    gtk_button_set_relief (GTK_BUTTON(button_widget), GTK_RELIEF_HALF);
     if (switcher->priv->show)
         gtk_widget_show (button_widget);
     g_signal_connect (button_widget, "toggled",
@@ -777,24 +784,22 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
     }
     gtk_misc_set_alignment (GTK_MISC (label_widget), 0.0, 0.5);
     gtk_widget_show (label_widget);
-    button_tooltips = gtk_tooltips_new();
-    gtk_tooltips_set_tip (GTK_TOOLTIPS (button_tooltips), button_widget,
-                          tooltips, NULL);        
-
+    
+    
+    gtk_widget_set_tooltip_text (button_widget,
+                                 tooltips);
+    
     switch (INTERNAL_MODE (switcher)) {
     case GDL_SWITCHER_STYLE_TEXT:
         gtk_box_pack_start (GTK_BOX (hbox), label_widget, TRUE, TRUE, 0);
-        gtk_tooltips_disable (button_tooltips);
         break;
     case GDL_SWITCHER_STYLE_ICON:
         gtk_box_pack_start (GTK_BOX (hbox), icon_widget, TRUE, TRUE, 0);
-        gtk_tooltips_enable (button_tooltips);
         break;
     case GDL_SWITCHER_STYLE_BOTH:
     default:
         gtk_box_pack_start (GTK_BOX (hbox), icon_widget, FALSE, TRUE, 0);
         gtk_box_pack_start (GTK_BOX (hbox), label_widget, TRUE, TRUE, 0);
-        gtk_tooltips_disable (button_tooltips);
         break;
     }
     arrow = gtk_arrow_new (GTK_ARROW_UP, GTK_SHADOW_NONE);
@@ -804,10 +809,10 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
     switcher->priv->buttons =
         g_slist_append (switcher->priv->buttons,
                         button_new (button_widget, label_widget,
-                                    icon_widget, button_tooltips,
+                                    icon_widget,
                                     arrow, hbox, switcher_id));
+    
     gtk_widget_set_parent (button_widget, GTK_WIDGET (switcher));
-
     gtk_widget_queue_resize (GTK_WIDGET (switcher));
 }
 
@@ -899,7 +904,6 @@ set_switcher_style_internal (GdlSwitcher *switcher,
                 gtk_box_pack_start (GTK_BOX (button->hbox), button->label,
                                     TRUE, TRUE, 0);
                 gtk_widget_show (button->label);
-                gtk_tooltips_disable (button->tooltips);
             }
             break;
         case GDL_SWITCHER_STYLE_ICON:
@@ -912,7 +916,6 @@ set_switcher_style_internal (GdlSwitcher *switcher,
             } else
                 gtk_container_child_set (GTK_CONTAINER (button->hbox),
                                          button->icon, "expand", TRUE, NULL);
-            gtk_tooltips_enable (button->tooltips);
             break;
         case GDL_SWITCHER_STYLE_BOTH:
             if (INTERNAL_MODE (switcher)
@@ -927,7 +930,6 @@ set_switcher_style_internal (GdlSwitcher *switcher,
                                          button->icon, "expand", FALSE, NULL);
             }
 
-            gtk_tooltips_disable (button->tooltips);
             gtk_box_pack_start (GTK_BOX (button->hbox), button->label, TRUE,
                                 TRUE, 0);
             gtk_widget_show (button->label);

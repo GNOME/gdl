@@ -18,7 +18,6 @@
 #include <string.h>
 #include <glib-object.h>
 #include <gtk/gtkbutton.h>
-#include <gtk/gtktooltips.h>
 #include <gtk/gtkimage.h>
 #include "gdl-dock-item.h"
 #include "gdl-dock-item-grip.h"
@@ -35,7 +34,6 @@ enum {
 struct _GdlDockItemGripPrivate {
     GtkWidget   *close_button;
     GtkWidget   *iconify_button;
-    GtkTooltips *tooltips;
 
     gboolean     icon_pixbuf_valid;
     GdkPixbuf   *icon_pixbuf;
@@ -246,11 +244,6 @@ gdl_dock_item_grip_destroy (GtkObject *object)
             priv->icon_pixbuf = NULL;
         }
 
-        if (priv->tooltips) {
-            g_object_unref (priv->tooltips);
-            priv->tooltips = NULL;
-        }
-
         if (grip->item)
             g_signal_handlers_disconnect_by_func (grip->item,
                                                   gdl_dock_item_grip_item_notify,
@@ -368,13 +361,10 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     g_signal_connect (G_OBJECT (grip->_priv->iconify_button), "clicked",
                       G_CALLBACK (gdl_dock_item_grip_iconify_clicked), grip);
 
-    grip->_priv->tooltips = gtk_tooltips_new ();
-    g_object_ref (grip->_priv->tooltips);
-    gtk_object_sink (GTK_OBJECT (grip->_priv->tooltips));
-    gtk_tooltips_set_tip (grip->_priv->tooltips, grip->_priv->iconify_button,
-                          _("Iconify"), _("Iconify this dock"));
-    gtk_tooltips_set_tip (grip->_priv->tooltips, grip->_priv->close_button,
-                          _("Close"), _("Close this dock"));
+    gtk_widget_set_tooltip_text (grip->_priv->iconify_button,
+                          _("Iconify this dock"));
+    gtk_widget_set_tooltip_text (grip->_priv->close_button,
+                          _("Close this dock"));
 }
 
 static void
