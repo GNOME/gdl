@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arabic\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-08 08:17+0000\n"
+"POT-Creation-Date: 2008-05-06 11:49+0000\n"
 "PO-Revision-Date: 2008-02-17 11:51+0100\n"
 "Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -23,28 +23,19 @@ msgstr "حجم الموسّع"
 msgid "Size of the expander arrow."
 msgstr "حجم نافذة المُوسع"
 
-#: ../gdl/gdl-dock-item-grip.c:373
-msgid "Iconify"
-msgstr "أَيْقَنة"
-
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:365
 msgid "Iconify this dock"
 msgstr "أيقنة هذا الحوض"
 
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Close"
-msgstr "أغلق"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:367
 msgid "Close this dock"
 msgstr "أغلق هذا الحوض"
 
-#: ../gdl/gdl-dock-item-grip.c:684
-#: ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "التحكّم في عنصر الحوض"
 
-#: ../gdl/gdl-dock-item-grip.c:685
+#: ../gdl/gdl-dock-item-grip.c:677
 msgid "Dockitem which 'owns' this grip"
 msgstr "عنصر الحوض الذي ’يمتلك’ هذه القبضة"
 
@@ -62,23 +53,27 @@ msgstr "قابل للتحجيم"
 
 #: ../gdl/gdl-dock-item.c:260
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr "إذا ما تم تعيينه، فإنه يمكن إعادة تحجيم عنصر الإرساء عند التثبيت في قطعة GtkPanel"
+msgstr ""
+"إذا ما تم تعيينه، فإنه يمكن إعادة تحجيم عنصر الإرساء عند التثبيت في قطعة "
+"GtkPanel"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
 msgstr "سلوك العنصر"
 
 #: ../gdl/gdl-dock-item.c:268
-msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
 msgstr "السلوك العام لعنصر الحوض (هل يمكن أن يكون عائما، إذا ما هو مقفل، الخ.)"
 
-#: ../gdl/gdl-dock-item.c:276
-#: ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "مقفل"
 
 #: ../gdl/gdl-dock-item.c:277
-msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "إذا ما تم ضبطه، فإن عنصر الحوض لا يمكن سحبه ولا يظهر القبضة"
 
 #: ../gdl/gdl-dock-item.c:285
@@ -99,16 +94,23 @@ msgstr "الإرتفاع المفضّل لعنصر الحوض"
 
 #: ../gdl/gdl-dock-item.c:543
 #, c-format
-msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
-msgstr "لا يمكن إظافة كائن حوضي (%p من نوع %s) داخل %s. استخدم GdlDock أو كائن حوضي مركب آخر."
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"لا يمكن إظافة كائن حوضي (%p من نوع %s) داخل %s. استخدم GdlDock أو كائن حوضي "
+"مركب آخر."
 
 #: ../gdl/gdl-dock-item.c:550
 #, c-format
-msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
-msgstr "محاولة إظافة ويدجت من نوع %s إلى %s، الذي لا يمكنه احتواء أكثر من ويدجت واحد في نفس الوقت؛ فهو يحتوي بالفعل على ويدجت من نوع %s"
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"محاولة إظافة ويدجت من نوع %s إلى %s، الذي لا يمكنه احتواء أكثر من ويدجت واحد "
+"في نفس الوقت؛ فهو يحتوي بالفعل على ويدجت من نوع %s"
 
-#: ../gdl/gdl-dock-item.c:1236
-#: ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "استراتيجية إرساء غير مدعومة %s لكائن حوضي من نوع %s"
@@ -133,8 +135,7 @@ msgstr "اقفل"
 msgid "Attempt to bind an unbound item %p"
 msgstr "محاولة تقييد عنصر غير مقيد %p"
 
-#: ../gdl/gdl-dock-layout.c:123
-#: ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "رئيس"
 
@@ -165,32 +166,30 @@ msgstr "مرئي"
 msgid "Item"
 msgstr "عنصر"
 
-#: ../gdl/gdl-dock-layout.c:708
-#: ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "إسم"
 
-#: ../gdl/gdl-dock-layout.c:741
-#: ../gdl/layout.glade.h:1
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "عناصر الحوض"
 
-#: ../gdl/gdl-dock-layout.c:747
-#: ../gdl/layout.glade.h:3
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "التصاميم المحفوظة"
 
 #: ../gdl/gdl-dock-layout.c:789
 #, c-format
-msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
 msgstr "أثناء تحميل التنسيق: لا أعرف كيفية إنشاء كائن حوضي لقبه هو '%s'"
 
 #: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
 msgstr "إدارة التصميم"
 
-#: ../gdl/gdl-dock-master.c:138
-#: ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "العنوان الإفتراضي"
 
@@ -199,28 +198,38 @@ msgid "Default title for newly created floating docks"
 msgstr "العنوان الافتراضي للأحواض الطافية الجديدة"
 
 #: ../gdl/gdl-dock-master.c:146
-msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr "إذا ما تم تعيينها إلى 1، فإن كل عناصر الحوض المُقيدة إلى الرئيس تُقفل؛ وأما لو كان 0، فكلها غير مقفلة؛ 1- تعني وجود تعارض بين العناصر"
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"إذا ما تم تعيينها إلى 1، فإن كل عناصر الحوض المُقيدة إلى الرئيس تُقفل؛ وأما لو "
+"كان 0، فكلها غير مقفلة؛ 1- تعني وجود تعارض بين العناصر"
 
-#: ../gdl/gdl-dock-master.c:154
-#: ../gdl/gdl-switcher.c:704
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
 msgid "Switcher Style"
 msgstr "اسلوب التبديل"
 
-#: ../gdl/gdl-dock-master.c:155
-#: ../gdl/gdl-switcher.c:705
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
 msgid "Switcher buttons style"
 msgstr "أسلوب زر المبدّل"
 
 #: ../gdl/gdl-dock-master.c:761
 #, c-format
-msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
-msgstr "الرئيس %p : تعذر إظافة الكائن %p[%s] إلى التجزئة. يوجد بالفعل عنصر بهذا الاسم (%p).  "
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"الرئيس %p : تعذر إظافة الكائن %p[%s] إلى التجزئة. يوجد بالفعل عنصر بهذا "
+"الاسم (%p).  "
 
 #: ../gdl/gdl-dock-master.c:934
 #, c-format
-msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
-msgstr "مراقب الحوض الجديد %p أوتوماتيكي. وحدها كائنات الحوض اليدوية يمكن تسميتها مراقب."
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"مراقب الحوض الجديد %p أوتوماتيكي. وحدها كائنات الحوض اليدوية يمكن تسميتها "
+"مراقب."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -260,12 +269,18 @@ msgstr "الحوض الرئيسي المُقيَّد به هذا العنصر ا
 
 #: ../gdl/gdl-dock-object.c:444
 #, c-format
-msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
-msgstr "نداء gdl_dock_object_dock في كائن الحوض %p ( نوع الكائن هو %s) الذي لم يُطبق هذه الطريقة"
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"نداء gdl_dock_object_dock في كائن الحوض %p ( نوع الكائن هو %s) الذي لم يُطبق "
+"هذه الطريقة"
 
 #: ../gdl/gdl-dock-object.c:576
 #, c-format
-msgid "Dock operation requested in a non-bound object %p. The application might crash"
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
 msgstr "عملية الحوض المطلوبة في كائن غير مُقيَّد %p. التطبيق قد ينهار"
 
 #: ../gdl/gdl-dock-object.c:583
@@ -275,7 +290,8 @@ msgstr "لا يمكن إرساء %p إلى %p لأنهما ينتميان لرئ
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
-msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr "محاولة التقييد إلى %p كائن حوضي %p مُقيَّد بالفعل (الرئيس الحالي: %p)"
 
 #: ../gdl/gdl-dock-paned.c:132
@@ -291,8 +307,12 @@ msgid "Sticky"
 msgstr "لاصق"
 
 #: ../gdl/gdl-dock-placeholder.c:144
-msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
-msgstr "فيما إذا كان ماسك المكان سيلتصق بمضيفه أو سينتقل إلى الأعلى في الشجرة إذا ما تم إعادة إرساء المضيف"
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"فيما إذا كان ماسك المكان سيلتصق بمضيفه أو سينتقل إلى الأعلى في الشجرة إذا ما "
+"تم إعادة إرساء المضيف"
 
 #: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
@@ -307,11 +327,13 @@ msgid "Next placement"
 msgstr "الموضع الموالي"
 
 #: ../gdl/gdl-dock-placeholder.c:160
-msgid "The position an item will be docked to our host if a request is made to dock to us"
-msgstr "الموضع الذي سيتم فيه إرساء عنصر ما إلى مضيفنا إذا ما قُدِّم طلب للإرساء إلينا"
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"الموضع الذي سيتم فيه إرساء عنصر ما إلى مضيفنا إذا ما قُدِّم طلب للإرساء إلينا"
 
-#: ../gdl/gdl-dock-placeholder.c:169
-#: ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "العرض"
 
@@ -319,8 +341,7 @@ msgstr "العرض"
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "عرض الويدجت حين إرفاقه بماسك المكان"
 
-#: ../gdl/gdl-dock-placeholder.c:177
-#: ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "ارتفاع"
 
@@ -363,22 +384,24 @@ msgstr "الحصول على إشارة فك الارتباط من العنصر (
 
 #: ../gdl/gdl-dock-placeholder.c:643
 #, c-format
-msgid "Something weird happened while getting the child placement for %p from parent %p"
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
 msgstr "حصل شيء غريب أثناء تلقي موقع التابع لِفائدة %p من الأصل %p "
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "عنصر الحوض الذي ’يملك’ لصيقة اللسان هذه "
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "كائن GdlDockMaster المُرفقُ له ويدجت شريط الارساء"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:115
 msgid "Dockbar style"
 msgstr "أسلوب الحوض"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style to show items on it"
 msgstr "نمط شريط الارساء لإظهار العناصر عليه"
 
@@ -423,8 +446,7 @@ msgstr "إحداثي الحوض الصادي"
 msgid "Dock #%d"
 msgstr "حوض #%d"
 
-#: ../gdl/gdl-icons.c:134
-#: ../gdl/gdl-icons.c:135
+#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
 msgid "Icon size"
 msgstr "حجم الأيقونة"
 
@@ -440,3 +462,8 @@ msgstr "_حمل"
 msgid "_Lock dock items"
 msgstr "أ_قفل عناصر الحوض"
 
+#~ msgid "Iconify"
+#~ msgstr "أَيْقَنة"
+
+#~ msgid "Close"
+#~ msgstr "أغلق"
