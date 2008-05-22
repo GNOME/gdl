@@ -168,7 +168,7 @@ msgstr "عنصر"
 
 #: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
 msgid "Name"
-msgstr "إسم"
+msgstr "اسم"
 
 #: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
 msgid "Dock items"
@@ -249,7 +249,7 @@ msgstr "اسم طويل"
 
 #: ../gdl/gdl-dock-object.c:128
 msgid "Human readable name for the dock object"
-msgstr "إسم من أجل الكائن الحوضي يُمكِن لفرد قرائته "
+msgstr "اسم من أجل الكائن الحوضي يُمكِن لفرد قرائته "
 
 #: ../gdl/gdl-dock-object.c:134
 msgid "Stock Icon"
