@@ -1,5 +1,10 @@
 2008-06-20  Christian Persch  <chpe@gnome.org>
 
+	* gdl/gdl-dock-layout.c: (gdl_dock_layout_construct_layouts_ui): Also
+	replace GTK_SIGNAL_FUNC.
+
+2008-06-20  Christian Persch  <chpe@gnome.org>
+
 	* gdl/gdl-data-frame.h:
 	* gdl/gdl-data-view.h:
 	* gdl/gdl-dock-bar.h:
