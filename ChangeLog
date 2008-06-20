@@ -1,3 +1,23 @@
+2008-06-20  Christian Persch  <chpe@gnome.org>
+
+	* gdl/gdl-data-frame.h:
+	* gdl/gdl-data-view.h:
+	* gdl/gdl-dock-bar.h:
+	* gdl/gdl-dock-item-grip.c:
+	* gdl/gdl-dock-item-grip.h:
+	* gdl/gdl-dock-item.c:
+	* gdl/gdl-dock-item.h:
+	* gdl/gdl-dock-layout.h:
+	* gdl/gdl-dock-master.h:
+	* gdl/gdl-dock-notebook.h:
+	* gdl/gdl-dock-object.h:
+	* gdl/gdl-dock-paned.h:
+	* gdl/gdl-dock-placeholder.h:
+	* gdl/gdl-dock-tablabel.h:
+	* gdl/gdl-dock.c:
+	* gdl/gdl-dock.h: Use gtype macros instead of the deprecated gtk ones.
+	Bug #539288.
+
 2008-05-06  Johannes Schmid  <jhs@gnome.org>
 
 	Patch from Yuriy Penkin <yuriy.penkin@gmail.com>:
