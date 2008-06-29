@@ -1,14 +1,14 @@
 # Bulgarian translation of gdl po-file.
-# Copyright (C) 2007 Free Software Foundation, Inc.
+# Copyright (C) 2007, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gdl package.
-# Alexander Shopov <ash@contact.bg>, 2007.
+# Alexander Shopov <ash@contact.bg>, 2007, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-30 06:08+0200\n"
-"PO-Revision-Date: 2007-11-30 06:22+0200\n"
+"POT-Creation-Date: 2008-06-29 18:36+0300\n"
+"PO-Revision-Date: 2008-06-29 10:00+0300\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,29 +24,21 @@ msgstr "Размер на разширителя"
 msgid "Size of the expander arrow."
 msgstr "Размер на стрелката за разширяване."
 
-#: ../gdl/gdl-dock-item-grip.c:373
-msgid "Iconify"
-msgstr "Да стане на икона"
-
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:365
 msgid "Iconify this dock"
 msgstr "Този док да се превърне в икона"
 
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Close"
-msgstr "Затваряне"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:367
 msgid "Close this dock"
 msgstr "Затваряне на този док"
 
-#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Контролиращ елемент на дока"
 
-#: ../gdl/gdl-dock-item-grip.c:685
+#: ../gdl/gdl-dock-item-grip.c:677
 msgid "Dockitem which 'owns' this grip"
-msgstr "Елемент на дока, който „притежава“ тази дръжка"
+msgstr "Елемент на дока, който притежава тази дръжка"
 
 #: ../gdl/gdl-dock-item.c:243
 msgid "Orientation"
@@ -61,8 +53,10 @@ msgid "Resizable"
 msgstr "Преоразмерим"
 
 #: ../gdl/gdl-dock-item.c:260
-msgid "If set, the dock item can be resized when docked in a paned"
-msgstr "Ако е зададено, елементът на дока може да се преоразмерява докато докът е в панел"
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr ""
+"Ако е зададено, елементът на дока може да се преоразмерява, докато докът е в "
+"обект GtkPanel"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -72,7 +66,9 @@ msgstr "Поведение на елемента"
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
-msgstr "Общо поведение на този елемент на дока (дали може да е плаващ, дали е заключен и т.н.)"
+msgstr ""
+"Общо поведение на този елемент на дока (дали може да е плаващ, дали е "
+"заключен и т.н.)"
 
 #: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
@@ -117,74 +113,74 @@ msgstr ""
 "Опит за добавяне на графичен обект от вида %s към %s, но вторият може да "
 "съдържа максимално един обект, а в него вече има графичен обект от вида %s"
 
-#: ../gdl/gdl-dock-item.c:1235 ../gdl/gdl-dock-item.c:1280
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Схемата за скачване %s в доков обект от вида %s не се поддържа"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1367
+#: ../gdl/gdl-dock-item.c:1390
 msgid "UnLock"
 msgstr "Отключване"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1374
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Скриване"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1379
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Заключване"
 
-#: ../gdl/gdl-dock-item.c:1585
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Опит за свързване на несвързания обект %p"
 
-#: ../gdl/gdl-dock-layout.c:124 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "Главен"
 
-#: ../gdl/gdl-dock-layout.c:125
+#: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Обектът GdlDockMaster, към който е скачен обектът за подредбата"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
 msgstr "Променен"
 
-#: ../gdl/gdl-dock-layout.c:133
+#: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Истина, ако подредбите са променяни и трябва да се запишат във файл"
 
 #. FIXME: pop up an error dialog
-#: ../gdl/gdl-dock-layout.c:564
+#: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Файлът с потребителски интерфейс „%s“ не може да бъде зареден"
 
-#: ../gdl/gdl-dock-layout.c:619
+#: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
 msgstr "Видим"
 
-#: ../gdl/gdl-dock-layout.c:626
+#: ../gdl/gdl-dock-layout.c:625
 msgid "Item"
 msgstr "Елемент"
 
-#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Име"
 
-#: ../gdl/gdl-dock-layout.c:742 ../gdl/layout.glade.h:1
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
 msgid "Dock items"
 msgstr "Елементи на дока"
 
-#: ../gdl/gdl-dock-layout.c:748 ../gdl/layout.glade.h:3
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
 msgid "Saved layouts"
 msgstr "Запазени подредби"
 
-#: ../gdl/gdl-dock-layout.c:790
+#: ../gdl/gdl-dock-layout.c:789
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
@@ -193,7 +189,7 @@ msgstr ""
 "При зареждане на подредба: не е ясно как да се създаде доков обект с "
 "псевдоним „%s“"
 
-#: ../gdl/gdl-dock-layout.c:1269
+#: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
 msgstr "Управление на подредбата"
 
@@ -213,11 +209,11 @@ msgstr ""
 "Ако е зададено да е 1, всички обекти на дока, които са свързани с главния, "
 "са заключени. Ако е 0, всички са отключени. -1 означава несъгласуваност"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:706
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
 msgid "Switcher Style"
 msgstr "Стил на ключа"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:707
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
 msgid "Switcher buttons style"
 msgstr "Стил на бутоните на ключа"
 
@@ -275,7 +271,7 @@ msgstr "Главен обект на дока"
 msgid "Dock master this dock object is bound to"
 msgstr "Главен доков обект, към който е свързан този доков обект"
 
-#: ../gdl/gdl-dock-object.c:420
+#: ../gdl/gdl-dock-object.c:444
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -284,7 +280,7 @@ msgstr ""
 "Извикване на gdl_dock_object_dock в доков обект %p (видът на обекта е %s). В "
 "този обект липсва реализация на този метод"
 
-#: ../gdl/gdl-dock-object.c:549
+#: ../gdl/gdl-dock-object.c:576
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -292,17 +288,19 @@ msgid ""
 msgstr ""
 "Операцията с дока поиска несвързан обект %p. Приложението може да забие"
 
-#: ../gdl/gdl-dock-object.c:556
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "%p не може да бъде скачен към %p, защото е свързан с различен главен обект"
 
-#: ../gdl/gdl-dock-object.c:598
+#: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr "Опит към %p да се свърже вече свързаният доков обект %p с текущ главен обект %p"
+msgstr ""
+"Опит към %p да се свърже вече свързаният доков обект %p с текущ главен обект "
+"%p"
 
 #: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
@@ -334,7 +332,7 @@ msgstr "Доковият обект, към който е скачен този 
 
 #: ../gdl/gdl-dock-placeholder.c:159
 msgid "Next placement"
-msgstr "Следващо разположение"
+msgstr "Следващо положение"
 
 #: ../gdl/gdl-dock-placeholder.c:160
 msgid ""
@@ -370,19 +368,19 @@ msgstr "Дали обектът за положение замества пла�
 
 #: ../gdl/gdl-dock-placeholder.c:191
 msgid "X-Coordinate"
-msgstr "Абсциса"
+msgstr "Координата по X"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate fow dock when floating"
-msgstr "Координата по X на дока докато е плаващ"
+msgid "X-Coordinate for dock when floating"
+msgstr "Координата по X на дока, когато е плаващ"
 
 #: ../gdl/gdl-dock-placeholder.c:198
 msgid "Y-Coordinate"
-msgstr "Ордината"
+msgstr "Координата по Y"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate fow dock when floating"
-msgstr "Координата по Y на дока докато е плаващ"
+msgid "Y-Coordinate for dock when floating"
+msgstr "Координата по Y на дока, когато е плаващ"
 
 #: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
@@ -398,22 +396,23 @@ msgstr "Получен е сигнал за разкачване от обект
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
-msgstr "Случи се нещо странно при получаването на разположението на %p от родителя му %p"
+msgstr ""
+"Случи се нещо странно при получаването на положението на %p от родителя му %p"
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Елементът на дока, който притежава този етикет на таблица"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr ""
 "Обектът GdlDockMaster, към който е скачен този графичен обект за докова лента"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:115
 msgid "Dockbar style"
 msgstr "Стил на доковата лента"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style to show items on it"
 msgstr "Стилът на доковата лента, с който да се показват обектите"
 
@@ -439,7 +438,7 @@ msgstr "Височина на дока, когато плава"
 
 #: ../gdl/gdl-dock.c:209
 msgid "Float X"
-msgstr "Абсциса при плаване"
+msgstr "Координата по X при плаване"
 
 #: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
@@ -447,7 +446,7 @@ msgstr "Координата по X на плаващия док"
 
 #: ../gdl/gdl-dock.c:217
 msgid "Float Y"
-msgstr "Ордината при плаване"
+msgstr "Координата по Y при плаване"
 
 #: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
