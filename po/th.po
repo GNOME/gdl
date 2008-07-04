@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-22 15:55+0700\n"
-"PO-Revision-Date: 2008-02-22 18:59+0700\n"
+"POT-Creation-Date: 2008-07-04 17:08+0700\n"
+"PO-Revision-Date: 2008-07-04 17:08+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -23,27 +23,19 @@ msgstr "ขนาดปุ่มขยาย"
 msgid "Size of the expander arrow."
 msgstr "ขนาดของปุ่มขยายรูปลูกศร"
 
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Iconify"
-msgstr "ยุบเป็นไอคอน"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:365
 msgid "Iconify this dock"
 msgstr "ยุบ dock นี้เป็นไอคอน"
 
-#: ../gdl/gdl-dock-item-grip.c:377
-msgid "Close"
-msgstr "ปิด"
-
-#: ../gdl/gdl-dock-item-grip.c:377
+#: ../gdl/gdl-dock-item-grip.c:367
 msgid "Close this dock"
 msgstr "ปิด dock นี้"
 
-#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "วัตถุ dock ที่ควบคุมอยู่"
 
-#: ../gdl/gdl-dock-item-grip.c:687
+#: ../gdl/gdl-dock-item-grip.c:677
 msgid "Dockitem which 'owns' this grip"
 msgstr "วัตถุ dock ที่ 'เป็นเจ้าของ' ที่จับนี้"
 
@@ -141,7 +133,7 @@ msgstr "ล็อค"
 msgid "Attempt to bind an unbound item %p"
 msgstr "มีความพยายามผูกโยงวัตถุ %p ซึ่งไม่มีการผูกโยง"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "มาสเตอร์"
 
@@ -210,11 +202,11 @@ msgstr ""
 "ถ้ากำหนดเป็น 1 วัตถุ dock ที่ผูกโยงกับมาสเตอร์นี้จะถูกล็อคทั้งหมด; ถ้าเป็น 0 จะปลดล็อคทั้งหมด; "
 "ค่า -1 จะหมายถึงล็อคบ้างไม่ล็อคบ้าง"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
 msgid "Switcher Style"
 msgstr "รูปแบบปุ่มสลับ"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
 msgid "Switcher buttons style"
 msgstr "รูปแบบของปุ่มสลับ"
 
@@ -290,12 +282,11 @@ msgstr "มีการร้องขอกระทำ dock กับวัต
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "ไม่สามารถ dock %p เข้าใน %p เพราะเป็นของคนละมาสเตอร์กัน"
 
-# Translator TODO: Can't translate this without reordering
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr ""
+msgstr "พยายามเชื่อมอ็อบเจกต์ %2$p ที่ถูกเชื่อมอยู่แล้ว เข้ากับ %1$p (มาสเตอร์ปัจจุบัน: %3$p)"
 
 #: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
@@ -387,22 +378,21 @@ msgstr "ได้รับสัญญาณการแยกตัวจาก
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
-msgstr ""
-"เกิดสิ่งแปลกประหลาดขณะอ่านตำแหน่งวางของออบเจกต์ลูกสำหรับ %p จากออบเจกต์แม่ %p"
+msgstr "เกิดสิ่งแปลกประหลาดขณะอ่านตำแหน่งวางของออบเจกต์ลูกสำหรับ %p จากออบเจกต์แม่ %p"
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "วัตถุ dock ที่ 'เป็นเจ้าของ' ป้ายแท็บนี้"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "ออบเจกต์ GdlDocMaster ที่วิดเจ็ตแถบ dock เชื่อมติดอยู่"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:115
 msgid "Dockbar style"
 msgstr "รูปแบบของแถบ dock"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style to show items on it"
 msgstr "รูปแบบการแสดงวัตถุบนแถบ dock"
 
@@ -462,3 +452,9 @@ msgstr "เรียก_อ่าน"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_ล็อควัตถุ dock"
+
+#~ msgid "Iconify"
+#~ msgstr "ยุบเป็นไอคอน"
+
+#~ msgid "Close"
+#~ msgstr "ปิด"
