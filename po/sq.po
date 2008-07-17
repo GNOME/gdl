@@ -1,714 +1,478 @@
 # Përkthimi i mesazheve të gdl në shqip
 # This file is distributed under the same license as the gdl package.
-# Copyright (C) 2004 Free Software Foundation, Inc.
-# Laurent Dhima <laurenti@alblinux.net>, 2004.
+# Copyright (C) 2004, 2008 Free Software Foundation, Inc.
 #
+# Laurent Dhima <laurenti@alblinux.net>, 2004, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-02 11:25+0200\n"
-"PO-Revision-Date: 2004-09-03 18:00+0200\n"
+"POT-Creation-Date: 2008-07-17 11:14+0200\n"
+"PO-Revision-Date: 2008-07-17 17:11+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
-"Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
+"Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdl/gdl-data-view.c:418
+#: ../gdl/gdl-data-view.c:418
 msgid "Expander Size"
 msgstr "Madhësia e shpalosësit"
 
-#: gdl/gdl-data-view.c:419
+#: ../gdl/gdl-data-view.c:419
 msgid "Size of the expander arrow."
 msgstr "Madhësia e shigjetës së shpalosësit."
 
-#: gdl/gdl-dock-item-grip.c:364
-msgid "Iconify"
-msgstr "Ikonifikim"
-
-#: gdl/gdl-dock-item-grip.c:364
+#: ../gdl/gdl-dock-item-grip.c:365
 msgid "Iconify this dock"
-msgstr "Ikonifiko këtë qeli"
+msgstr "Redukton në ikonë këtë ganxhë"
 
-#: gdl/gdl-dock-item-grip.c:366
-msgid "Close"
-msgstr "Mbyll"
-
-#: gdl/gdl-dock-item-grip.c:366
+#: ../gdl/gdl-dock-item-grip.c:367
 msgid "Close this dock"
-msgstr "Mbylle këtë qeli"
+msgstr "Mbyll këtë ganxhë"
 
-#: gdl/gdl-dock-item-grip.c:675 gdl/gdl-dock-tablabel.c:129
+#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
-msgstr "Duke kontrolluar elementët e qelisë"
+msgstr "Element i ganxhës së kontrollit"
 
-#: gdl/gdl-dock-item-grip.c:676
+#: ../gdl/gdl-dock-item-grip.c:677
 msgid "Dockitem which 'owns' this grip"
-msgstr ""
+msgstr "Element ankorimi që 'përmban' këtë kapëse"
 
-#: gdl/gdl-dock-item.c:242
+#: ../gdl/gdl-dock-item.c:243
 msgid "Orientation"
 msgstr "Orientimi"
 
-#: gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:244
 msgid "Orientation of the docking item"
-msgstr "Orientimi nga i elementit të qelisë"
+msgstr "Orientimi i elementit të ankorimit"
 
-#: gdl/gdl-dock-item.c:258
+#: ../gdl/gdl-dock-item.c:259
 msgid "Resizable"
-msgstr "E ripërmasueshme"
+msgstr "I ripërmasueshëm"
 
-#: gdl/gdl-dock-item.c:259
-#, fuzzy
-msgid "If set, the dock item can be resized when docked in a paned"
-msgstr "element në a"
+#: ../gdl/gdl-dock-item.c:260
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr ""
+"Nëse caktuar, elementit të ankorimit mund t'i ndryshohet madhësia kur "
+"ankorohet me një widget GtkPanel"
 
-#: gdl/gdl-dock-item.c:266
+#: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
 msgstr "Sjellja e elementit"
 
-#: gdl/gdl-dock-item.c:267
-#, fuzzy
+#: ../gdl/gdl-dock-item.c:268
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
-msgstr "Të përgjithshme për element e i bllokuar"
+msgstr ""
+"Menyra e përgjithshme e sjelljes për elementin e ankorimit (pra nëse "
+"është pluskues, nëse është i bllokuar, etj.)"
 
-#: gdl/gdl-dock-item.c:275 gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
-msgstr "E bllokuar"
+msgstr "I bllokuar"
 
-#: gdl/gdl-dock-item.c:276
-#, fuzzy
+#: ../gdl/gdl-dock-item.c:277
 msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr "element dhe a"
+msgstr "Nëse caktuar, elementi i ankorimit nuk mund të tërhiqet dhe nuk shfaq dorezën"
 
-#: gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:285
 msgid "Preferred width"
 msgstr "Gjerësia e preferuar"
 
-#: gdl/gdl-dock-item.c:285
-#, fuzzy
+#: ../gdl/gdl-dock-item.c:286
 msgid "Preferred width for the dock item"
-msgstr "gjerësia për element"
+msgstr "Gjerësia e preferuar e elementit të ankorimit"
 
-#: gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:292
 msgid "Preferred height"
 msgstr "Lartësia e preferuar"
 
-#: gdl/gdl-dock-item.c:292
-#, fuzzy
+#: ../gdl/gdl-dock-item.c:293
 msgid "Preferred height for the dock item"
-msgstr "lartësia për element"
+msgstr "Lartësia e preferuar e elementit të ankorimit"
 
-#: gdl/gdl-dock-item.c:542
+#: ../gdl/gdl-dock-item.c:543
 #, c-format
-#, fuzzy
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
-msgstr "Ti shto a nga lloji a a tjetër."
+msgstr ""
+"Nuk mund të shtohet një objekt ankorimi (%p i llojit %s) në brendësi të një %s. "
+"Përdor një GdlDock ose ndonjë tjetër objekt ankorimi të përbërë."
 
-#: gdl/gdl-dock-item.c:549
+#: ../gdl/gdl-dock-item.c:550
 #, c-format
-#, fuzzy
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
-msgstr "shto a me lloji a a ora përmban a nga lloji"
+msgstr ""
+"Përpjekje për të shtuar një widget të llojit %s tek një %s, por mund të përmbajë "
+"një widget të vetëm njëherësh; përmban rregullisht një widget të llojit %s"
 
-#: gdl/gdl-dock-item.c:1176
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
-#, fuzzy
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "në nga lloji"
+msgstr "Strategji ankorimi %s e pasuportuar për objektin e ankorimit të llojit %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1390
+msgid "UnLock"
+msgstr "Liro"
 
 #. Hide menuitem.
-#: gdl/gdl-dock-item.c:1258
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Fshih"
 
 #. Lock menuitem
-#: gdl/gdl-dock-item.c:1264
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Blloko"
 
-#: gdl/gdl-dock-item.c:1448
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
-#, fuzzy
 msgid "Attempt to bind an unbound item %p"
-msgstr "element"
+msgstr "Përpjekje për të lidhur një element të palidhur %p"
 
-#: gdl/gdl-dock-layout.c:125 gdl/gdl-dock-bar.c:88
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
-msgstr "Master"
+msgstr "Kryesori"
 
-#: gdl/gdl-dock-layout.c:126
-#, fuzzy
+#: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "është"
+msgstr "Objekti GdlDockMaster në të cilin është kapur objekti layout"
 
-#: gdl/gdl-dock-layout.c:133
+#: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
-msgstr ""
+msgstr "E papastër"
 
-#: gdl/gdl-dock-layout.c:134
-#, fuzzy
+#: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr "dhe a"
+msgstr "E vërtetë nëse layout janë ndryshuar dhe kanë nevojë të ruhen në një file"
 
 #. FIXME: pop up an error dialog
-#: gdl/gdl-dock-layout.c:564
+#: ../gdl/gdl-dock-layout.c:563
 #, c-format
-#, fuzzy
 msgid "Could not load layout user interface file '%s'"
-msgstr "nuk ngarkoje përdorues interfaqja"
+msgstr "I pamundur ngarkimi i file me layout të interfaqes së përdoruesit '%s'"
 
-#: gdl/gdl-dock-layout.c:619
+#: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
 msgstr "I dukshëm"
 
-#: gdl/gdl-dock-layout.c:626
+#: ../gdl/gdl-dock-layout.c:625
 msgid "Item"
-msgstr ""
+msgstr "Elementi"
 
-#: gdl/gdl-dock-layout.c:709 gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Emri"
 
-#: gdl/gdl-dock-layout.c:742 gdl/layout.glade.h:1
-#, fuzzy
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
 msgid "Dock items"
-msgstr "Qelia elementët"
+msgstr "Elementët e ankorimit"
 
-#: gdl/gdl-dock-layout.c:748 gdl/layout.glade.h:3
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
 msgid "Saved layouts"
-msgstr ""
+msgstr "Layout e ruajtur"
 
-#: gdl/gdl-dock-layout.c:790
+#: ../gdl/gdl-dock-layout.c:789
 #, c-format
-#, fuzzy
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
-msgstr "a është"
+msgstr ""
+"Gjatë ngarkimit të layout: nuk njihet menyra e krijimit të një objekti ankorimi "
+"emri i të cilit është '%s'"
 
-#: gdl/gdl-dock-layout.c:1269
-#, fuzzy
+#: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
-msgstr "Planimetria"
+msgstr "Menazhimi i planimetrisë"
 
-#: gdl/gdl-dock-master.c:134 gdl/gdl-dock.c:184
-#, fuzzy
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
 msgid "Default title"
-msgstr "E prezgjedhur titulli"
+msgstr "Titulli i paracaktuar"
 
-#: gdl/gdl-dock-master.c:135
-#, fuzzy
+#: ../gdl/gdl-dock-master.c:139
 msgid "Default title for newly created floating docks"
-msgstr "E prezgjedhur titulli për"
+msgstr "Titulli i paracaktuar për ganxhat e reja pluskuese të krijuara"
 
-#: gdl/gdl-dock-master.c:142
-#, fuzzy
+#: ../gdl/gdl-dock-master.c:146
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr "është elementët i bllokuar elementët"
+msgstr ""
+"Nëse vendosur në 1 të gjithë elementët e ankorimit të lidhur me kryesorin "
+"janë të bllokuar;nëse është 0 janë të gjithë të lirë; -1 tregon mospërputhje "
+"midis elementëve"
 
-#: gdl/gdl-dock-master.c:730
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
+msgid "Switcher Style"
+msgstr "Stili i shkëmbyesit"
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
+msgid "Switcher buttons style"
+msgstr "Stili i pulsantit të shkëmbimit"
+
+#: ../gdl/gdl-dock-master.c:761
 #, c-format
-#, fuzzy
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
-msgstr "shto është element me emri."
+msgstr ""
+"master %p: i pamundur shtimi i objektit %p[%s] në tabelën hash.  Ekziston "
+"rregullisht një element me atë emër (%p)."
 
-#: gdl/gdl-dock-master.c:895
+#: ../gdl/gdl-dock-master.c:934
 #, c-format
-#, fuzzy
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
-msgstr "i ri është Vetëm manual."
+msgstr ""
+"Kontrolluesi i ri i ankorimit %p është automatik.  Vetëm objektet e ankorimit "
+"manual duhet të jenë kontrollues me emër."
 
-#: gdl/gdl-dock-notebook.c:135
-#, fuzzy
+#: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
 msgstr "Faqja"
 
-#: gdl/gdl-dock-notebook.c:136
+#: ../gdl/gdl-dock-notebook.c:135
 msgid "The index of the current page"
 msgstr "Treguesi i faqes aktuale"
 
-#: gdl/gdl-dock-object.c:121
-#, fuzzy
+#: ../gdl/gdl-dock-object.c:120
 msgid "Unique name for identifying the dock object"
-msgstr "Unique emri për"
+msgstr "Emër i përveçëm për të identifikuar objektin e ankorimit"
 
-#: gdl/gdl-dock-object.c:128
-#, fuzzy
+#: ../gdl/gdl-dock-object.c:127
 msgid "Long name"
-msgstr "emri"
+msgstr "Emri i gjatë"
 
-#: gdl/gdl-dock-object.c:129
-#, fuzzy
+#: ../gdl/gdl-dock-object.c:128
 msgid "Human readable name for the dock object"
-msgstr "Njeriu emri për"
+msgstr "Emri i objektit të ankorimit i lexueshëm nga përdoruesi"
 
-#: gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:134
 msgid "Stock Icon"
-msgstr "Ikona rezervë"
+msgstr "Ikona e rezervës"
 
-#: gdl/gdl-dock-object.c:136
-#, fuzzy
+#: ../gdl/gdl-dock-object.c:135
 msgid "Stock icon for the dock object"
-msgstr "ikonë për"
+msgstr "Ikona e rezervës për objektin e ankorimit"
 
-#: gdl/gdl-dock-object.c:142
-#, fuzzy
+#: ../gdl/gdl-dock-object.c:141
 msgid "Dock master"
-msgstr "Qelia"
+msgstr "Pronari i ankorimit"
 
-#: gdl/gdl-dock-object.c:143
-#, fuzzy
+#: ../gdl/gdl-dock-object.c:142
 msgid "Dock master this dock object is bound to"
-msgstr "Qelia është"
+msgstr "Dock master tek i cili kufizohet ky objekt ankorimi"
 
-#: gdl/gdl-dock-object.c:421
+#: ../gdl/gdl-dock-object.c:444
 #, c-format
-#, fuzzy
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
-msgstr "Thirrje në a lloji është"
+msgstr ""
+"Thirrje për gdl_dock_object_dock në një element ankorimi %p (lloji i objektit "
+"është %s) që nuk suporton këtë metodë"
 
-#: gdl/gdl-dock-object.c:550
+#: ../gdl/gdl-dock-object.c:576
 #, c-format
-#, fuzzy
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
-msgstr "Qelia në a programi crash (bllokim)"
+msgstr ""
+"Është kërkuar një operacion ankorimi në një objekt të palidhur %p. Aplikativi "
+"mund të bllokohet"
 
-#: gdl/gdl-dock-object.c:557
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr ""
+msgstr "Nuk mund të lidhet %p me %p sepse i takojnë pronarëve të ndryshëm"
 
-#: gdl/gdl-dock-object.c:599
+#: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
+"Përpjekje për të lidhur tek %p një objekt ankorimi %p rregullisht i lidhur "
+"(pronari aktual: %p)"
 
-#: gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position"
 msgstr "Pozicioni"
 
-#: gdl/gdl-dock-paned.c:134
-#, fuzzy
+#: ../gdl/gdl-dock-paned.c:133
 msgid "Position of the divider in pixels"
-msgstr "Pozicioni nga në pixels"
+msgstr "Pozicioni i ndarësit në pixel"
 
-#: gdl/gdl-dock-placeholder.c:127
+#: ../gdl/gdl-dock-placeholder.c:143
 msgid "Sticky"
-msgstr ""
+msgstr "Ngjitur"
 
-#: gdl/gdl-dock-placeholder.c:128
-#, fuzzy
+#: ../gdl/gdl-dock-placeholder.c:144
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
-msgstr "sipër gjerarkia është"
+msgstr ""
+"Nëse vendshënuesi do të qendrojë i kapur me mbajtësin e tij apo do të ringjisë "
+"gjerarkinë kur mbajtësi të riankorohet"
 
-#: gdl/gdl-dock-placeholder.c:135
+#: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
-msgstr "Host"
+msgstr "Mbajtësi"
 
-#: gdl/gdl-dock-placeholder.c:136
-#, fuzzy
+#: ../gdl/gdl-dock-placeholder.c:152
 msgid "The dock object this placeholder is attached to"
-msgstr "është"
+msgstr "Objekti i ankorimit ku është ngjitur ky vendshënues"
 
-#: gdl/gdl-dock-placeholder.c:143
-#, fuzzy
+#: ../gdl/gdl-dock-placeholder.c:159
 msgid "Next placement"
-msgstr "Vazhdo"
+msgstr "Vendqendrimi pasardhës"
 
-#: gdl/gdl-dock-placeholder.c:144
-#, fuzzy
+#: ../gdl/gdl-dock-placeholder.c:160
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
-msgstr "element a është"
-
-#: gdl/gdl-dock-placeholder.c:305
-#, fuzzy
-msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr "a"
-
-#: gdl/gdl-dock-placeholder.c:419
-#, c-format
-#, fuzzy
-msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr "a është nuk"
-
-#: gdl/gdl-dock-placeholder.c:440
-#, c-format
-#, fuzzy
-msgid ""
-"Something weird happened while getting the child placement for %p from "
-"parent %p"
-msgstr "fëmi (sekondar, i dytë) për"
-
-#: gdl/gdl-dock-tablabel.c:130
-msgid "Dockitem which 'owns' this tablabel"
 msgstr ""
+"Pozicioni në të cilin do të ankorohet një element në mbajtësin tonë nëse "
+"arrin një kërkesë ankorimi"
 
-#: gdl/gdl-dock-bar.c:89
-#, fuzzy
-msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "është"
-
-#: gdl/gdl-dock.c:176
-msgid "Floating"
-msgstr ""
-
-#: gdl/gdl-dock.c:177
-#, fuzzy
-msgid "Whether the dock is floating in its own window"
-msgstr "është në dritare"
-
-#: gdl/gdl-dock.c:185
-#, fuzzy
-msgid "Default title for the newly created floating docks"
-msgstr "E prezgjedhur titulli për"
-
-#: gdl/gdl-dock.c:191
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "Gjerësia"
 
-#: gdl/gdl-dock.c:192
-#, fuzzy
-msgid "Width for the dock when it's of floating type"
-msgstr "Gjerësia për nga lloji"
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Gjerësia e widget kur është i ngjitur me vendshënuesin"
 
-#: gdl/gdl-dock.c:199
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "Lartësia"
 
-#: gdl/gdl-dock.c:200
-#, fuzzy
-msgid "Height for the dock when it's of floating type"
-msgstr "Lartësia për nga lloji"
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Lartësia e widget kur është i ngjitur me vendshënuesin"
 
-#: gdl/gdl-dock.c:207
-#, fuzzy
-msgid "Float X"
-msgstr "Float X"
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "Pluskues i nivelit më të lartë"
 
-#: gdl/gdl-dock.c:208
-#, fuzzy
-msgid "X coordinate for a floating dock"
-msgstr "X për a"
-
-#: gdl/gdl-dock.c:215
-#, fuzzy
-msgid "Float Y"
-msgstr "Float Y"
-
-#: gdl/gdl-dock.c:216
-#, fuzzy
-msgid "Y coordinate for a floating dock"
-msgstr "Y për a"
-
-#: gdl/gdl-dock.c:497
-#, c-format
-#, fuzzy
-msgid "Dock #%d"
-msgstr "Qelia"
-
-#: gdl/gdl-recent.c:135
-msgid "GConf key"
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr ""
+"Nëse vendshënuesi përfaqson një ganxhë pluskuese të nivelit më "
+"të lartë"
 
-#: gdl/gdl-recent.c:136
-#, fuzzy
-msgid "The gconf key for storing the recent entries."
-msgstr "për."
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "Koordinata X"
 
-#: gdl/gdl-recent.c:142
-msgid "Path"
-msgstr "Pozicioni"
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate for dock when floating"
+msgstr "Koordinata horizontale për ganxhën kur është pluskuese"
 
-#: gdl/gdl-recent.c:143
-#, fuzzy
-msgid "The path to put the menu items."
-msgstr "shtegu menuja elementët."
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Koordinata Y"
 
-#: gdl/gdl-recent.c:149
-msgid "Limit"
-msgstr "Kufiri"
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate for dock when floating"
+msgstr "Koordinata vertikale për ganxhën kur është pluskuese"
 
-#: gdl/gdl-recent.c:150
-#, fuzzy
-msgid "The maximum number of items to be allowed in the list."
-msgstr "maksimum nga elementët në lista."
+#: ../gdl/gdl-dock-placeholder.c:494
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+"Përpjekje për të ankoruar një objekt ankorimi me një vendshënues "
+"të palidhur"
 
-#: gdl/gdl-recent.c:158
-#, fuzzy
-msgid "List type"
-msgstr "Lista lloji"
-
-#: gdl/gdl-recent.c:159
-#, fuzzy
-msgid "The type with which the items will be numbered."
-msgstr "lloji me elementët."
-
-#: gdl/gdl-recent.c:408
+#: ../gdl/gdl-dock-placeholder.c:618
 #, c-format
-msgid "Open %s"
-msgstr "Hap %s"
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "U mor një sinjal detach nga një objekt (%p) që nuk është miku ynë %p"
 
-#: gdl/gdl-icons.c:134 gdl/gdl-icons.c:135
+#: ../gdl/gdl-dock-placeholder.c:643
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Ndodhi diçka e pazakontë gjatë marrjes së vendqendrimit të birit %p nga "
+"prindi %p"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Objekti i ankorimit që 'ka' këtë tablabel"
+
+#: ../gdl/gdl-dock-bar.c:108
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "Objekti GdlDockMaster ku është ngjitur widget dockbar"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style"
+msgstr "Stili i panelit të ankorimit"
+
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style to show items on it"
+msgstr "Stili i Dockbar për shfaqjen e elementëve në të"
+
+#: ../gdl/gdl-dock.c:178
+msgid "Floating"
+msgstr "Pluskues"
+
+#: ../gdl/gdl-dock.c:179
+msgid "Whether the dock is floating in its own window"
+msgstr "Nëse ganxha është pluskuese në dritaren e saj"
+
+#: ../gdl/gdl-dock.c:187
+msgid "Default title for the newly created floating docks"
+msgstr "Titulli i paracaktuar për ganxhat e reja pluskuese të krijuara"
+
+#: ../gdl/gdl-dock.c:194
+msgid "Width for the dock when it's of floating type"
+msgstr "Gjerësia e ganxhës kur është e llojit pluskues"
+
+#: ../gdl/gdl-dock.c:202
+msgid "Height for the dock when it's of floating type"
+msgstr "Lartësia e ganxhës kur është e llojit pluskues"
+
+#: ../gdl/gdl-dock.c:209
+msgid "Float X"
+msgstr "X i pluskimit"
+
+#: ../gdl/gdl-dock.c:210
+msgid "X coordinate for a floating dock"
+msgstr "Koordinata X për një ganxhë pluskuese"
+
+#: ../gdl/gdl-dock.c:217
+msgid "Float Y"
+msgstr "Y i pluskimit"
+
+#: ../gdl/gdl-dock.c:218
+msgid "Y coordinate for a floating dock"
+msgstr "Koordinata Y për një ganxhë pluskuese"
+
+#: ../gdl/gdl-dock.c:499
+#, c-format
+msgid "Dock #%d"
+msgstr "Ankorimi #%d"
+
+#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
 msgid "Icon size"
 msgstr "Madhësia e ikonës"
 
-#: gdl/layout.glade.h:2
-#, fuzzy
+#: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
-msgstr "Planimetria"
+msgstr "Menazhimi i planimetrisë"
 
-#: gdl/layout.glade.h:4
+#: ../gdl/layout.glade.h:4
 msgid "_Load"
-msgstr "_Ngarkesa"
+msgstr "_Ngarko"
 
-#: gdl/layout.glade.h:5
-#, fuzzy
+#: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
-msgstr "Blloko elementët"
-
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:1
-#, fuzzy
-msgid "Factory for the Gnome Symbol Browser control."
-msgstr "Fabrikë për Shfletuesi kontrolli."
-
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:2
-#, fuzzy
-msgid "Gnome Symbol Browser Control"
-msgstr "Shfletuesi Kontrollo"
-
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:3
-#, fuzzy
-msgid "Gnome Symbol Browser Control Factory"
-msgstr "Shfletuesi Kontrollo Fabrikë"
-
-#: symbol-browser-control/GNOME_Development_SymbolBrowser.server.in.h:4
-#, fuzzy
-msgid "Gnome Symbol Browser."
-msgstr "Shfletuesi."
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:1
-msgid "Goto Symbol"
-msgstr ""
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:2
-msgid "Goto the displayed symbol"
-msgstr ""
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:3
-#, fuzzy
-msgid "Update Symbols"
-msgstr "Rifresko Simbolet"
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:4
-#, fuzzy
-msgid "Update the symbol tree"
-msgstr "Rifresko degëzimi"
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:5
-msgid "_Goto to symbol"
-msgstr ""
-
-#: symbol-browser-control/gnome-symbol-browser.xml.h:6
-msgid "_View"
-msgstr "_Shfaq"
-
-#: symbol-browser-control/symbol-browser.c:65
-msgid "Unknown"
-msgstr "Nuk njihet"
-
-#. ! tm_tag_undef_t = 0, < Unknown type
-#: symbol-browser-control/symbol-browser.c:66
-msgid "Classes"
-msgstr ""
-
-#. ! tm_tag_class_t = 1, < Class declaration
-#: symbol-browser-control/symbol-browser.c:67
-msgid "Enums"
-msgstr ""
-
-#. ! tm_tag_enum_t = 2, < Enum declaration
-#: symbol-browser-control/symbol-browser.c:68
-msgid "Enumerators"
-msgstr ""
-
-#. ! tm_tag_enumerator_t = 4, < Enumerator value
-#: symbol-browser-control/symbol-browser.c:69
-msgid "Fields"
-msgstr ""
-
-#. ! tm_tag_field_t = 8, < Field (Java only)
-#: symbol-browser-control/symbol-browser.c:70
-msgid "Functions"
-msgstr "Funksionet"
-
-#. ! tm_tag_function_t = 16, < Function definition
-#: symbol-browser-control/symbol-browser.c:71
-msgid "Interfaces"
-msgstr ""
-
-#. ! tm_tag_interface_t = 32, < Interface (Java only
-#: symbol-browser-control/symbol-browser.c:72
-msgid "Members"
-msgstr "Anëtarë"
-
-#. ! tm_tag_member_t = 64, < Member variable of class/struct
-#: symbol-browser-control/symbol-browser.c:73
-msgid "Methods"
-msgstr ""
-
-#. ! tm_tag_method_t = 128, < Class method (Java only
-#: symbol-browser-control/symbol-browser.c:74
-msgid "Namespaces"
-msgstr ""
-
-#. ! tm_tag_namespace_t = 256, < Namespace declaration
-#: symbol-browser-control/symbol-browser.c:75
-msgid "Packages"
-msgstr "Pakot"
-
-#. ! tm_tag_package_t = 512, < Package (Java only)
-#: symbol-browser-control/symbol-browser.c:76
-msgid "Prototypes"
-msgstr ""
-
-#. ! tm_tag_prototype_t = 1024, < Function prototype
-#: symbol-browser-control/symbol-browser.c:77
-msgid "Structs"
-msgstr ""
-
-#. ! tm_tag_struct_t = 2048, < Struct declaration
-#: symbol-browser-control/symbol-browser.c:78
-msgid "Typedefs"
-msgstr ""
-
-#. ! tm_tag_typedef_t = 4096, < Typedef
-#: symbol-browser-control/symbol-browser.c:79
-msgid "Unions"
-msgstr ""
-
-#. ! tm_tag_union_t = 8192, !< Union
-#: symbol-browser-control/symbol-browser.c:80
-msgid "Variables"
-msgstr "Të ndryshueshmet"
-
-#. ! tm_tag_variable_t = 16384, < Variable
-#: symbol-browser-control/symbol-browser.c:81
-msgid "ExternVars"
-msgstr ""
-
-#. ! tm_tag_externvar_t = 32768, < Extern or forward declaration
-#: symbol-browser-control/symbol-browser.c:82
-msgid "Macros"
-msgstr "Automatizime"
-
-#. ! tm_tag_macro_t = 65536, < Macro (withour arguments)
-#: symbol-browser-control/symbol-browser.c:83
-msgid "MacrosWithArgs"
-msgstr ""
-
-#: symbol-browser-control/symbol-browser.c:378
-msgid "Tags"
-msgstr "Tags"
-
-#: symbol-browser-control/symbol-browser.c:386
-#: symbol-browser-control/symbol-browser.c:397
-msgid "Undefined"
-msgstr "E papërcaktuar"
-
-#: symbol-browser-control/symbol-browser.c:388
-#: symbol-browser-control/symbol-browser.c:399
-msgid "<No Symbol>"
-msgstr ""
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:1
-msgid "Exit"
-msgstr "Dalja"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:2
-#, fuzzy
-msgid "Open Project"
-msgstr "Hap Projekti"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:3
-#, fuzzy
-msgid "Save Project"
-msgstr "Ruaj Projekti"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:4
-#, fuzzy
-msgid "Set Current File"
-msgstr "Aktual File"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:5
-msgid "Update"
-msgstr "Rifresko"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:6
-#, fuzzy
-msgid "Update the whole tree"
-msgstr "Rifresko degëzimi"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:7
-#, fuzzy
-msgid "_Exit"
-msgstr "Dalja"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:8
-msgid "_File"
-msgstr "_File"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:9
-#, fuzzy
-msgid "_Open Project"
-msgstr "Hap Projekti"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:10
-#, fuzzy
-msgid "_Save Project"
-msgstr "Ruaj Projekti"
-
-#: symbol-browser-control/test-symbol-browser-ui.xml.h:11
-#, fuzzy
-msgid "_Set Current File"
-msgstr "Aktual File"
-
-#: symbol-browser-control/test-symbol-browser.c:168
-#, fuzzy
-msgid "Open file..."
-msgstr "Hap file..."
-
-#: symbol-browser-control/test-symbol-browser.c:170
-msgid "Set current file..."
-msgstr ""
-
-#: symbol-browser-control/test-symbol-browser.c:172
-#, fuzzy
-msgid "Save file..."
-msgstr "Ruaj."
-
-#: symbol-browser-control/test-symbol-browser.c:295
-msgid "Can't initialize bonobo!"
-msgstr ""
+msgstr "B_lloko elementët e ankorimit"
 
