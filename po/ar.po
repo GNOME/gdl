@@ -128,7 +128,7 @@ msgstr "إخفاء"
 #. Lock menuitem
 #: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
-msgstr "اقفل"
+msgstr "أقفل"
 
 #: ../gdl/gdl-dock-item.c:1608
 #, c-format
