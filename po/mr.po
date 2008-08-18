@@ -1,0 +1,448 @@
+# translation of gdl.HEAD.po to marathi
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-15 03:16+0000\n"
+"PO-Revision-Date: 2008-08-18 12:16+0530\n"
+"Last-Translator: Sandeep Shedmake <sandeep.shedmake@gmail.com>\n"
+"Language-Team: marathi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../gdl/gdl-data-view.c:418
+msgid "Expander Size"
+msgstr "विस्तारकाचे आकार"
+
+#: ../gdl/gdl-data-view.c:419
+msgid "Size of the expander arrow."
+msgstr "विस्तारकीय बाणाचे आकार."
+
+#: ../gdl/gdl-dock-item-grip.c:365
+msgid "Iconify this dock"
+msgstr "आरोहन चिन्हाकृत करा"
+
+#: ../gdl/gdl-dock-item-grip.c:367
+msgid "Close this dock"
+msgstr "आरोहन बंद करा"
+
+#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "नियंत्रकीय आरोहन घटक"
+
+#: ../gdl/gdl-dock-item-grip.c:677
+msgid "Dockitem which 'owns' this grip"
+msgstr "या पकडच्या 'मालकीचे' आरोहन घटक"
+
+#: ../gdl/gdl-dock-item.c:243
+msgid "Orientation"
+msgstr "निर्देशन"
+
+#: ../gdl/gdl-dock-item.c:244
+msgid "Orientation of the docking item"
+msgstr "आरोहन करण्याजोगी घटकाचे निर्देशन"
+
+#: ../gdl/gdl-dock-item.c:259
+msgid "Resizable"
+msgstr "पुन्हआकारजोगी"
+
+#: ../gdl/gdl-dock-item.c:260
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr "निश्चित केल्यास, GtkPanel विजेटवर आरोहीत केल्यास आरोहीत घटकाचे आकार बदलविता येते"
+
+#: ../gdl/gdl-dock-item.c:267
+msgid "Item behavior"
+msgstr "घटकाचे वर्तन"
+
+#: ../gdl/gdl-dock-item.c:268
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr "आरोहन घटक करीता सामान्य वर्तन (म्हणजे कुलूपबंद असल्यास, बदलविण्याजोगी आहे का, इत्यादी)"
+
+#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+msgid "Locked"
+msgstr "कुलूपबंद"
+
+#: ../gdl/gdl-dock-item.c:277
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "निश्चित असल्यास, आरोहन घटक ओढू शकत नाही व बांधणी दर्शविले जाऊ शकत नाही"
+
+#: ../gdl/gdl-dock-item.c:285
+msgid "Preferred width"
+msgstr "सूचीत रुंदी"
+
+#: ../gdl/gdl-dock-item.c:286
+msgid "Preferred width for the dock item"
+msgstr "आरोहन घटक करीता सूचीत रूंदी"
+
+#: ../gdl/gdl-dock-item.c:292
+msgid "Preferred height"
+msgstr "सूचीत ऊंची"
+
+#: ../gdl/gdl-dock-item.c:293
+msgid "Preferred height for the dock item"
+msgstr "आरोहन घटक करीता सूचीत ऊंची"
+
+#: ../gdl/gdl-dock-item.c:543
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr "%3$s अंतर्गत आरोहन घटक (%2$s प्रकारनुरूप %1$p) जोडू शकत नाही. GdlDock किंवा इतर आरोहन घटकचा वापर करा."
+
+#: ../gdl/gdl-dock-item.c:550
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr "%2$s करीता प्रकार %1$s नुरूप विजेट जोडण्याचा प्रयत्न करीत आहे, परंतु त्यामध्ये एकावेळी फक्त एकच विजेट समाविष्ठीत केले जाऊ शकते; विजेट प्रकार %3$s आधिपासूनच समाविष्ठीत आहे"
+
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "प्रकार %s चे आरोहन घटक करीता असमर्थीत आरोहन पद्धती %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1390
+msgid "UnLock"
+msgstr "विनाकुलूपबंद"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1397
+msgid "Hide"
+msgstr "लपवा"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1402
+msgid "Lock"
+msgstr "कुलूपबंद"
+
+#: ../gdl/gdl-dock-item.c:1608
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "अबांधणीय घटक %p सह बांधणी स्थापीत करण्याचा प्रयत्न"
+
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
+msgid "Master"
+msgstr "मास्टर"
+
+#: ../gdl/gdl-dock-layout.c:124
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "GdlDockMaster घटकाशी जुळलेले मांडणी घटक"
+
+#: ../gdl/gdl-dock-layout.c:131
+msgid "Dirty"
+msgstr "अयोग्य"
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "मांडणीत बदललाव आढळल्यास व फाइल अंतर्गत संचयनची आवश्यकता भासल्यास खरे आहे"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "मांडणी वापरकर्ता संवाद फाइल '%s' दाखल करण्यास अपयशी"
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "दर्शनीय"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "घटक"
+
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "नाव"
+
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "आरोहन घटक"
+
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "संचयीत मांडणी"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr "मांडणी दाखल करतेवेळी: '%s' टोपननाव असलेले आरोहन घटक कसे बनवायचे"
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "मांडणी व्यवस्थापन"
+
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+msgid "Default title"
+msgstr "मुलभूत शिर्षक"
+
+#: ../gdl/gdl-dock-master.c:139
+msgid "Default title for newly created floating docks"
+msgstr "नाविन्य बनविलेले बलविण्याजोगी आरोहन करीता मुलभूत शिर्षक"
+
+#: ../gdl/gdl-dock-master.c:146
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"निश्चित असल्यास, मास्टरशी बंधित सर्व आरोहन घटक कुलूपबंध राहतात; "
+"0 असल्यास, सर्व विनाकुलूपबंद राहतात; व -1 घटक अंतर्गत अस्थिरता दर्शविते"
+
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
+msgid "Switcher Style"
+msgstr "स्वीचर शैली"
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
+msgid "Switcher buttons style"
+msgstr "स्वीचर बटन शैली"
+
+#: ../gdl/gdl-dock-master.c:761
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr "मास्टर %p: हॅश करीता घटक %p[%s] जोडण्यास अपयशी.  (%p) नावाचे घटक आधिपासूनच अस्तित्वात आहे."
+
+#: ../gdl/gdl-dock-master.c:934
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr "नविन आरोहन नियंत्रक %p स्वयंचलीत आहे.  फक्त मानवीय आरोहन घटक नामांकनजोगी आहे."
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "पान"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "वर्तमान पानाची अनुक्रमणीका"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "आरोहन घटक ओळखण्याकरीता एकमेव नाव"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "लांब नाव"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr "आरोहन घटक करीता वाचण्याजोगी नाव"
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "स्टॉक चिन्ह"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "आरोहन घटक करीता स्टॉक चिन्ह"
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "आरोहन मास्टर"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr "आरोहन घटकाशी बांधलेले आरोहन मास्टर"
+
+#: ../gdl/gdl-dock-object.c:444
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr "आरोहन घटक %p अंतर्गत gdl_dock_object_dock करीता कॉल (घटक प्रकार %s आहे) जेथे ही कार्यपद्धती लागू केली गेली नाही"
+
+#: ../gdl/gdl-dock-object.c:576
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr "विना-बंधीत घटक %p अंतर्गत कार्यपद्धतीने विनंती प्रस्तुत केली. अनुप्रयोग क्रॅश होऊ शकतो"
+
+#: ../gdl/gdl-dock-object.c:583
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "एकापेक्षा जास्त मास्टरच्या मालकीचे असल्यामुळे %1$p ला %2$p वर आरोहीत करू शकत नाही"
+
+#: ../gdl/gdl-dock-object.c:625
+#, c-format
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "आधिपासूनच %1$p शी बांधणीत असलेले आरोहन घटक %2$p (वर्तमान मास्टर: %3$p)"
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position"
+msgstr "स्थान"
+
+#: ../gdl/gdl-dock-paned.c:133
+msgid "Position of the divider in pixels"
+msgstr "विभाजकाचे पीक्सेल अंतर्गत स्थान"
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Sticky"
+msgstr "चिपकाऊ"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr "हजमान पुन्हआरोहीत केल्यावर मांडणी हजमानाशी जुळवूण राहील का किंवा स्तर सर्वोच्च स्थानी स्थानांतरीत होईल"
+
+#: ../gdl/gdl-dock-placeholder.c:151
+msgid "Host"
+msgstr "यजमान"
+
+#: ../gdl/gdl-dock-placeholder.c:152
+msgid "The dock object this placeholder is attached to"
+msgstr "या मांडणीसह जुळलेले आरोहन घटक"
+
+#: ../gdl/gdl-dock-placeholder.c:159
+msgid "Next placement"
+msgstr "पुढील प्रतिष्ठापन"
+
+#: ../gdl/gdl-dock-placeholder.c:160
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr "आरोहन करीता विनंती प्राप्त झाल्यास यजमान करीता घटकाचे आरोहन करण्यासाठीचे स्थान"
+
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+msgid "Width"
+msgstr "रुंदी"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "मांडणीसह जुळल्यास विजेटची रूंदी"
+
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+msgid "Height"
+msgstr "ऊंची"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "मांडणीसह जुळल्यास विजेटची ऊंची"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "उच्चस्तरीय फ्लोटींग"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "तरंगते उच्चस्तरीय आरोहन करीता मांडणी सुस्थीत राहते का"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "X-निबंधक"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate for dock when floating"
+msgstr "तरंगते असल्यास आरोहन करीता X-निबंधक"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Y-निबंधक"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate for dock when floating"
+msgstr "तरंगते असल्यास आरोहन करीता Y-निबंधक"
+
+#: ../gdl/gdl-dock-placeholder.c:494
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "असंबंधित मांडणीशी आरोहन घटक जोडण्याचा प्रयत्न"
+
+#: ../gdl/gdl-dock-placeholder.c:618
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "घटक (%p) ज्याचे चूकीचे हजामान %p आहे त्याकडून विनाजुळवणी संकेत प्राप्त झाले"
+
+#: ../gdl/gdl-dock-placeholder.c:643
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr "मुख्य घटक %p पासून उपघटक %p करीता बदलाववेळी काहितरी अणोखी घटना आढळली"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "टॅबलेबलच्या 'मालिकचे' आरोहनघटक"
+
+#: ../gdl/gdl-dock-bar.c:108
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "GdlDockMaster घटकासह जुळलेले आरोहनपट्टी विजेट"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style"
+msgstr "आरोहनपट्टी शैली"
+
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style to show items on it"
+msgstr "घटक दर्शविण्याकरीता आरोहनपट्टी शैली"
+
+#: ../gdl/gdl-dock.c:178
+msgid "Floating"
+msgstr "तरंगते"
+
+#: ../gdl/gdl-dock.c:179
+msgid "Whether the dock is floating in its own window"
+msgstr "आरोहन स्वतःच्या चौकटीत तरंगत आहे का"
+
+#: ../gdl/gdl-dock.c:187
+msgid "Default title for the newly created floating docks"
+msgstr "नाविन्य बनविलेल्या तरंगते आरोहन करीता मुलभूत शिर्षक"
+
+#: ../gdl/gdl-dock.c:194
+msgid "Width for the dock when it's of floating type"
+msgstr "तरंगते प्रकार असल्यावर आरोहन करीता रूंदी"
+
+#: ../gdl/gdl-dock.c:202
+msgid "Height for the dock when it's of floating type"
+msgstr "तरंगते प्रकार असल्यावर आरोहन करीता ऊंची"
+
+#: ../gdl/gdl-dock.c:209
+msgid "Float X"
+msgstr "फ्लोट X"
+
+#: ../gdl/gdl-dock.c:210
+msgid "X coordinate for a floating dock"
+msgstr "तरंगते आरोहन करीता X निबंधक"
+
+#: ../gdl/gdl-dock.c:217
+msgid "Float Y"
+msgstr "फ्लोट Y"
+
+#: ../gdl/gdl-dock.c:218
+msgid "Y coordinate for a floating dock"
+msgstr "तरंगते आरोहन करीता Y निबंधक"
+
+#: ../gdl/gdl-dock.c:499
+#, c-format
+msgid "Dock #%d"
+msgstr "आरोहन #%d"
+
+#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
+msgid "Icon size"
+msgstr "चिन्हाचे आकार"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "मांडणी व्यवस्थपान"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "दाखलन (_L)"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "आरोहन घटक कुलूपबंद करा (_L)"
+
