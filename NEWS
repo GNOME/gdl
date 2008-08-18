@@ -1,3 +1,11 @@
+Changes in 2.23.90
+
+* Version increased to match gnome releases.
+* Use smaller buttons to waste less space
+* Port to the GtkTooltip API (fixes #457562)
+* Fixed bug #529457 - Superfluous condition
+* Fixed bug #539288 - Use gtype macros instead of the deprecated gtk ones.
+	
 Changes in 0.7.11
 
 * Translation updates: hu, pt_BR, fr, mk, es, lt, hi, uk and cs
