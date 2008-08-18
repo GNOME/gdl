@@ -5,6 +5,8 @@ Changes in 2.23.90
 * Port to the GtkTooltip API (fixes #457562)
 * Fixed bug #529457 - Superfluous condition
 * Fixed bug #539288 - Use gtype macros instead of the deprecated gtk ones.
+* Translation updates: da, tr, el, it, zh_TW, zh_HK, ru, ar, vi,
+  bg, th, ps, sq, pt_BR, mr
 	
 Changes in 0.7.11
 
