@@ -1,3 +1,25 @@
+2008-09-02  Johannes Schmid  <jhs@gnome.org>
+
+	* Makefile.am:
+	* configure.in:
+	* docs/reference/gdl-sections.txt:
+	* docs/reference/gdl.types:
+	* gdl-gnome-1.0.pc.in:
+	* gdl/Makefile.am:
+	* gdl/gdl-data-frame.c:
+	* gdl/gdl-data-frame.h:
+	* gdl/gdl-data-model-test.c:
+	* gdl/gdl-data-model-test.h:
+	* gdl/gdl-data-model.c:
+	* gdl/gdl-data-model.h:
+	* gdl/gdl-data-row.c:
+	* gdl/gdl-data-row.h:
+	* gdl/gdl-data-view.c:
+	* gdl/gdl-data-view.h:
+	* gdl/test-dataview.c:
+	Removed old and unused API and thus fixed
+	#513845 – Port gdl to gio
+
 === gdl 2.23.90 ===
 
 2008-08-18  Naba Kumar  <naba@gnome.org>

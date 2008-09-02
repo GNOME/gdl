@@ -32,14 +32,10 @@ SNAPSHOT=0_`date +%Y%m%d_%H%M%S`_cvs
 AC_SUBST(SNAPSHOT)
 
 GTK_REQUIRED=2.12.0
-GNOME_REQUIRED=2.6.0
 XML_REQUIRED=2.2.8
 LIBGLADE_REQUIRED=2.0.0
-GNOME_VFS_REQUIRED=2.6.0
-GCONF_REQUIRED=2.0.0
 
 AC_SUBST(GTK_REQUIRED)
-AC_SUBST(GNOME_REQUIRED)
 AC_SUBST(XML_REQUIRED)
 AC_SUBST(LIBGLADE_REQUIRED)
 
@@ -73,38 +69,6 @@ PKG_CHECK_MODULES(GDL_DEPENDENCIES,
 	libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(GDL_DEPENDENCIES_CFLAGS)
 AC_SUBST(GDL_DEPENDENCIES_LIBS)
-
-dnl ****************
-dnl GNOME Libraries
-dnl ****************
-
-
-AC_ARG_ENABLE(gnome,
-	[ --disable-gnome	Compile without gnome support], 
-	[ if test "$enableval" = "no"; then
-		user_disabled_gnome=1
-	  fi ],
-	[ user_disabled_gnome=0 ])
-
-DEPRECATED_FLAGS=""
-AC_MSG_CHECKING(if gnome is disabled)
-if test "$user_disabled_gnome" = 1; then
-	AC_MSG_RESULT(yes)
-	gnome="no"
-else
-	AC_MSG_RESULT(no)
-	
-	PKG_CHECK_MODULES(GNOME,
-		[libgnomeui-2.0 >= $GNOME_REQUIRED, 
-		gnome-vfs-2.0 >= $GNOME_VFS_REQUIRED,
-		gconf-2.0 >= $GCONF_REQUIRED],
-		[gnome="yes"],
-		[gnome="no"])
-	AC_SUBST(GNOME_CFLAGS)
-	AC_SUBST(GNOME_LIBS)
-fi
-
-AM_CONDITIONAL(HAVE_GNOME, [test x$gnome = xyes])
 
 if test x$MAINT = x; then
 	DEPRECATED_FLAGS="-DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -DBONOBO_DISABLE_DEPRECATED -DBONOBO_UI_DISABLE_DEPRECATED"
@@ -169,5 +133,4 @@ docs/Makefile
 docs/reference/Makefile
 gdl.spec
 gdl-1.0.pc
-gdl-gnome-1.0.pc
 ])

@@ -71,23 +71,6 @@ GDL_DOCK_MASTER_GET_CLASS
 </SECTION>
 
 <SECTION>
-<FILE>gdl-icons</FILE>
-<TITLE>GdlIcons</TITLE>
-GdlIcons
-gdl_icons_new
-gdl_icons_get_folder_icon
-gdl_icons_get_uri_icon
-gdl_icons_get_mime_icon
-<SUBSECTION Standard>
-GDL_ICONS
-GDL_IS_ICONS
-GDL_TYPE_ICONS
-gdl_icons_get_type
-GDL_ICONS_CLASS
-GDL_IS_ICONS_CLASS
-</SECTION>
-
-<SECTION>
 <FILE>gdl-dock-item</FILE>
 GdlDockItemBehavior
 GdlDockItemFlags

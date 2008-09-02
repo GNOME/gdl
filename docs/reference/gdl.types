@@ -1,6 +1,5 @@
 gdl_dock_layout_get_type
 gdl_dock_master_get_type
-gdl_icons_get_type
 gdl_dock_item_get_type
 gdl_dock_get_type
 gdl_dock_object_get_type

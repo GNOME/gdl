@@ -4,7 +4,6 @@ INCLUDES = \
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) 	\
-	$(GNOME_CFLAGS)					\
 	$(EXTRA_CPPFLAGS)
 
 lib_LTLIBRARIES = libgdl-1.la
@@ -66,29 +65,9 @@ libgdl_1_la_SOURCES = \
 
 libgdl_1_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
-	$(XML_LIBS) \
-	$(GNOME_LIBS)
+	$(XML_LIBS)
 
 libgdl_1_la_LDFLAGS = $(EXTRA_LDFLAGS)
-
-libgdl_gnome_headers = \
-	gdl-icons.h
-
-if HAVE_GNOME
-lib_LTLIBRARIES += libgdl-gnome-1.la
-endif
-
-libgdl_gnome_1_la_SOURCES = \
-	$(libgdl_gnome_headers) \
-	gdl-icons.c
-
-libgdl_gnome_1_la_LIBADD = \
-	libgdl-1.la \
-	$(GDL_DEPENDENCIES_LIBS) \
-	$(XML_LIBS) \
-	$(GNOME_LIBS)
-	
-libgdl_gnome_1_la_LDFLAGS = $(EXTRA_LDFLAGS)
 
 noinst_PROGRAMS=test-dock test-combo-button
 
@@ -98,35 +77,10 @@ test_dock_LDADD=libgdl-1.la $(XML_LIBS)
 test_combo_button_SOURCES = test-combo-button.c
 test_combo_button_LDADD = libgdl-1.la
 
-if HAVE_GNOME
-	
-noinst_PROGRAMS += test-dataview
-
-test_dataview_SOURCES = \
-	gdl-data-view.h \
-	gdl-data-view.c \
-	gdl-data-frame.h \
-	gdl-data-frame.c \
-	gdl-data-model.h \
-	gdl-data-model.c \
-	gdl-data-model-test.h \
-	gdl-data-model-test.c \
-	gdl-data-row.h \
-	gdl-data-row.c \
-	test-dataview.c
-
-test_dataview_LDADD = libgdl-1.la libgdl-gnome-1.la
-
-endif
-
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
-
-libgdl_gnomeincludedir = $(includedir)/libgdl-1.0/gdl
-libgdl_gnomeinclude_HEADERS = \
-	$(libgdl_gnome_headers)
 
 gladedir = $(datadir)/gdl/glade
 glade_DATA = layout.glade
