@@ -1,3 +1,8 @@
+2008-09-02  Christian Persch <chpe@gnome.org>
+
+	* gdl-1.0.pc.in:
+	#546938 – datarootdir problem
+
 2008-09-02  Johannes Schmid  <jhs@gnome.org>
 
 	* Makefile.am:
