@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: GDL head\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-27 03:16+0000\n"
-"PO-Revision-Date: 2008-08-27 21:43+0300\n"
+"PO-Revision-Date: 2008-09-12 15:31+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: ../gdl/gdl-data-view.c:418
 msgid "Expander Size"
-msgstr ""
+msgstr "Laiendaja suurus"
 
 #: ../gdl/gdl-data-view.c:419
 msgid "Size of the expander arrow."
-msgstr ""
+msgstr "Laiendaja noole suurus."
 
 #: ../gdl/gdl-dock-item-grip.c:365
 msgid "Iconify this dock"
@@ -116,17 +116,17 @@ msgstr ""
 #. UnLock menuitem
 #: ../gdl/gdl-dock-item.c:1390
 msgid "UnLock"
-msgstr ""
+msgstr "Võta lukust lahti"
 
 #. Hide menuitem.
 #: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
-msgstr ""
+msgstr "Peida"
 
 #. Lock menuitem
 #: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
-msgstr ""
+msgstr "Lukusta"
 
 #: ../gdl/gdl-dock-item.c:1608
 #, c-format
@@ -303,7 +303,7 @@ msgstr ""
 
 #: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
-msgstr ""
+msgstr "Host"
 
 #: ../gdl/gdl-dock-placeholder.c:152
 msgid "The dock object this placeholder is attached to"
@@ -311,13 +311,15 @@ msgstr ""
 
 #: ../gdl/gdl-dock-placeholder.c:159
 msgid "Next placement"
-msgstr ""
+msgstr "Järgmine asetus"
 
 #: ../gdl/gdl-dock-placeholder.c:160
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
+"Meie hostil dokitava kirje asukoht juhuks, kui on saadetud välja päring meie "
+"hostile dokkimiseks"
 
 #: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
@@ -325,7 +327,7 @@ msgstr "Laius"
 
 #: ../gdl/gdl-dock-placeholder.c:170
 msgid "Width for the widget when it's attached to the placeholder"
-msgstr ""
+msgstr "Vidina laius, kui see on kohahoidjaks määratud"
 
 #: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
 msgid "Height"
@@ -333,7 +335,7 @@ msgstr "Kõrgus"
 
 #: ../gdl/gdl-dock-placeholder.c:178
 msgid "Height for the widget when it's attached to the placeholder"
-msgstr ""
+msgstr "Vidina kõrgus, kui see on kohahoidjaks määratud"
 
 #: ../gdl/gdl-dock-placeholder.c:184
 msgid "Floating Toplevel"
@@ -446,4 +448,4 @@ msgstr "_Laadi"
 
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
-msgstr ""
+msgstr "_Lukusta dokikirjed"
