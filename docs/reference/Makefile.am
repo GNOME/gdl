@@ -77,7 +77,7 @@ GTKDOC_LIBS=$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS) \
 	$(GNOME_LIBS) \
 	-L$(top_builddir)/gdl \
-	-lgdl-1 -lgdl-gnome-1
+	-lgdl-1
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
 include $(top_srcdir)/gtk-doc.make

@@ -1,3 +1,9 @@
+Changes in 2.24.0
+
+* Fixed dataroot problem
+* Removed old code (and as such gnome-vfs dependency)
+* Translation updates: he, sr, ar, et, hr, mr
+
 Changes in 2.23.90
 
 * Version increased to match gnome releases.
