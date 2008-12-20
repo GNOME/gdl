@@ -1,3 +1,20 @@
+2008-12-09  Pedro Fragoso  <ember@ubuntu.com>
+
+	reviewed by: Sébastien Granjoux  <seb.sfo@free.fr>
+
+	* gdl/gdl-combo-button.h:
+	* gdl/gdl-dock-bar.h:
+	* gdl/gdl-dock-item-grip.c:
+	* gdl/gdl-dock-item-grip.h:
+	* gdl/gdl-dock-master.h:
+	* gdl/gdl-dock-object.h:
+	* gdl/gdl-dock-paned.c:
+	* gdl/gdl-stock.c:
+	* gdl/gdl-switcher.c:
+	* gdl/gdl-switcher.h:
+	* gdl/gdl-tools.h:
+	GNOME Goal: Clean up GLib and GTK+ includes (Closes: #563902)
+
 === gdl 2.24.0 ===
 
 2008-09-22  Johannes Schmid  <jhs@gnome.org>
