@@ -2,51 +2,35 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Raivis Dejus <orvils@gmail.com>, 2007.
+# Raivis Dejus <orvils@gmail.com>, 2007, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-27 14:52+0300\n"
-"PO-Revision-Date: 2007-07-27 14:52+0300\n"
+"POT-Creation-Date: 2008-11-07 11:23+0100\n"
+"PO-Revision-Date: 2009-01-04 20:20+0200\n"
 "Last-Translator: Raivis Dejus <orvils@gmail.com>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"Language-Team: en_US <locale@laka.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 0.2\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: ../gdl/gdl-data-view.c:418
-msgid "Expander Size"
-msgstr "Izversēja izmērs"
-
-#: ../gdl/gdl-data-view.c:419
-msgid "Size of the expander arrow."
-msgstr "Izvērsēja bultas izmērs."
-
-#: ../gdl/gdl-dock-item-grip.c:373
-msgid "Iconify"
-msgstr "Ikonizēt"
-
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:365
 msgid "Iconify this dock"
 msgstr "Ikonizēt šo doku"
 
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Close"
-msgstr "Aizvērt"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:367
 msgid "Close this dock"
 msgstr "Aizvērt šo doku"
 
-#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Doka vienība tiek kontrolēta"
 
-#: ../gdl/gdl-dock-item-grip.c:685
+#: ../gdl/gdl-dock-item-grip.c:677
 msgid "Dockitem which 'owns' this grip"
 msgstr "Doka vienība, kurai 'pieder' šis tvēriens"
 
@@ -63,9 +47,10 @@ msgid "Resizable"
 msgstr "Maināma izmēra"
 
 #: ../gdl/gdl-dock-item.c:260
-msgid "If set, the dock item can be resized when docked in a paned"
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
-"Ja uzlikts, tad doka vienībai nevar izmainīt izmēru kamēr dokēts ir rūtots"
+"Ja uzlikts, tad doka vienības izmēru var mainīt, kad tas ir pieslēgts "
+"GtkPanel sīklietotnei"
 
 #: ../gdl/gdl-dock-item.c:267
 msgid "Item behavior"
@@ -122,44 +107,44 @@ msgstr ""
 "Mēģinu pievienot logdaļu ar tipu %s pie %s, bet tas var saturēt tikai vienu "
 "logdaļu vienlaikus, doks jau satur logdaļu ar tipu %s"
 
-#: ../gdl/gdl-dock-item.c:1235 ../gdl/gdl-dock-item.c:1280
+#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Neatbalstīta dokošanās stratēģija %s doka objektā ar tipu %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1367
+#: ../gdl/gdl-dock-item.c:1390
 msgid "UnLock"
 msgstr "AtSlēgt"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1374
+#: ../gdl/gdl-dock-item.c:1397
 msgid "Hide"
 msgstr "Slēpt"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1379
+#: ../gdl/gdl-dock-item.c:1402
 msgid "Lock"
 msgstr "Slēgt"
 
-#: ../gdl/gdl-dock-item.c:1585
+#: ../gdl/gdl-dock-item.c:1608
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Mēģinājums piesaistīt atklātu vienību %p"
 
-#: ../gdl/gdl-dock-layout.c:124 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "Saimnieks"
 
-#: ../gdl/gdl-dock-layout.c:125
+#: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "GdlDockMaster objekts, pie kura izkārtojuma objekts ir pievienots"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
 msgstr "Netīrs"
 
-#: ../gdl/gdl-dock-layout.c:133
+#: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "Patiess ja izkārtojumi ir mainījušies un ir nepieciešams saglabāt failā"
@@ -220,11 +205,11 @@ msgstr ""
 "tiek aizslēgtas; ja ir uz 0, tad visas atslēdzl -1 liecina par pretrunīgumu "
 "starp vienībām "
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:706
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
 msgid "Switcher Style"
 msgstr "Pārslēdzēja Stils"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:707
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
 msgid "Switcher buttons style"
 msgstr "Pārslēdzēja pogu stils"
 
@@ -282,7 +267,7 @@ msgstr "Doka meistars"
 msgid "Dock master this dock object is bound to"
 msgstr "Doka meistars pie kura šis doka objekts ir piesaistīts"
 
-#: ../gdl/gdl-dock-object.c:420
+#: ../gdl/gdl-dock-object.c:444
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -291,19 +276,19 @@ msgstr ""
 "Izsaukums gdl_dock_object_dock doka objektā %p (objekta tips ir %s) kurš vēl "
 "nav šo metodi ieviesis "
 
-#: ../gdl/gdl-dock-object.c:549
+#: ../gdl/gdl-dock-object.c:576
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr "Doka operācija pieprasīta nesaistītā objektā %p. Programma var avarēt"
 
-#: ../gdl/gdl-dock-object.c:556
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Nevar piedokot %p pie %p jo tie pieder atšķirīgiem meistariem"
 
-#: ../gdl/gdl-dock-object.c:598
+#: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -380,16 +365,16 @@ msgid "X-Coordinate"
 msgstr "X-Koordināta"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate fow dock when floating"
-msgstr "X-Koordināta fow doks kad plūstošs"
+msgid "X-Coordinate for dock when floating"
+msgstr "Peldošā doka X-Koordināta"
 
 #: ../gdl/gdl-dock-placeholder.c:198
 msgid "Y-Coordinate"
 msgstr "Y-Koordināta"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate fow dock when floating"
-msgstr "Y-Koordināta fow doks kad plūstošs"
+msgid "Y-Coordinate for dock when floating"
+msgstr "Peldošā doka Y-Koordināta"
 
 #: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
@@ -413,15 +398,15 @@ msgstr ""
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Doka vienība kurai 'pieder' šis tabnosaukums"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "GdlDockMaster objekts pie kura logdaļa ir pievienota"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:115
 msgid "Dockbar style"
 msgstr "Dokjoslas stils"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style to show items on it"
 msgstr "Dokjoslas stils lai parādītu vienības uz tā"
 
@@ -466,10 +451,6 @@ msgstr "Y koordinātas peldošajam dokam"
 msgid "Dock #%d"
 msgstr "Doks #%d"
 
-#: ../gdl/gdl-icons.c:133 ../gdl/gdl-icons.c:134
-msgid "Icon size"
-msgstr "Ikonas izmērs"
-
 #: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
 msgstr "Izkārtojuma pārvaldība"
@@ -481,3 +462,19 @@ msgstr "Ie_lādēt"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Aizslēgt doka vienības"
+
+#~ msgid "Expander Size"
+#~ msgstr "Izversēja izmērs"
+
+#~ msgid "Size of the expander arrow."
+#~ msgstr "Izvērsēja bultas izmērs."
+
+#~ msgid "Iconify"
+#~ msgstr "Ikonizēt"
+
+#~ msgid "Close"
+#~ msgstr "Aizvērt"
+
+#~ msgid "Icon size"
+#~ msgstr "Ikonas izmērs"
+
