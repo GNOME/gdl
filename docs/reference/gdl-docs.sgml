@@ -11,21 +11,18 @@
 
   <chapter id="gdl-main">
     <title>GDL - Gnome Development/Docking library</title>
-    <xi:include href="xml/gdl-dock-layout.xml"/>
-    <xi:include href="xml/gdl-dock-master.xml"/>
-    <xi:include href="xml/gdl-dock-item-grip.xml"/>
-    <xi:include href="xml/gdl-icons.xml"/>
-    <xi:include href="xml/gdl-dock-item.xml"/>
-    <xi:include href="xml/gdl-dock.xml"/>
-    <xi:include href="xml/gdl-dock-object.xml"/>
-    <xi:include href="xml/gdl-dock-tablabel.xml"/>
-    <xi:include href="xml/gdl-dock-notebook.xml"/>
-    <xi:include href="xml/gdl-dock-placeholder.xml"/>
-    <xi:include href="xml/gdl-combo-button.xml"/>
-    <xi:include href="xml/gdl-dock-paned.xml"/>
-    <xi:include href="xml/gdl-dock-bar.xml"/>
-    <xi:include href="xml/gdl-switcher.xml"/>
-    <xi:include href="xml/gdl-stock.xml"/>
-    <xi:include href="xml/gdl-tools.xml"/>
+    <xi:include href="xml/gdl-dock-layout.xml" />
+    <xi:include href="xml/gdl-dock-master.xml" />
+    <xi:include href="xml/gdl-dock-item.xml" />
+    <xi:include href="xml/gdl-dock.xml" />
+    <xi:include href="xml/gdl-dock-object.xml" />
+    <xi:include href="xml/gdl-dock-tablabel.xml" />
+    <xi:include href="xml/gdl-dock-notebook.xml" />
+    <xi:include href="xml/gdl-dock-placeholder.xml" />
+    <xi:include href="xml/gdl-combo-button.xml" />
+    <xi:include href="xml/gdl-dock-paned.xml" />
+    <xi:include href="xml/gdl-dock-bar.xml" />
+    <xi:include href="xml/gdl-switcher.xml" />
+    <xi:include href="xml/gdl-tools.xml" />
   </chapter>
 </book>

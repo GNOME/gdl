@@ -328,6 +328,7 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     grip->_priv->icon_pixbuf = NULL;
     grip->_priv->title_layout = NULL;
 
+    /* create the close button */
     gtk_widget_push_composite_child ();
     grip->_priv->close_button = gtk_button_new ();
     gtk_widget_pop_composite_child ();
@@ -344,6 +345,7 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     g_signal_connect (G_OBJECT (grip->_priv->close_button), "clicked",
                       G_CALLBACK (gdl_dock_item_grip_close_clicked), grip);
 
+    /* create the iconify button */
     gtk_widget_push_composite_child ();
     grip->_priv->iconify_button = gtk_button_new ();
     gtk_widget_pop_composite_child ();
@@ -360,6 +362,7 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     g_signal_connect (G_OBJECT (grip->_priv->iconify_button), "clicked",
                       G_CALLBACK (gdl_dock_item_grip_iconify_clicked), grip);
 
+    /* set tooltips on the buttons */
     gtk_widget_set_tooltip_text (grip->_priv->iconify_button,
                           _("Iconify this dock"));
     gtk_widget_set_tooltip_text (grip->_priv->close_button,
@@ -681,6 +684,15 @@ gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
     gdl_stock_init ();
 }
 
+/* ----- Public interface ----- */
+
+/**
+ * gdl_dock_item_grip_new:
+ * @item: The dock item that will "own" this grip widget.
+ * 
+ * Creates a new GDL dock item grip object.
+ * Returns: The newly created dock item grip widget.
+ **/
 GtkWidget *
 gdl_dock_item_grip_new (GdlDockItem *item)
 {

@@ -27,27 +27,6 @@ GDL_DOCK_LAYOUT_GET_CLASS
 </SECTION>
 
 <SECTION>
-<FILE>gdl-data-model</FILE>
-GdlDataModel
-GdlDataIter
-GdlDataModelIface
-gdl_data_model_get_iter
-gdl_data_model_get_path
-gdl_data_model_get_name
-gdl_data_model_get_value
-gdl_data_model_get_renderer
-gdl_data_model_iter_next
-gdl_data_model_iter_children
-gdl_data_model_iter_has_child
-<SUBSECTION Standard>
-GDL_DATA_MODEL
-GDL_IS_DATA_MODEL
-GDL_TYPE_DATA_MODEL
-gdl_data_model_get_type
-GDL_DATA_MODEL_GET_IFACE
-</SECTION>
-
-<SECTION>
 <FILE>gdl-dock-master</FILE>
 GdlDockMasterPrivate
 <TITLE>GdlDockMaster</TITLE>
@@ -270,32 +249,6 @@ gdl_dock_paned_get_type
 GDL_DOCK_PANED_CLASS
 GDL_IS_DOCK_PANED_CLASS
 GDL_DOCK_PANED_GET_CLASS
-</SECTION>
-
-<SECTION>
-<FILE>gdl-data-row</FILE>
-GdlDataRowPrivate
-<TITLE>GdlDataRow</TITLE>
-GdlDataRow
-gdl_data_row_new
-gdl_data_row_get_size
-gdl_data_row_set_show_name
-gdl_data_row_layout
-gdl_data_row_render
-gdl_data_row_at
-gdl_data_row_event
-gdl_data_row_get_cell_area
-gdl_data_row_set_split
-gdl_data_row_set_selected
-gdl_data_row_set_focused
-gdl_data_row_get_title
-<SUBSECTION Standard>
-GDL_DATA_ROW
-GDL_IS_DATA_ROW
-GDL_TYPE_DATA_ROW
-gdl_data_row_get_type
-GDL_DATA_ROW_CLASS
-GDL_IS_DATA_ROW_CLASS
 </SECTION>
 
 <SECTION>

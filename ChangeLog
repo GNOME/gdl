@@ -1,3 +1,14 @@
+2009-02-08  Johannes Schmid  <jhs@gnome.org>
+
+	* docs/reference/gdl-docs.sgml:
+	* docs/reference/gdl-sections.txt:
+	Fixed some documentation issues.
+
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_instance_init):
+	* gdl/gdl-dock-item.c (gdl_dock_item_class_init):
+	Patch from Joel Holdsworth <joel@airwebreathe.org.uk>:
+	- Add documentation comments
+
 2008-12-09  Pedro Fragoso  <ember@ubuntu.com>
 
 	reviewed by: Sébastien Granjoux  <seb.sfo@free.fr>
