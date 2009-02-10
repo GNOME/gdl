@@ -1,0 +1,473 @@
+# Asturian translation for gdl
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the gdl package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-02-10 09:55+0100\n"
+"PO-Revision-Date: 2008-05-20 21:26+0000\n"
+"Last-Translator: Astur <malditoastur@gmail.com>\n"
+"Language-Team: Asturian <gnome@softastur.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-02-09 14:24+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: ../gdl/gdl-dock-item-grip.c:367
+msgid "Iconify this dock"
+msgstr "Iconiza esti empotrable"
+
+#: ../gdl/gdl-dock-item-grip.c:369
+msgid "Close this dock"
+msgstr "Pieslla esti empotrable"
+
+#: ../gdl/gdl-dock-item-grip.c:678 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Elementu empotrable de control"
+
+#: ../gdl/gdl-dock-item-grip.c:679
+msgid "Dockitem which 'owns' this grip"
+msgstr "Elementu empotrable que «tien» esti tirador"
+
+#: ../gdl/gdl-dock-item.c:253
+msgid "Orientation"
+msgstr "Aldu"
+
+#: ../gdl/gdl-dock-item.c:254
+msgid "Orientation of the docking item"
+msgstr "Aldu del elementu que s'empotra"
+
+#: ../gdl/gdl-dock-item.c:269
+msgid "Resizable"
+msgstr "Redimensionable"
+
+#: ../gdl/gdl-dock-item.c:270
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr ""
+"Si ta activáu, l'elementu empotrable pue redimensionase cuando ta empotráu "
+"nún widget GtkPanel"
+
+#: ../gdl/gdl-dock-item.c:277
+msgid "Item behavior"
+msgstr "Comportamientu del elementu"
+
+#: ../gdl/gdl-dock-item.c:278
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Comportamientu xeneral del elementu empotrable (p.e. si ésti pue ser "
+"flotante, bloquiáu, etc.)"
+
+#: ../gdl/gdl-dock-item.c:286 ../gdl/gdl-dock-master.c:145
+msgid "Locked"
+msgstr "Bloquiáu"
+
+#: ../gdl/gdl-dock-item.c:287
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Si ta activáu l'elementu empotrable nun pue ser arrestráu fuera y nun amuesa "
+"un tirador"
+
+#: ../gdl/gdl-dock-item.c:295
+msgid "Preferred width"
+msgstr "Anchor preferíu"
+
+#: ../gdl/gdl-dock-item.c:296
+msgid "Preferred width for the dock item"
+msgstr "Anchor preferíu pal elementu empotráu"
+
+#: ../gdl/gdl-dock-item.c:302
+msgid "Preferred height"
+msgstr "Altor preferíu"
+
+#: ../gdl/gdl-dock-item.c:303
+msgid "Preferred height for the dock item"
+msgstr "Altor preferíu pal elementu empotráu"
+
+#: ../gdl/gdl-dock-item.c:575
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Nun se pue amestar un oxetu empotráu (%p del tipu %s) dientro de %s. Use "
+"GdlDock o dalgún otru oxetu combináu empotráu fixu."
+
+#: ../gdl/gdl-dock-item.c:582
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Tentóse d'amestar un widget con tipu %s a un %s, pero ésti namái pue "
+"contener un widget al mesmu tiempu, yá contién un widget de tipu %s"
+
+#: ../gdl/gdl-dock-item.c:1268 ../gdl/gdl-dock-item.c:1318
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr ""
+"Estratexa d'empotramientu non soportada %s nel oxetu empotrable del tipu %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1422
+msgid "UnLock"
+msgstr "Desbloquiar"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1429
+msgid "Hide"
+msgstr "Soverar"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1434
+msgid "Lock"
+msgstr "Bloquiar"
+
+#: ../gdl/gdl-dock-item.c:1672
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Tentóse de vincular un elementu non vinculable %p"
+
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
+msgid "Master"
+msgstr "Mayestru"
+
+#: ../gdl/gdl-dock-layout.c:124
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr ""
+"Oxetu GdlDockMaster al cual l'oxetu de distribución alcuéntrase adxuntu"
+
+#: ../gdl/gdl-dock-layout.c:131
+msgid "Dirty"
+msgstr "Suciu"
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Braero si'l formatu camudó y necesita atroxase nún archivu"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "Nun se pue cargar l'archivu «%s» col formatu d'interfaz d'usuariu"
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "Visible"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "Artículu"
+
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "Nome"
+
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "Elementos empotraos"
+
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "Colocaciones guardaes"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"Al cargar la colocación: Nun se sabe como creyar un oxetu empotrable que'l "
+"so nomatu seya «%s»"
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "Alministración de la colocación"
+
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+msgid "Default title"
+msgstr "Título predetermináu"
+
+#: ../gdl/gdl-dock-master.c:139
+msgid "Default title for newly created floating docks"
+msgstr "Títulu predetermináu pa los empotrables flotantes recién criados"
+
+#: ../gdl/gdl-dock-master.c:146
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Si ta definíu como 1, tolos llímites de los oxetos vinculaos al mayestru son "
+"bloquiaos; si ye 0 son toos desbloquiaos, -1 conseña una inconsistencia ente "
+"los elementos."
+
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:696
+msgid "Switcher Style"
+msgstr "Estilu del cambiador"
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:697
+msgid "Switcher buttons style"
+msgstr "Estilu del botón cambiador"
+
+#: ../gdl/gdl-dock-master.c:761
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"mayestru %p: nun pue amestar l'oxetu %p[%s] al conxuntu. Yá hai un elementu "
+"con esi nome (%p)."
+
+#: ../gdl/gdl-dock-master.c:934
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"El nuevu controlador d'empotrables %p ye automáticu. Namái los oxetos "
+"empotraos manuales tendríen de ser denomaos controlador."
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "Páxina"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "L'índiz de la páxina autual"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "Nome únicu pa identificar al oxetu empotrable"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "Nome llargu"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr "Nome llexible pol humanu pal oxetu empotrable"
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "Iconu d'inventariu"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "Iconu d'inventariu pal oxetu empotrable"
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "Empotrable mayestru"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr "L'empotrable mayestru al qu'esti oxetu empotrable ta vinculáu"
+
+#: ../gdl/gdl-dock-object.c:444
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Apella a gdl_dock_object_dock nel oxetu empotrable %p (l'oxetu ye del tipu %"
+"s), el cual nun tien implementáu ésti métodu"
+
+#: ../gdl/gdl-dock-object.c:576
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"Solicitóse una operación d'empotráu nún oxetu non vinculable %p. "
+"L'aplicación podría fallar"
+
+#: ../gdl/gdl-dock-object.c:583
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Nun se pue empotrar %p en %p porque pertenecen a diferentes mayestros"
+
+#: ../gdl/gdl-dock-object.c:625
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"Tentóse vincular con %p un oxetu %p que yá tá vinculáu y empotráu (mayestru "
+"autual: %p)"
+
+#: ../gdl/gdl-dock-paned.c:131
+msgid "Position"
+msgstr "Posición"
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position of the divider in pixels"
+msgstr "Posición del divisor en píxeles"
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Sticky"
+msgstr "Pegañosu"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Define si'l contenedor se pegará al so host o xubirá pola xerarquía cuando'l "
+"host seya re-empotráu"
+
+#: ../gdl/gdl-dock-placeholder.c:151
+msgid "Host"
+msgstr "Host"
+
+#: ../gdl/gdl-dock-placeholder.c:152
+msgid "The dock object this placeholder is attached to"
+msgstr "L'oxetu empotrable al qu'esti contenedor s'alcuentra adxuntu"
+
+#: ../gdl/gdl-dock-placeholder.c:159
+msgid "Next placement"
+msgstr "Siguiente ubicación"
+
+#: ../gdl/gdl-dock-placeholder.c:160
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"La posición na qu'ún elementu sedrá empotráu al nuesu host si se fai una "
+"petición pa empotrar."
+
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+msgid "Width"
+msgstr "Anchu"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Anchor pal widget cuando ta adxuntáu al llugar reserváu"
+
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+msgid "Height"
+msgstr "Altu"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Altor pal widget cuando ta adxuntáu al llugar reserváu"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "Nivel superior flotante"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr ""
+"Indica si'l llugar reserváu ta esperando pa un empotrable flotante de nivel "
+"superior"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "Coordenada X"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate for dock when floating"
+msgstr "Coordenada X pa un empotrable flotante"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Coordenada Y"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate for dock when floating"
+msgstr "Coordenada Y pa un empotrable flotante"
+
+#: ../gdl/gdl-dock-placeholder.c:494
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Tenta empotrar un oxetu empotrable a un contenedor sueltu"
+
+#: ../gdl/gdl-dock-placeholder.c:618
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+"Obtúvose una señal suelta dende un oxetu (%p) que nun ye'l nuesu host %p"
+
+#: ../gdl/gdl-dock-placeholder.c:643
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Daqué raro tien asocedío metantu s'obtenía la colocación del fíu pa %p del "
+"padre %p"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Elementu fixu que «tien» esta etiqueta de solapa"
+
+#: ../gdl/gdl-dock-bar.c:108
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+"Oxetu GdlDockMaster al que'l widget de la barra d'empotrado s'alcuentra "
+"adxuntu"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style"
+msgstr "Estilu de la barra d'empotráu"
+
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style to show items on it"
+msgstr "Estilu de la barra d'empotráu p'amosar elementos nella"
+
+#: ../gdl/gdl-dock.c:178
+msgid "Floating"
+msgstr "Flotante"
+
+#: ../gdl/gdl-dock.c:179
+msgid "Whether the dock is floating in its own window"
+msgstr "Define si l'empotrable ye flotante na so propia ventana"
+
+#: ../gdl/gdl-dock.c:187
+msgid "Default title for the newly created floating docks"
+msgstr "Títulu predetermináu pa los nuevos empotrables criaos recién"
+
+#: ../gdl/gdl-dock.c:194
+msgid "Width for the dock when it's of floating type"
+msgstr "Anchor pal empotrable cuando ye del tipu flotante"
+
+#: ../gdl/gdl-dock.c:202
+msgid "Height for the dock when it's of floating type"
+msgstr "Altor del empotrable cuando ye del tipu flotante"
+
+#: ../gdl/gdl-dock.c:209
+msgid "Float X"
+msgstr "X Flotante"
+
+#: ../gdl/gdl-dock.c:210
+msgid "X coordinate for a floating dock"
+msgstr "Coordenada X pa un empotrable flotante"
+
+#: ../gdl/gdl-dock.c:217
+msgid "Float Y"
+msgstr "Y Flotante"
+
+#: ../gdl/gdl-dock.c:218
+msgid "Y coordinate for a floating dock"
+msgstr "Coordenada Y pa un empotrable flotante"
+
+#: ../gdl/gdl-dock.c:499
+#, c-format
+msgid "Dock #%d"
+msgstr "Empotrable #%d"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Alministración de formatu"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Carga"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "B_loquiar los elementos fixos"
