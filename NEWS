@@ -1,3 +1,8 @@
+Changes in 2.25.90:
+
+* Added some gtk-doc documentation (Joel Holdsworth)
+* Cleaned-up gtk+ includes (Pedro Fragoso)
+
 Changes in 2.24.0
 
 * Fixed dataroot problem

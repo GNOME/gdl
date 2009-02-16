@@ -42,7 +42,7 @@ struct _GdlDockItemGripPrivate {
 };
  
 GDL_CLASS_BOILERPLATE (GdlDockItemGrip, gdl_dock_item_grip,
-		       GtkContainer, GTK_TYPE_CONTAINER);
+                       GtkContainer, GTK_TYPE_CONTAINER);
 
 /* must be called after size_allocate */
 static void
@@ -111,7 +111,7 @@ ensure_title_and_icon_pixbuf (GdlDockItemGrip *grip)
 
 static gint
 gdl_dock_item_grip_expose (GtkWidget      *widget,
-			   GdkEventExpose *event)
+                           GdkEventExpose *event)
 {
     GdlDockItemGrip *grip;
     GdkRectangle     title_area;
@@ -150,7 +150,7 @@ gdl_dock_item_grip_expose (GtkWidget      *widget,
                              0, 0, pixbuf_rect.x, pixbuf_rect.y,
                              pixbuf_rect.width, pixbuf_rect.height,
                              GDK_RGB_DITHER_NONE, 0, 0);
-	}
+        }
     }
 
     if (gdk_rectangle_intersect (&title_area, &event->area, &expose_area)) {
@@ -198,15 +198,15 @@ gdl_dock_item_grip_item_notify (GObject    *master,
         g_free (grip->_priv->title);
         grip->_priv->title = NULL;
         ensure_title_and_icon_pixbuf (grip);
-	gtk_widget_queue_draw (GTK_WIDGET (grip));
+        gtk_widget_queue_draw (GTK_WIDGET (grip));
     } else if (strcmp (pspec->name, "behavior") == 0) {
-	cursor = FALSE;
+        cursor = FALSE;
         if (grip->_priv->close_button) {
             if (GDL_DOCK_ITEM_CANT_CLOSE (grip->item)) {
                 gtk_widget_hide (GTK_WIDGET (grip->_priv->close_button));
             } else {
                 gtk_widget_show (GTK_WIDGET (grip->_priv->close_button));
-		cursor = TRUE;
+                cursor = TRUE;
             }
         }
         if (grip->_priv->iconify_button) {
@@ -214,10 +214,10 @@ gdl_dock_item_grip_item_notify (GObject    *master,
                 gtk_widget_hide (GTK_WIDGET (grip->_priv->iconify_button));
             } else {
                 gtk_widget_show (GTK_WIDGET (grip->_priv->iconify_button));
-		cursor = TRUE;
+                cursor = TRUE;
             }
         }
-	if (grip->title_window && !cursor)
+        if (grip->title_window && !cursor)
             gdk_window_set_cursor (grip->title_window, NULL);
 
     }
@@ -278,9 +278,9 @@ gdl_dock_item_grip_set_property (GObject      *object,
                 g_signal_connect (grip->item, "notify::stock-id",
                                   G_CALLBACK (gdl_dock_item_grip_item_notify),
                                   grip);
-		g_signal_connect (grip->item, "notify::behavior",
-		                  G_CALLBACK (gdl_dock_item_grip_item_notify),
-				  grip);
+                g_signal_connect (grip->item, "notify::behavior",
+                                  G_CALLBACK (gdl_dock_item_grip_item_notify),
+                                  grip);
 
                 if (!GDL_DOCK_ITEM_CANT_CLOSE (grip->item) && grip->_priv->close_button)
                     gtk_widget_show (grip->_priv->close_button);
@@ -405,14 +405,14 @@ gdl_dock_item_grip_realize (GtkWidget *widget)
         gdk_window_set_user_data (grip->title_window, widget);
  
         if (GDL_DOCK_ITEM_CANT_CLOSE (grip->item))
-	    cursor = NULL;
-	else if (GDL_DOCK_ITEM_CANT_ICONIFY (grip->item))
-	    cursor = NULL;
-	else 
-	    cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
+            cursor = NULL;
+        else if (GDL_DOCK_ITEM_CANT_ICONIFY (grip->item))
+            cursor = NULL;
+        else 
+            cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
                                              GDK_HAND2);
         gdk_window_set_cursor (grip->title_window, cursor);
-	if (cursor)
+        if (cursor)
             gdk_cursor_unref (cursor);
     }
 }

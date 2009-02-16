@@ -1,3 +1,11 @@
+=== gdl 2.25.91 ===
+
+2009-02-16  Johannes Schmid  <jhs@gnome.org>
+
+	* NEWS:
+	* configure.in:
+	Updated for release
+
 2009-02-08  Johannes Schmid  <jhs@gnome.org>
 
 	* docs/reference/gdl-docs.sgml:
