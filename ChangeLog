@@ -1,3 +1,9 @@
+2008-02-22  Sébastien Granjoux  <seb.sfo@free.fr>
+
+	* gdl/gdl-dock-item.c:
+	Fix #566801 – Docking+undocking all makes the buttons disappear and
+	crashes if you use "Reset dock layout"
+
 === gdl 2.25.91 ===
 
 2009-02-16  Johannes Schmid  <jhs@gnome.org>
