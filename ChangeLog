@@ -1,3 +1,8 @@
+2009-02-26  Johannes Schmid  <jhs@gnome.org>
+
+	* gdl/gdl-dock.c (gdl_dock_select_larger_item):
+	Remove a stupid warning for a forgotten placement case.
+
 2008-02-22  Sébastien Granjoux  <seb.sfo@free.fr>
 
 	* gdl/gdl-dock-item.c:
