@@ -2030,6 +2030,15 @@ gdl_dock_item_unlock (GdlDockItem *item)
     g_object_set (item, "locked", FALSE, NULL);
 }
 
+/**
+ * gdl_dock_item_set_default_position:
+ * @item: The dock item
+ * @reference: The GdlDockObject which is the default dock for @item 
+ *
+ * This method has only an effect when you add you dock_item with
+ * GDL_DOCK_ITEM_BEH_NEVER_FLOATING. In this case you have to assign
+ * it a default position.
+ **/
 void 
 gdl_dock_item_set_default_position (GdlDockItem   *item,
                                     GdlDockObject *reference)

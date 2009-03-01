@@ -1,3 +1,14 @@
+2009-03-01  Johannes Schmid  <jhs@gnome.org>
+
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_realize),
+	(gdl_dock_item_grip_size_request),
+	(gdl_dock_item_grip_size_allocate):
+	#573522 – More patches for GDL
+	(Thanks much to Joel Holdsworth <joel@airwebreathe.org.uk> for the patches)
+	
+	* gdl/gdl-dock-item.c:
+	Add documentation for gdl_dock_item_set_default_position()
+
 2009-02-26  Johannes Schmid  <jhs@gnome.org>
 
 	* gdl/gdl-dock.c (gdl_dock_select_larger_item):
