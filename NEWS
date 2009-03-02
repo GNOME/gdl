@@ -1,4 +1,11 @@
-Changes in 2.25.90:
+Changes in 2.25.92:
+
+* #566801 – Docking+undocking all makes the buttons disappear and
+	crashes if you use "Reset dock layout" (Sébastien Granjoux)
+* #573522 – More patches for GDL (Joel Holdsworth)
+* Small documentation update
+
+Changes in 2.25.91:
 
 * Added some gtk-doc documentation (Joel Holdsworth)
 * Cleaned-up gtk+ includes (Pedro Fragoso)
