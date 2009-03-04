@@ -1,3 +1,7 @@
+2009-03-04  Johannes Schmid  <jhs@gnome.org>
+
+	* Makefile.am: Fix distcheck
+
 2009-03-02  Johannes Schmid  <jhs@gnome.org>
 
 	* MAINTAINERS: Added myself

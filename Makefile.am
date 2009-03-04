@@ -1,5 +1,7 @@
 SUBDIRS = gdl docs po
 
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
+
 EXTRA_DIST = 			\
 	MAINTAINERS		\
 	AUTHORS			\
