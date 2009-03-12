@@ -1,0 +1,436 @@
+# translation of gdl.HEAD.po to Gujarati
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sweta Kothari <swkothar@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl.HEAD\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&component=general\n"
+"POT-Creation-Date: 2009-03-11 12:29+0000\n"
+"PO-Revision-Date: 2009-03-12 17:21+0530\n"
+"Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
+"Language-Team: Gujarati\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../gdl/gdl-dock-item-grip.c:367
+msgid "Iconify this dock"
+msgstr "આ ડોકને ચિહ્નિત કરો"
+
+#: ../gdl/gdl-dock-item-grip.c:369
+msgid "Close this dock"
+msgstr "ડોકને બંધ કરો"
+
+#: ../gdl/gdl-dock-item-grip.c:681 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "ડોક વસ્તુને નિયંત્રણ કરી રહયા છે"
+
+#: ../gdl/gdl-dock-item-grip.c:682
+msgid "Dockitem which 'owns' this grip"
+msgstr "Dockitem કે જે આ પકડની 'માલિક' છે"
+
+#: ../gdl/gdl-dock-item.c:253
+msgid "Orientation"
+msgstr "દિશા"
+
+#: ../gdl/gdl-dock-item.c:254
+msgid "Orientation of the docking item"
+msgstr "ડોકીંગ વસ્તુની દિશા"
+
+#: ../gdl/gdl-dock-item.c:269
+msgid "Resizable"
+msgstr "પુન:માપ કરી શકાય તેવુ"
+
+#: ../gdl/gdl-dock-item.c:270
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr "જો સુયોજિત હોય તો, ડોક વસ્તુ નું પુન:કરી શકાય છે જ્યારે GtkPanel વિજેટમાં ડોક થયેલ હોય તો"
+
+#: ../gdl/gdl-dock-item.c:277
+msgid "Item behavior"
+msgstr "વસ્તુ વર્ણતૂક"
+
+#: ../gdl/gdl-dock-item.c:278
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr "ડોક વસ્તુ માટે સામાન્ય વર્ણતૂક (એટલે કે ક્યાંતો તે ફ્લોટ હોઇ શકે છે, જો તે તાળુ મારેલ હોય તો. વગેરે.)"
+
+#: ../gdl/gdl-dock-item.c:286 ../gdl/gdl-dock-master.c:145
+msgid "Locked"
+msgstr "તાળુ મારેલ છે"
+
+#: ../gdl/gdl-dock-item.c:287
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "જો સુયોજિત હોય તો, ડોક વસ્તુ ને આજુબાજુ ખેંચી શકાતી નથી અને તે પકડને બતાવતુ નથી"
+
+#: ../gdl/gdl-dock-item.c:295
+msgid "Preferred width"
+msgstr "પસંદ થયેલ પહોળાઇ"
+
+#: ../gdl/gdl-dock-item.c:296
+msgid "Preferred width for the dock item"
+msgstr "ડોક વસ્તુ માટે પસંદ થયેલ પહોળાઇ"
+
+#: ../gdl/gdl-dock-item.c:302
+msgid "Preferred height"
+msgstr "પસંદ થયેલ ઊંચાઇ"
+
+#: ../gdl/gdl-dock-item.c:303
+msgid "Preferred height for the dock item"
+msgstr "ડોક વસ્તુ માટે પસંદ થયેલ ઊંચાઇ"
+
+#: ../gdl/gdl-dock-item.c:575
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"તમે %3$s ની અંદર ડોક ઓબ્જેક્ટ (પ્રકાર %2$s નું %1$p) ને ઉમેરી શકાતુ નથી. GdlDock અથવા "
+"કેટલાક બીજા કમ્પાઉન્ડ ઓબ્જેક્ટ ને વાપરો."
+
+#: ../gdl/gdl-dock-item.c:582
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+
+#: ../gdl/gdl-dock-item.c:1268 ../gdl/gdl-dock-item.c:1318
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr ""
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1426
+msgid "UnLock"
+msgstr "તાળુ ખોલો"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1433
+msgid "Hide"
+msgstr "છુપાડો"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1438
+msgid "Lock"
+msgstr "તાળુ મારો"
+
+#: ../gdl/gdl-dock-item.c:1676
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr ""
+
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
+msgid "Master"
+msgstr "મુખ્ય"
+
+#: ../gdl/gdl-dock-layout.c:124
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr ""
+
+#: ../gdl/gdl-dock-layout.c:131
+msgid "Dirty"
+msgstr "ગંદુ"
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "True જો લેઆઉટો એ બદલાયેલ હોય અને ફાઇલમાં સંગ્રહ કરવાની જરૂર હોય"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr "લેઆઉટ વપરાશકર્તા ઇન્ટરફેસ ફાઇલ '%s' ને લોડ કરી શકાયુ નહિં"
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "દેખાતુ"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "વસ્તુ"
+
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "નામ"
+
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "ડોક વસ્તુઓ"
+
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "સંગ્રહ થયેલ લેઆઉટો"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "લેઆઉટ વ્યવસ્થાપન"
+
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+msgid "Default title"
+msgstr "મૂળભૂત શિર્ષક"
+
+#: ../gdl/gdl-dock-master.c:139
+msgid "Default title for newly created floating docks"
+msgstr ""
+
+#: ../gdl/gdl-dock-master.c:146
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:696
+msgid "Switcher Style"
+msgstr ""
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:697
+msgid "Switcher buttons style"
+msgstr ""
+
+#: ../gdl/gdl-dock-master.c:761
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+
+#: ../gdl/gdl-dock-master.c:934
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "પાનું"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "હાલનાં પાનાની અનુક્રમણિકા"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "ડોક ઓબ્જેક્ટ ને ઓળખવા માટે અનન્ય નામ"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "લાંબુ નામ"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr ""
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "સ્ટોક ચિહ્ન"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "ડોક ઓબ્જેક્ટ માટે સ્ટોક ચિહ્ન"
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "ડોક માસ્ટર"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr ""
+
+#: ../gdl/gdl-dock-object.c:444
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+
+#: ../gdl/gdl-dock-object.c:576
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+
+#: ../gdl/gdl-dock-object.c:583
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr ""
+
+#: ../gdl/gdl-dock-object.c:625
+#, c-format
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+
+#: ../gdl/gdl-dock-paned.c:131
+msgid "Position"
+msgstr "સ્થાન"
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position of the divider in pixels"
+msgstr ""
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Sticky"
+msgstr "સ્ટીકી"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+
+#: ../gdl/gdl-dock-placeholder.c:151
+msgid "Host"
+msgstr "યજમાન"
+
+#: ../gdl/gdl-dock-placeholder.c:152
+msgid "The dock object this placeholder is attached to"
+msgstr ""
+
+#: ../gdl/gdl-dock-placeholder.c:159
+msgid "Next placement"
+msgstr "પછીનું સ્થાન"
+
+#: ../gdl/gdl-dock-placeholder.c:160
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+msgid "Width"
+msgstr "પહોળાઇ"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "જ્યારે પ્લેસહોલ્ડર માં જોડાયેલ હોય ત્યારે વિજેટ માટે પહોળાઇ"
+
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+msgid "Height"
+msgstr "ઊંચાઇ"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "જ્યારે પ્લેસહોલ્ડરમાં જોડાયેલ હોય ત્યારે વિજેટ માટે ઊંચાઇ"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr ""
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "ક્યાંતો પ્લેસહોલ્ડર એ ફ્લોટીંગ ઊંચુસ્તર ડોક માટે રાહ જોઇ રહ્યા છે"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "X-નિર્દેશાંક"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate for dock when floating"
+msgstr "જ્યારે ફ્લોટીંગ હોય ત્યારે X-નિર્દેશાંક"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Y-નિર્દેશાંક"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate for dock when floating"
+msgstr "જ્યારે ફ્લોટીગ હોય ત્યારે Y-નિર્દેશાંક"
+
+#: ../gdl/gdl-dock-placeholder.c:494
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+
+#: ../gdl/gdl-dock-placeholder.c:618
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+
+#: ../gdl/gdl-dock-placeholder.c:643
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr ""
+
+#: ../gdl/gdl-dock-bar.c:108
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style"
+msgstr "ડોકબાર શૈલી"
+
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style to show items on it"
+msgstr "તેની પર વસ્તુઓને બતાવવા માટે ડોકબાર શૈલી"
+
+#: ../gdl/gdl-dock.c:178
+msgid "Floating"
+msgstr ""
+
+#: ../gdl/gdl-dock.c:179
+msgid "Whether the dock is floating in its own window"
+msgstr ""
+
+#: ../gdl/gdl-dock.c:187
+msgid "Default title for the newly created floating docks"
+msgstr ""
+
+#: ../gdl/gdl-dock.c:194
+msgid "Width for the dock when it's of floating type"
+msgstr ""
+
+#: ../gdl/gdl-dock.c:202
+msgid "Height for the dock when it's of floating type"
+msgstr ""
+
+#: ../gdl/gdl-dock.c:209
+msgid "Float X"
+msgstr "ફ્લોટ X"
+
+#: ../gdl/gdl-dock.c:210
+msgid "X coordinate for a floating dock"
+msgstr ""
+
+#: ../gdl/gdl-dock.c:217
+msgid "Float Y"
+msgstr "ફ્લોટ Y"
+
+#: ../gdl/gdl-dock.c:218
+msgid "Y coordinate for a floating dock"
+msgstr ""
+
+#: ../gdl/gdl-dock.c:499
+#, c-format
+msgid "Dock #%d"
+msgstr "ડોક #%d"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "લેઆઉટ વ્યવસ્થાપન"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "લોડ કરો (_L)"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "ડોક વસ્તુઓને તાળુ મારો (_L)"
+
