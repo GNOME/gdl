@@ -6,22 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-22 03:16+0000\n"
-"PO-Revision-Date: 2008-09-22 03:16+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&component=general\n"
+"POT-Creation-Date: 2009-03-08 03:39+0000\n"
+"PO-Revision-Date: 2009-03-10 17:58+0200\n"
 "Last-Translator: Yair Hershkovitz <yairhr@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-dock-item-grip.c:365
-msgid "Iconify this dock"
-msgstr ""
-
 #: ../gdl/gdl-dock-item-grip.c:367
+msgid "Iconify this dock"
+msgstr "Iconify this dock"
+
+#: ../gdl/gdl-dock-item-grip.c:369
 msgid "Close this dock"
-msgstr ""
+msgstr "Close this dock"
 
 #: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
@@ -164,7 +165,7 @@ msgstr "שם"
 
 #: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
 msgid "Dock items"
-msgstr ""
+msgstr "פריטי המעגן"
 
 #: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
 msgid "Saved layouts"
@@ -328,6 +329,8 @@ msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
 
 #: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
@@ -335,7 +338,7 @@ msgstr "רוחב"
 
 #: ../gdl/gdl-dock-placeholder.c:170
 msgid "Width for the widget when it's attached to the placeholder"
-msgstr ""
+msgstr "Width for the widget when it's attached to the placeholder"
 
 #: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
 msgid "Height"
@@ -442,7 +445,7 @@ msgstr "Y coordinate for a floating dock"
 #: ../gdl/gdl-dock.c:499
 #, c-format
 msgid "Dock #%d"
-msgstr ""
+msgstr "Dock #%d"
 
 #: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
@@ -454,4 +457,4 @@ msgstr "_טען"
 
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
-msgstr ""
+msgstr "_נעל את פריטי המעגן"
