@@ -1,6 +1,6 @@
-# translation of el.po to Greek
+# translation of gdl.HEAD.po to Greek
 # gdl - greek translation
-# Copyright (C) 2001, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2008, 2009 Free Software Foundation, Inc.
 #
 # aarg: 43 messages, initial translation
 # simos: review - 43 messages.
@@ -10,13 +10,14 @@
 # Simos Xenitellis <simos@hellug.gr>, 2001.
 # Panayotis Pakos <aeikineton@yahoo.com>, 2001.
 # Simos Xenitellis <simos@gnome.org>, 2008.
+# Jennie Petoumenou <epetoumenou@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: el\n"
+"Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-13 01:44+0000\n"
-"PO-Revision-Date: 2008-03-13 01:58+0000\n"
-"Last-Translator: Simos Xenitellis <simos@gnome.org>\n"
+"POT-Creation-Date: 2009-03-14 17:25+0200\n"
+"PO-Revision-Date: 2009-03-08 21:49+0100\n"
+"Last-Translator: Jennie Petoumenou <epetoumenou@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,100 +27,90 @@ msgstr ""
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../gdl/gdl-data-view.c:418
-msgid "Expander Size"
-msgstr "Μέγεθος διαστολέα"
-
-#: ../gdl/gdl-data-view.c:419
-msgid "Size of the expander arrow."
-msgstr "Μέγεθος βέλους του διαστολέα."
-
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Iconify"
-msgstr "Εικονιδιοποίηση"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:367
 msgid "Iconify this dock"
 msgstr "Εικονιδιοποίηση αυτής της προσάρτησης"
 
-#: ../gdl/gdl-dock-item-grip.c:377
-msgid "Close"
-msgstr "Κλείσιμο"
-
-#: ../gdl/gdl-dock-item-grip.c:377
+#: ../gdl/gdl-dock-item-grip.c:369
 msgid "Close this dock"
 msgstr "Κλείσιμο της προσάρτησης"
 
-#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:681 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Έλεγχος του αντικειμένου προσάρτησης"
 
-#: ../gdl/gdl-dock-item-grip.c:687
+#: ../gdl/gdl-dock-item-grip.c:682
 msgid "Dockitem which 'owns' this grip"
-msgstr "Αντικείμενο προσάρτησης που 'κατέχει' αυτό το άδραγμα"
+msgstr "Αντικείμενο προσάρτησης που 'κατέχει' αυτή τη λαβή"
 
-#: ../gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:253
 msgid "Orientation"
 msgstr "Προσανατολισμός"
 
-#: ../gdl/gdl-dock-item.c:244
+#: ../gdl/gdl-dock-item.c:254
 msgid "Orientation of the docking item"
 msgstr "Προσανατολισμός του αντικειμένου της προσάρτησης"
 
-#: ../gdl/gdl-dock-item.c:259
+#: ../gdl/gdl-dock-item.c:269
 msgid "Resizable"
 msgstr "Δυνατότητα αλλαγής μεγέθους"
 
-#: ../gdl/gdl-dock-item.c:260
+#: ../gdl/gdl-dock-item.c:270
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Αν ρυθμιστεί, μπορεί να μεταβληθεί το μέγεθος του αντικειμένου προσάρτησης "
 "όταν προσαρτήθηκε στο γραφικό συστατικό του GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:277
 msgid "Item behavior"
 msgstr "Συμπεριφορά αντικειμένου"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:278
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
-msgstr "Γενική συμπεριφορά για το αντικείμενο προσάρτησης (π.χ. αν μπορεί αυτό να έχει ελευθερία κίνησης, αν είναι κλειδωμένο, κλπ.)"
+msgstr ""
+"Γενική συμπεριφορά για το αντικείμενο προσάρτησης (π.χ. αν μπορεί αυτό να "
+"έχει ελευθερία κίνησης, αν είναι κλειδωμένο, κλπ.)"
 
-#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:286 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "Κλειδωμένο"
 
-#: ../gdl/gdl-dock-item.c:277
-msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr "Αν ρυθμιστεί, το αντικείμενο προσάρτησης δεν μπορεί να συρθεί και δεν εμφανίζει ένα άδραγμα"
+#: ../gdl/gdl-dock-item.c:287
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Αν ρυθμιστεί, το αντικείμενο προσάρτησης δεν μπορεί να συρθεί και δεν "
+"διαθέτει λαβή"
 
-#: ../gdl/gdl-dock-item.c:285
+#: ../gdl/gdl-dock-item.c:295
 msgid "Preferred width"
 msgstr "Προτιμώμενο πλάτος"
 
-#: ../gdl/gdl-dock-item.c:286
+#: ../gdl/gdl-dock-item.c:296
 msgid "Preferred width for the dock item"
 msgstr "Προτιμώμενο πλάτος για το αντικείμενο προσάρτησης"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:302
 msgid "Preferred height"
 msgstr "Προτιμώμενο ύψος"
 
-#: ../gdl/gdl-dock-item.c:293
+#: ../gdl/gdl-dock-item.c:303
 msgid "Preferred height for the dock item"
 msgstr "Προτιμώμενο ύψος για το αντικείμενο προσάρτησης"
 
-#: ../gdl/gdl-dock-item.c:543
+#: ../gdl/gdl-dock-item.c:575
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
 "Δεν μπορείτε να προσθέσετε ένα αντικείμενο προσάρτησης (%p του τύπου %s) "
-"μέσα σε ένα %s. Χρησιμοποιήστε ένα GdlDock ή κάποιο άλλο σύνθετο αντικείμενο προσάρτησης."
+"μέσα σε ένα %s. Χρησιμοποιήστε ένα GdlDock ή κάποιο άλλο σύνθετο αντικείμενο "
+"προσάρτησης."
 
-#: ../gdl/gdl-dock-item.c:550
+#: ../gdl/gdl-dock-item.c:582
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -129,41 +120,45 @@ msgstr ""
 "αλλά μπορεί να περιέχει μόνο ένα γραφικό συστατικό κάθε φορά· αυτό περιέχει "
 "ήδη ένα γραφικό συστατικό του τύπου %s"
 
-#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1268 ../gdl/gdl-dock-item.c:1318
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "Μη υποστηριζόμενη στρατηγική προσάρτησης %s στον αντικείμενο προσάρτησης με τύπο %s"
+msgstr ""
+"Μη υποστηριζόμενη στρατηγική προσάρτησης %s στο αντικείμενο προσάρτησης με "
+"τύπο %s"
 
 #  Lock menuitem
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1390
+#: ../gdl/gdl-dock-item.c:1426
 msgid "UnLock"
 msgstr "Ξεκλείδωμα"
 
 #  Hide menuitem.
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1397
+#: ../gdl/gdl-dock-item.c:1433
 msgid "Hide"
 msgstr "Απόκρυψη"
 
 #  Lock menuitem
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1402
+#: ../gdl/gdl-dock-item.c:1438
 msgid "Lock"
 msgstr "Κλείδωμα"
 
-#: ../gdl/gdl-dock-item.c:1608
+#: ../gdl/gdl-dock-item.c:1676
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Γίνεται προσπάθεια σύνδεσης ενός ασύνδετου αντικειμένου %p"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "Πρωτεύων"
 
 #: ../gdl/gdl-dock-layout.c:124
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "Το αντικείμενο GdlDockMaster στο οποίο συνδέεται το αντικείμενο διάταξης"
+msgstr ""
+"Το αντικείμενο GdlDockMaster στο οποίο είναι προσκολλημένο το αντικείμενο "
+"διάταξης"
 
 #: ../gdl/gdl-dock-layout.c:131
 msgid "Dirty"
@@ -171,13 +166,16 @@ msgstr "Βρώμικος"
 
 #: ../gdl/gdl-dock-layout.c:132
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr "Αληθής αν οι διατάξεις έχουν μετατραπεί και χρειάζεται να αποθηκευτεί σε ένα αρχείο"
+msgstr ""
+"Αληθής αν οι διατάξεις έχουν μετατραπεί και χρειάζεται να αποθηκευτεί σε ένα "
+"αρχείο"
 
 #. FIXME: pop up an error dialog
 #: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
-msgstr "Δεν ήταν δυνατή η φόρτωση του αρχείου διεπαφής διάταξης του χρήστη '%s'"
+msgstr ""
+"Δεν ήταν δυνατή η φόρτωση του αρχείου διεπαφής διάταξης του χρήστη '%s'"
 
 #: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
@@ -204,7 +202,9 @@ msgstr "Αποθηκευμένες διατάξεις"
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
-msgstr "Ενώ φορτώνεται η διάταξη: δεν γνωρίζω πως γίνεται η δημιουργία ενός αντικειμένου προσάρτησης με ψευδώνυμο '%s'"
+msgstr ""
+"Ενώ φορτώνεται η διάταξη: δεν γνωρίζω πως γίνεται η δημιουργία ενός "
+"αντικειμένου προσάρτησης με ψευδώνυμο '%s'"
 
 #: ../gdl/gdl-dock-layout.c:1268
 msgid "Layout managment"
@@ -216,37 +216,44 @@ msgstr "Προεπιλεγμένος τίτλος"
 
 #: ../gdl/gdl-dock-master.c:139
 msgid "Default title for newly created floating docks"
-msgstr "Καθορισμένος τίτλος για πρόσφατα δημιουργημένα επιπλέοντα αντικείμενα"
+msgstr ""
+"Προεπιλεγμένος τίτλος για πρόσφατα δημιουργηθέντα αντικείμενα με ελευθερία "
+"μετακίνησης"
 
 #: ../gdl/gdl-dock-master.c:146
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"Αν ρυθμιστεί στο 1,όλα τα αντικείμενα προσάρτησης που δεσμεύτηκαν στον πρωτεύοντα είναι κλειδωμένα, αν ρυθμιστεί σε 0,όλα είναι ακλείδωτα και, αν "
-"ρυθμιστεί στο -1 δείχνει αστάθεια ανάμεσα στα αντικείμενα"
+"Αν ρυθμιστεί στο 1 όλα τα αντικείμενα προσάρτησης που είναι συνδεδεμένα στον "
+"πρωτεύοντα είναι κλειδωμένα, αν ρυθμιστεί σε 0 όλα είναι ακλείδωτα και, αν "
+"ρυθμιστεί στο -1 υπάρχει αστάθεια ανάμεσα στα αντικείμενα"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:696
 msgid "Switcher Style"
-msgstr "Στυλ εναλλαγής"
+msgstr "Στιλ εναλλαγής"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:697
 msgid "Switcher buttons style"
-msgstr "Στυλ κουμπιών εναλλαγής"
+msgstr "Στιλ κουμπιών εναλλαγής"
 
 #: ../gdl/gdl-dock-master.c:761
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
-msgstr "πρωτεύων %p: αδύνατη η προσθήκη του αντικειμένου %p[%s] στο hash. Υπάρχει ήδη ένα αντικείμενο με το όνομα (%p)."
+msgstr ""
+"πρωτεύων %p: αδύνατη η προσθήκη του αντικειμένου %p[%s] στο hash. Υπάρχει "
+"ήδη ένα αντικείμενο με το όνομα (%p)."
 
 #: ../gdl/gdl-dock-master.c:934
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
-msgstr "Ο καινούριος ελεγκτής προσάρτησης  %p είναι αυτόματος. Μόνο τα αντικείμενα χειρωνακτικής προσάρτησης θα έπρεπε να είναι επώνυμοι ελεγκτές."
+msgstr ""
+"Ο καινούριος ελεγκτής προσάρτησης  %p είναι αυτόματος. Μόνο τα αντικείμενα "
+"χειρωνακτικής προσάρτησης θα έπρεπε να είναι επώνυμοι ελεγκτές."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -282,37 +289,47 @@ msgstr "Πρωτεύων προσάρτησης"
 
 #: ../gdl/gdl-dock-object.c:142
 msgid "Dock master this dock object is bound to"
-msgstr "Ο πρωτεύων προσάρτησης αυτού του αντικειμένου προσάρτησης περιβάλλεται από"
+msgstr ""
+"Ο πρωτεύων προσάρτησης όπου είναι συνδεδεμένο αυτό το αντικείμενο προσάρτησης"
 
 #: ../gdl/gdl-dock-object.c:444
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
-msgstr "Κλήση στο gdl_dock_object_dock σε ένα αντικείμενο προσάρτησης %p (ο τύπος αντικειμένου είναι %s) το οποίο δεν έχει εφαρμόσει αυτή τη μέθοδο"
+msgstr ""
+"Κλήση στο gdl_dock_object_dock σε ένα αντικείμενο προσάρτησης %p (ο τύπος "
+"αντικειμένου είναι %s) το οποίο δεν έχει εφαρμόσει αυτή τη μέθοδο"
 
 #: ../gdl/gdl-dock-object.c:576
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
-msgstr "Η λειτουργία προσάρτησης απαιτήθηκε σε ένα μη συνδεδεμένο αντικείμενο %p. Η εφαρμογή ίσως καταρρεύσει"
+msgstr ""
+"Ζητήθηκε λειτουργία προσάρτησης για μη συνδεδεμένο αντικείμενο %p. Η "
+"εφαρμογή ίσως καταρρεύσει"
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "Δεν είναι δυνατή η προσάρτηση του %p στο %p επειδή ανήκουν σε διαφορετικούς πρωτεύοντες"
+msgstr ""
+"Δεν είναι δυνατή η προσάρτηση του %p στο %p επειδή ανήκουν σε διαφορετικούς "
+"πρωτεύοντες"
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
-msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr "Γίνεται προσπάθεια για συνδυασμό του %p σε ένα ήδη περιορισμένο αντικείμενο προσάρτησης %p (τρέχων πρωτεύων: %p)"
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"Γίνεται προσπάθεια για σύνδεσης του %p σε ένα ήδη συνδεδεμένο αντικείμενο "
+"προσάρτησης %p (τρέχων πρωτεύων: %p)"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
 msgstr "Θέση"
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position of the divider in pixels"
 msgstr "Η θέση του διαχωριστικού σε εικονοστοιχεία"
 
@@ -325,6 +342,9 @@ msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
+"Αν το δεσμευτικό θέσης θα παραμείνει κοντά στον κεντρικό υπολογιστή ή θα "
+"ανέβει ψηλότερα στην ιεραρχία, όταν ο κεντρικός υπολογιστής προσαρτηθεί εκ "
+"νέου"
 
 #: ../gdl/gdl-dock-placeholder.c:151
 msgid "Host"
@@ -333,6 +353,8 @@ msgstr "Κεντρικός υπολογιστής"
 #: ../gdl/gdl-dock-placeholder.c:152
 msgid "The dock object this placeholder is attached to"
 msgstr ""
+"Το αντικείμενο προσάρτησης στο οποίο είναι προσκολλημένο αυτό το δεσμευτικό "
+"θέσης"
 
 #: ../gdl/gdl-dock-placeholder.c:159
 msgid "Next placement"
@@ -343,6 +365,8 @@ msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
+"Η θέση στο δικό μας υπολογιστή όπου θα προσαρτηθεί ένα αντικείμενο, αν "
+"υπάρξει αίτημα προσάρτησής του"
 
 #: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
 msgid "Width"
@@ -351,6 +375,7 @@ msgstr "Πλάτος"
 #: ../gdl/gdl-dock-placeholder.c:170
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr ""
+"Πλάτος του γραφικού συστατικού, όταν είναι προσκολλημένο στο δεσμευτικό θέσης"
 
 #: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
 msgid "Height"
@@ -359,39 +384,43 @@ msgstr "Ύψος"
 #: ../gdl/gdl-dock-placeholder.c:178
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr ""
+"Ύψος του γραφικού συστατικού όταν είναι προσκολλημένο στο δεσμευτικό θέσης"
 
 #: ../gdl/gdl-dock-placeholder.c:184
 msgid "Floating Toplevel"
-msgstr ""
+msgstr "Ελεύθερα μετακινούμενο άνω επίπεδο"
 
 #: ../gdl/gdl-dock-placeholder.c:185
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr ""
+"Αν το δεσμευτικό θέσης υποκαθιστά ελεύθερα μετακινούμενη προσάρτηση άνω "
+"επιπέδου"
 
 #: ../gdl/gdl-dock-placeholder.c:191
 msgid "X-Coordinate"
-msgstr "Χ-συντεταγμένη"
+msgstr "Χ συντεταγμένη"
 
 #: ../gdl/gdl-dock-placeholder.c:192
 msgid "X-Coordinate for dock when floating"
-msgstr ""
+msgstr "Χ συντεταγμένη της προσάρτησης κατά την ελεύθερη μετακίνηση"
 
 #: ../gdl/gdl-dock-placeholder.c:198
 msgid "Y-Coordinate"
-msgstr "Ψ-συντεταγμένη"
+msgstr "Υ συντεταγμένη"
 
 #: ../gdl/gdl-dock-placeholder.c:199
 msgid "Y-Coordinate for dock when floating"
-msgstr ""
+msgstr "Υ συντεταγμένη της προσάρτησης κατά την ελεύθερη μετακίνηση"
 
 #: ../gdl/gdl-dock-placeholder.c:494
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr ""
+msgstr "Προσπάθεια προσάρτησης αντικειμένου σε μη συνδεδεμένο δεσμευτικό θέσης"
 
 #: ../gdl/gdl-dock-placeholder.c:618
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
+"Ελήφθη σήμα απόσπασης από αντικείμενο (%p) που δεν είναι ο υπολογιστής μας %p"
 
 #: ../gdl/gdl-dock-placeholder.c:643
 #, c-format
@@ -399,67 +428,69 @@ msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr ""
+"Συνέβη κάτι περίεργο κατά τη λήψη της θέσης του θυγατρικού για το %p από το "
+"γονικό %p"
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
-msgstr ""
+msgstr "Αντικείμενο προσάρτησης που 'κατέχει' αυτή την ετικέτα ταμπέλας"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr ""
+"Το αντικείμενο GdlDockMaster στο οποίο είναι προσκολλημένο το γραφικό "
+"συστατικό της γραμμής προσάρτησης"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style"
+msgstr "Στιλ γραμμής προσάρτησης"
 
 #: ../gdl/gdl-dock-bar.c:116
-msgid "Dockbar style"
-msgstr "Στυλ γραμμής προσάρτησης"
-
-#: ../gdl/gdl-dock-bar.c:117
 msgid "Dockbar style to show items on it"
-msgstr "Στυλ γραμμής προσάρτησης για εμφάνιση αντικειμένων πάνω της"
+msgstr "Στιλ γραμμής προσάρτησης για εμφάνιση αντικειμένων πάνω της"
 
 #: ../gdl/gdl-dock.c:178
 msgid "Floating"
-msgstr "Ελευθερία μετακίνησης"
+msgstr "Ελεύθερα μετακινούμενη"
 
 #: ../gdl/gdl-dock.c:179
 msgid "Whether the dock is floating in its own window"
-msgstr ""
+msgstr "Αν η προσάρτηση μετακινείται ελεύθερα σε δικό της παράθυρο"
 
 #: ../gdl/gdl-dock.c:187
 msgid "Default title for the newly created floating docks"
 msgstr ""
+"Προεπιλεγμένος τίτλος για πρόσφατα δημιουργηθείσες προσαρτήσεις με ελευθερία "
+"μετακίνησης"
 
 #: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
-msgstr ""
+msgstr "Πλάτος της προσάρτησης όταν είναι ελεύθερα μετακινούμενη"
 
 #: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
-msgstr "Το ύψος της προσάρτησης όταν είναι της μορφής με ελευθερία κίνησης"
+msgstr "Ύψος της προσάρτησης όταν είναι ελεύθερα μετακινούμενη"
 
 #: ../gdl/gdl-dock.c:209
 msgid "Float X"
-msgstr ""
+msgstr "Μετακίνηση Χ"
 
 #: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
-msgstr "Χ συντεταγμένη για μια μετακινούμενη προσάρτηση"
+msgstr "Χ συντεταγμένη για μια ελεύθερα μετακινούμενη προσάρτηση"
 
 #: ../gdl/gdl-dock.c:217
 msgid "Float Y"
-msgstr ""
+msgstr "Μετακίνηση Υ"
 
 #: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
-msgstr "Υ συντεταγμένη για μια μετακινούμενη προσάρτηση"
+msgstr "Υ συντεταγμένη για μια ελεύθερα μετακινούμενη προσάρτηση"
 
 #: ../gdl/gdl-dock.c:499
 #, c-format
 msgid "Dock #%d"
 msgstr "Προσάρτηση #%d"
-
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
-msgid "Icon size"
-msgstr "Μέγεθος εικονιδίου"
 
 #: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
@@ -472,4 +503,3 @@ msgstr "Φό_ρτωση"
 #: ../gdl/layout.glade.h:5
 msgid "_Lock dock items"
 msgstr "_Κλειδωμένα αντικείμενα προσάρτησης"
-
