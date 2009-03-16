@@ -1,3 +1,8 @@
+2009-03-16  Johannes Schmid  <jhs@gnome.org>
+
+	* NEWS: Update for release
+	* configure.in: Bumped version to 2.26.0
+
 2009-03-04  Carl-Anton Ingmarsson <ca.ingmarsson@gmail.com>
 
 	* gdl/gdl-switcher.c (layout_buttons):

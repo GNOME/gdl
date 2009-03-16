@@ -1,3 +1,9 @@
+Changes in 2.26.0:
+
+* Fix distcheck
+* Fix valgrind warning
+* Translation updates (Thanks to all tranlators!)
+
 Changes in 2.25.92:
 
 * #566801 – Docking+undocking all makes the buttons disappear and
