@@ -1,3 +1,17 @@
+2009-03-18  Joel Holdsworth <joel@airwebreathe.org.uk>
+
+	* gdl/Makefile.am:
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_create_label_widget),
+	(gdl_dock_item_grip_item_notify), (gdl_dock_item_grip_destroy),
+	(gdl_dock_item_grip_instance_init), (gdl_dock_item_grip_realize),
+	(gdl_dock_item_grip_unrealize), (gdl_dock_item_grip_size_request),
+	(gdl_dock_item_grip_size_allocate), (gdl_dock_item_grip_forall),
+	(gdl_dock_item_grip_class_init), (gdl_dock_item_grip_set_label):
+	* gdl/gdl-dock-item-grip.h:
+	* gdl/gdl-dock-item.c (gdl_dock_item_get_grip):
+	* gdl/gdl-dock-item.h:
+	#575367 – Patches for reworking grips
+
 2009-03-16  Johannes Schmid  <jhs@gnome.org>
 
 	* NEWS: Update for release

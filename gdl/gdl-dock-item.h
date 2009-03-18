@@ -156,6 +156,7 @@ void           gdl_dock_item_set_orientation   (GdlDockItem    *item,
 GtkWidget     *gdl_dock_item_get_tablabel      (GdlDockItem *item);
 void           gdl_dock_item_set_tablabel      (GdlDockItem *item,
                                                 GtkWidget   *tablabel);
+GtkWidget     *gdl_dock_item_get_grip          (GdlDockItem *item);
 void           gdl_dock_item_hide_grip         (GdlDockItem *item);
 void           gdl_dock_item_show_grip         (GdlDockItem *item);
 

@@ -1790,6 +1790,23 @@ gdl_dock_item_set_tablabel (GdlDockItem *item,
 }
 
 /**
+ * gdl_dock_item_get_grip:
+ * @item: The dock item from which to to get the grip of.
+ * 
+ * This function returns the dock item's grip label widget.
+ * 
+ * Returns: Returns the current label widget.
+ **/
+GtkWidget *
+gdl_dock_item_get_grip(GdlDockItem *item)
+{
+    g_return_if_fail (item != NULL);
+    g_return_val_if_fail (GDL_IS_DOCK_ITEM (item), NULL);
+
+    return item->_priv->grip;
+}
+
+/**
  * gdl_dock_item_hide_grip:
  * @item: The dock item to hide the grip of.
  * 

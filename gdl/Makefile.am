@@ -28,6 +28,7 @@ libgdl_headers = \
 	gdl-dock-master.h \
 	gdl-dock.h \
 	gdl-dock-item.h \
+	gdl-dock-item-grip.h \
 	gdl-dock-notebook.h \
 	gdl-dock-paned.h \
 	gdl-dock-tablabel.h \
