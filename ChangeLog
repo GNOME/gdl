@@ -1,3 +1,7 @@
+2009-03-18  Johannes Schmid  <jhs@gnome.org>
+
+	* configure.in: Bumped version to 2.27.0
+
 2009-03-18  Joel Holdsworth <joel@airwebreathe.org.uk>
 
 	* gdl/Makefile.am:
