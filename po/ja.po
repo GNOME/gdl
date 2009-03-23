@@ -1,109 +1,93 @@
 # gdl ja.po.
-# Copyright (C) 2003,2005,2007,2008 Free Software Foundation, Inc.
+# Copyright (C) 2003,2005,2007-2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gdl package.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
-# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2005,2007,2008.
+# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2005,2007-2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl trunk\n"
+"Project-Id-Version: gdl gnome-2-26\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-08 13:36+0900\n"
-"PO-Revision-Date: 2008-03-08 13:36+0900\n"
+"POT-Creation-Date: 2009-03-24 00:22+0900\n"
+"PO-Revision-Date: 2009-03-24 00:10+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-data-view.c:418
-msgid "Expander Size"
-msgstr "エキスパンダのサイズ"
-
-#: ../gdl/gdl-data-view.c:419
-msgid "Size of the expander arrow."
-msgstr "エキスパンダの矢印の大きさです"
-
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Iconify"
-msgstr "アイコン化"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:256
 msgid "Iconify this dock"
 msgstr "このドックをアイコン化します"
 
-#: ../gdl/gdl-dock-item-grip.c:377
-msgid "Close"
-msgstr "閉じる"
-
-#: ../gdl/gdl-dock-item-grip.c:377
+#: ../gdl/gdl-dock-item-grip.c:258
 msgid "Close this dock"
-msgstr "このドックと閉じます"
+msgstr "このドックを閉じます"
 
-#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:532 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "コントロールするドッキング・アイテム"
 
-#: ../gdl/gdl-dock-item-grip.c:687
+#: ../gdl/gdl-dock-item-grip.c:533
 msgid "Dockitem which 'owns' this grip"
 msgstr "このグリップを所有している組み込みアイテムです"
 
-#: ../gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:253
 msgid "Orientation"
 msgstr "向き"
 
-#: ../gdl/gdl-dock-item.c:244
+#: ../gdl/gdl-dock-item.c:254
 msgid "Orientation of the docking item"
 msgstr "アイテムをドッキングする向きです"
 
-#: ../gdl/gdl-dock-item.c:259
+#: ../gdl/gdl-dock-item.c:269
 msgid "Resizable"
 msgstr "サイズ変更可能"
 
-#: ../gdl/gdl-dock-item.c:260
+#: ../gdl/gdl-dock-item.c:270
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "有効にすると、GtkPanel 型のウィジェットの中にドッキングしたらアイテムの大きさ"
 "を変更できます"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:277
 msgid "Item behavior"
 msgstr "アイテムの挙動"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:278
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "ドッキングするアイテムの一般的な挙動 (可動式か、固定式か) を設定します"
 
-#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:286 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "ロック"
 
-#: ../gdl/gdl-dock-item.c:277
+#: ../gdl/gdl-dock-item.c:287
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "有効にすると、ドッキングしたアイテムをドラッグできなくなり、把手も表示しませ"
 "ん"
 
-#: ../gdl/gdl-dock-item.c:285
+#: ../gdl/gdl-dock-item.c:295
 msgid "Preferred width"
 msgstr "優先する幅"
 
-#: ../gdl/gdl-dock-item.c:286
+#: ../gdl/gdl-dock-item.c:296
 msgid "Preferred width for the dock item"
 msgstr "ドッキングするアイテムで優先する幅です"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:302
 msgid "Preferred height"
 msgstr "優先する高さ"
 
-#: ../gdl/gdl-dock-item.c:293
+#: ../gdl/gdl-dock-item.c:303
 msgid "Preferred height for the dock item"
 msgstr "ドッキングするアイテムで優先する高さです"
 
-#: ../gdl/gdl-dock-item.c:543
+#: ../gdl/gdl-dock-item.c:575
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -112,7 +96,7 @@ msgstr ""
 "ドック・オブジェクト(%p 種類:%s) を %s の中に追加できません。GdlDock もしくは"
 "他の複合型のドック・オブジェクトを利用して下さい。"
 
-#: ../gdl/gdl-dock-item.c:550
+#: ../gdl/gdl-dock-item.c:582
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -121,33 +105,33 @@ msgstr ""
 "%s のウィジットを %s に追加しようとしていますが、これは同時に一つのウィジット"
 "しか保持できません; 既に %s のウィジットを保持しています"
 
-#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1268 ../gdl/gdl-dock-item.c:1318
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "%2$s のドック・オブジェクトは %1$s のドッキング形式をサポートしていません"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1390
+#: ../gdl/gdl-dock-item.c:1426
 msgid "UnLock"
-msgstr "ロック解除"
+msgstr "ロックの解除"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1397
+#: ../gdl/gdl-dock-item.c:1433
 msgid "Hide"
 msgstr "隠す"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1402
+#: ../gdl/gdl-dock-item.c:1438
 msgid "Lock"
-msgstr "ロック"
+msgstr "ロックする"
 
-#: ../gdl/gdl-dock-item.c:1608
+#: ../gdl/gdl-dock-item.c:1676
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "未バインドのアイテム %p のバインドを試みます"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "マスタ"
 
@@ -222,11 +206,11 @@ msgstr ""
 "れます; 0 の場合は、全てのドッキング・アイテムの固定は解除されます; -1 の場"
 "合、アイテムが整列して表示されなくなります"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:696
 msgid "Switcher Style"
 msgstr "スイッチャーのスタイル"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:697
 msgid "Switcher buttons style"
 msgstr "スィッチャー・ボタンのスタイルです"
 
@@ -315,11 +299,11 @@ msgstr ""
 "%p に既にバインドされているドックオブジェクト%p (現在のマスタ: %p) をバインド"
 "しようと試みています"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
 msgstr "位置"
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position of the divider in pixels"
 msgstr "区切りの位置 (ピクセル単位)"
 
@@ -419,16 +403,16 @@ msgstr ""
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "タブラベルを '持つ' ドックアイテム"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr ""
 "ドックバー・ウィジットが取り付けられている GdlDockMaster オブジェクトです"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:115
 msgid "Dockbar style"
 msgstr "ドックバーのスタイル"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style to show items on it"
 msgstr "ドックバーに表示するアイテムのスタイルです"
 
@@ -472,10 +456,6 @@ msgstr "取り外したドックのＹ座標です"
 #, c-format
 msgid "Dock #%d"
 msgstr "ドック #%d"
-
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
-msgid "Icon size"
-msgstr "アイコンのサイズ"
 
 #: ../gdl/layout.glade.h:2
 msgid "Layout Managment"
