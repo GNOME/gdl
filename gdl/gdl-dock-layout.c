@@ -1095,6 +1095,13 @@ gdl_dock_layout_save (GdlDockMaster *master,
 
 /* ----- Public interface ----- */
 
+/**
+ * gdl_dock_layout_new:
+ * @dock: The dock item.
+ * Creates a new #GdlDockLayout
+ *
+ * Returns: New #GdlDockLayout item.
+ */
 GdlDockLayout *
 gdl_dock_layout_new (GdlDock *dock)
 {
@@ -1133,6 +1140,15 @@ gdl_dock_layout_layout_changed_cb (GdlDockMaster *master,
     }
 }
 
+
+/**
+ * gdl_dock_layout_attach:
+ * @layout: The layout item
+ * @master: The master item to which the layout will be attached
+ *
+ * Attach the @layout to the @master and delete the reference to
+ * the master that the layout attached previously
+ */
 void
 gdl_dock_layout_attach (GdlDockLayout *layout,
                         GdlDockMaster *master)
@@ -1159,6 +1175,17 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
     update_items_model (layout);
 }
 
+/** 
+* gdl_dock_layout_load_layout:
+* @layout: The dock item. 
+* @name: The name of the layout to load.
+*
+* Loads the layout with the given name to the memory.
+* This will set #GdlDockLayout:dirty to %TRUE.
+* 
+* See also gdl_dock_layout_load_from_file()
+* Returns: %TRUE if layout successfully loaded else %FALSE
+*/
 gboolean
 gdl_dock_layout_load_layout (GdlDockLayout *layout,
                              const gchar   *name)
@@ -1187,6 +1214,17 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
     } else
         return FALSE;
 }
+
+/** 
+* gdl_dock_layout_save_layout:
+* @layout: The dock item. 
+* @name: The name of the layout to save.
+*
+* Saves the @layout with the given name to the memory.
+* This will set #GdlDockLayout:dirty to %TRUE.
+* 
+* See also gdl_dock_layout_save_to_file().
+*/
 
 void
 gdl_dock_layout_save_layout (GdlDockLayout *layout,
@@ -1224,6 +1262,15 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
     g_object_notify (G_OBJECT (layout), "dirty");
 }
 
+/** 
+* gdl_dock_layout_delete_layout:
+* @layout: The dock item. 
+* @name: The name of the layout to delete.
+*
+* Deletes the layout with the given name from the memory.
+* This will set #GdlDockLayout:dirty to %TRUE.
+*/
+
 void
 gdl_dock_layout_delete_layout (GdlDockLayout *layout,
                                const gchar   *name)
@@ -1244,6 +1291,13 @@ gdl_dock_layout_delete_layout (GdlDockLayout *layout,
         g_object_notify (G_OBJECT (layout), "dirty");
     }
 }
+
+/** 
+* gdl_dock_layout_run_manager:
+* @layout: The dock item. 
+*
+* Runs the layout manager.
+*/
 
 void
 gdl_dock_layout_run_manager (GdlDockLayout *layout)
@@ -1279,6 +1333,17 @@ gdl_dock_layout_run_manager (GdlDockLayout *layout)
     gtk_widget_destroy (dialog);
 }
 
+/** 
+* gdl_dock_layout_load_from_file:
+* @layout: The layout item. 
+* @filename: The name of the file to load.
+*
+* Loads the layout from file with the given @filename.
+* This will set #GdlDockLayout:dirty to %FALSE.
+*
+* Returns: %TRUE if @layout successfully loaded else %FALSE
+*/
+
 gboolean
 gdl_dock_layout_load_from_file (GdlDockLayout *layout,
                                 const gchar   *filename)
@@ -1311,6 +1376,16 @@ gdl_dock_layout_load_from_file (GdlDockLayout *layout,
     return retval;
 }
 
+/** 
+ * gdl_dock_layout_save_to_file:
+ * @layout: The layout item.
+ * @filename: Name of the file we want to save in layout
+ *
+ * This function saves the current layout in XML format to 
+ * the file with the given @filename.
+ *
+ * Returns: %TRUE if @layout successfuly save to the file, otherwise %FALSE.
+ */
 gboolean
 gdl_dock_layout_save_to_file (GdlDockLayout *layout,
                               const gchar   *filename)
@@ -1340,6 +1415,13 @@ gdl_dock_layout_save_to_file (GdlDockLayout *layout,
     return retval;
 }
 
+/**
+ * gdl_dock_layout_is_dirty:
+ * @layout: The layout item.
+ *
+ * Checks whether the XML tree in memory is different from the file where the layout was saved.
+ * Returns: %TRUE is the layout in the memory is different from the file, else %FALSE.
+ */
 gboolean
 gdl_dock_layout_is_dirty (GdlDockLayout *layout)
 {
