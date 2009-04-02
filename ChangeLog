@@ -1,3 +1,18 @@
+2009-04-03  Joel Holdsworth <joel@airwebreathe.org.uk>
+
+	reviewed by: Johannes Schmid  <jhs@gnome.org>
+
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_expose),
+	(gdl_dock_item_grip_instance_init),
+	(gdl_dock_item_grip_size_request),
+	(gdl_dock_item_grip_size_allocate),
+	(gdl_dock_item_grip_class_init),
+	(gdl_dock_item_grip_showhide_handle),
+	(gdl_dock_item_grip_hide_handle), (gdl_dock_item_grip_show_handle):
+	* gdl/gdl-dock-item-grip.h:
+	#577107 – Layout bug in the grip widget headers
+	#577001 – Patch: Added optional grip handle hatching
+
 2009-04-03  Johannes Schmid  <jhs@gnome.org>
 
 	* gdl/gdl-dock-bar.c (gdl_dock_bar_add_item):

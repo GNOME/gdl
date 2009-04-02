@@ -52,6 +52,8 @@ GType      gdl_dock_item_grip_get_type (void);
 GtkWidget *gdl_dock_item_grip_new      (GdlDockItem *item);
 void       gdl_dock_item_grip_set_label (GdlDockItemGrip *grip,
                                           GtkWidget *label);
+void       gdl_dock_item_grip_hide_handle (GdlDockItemGrip *grip);
+void       gdl_dock_item_grip_show_handle (GdlDockItemGrip *grip);
 
 G_END_DECLS
 

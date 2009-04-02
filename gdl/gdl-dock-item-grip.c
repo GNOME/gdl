@@ -24,6 +24,7 @@
 #include "gdl-tools.h"
 
 #define ALIGN_BORDER 5
+#define DRAG_HANDLE_SIZE 10
 
 enum {
     PROP_0,
@@ -35,6 +36,8 @@ struct _GdlDockItemGripPrivate {
   
     GtkWidget   *close_button;
     GtkWidget   *iconify_button;
+    
+    gboolean    handle_shown;
 };
  
 GDL_CLASS_BOILERPLATE (GdlDockItemGrip, gdl_dock_item_grip,
@@ -79,6 +82,46 @@ gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
     }
     
     return GTK_WIDGET(label_box);
+}
+
+static gint
+gdl_dock_item_grip_expose (GtkWidget      *widget,
+                           GdkEventExpose *event)
+{
+    GdlDockItemGrip *grip;
+    GdkRectangle handle_area;
+    GdkRectangle expose_area;
+
+    grip = GDL_DOCK_ITEM_GRIP (widget);
+    
+    if(grip->_priv->handle_shown) {
+        
+        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
+            handle_area.x = widget->allocation.x;
+            handle_area.y = widget->allocation.y;
+            handle_area.width = DRAG_HANDLE_SIZE;
+            handle_area.height = widget->allocation.height;
+        } else {
+            handle_area.x = widget->allocation.x + widget->allocation.width
+                - DRAG_HANDLE_SIZE;
+            handle_area.y = widget->allocation.y;
+            handle_area.width = DRAG_HANDLE_SIZE;
+            handle_area.height = widget->allocation.height;  
+        }
+
+        if (gdk_rectangle_intersect (&handle_area, &event->area, &expose_area)) {
+
+            gtk_paint_handle (widget->style, widget->window, widget->state,
+                              GTK_SHADOW_NONE, &expose_area, widget,
+                              "handlebox", handle_area.x, handle_area.y,
+                              handle_area.width, handle_area.height,
+                              GTK_ORIENTATION_VERTICAL);
+        
+        }
+        
+    }
+
+    return GTK_WIDGET_CLASS (parent_class)->expose_event (widget, event);
 }
 
 static void
@@ -216,6 +259,7 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     
     grip->_priv = g_new0 (GdlDockItemGripPrivate, 1);
     grip->_priv->label = NULL;
+    grip->_priv->handle_shown = FALSE;
     
     /* create the close button */
     gtk_widget_push_composite_child ();
@@ -358,6 +402,9 @@ gdl_dock_item_grip_size_request (GtkWidget      *widget,
     requisition->width = container->border_width * 2/* + ALIGN_BORDER*/;
     requisition->height = container->border_width * 2;
 
+    if(grip->_priv->handle_shown)
+        requisition->width += DRAG_HANDLE_SIZE;
+
     gtk_widget_size_request (grip->_priv->close_button, &child_requisition);
     layout_height = MAX (layout_height, child_requisition.height);
     if (GTK_WIDGET_VISIBLE (grip->_priv->close_button)) {
@@ -396,10 +443,10 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
     GTK_WIDGET_CLASS (parent_class)->size_allocate (widget, allocation);
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-        child_allocation.x = allocation->x + container->border_width/* + ALIGN_BORDER*/;
+        child_allocation.x = container->border_width/* + ALIGN_BORDER*/;
     else
-        child_allocation.x = allocation->x + allocation->width - container->border_width;
-    child_allocation.y = allocation->y + container->border_width;
+        child_allocation.x = allocation->width - container->border_width;
+    child_allocation.y = container->border_width;
 
     if (GTK_WIDGET_VISIBLE (grip->_priv->close_button)) {
         gtk_widget_size_request (grip->_priv->close_button, &button_requisition);
@@ -433,13 +480,22 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
     
     if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
         child_allocation.width = child_allocation.x;
-        child_allocation.x = allocation->x + container->border_width/* + ALIGN_BORDER*/;
+        child_allocation.x = container->border_width/* + ALIGN_BORDER*/;
+        
+        if(grip->_priv->handle_shown) {
+            child_allocation.x += DRAG_HANDLE_SIZE;
+            child_allocation.width -= DRAG_HANDLE_SIZE;
+        }
+        
     } else {
         child_allocation.width = allocation->width -
             (child_allocation.x - allocation->x)/* - ALIGN_BORDER*/;
+            
+        if(grip->_priv->handle_shown)
+            child_allocation.width -= DRAG_HANDLE_SIZE;
     }
     
-    child_allocation.y = allocation->y + container->border_width;
+    child_allocation.y = container->border_width;
     child_allocation.height = allocation->height - container->border_width * 2;
     if(grip->_priv->label) {
       gtk_widget_size_allocate (grip->_priv->label, &child_allocation);
@@ -515,6 +571,7 @@ gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
 
     gtk_object_class->destroy = gdl_dock_item_grip_destroy;
 
+    widget_class->expose_event = gdl_dock_item_grip_expose;
     widget_class->realize = gdl_dock_item_grip_realize;
     widget_class->unrealize = gdl_dock_item_grip_unrealize;
     widget_class->map = gdl_dock_item_grip_map;
@@ -536,6 +593,12 @@ gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
 
     /* initialize stock images */
     gdl_stock_init ();
+}
+
+static void
+gdl_dock_item_grip_showhide_handle (GdlDockItemGrip *grip)
+{
+    gtk_widget_queue_resize (GTK_WIDGET (grip));
 }
 
 /* ----- Public interface ----- */
@@ -581,4 +644,35 @@ gdl_dock_item_grip_set_label (GdlDockItemGrip *grip,
         gtk_widget_show (label);
         grip->_priv->label = label;
     }
+}
+/**
+ * gdl_dock_item_grip_hide_handle:
+ * @item: The dock item grip to hide the handle of.
+ * 
+ * This function hides the dock item's grip widget handle hatching.
+ **/
+void 
+gdl_dock_item_grip_hide_handle (GdlDockItemGrip *grip)
+{
+    g_return_if_fail (grip != NULL);
+    if (grip->_priv->handle_shown) {
+        grip->_priv->handle_shown = FALSE;
+        gdl_dock_item_grip_showhide_handle (grip);
+    };
+}
+
+/**
+ * gdl_dock_item_grip_show_handle:
+ * @grip: The dock item grip to show the handle of.
+ * 
+ * This function shows the dock item's grip widget handle hatching.
+ **/
+void
+gdl_dock_item_grip_show_handle (GdlDockItemGrip *grip)
+{
+    g_return_if_fail (grip != NULL);
+    if (!grip->_priv->handle_shown) {
+        grip->_priv->handle_shown = TRUE;
+        gdl_dock_item_grip_showhide_handle (grip);
+    };
 }
