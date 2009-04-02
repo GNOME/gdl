@@ -1,3 +1,16 @@
+2009-04-03  Johannes Schmid  <jhs@gnome.org>
+
+	* gdl/gdl-dock-bar.c (gdl_dock_bar_add_item):
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_set_label):
+	* gdl/gdl-dock-item.c (gdl_dock_item_set_tablabel),
+	(gdl_dock_item_hide_item), (gdl_dock_item_set_default_position):
+	* gdl/gdl-dock-master.c (gdl_dock_master_add):
+	* gdl/gdl-dock-object.c (gdl_dock_object_real_reduce):
+	* gdl/gdl-dock-object.h:
+	* gdl/gdl-dock-placeholder.c (gdl_dock_placeholder_dock):
+	* gdl/gdl-stock.c (icon_set_from_data):
+	#577469 – Remove deprecated GTK+ symbols
+
 2009-03-26  Johannes Schmid  <jhs@gnome.org>
 
 	Patch from Deniz Koçak <lenduha@gmail.com>	

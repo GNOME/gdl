@@ -571,12 +571,12 @@ gdl_dock_item_grip_set_label (GdlDockItemGrip *grip,
 
     if (grip->_priv->label) {
         gtk_widget_unparent(grip->_priv->label);
-        gtk_widget_unref (grip->_priv->label);
+        g_object_unref (grip->_priv->label);
         grip->_priv->label = NULL;
     }
     
     if (label) {
-        gtk_widget_ref (label);
+        g_object_ref (label);
         gtk_widget_set_parent (label, GTK_WIDGET (grip));
         gtk_widget_show (label);
         grip->_priv->label = label;
