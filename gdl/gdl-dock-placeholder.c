@@ -538,7 +538,7 @@ gdl_dock_placeholder_present (GdlDockObject *object,
 /* ----- Public interface ----- */ 
 								   
 GtkWidget * 
-gdl_dock_placeholder_new (gchar            *name,
+gdl_dock_placeholder_new (const gchar     *name,
                           GdlDockObject    *object,
                           GdlDockPlacement  position,
                           gboolean          sticky)

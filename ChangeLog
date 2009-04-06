@@ -1,3 +1,9 @@
+2009-04-06  Joel Holdsworth <joel@airwebreathe.org.uk>
+
+	* gdl/gdl-dock-placeholder.c (gdl_dock_placeholder_new):
+	* gdl/gdl-dock-placeholder.h:
+	#577938 – gdl_dock_placeholder_new's name param should be const gchar* not gchar*
+
 2009-04-03  Joel Holdsworth <joel@airwebreathe.org.uk>
 
 	reviewed by: Johannes Schmid  <jhs@gnome.org>
