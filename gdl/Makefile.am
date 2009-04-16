@@ -12,8 +12,7 @@ BUILT_SOURCES = \
 	libgdlmarshal.c \
 	libgdlmarshal.h \
 	libgdltypebuiltins.c \
-	libgdltypebuiltins.h \
-	gdl-stock-icons.h
+	libgdltypebuiltins.h
 
 CLEANFILES =					\
 	libgdltypebuiltins.c			\
@@ -35,10 +34,8 @@ libgdl_headers = \
 	gdl-dock-layout.h \
 	gdl-dock-placeholder.h \
 	gdl-dock-bar.h \
-	gdl-switcher.h \
-	gdl-stock.h \
-	gdl-stock-icons.h
-
+	gdl-switcher.h
+	
 libgdl_1_la_SOURCES = \
 	$(libgdl_headers) \
 	gdl-i18n.h \
@@ -47,6 +44,8 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-master.c \
 	gdl-dock.c \
 	gdl-dock-item.c \
+	gdl-dock-item-button-image.h \
+	gdl-dock-item-button-image.c \
 	gdl-dock-item-grip.h \
 	gdl-dock-item-grip.c \
 	gdl-dock-notebook.c \
@@ -56,7 +55,6 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-placeholder.c \
 	gdl-dock-bar.c \
 	gdl-switcher.c \
-	gdl-stock.c \
 	libgdltypebuiltins.h \
 	libgdltypebuiltins.c \
 	libgdlmarshal.h \
@@ -81,22 +79,11 @@ libgdlinclude_HEADERS = \
 gladedir = $(datadir)/gdl/glade
 glade_DATA = layout.glade
 
-STOCK_ICONS = \
-	stock_close_icon stock-close-12.png \
-	stock_menu_left_icon stock-menu-left-12.png \
-	stock_menu_right_icon stock-menu-right-12.png
-
-STOCK_IMAGES = \
-	stock-close-12.png \
-	stock-menu-left-12.png \
-	stock-menu-right-12.png
-
 EXTRA_DIST = libgdlmarshal.list \
 	tree-expand.xpm \
 	tree-contract.xpm \
 	layout.glade \
-	program.xpm static.xpm shared.xpm \
-	$(STOCK_IMAGES)
+	program.xpm static.xpm shared.xpm
 
 # enumerations code generation
 
@@ -144,7 +131,4 @@ libgdlmarshal.c: libgdlmarshal.h
 		--prefix=gdl_marshal $(srcdir)/libgdlmarshal.list --body >> xgen-gmc \
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
-
-gdl-stock-icons.h: $(STOCK_IMAGES)
-	gdk-pixbuf-csource --raw --build-list $(STOCK_ICONS) > $@
 

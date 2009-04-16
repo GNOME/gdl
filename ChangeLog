@@ -1,3 +1,14 @@
+2009-04-16  Joel Holdsworth <joel@airwebreathe.org.uk>
+
+  reviewed by: Johannes Schmid  <jhs@gnome.org>
+	* docs/reference/gdl-sections.txt:
+	* gdl/Makefile.am:
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_instance_init),
+	(gdl_dock_item_grip_class_init):
+	* gdl/gdl-stock.c:
+	* gdl/gdl-stock.h:
+	#471317 – invisible buttons in HCI theme
+
 2009-04-16  Johannes Schmid  <jhs@gnome.org>
 
   Patch from:  Gennaro Bellizio <genbell@tiscali.it>

@@ -20,7 +20,7 @@
 #include <gtk/gtk.h>
 #include "gdl-dock-item.h"
 #include "gdl-dock-item-grip.h"
-#include "gdl-stock.h"
+#include "gdl-dock-item-button-image.h"
 #include "gdl-tools.h"
 
 #define ALIGN_BORDER 5
@@ -271,7 +271,7 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     gtk_button_set_relief (GTK_BUTTON (grip->_priv->close_button), GTK_RELIEF_NONE);
     gtk_widget_show (grip->_priv->close_button);
 
-    image = gtk_image_new_from_stock (GDL_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+    image = gdl_dock_item_button_image_new(GDL_DOCK_ITEM_BUTTON_IMAGE_CLOSE);
     gtk_container_add (GTK_CONTAINER (grip->_priv->close_button), image);
     gtk_widget_show (image);
 
@@ -288,7 +288,7 @@ gdl_dock_item_grip_instance_init (GdlDockItemGrip *grip)
     gtk_button_set_relief (GTK_BUTTON (grip->_priv->iconify_button), GTK_RELIEF_NONE);
     gtk_widget_show (grip->_priv->iconify_button);
 
-    image = gtk_image_new_from_stock (GDL_STOCK_MENU_LEFT, GTK_ICON_SIZE_MENU);
+    image = gdl_dock_item_button_image_new(GDL_DOCK_ITEM_BUTTON_IMAGE_ICONIFY);
     gtk_container_add (GTK_CONTAINER (grip->_priv->iconify_button), image);
     gtk_widget_show (image);
 
@@ -590,9 +590,6 @@ gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
                              _("Dockitem which 'owns' this grip"),
                              GDL_TYPE_DOCK_ITEM,
                              G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-
-    /* initialize stock images */
-    gdl_stock_init ();
 }
 
 static void
