@@ -219,24 +219,6 @@ GDL_DOCK_PLACEHOLDER_GET_CLASS
 </SECTION>
 
 <SECTION>
-<FILE>gdl-combo-button</FILE>
-GdlComboButtonPrivate
-<TITLE>GdlComboButton</TITLE>
-GdlComboButton
-gdl_combo_button_new
-gdl_combo_button_set_icon
-gdl_combo_button_set_label
-gdl_combo_button_set_menu
-<SUBSECTION Standard>
-GDL_COMBO_BUTTON
-GDL_IS_COMBO_BUTTON
-GDL_TYPE_COMBO_BUTTON
-gdl_combo_button_get_type
-GDL_COMBO_BUTTON_CLASS
-GDL_IS_COMBO_BUTTON_CLASS
-</SECTION>
-
-<SECTION>
 <FILE>gdl-dock-paned</FILE>
 <TITLE>GdlDockPaned</TITLE>
 GdlDockPaned

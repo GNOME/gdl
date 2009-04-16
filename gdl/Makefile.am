@@ -35,7 +35,6 @@ libgdl_headers = \
 	gdl-dock-layout.h \
 	gdl-dock-placeholder.h \
 	gdl-dock-bar.h \
-	gdl-combo-button.h \
 	gdl-switcher.h \
 	gdl-stock.h \
 	gdl-stock-icons.h
@@ -56,7 +55,6 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-layout.c \
 	gdl-dock-placeholder.c \
 	gdl-dock-bar.c \
-	gdl-combo-button.c \
 	gdl-switcher.c \
 	gdl-stock.c \
 	libgdltypebuiltins.h \
@@ -70,13 +68,10 @@ libgdl_1_la_LIBADD = \
 
 libgdl_1_la_LDFLAGS = $(EXTRA_LDFLAGS)
 
-noinst_PROGRAMS=test-dock test-combo-button
+noinst_PROGRAMS=test-dock
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-1.la $(XML_LIBS)
-
-test_combo_button_SOURCES = test-combo-button.c
-test_combo_button_LDADD = libgdl-1.la
 
 libgdlincludedir = $(includedir)/libgdl-1.0/gdl
 libgdlinclude_HEADERS = \

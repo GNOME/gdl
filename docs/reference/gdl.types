@@ -7,7 +7,6 @@ gdl_dock_param_get_type
 gdl_dock_tablabel_get_type
 gdl_dock_notebook_get_type
 gdl_dock_placeholder_get_type
-gdl_combo_button_get_type
 gdl_dock_paned_get_type
 gdl_dock_bar_get_type
 gdl_dock_param_flags_get_type

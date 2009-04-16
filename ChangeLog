@@ -1,3 +1,12 @@
+2009-04-16  Johannes Schmid  <jhs@gnome.org>
+
+  Patch from:  Gennaro Bellizio <genbell@tiscali.it>
+	* gdl/Makefile.am:
+	* gdl/gdl-combo-button.c:
+	* gdl/gdl-combo-button.h:
+	* gdl/gdl.h:
+	#560820 – Remove GdlComboButton
+
 2009-04-06  Joel Holdsworth <joel@airwebreathe.org.uk>
 
 	* gdl/gdl-dock-placeholder.c (gdl_dock_placeholder_new):
