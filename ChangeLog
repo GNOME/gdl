@@ -1,3 +1,12 @@
+The End (use git log instead)
+
+2009-04-16  Joel Holdsworth <joel@airwebreathe.org.uk>
+
+	reviewed by: Johannes Schmid  <jhs@gnome.org>
+
+	* gdl/gdl-dock-item-grip.c (gdl_dock_item_grip_size_allocate):
+  #579057 – Grip layout bug where negative rectangles are possible
+  
 2009-04-16  Joel Holdsworth <joel@airwebreathe.org.uk>
 
 	reviewed by: Johannes Schmid  <jhs@gnome.org>

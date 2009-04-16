@@ -430,7 +430,8 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
 {
     GdlDockItemGrip *grip;
     GtkContainer    *container;
-    GtkRequisition   button_requisition = { 0, };
+    GtkRequisition   close_requisition = { 0, };
+    GtkRequisition   iconify_requisition = { 0, };
     GtkAllocation    child_allocation;
     GdkRectangle     label_area;
 
@@ -442,42 +443,64 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
 
     GTK_WIDGET_CLASS (parent_class)->size_allocate (widget, allocation);
 
+    gtk_widget_size_request (grip->_priv->close_button,
+        &close_requisition);
+    gtk_widget_size_request (grip->_priv->iconify_button,
+        &iconify_requisition);
+    
+    /* Calculate the Minimum Width where buttons will fit */
+    int min_width = close_requisition.width + iconify_requisition.width
+        + container->border_width * 2;
+    if(grip->_priv->handle_shown)
+      min_width += DRAG_HANDLE_SIZE;
+    const gboolean space_for_buttons = (allocation->width >= min_width);
+        
+    /* Set up the rolling child_allocation rectangle */
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
         child_allocation.x = container->border_width/* + ALIGN_BORDER*/;
     else
         child_allocation.x = allocation->width - container->border_width;
     child_allocation.y = container->border_width;
 
+    /* Layout Close Button */
     if (GTK_WIDGET_VISIBLE (grip->_priv->close_button)) {
-        gtk_widget_size_request (grip->_priv->close_button, &button_requisition);
 
-        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL)
-            child_allocation.x -= button_requisition.width;
-    
-        child_allocation.width = button_requisition.width;
-        child_allocation.height = button_requisition.height;
+        if(space_for_buttons) {
+            if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL)
+                child_allocation.x -= close_requisition.width;
+        
+            child_allocation.width = close_requisition.width;
+            child_allocation.height = close_requisition.height;
+        } else {
+            child_allocation.width = 0;
+        }
         
         gtk_widget_size_allocate (grip->_priv->close_button, &child_allocation);
 
         if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-            child_allocation.x += button_requisition.width;
+            child_allocation.x += close_requisition.width;
     }    
 
+    /* Layout Iconify Button */
     if (GTK_WIDGET_VISIBLE (grip->_priv->iconify_button)) {
-        gtk_widget_size_request (grip->_priv->iconify_button, &button_requisition);
 
-        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL)
-            child_allocation.x -= button_requisition.width;
+        if(space_for_buttons) {
+            if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL)
+                child_allocation.x -= iconify_requisition.width;
 
-        child_allocation.width = button_requisition.width;
-        child_allocation.height = button_requisition.height;
+            child_allocation.width = iconify_requisition.width;
+            child_allocation.height = iconify_requisition.height;
+        } else {
+            child_allocation.width = 0;
+        }
 
         gtk_widget_size_allocate (grip->_priv->iconify_button, &child_allocation);
 
         if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-            child_allocation.x += button_requisition.width;
+            child_allocation.x += iconify_requisition.width;
     }
     
+    /* Layout the Grip Handle*/
     if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
         child_allocation.width = child_allocation.x;
         child_allocation.x = container->border_width/* + ALIGN_BORDER*/;
@@ -494,6 +517,9 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
         if(grip->_priv->handle_shown)
             child_allocation.width -= DRAG_HANDLE_SIZE;
     }
+    
+    if(child_allocation.width < 0)
+      child_allocation.width = 0;
     
     child_allocation.y = container->border_width;
     child_allocation.height = allocation->height - container->border_width * 2;

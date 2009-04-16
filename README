@@ -1,20 +1,9 @@
-Gnome Devtool Libraries
-=======================
+Gnome Docking library
+=====================
 
-This package contains components and libraries that are intended to be
-shared between GNOME development tools, including gnome-debug,
-gnome-build, and anjuta2.
+Provides docking features for gtk+. Currently used by anjuta and lumiera.
 
-The current pieces of GDL include:
-
- - A symbol browser bonobo component (symbol-browser-control).
-
- - A docking widget (gdl).
-
- - A utility library that also contains the stubs and skels for
-   the symbol browser and text editor components (gdl, idl).
-
-Discussion of GDL development takes place on the gnome-devtools@gnome.org
-mailing list and on #devel-apps at irc.gnome.org.
+Discussion of GDL development takes place on the gnome-devtools@gnome.org or
+anjuta-devel@lists.sf.net mailing list and on #anjuta at irc.gnome.org.
 
 GDL is licensed under the terms of the GPL.
