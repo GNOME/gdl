@@ -521,7 +521,7 @@ static void
 gdl_dock_item_grip_remove (GtkContainer *container,
                            GtkWidget    *widget)
 {
-    g_warning ("gtk_container_remove not implemented for GdlDockItemGrip");
+    gdl_dock_item_grip_set_label (GDL_DOCK_ITEM_GRIP (container), NULL);
 }
 
 static void
