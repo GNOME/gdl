@@ -1,0 +1,660 @@
+# Traducció GDL de l'equip Softcatalà
+# Copyright (C) 2003,2004, 2008 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gdl package.
+# Xavier Conde Rueda <xaviconde@eresmas.com>, 2003,2004.
+# Gil Forcada <gilforcada@guifi.net>, 2008
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-21 14:41+0200\n"
+"PO-Revision-Date: 2008-02-14 13:33+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../gdl/gdl-dock-item-grip.c:367
+msgid "Iconify this dock"
+msgstr "Iconifica l'acoblador"
+
+#: ../gdl/gdl-dock-item-grip.c:369
+msgid "Close this dock"
+msgstr "Tanca este acoblador"
+
+#: ../gdl/gdl-dock-item-grip.c:681 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Control de l'objecte acoblat"
+
+#: ../gdl/gdl-dock-item-grip.c:682
+msgid "Dockitem which 'owns' this grip"
+msgstr "Element acoblat al que «pertany» esta nansa"
+
+#: ../gdl/gdl-dock-item.c:253
+msgid "Orientation"
+msgstr "Orientació"
+
+#: ../gdl/gdl-dock-item.c:254
+msgid "Orientation of the docking item"
+msgstr "Orientació de l'element acoblat"
+
+#: ../gdl/gdl-dock-item.c:269
+msgid "Resizable"
+msgstr "Es pot canviar la grandària"
+
+# FIXME: si dock item = element acoblat, que hi posem per docked ?
+#: ../gdl/gdl-dock-item.c:270
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr ""
+"Si està habilitat, es pot canviar la grandària de l'element acoblat quan "
+"estiga acoblat en un giny GtkPanel"
+
+#: ../gdl/gdl-dock-item.c:277
+msgid "Item behavior"
+msgstr "Comportament de l'element"
+
+#: ../gdl/gdl-dock-item.c:278
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Comportament general de l'element acoblat (si pot flotar, si està bloquejat, "
+"etc.)"
+
+#: ../gdl/gdl-dock-item.c:286 ../gdl/gdl-dock-master.c:145
+msgid "Locked"
+msgstr "Bloquejat"
+
+#: ../gdl/gdl-dock-item.c:287
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Si està habilitat, l'element acoblat no es pot arrossegar i no mostra una "
+"nansa"
+
+#: ../gdl/gdl-dock-item.c:295
+msgid "Preferred width"
+msgstr "Amplada predeterminada"
+
+#: ../gdl/gdl-dock-item.c:296
+msgid "Preferred width for the dock item"
+msgstr "Amplada predeterminada per a l'element acoblat"
+
+#: ../gdl/gdl-dock-item.c:302
+msgid "Preferred height"
+msgstr "Alçada predeterminada"
+
+#: ../gdl/gdl-dock-item.c:303
+msgid "Preferred height for the dock item"
+msgstr "Alçada predeterminada per a l'element acoblat"
+
+#: ../gdl/gdl-dock-item.c:575
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"No es pot afegir un objecte acoblat (%p de tipus %s) a dins d'un %s. "
+"Utilitzeu un GdlDock o un altre objecte acoblat compost."
+
+#: ../gdl/gdl-dock-item.c:582
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"S'ha provat d'afegir un element d'interfície gràfica de tipus %s a %s, però "
+"només pot contindre un element. Ja conté un element de tipus %s"
+
+#: ../gdl/gdl-dock-item.c:1268 ../gdl/gdl-dock-item.c:1318
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "No es pot fer servir l'estratègia %s en un objecte acoblat de tipus %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1426
+msgid "UnLock"
+msgstr "Desbloqueja"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1433
+msgid "Hide"
+msgstr "Oculta"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1438
+msgid "Lock"
+msgstr "Bloqueja"
+
+#: ../gdl/gdl-dock-item.c:1676
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "S'ha intentat enllaçar amb un element %p sense límit"
+
+#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
+msgid "Master"
+msgstr "Mestre"
+
+#: ../gdl/gdl-dock-layout.c:124
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "L'objecte GdlDockMaster al que està adjuntat l'objecte de disposició"
+
+#: ../gdl/gdl-dock-layout.c:131
+msgid "Dirty"
+msgstr "Brut"
+
+#: ../gdl/gdl-dock-layout.c:132
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr "Cert si les disposicions han canviat i s'han d'alçar en un fitxer"
+
+#. FIXME: pop up an error dialog
+#: ../gdl/gdl-dock-layout.c:563
+#, c-format
+msgid "Could not load layout user interface file '%s'"
+msgstr ""
+"No s'ha pogut carregar el fitxer de disposició de la interfície d'usuari «%s»"
+
+#: ../gdl/gdl-dock-layout.c:618
+msgid "Visible"
+msgstr "Visible"
+
+#: ../gdl/gdl-dock-layout.c:625
+msgid "Item"
+msgstr "Element"
+
+#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+msgid "Name"
+msgstr "Nom"
+
+#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
+msgid "Dock items"
+msgstr "Elements acoblats"
+
+#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
+msgid "Saved layouts"
+msgstr "Disposicions alçades"
+
+#: ../gdl/gdl-dock-layout.c:789
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"En carregar la disposició: no se sap com crear un objecte acoblat el "
+"sobrenom del qual siga «%s»"
+
+#: ../gdl/gdl-dock-layout.c:1268
+msgid "Layout managment"
+msgstr "Gestió de la disposició"
+
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+msgid "Default title"
+msgstr "Títol predeterminat"
+
+#: ../gdl/gdl-dock-master.c:139
+msgid "Default title for newly created floating docks"
+msgstr "Títol predeterminat per als objectes acoblats flotants nous"
+
+#: ../gdl/gdl-dock-master.c:146
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Si té valor 1, es bloquegen tots els elements acoblats vinculats al mestre. "
+"Si val 0, es desbloquegen tots. Amb -1 vol dir que existeix inconsistència "
+"entre els elements"
+
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:696
+msgid "Switcher Style"
+msgstr "Estil del canviador"
+
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:697
+msgid "Switcher buttons style"
+msgstr "Estil dels botons del canviador"
+
+#: ../gdl/gdl-dock-master.c:761
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"mestre %p: no s'ha pogut afegir l'objecte %p[%s] a la taula de dispersió. Ja "
+"hi ha un element amb este nom (%p)."
+
+#: ../gdl/gdl-dock-master.c:934
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"El nou controlador acoblat %p és automàtic. Només els objectes acoblats  "
+"manualment s'haurien d'anomenar controladors."
+
+#: ../gdl/gdl-dock-notebook.c:134
+msgid "Page"
+msgstr "Pàgina"
+
+#: ../gdl/gdl-dock-notebook.c:135
+msgid "The index of the current page"
+msgstr "L'índex de la pàgina actual"
+
+#: ../gdl/gdl-dock-object.c:120
+msgid "Unique name for identifying the dock object"
+msgstr "Nom únic per a identificar l'objecte acoblat"
+
+#: ../gdl/gdl-dock-object.c:127
+msgid "Long name"
+msgstr "Nom llarg"
+
+#: ../gdl/gdl-dock-object.c:128
+msgid "Human readable name for the dock object"
+msgstr "Nom de l'objecte acoblat comprensible per a les persones"
+
+#: ../gdl/gdl-dock-object.c:134
+msgid "Stock Icon"
+msgstr "Icona predeterminada"
+
+#: ../gdl/gdl-dock-object.c:135
+msgid "Stock icon for the dock object"
+msgstr "Icona predeterminada per a l'objecte acoblat"
+
+#: ../gdl/gdl-dock-object.c:141
+msgid "Dock master"
+msgstr "Acoblat mestre"
+
+#: ../gdl/gdl-dock-object.c:142
+msgid "Dock master this dock object is bound to"
+msgstr "Acoblat mestre amb el que limita este objecte acoblat"
+
+#: ../gdl/gdl-dock-object.c:444
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"S'ha cridat al mètode gdl_dock_object_dock en un objecte acoblat %p (el "
+"tipus d'objecte és %s) que no té implementat este mètode"
+
+#: ../gdl/gdl-dock-object.c:576
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"S'ha demanat una operació d'acoblament en un objecte sense límit %p. "
+"L'aplicació pot fallar"
+
+#: ../gdl/gdl-dock-object.c:583
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "No es pot acoblar %p a %p perquè pertanyen a mestres diferents"
+
+#: ../gdl/gdl-dock-object.c:625
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"S'ha intentat vincular a %p un objecte vinculat acoblable %p (mestre actual: "
+"%p)"
+
+#: ../gdl/gdl-dock-paned.c:131
+msgid "Position"
+msgstr "Posició"
+
+#: ../gdl/gdl-dock-paned.c:132
+msgid "Position of the divider in pixels"
+msgstr "Posició del separador en píxels"
+
+#: ../gdl/gdl-dock-placeholder.c:143
+msgid "Sticky"
+msgstr "Enganxòs"
+
+#: ../gdl/gdl-dock-placeholder.c:144
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Si el text variable es quedarà amb el seu amfitrió o es mourà cap amunt en "
+"la jerarquia quan torne a acoblar l'amfitrió"
+
+#: ../gdl/gdl-dock-placeholder.c:151
+msgid "Host"
+msgstr "Amfitrió"
+
+#: ../gdl/gdl-dock-placeholder.c:152
+msgid "The dock object this placeholder is attached to"
+msgstr "L'objecte acoblat al que està adjuntat el text variable"
+
+#: ../gdl/gdl-dock-placeholder.c:159
+msgid "Next placement"
+msgstr "Següent ubicació"
+
+#: ../gdl/gdl-dock-placeholder.c:160
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"La posició on s'acoblarà un element al nostre amfitrió si demana acoblar-se "
+"a nosaltres"
+
+#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+msgid "Width"
+msgstr "Amplada"
+
+#: ../gdl/gdl-dock-placeholder.c:170
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Amplada del giny quan s'adjunta al text variable"
+
+#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+msgid "Height"
+msgstr "Alçada"
+
+#: ../gdl/gdl-dock-placeholder.c:178
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Alçada del giny quan s'adjunta al text variable"
+
+#: ../gdl/gdl-dock-placeholder.c:184
+msgid "Floating Toplevel"
+msgstr "Nivell superior flotant"
+
+#: ../gdl/gdl-dock-placeholder.c:185
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "Si el text variable espera un acoblat de nivell superior flotant"
+
+#: ../gdl/gdl-dock-placeholder.c:191
+msgid "X-Coordinate"
+msgstr "Coordenada X"
+
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X-Coordinate for dock when floating"
+msgstr "Coordenada X per a l'acoblat quan flota"
+
+#: ../gdl/gdl-dock-placeholder.c:198
+msgid "Y-Coordinate"
+msgstr "Coordenada Y"
+
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y-Coordinate for dock when floating"
+msgstr "Coordenada Y per a l'acoblat quan flota"
+
+#: ../gdl/gdl-dock-placeholder.c:494
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr ""
+"S'ha intentat acoblar un objecte acoblat a un text variable sense límits"
+
+#: ../gdl/gdl-dock-placeholder.c:618
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+"S'ha rebut un senyal de separació d'un objecte (%p) que no és el nostre "
+"amfitrió %p"
+
+#: ../gdl/gdl-dock-placeholder.c:643
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Ha succeït alguna cosa estranya quan s'estava obtenint la ubicació per a %p "
+"del seu pare %p"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Element enganxable que 'poseeix' esta etiqueta"
+
+#: ../gdl/gdl-dock-bar.c:108
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+"L'objecte GdlDockMaster al que està adjuntat el giny de la barra acoblable"
+
+#: ../gdl/gdl-dock-bar.c:115
+msgid "Dockbar style"
+msgstr "Estil de la barra acoblable"
+
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style to show items on it"
+msgstr "Estil de la barra acoblable per a mostrar-hi elements"
+
+#: ../gdl/gdl-dock.c:178
+msgid "Floating"
+msgstr "Flota"
+
+#: ../gdl/gdl-dock.c:179
+msgid "Whether the dock is floating in its own window"
+msgstr "Si l'acoblable flotarà a la seua pròpia finestra"
+
+#: ../gdl/gdl-dock.c:187
+msgid "Default title for the newly created floating docks"
+msgstr "Títol predeterminat per als objectes acoblables flotants nous"
+
+#: ../gdl/gdl-dock.c:194
+msgid "Width for the dock when it's of floating type"
+msgstr "Amplada de l'acoblable quan és de tipus flotant"
+
+#: ../gdl/gdl-dock.c:202
+msgid "Height for the dock when it's of floating type"
+msgstr "Alçada per a l'element acoblable quan és de tipus flotant"
+
+#: ../gdl/gdl-dock.c:209
+msgid "Float X"
+msgstr "Flota en X"
+
+#: ../gdl/gdl-dock.c:210
+msgid "X coordinate for a floating dock"
+msgstr "Coordenada X per a l'acoblable flotant"
+
+#: ../gdl/gdl-dock.c:217
+msgid "Float Y"
+msgstr "Flota en Y"
+
+#: ../gdl/gdl-dock.c:218
+msgid "Y coordinate for a floating dock"
+msgstr "Coordenada Y per a l'acoblable flotant"
+
+#: ../gdl/gdl-dock.c:499
+#, c-format
+msgid "Dock #%d"
+msgstr "Acoblable núm. %d"
+
+#: ../gdl/layout.glade.h:2
+msgid "Layout Managment"
+msgstr "Gestió de disposicions"
+
+#: ../gdl/layout.glade.h:4
+msgid "_Load"
+msgstr "_Carrega"
+
+#: ../gdl/layout.glade.h:5
+msgid "_Lock dock items"
+msgstr "B_loqueja elements acoblables"
+
+#~ msgid "Expander Size"
+#~ msgstr "Mida de l'expansor"
+
+#~ msgid "Size of the expander arrow."
+#~ msgstr "Mida de la fletxa expansora."
+
+#~ msgid "Iconify"
+#~ msgstr "Iconifica"
+
+#~ msgid "Close"
+#~ msgstr "Tanca"
+
+#~ msgid "Icon size"
+#~ msgstr "Mida de la icona"
+
+#~ msgid "Dock the toolbar"
+#~ msgstr "Adjunta la barra d'eines"
+
+#~ msgid "Un dock the toolbar"
+#~ msgstr "Separa la barra d'eines"
+
+#~ msgid "GConf key"
+#~ msgstr "Clau GConf"
+
+#~ msgid "The gconf key for storing the recent entries."
+#~ msgstr "La clau gconf per emmagatzemar les entrades recents."
+
+#~ msgid "Path"
+#~ msgstr "Camí"
+
+#~ msgid "The path to put the menu items."
+#~ msgstr "El camí on posar els elements de menú."
+
+#~ msgid "Limit"
+#~ msgstr "Límit"
+
+#~ msgid "The maximum number of items to be allowed in the list."
+#~ msgstr "El nombre máxim d'elements permès en la llista."
+
+#~ msgid "List type"
+#~ msgstr "Tipus de llista"
+
+#~ msgid "The type with which the items will be numbered."
+#~ msgstr "El tipus amb el qual es numeraran els elements."
+
+#~ msgid "Open %s"
+#~ msgstr "Obre %s"
+
+#~ msgid "Factory for the Gnome Symbol Browser control."
+#~ msgstr "Factoria per al control del navegador de símbols del Gnome"
+
+#~ msgid "Gnome Symbol Browser Control"
+#~ msgstr "Control del navegador de símbols del Gnome"
+
+#~ msgid "Gnome Symbol Browser Control Factory"
+#~ msgstr "Factoria de control del navegador de símbols del Gnome"
+
+#~ msgid "Gnome Symbol Browser."
+#~ msgstr "Navegador de símbols del Gnome."
+
+#~ msgid "Goto Symbol"
+#~ msgstr "Vés al símbol"
+
+#~ msgid "Goto the displayed symbol"
+#~ msgstr "Vés a l'element mostrat"
+
+#~ msgid "Update Symbols"
+#~ msgstr "Actualitza símbols"
+
+#~ msgid "Update the symbol tree"
+#~ msgstr "Actualitza l'arbre de símbols"
+
+#~ msgid "_Goto to symbol"
+#~ msgstr "Vés a sím_bol"
+
+#~ msgid "_View"
+#~ msgstr "_Visualitza"
+
+#~ msgid "Unknown"
+#~ msgstr "Desconegut"
+
+#~ msgid "Classes"
+#~ msgstr "Classes"
+
+#~ msgid "Enums"
+#~ msgstr "Enumeracions"
+
+#~ msgid "Enumerators"
+#~ msgstr "Enumeradors"
+
+#~ msgid "Fields"
+#~ msgstr "Camps"
+
+#~ msgid "Functions"
+#~ msgstr "Funcions"
+
+#~ msgid "Interfaces"
+#~ msgstr "Interfícies"
+
+#~ msgid "Members"
+#~ msgstr "Membres"
+
+#~ msgid "Methods"
+#~ msgstr "Mètodes"
+
+#~ msgid "Namespaces"
+#~ msgstr "Espais de noms"
+
+#~ msgid "Packages"
+#~ msgstr "Paquets"
+
+#~ msgid "Prototypes"
+#~ msgstr "Prototipus"
+
+#~ msgid "Structs"
+#~ msgstr "Estructures"
+
+#~ msgid "Typedefs"
+#~ msgstr "Definicions de tipus"
+
+#~ msgid "Unions"
+#~ msgstr "Unions"
+
+#~ msgid "Variables"
+#~ msgstr "Variables"
+
+#~ msgid "ExternVars"
+#~ msgstr "Variables externes"
+
+#~ msgid "Macros"
+#~ msgstr "Macros"
+
+#~ msgid "MacrosWithArgs"
+#~ msgstr "Macros amb arguments"
+
+#~ msgid "Tags"
+#~ msgstr "Etiquetes"
+
+#~ msgid "Undefined"
+#~ msgstr "No definit"
+
+#~ msgid "<No Symbol>"
+#~ msgstr "<Cap símbol>"
+
+#~ msgid "Exit"
+#~ msgstr "Surt"
+
+#~ msgid "Open Project"
+#~ msgstr "Obre projecte"
+
+#~ msgid "Save Project"
+#~ msgstr "Desa projecte"
+
+#~ msgid "Set Current File"
+#~ msgstr "Defineix el fitxer actual"
+
+#~ msgid "Update"
+#~ msgstr "Actualitza"
+
+#~ msgid "Update the whole tree"
+#~ msgstr "Actualitza l'arbre complet"
+
+#~ msgid "_Exit"
+#~ msgstr "_Surt"
+
+#~ msgid "_File"
+#~ msgstr "_Fitxer"
+
+#~ msgid "_Open Project"
+#~ msgstr "_Obre projecte"
+
+#~ msgid "_Save Project"
+#~ msgstr "De_sa projecte"
+
+#~ msgid "_Set Current File"
+#~ msgstr "Definei_x el fitxer actual"
+
+#~ msgid "Open file..."
+#~ msgstr "Obre un fitxer..."
+
+#~ msgid "Set current file..."
+#~ msgstr "Defineix el fitxer actual..."
+
+#~ msgid "Save file..."
+#~ msgstr "Desa el fitxer..."
+
+#~ msgid "Can't initialize bonobo!"
+#~ msgstr "No es pot inicialitzar el bonobo"
