@@ -1,3 +1,18 @@
+Changes in 2.27.1:
+
+Bugs fixed:
+#579057 – Grip layout bug where negative rectangles are possible
+#578967 – gdl_dock_item_grip_remove must be implemented
+#471317 – invisible buttons in HCI theme
+#560820 – Remove GdlComboButton
+#577938 – gdl_dock_placeholder_new's name param should be const gchar* not gchar*
+#577107 – Layout bug in the grip widget headers
+#577001 – Patch: Added optional grip handle hatching
+#577469 – Remove deprecated GTK+ symbols
+
+API changes:
+- GdlComboButton API has been removed. Use GtkMenuToolButton instead
+
 Changes in 2.26.0:
 
 * Fix distcheck
