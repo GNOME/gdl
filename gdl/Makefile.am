@@ -100,7 +100,7 @@ libgdltypebuiltins.c: $(libgdl_headers)
 			--vtail "  if (!type)\n" \
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
-		$(libgdl_headers) > xgen-gtbec \
+		$^ > xgen-gtbec \
 	&& cp xgen-gtbec $(@F) \
 	&& rm -f xgen-gtbec
 
@@ -115,7 +115,7 @@ libgdltypebuiltins.h: $(libgdl_headers)
 			--fprod "\n/* --- @filename@ --- */" \
 			--eprod "#define GDL_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 			--eprod "GType @enum_name@_get_type (void);\n" \
-		$(libgdl_headers) > xgen-gth \
+		$^ > xgen-gth \
 	&& cp xgen-gth $(@F) \
 	&& rm -f xgen-gth
 
