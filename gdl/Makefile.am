@@ -64,7 +64,8 @@ libgdl_1_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS)
 
-libgdl_1_la_LDFLAGS = $(EXTRA_LDFLAGS)
+libgdl_1_la_LDFLAGS = $(EXTRA_LDFLAGS) \
+		      -version-info $(GDL_CURRENT):$(GDL_REVISION):$(GDL_AGE)
 
 noinst_PROGRAMS=test-dock
 
