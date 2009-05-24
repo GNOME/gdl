@@ -39,14 +39,6 @@ typedef struct _GdlSwitcher        GdlSwitcher;
 typedef struct _GdlSwitcherPrivate GdlSwitcherPrivate;
 typedef struct _GdlSwitcherClass   GdlSwitcherClass;
 
-typedef enum {
-    GDL_SWITCHER_STYLE_TEXT,
-    GDL_SWITCHER_STYLE_ICON,
-    GDL_SWITCHER_STYLE_BOTH,
-    GDL_SWITCHER_STYLE_TOOLBAR,
-    GDL_SWITCHER_STYLE_TABS
-} GdlSwitcherStyle;
-
 struct _GdlSwitcher {
     GtkNotebook parent;
 

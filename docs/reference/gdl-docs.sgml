@@ -16,13 +16,7 @@
     <xi:include href="xml/gdl-dock-item.xml" />
     <xi:include href="xml/gdl-dock.xml" />
     <xi:include href="xml/gdl-dock-object.xml" />
-    <xi:include href="xml/gdl-dock-tablabel.xml" />
-    <xi:include href="xml/gdl-dock-notebook.xml" />
-    <xi:include href="xml/gdl-dock-placeholder.xml" />
-    <xi:include href="xml/gdl-combo-button.xml" />
-    <xi:include href="xml/gdl-dock-paned.xml" />
     <xi:include href="xml/gdl-dock-bar.xml" />
-    <xi:include href="xml/gdl-switcher.xml" />
     <xi:include href="xml/gdl-tools.xml" />
   </chapter>
 </book>

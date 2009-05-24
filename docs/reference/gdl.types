@@ -4,10 +4,7 @@ gdl_dock_item_get_type
 gdl_dock_get_type
 gdl_dock_object_get_type
 gdl_dock_param_get_type
-gdl_dock_tablabel_get_type
-gdl_dock_notebook_get_type
 gdl_dock_placeholder_get_type
-gdl_dock_paned_get_type
 gdl_dock_bar_get_type
 gdl_dock_param_flags_get_type
 gdl_dock_object_flags_get_type
@@ -16,4 +13,3 @@ gdl_dock_item_behavior_get_type
 gdl_dock_item_flags_get_type
 gdl_dock_bar_style_get_type
 gdl_switcher_style_get_type
-gdl_switcher_get_type

@@ -29,10 +29,6 @@
 #include <gdl/gdl-dock.h>
 #include <gdl/gdl-dock-item.h>
 #include <gdl/gdl-dock-layout.h>
-#include <gdl/gdl-dock-paned.h>
-#include <gdl/gdl-dock-notebook.h>
-#include <gdl/gdl-dock-tablabel.h>
 #include <gdl/gdl-dock-bar.h>
-#include <gdl/gdl-switcher.h>
 
 #endif

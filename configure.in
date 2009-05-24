@@ -14,7 +14,7 @@ GDL_MINOR_VERSION=27
 GDL_MICRO_VERSION=1
 
 dnl increment if the interface has additions, changes, removals.
-GDL_CURRENT=1
+GDL_CURRENT=2
 
 dnl increment any time the source changes; set to
 dnl  0 if you increment CURRENT

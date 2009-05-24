@@ -170,38 +170,6 @@ GDL_DOCK_OBJECT_GET_CLASS
 </SECTION>
 
 <SECTION>
-<FILE>gdl-dock-tablabel</FILE>
-<TITLE>GdlDockTablabel</TITLE>
-GdlDockTablabel
-gdl_dock_tablabel_new
-gdl_dock_tablabel_activate
-gdl_dock_tablabel_deactivate
-<SUBSECTION Standard>
-GDL_DOCK_TABLABEL
-GDL_IS_DOCK_TABLABEL
-GDL_TYPE_DOCK_TABLABEL
-gdl_dock_tablabel_get_type
-GDL_DOCK_TABLABEL_CLASS
-GDL_IS_DOCK_TABLABEL_CLASS
-GDL_DOCK_TABLABEL_GET_CLASS
-</SECTION>
-
-<SECTION>
-<FILE>gdl-dock-notebook</FILE>
-<TITLE>GdlDockNotebook</TITLE>
-GdlDockNotebook
-gdl_dock_notebook_new
-<SUBSECTION Standard>
-GDL_DOCK_NOTEBOOK
-GDL_IS_DOCK_NOTEBOOK
-GDL_TYPE_DOCK_NOTEBOOK
-gdl_dock_notebook_get_type
-GDL_DOCK_NOTEBOOK_CLASS
-GDL_IS_DOCK_NOTEBOOK_CLASS
-GDL_DOCK_NOTEBOOK_GET_CLASS
-</SECTION>
-
-<SECTION>
 <FILE>gdl-dock-placeholder</FILE>
 GdlDockPlaceholderPrivate
 <TITLE>GdlDockPlaceholder</TITLE>
@@ -216,21 +184,6 @@ gdl_dock_placeholder_get_type
 GDL_DOCK_PLACEHOLDER_CLASS
 GDL_IS_DOCK_PLACEHOLDER_CLASS
 GDL_DOCK_PLACEHOLDER_GET_CLASS
-</SECTION>
-
-<SECTION>
-<FILE>gdl-dock-paned</FILE>
-<TITLE>GdlDockPaned</TITLE>
-GdlDockPaned
-gdl_dock_paned_new
-<SUBSECTION Standard>
-GDL_DOCK_PANED
-GDL_IS_DOCK_PANED
-GDL_TYPE_DOCK_PANED
-gdl_dock_paned_get_type
-GDL_DOCK_PANED_CLASS
-GDL_IS_DOCK_PANED_CLASS
-GDL_DOCK_PANED_GET_CLASS
 </SECTION>
 
 <SECTION>
@@ -252,23 +205,6 @@ gdl_dock_bar_get_type
 GDL_DOCK_BAR_CLASS
 GDL_IS_DOCK_BAR_CLASS
 GDL_DOCK_BAR_GET_CLASS
-</SECTION>
-
-<SECTION>
-<FILE>gdl-switcher</FILE>
-GdlSwitcherPrivate
-GdlSwitcherStyle
-<TITLE>GdlSwitcher</TITLE>
-GdlSwitcher
-gdl_switcher_new
-gdl_switcher_insert_page
-<SUBSECTION Standard>
-GDL_SWITCHER
-GDL_IS_SWITCHER
-GDL_TYPE_SWITCHER
-gdl_switcher_get_type
-GDL_SWITCHER_CLASS
-GDL_IS_SWITCHER_CLASS
 </SECTION>
 
 <SECTION>

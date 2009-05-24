@@ -23,18 +23,13 @@ CLEANFILES =					\
 libgdl_headers = \
 	gdl.h \
 	gdl-tools.h \
+	gdl-dock.h \
 	gdl-dock-object.h \
 	gdl-dock-master.h \
-	gdl-dock.h \
 	gdl-dock-item.h \
 	gdl-dock-item-grip.h \
-	gdl-dock-notebook.h \
-	gdl-dock-paned.h \
-	gdl-dock-tablabel.h \
 	gdl-dock-layout.h \
-	gdl-dock-placeholder.h \
-	gdl-dock-bar.h \
-	gdl-switcher.h
+	gdl-dock-bar.h
 	
 libgdl_1_la_SOURCES = \
 	$(libgdl_headers) \
@@ -48,13 +43,18 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-item-button-image.c \
 	gdl-dock-item-grip.h \
 	gdl-dock-item-grip.c \
+	gdl-dock-notebook.h \
 	gdl-dock-notebook.c \
 	gdl-dock-paned.c \
+	gdl-dock-paned.h \
 	gdl-dock-tablabel.c \
+	gdl-dock-tablabel.h \
 	gdl-dock-layout.c \
 	gdl-dock-placeholder.c \
+	gdl-dock-placeholder.h \
 	gdl-dock-bar.c \
 	gdl-switcher.c \
+	gdl-switcher.h \
 	libgdltypebuiltins.h \
 	libgdltypebuiltins.c \
 	libgdlmarshal.h \
