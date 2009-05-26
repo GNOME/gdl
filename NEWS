@@ -1,3 +1,9 @@
+Changes in 2.27.2:
+
+- Fix out of source tree builds
+- Hide private API
+- Fix so name generation
+
 Changes in 2.27.1:
 
 Bugs fixed:
