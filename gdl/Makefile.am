@@ -1,6 +1,6 @@
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"Gdl\"				\
-	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
+	-DGDL_UIDIR=\""$(uidir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) 	\
@@ -29,7 +29,8 @@ libgdl_headers = \
 	gdl-dock-item.h \
 	gdl-dock-item-grip.h \
 	gdl-dock-layout.h \
-	gdl-dock-bar.h
+	gdl-dock-bar.h \
+	gdl-dock-placeholder.h
 	
 libgdl_1_la_SOURCES = \
 	$(libgdl_headers) \
@@ -51,7 +52,6 @@ libgdl_1_la_SOURCES = \
 	gdl-dock-tablabel.h \
 	gdl-dock-layout.c \
 	gdl-dock-placeholder.c \
-	gdl-dock-placeholder.h \
 	gdl-dock-bar.c \
 	gdl-switcher.c \
 	gdl-switcher.h \
@@ -77,8 +77,8 @@ libgdlinclude_HEADERS = \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
 
-gladedir = $(datadir)/gdl/glade
-glade_DATA = layout.glade
+uidir = $(datadir)/gdl/ui
+ui_DATA = layout.ui
 
 EXTRA_DIST = libgdlmarshal.list \
 	tree-expand.xpm \
