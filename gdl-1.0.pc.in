@@ -8,6 +8,6 @@ idldir=@datadir@/idl/libgdl-1.0
 Name: gdl
 Description: Gnome DevTool Libraries
 Version: @VERSION@
-Requires: gtk+-2.0 libxml-2.0 libglade-2.0
+Requires: gtk+-2.0 libxml-2.0
 Libs: -L${libdir} -lgdl-1
 Cflags: -I${includedir}

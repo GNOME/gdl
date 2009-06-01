@@ -67,7 +67,6 @@ expand_content_files=
 # e.g. INCLUDES=-I$(top_srcdir) -I$(top_builddir) $(GTK_DEBUG_FLAGS)
 # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
 INCLUDES=\
-	-DGDL_GLADEDIR=\""$(gladedir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) 	\
