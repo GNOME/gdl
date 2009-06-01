@@ -10,4 +10,4 @@ gdl/gdl-dock-tablabel.c
 gdl/gdl-dock-bar.c
 gdl/gdl-dock.c
 gdl/gdl-switcher.c
-gdl/layout.glade
+[type: gettext/glade]gdl/layout.ui
