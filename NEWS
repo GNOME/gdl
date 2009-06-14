@@ -1,3 +1,14 @@
+Changes in 2.27.3:
+
+- Removed libglade dependency
+
+Bugs fixed:
+#584418 - gdl_dock_paned_dock does not show the requestor
+#584303 – Potfiles.in broken
+#580860 – Remove deprecated libgnome dependency
+#582511 – Use GtkBuilder instead of libglade
+#583963 – does not build with gdl 2.27.2
+    
 Changes in 2.27.2:
 
 - Fix out of source tree builds
