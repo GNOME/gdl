@@ -1,3 +1,8 @@
+Changes in 2.27.92
+
+* GDL is now LGPL 2.1+
+* Add new GdlSwitcherStyle name GDL_SWITCHER_STYLE_NONE (bgo #589317)
+
 Changes in 2.27.3:
 
 - Removed libglade dependency
