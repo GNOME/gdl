@@ -285,6 +285,7 @@ msgstr "Obyektdən (%p) ayırma siqnalı alındı, ancaq bu bizim %p qovşağı 
 
 #: gdl/gdl-dock-placeholder.c:440
 #, c-format
+#, fuzzy
 msgid "Something weird happened while getting the child placement for %p from parent %p"
 msgstr "%2$p valideynindən %2$p üçün törəmə yerləşdirilməsi alınarkən dəlicə bir şey baş verdi"
 
