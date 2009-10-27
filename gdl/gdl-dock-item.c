@@ -157,6 +157,7 @@ enum {
     DOCK_DRAG_BEGIN,
     DOCK_DRAG_MOTION,
     DOCK_DRAG_END,
+    SELECTED,
     LAST_SIGNAL
 };
 
@@ -363,6 +364,22 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                       G_TYPE_NONE, 
                       1,
                       G_TYPE_BOOLEAN);
+
+    /**
+     * GdlDockItem::selected:
+     *
+     * Signals that this dock has been selected from a switcher.
+     */
+    gdl_dock_item_signals [SELECTED] =
+        g_signal_new ("selected",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_FIRST,
+                      0,
+                      NULL,
+                      NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE,
+                      0);
 
     klass->has_grip = TRUE;
     klass->dock_drag_begin = NULL;
@@ -1836,6 +1853,19 @@ gdl_dock_item_show_grip (GdlDockItem *item)
         item->_priv->grip_shown = TRUE;
         gdl_dock_item_showhide_grip (item);
     };
+}
+
+/**
+ * gdl_dock_item_notify_selected:
+ * @item: the dock item to emit a selected signal on.
+ *
+ * This function emits the selected signal. It is to be used by #GdlSwitcher 
+ * to let clients know that this item has been switched to.
+ **/
+void
+gdl_dock_item_notify_selected (GdlDockItem *item)
+{
+    g_signal_emit (item, gdl_dock_item_signals [SELECTED], 0);
 }
 
 /* convenient function (and to preserve source compat) */
