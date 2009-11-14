@@ -39,7 +39,7 @@ gdl_dock_item_button_image_expose (GtkWidget      *widget,
     GtkStyle *style;
     GdkColor *color;
     
-    g_return_if_fail (widget != NULL);
+    g_return_val_if_fail (widget != NULL, 0);
     button_image = GDL_DOCK_ITEM_BUTTON_IMAGE (widget);
     
     cairo_t *cr = gdk_cairo_create (event->window);
