@@ -1,3 +1,9 @@
+Changes in 2.29.2:
+
+* Add a "selected" signal to GdlDockItem
+* Don't make dock windows transistent, there is now need to do so (bgo#570263)
+* Bug 583984 -  Build warning about no return value
+
 Changes in 2.28.0
 
 * Translation updates
