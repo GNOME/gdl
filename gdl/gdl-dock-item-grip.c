@@ -346,9 +346,14 @@ gdl_dock_item_grip_realize (GtkWidget *widget)
                                              &attributes, (GDK_WA_X | GDK_WA_Y));
 
         gdk_window_set_user_data (grip->title_window, grip);
-        widget->window = grip->title_window;
+
+        /* Unref the ref from parent realize for NO_WINDOW */
+        g_object_unref (widget->window);
+
+        /* Need to ref widget->window, because parent unrealize unrefs it */
+        widget->window = g_object_ref (grip->title_window);
         GTK_WIDGET_UNSET_FLAGS(widget, GTK_NO_WINDOW);
-        
+
         /* Unset the background so as to make the colour match the parent window */
         gtk_widget_modify_bg(widget, GTK_STATE_NORMAL, NULL);
  
