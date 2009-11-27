@@ -1,7 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
  *
- * gdl-dock-placeholder.c - Placeholders for docking items
- *
  * This file is part of the GNOME Devtools Libraries.
  *
  * Copyright (C) 1999-2000 Dave Camp <dave@helixcode.com>
