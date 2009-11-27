@@ -1,3 +1,8 @@
+Changes in 2.28.2
+
+Bugs fixed:
+#597417 -  GDL appears broken with GTK 2.18 client side window support
+
 Changes in 2.28.1
 
 * Translation updates
