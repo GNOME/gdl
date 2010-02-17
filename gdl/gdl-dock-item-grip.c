@@ -38,6 +38,7 @@
 #include "gdl-dock-item.h"
 #include "gdl-dock-item-grip.h"
 #include "gdl-dock-item-button-image.h"
+#include "gdl-switcher.h"
 #include "gdl-tools.h"
 
 #define ALIGN_BORDER 5
@@ -258,9 +259,34 @@ static void
 gdl_dock_item_grip_iconify_clicked (GtkWidget       *widget,
                                     GdlDockItemGrip *grip)
 {
+    GtkWidget *parent;
+    
     g_return_if_fail (grip->item != NULL);
 
-    gdl_dock_item_iconify_item (grip->item);
+    parent = gtk_widget_get_parent (GTK_WIDGET (grip->item));
+    g_message ("item parent = %s\n", G_OBJECT_TYPE_NAME (parent));
+    if (GDL_IS_SWITCHER (parent))
+    {
+        /* Note: We can not use gtk_container_foreach (parent) here because
+         * during iconificatoin, the internal children changes in parent.
+         * Instead we keep a list of items to iconify and iconify them
+         * one by one.
+         */
+        GList *node;
+        GList *items =
+            gtk_container_get_children (GTK_CONTAINER (parent));
+        for (node = items; node != NULL; node = node->next)
+        {
+            GdlDockItem *item = GDL_DOCK_ITEM (node->data);
+            if (!GDL_DOCK_ITEM_CANT_ICONIFY (item))
+                gdl_dock_item_iconify_item (item);
+        }
+        g_list_free (items);
+    }
+    else
+    {
+        gdl_dock_item_iconify_item (grip->item);
+    }
     
     /* Workaround to unhighlight the iconify button. */
     GTK_BUTTON (grip->_priv->iconify_button)->in_button = FALSE;
