@@ -264,7 +264,6 @@ gdl_dock_item_grip_iconify_clicked (GtkWidget       *widget,
     g_return_if_fail (grip->item != NULL);
 
     parent = gtk_widget_get_parent (GTK_WIDGET (grip->item));
-    g_message ("item parent = %s\n", G_OBJECT_TYPE_NAME (parent));
     if (GDL_IS_SWITCHER (parent))
     {
         /* Note: We can not use gtk_container_foreach (parent) here because
