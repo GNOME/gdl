@@ -6,8 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bn\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&component=general\n"
-"POT-Creation-Date: 2009-12-17 20:15+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&component=general\n"
+"POT-Creation-Date: 2010-01-25 20:01+0000\n"
 "PO-Revision-Date: 2010-01-25 17:53+0600\n"
 "Last-Translator: Loba Yeasmeen <loba@ankur.org.bd>\n"
 "Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
@@ -23,8 +24,7 @@ msgstr "এই ডকটি আইকন দ্বারা প্রকাশ �
 msgid "Close this dock"
 msgstr "ডকটি বন্ধ করুন"
 
-#: ../gdl/gdl-dock-item-grip.c:637
-#: ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:637 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "ডক আইটেম নিয়ন্ত্রণ করা হচ্ছে"
 
@@ -46,24 +46,32 @@ msgstr "পুনরায় আকৃতি প্রদানযোগ্য"
 
 #: ../gdl/gdl-dock-item.c:271
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr "যদি নির্ধারণ করা হয়, ডক আইটেম GtkPanel উইজেটের মধ্য ডক করার সময় পুনরায় আকৃতি প্রদান করা হবে"
+msgstr ""
+"যদি নির্ধারণ করা হয়, ডক আইটেম GtkPanel উইজেটের মধ্য ডক করার সময় পুনরায় আকৃতি "
+"প্রদান করা হবে"
 
 #: ../gdl/gdl-dock-item.c:278
 msgid "Item behavior"
 msgstr "আইটেমের আচরন"
 
 #: ../gdl/gdl-dock-item.c:279
-msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
-msgstr "ডক আইটেমের জন্য সাধারণ আচরন (যেমন, এটি ভাসমান হতে পারে কিনা, এটি লক করা, ইত্যাদি।)"
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"ডক আইটেমের জন্য সাধারণ আচরন (যেমন, এটি ভাসমান হতে পারে কিনা, এটি লক করা, "
+"ইত্যাদি।)"
 
-#: ../gdl/gdl-dock-item.c:287
-#: ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
 msgstr "লককৃত"
 
 #: ../gdl/gdl-dock-item.c:288
-msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr "যদি নির্ধারণ করা হয়, ডক আইটেমটি চারপাশে টেনে আনা যায় না এবং এটি কোন গ্রিপ প্রদর্শন করে না"
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"যদি নির্ধারণ করা হয়, ডক আইটেমটি চারপাশে টেনে আনা যায় না এবং এটি কোন গ্রিপ "
+"প্রদর্শন করে না"
 
 #: ../gdl/gdl-dock-item.c:296
 msgid "Preferred width"
@@ -82,16 +90,26 @@ msgid "Preferred height for the dock item"
 msgstr "ডক আইটেমের পছন্দসই উচ্চতা"
 
 #: ../gdl/gdl-dock-item.c:592
-msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
-msgstr "আপনি একটি %2s এর মধ্যে ডক বস্তু (%2s ধরণের %p) যোগ করতে পারেন না। একটি GdlDock অথবা অন্য যেকোন যৌগিক ডক বস্তু ব্যবহার করুন।"
+#| msgid ""
+#| "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+#| "some other compound dock object."
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"আপনি একটি %3$s এর মধ্যে ডক বস্তু (%2$s ধরণের %1$p) যোগ করতে পারেন না। একটি "
+"GdlDock অথবা অন্য যেকোন যৌগিক ডক বস্তু ব্যবহার করুন।"
 
 #: ../gdl/gdl-dock-item.c:599
 #, c-format
-msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
-msgstr "%2s এ %1s ধরণযুক্ত উইজেট যোগ করার চেষ্টা করা হয়, কিন্তু এটি একই সময়ে শুধুমাত্র একটি উইজেট ধারণ করতে পারে; এটি ইতোমধ্যেই %s ধরণের উইজেট ধারণ করে"
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"%2s এ %1s ধরণযুক্ত উইজেট যোগ করার চেষ্টা করা হয়, কিন্তু এটি একই সময়ে শুধুমাত্র একটি "
+"উইজেট ধারণ করতে পারে; এটি ইতোমধ্যেই %s ধরণের উইজেট ধারণ করে"
 
-#: ../gdl/gdl-dock-item.c:1285
-#: ../gdl/gdl-dock-item.c:1335
+#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "%2s ধরণের একটি ডক বস্তুতে %1s ডককরণের নিয়ম অসমর্থিত"
@@ -116,8 +134,7 @@ msgstr "লক"
 msgid "Attempt to bind an unbound item %p"
 msgstr "একটি আনবাউন্ড আইটেম বাইন্ড করার জন্য চেষ্টা করা হবে %p "
 
-#: ../gdl/gdl-dock-layout.c:122
-#: ../gdl/gdl-dock-bar.c:107
+#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "মাস্টার"
 
@@ -146,18 +163,20 @@ msgstr "দঁশ্যমান"
 msgid "Item"
 msgstr "আইটেম"
 
-#: ../gdl/gdl-dock-layout.c:712
-#: ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "নাম"
 
 #: ../gdl/gdl-dock-layout.c:770
 #, c-format
-msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
-msgstr "বহির্বিন্যাস লোড করার সময়: কিভাবে একটি ডক বস্তু তৈরি করা হয় তা জানা নেই যার ডাকনাম '%s'"
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"বহির্বিন্যাস লোড করার সময়: কিভাবে একটি ডক বস্তু তৈরি করা হয় তা জানা নেই যার "
+"ডাকনাম '%s'"
 
-#: ../gdl/gdl-dock-master.c:140
-#: ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "পূর্বনির্ধারিত শিরোনাম"
 
@@ -166,28 +185,38 @@ msgid "Default title for newly created floating docks"
 msgstr "নতুনভাবে তৈরি ভাসমান ডকের জন্য পূর্বনির্ধারিত শিরোনাম"
 
 #: ../gdl/gdl-dock-master.c:148
-msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr "যদি 1 মান নির্ধারণ করা হয়, মাস্টারে বাউন্ড সকল ডক আইটেম লক করা রয়েছে; যদি মান 0 হয়, সকল আনলক হয়ে যাবে; -1 মান আইটেমসমূহের মধ্যে অসামঞ্জস্যতা নির্দেশ করে থাকে"
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"যদি 1 মান নির্ধারণ করা হয়, মাস্টারে বাউন্ড সকল ডক আইটেম লক করা রয়েছে; যদি মান 0 "
+"হয়, সকল আনলক হয়ে যাবে; -1 মান আইটেমসমূহের মধ্যে অসামঞ্জস্যতা নির্দেশ করে থাকে"
 
-#: ../gdl/gdl-dock-master.c:156
-#: ../gdl/gdl-switcher.c:689
+#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
 msgid "Switcher Style"
 msgstr "পরিবর্তনকারী শৈলী"
 
-#: ../gdl/gdl-dock-master.c:157
-#: ../gdl/gdl-switcher.c:690
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
 msgid "Switcher buttons style"
 msgstr "পরিবর্তনকারী বোতাম শৈলী"
 
 #: ../gdl/gdl-dock-master.c:763
 #, c-format
-msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
-msgstr "মাস্টার %p: হ্যাশে %p[%s] বস্তু যোগ করতে ব্যর্থ।  ইতোমধ্যেই (%p) নামযুক্ত একটি আইটেম রয়েছে।"
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"মাস্টার %p: হ্যাশে %p[%s] বস্তু যোগ করতে ব্যর্থ।  ইতোমধ্যেই (%p) নামযুক্ত একটি আইটেম "
+"রয়েছে।"
 
 #: ../gdl/gdl-dock-master.c:935
 #, c-format
-msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
-msgstr "নতুন ডক নিয়ন্ত্রক %p হলো স্বয়ংক্রিয়। শুধুমাত্র ম্যানুয়েল ডক বস্তুসমীহ নিয়ন্ত্রক হিসেবে নাককরণ করা হবে।"
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"নতুন ডক নিয়ন্ত্রক %p হলো স্বয়ংক্রিয়। শুধুমাত্র ম্যানুয়েল ডক বস্তুসমীহ নিয়ন্ত্রক হিসেবে "
+"নাককরণ করা হবে।"
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -227,13 +256,21 @@ msgstr "ডক মাস্টারে এই ডক বস্তুটি আ�
 
 #: ../gdl/gdl-dock-object.c:444
 #, c-format
-msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
-msgstr "%p ডক বস্তুতে (বস্তুর ধরণ হলো %s) gdl_dock_object_dock কল করা হবে যা এই মেথড প্রয়োগ করেনি"
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"%p ডক বস্তুতে (বস্তুর ধরণ হলো %s) gdl_dock_object_dock কল করা হবে যা এই মেথড "
+"প্রয়োগ করেনি"
 
 #: ../gdl/gdl-dock-object.c:576
 #, c-format
-msgid "Dock operation requested in a non-bound object %p. The application might crash"
-msgstr "আবদ্ধ নয় এমন %p বস্তুতে ডক অপারেশনের জন্য অনুরোধ করা হয়েছে। অ্যাপ্লিকেশনটি ক্র্যাশ করতে পারে"
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"আবদ্ধ নয় এমন %p বস্তুতে ডক অপারেশনের জন্য অনুরোধ করা হয়েছে। অ্যাপ্লিকেশনটি ক্র্যাশ "
+"করতে পারে"
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
@@ -242,8 +279,10 @@ msgstr "%p থেকে %p তে ডক করতে পারে না কা
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
-msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr "%p তে ইতোমধ্যেই আবদ্ধ ডক বস্তু %p কে বাইন্ড করার উদ্যোগ নেয়া হয় (বর্তমান মাস্টার: %p)"
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"%p তে ইতোমধ্যেই আবদ্ধ ডক বস্তু %p কে বাইন্ড করার উদ্যোগ নেয়া হয় (বর্তমান মাস্টার: %p)"
 
 #: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
@@ -258,7 +297,9 @@ msgid "Sticky"
 msgstr "আঁঠালো"
 
 #: ../gdl/gdl-dock-placeholder.c:145
-msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
 msgstr "সডতসাডতসাডতাসডত"
 
 #: ../gdl/gdl-dock-placeholder.c:152
@@ -274,11 +315,12 @@ msgid "Next placement"
 msgstr "নতুন প্লেসমেন্ট"
 
 #: ../gdl/gdl-dock-placeholder.c:161
-msgid "The position an item will be docked to our host if a request is made to dock to us"
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
 msgstr "ডক করার জন্য কোন অনুরোধ করা হলে, হোস্টে একটি আইটেম যে অবস্থানে ডক করা হবে"
 
-#: ../gdl/gdl-dock-placeholder.c:170
-#: ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "প্রস্থ"
 
@@ -286,8 +328,7 @@ msgstr "প্রস্থ"
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "প্লেসহোল্ডারের সাথে সংযুক্ত থাকার সময় উইজেটের প্রস্থ"
 
-#: ../gdl/gdl-dock-placeholder.c:178
-#: ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "উচ্চতা"
 
@@ -330,7 +371,9 @@ msgstr "একটি বস্তু (%p) থেকে একটি মুক্
 
 #: ../gdl/gdl-dock-placeholder.c:644
 #, c-format
-msgid "Something weird happened while getting the child placement for %p from parent %p"
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
 msgstr "পেরেন্ট %2p থেকে চাইল্ড স্থাপনা %1p এর জন্য অবাস্তব কিছু ঘটতে পারে"
 
 #: ../gdl/gdl-dock-tablabel.c:129
@@ -409,4 +452,3 @@ msgstr "লোড (_L)"
 #: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
 msgstr "ডক আইটেম লক করা হবে (_L)"
-
