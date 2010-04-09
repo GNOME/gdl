@@ -461,6 +461,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     GdlDockMaster  *master;
     GdlDockRequest  my_request, *request;
     GdkWindow      *window;
+    GdkWindow      *widget_window, *dock_window;
     gint            win_x, win_y;
     gint            x, y;
     GdlDock        *dock = NULL;
@@ -485,15 +486,17 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
         if (GTK_IS_WIDGET (widget)) {
             while (widget && (!GDL_IS_DOCK (widget) || 
 	           GDL_DOCK_OBJECT_GET_MASTER (widget) != master))
-                widget = widget->parent;
+                widget = gtk_widget_get_parent (widget);
             if (widget) {
                 gint win_w, win_h;
                 
+                widget_window = gtk_widget_get_window (widget);
+
                 /* verify that the pointer is still in that dock
                    (the user could have moved it) */
-                gdk_window_get_geometry (widget->window,
+                gdk_window_get_geometry (widget_window,
                                          NULL, NULL, &win_w, &win_h, NULL);
-                gdk_window_get_origin (widget->window, &win_x, &win_y);
+                gdk_window_get_origin (widget_window, &win_x, &win_y);
                 if (root_x >= win_x && root_x < win_x + win_w &&
                     root_y >= win_y && root_y < win_y + win_h)
                     dock = GDL_DOCK (widget);
@@ -501,10 +504,11 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
         }
     }
 
+    dock_window = gtk_widget_get_window (GTK_WIDGET (dock));
     if (dock) {
         /* translate root coordinates into dock object coordinates
            (i.e. widget coordinates) */
-        gdk_window_get_origin (GTK_WIDGET (dock)->window, &win_x, &win_y);
+        gdk_window_get_origin (dock_window, &win_x, &win_y);
         x = root_x - win_x;
         y = root_y - win_y;
         may_dock = gdl_dock_object_dock_request (GDL_DOCK_OBJECT (dock),
@@ -518,7 +522,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
             dock = GDL_DOCK (l->data);
             /* translate root coordinates into dock object coordinates
                (i.e. widget coordinates) */
-            gdk_window_get_origin (GTK_WIDGET (dock)->window, &win_x, &win_y);
+            gdk_window_get_origin (dock_window, &win_x, &win_y);
             x = root_x - win_x;
             y = root_y - win_y;
             may_dock = gdl_dock_object_dock_request (GDL_DOCK_OBJECT (dock),

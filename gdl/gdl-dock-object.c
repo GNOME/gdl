@@ -360,8 +360,8 @@ gdl_dock_object_real_detach (GdlDockObject *object,
     GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_ATTACHED);
     parent = gdl_dock_object_get_parent_object (object);
     widget = GTK_WIDGET (object);
-    if (widget->parent)
-        gtk_container_remove (GTK_CONTAINER (widget->parent), widget);
+    if (gtk_widget_get_parent (widget))
+        gtk_container_remove (GTK_CONTAINER (gtk_widget_get_parent (GTK_WIDGET (parent))), widget);
     if (parent)
         gdl_dock_object_reduce (parent);
 }
@@ -495,9 +495,9 @@ gdl_dock_object_get_parent_object (GdlDockObject *object)
     
     g_return_val_if_fail (object != NULL, NULL);
 
-    parent = GTK_WIDGET (object)->parent;
+    parent = gtk_widget_get_parent (GTK_WIDGET (object));
     while (parent && !GDL_IS_DOCK_OBJECT (parent)) {
-        parent = parent->parent;
+        parent = gtk_widget_get_parent (parent);
     }
     
     return parent ? GDL_DOCK_OBJECT (parent) : NULL;

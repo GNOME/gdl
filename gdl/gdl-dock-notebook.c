@@ -272,7 +272,7 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
     notebook = GDL_DOCK_NOTEBOOK (data);
 
     /* deactivate old tablabel */
-    if (nb->cur_page) {
+    if (gtk_notebook_get_current_page (nb)) {
         tablabel = gtk_notebook_get_tab_label (
             nb, gtk_notebook_get_nth_page (
                 nb, gtk_notebook_get_current_page (nb)));

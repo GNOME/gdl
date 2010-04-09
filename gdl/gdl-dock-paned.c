@@ -304,8 +304,9 @@ gdl_dock_paned_add (GtkContainer *container,
                     GtkWidget    *widget)
 {
     GdlDockItem     *item;
-    GtkPaned        *paned;
     GdlDockPlacement pos = GDL_DOCK_NONE;
+    GtkPaned        *paned;
+    GtkWidget       *child1, *child2;
     
     g_return_if_fail (container != NULL && widget != NULL);
     g_return_if_fail (GDL_IS_DOCK_PANED (container));
@@ -313,13 +314,16 @@ gdl_dock_paned_add (GtkContainer *container,
 
     item = GDL_DOCK_ITEM (container);
     g_return_if_fail (item->child != NULL);
-    paned = GTK_PANED (item->child);
-    g_return_if_fail (!paned->child1 || !paned->child2);
 
-    if (!paned->child1)
+    paned = GTK_PANED (item->child);
+    child1 = gtk_paned_get_child1 (paned);
+    child2 = gtk_paned_get_child2 (paned);
+    g_return_if_fail (!child1 || !child2);
+
+    if (!child1)
         pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
             GDL_DOCK_LEFT : GDL_DOCK_TOP;
-    else if (!paned->child2)
+    else if (!child2)
         pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
             GDL_DOCK_RIGHT : GDL_DOCK_BOTTOM;
 
@@ -405,8 +409,8 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
     item = GDL_DOCK_ITEM (object);
     
     /* Get item's allocation. */
-    alloc = &(GTK_WIDGET (object)->allocation);
-    bw = GTK_CONTAINER (object)->border_width;
+    gtk_widget_get_allocation (GTK_WIDGET (object), alloc);
+    bw = gtk_container_get_border_width (GTK_CONTAINER (object));
 
     /* Get coordinates relative to our window. */
     rel_x = x - alloc->x;
@@ -533,6 +537,7 @@ gdl_dock_paned_dock (GdlDockObject    *object,
                      GValue           *other_data)
 {
     GtkPaned *paned;
+    GtkWidget *child1, *child2;
     gboolean  done = FALSE;
     gboolean  hresize = FALSE;
     gboolean  wresize = FALSE;
@@ -553,22 +558,25 @@ gdl_dock_paned_dock (GdlDockObject    *object,
             wresize = TRUE;
     }
 
+    child1 = gtk_paned_get_child1 (paned);
+    child2 = gtk_paned_get_child2 (paned);
+
     /* see if we can dock the item in our paned */
     switch (GDL_DOCK_ITEM (object)->orientation) {
         case GTK_ORIENTATION_HORIZONTAL:
-            if (!paned->child1 && position == GDL_DOCK_LEFT) {
+            if (!child1 && position == GDL_DOCK_LEFT) {
                 gtk_paned_pack1 (paned, GTK_WIDGET (requestor), FALSE, FALSE);
                 done = TRUE;
-            } else if (!paned->child2 && position == GDL_DOCK_RIGHT) {
+            } else if (!child2 && position == GDL_DOCK_RIGHT) {
                 gtk_paned_pack2 (paned, GTK_WIDGET (requestor), TRUE, FALSE);
                 done = TRUE;
             }
             break;
         case GTK_ORIENTATION_VERTICAL:
-            if (!paned->child1 && position == GDL_DOCK_TOP) {
+            if (!child1 && position == GDL_DOCK_TOP) {
                 gtk_paned_pack1 (paned, GTK_WIDGET (requestor), hresize, FALSE);
                 done = TRUE;
-            } else if (!paned->child2 && position == GDL_DOCK_BOTTOM) {
+            } else if (!child2 && position == GDL_DOCK_BOTTOM) {
                 gtk_paned_pack2 (paned, GTK_WIDGET (requestor), hresize, FALSE);
                 done = TRUE;
             }
@@ -609,8 +617,8 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
     
     if (old_paned) {
         new_paned = GTK_PANED (item->child);
-        child1 = old_paned->child1;
-        child2 = old_paned->child2;
+        child1 = gtk_paned_get_child1 (old_paned);
+        child2 = gtk_paned_get_child2 (old_paned);
     
         if (child1) {
             g_object_ref (child1);
@@ -640,10 +648,10 @@ gdl_dock_paned_child_placement (GdlDockObject    *object,
     
     if (item->child) {
         paned = GTK_PANED (item->child);
-        if (GTK_WIDGET (child) == paned->child1)
+        if (GTK_WIDGET (child) == gtk_paned_get_child1 (paned))
             pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
                 GDL_DOCK_LEFT : GDL_DOCK_TOP;
-        else if (GTK_WIDGET (child) == paned->child2)
+        else if (GTK_WIDGET (child) == gtk_paned_get_child2 (paned))
             pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
                 GDL_DOCK_RIGHT : GDL_DOCK_BOTTOM;
     }

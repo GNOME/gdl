@@ -118,7 +118,7 @@ static void
 gdl_dock_item_button_image_instance_init (
     GdlDockItemButtonImage *button_image)
 {
-    GTK_WIDGET_SET_FLAGS (button_image, GTK_NO_WINDOW);
+    gtk_widget_set_has_window (GTK_WIDGET (button_image), FALSE);
 }
 
 static void
