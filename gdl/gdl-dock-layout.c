@@ -899,13 +899,13 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
                                                  parent);
                 else if (gdl_dock_object_is_compound (parent)) {
                     gtk_container_add (GTK_CONTAINER (parent), GTK_WIDGET (object));
-                    if (GTK_WIDGET_VISIBLE (parent))
+                    if (gtk_widget_get_visible (GTK_WIDGET (parent)))
                         gtk_widget_show (GTK_WIDGET (object));
                 }
             }
             else {
                 GdlDockObject *controller = gdl_dock_master_get_controller (master);
-                if (controller != object && GTK_WIDGET_VISIBLE (controller))
+                if (controller != object && gtk_widget_get_visible (GTK_WIDGET (controller)))
                     gtk_widget_show (GTK_WIDGET (object));
             }
                 
