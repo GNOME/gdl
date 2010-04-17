@@ -1,6 +1,7 @@
 SUBDIRS = gdl docs po
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
+ACLOCAL_AMFLAGS = -I m4
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-introspection
 
 EXTRA_DIST = 			\
 	MAINTAINERS		\
@@ -8,7 +9,8 @@ EXTRA_DIST = 			\
 	gdl.spec.in		\
 	intltool-extract.in	\
 	intltool-merge.in	\
-	intltool-update.in
+	intltool-update.in	\
+	m4/introspection.m4
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gdl-1.0.pc 

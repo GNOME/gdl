@@ -1669,7 +1669,7 @@ gdl_dock_item_new_with_stock (const gchar         *name,
 /**
  * gdl_dock_item_dock_to:
  * @item: The dock item that will be relocated to the dock position.
- * @target: The dock item that will be used as the point of reference.
+ * @target: (allow-none): The dock item that will be used as the point of reference.
  * @position: The position to dock #item, relative to #target.
  * @docking_param: This value is unused, and will be ignored.
  * 

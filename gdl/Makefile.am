@@ -133,3 +133,26 @@ libgdlmarshal.c: libgdlmarshal.h
 	&& cp xgen-gmc $(@F) \
 	&& rm -f xgen-gmc
 
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS =
+INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir)
+INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
+
+if HAVE_INTROSPECTION
+introspection_sources = $(libgdl_1_la_SOURCES)
+
+Gdl-@GDL_CURRENT@.gir: libgdl-1.la
+Gdl_@GDL_CURRENT@_gir_INCLUDES = GObject-2.0 Gtk-2.0
+Gdl_@GDL_CURRENT@_gir_CFLAGS = $(INCLUDES)
+Gdl_@GDL_CURRENT@_gir_LIBS = libgdl-1.la
+Gdl_@GDL_CURRENT@_gir_FILES = $(addprefix $(srcdir)/,$(introspection_sources))
+INTROSPECTION_GIRS += Gdl-@GDL_CURRENT@.gir
+
+girdir = $(datadir)/gir-1.0
+dist_gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+CLEANFILES += $(dist_gir_DATA) $(typelib_DATA)
+endif

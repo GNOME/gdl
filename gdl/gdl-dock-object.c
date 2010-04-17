@@ -559,6 +559,13 @@ gdl_dock_object_dock_request (GdlDockObject  *object,
                                           FALSE);
 }
 
+/**
+ * gdl_dock_object_dock:
+ * @object:
+ * @requestor:
+ * @position:
+ * @other_data: (allow-none):
+ **/
 void
 gdl_dock_object_dock (GdlDockObject    *object,
                       GdlDockObject    *requestor,

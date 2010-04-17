@@ -5,7 +5,8 @@ dnl it too, or it will never make it into the spec file!
 dnl
 dnl ==========================================================================
 
-AC_PREREQ(2.53)
+AC_PREREQ(2.62)
+AC_CONFIG_MACRO_DIR([m4])
 AC_INIT(gdl)
 AM_CONFIG_HEADER(config.h)
 
@@ -32,7 +33,7 @@ AC_SUBST(GDL_AGE)
 PACKAGE=gdl
 GDL_VERSION=$GDL_MAJOR_VERSION.$GDL_MINOR_VERSION.$GDL_MICRO_VERSION
 
-AM_INIT_AUTOMAKE($PACKAGE, $GDL_VERSION)
+AM_INIT_AUTOMAKE($PACKAGE, $GDL_VERSION, [-Wno-portability])
 
 dnl with higher autotools, we can set ACLOCAL_AMFLAGS instead, which is
 dnl the better solution; this does the trick for automake-1.4
@@ -139,6 +140,8 @@ AC_SUBST(gdl_images_dir)
 
 # check for gtk-doc
 GTK_DOC_CHECK(1.4)
+
+GOBJECT_INTROSPECTION_CHECK([0.6.7])
 
 AC_OUTPUT([
 Makefile
