@@ -13,28 +13,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 15:33+0100\n"
-"PO-Revision-Date: 2010-02-05 00:58+0100\n"
+"POT-Creation-Date: 2010-04-17 15:41+0200\n"
+"PO-Revision-Date: 2010-04-14 12:26+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Gallician <proxecto@trasno.net>\n"
+"Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../gdl/gdl-dock-item-grip.c:317
+#: ../gdl/gdl-dock-item-grip.c:342
 msgid "Iconify this dock"
 msgstr "Iconizar este ancorábel"
 
-#: ../gdl/gdl-dock-item-grip.c:319
+#: ../gdl/gdl-dock-item-grip.c:344
 msgid "Close this dock"
 msgstr "Pechar este ancorábel"
 
-#: ../gdl/gdl-dock-item-grip.c:637 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Elemento ancorábel de control"
 
-#: ../gdl/gdl-dock-item-grip.c:638
+#: ../gdl/gdl-dock-item-grip.c:663
 msgid "Dockitem which 'owns' this grip"
 msgstr "O elemento ancorábel que 'posúe' este tirador"
 
@@ -361,19 +361,19 @@ msgstr ""
 "superior flotante"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate"
+msgid "X Coordinate"
 msgstr "Coordenada X"
 
 #: ../gdl/gdl-dock-placeholder.c:193
-msgid "X-Coordinate for dock when floating"
+msgid "X coordinate for dock when floating"
 msgstr "Coordenada X dun ancorábel cando é flotante"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate"
+msgid "Y Coordinate"
 msgstr "Coordenada Y"
 
 #: ../gdl/gdl-dock-placeholder.c:200
-msgid "Y-Coordinate for dock when floating"
+msgid "Y coordinate for dock when floating"
 msgstr "Coordenada Y dun ancorábel cando é flotante"
 
 #: ../gdl/gdl-dock-placeholder.c:495
