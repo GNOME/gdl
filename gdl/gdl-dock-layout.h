@@ -87,8 +87,6 @@ gboolean         gdl_dock_layout_save_to_file   (GdlDockLayout *layout,
 
 gboolean         gdl_dock_layout_is_dirty       (GdlDockLayout *layout);
 
-GtkWidget       *gdl_dock_layout_get_ui         (GdlDockLayout *layout);
-GtkWidget       *gdl_dock_layout_get_items_ui   (GdlDockLayout *layout);
 GtkWidget       *gdl_dock_layout_get_layouts_ui (GdlDockLayout *layout);
 
 G_END_DECLS
