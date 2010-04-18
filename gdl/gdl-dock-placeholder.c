@@ -220,6 +220,8 @@ gdl_dock_placeholder_instance_init (GdlDockPlaceholder *ph)
     GTK_WIDGET_UNSET_FLAGS (ph, GTK_CAN_FOCUS);
     
     ph->_priv = g_new0 (GdlDockPlaceholderPrivate, 1);
+
+    GDL_DOCK_OBJECT_UNSET_FLAGS (ph, GDL_DOCK_AUTOMATIC);
 }
 
 static void 
@@ -549,22 +551,9 @@ gdl_dock_placeholder_new (const gchar     *name,
     ph = GDL_DOCK_PLACEHOLDER (g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
                                              "name", name,
                                              "sticky", sticky,
+                                             "next-placement", position,
+                                             "host", object,
                                              NULL));
-    GDL_DOCK_OBJECT_UNSET_FLAGS (ph, GDL_DOCK_AUTOMATIC);
-
-    if (object) {
-        gdl_dock_placeholder_attach (ph, object);
-        if (position == GDL_DOCK_NONE)
-            position = GDL_DOCK_CENTER;
-        g_object_set (G_OBJECT (ph), "next-placement", position, NULL);
-        if (GDL_IS_DOCK (object)) {
-            /* the top placement will be consumed by the toplevel
-               dock, so add a dummy placement */
-            g_object_set (G_OBJECT (ph), "next-placement", GDL_DOCK_CENTER, NULL);
-        }
-        /* try a recursion */
-        do_excursion (ph);
-    }
     
     return GTK_WIDGET (ph);
 }
