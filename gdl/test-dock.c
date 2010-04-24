@@ -90,17 +90,12 @@ create_styles_item (GtkWidget *dock)
 static GtkWidget *
 create_item (const gchar *button_title)
 {
-	GtkWidget *vbox1;
 	GtkWidget *button1;
-
-	vbox1 = gtk_vbox_new (FALSE, 0);
-	gtk_widget_show (vbox1);
 
 	button1 = gtk_button_new_with_label (button_title);
 	gtk_widget_show (button1);
-	gtk_box_pack_start (GTK_BOX (vbox1), button1, TRUE, TRUE, 0);
 
-	return vbox1;
+	return button1;
 }
 
 /* creates a simple widget with a textbox inside */
@@ -180,6 +175,17 @@ save_layout_cb (GtkWidget *w, gpointer data)
 	gtk_widget_destroy (dialog);
 }
 
+static void
+on_change_name (GtkWidget* widget, gpointer data)
+{
+	static int index = 10;
+	gchar* name = g_strdup_printf ("Item %d", index);
+	GdlDockItem* item3 = data;
+	g_object_set (G_OBJECT (item3), "long_name", name, NULL);
+	g_free (name);
+	index++;
+}
+
 int
 main (int argc, char **argv)
 {
@@ -189,6 +195,7 @@ main (int argc, char **argv)
 	int i;
 	GdlDockLayout *layout;
 	GtkWidget *dock, *dockbar;
+	GtkWidget* name_button;
 
 	gtk_init (&argc, &argv);
 
@@ -242,7 +249,9 @@ main (int argc, char **argv)
 					      GTK_STOCK_CONVERT,
 					      GDL_DOCK_ITEM_BEH_NORMAL |
 					      GDL_DOCK_ITEM_BEH_CANT_CLOSE);
-	gtk_container_add (GTK_CONTAINER (item3), create_item ("Button 3"));
+	name_button = create_item ("Change name");
+	gtk_container_add (GTK_CONTAINER (item3), name_button);
+	g_signal_connect (name_button, "clicked", G_CALLBACK(on_change_name), item3);
 	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item3), 
 			   GDL_DOCK_BOTTOM);
 	gtk_widget_show (item3);
