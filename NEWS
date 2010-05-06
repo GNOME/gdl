@@ -1,3 +1,12 @@
+Changes in 2.31.1
+
+* Keep the internal label of the gdl-dock-item up-to-date and include a stock icon (bgo#615113)
+* bgo#597996  - usage of private API in the gdl_dock_placeholder_new function
+* bgo#603466  - Missing functions in gdl-layout.c
+* bgo#595837  - Coordinate string fixes
+* bgo#603600  - Missing return values
+* bgo#577469  - Remove deprecated Gtk+ symbols
+
 Changes in 2.30.0
 
 * Translation updates
