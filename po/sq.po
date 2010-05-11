@@ -1,14 +1,14 @@
 # Përkthimi i mesazheve të gdl në shqip
 # This file is distributed under the same license as the gdl package.
-# Copyright (C) 2004, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2008, 2010 Free Software Foundation, Inc.
 #
-# Laurent Dhima <laurenti@alblinux.net>, 2004, 2008.
+# Laurent Dhima <laurenti@alblinux.net>, 2004, 2008, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl HEAD\n"
+"Project-Id-Version: gdl master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-17 11:14+0200\n"
-"PO-Revision-Date: 2008-07-17 17:11+0200\n"
+"POT-Creation-Date: 2010-05-11 18:49+0200\n"
+"PO-Revision-Date: 2010-05-11 18:58+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,191 +16,171 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../gdl/gdl-data-view.c:418
-msgid "Expander Size"
-msgstr "Madhësia e shpalosësit"
-
-#: ../gdl/gdl-data-view.c:419
-msgid "Size of the expander arrow."
-msgstr "Madhësia e shigjetës së shpalosësit."
-
-#: ../gdl/gdl-dock-item-grip.c:365
+#: ../gdl/gdl-dock-item-grip.c:342
 msgid "Iconify this dock"
 msgstr "Redukton në ikonë këtë ganxhë"
 
-#: ../gdl/gdl-dock-item-grip.c:367
+#: ../gdl/gdl-dock-item-grip.c:344
 msgid "Close this dock"
 msgstr "Mbyll këtë ganxhë"
 
-#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Element i ganxhës së kontrollit"
 
-#: ../gdl/gdl-dock-item-grip.c:677
+#: ../gdl/gdl-dock-item-grip.c:663
 msgid "Dockitem which 'owns' this grip"
 msgstr "Element ankorimi që 'përmban' këtë kapëse"
 
-#: ../gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:257
 msgid "Orientation"
 msgstr "Orientimi"
 
-#: ../gdl/gdl-dock-item.c:244
+#: ../gdl/gdl-dock-item.c:258
 msgid "Orientation of the docking item"
 msgstr "Orientimi i elementit të ankorimit"
 
-#: ../gdl/gdl-dock-item.c:259
+#: ../gdl/gdl-dock-item.c:273
 msgid "Resizable"
 msgstr "I ripërmasueshëm"
 
-#: ../gdl/gdl-dock-item.c:260
+#: ../gdl/gdl-dock-item.c:274
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Nëse caktuar, elementit të ankorimit mund t'i ndryshohet madhësia kur "
 "ankorohet me një widget GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:281
 msgid "Item behavior"
 msgstr "Sjellja e elementit"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:282
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
-"Menyra e përgjithshme e sjelljes për elementin e ankorimit (pra nëse "
-"është pluskues, nëse është i bllokuar, etj.)"
+"Menyra e përgjithshme e sjelljes për elementin e ankorimit (pra nëse është "
+"pluskues, nëse është i bllokuar, etj.)"
 
-#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:290 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
 msgstr "I bllokuar"
 
-#: ../gdl/gdl-dock-item.c:277
+#: ../gdl/gdl-dock-item.c:291
 msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "Nëse caktuar, elementi i ankorimit nuk mund të tërhiqet dhe nuk shfaq dorezën"
 
-#: ../gdl/gdl-dock-item.c:285
+#: ../gdl/gdl-dock-item.c:299
 msgid "Preferred width"
 msgstr "Gjerësia e preferuar"
 
-#: ../gdl/gdl-dock-item.c:286
+#: ../gdl/gdl-dock-item.c:300
 msgid "Preferred width for the dock item"
 msgstr "Gjerësia e preferuar e elementit të ankorimit"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:306
 msgid "Preferred height"
 msgstr "Lartësia e preferuar"
 
-#: ../gdl/gdl-dock-item.c:293
+#: ../gdl/gdl-dock-item.c:307
 msgid "Preferred height for the dock item"
 msgstr "Lartësia e preferuar e elementit të ankorimit"
 
-#: ../gdl/gdl-dock-item.c:543
+#: ../gdl/gdl-dock-item.c:649
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
-"Nuk mund të shtohet një objekt ankorimi (%p i llojit %s) në brendësi të një %s. "
-"Përdor një GdlDock ose ndonjë tjetër objekt ankorimi të përbërë."
+"Nuk mund të shtohet një objekt ankorimi (%p i llojit %s) në brendësi të një %"
+"s. Përdor një GdlDock ose ndonjë tjetër objekt ankorimi të përbërë."
 
-#: ../gdl/gdl-dock-item.c:550
+#: ../gdl/gdl-dock-item.c:656
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"Përpjekje për të shtuar një widget të llojit %s tek një %s, por mund të përmbajë "
-"një widget të vetëm njëherësh; përmban rregullisht një widget të llojit %s"
+"Përpjekje për të shtuar një widget të llojit %s tek një %s, por mund të "
+"përmbajë një widget të vetëm njëherësh; përmban rregullisht një widget të "
+"llojit %s"
 
-#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1344 ../gdl/gdl-dock-item.c:1394
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Strategji ankorimi %s e pasuportuar për objektin e ankorimit të llojit %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1390
+#: ../gdl/gdl-dock-item.c:1502
 msgid "UnLock"
 msgstr "Liro"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1397
+#: ../gdl/gdl-dock-item.c:1509
 msgid "Hide"
 msgstr "Fshih"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1402
+#: ../gdl/gdl-dock-item.c:1514
 msgid "Lock"
 msgstr "Blloko"
 
-#: ../gdl/gdl-dock-item.c:1608
+#: ../gdl/gdl-dock-item.c:1750
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Përpjekje për të lidhur një element të palidhur %p"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
+#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "Kryesori"
 
-#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-layout.c:123
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Objekti GdlDockMaster në të cilin është kapur objekti layout"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:130
 msgid "Dirty"
 msgstr "E papastër"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:131
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "E vërtetë nëse layout janë ndryshuar dhe kanë nevojë të ruhen në një file"
 
-#. FIXME: pop up an error dialog
 #: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "I pamundur ngarkimi i file me layout të interfaqes së përdoruesit '%s'"
 
-#: ../gdl/gdl-dock-layout.c:618
+#: ../gdl/gdl-dock-layout.c:620
 msgid "Visible"
 msgstr "I dukshëm"
 
-#: ../gdl/gdl-dock-layout.c:625
+#: ../gdl/gdl-dock-layout.c:627
 msgid "Item"
 msgstr "Elementi"
 
-#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Emri"
 
-#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
-msgid "Dock items"
-msgstr "Elementët e ankorimit"
-
-#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
-msgid "Saved layouts"
-msgstr "Layout e ruajtur"
-
-#: ../gdl/gdl-dock-layout.c:789
+#: ../gdl/gdl-dock-layout.c:770
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
-"Gjatë ngarkimit të layout: nuk njihet menyra e krijimit të një objekti ankorimi "
-"emri i të cilit është '%s'"
+"Gjatë ngarkimit të layout: nuk njihet menyra e krijimit të një objekti "
+"ankorimi emri i të cilit është '%s'"
 
-#: ../gdl/gdl-dock-layout.c:1268
-msgid "Layout managment"
-msgstr "Menazhimi i planimetrisë"
-
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "Titulli i paracaktuar"
 
-#: ../gdl/gdl-dock-master.c:139
+#: ../gdl/gdl-dock-master.c:141
 msgid "Default title for newly created floating docks"
 msgstr "Titulli i paracaktuar për ganxhat e reja pluskuese të krijuara"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:148
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -209,15 +189,15 @@ msgstr ""
 "janë të bllokuar;nëse është 0 janë të gjithë të lirë; -1 tregon mospërputhje "
 "midis elementëve"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
+#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:731
 msgid "Switcher Style"
 msgstr "Stili i shkëmbyesit"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:732
 msgid "Switcher buttons style"
 msgstr "Stili i pulsantit të shkëmbimit"
 
-#: ../gdl/gdl-dock-master.c:761
+#: ../gdl/gdl-dock-master.c:763
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -226,14 +206,14 @@ msgstr ""
 "master %p: i pamundur shtimi i objektit %p[%s] në tabelën hash.  Ekziston "
 "rregullisht një element me atë emër (%p)."
 
-#: ../gdl/gdl-dock-master.c:934
+#: ../gdl/gdl-dock-master.c:935
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
-"Kontrolluesi i ri i ankorimit %p është automatik.  Vetëm objektet e ankorimit "
-"manual duhet të jenë kontrollues me emër."
+"Kontrolluesi i ri i ankorimit %p është automatik.  Vetëm objektet e "
+"ankorimit manual duhet të jenë kontrollues me emër."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -277,63 +257,63 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Thirrje për gdl_dock_object_dock në një element ankorimi %p (lloji i objektit "
-"është %s) që nuk suporton këtë metodë"
+"Thirrje për gdl_dock_object_dock në një element ankorimi %p (lloji i "
+"objektit është %s) që nuk suporton këtë metodë"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
-"Është kërkuar një operacion ankorimi në një objekt të palidhur %p. Aplikativi "
-"mund të bllokohet"
+"Është kërkuar një operacion ankorimi në një objekt të palidhur %p. "
+"Aplikativi mund të bllokohet"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:590
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Nuk mund të lidhet %p me %p sepse i takojnë pronarëve të ndryshëm"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:632
 #, c-format
 msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 "Përpjekje për të lidhur tek %p një objekt ankorimi %p rregullisht i lidhur "
 "(pronari aktual: %p)"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
 msgstr "Pozicioni"
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position of the divider in pixels"
 msgstr "Pozicioni i ndarësit në pixel"
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:144
 msgid "Sticky"
 msgstr "Ngjitur"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:145
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-"Nëse vendshënuesi do të qendrojë i kapur me mbajtësin e tij apo do të ringjisë "
-"gjerarkinë kur mbajtësi të riankorohet"
+"Nëse vendshënuesi do të qendrojë i kapur me mbajtësin e tij apo do të "
+"ringjisë gjerarkinë kur mbajtësi të riankorohet"
 
-#: ../gdl/gdl-dock-placeholder.c:151
+#: ../gdl/gdl-dock-placeholder.c:152
 msgid "Host"
 msgstr "Mbajtësi"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:153
 msgid "The dock object this placeholder is attached to"
 msgstr "Objekti i ankorimit ku është ngjitur ky vendshënues"
 
-#: ../gdl/gdl-dock-placeholder.c:159
+#: ../gdl/gdl-dock-placeholder.c:160
 msgid "Next placement"
 msgstr "Vendqendrimi pasardhës"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:161
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
@@ -341,60 +321,56 @@ msgstr ""
 "Pozicioni në të cilin do të ankorohet një element në mbajtësin tonë nëse "
 "arrin një kërkesë ankorimi"
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "Gjerësia"
 
-#: ../gdl/gdl-dock-placeholder.c:170
+#: ../gdl/gdl-dock-placeholder.c:171
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Gjerësia e widget kur është i ngjitur me vendshënuesin"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "Lartësia"
 
-#: ../gdl/gdl-dock-placeholder.c:178
+#: ../gdl/gdl-dock-placeholder.c:179
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Lartësia e widget kur është i ngjitur me vendshënuesin"
 
-#: ../gdl/gdl-dock-placeholder.c:184
+#: ../gdl/gdl-dock-placeholder.c:185
 msgid "Floating Toplevel"
 msgstr "Pluskues i nivelit më të lartë"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:186
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
-msgstr ""
-"Nëse vendshënuesi përfaqson një ganxhë pluskuese të nivelit më "
-"të lartë"
-
-#: ../gdl/gdl-dock-placeholder.c:191
-msgid "X-Coordinate"
-msgstr "Koordinata X"
+msgstr "Nëse vendshënuesi përfaqson një zonë pluskuese të nivelit më të lartë"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate for dock when floating"
-msgstr "Koordinata horizontale për ganxhën kur është pluskuese"
+msgid "X Coordinate"
+msgstr "Koordinata X"
 
-#: ../gdl/gdl-dock-placeholder.c:198
-msgid "Y-Coordinate"
-msgstr "Koordinata Y"
+#: ../gdl/gdl-dock-placeholder.c:193
+msgid "X coordinate for dock when floating"
+msgstr "Koordinata X për zonën kur pluskon"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate for dock when floating"
-msgstr "Koordinata vertikale për ganxhën kur është pluskuese"
+msgid "Y Coordinate"
+msgstr "Koordinata Y"
 
-#: ../gdl/gdl-dock-placeholder.c:494
+#: ../gdl/gdl-dock-placeholder.c:200
+msgid "Y coordinate for dock when floating"
+msgstr "Koordinata vertikale për zonën kur pluskon"
+
+#: ../gdl/gdl-dock-placeholder.c:495
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr ""
-"Përpjekje për të ankoruar një objekt ankorimi me një vendshënues "
-"të palidhur"
+msgstr "Përpjekje për të ankoruar një objekt ankorimi me një vendshënues të palidhur"
 
-#: ../gdl/gdl-dock-placeholder.c:618
+#: ../gdl/gdl-dock-placeholder.c:607
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "U mor një sinjal detach nga një objekt (%p) që nuk është miku ynë %p"
 
-#: ../gdl/gdl-dock-placeholder.c:643
+#: ../gdl/gdl-dock-placeholder.c:632
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -425,19 +401,19 @@ msgstr "Pluskues"
 
 #: ../gdl/gdl-dock.c:179
 msgid "Whether the dock is floating in its own window"
-msgstr "Nëse ganxha është pluskuese në dritaren e saj"
+msgstr "Nëse zona është pluskuese në dritaren e saj"
 
 #: ../gdl/gdl-dock.c:187
 msgid "Default title for the newly created floating docks"
-msgstr "Titulli i paracaktuar për ganxhat e reja pluskuese të krijuara"
+msgstr "Titulli i paracaktuar për zonat e reja pluskuese të krijuara"
 
 #: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
-msgstr "Gjerësia e ganxhës kur është e llojit pluskues"
+msgstr "Gjerësia e zonës kur është e llojit pluskues"
 
 #: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
-msgstr "Lartësia e ganxhës kur është e llojit pluskues"
+msgstr "Lartësia e zonës kur është e llojit pluskues"
 
 #: ../gdl/gdl-dock.c:209
 msgid "Float X"
@@ -445,7 +421,7 @@ msgstr "X i pluskimit"
 
 #: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
-msgstr "Koordinata X për një ganxhë pluskuese"
+msgstr "Koordinata X për një zonë pluskuese"
 
 #: ../gdl/gdl-dock.c:217
 msgid "Float Y"
@@ -453,26 +429,30 @@ msgstr "Y i pluskimit"
 
 #: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
-msgstr "Koordinata Y për një ganxhë pluskuese"
+msgstr "Koordinata Y për një zonë pluskuese"
 
-#: ../gdl/gdl-dock.c:499
+#: ../gdl/gdl-dock.c:480
 #, c-format
 msgid "Dock #%d"
-msgstr "Ankorimi #%d"
+msgstr "Bankina #%d"
 
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
-msgid "Icon size"
-msgstr "Madhësia e ikonës"
+#: ../gdl/layout.ui.h:1
+msgid "Dock items"
+msgstr "Elementët e zonës"
 
-#: ../gdl/layout.glade.h:2
+#: ../gdl/layout.ui.h:2
 msgid "Layout Managment"
 msgstr "Menazhimi i planimetrisë"
 
-#: ../gdl/layout.glade.h:4
+#: ../gdl/layout.ui.h:3
+msgid "Saved layouts"
+msgstr "Layout e ruajtur"
+
+#: ../gdl/layout.ui.h:4
 msgid "_Load"
 msgstr "_Ngarko"
 
-#: ../gdl/layout.glade.h:5
+#: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
 msgstr "B_lloko elementët e ankorimit"
 
