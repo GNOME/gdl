@@ -6,53 +6,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-17 21:14+0100\n"
-"PO-Revision-Date: 2009-12-17 21:15+0100\n"
+"POT-Creation-Date: 2010-05-23 20:13+0200\n"
+"PO-Revision-Date: 2010-05-23 20:14+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-dock-item-grip.c:317
+#: ../gdl/gdl-dock-item-grip.c:342
 msgid "Iconify this dock"
 msgstr "Minimer denne dokken"
 
-#: ../gdl/gdl-dock-item-grip.c:319
+#: ../gdl/gdl-dock-item-grip.c:344
 msgid "Close this dock"
 msgstr "Lukk denne dokken"
 
-#: ../gdl/gdl-dock-item-grip.c:637 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Kontrollerende dokkoppføring"
 
-#: ../gdl/gdl-dock-item-grip.c:638
+#: ../gdl/gdl-dock-item-grip.c:663
 msgid "Dockitem which 'owns' this grip"
 msgstr "Dokkoppføring som «eier» dette håndtaket"
 
-#: ../gdl/gdl-dock-item.c:254
+#: ../gdl/gdl-dock-item.c:257
 msgid "Orientation"
 msgstr "Orientering"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock-item.c:258
 msgid "Orientation of the docking item"
 msgstr "Orientering på dokken"
 
-#: ../gdl/gdl-dock-item.c:270
+#: ../gdl/gdl-dock-item.c:273
 msgid "Resizable"
 msgstr "Kan endre størrelse"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:274
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Gjør det mulig å endre størrelse på dokkoppføringen når den er dokket i en "
 "GtkPAnel-komponent hvis satt"
 
-#: ../gdl/gdl-dock-item.c:278
+#: ../gdl/gdl-dock-item.c:281
 msgid "Item behavior"
 msgstr "Oppførsel for oppføring"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:282
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -60,33 +60,33 @@ msgstr ""
 "Generell oppførsel for dokkoppføringen (om den kan være flytende, om den er "
 "låst, etc.)"
 
-#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:290 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
 msgstr "Låst"
 
-#: ../gdl/gdl-dock-item.c:288
+#: ../gdl/gdl-dock-item.c:291
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Dokkoppføringen kan ikke dras rundt og den viser ikke et håndtak hvis satt"
 
-#: ../gdl/gdl-dock-item.c:296
+#: ../gdl/gdl-dock-item.c:299
 msgid "Preferred width"
 msgstr "Foretrukket bredde"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:300
 msgid "Preferred width for the dock item"
 msgstr "Foretrukket bredde for dokken"
 
-#: ../gdl/gdl-dock-item.c:303
+#: ../gdl/gdl-dock-item.c:306
 msgid "Preferred height"
 msgstr "Foretrukket høyde"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:307
 msgid "Preferred height for the dock item"
 msgstr "Foretrukket høyde for dokken"
 
-#: ../gdl/gdl-dock-item.c:592
+#: ../gdl/gdl-dock-item.c:649
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -95,34 +95,34 @@ msgstr ""
 "Du kan ikke legge til et dokkobjekt (%p av type %s) inne i en %s. Bruk en "
 "GdlDock eller et annet sammensatt dokkobjekt."
 
-#: ../gdl/gdl-dock-item.c:599
+#: ../gdl/gdl-dock-item.c:656
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
 
-#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
+#: ../gdl/gdl-dock-item.c:1344 ../gdl/gdl-dock-item.c:1394
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1443
+#: ../gdl/gdl-dock-item.c:1502
 msgid "UnLock"
 msgstr "Lås opp"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1450
+#: ../gdl/gdl-dock-item.c:1509
 msgid "Hide"
 msgstr "Skjul"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1455
+#: ../gdl/gdl-dock-item.c:1514
 msgid "Lock"
 msgstr "Lås"
 
-#: ../gdl/gdl-dock-item.c:1693
+#: ../gdl/gdl-dock-item.c:1750
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Forsøk på å binde en ubundet oppføring %p"
@@ -181,11 +181,11 @@ msgid ""
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
 
-#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
+#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:731
 msgid "Switcher Style"
 msgstr "Stil for bytter"
 
-#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:732
 msgid "Switcher buttons style"
 msgstr "Stil for knapper på bytter"
 
@@ -246,19 +246,19 @@ msgid ""
 "hasn't implemented this method"
 msgstr ""
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:590
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:632
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -325,31 +325,31 @@ msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr ""
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate"
+msgid "X Coordinate"
 msgstr "X-koordinat"
 
 #: ../gdl/gdl-dock-placeholder.c:193
-msgid "X-Coordinate for dock when floating"
+msgid "X coordinate for dock when floating"
 msgstr "X-koordinat for dokken når den flyter"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate"
+msgid "Y Coordinate"
 msgstr "Y-koordinat"
 
 #: ../gdl/gdl-dock-placeholder.c:200
-msgid "Y-Coordinate for dock when floating"
+msgid "Y coordinate for dock when floating"
 msgstr "Y-koordinat for dokken når den flyter"
 
 #: ../gdl/gdl-dock-placeholder.c:495
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Forsøk på å dokke et dokkobjekt til en plassholder som ikke er bundet"
 
-#: ../gdl/gdl-dock-placeholder.c:619
+#: ../gdl/gdl-dock-placeholder.c:607
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 
-#: ../gdl/gdl-dock-placeholder.c:644
+#: ../gdl/gdl-dock-placeholder.c:632
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -408,7 +408,7 @@ msgstr "Flytende Y"
 msgid "Y coordinate for a floating dock"
 msgstr "Y-koordinat for en flytende dokk"
 
-#: ../gdl/gdl-dock.c:484
+#: ../gdl/gdl-dock.c:480
 #, c-format
 msgid "Dock #%d"
 msgstr "Dokk #%d"
