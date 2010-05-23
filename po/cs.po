@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-20 02:17+0100\n"
-"PO-Revision-Date: 2010-03-20 02:16+0100\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"POT-Creation-Date: 2010-05-23 19:20+0200\n"
+"PO-Revision-Date: 2010-05-19 23:06+0100\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,63 +33,63 @@ msgstr "Řídicí položka doku"
 
 #: ../gdl/gdl-dock-item-grip.c:663
 msgid "Dockitem which 'owns' this grip"
-msgstr "Položka doku, která 'vlastní' tento úchyt"
+msgstr "Položka doku, která „vlastní“ tento úchyt"
 
-#: ../gdl/gdl-dock-item.c:254
+#: ../gdl/gdl-dock-item.c:257
 msgid "Orientation"
 msgstr "Orientace"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock-item.c:258
 msgid "Orientation of the docking item"
 msgstr "Orientace dokovací položky"
 
-#: ../gdl/gdl-dock-item.c:270
+#: ../gdl/gdl-dock-item.c:273
 msgid "Resizable"
 msgstr "Může měnit velikost"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:274
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Je-li nastaveno, může být změněna velikost položky dokované ve widgetu "
 "GtkPanelu"
 
-#: ../gdl/gdl-dock-item.c:278
+#: ../gdl/gdl-dock-item.c:281
 msgid "Item behavior"
 msgstr "Chování položky"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:282
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "Obecné chování položky doku (např. jestli je plovoucí, zamčená, atd.)"
 
-#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:290 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
 msgstr "Zamčená"
 
-#: ../gdl/gdl-dock-item.c:288
+#: ../gdl/gdl-dock-item.c:291
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Je-li nastaveno, nemůže být položka doku přesouvána a nezobrazuje úchyt"
 
-#: ../gdl/gdl-dock-item.c:296
+#: ../gdl/gdl-dock-item.c:299
 msgid "Preferred width"
 msgstr "Preferovaná šířka"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:300
 msgid "Preferred width for the dock item"
 msgstr "Preferovaná šířka položky doku"
 
-#: ../gdl/gdl-dock-item.c:303
+#: ../gdl/gdl-dock-item.c:306
 msgid "Preferred height"
 msgstr "Preferovaná výška"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:307
 msgid "Preferred height for the dock item"
 msgstr "Preferovaná výška položky doku"
 
-#: ../gdl/gdl-dock-item.c:592
+#: ../gdl/gdl-dock-item.c:649
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -98,36 +98,36 @@ msgstr ""
 "Nemůžete přidat objekt doku (%p typu %s) do %s. Použijte GdlDock nebo jiný "
 "objekt složeného doku."
 
-#: ../gdl/gdl-dock-item.c:599
+#: ../gdl/gdl-dock-item.c:656
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"Pokouším se přidat widget typu %s do %s, ale ten může obsahovat jen jeden "
+"Zkouší se přidat widget typu %s do %s, ale ten může obsahovat jen jeden "
 "widget; již obsahuje widget typu %s"
 
-#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
+#: ../gdl/gdl-dock-item.c:1344 ../gdl/gdl-dock-item.c:1394
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nepodporovaná strategie dokování %s v objektu doku typu %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1443
+#: ../gdl/gdl-dock-item.c:1502
 msgid "UnLock"
 msgstr "Odemknout"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1450
+#: ../gdl/gdl-dock-item.c:1509
 msgid "Hide"
 msgstr "Skrýt"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1455
+#: ../gdl/gdl-dock-item.c:1514
 msgid "Lock"
 msgstr "Zamknout"
 
-#: ../gdl/gdl-dock-item.c:1693
+#: ../gdl/gdl-dock-item.c:1750
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Pokus připojit nepřipojenou položku %p"
@@ -152,7 +152,7 @@ msgstr ""
 #: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
-msgstr "Nemohu načíst soubor rozložení uživatelského rozhraní '%s'"
+msgstr "Nemohu načíst soubor rozložení uživatelského rozhraní „%s“"
 
 #: ../gdl/gdl-dock-layout.c:620
 msgid "Visible"
@@ -172,7 +172,7 @@ msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
-"Při načítání rozložení: nevím, jak vytvořit objekt doku s přezdívkou '%s'"
+"Při načítání rozložení: nevím, jak vytvořit objekt doku s přezdívkou „%s“"
 
 #: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
 msgid "Default title"
@@ -191,11 +191,11 @@ msgstr ""
 "zamknuty; je-li 0, jsou všechny odemknuty; -1 indikuje nekonzistenci mezi "
 "položkami"
 
-#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
+#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:731
 msgid "Switcher Style"
 msgstr "Změnit styl"
 
-#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:732
 msgid "Switcher buttons style"
 msgstr "Změnit stryl tlačítek"
 
@@ -262,7 +262,7 @@ msgstr ""
 "Volání gdl_dock_object_dock v objektu doku %p (typ objektu je %s), který "
 "neimplementoval tuto metodu"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -271,12 +271,12 @@ msgstr ""
 "Požadována operace zadokování v nepřipojeném objektu %p. Aplikace možná "
 "spadne"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:590
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Nemohu zadokovat %p do %p, protože patří k různým masterům"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:632
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -300,7 +300,7 @@ msgid ""
 "the host is redocked"
 msgstr ""
 "Jestli placeholder zůstane u hostitele nebo se posune v hierarchii nahoru, "
-"když je hostitel redokován"
+"když je hostitel znovu dokován"
 
 #: ../gdl/gdl-dock-placeholder.c:152
 msgid "Host"
@@ -347,32 +347,32 @@ msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Zda je placeholder spojen s plovoucím dokem nejvyšší úrovně"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate"
+msgid "X Coordinate"
 msgstr "Souřadnice X"
 
 #: ../gdl/gdl-dock-placeholder.c:193
-msgid "X-Coordinate for dock when floating"
-msgstr "X souřadnice, pokud je dok plovoucí"
+msgid "X coordinate for dock when floating"
+msgstr "X souřadnice pro dok, pokud je plovoucí"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate"
+msgid "Y Coordinate"
 msgstr "Souřadnice Y"
 
 #: ../gdl/gdl-dock-placeholder.c:200
-msgid "Y-Coordinate for dock when floating"
-msgstr "Y souřadnice, pokud je dok plovoucí"
+msgid "Y coordinate for dock when floating"
+msgstr "Y souřadnice pro dok, pokud je plovoucí"
 
 #: ../gdl/gdl-dock-placeholder.c:495
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Pokus zadokovat objekt doku do nepřipojeného placeholderu"
 
-#: ../gdl/gdl-dock-placeholder.c:619
+#: ../gdl/gdl-dock-placeholder.c:607
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 "Dostal jsem signál odpojení od objektu (%p), který není náš hostitel %p"
 
-#: ../gdl/gdl-dock-placeholder.c:644
+#: ../gdl/gdl-dock-placeholder.c:632
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -381,7 +381,7 @@ msgstr "Při získávání umístění potomka %p rodiče %p se stalo něco divn
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "Položka doku, která 'vlastní' tuto jmenovku záložky"
+msgstr "Položka doku, která „vlastní“ tuto jmenovku záložky"
 
 #: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
@@ -431,10 +431,10 @@ msgstr "Plovoucí Y"
 msgid "Y coordinate for a floating dock"
 msgstr "Souřadnice Y plovoucího doku"
 
-#: ../gdl/gdl-dock.c:484
+#: ../gdl/gdl-dock.c:480
 #, c-format
 msgid "Dock #%d"
-msgstr "Dok #%d"
+msgstr "Dok č. %d"
 
 #: ../gdl/layout.ui.h:1
 msgid "Dock items"
