@@ -497,8 +497,6 @@ gdl_dock_notify_cb (GObject    *object,
 
     g_object_get (object, "long-name", &long_name, NULL);
 
-    g_message ("Notify long_name: %s", long_name);
-
     if (long_name)
     {
         dock = GDL_DOCK (object);
