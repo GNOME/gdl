@@ -461,7 +461,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     GdlDockMaster  *master;
     GdlDockRequest  my_request, *request;
     GdkWindow      *window;
-    GdkWindow      *widget_window, *dock_window;
+    GdkWindow      *widget_window;
     gint            win_x, win_y;
     gint            x, y;
     GdlDock        *dock = NULL;
@@ -504,8 +504,9 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
         }
     }
 
-    dock_window = gtk_widget_get_window (GTK_WIDGET (dock));
     if (dock) {
+        GdkWindow *dock_window = gtk_widget_get_window (GTK_WIDGET (dock));
+
         /* translate root coordinates into dock object coordinates
            (i.e. widget coordinates) */
         gdk_window_get_origin (dock_window, &win_x, &win_y);
@@ -519,7 +520,9 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
 
         /* try to dock the item in all the docks in the ring in turn */
         for (l = master->toplevel_docks; l; l = l->next) {
+            GdkWindow *dock_window;
             dock = GDL_DOCK (l->data);
+            dock_window = gtk_widget_get_window (GTK_WIDGET (dock));
             /* translate root coordinates into dock object coordinates
                (i.e. widget coordinates) */
             gdk_window_get_origin (dock_window, &win_x, &win_y);

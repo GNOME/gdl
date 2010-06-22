@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
  *
  * This file is part of the GNOME Devtools Libraries.
  *
@@ -559,7 +559,7 @@ gdl_dock_size_request (GtkWidget      *widget,
     requisition->width += 2 * border_width;
     requisition->height += 2 * border_width;
 
-    widget->requisition = *requisition;
+    //gtk_widget_size_request (widget, requisition);    
 }
 
 static void
@@ -791,7 +791,7 @@ gdl_dock_dock_request (GdlDockObject  *object,
     GdlDock            *dock;
     guint               bw;
     gint                rel_x, rel_y;
-    GtkAllocation      *alloc;
+    GtkAllocation       alloc;
     gboolean            may_dock = FALSE;
     GdlDockRequest      my_request;
 
@@ -802,28 +802,28 @@ gdl_dock_dock_request (GdlDockObject  *object,
     dock = GDL_DOCK (object);
     
     /* Get dock size. */
-    gtk_widget_get_allocation (GTK_WIDGET (dock), alloc);
+    gtk_widget_get_allocation (GTK_WIDGET (dock), &alloc);
     bw = gtk_container_get_border_width (GTK_CONTAINER (dock));
 
     /* Get coordinates relative to our allocation area. */
-    rel_x = x - alloc->x;
-    rel_y = y - alloc->y;
+    rel_x = x - alloc.x;
+    rel_y = y - alloc.y;
 
     if (request)
         my_request = *request;
         
     /* Check if coordinates are in GdlDock widget. */
-    if (rel_x > 0 && rel_x < alloc->width &&
-        rel_y > 0 && rel_y < alloc->height) {
+    if (rel_x > 0 && rel_x < alloc.width &&
+        rel_y > 0 && rel_y < alloc.height) {
 
         /* It's inside our area. */
         may_dock = TRUE;
 
 	/* Set docking indicator rectangle to the GdlDock size. */
-        my_request.rect.x = alloc->x + bw;
-        my_request.rect.y = alloc->y + bw;
-        my_request.rect.width = alloc->width - 2*bw;
-        my_request.rect.height = alloc->height - 2*bw;
+        my_request.rect.x = alloc.x + bw;
+        my_request.rect.y = alloc.y + bw;
+        my_request.rect.width = alloc.width - 2*bw;
+        my_request.rect.height = alloc.height - 2*bw;
 
 	/* If GdlDock has no root item yet, set the dock itself as 
 	   possible target. */
@@ -837,14 +837,14 @@ gdl_dock_dock_request (GdlDockObject  *object,
             if (rel_x < bw) {
                 my_request.position = GDL_DOCK_LEFT;
                 my_request.rect.width *= SPLIT_RATIO;
-            } else if (rel_x > alloc->width - bw) {
+            } else if (rel_x > alloc.width - bw) {
                 my_request.position = GDL_DOCK_RIGHT;
                 my_request.rect.x += my_request.rect.width * (1 - SPLIT_RATIO);
                 my_request.rect.width *= SPLIT_RATIO;
             } else if (rel_y < bw) {
                 my_request.position = GDL_DOCK_TOP;
                 my_request.rect.height *= SPLIT_RATIO;
-            } else if (rel_y > alloc->height - bw) {
+            } else if (rel_y > alloc.height - bw) {
                 my_request.position = GDL_DOCK_BOTTOM;
                 my_request.rect.y += my_request.rect.height * (1 - SPLIT_RATIO);
                 my_request.rect.height *= SPLIT_RATIO;

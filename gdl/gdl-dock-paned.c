@@ -398,7 +398,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
     GdlDockItem        *item;
     guint               bw;
     gint                rel_x, rel_y;
-    GtkAllocation      *alloc;
+    GtkAllocation       alloc;
     gboolean            may_dock = FALSE;
     GdlDockRequest      my_request;
 
@@ -409,19 +409,19 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
     item = GDL_DOCK_ITEM (object);
     
     /* Get item's allocation. */
-    gtk_widget_get_allocation (GTK_WIDGET (object), alloc);
+    gtk_widget_get_allocation (GTK_WIDGET (object), &alloc);
     bw = gtk_container_get_border_width (GTK_CONTAINER (object));
 
     /* Get coordinates relative to our window. */
-    rel_x = x - alloc->x;
-    rel_y = y - alloc->y;
+    rel_x = x - alloc.x;
+    rel_y = y - alloc.y;
 
     if (request)
         my_request = *request;
         
     /* Check if coordinates are inside the widget. */
-    if (rel_x > 0 && rel_x < alloc->width &&
-        rel_y > 0 && rel_y < alloc->height) {
+    if (rel_x > 0 && rel_x < alloc.width &&
+        rel_y > 0 && rel_y < alloc.height) {
         GtkRequisition my, other;
         gint divider = -1;
         
@@ -434,8 +434,8 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
 	/* Set docking indicator rectangle to the widget size. */
         my_request.rect.x = bw;
         my_request.rect.y = bw;
-        my_request.rect.width = alloc->width - 2*bw;
-        my_request.rect.height = alloc->height - 2*bw;
+        my_request.rect.width = alloc.width - 2*bw;
+        my_request.rect.height = alloc.height - 2*bw;
 
         my_request.target = object;
 
@@ -444,7 +444,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
             my_request.position = GDL_DOCK_LEFT;
             my_request.rect.width *= SPLIT_RATIO;
             divider = other.width;
-        } else if (rel_x > alloc->width - bw) {
+        } else if (rel_x > alloc.width - bw) {
             my_request.position = GDL_DOCK_RIGHT;
             my_request.rect.x += my_request.rect.width * (1 - SPLIT_RATIO);
             my_request.rect.width *= SPLIT_RATIO;
@@ -453,7 +453,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
             my_request.position = GDL_DOCK_TOP;
             my_request.rect.height *= SPLIT_RATIO;
             divider = other.height;
-        } else if (rel_y > alloc->height - bw) {
+        } else if (rel_y > alloc.height - bw) {
             my_request.position = GDL_DOCK_BOTTOM;
             my_request.rect.y += my_request.rect.height * (1 - SPLIT_RATIO);
             my_request.rect.height *= SPLIT_RATIO;
@@ -484,7 +484,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
                    or left/right */
                 may_dock = TRUE;
                 if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
-                    if (rel_y < alloc->height / 2) {
+                    if (rel_y < alloc.height / 2) {
                         my_request.position = GDL_DOCK_TOP;
                         my_request.rect.height *= SPLIT_RATIO;
                         divider = other.height;
@@ -495,7 +495,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
                         divider = MAX (0, my.height - other.height);
                     }
                 } else {
-                    if (rel_x < alloc->width / 2) {
+                    if (rel_x < alloc.width / 2) {
                         my_request.position = GDL_DOCK_LEFT;
                         my_request.rect.width *= SPLIT_RATIO;
                         divider = other.width;
@@ -519,8 +519,8 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
         if (may_dock) {
             /* adjust returned coordinates so they are relative to
                our allocation */
-            my_request.rect.x += alloc->x;
-            my_request.rect.y += alloc->y;
+            my_request.rect.x += alloc.x;
+            my_request.rect.y += alloc.y;
         }
     }
 

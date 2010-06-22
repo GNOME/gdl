@@ -256,7 +256,7 @@ static int
 layout_buttons (GdlSwitcher *switcher)
 {
     GtkRequisition client_requisition = {0,};
-    GtkAllocation *allocation = & GTK_WIDGET (switcher)->allocation;
+    GtkAllocation allocation;
     GdlSwitcherStyle switcher_style;
     gboolean icons_only;
     int num_btns = g_slist_length (switcher->priv->buttons);
@@ -271,13 +271,15 @@ layout_buttons (GdlSwitcher *switcher)
     int i;
     int rows_count;
     int last_buttons_height;
+
+    gtk_widget_get_allocation (GTK_WIDGET (switcher), &allocation);
     
     last_buttons_height = switcher->priv->buttons_height_request;
     
     GDL_CALL_PARENT (GTK_WIDGET_CLASS, size_request,
                      (GTK_WIDGET (switcher), &client_requisition));
 
-    y = allocation->y + allocation->height - V_PADDING - 1;
+    y = allocation.y + allocation.height - V_PADDING - 1;
 
     if (num_btns == 0)
         return y;
@@ -299,10 +301,10 @@ layout_buttons (GdlSwitcher *switcher)
     }
 
     /* Figure out how many rows and columns we'll use. */
-    btns_per_row = allocation->width / (max_btn_width + H_PADDING);
+    btns_per_row = allocation.width / (max_btn_width + H_PADDING);
     
     /* If all the buttons could fit in the single row, have it so */
-    if (allocation->width >= optimal_layout_width)
+    if (allocation.width >= optimal_layout_width)
     {
         btns_per_row = num_btns;
     }
@@ -379,7 +381,7 @@ layout_buttons (GdlSwitcher *switcher)
         /* Check for possible size over flow (taking into account client
          * requisition
          */
-        if (y < (allocation->y + client_requisition.height)) {
+        if (y < (allocation.y + client_requisition.height)) {
             /* We have an overflow: Insufficient allocation */
             if (last_buttons_height < switcher->priv->buttons_height_request) {
                 /* Request for a new resize */
@@ -387,11 +389,11 @@ layout_buttons (GdlSwitcher *switcher)
                 return -1;
             }
         }
-        x = H_PADDING + allocation->x;
+        x = H_PADDING + allocation.x;
         len = g_slist_length (rows[i]);
         if (switcher_style == GDL_SWITCHER_STYLE_TEXT ||
             switcher_style == GDL_SWITCHER_STYLE_BOTH)
-            extra_width = (allocation->width - (len * max_btn_width )
+            extra_width = (allocation.width - (len * max_btn_width )
                            - (len * H_PADDING)) / len;
         else
             extra_width = 0;
@@ -431,23 +433,25 @@ layout_buttons (GdlSwitcher *switcher)
 static void
 do_layout (GdlSwitcher *switcher)
 {
-    GtkAllocation *allocation = & GTK_WIDGET (switcher)->allocation;
+    GtkAllocation allocation;
     GtkAllocation child_allocation;
     int y;
 
+    gtk_widget_get_allocation (GTK_WIDGET (switcher), &allocation);
+    
     if (switcher->priv->show) {
         y = layout_buttons (switcher);
         if (y < 0) /* Layout did not happen and a resize was requested */
             return;
     }
     else
-        y = allocation->y + allocation->height;
+        y = allocation.y + allocation.height;
     
     /* Place the parent widget.  */
-    child_allocation.x = allocation->x;
-    child_allocation.y = allocation->y;
-    child_allocation.width = allocation->width;
-    child_allocation.height = y - allocation->y;
+    child_allocation.x = allocation.x;
+    child_allocation.y = allocation.y;
+    child_allocation.width = allocation.width;
+    child_allocation.height = y - allocation.y;
     
     GDL_CALL_PARENT (GTK_WIDGET_CLASS, size_allocate,
                      (GTK_WIDGET (switcher), &child_allocation));
@@ -536,7 +540,7 @@ gdl_switcher_size_request (GtkWidget *widget, GtkRequisition *requisition)
 static void
 gdl_switcher_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
-    widget->allocation = *allocation;
+    gtk_widget_set_allocation (widget, allocation);
     do_layout (GDL_SWITCHER (widget));
 }
 

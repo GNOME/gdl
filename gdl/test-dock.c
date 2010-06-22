@@ -156,7 +156,7 @@ save_layout_cb (GtkWidget *w, gpointer data)
 
 	hbox = gtk_hbox_new (FALSE, 8);
 	gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_action_area (GTK_DIALOG (dialog))), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new ("Name:");
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);

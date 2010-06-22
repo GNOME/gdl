@@ -786,7 +786,7 @@ gdl_dock_item_size_request (GtkWidget      *widget,
     requisition->width += (border_width + style->xthickness) * 2;
     requisition->height += (border_width + style->ythickness) * 2;
 
-    widget->requisition = *requisition;
+    //gtk_widget_size_request (widget, requisition);    
 }
 
 static void
@@ -1164,21 +1164,21 @@ gdl_dock_item_dock_request (GdlDockObject  *object,
                             gint            y,
                             GdlDockRequest *request)
 {
-    GtkAllocation *alloc;
+    GtkAllocation  alloc;
     gint           rel_x, rel_y;
 
     /* we get (x,y) in our allocation coordinates system */
     
     /* Get item's allocation. */
-    gtk_widget_get_allocation (GTK_WIDGET (object), alloc);
+    gtk_widget_get_allocation (GTK_WIDGET (object), &alloc);
     
     /* Get coordinates relative to our window. */
-    rel_x = x - alloc->x;
-    rel_y = y - alloc->y;
+    rel_x = x - alloc.x;
+    rel_y = y - alloc.y;
 
     /* Location is inside. */
-    if (rel_x > 0 && rel_x < alloc->width &&
-        rel_y > 0 && rel_y < alloc->height) {
+    if (rel_x > 0 && rel_x < alloc.width &&
+        rel_y > 0 && rel_y < alloc.height) {
         float rx, ry;
         GtkRequisition my, other;
         gint divider = -1;
@@ -1188,8 +1188,8 @@ gdl_dock_item_dock_request (GdlDockObject  *object,
         gdl_dock_item_preferred_size (GDL_DOCK_ITEM (object), &my);
         
         /* Calculate location in terms of the available space (0-100%). */
-        rx = (float) rel_x / alloc->width;
-        ry = (float) rel_y / alloc->height;
+        rx = (float) rel_x / alloc.width;
+        ry = (float) rel_y / alloc.height;
 
         /* Determine dock location. */
         if (rx < SPLIT_RATIO) {
@@ -1215,8 +1215,8 @@ gdl_dock_item_dock_request (GdlDockObject  *object,
         /* Reset rectangle coordinates to entire item. */
         request->rect.x = 0;
         request->rect.y = 0;
-        request->rect.width = alloc->width;
-        request->rect.height = alloc->height;
+        request->rect.width = alloc.width;
+        request->rect.height = alloc.height;
 
         /* Calculate docking indicator rectangle size for new locations. Only
            do this when we're not over the item's current location. */
@@ -1251,8 +1251,8 @@ gdl_dock_item_dock_request (GdlDockObject  *object,
 
         /* adjust returned coordinates so they are have the same
            origin as our window */
-        request->rect.x += alloc->x;
-        request->rect.y += alloc->y;
+        request->rect.x += alloc.x;
+        request->rect.y += alloc.y;
         
         /* Set possible target location and return TRUE. */            
         request->target = object;

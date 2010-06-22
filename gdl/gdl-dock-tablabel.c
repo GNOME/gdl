@@ -305,7 +305,7 @@ gdl_dock_tablabel_size_request (GtkWidget      *widget,
     requisition->width += border_width * 2;
     requisition->height += border_width * 2;
 
-    widget->requisition = *requisition;
+    //gtk_widget_size_request (widget, requisition);    
 }
 
 static void
@@ -560,8 +560,9 @@ gdl_dock_tablabel_realize (GtkWidget *widget)
         gdk_window_new (gtk_widget_get_parent_window (widget),
                         &attributes, attributes_mask);
     gdk_window_set_user_data (tablabel->event_window, widget);
-    
-    widget->style = gtk_style_attach (widget->style, widget->window);
+   
+    gtk_widget_set_style (widget, gtk_style_attach (gtk_widget_get_style (widget),
+                                                    gtk_widget_get_window (widget)));
     
     gtk_widget_set_realized (widget, TRUE);
 }

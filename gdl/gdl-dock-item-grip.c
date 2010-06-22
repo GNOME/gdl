@@ -259,10 +259,6 @@ gdl_dock_item_grip_close_clicked (GtkWidget       *widget,
     gdl_dock_item_hide_item (grip->item);
 }
 
-#if !GTK_CHECK_VERSION (2, 20, 0)
-  #define gtk_widget_get_realized(widget) GTK_WIDGET_REALIZED(widget)
-#endif /* GTK < 2.20.0 */
-
 static void
 gdl_dock_item_grip_fix_iconify_button (GdlDockItemGrip *grip)
 {
@@ -294,7 +290,7 @@ gdl_dock_item_grip_fix_iconify_button (GdlDockItemGrip *grip)
     event->crossing.focus = FALSE;
     event->crossing.state = modifiers;
 
-    GTK_BUTTON (iconify_button)->in_button = FALSE;
+    //GTK_BUTTON (iconify_button)->in_button = FALSE;
     g_signal_emit_by_name (iconify_button, "leave-notify-event",
                            event, &ev_ret, 0);
 
