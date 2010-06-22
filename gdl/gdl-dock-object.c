@@ -361,7 +361,7 @@ gdl_dock_object_real_detach (GdlDockObject *object,
     parent = gdl_dock_object_get_parent_object (object);
     widget = GTK_WIDGET (object);
     if (gtk_widget_get_parent (widget))
-        gtk_container_remove (GTK_CONTAINER (gtk_widget_get_parent (GTK_WIDGET (parent))), widget);
+        gtk_container_remove (GTK_CONTAINER (gtk_widget_get_parent (GTK_WIDGET (widget))), widget);
     if (parent)
         gdl_dock_object_reduce (parent);
 }
