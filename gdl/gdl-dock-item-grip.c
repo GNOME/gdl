@@ -257,6 +257,10 @@ gdl_dock_item_grip_close_clicked (GtkWidget       *widget,
     gdl_dock_item_hide_item (grip->item);
 }
 
+#if !GTK_CHECK_VERSION (2, 22, 0)
+#  define gtk_button_get_event_window(button) button->event_window
+#endif // Gtk+ >= 2.22
+
 static void
 gdl_dock_item_grip_fix_iconify_button (GdlDockItemGrip *grip)
 {
@@ -266,11 +270,10 @@ gdl_dock_item_grip_fix_iconify_button (GdlDockItemGrip *grip)
 
     GdkModifierType modifiers;
     gint x = 0, y = 0;
-    gboolean ev_ret;
 
     g_return_if_fail (gtk_widget_get_realized (iconify_button));
 
-    window = gtk_widget_get_parent_window (iconify_button);
+    window = gtk_button_get_event_window (GTK_BUTTON (iconify_button));
     event = gdk_event_new (GDK_LEAVE_NOTIFY);
 
     g_assert (GDK_IS_WINDOW (window));
@@ -288,9 +291,7 @@ gdl_dock_item_grip_fix_iconify_button (GdlDockItemGrip *grip)
     event->crossing.focus = FALSE;
     event->crossing.state = modifiers;
 
-    //GTK_BUTTON (iconify_button)->in_button = FALSE;
-    g_signal_emit_by_name (iconify_button, "leave-notify-event",
-                           event, &ev_ret, 0);
+    gtk_widget_event (iconify_button, event);
 
     gdk_event_free (event);
 }
