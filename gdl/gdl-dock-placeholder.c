@@ -27,7 +27,6 @@
 
 #include "gdl-i18n.h"
 
-#include "gdl-tools.h"
 #include "gdl-dock-placeholder.h"
 #include "gdl-dock-item.h"
 #include "gdl-dock-paned.h"
@@ -40,7 +39,6 @@
 /* ----- Private prototypes ----- */
 
 static void     gdl_dock_placeholder_class_init     (GdlDockPlaceholderClass *klass);
-static void     gdl_dock_placeholder_instance_init  (GdlDockPlaceholder      *ph);
 
 static void     gdl_dock_placeholder_set_property   (GObject                 *g_object,
                                                      guint                    prop_id,
@@ -120,8 +118,7 @@ struct _GdlDockPlaceholderPrivate {
 
 /* ----- Private interface ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockPlaceholder, gdl_dock_placeholder,
-                       GdlDockObject, GDL_TYPE_DOCK_OBJECT);
+G_DEFINE_TYPE (GdlDockPlaceholder, gdl_dock_placeholder, GDL_TYPE_DOCK_OBJECT);
 
 static void 
 gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
@@ -214,7 +211,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
 }
 
 static void 
-gdl_dock_placeholder_instance_init (GdlDockPlaceholder *ph)
+gdl_dock_placeholder_init (GdlDockPlaceholder *ph)
 {
     gtk_widget_set_has_window (GTK_WIDGET (ph), FALSE);
     gtk_widget_set_can_focus (GTK_WIDGET (ph), FALSE);
@@ -326,7 +323,7 @@ gdl_dock_placeholder_destroy (GtkObject *object)
         ph->_priv = NULL;
     }
 
-    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GTK_OBJECT_CLASS (gdl_dock_placeholder_parent_class)->destroy (object);
 }
 
 static void 

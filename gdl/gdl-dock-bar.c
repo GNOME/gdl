@@ -27,7 +27,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "gdl-tools.h"
 #include "gdl-dock.h"
 #include "gdl-dock-master.h"
 #include "gdl-dock-bar.h"
@@ -42,7 +41,6 @@ enum {
 /* ----- Private prototypes ----- */
 
 static void  gdl_dock_bar_class_init      (GdlDockBarClass *klass);
-static void  gdl_dock_bar_instance_init   (GdlDockBar      *dockbar);
 
 static void  gdl_dock_bar_get_property    (GObject         *object,
                                            guint            prop_id,
@@ -71,7 +69,7 @@ struct _GdlDockBarPrivate {
 
 /* ----- Private functions ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockBar, gdl_dock_bar, GtkBox, GTK_TYPE_BOX)
+G_DEFINE_TYPE (GdlDockBar, gdl_dock_bar, GTK_TYPE_BOX)
 
 static void gdl_dock_bar_size_request (GtkWidget *widget,
 		                       GtkRequisition *requisition );
@@ -124,7 +122,7 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
 }
 
 static void
-gdl_dock_bar_instance_init (GdlDockBar *dockbar)
+gdl_dock_bar_init (GdlDockBar *dockbar)
 {
     dockbar->_priv = g_new0 (GdlDockBarPrivate, 1);
     dockbar->_priv->master = NULL;
@@ -209,7 +207,7 @@ gdl_dock_bar_destroy (GtkObject *object)
         g_free (priv);
     }
     
-    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+   GTK_OBJECT_CLASS (gdl_dock_bar_parent_class)->destroy (object);
 }
 
 static void

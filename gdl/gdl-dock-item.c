@@ -37,7 +37,6 @@
 #include <string.h>
 #include <gdk/gdkkeysyms.h>
 
-#include "gdl-tools.h"
 #include "gdl-dock.h"
 #include "gdl-dock-item.h"
 #include "gdl-dock-item-grip.h"
@@ -54,7 +53,6 @@
 /* ----- Private prototypes ----- */
 
 static void  gdl_dock_item_class_init    (GdlDockItemClass *class);
-static void  gdl_dock_item_instance_init (GdlDockItem *item);
 
 static GObject *gdl_dock_item_constructor (GType                  type,
                                            guint                  n_construct_properties,
@@ -193,7 +191,7 @@ struct _GdlDockItemPrivate {
 
 /* ----- Private functions ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockItem, gdl_dock_item, GdlDockObject, GDL_TYPE_DOCK_OBJECT);
+G_DEFINE_TYPE (GdlDockItem, gdl_dock_item, GDL_TYPE_DOCK_OBJECT);
 
 static void
 gdl_dock_item_class_init (GdlDockItemClass *klass)
@@ -404,7 +402,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
 }
 
 static void
-gdl_dock_item_instance_init (GdlDockItem *item)
+gdl_dock_item_init (GdlDockItem *item)
 {
     gtk_widget_set_has_window (GTK_WIDGET (item), TRUE);
 
@@ -456,12 +454,9 @@ gdl_dock_item_constructor (GType                  type,
 {
     GObject *g_object;
     
-    g_object = GDL_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
-                                               constructor, 
-                                               (type,
-                                                n_construct_properties,
-                                                construct_param),
-                                               NULL);
+    g_object = G_OBJECT_CLASS (gdl_dock_item_parent_class)-> constructor (type,
+                                                                     n_construct_properties,
+                                                                     construct_param);
     if (g_object) {
         GdlDockItem *item = GDL_DOCK_ITEM (g_object);
         GtkWidget *hbox;
@@ -633,7 +628,7 @@ gdl_dock_item_destroy (GtkObject *object)
         g_free (priv);
     }
 
-    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GTK_OBJECT_CLASS (gdl_dock_item_parent_class)->destroy (object);
 }
 
 static void 
@@ -994,9 +989,10 @@ gdl_dock_item_expose (GtkWidget      *widget,
     g_return_val_if_fail (event != NULL, FALSE);
 
     if (gtk_widget_is_drawable (widget) &&
-        event->window == gtk_widget_get_window (widget)) {
+        event->window == gtk_widget_get_window (widget)) 
+    {
         gdl_dock_item_paint (widget, event);
-        GDL_CALL_PARENT_GBOOLEAN(GTK_WIDGET_CLASS, expose_event, (widget,event));
+        GTK_WIDGET_CLASS (gdl_dock_item_parent_class)->expose_event (widget,event);
     }
   
     return FALSE;
@@ -1152,10 +1148,7 @@ gdl_dock_item_key_press (GtkWidget   *widget,
     if (event_handled)
         return TRUE;
     else
-        return GDL_CALL_PARENT_WITH_DEFAULT (GTK_WIDGET_CLASS,
-                                               key_press_event,
-                                               (widget, event),
-                                               FALSE);
+        return GTK_WIDGET_CLASS (gdl_dock_item_parent_class)->key_press_event (widget, event);
 }
 
 static gboolean
@@ -1820,8 +1813,8 @@ gdl_dock_item_set_orientation (GdlDockItem    *item,
                               "orientation", orientation,
                               NULL);
         };
-
-        GDL_CALL_VIRTUAL (item, GDL_DOCK_ITEM_GET_CLASS, set_orientation, (item, orientation));
+        if (GDL_DOCK_ITEM_GET_CLASS (item)->set_orientation)
+            GDL_DOCK_ITEM_GET_CLASS (item)->set_orientation (item, orientation);
         g_object_notify (G_OBJECT (item), "orientation");
     }
 }

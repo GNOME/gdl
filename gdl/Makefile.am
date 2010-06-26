@@ -22,7 +22,6 @@ CLEANFILES =					\
 
 libgdl_headers = \
 	gdl.h \
-	gdl-tools.h \
 	gdl-dock.h \
 	gdl-dock-object.h \
 	gdl-dock-master.h \

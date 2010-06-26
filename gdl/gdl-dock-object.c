@@ -29,7 +29,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "gdl-tools.h"
 #include "gdl-dock-object.h"
 #include "gdl-dock-master.h"
 #include "libgdltypebuiltins.h"
@@ -46,7 +45,6 @@
 /* ----- Private prototypes ----- */
 
 static void     gdl_dock_object_class_init         (GdlDockObjectClass *klass);
-static void     gdl_dock_object_instance_init      (GdlDockObject      *object);
 
 static void     gdl_dock_object_set_property       (GObject            *g_object,
                                                     guint               prop_id,
@@ -95,7 +93,7 @@ static guint gdl_dock_object_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private interface ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockObject, gdl_dock_object, GtkContainer, GTK_TYPE_CONTAINER);
+G_DEFINE_TYPE (GdlDockObject, gdl_dock_object, GTK_TYPE_CONTAINER);
 
 static void
 gdl_dock_object_class_init (GdlDockObjectClass *klass)
@@ -186,7 +184,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
 }
 
 static void
-gdl_dock_object_instance_init (GdlDockObject *object)
+gdl_dock_object_init (GdlDockObject *object)
 {
     object->flags = GDL_DOCK_AUTOMATIC;
     object->freeze_count = 0;
@@ -268,7 +266,7 @@ gdl_dock_object_finalize (GObject *g_object)
     g_free (object->stock_id);
     object->stock_id = NULL;
 
-    GDL_CALL_PARENT (G_OBJECT_CLASS, finalize, (g_object));
+    G_OBJECT_CLASS (gdl_dock_object_parent_class)->finalize (g_object);
 }
 
 static void
@@ -305,7 +303,7 @@ gdl_dock_object_destroy (GtkObject *gtk_object)
     if (object->master)
         gdl_dock_object_unbind (object);
         
-    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (gtk_object));
+    GTK_OBJECT_CLASS(gdl_dock_object_parent_class)->destroy (gtk_object);
 }
 
 static void
@@ -326,7 +324,7 @@ gdl_dock_object_show (GtkWidget *widget)
                                (GtkCallback) gdl_dock_object_foreach_automatic,
                                gtk_widget_show);
     }
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, show, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->show (widget);
 }
 
 static void
@@ -337,7 +335,7 @@ gdl_dock_object_hide (GtkWidget *widget)
                                (GtkCallback) gdl_dock_object_foreach_automatic,
                                gtk_widget_hide);
     }
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, hide, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->hide (widget);
 }
 
 static void
@@ -541,7 +539,8 @@ gdl_dock_object_reduce (GdlDockObject *object)
         return;
     }
 
-    GDL_CALL_VIRTUAL (object, GDL_DOCK_OBJECT_GET_CLASS, reduce, (object));
+    if (GDL_DOCK_OBJECT_GET_CLASS (object)->reduce)
+        GDL_DOCK_OBJECT_GET_CLASS (object)->reduce (object);
 }
 
 gboolean
@@ -551,12 +550,11 @@ gdl_dock_object_dock_request (GdlDockObject  *object,
                               GdlDockRequest *request)
 {
     g_return_val_if_fail (object != NULL && request != NULL, FALSE);
-    
-    return GDL_CALL_VIRTUAL_WITH_DEFAULT (object,
-                                          GDL_DOCK_OBJECT_GET_CLASS,
-                                          dock_request,
-                                          (object, x, y, request),
-                                          FALSE);
+
+    if (GDL_DOCK_OBJECT_GET_CLASS (object)->dock_request)
+        return GDL_DOCK_OBJECT_GET_CLASS (object)->dock_request (object, x, y, request);
+    else
+        return FALSE;
 }
 
 /**
@@ -677,11 +675,10 @@ gdl_dock_object_reorder (GdlDockObject    *object,
 {
     g_return_val_if_fail (object != NULL && child != NULL, FALSE);
 
-    return GDL_CALL_VIRTUAL_WITH_DEFAULT (object,
-                                          GDL_DOCK_OBJECT_GET_CLASS,
-                                          reorder,
-                                          (object, child, new_position, other_data),
-                                          FALSE);
+    if (GDL_DOCK_OBJECT_GET_CLASS (object)->reorder)
+            GDL_DOCK_OBJECT_GET_CLASS (object)->reorder (object, child, new_position, other_data);
+    else
+        return FALSE;
 }
 
 void 
@@ -697,7 +694,8 @@ gdl_dock_object_present (GdlDockObject *object,
         /* chain the call to our parent */
         gdl_dock_object_present (parent, object);
 
-    GDL_CALL_VIRTUAL (object, GDL_DOCK_OBJECT_GET_CLASS, present, (object, child));
+   if (GDL_DOCK_OBJECT_GET_CLASS (object)->present)
+        GDL_DOCK_OBJECT_GET_CLASS (object)->present (object, child);
 }
 
 /**
@@ -730,10 +728,10 @@ gdl_dock_object_child_placement (GdlDockObject    *object,
     if (!gdl_dock_object_is_compound (object))
         return FALSE;
     
-    return GDL_CALL_VIRTUAL_WITH_DEFAULT (object, GDL_DOCK_OBJECT_GET_CLASS,
-                                          child_placement,
-                                          (object, child, placement),
-                                          FALSE);
+    if (GDL_DOCK_OBJECT_GET_CLASS (object)->child_placement)
+        GDL_DOCK_OBJECT_GET_CLASS (object)->child_placement (object, child, placement);
+    else
+        return FALSE;
 }
 
 

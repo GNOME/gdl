@@ -7,8 +7,6 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#include "gdl-tools.h"
-
 #include "gdl-dock.h"
 #include "gdl-dock-item.h"
 #include "gdl-dock-notebook.h"

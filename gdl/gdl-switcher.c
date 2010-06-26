@@ -32,7 +32,6 @@
 
 #include "gdl-i18n.h"
 #include "gdl-switcher.h"
-#include "gdl-tools.h"
 #include "libgdlmarshal.h"
 #include "libgdltypebuiltins.h"
 
@@ -88,7 +87,7 @@ struct _GdlSwitcherPrivate {
     gboolean in_toggle;
 };
 
-GDL_CLASS_BOILERPLATE (GdlSwitcher, gdl_switcher, GtkNotebook, GTK_TYPE_NOTEBOOK)
+G_DEFINE_TYPE (GdlSwitcher, gdl_switcher, GTK_TYPE_NOTEBOOK)
 
 #define INTERNAL_MODE(switcher)  (switcher->priv->switcher_style == \
             GDL_SWITCHER_STYLE_TOOLBAR ? switcher->priv->toolbar_style : \
@@ -276,8 +275,7 @@ layout_buttons (GdlSwitcher *switcher)
     
     last_buttons_height = switcher->priv->buttons_height_request;
     
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, size_request,
-                     (GTK_WIDGET (switcher), &client_requisition));
+    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->size_request (GTK_WIDGET (switcher), &client_requisition);
 
     y = allocation.y + allocation.height - V_PADDING - 1;
 
@@ -453,8 +451,7 @@ do_layout (GdlSwitcher *switcher)
     child_allocation.width = allocation.width;
     child_allocation.height = y - allocation.y;
     
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, size_allocate,
-                     (GTK_WIDGET (switcher), &child_allocation));
+    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->size_allocate (GTK_WIDGET (switcher), &child_allocation);
 }
 
 /* GtkContainer methods.  */
@@ -467,9 +464,9 @@ gdl_switcher_forall (GtkContainer *container, gboolean include_internals,
         GDL_SWITCHER (container);
     GSList *p;
     
-    GDL_CALL_PARENT (GTK_CONTAINER_CLASS, forall,
-                     (GTK_CONTAINER (switcher), include_internals,
-                      callback, callback_data));
+    GTK_CONTAINER_CLASS (gdl_switcher_parent_class)->forall (GTK_CONTAINER (switcher), 
+                                                             include_internals,
+                                                             callback, callback_data);
     if (include_internals) {
         for (p = switcher->priv->buttons; p != NULL; p = p->next) {
             GtkWidget *widget = ((Button *) p->data)->button_widget;
@@ -499,8 +496,7 @@ gdl_switcher_remove (GtkContainer *container, GtkWidget *widget)
             break;
         }
     }
-    GDL_CALL_PARENT (GTK_CONTAINER_CLASS, remove,
-                     (GTK_CONTAINER (switcher), widget));
+    GTK_CONTAINER_CLASS (gdl_switcher_parent_class)->remove (GTK_CONTAINER (switcher), widget);
 }
 
 /* GtkWidget methods.  */
@@ -512,8 +508,7 @@ gdl_switcher_size_request (GtkWidget *widget, GtkRequisition *requisition)
     GSList *p;
     gint button_height = 0;
     
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, size_request,
-                     (GTK_WIDGET (switcher), requisition));
+    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->size_request (GTK_WIDGET (switcher), requisition);
 
     if (!switcher->priv->show)
         return;
@@ -556,8 +551,7 @@ gdl_switcher_expose (GtkWidget *widget, GdkEventExpose *event)
                                             button, event);
         }
     }
-    return GDL_CALL_PARENT_WITH_DEFAULT (GTK_WIDGET_CLASS, expose_event,
-                                         (widget, event), FALSE);
+    return GTK_WIDGET_CLASS (gdl_switcher_parent_class)->expose_event (widget, event);
 }
 
 static void
@@ -572,7 +566,7 @@ gdl_switcher_map (GtkWidget *widget)
             gtk_widget_map (button);
         }
     }
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, map, (widget));
+    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->map (widget);
 }
 
 /* GObject methods.  */
@@ -632,7 +626,7 @@ gdl_switcher_dispose (GObject *object)
     g_slist_free (priv->buttons);
     priv->buttons = NULL;
 
-    GDL_CALL_PARENT (G_OBJECT_CLASS, dispose, (object));
+    G_OBJECT_CLASS (gdl_switcher_parent_class)->dispose (object);
 }
 
 static void
@@ -642,7 +636,7 @@ gdl_switcher_finalize (GObject *object)
 
     g_free (priv);
 
-    GDL_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
+    G_OBJECT_CLASS (gdl_switcher_parent_class)->finalize (object);
 }
 
 /* Signal handlers */
@@ -749,7 +743,7 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
 }
 
 static void
-gdl_switcher_instance_init (GdlSwitcher *switcher)
+gdl_switcher_init (GdlSwitcher *switcher)
 {
     GdlSwitcherPrivate *priv;
 

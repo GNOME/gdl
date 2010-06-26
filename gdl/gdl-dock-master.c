@@ -27,7 +27,6 @@
 
 #include "gdl-i18n.h"
 
-#include "gdl-tools.h"
 #include "gdl-dock-master.h"
 #include "gdl-dock.h"
 #include "gdl-dock-item.h"
@@ -39,7 +38,6 @@
 /* ----- Private prototypes ----- */
 
 static void     gdl_dock_master_class_init    (GdlDockMasterClass *klass);
-static void     gdl_dock_master_instance_init (GdlDockMaster      *master);
 
 static void     gdl_dock_master_dispose       (GObject            *g_object);
 static void     gdl_dock_master_set_property  (GObject            *object,
@@ -122,7 +120,7 @@ static guint master_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private interface ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockMaster, gdl_dock_master, GObject, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GdlDockMaster, gdl_dock_master, G_TYPE_OBJECT);
 
 static void
 gdl_dock_master_class_init (GdlDockMasterClass *klass)
@@ -174,7 +172,7 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
 }
 
 static void
-gdl_dock_master_instance_init (GdlDockMaster *master)
+gdl_dock_master_init (GdlDockMaster *master)
 {
     master->dock_objects = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                   g_free, NULL);
@@ -306,7 +304,7 @@ gdl_dock_master_dispose (GObject *g_object)
         master->_priv = NULL;
     }
 
-    GDL_CALL_PARENT (G_OBJECT_CLASS, dispose, (g_object));
+    G_OBJECT_CLASS (gdl_dock_master_parent_class)->dispose (g_object);
 }
 
 static void 

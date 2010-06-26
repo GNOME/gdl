@@ -28,7 +28,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "gdl-tools.h"
 #include "gdl-dock.h"
 #include "gdl-dock-master.h"
 #include "gdl-dock-paned.h"
@@ -44,7 +43,6 @@
 /* ----- Private prototypes ----- */
 
 static void  gdl_dock_class_init      (GdlDockClass *class);
-static void  gdl_dock_instance_init   (GdlDock *dock);
 
 static GObject *gdl_dock_constructor  (GType                  type,
                                        guint                  n_construct_properties,
@@ -150,7 +148,7 @@ static guint dock_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private functions ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDock, gdl_dock, GdlDockObject, GDL_TYPE_DOCK_OBJECT);
+G_DEFINE_TYPE (GdlDock, gdl_dock, GDL_TYPE_DOCK_OBJECT);
 
 static void
 gdl_dock_class_init (GdlDockClass *klass)
@@ -261,7 +259,7 @@ gdl_dock_class_init (GdlDockClass *klass)
 }
 
 static void
-gdl_dock_instance_init (GdlDock *dock)
+gdl_dock_init (GdlDock *dock)
 {
     gtk_widget_set_has_window (GTK_WIDGET (dock), FALSE);
 
@@ -295,17 +293,14 @@ gdl_dock_constructor (GType                  type,
                       GObjectConstructParam *construct_param)
 {
     GObject *g_object;
-    
-    g_object = GDL_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
-                                               constructor, 
-                                               (type,
-                                                n_construct_properties,
-                                                construct_param),
-                                               NULL);
+
+    g_object = G_OBJECT_CLASS (gdl_dock_parent_class)-> constructor (type,
+                                                                     n_construct_properties,
+                                                                     construct_param);
     if (g_object) {
         GdlDock *dock = GDL_DOCK (g_object);
         GdlDockMaster *master;
-        
+
         /* create a master for the dock if none was provided in the construction */
         master = GDL_DOCK_OBJECT_GET_MASTER (GDL_DOCK_OBJECT (dock));
         if (!master) {
@@ -317,11 +312,11 @@ gdl_dock_constructor (GType                  type,
 
         if (dock->_priv->floating) {
             GdlDockObject *controller;
-            
+
             /* create floating window for this dock */
             dock->_priv->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
             g_object_set_data (G_OBJECT (dock->_priv->window), "dock", dock);
-            
+
             /* set position and default size */
             gtk_window_set_position (GTK_WINDOW (dock->_priv->window),
                                      GTK_WIN_POS_MOUSE);
@@ -330,32 +325,32 @@ gdl_dock_constructor (GType                  type,
                                          dock->_priv->height);
             gtk_window_set_type_hint (GTK_WINDOW (dock->_priv->window),
                                       GDK_WINDOW_TYPE_HINT_NORMAL);
-            
+
             /* metacity ignores this */
             gtk_window_move (GTK_WINDOW (dock->_priv->window),
                              dock->_priv->float_x,
                              dock->_priv->float_y);
-            
+
             /* connect to the configure event so we can track down window geometry */
             g_signal_connect (dock->_priv->window, "configure_event",
                               (GCallback) gdl_dock_floating_configure_event_cb,
                               dock);
-            
+
             /* set the title and connect to the long_name notify queue
-               so we can reset the title when this prop changes */
+             so we can reset the title when this prop changes */
             gdl_dock_set_title (dock);
             g_signal_connect (dock, "notify::long-name",
                               (GCallback) gdl_dock_notify_cb, NULL);
-            
+
             gtk_container_add (GTK_CONTAINER (dock->_priv->window), GTK_WIDGET (dock));
-    
+
             g_signal_connect (dock->_priv->window, "delete_event",
                               G_CALLBACK (gdl_dock_floating_window_delete_event_cb), 
                               NULL);
         }
         GDL_DOCK_OBJECT_SET_FLAGS (dock, GDL_DOCK_ATTACHED);
     }
-    
+
     return g_object;
 }
 
@@ -530,7 +525,7 @@ gdl_dock_destroy (GtkObject *object)
         g_free (priv);
     }
     
-    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+   GTK_OBJECT_CLASS (gdl_dock_parent_class)->destroy (object);
 }
 
 static void
@@ -600,7 +595,7 @@ gdl_dock_map (GtkWidget *widget)
 
     dock = GDL_DOCK (widget);
 
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, map, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_parent_class)->map (widget);
 
     if (dock->root) {
         child = GTK_WIDGET (dock->root);
@@ -620,7 +615,7 @@ gdl_dock_unmap (GtkWidget *widget)
 
     dock = GDL_DOCK (widget);
 
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, unmap, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_parent_class)->unmap (widget);
 
     if (dock->root) {
         child = GTK_WIDGET (dock->root);
@@ -650,7 +645,7 @@ gdl_dock_show (GtkWidget *widget)
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
     
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, show, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_parent_class)->show (widget);
     
     dock = GDL_DOCK (widget);
     if (dock->_priv->floating && dock->_priv->window)
@@ -671,7 +666,7 @@ gdl_dock_hide (GtkWidget *widget)
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
     
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, hide, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_parent_class)->hide (widget);
     
     dock = GDL_DOCK (widget);
     if (dock->_priv->floating && dock->_priv->window)

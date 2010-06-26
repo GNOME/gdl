@@ -29,14 +29,13 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#include "gdl-tools.h"
 #include "gdl-dock-paned.h"
 
 
 /* Private prototypes */
 
 static void     gdl_dock_paned_class_init     (GdlDockPanedClass *klass);
-static void     gdl_dock_paned_instance_init  (GdlDockPaned      *paned);
+static void     gdl_dock_paned_init  (GdlDockPaned      *paned);
 static GObject *gdl_dock_paned_constructor    (GType              type,
                                                guint              n_construct_properties,
                                                GObjectConstructParam *construct_param);
@@ -88,7 +87,7 @@ enum {
 
 /* ----- Private functions ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockPaned, gdl_dock_paned, GdlDockItem, GDL_TYPE_DOCK_ITEM);
+G_DEFINE_TYPE (GdlDockPaned, gdl_dock_paned, GDL_TYPE_DOCK_ITEM);
 
 static void
 gdl_dock_paned_class_init (GdlDockPanedClass *klass)
@@ -136,7 +135,7 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
 }
 
 static void
-gdl_dock_paned_instance_init (GdlDockPaned *paned)
+gdl_dock_paned_init (GdlDockPaned *paned)
 {
     paned->position_changed = FALSE;
 }
@@ -221,13 +220,10 @@ gdl_dock_paned_constructor (GType                  type,
                             GObjectConstructParam *construct_param)
 {
     GObject *g_object;
-    
-    g_object = GDL_CALL_PARENT_WITH_DEFAULT (G_OBJECT_CLASS, 
-                                               constructor, 
-                                               (type,
-                                                n_construct_properties,
-                                                construct_param),
-                                               NULL);
+
+    g_object = G_OBJECT_CLASS (gdl_dock_paned_parent_class)-> constructor (type,
+                                                                          n_construct_properties,
+                                                                          construct_param);
     if (g_object) {
         GdlDockItem *item = GDL_DOCK_ITEM (g_object);
         
@@ -290,7 +286,7 @@ gdl_dock_paned_destroy (GtkObject *object)
 
     /* we need to call the virtual first, since in GdlDockDestroy our
        children dock objects are detached */
-    GDL_CALL_PARENT (GTK_OBJECT_CLASS, destroy, (object));
+    GTK_OBJECT_CLASS (gdl_dock_paned_parent_class)->destroy (object);
 
     /* after that we can remove the GtkNotebook */
     if (item->child) {
@@ -347,8 +343,8 @@ gdl_dock_paned_forall (GtkContainer *container,
 
     if (include_internals) {
         /* use GdlDockItem's forall */
-        GDL_CALL_PARENT (GTK_CONTAINER_CLASS, forall, 
-                           (container, include_internals, callback, callback_data));
+        GTK_CONTAINER_CLASS (gdl_dock_paned_parent_class)->forall 
+                           (container, include_internals, callback, callback_data);
     }
     else {
         item = GDL_DOCK_ITEM (container);
@@ -587,8 +583,8 @@ gdl_dock_paned_dock (GdlDockObject    *object,
 
     if (!done) {
         /* this will create another paned and reparent us there */
-        GDL_CALL_PARENT (GDL_DOCK_OBJECT_CLASS, dock, (object, requestor, position,
-                                                         other_data));
+        GDL_DOCK_OBJECT_CLASS (gdl_dock_paned_parent_class)->dock (object, requestor, position,
+                                                                   other_data);
     }
     else {
         gdl_dock_item_show_grip (GDL_DOCK_ITEM (requestor));
@@ -634,7 +630,7 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
         }
     }
     
-    GDL_CALL_PARENT (GDL_DOCK_ITEM_CLASS, set_orientation, (item, orientation));
+    GDL_DOCK_ITEM_CLASS (gdl_dock_paned_parent_class)->set_orientation (item, orientation);
 }
 
 static gboolean 

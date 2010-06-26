@@ -30,7 +30,6 @@
 #include <gtk/gtk.h>
 
 #include "gdl-dock-layout.h"
-#include "gdl-tools.h"
 #include "gdl-dock-placeholder.h"
 
 
@@ -82,8 +81,6 @@ struct _GdlDockLayoutUIData {
 
 static void     gdl_dock_layout_class_init      (GdlDockLayoutClass *klass);
 
-static void     gdl_dock_layout_instance_init   (GdlDockLayout      *layout);
-
 static void     gdl_dock_layout_set_property    (GObject            *object,
                                                  guint               prop_id,
                                                  const GValue       *value,
@@ -106,7 +103,7 @@ static void     gdl_dock_layout_build_models    (GdlDockLayout      *layout);
 
 /* ----- Private implementation ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockLayout, gdl_dock_layout, GObject, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GdlDockLayout, gdl_dock_layout, G_TYPE_OBJECT);
 
 static void
 gdl_dock_layout_class_init (GdlDockLayoutClass *klass)
@@ -135,7 +132,7 @@ gdl_dock_layout_class_init (GdlDockLayoutClass *klass)
 }
 
 static void
-gdl_dock_layout_instance_init (GdlDockLayout *layout)
+gdl_dock_layout_init (GdlDockLayout *layout)
 {
     layout->master = NULL;
     layout->dirty = FALSE;

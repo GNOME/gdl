@@ -29,7 +29,6 @@
 #include <gtk/gtk.h>
 
 #include "gdl-dock-tablabel.h"
-#include "gdl-tools.h"
 #include "gdl-dock-item.h"
 #include "libgdlmarshal.h"
 
@@ -37,7 +36,6 @@
 /* ----- Private prototypes ----- */
 
 static void  gdl_dock_tablabel_class_init    (GdlDockTablabelClass *klass);
-static void  gdl_dock_tablabel_instance_init (GdlDockTablabel      *tablabel);
 
 static void  gdl_dock_tablabel_set_property  (GObject              *object,
                                               guint                 prop_id,
@@ -93,8 +91,7 @@ static guint dock_tablabel_signals [LAST_SIGNAL] = { 0 };
 
 /* ----- Private interface ----- */
 
-GDL_CLASS_BOILERPLATE (GdlDockTablabel, gdl_dock_tablabel,
-                       GtkBin, GTK_TYPE_BIN);
+G_DEFINE_TYPE (GdlDockTablabel, gdl_dock_tablabel, GTK_TYPE_BIN);
 
 static void
 gdl_dock_tablabel_class_init (GdlDockTablabelClass *klass)
@@ -146,7 +143,7 @@ gdl_dock_tablabel_class_init (GdlDockTablabelClass *klass)
 }
 
 static void
-gdl_dock_tablabel_instance_init (GdlDockTablabel *tablabel)
+gdl_dock_tablabel_init (GdlDockTablabel *tablabel)
 {
     GtkWidget *widget;
     GtkWidget *label_widget;
@@ -394,7 +391,7 @@ gdl_dock_tablabel_expose (GtkWidget      *widget,
     g_return_val_if_fail (event != NULL, FALSE);
 
     if (gtk_widget_get_visible (widget) && gtk_widget_get_mapped (widget)) {
-        GDL_CALL_PARENT_GBOOLEAN(GTK_WIDGET_CLASS, expose_event, (widget,event));
+        GTK_WIDGET_CLASS (gdl_dock_tablabel_parent_class)->expose_event (widget,event);
         gdl_dock_tablabel_paint (widget, event);
     };
   
@@ -578,15 +575,15 @@ gdl_dock_tablabel_unrealize (GtkWidget *widget)
         tablabel->event_window = NULL;
     }
     
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, unrealize, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_tablabel_parent_class)->unrealize (widget);
 }
 
 static void  
 gdl_dock_tablabel_map (GtkWidget *widget)
 {
     GdlDockTablabel *tablabel = GDL_DOCK_TABLABEL (widget);
-    
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, map, (widget));
+
+    GTK_WIDGET_CLASS (gdl_dock_tablabel_parent_class)->map (widget);
     
     gdk_window_show (tablabel->event_window);
 }
@@ -598,7 +595,7 @@ gdl_dock_tablabel_unmap (GtkWidget *widget)
 
     gdk_window_hide (tablabel->event_window);
 
-    GDL_CALL_PARENT (GTK_WIDGET_CLASS, unmap, (widget));
+    GTK_WIDGET_CLASS (gdl_dock_tablabel_parent_class)->unmap (widget);
 }
 
 /* ----- Public interface ----- */
