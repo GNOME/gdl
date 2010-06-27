@@ -6,7 +6,7 @@ INCLUDES = \
 	$(GDL_DEPENDENCIES_CFLAGS) $(XML_CFLAGS) 	\
 	$(EXTRA_CPPFLAGS)
 
-lib_LTLIBRARIES = libgdl-1.la
+lib_LTLIBRARIES = libgdl-3.la
 
 BUILT_SOURCES = \
 	libgdlmarshal.c \
@@ -31,7 +31,7 @@ libgdl_headers = \
 	gdl-dock-bar.h \
 	gdl-dock-placeholder.h
 	
-libgdl_1_la_SOURCES = \
+libgdl_3_la_SOURCES = \
 	$(libgdl_headers) \
 	gdl-i18n.h \
 	gdl-i18n.c \
@@ -59,19 +59,19 @@ libgdl_1_la_SOURCES = \
 	libgdlmarshal.h \
 	libgdlmarshal.c
 
-libgdl_1_la_LIBADD = \
+libgdl_3_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS)
 
-libgdl_1_la_LDFLAGS = $(EXTRA_LDFLAGS) \
+libgdl_3_la_LDFLAGS = $(EXTRA_LDFLAGS) \
 		      -version-info $(GDL_CURRENT):$(GDL_REVISION):$(GDL_AGE)
 
 noinst_PROGRAMS=test-dock
 
 test_dock_sources=test-dock.c
-test_dock_LDADD=libgdl-1.la $(XML_LIBS)
+test_dock_LDADD=libgdl-3.la $(XML_LIBS)
 
-libgdlincludedir = $(includedir)/libgdl-1.0/gdl
+libgdlincludedir = $(includedir)/libgdl-3.0/gdl
 libgdlinclude_HEADERS = \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
@@ -138,10 +138,10 @@ INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir)
 INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
 
 if HAVE_INTROSPECTION
-introspection_sources = $(libgdl_1_la_SOURCES)
+introspection_sources = $(libgdl_3_la_SOURCES)
 
-Gdl-@GDL_CURRENT@.gir: libgdl-1.la
-Gdl_@GDL_CURRENT@_gir_INCLUDES = GObject-2.0 Gtk-2.0
+Gdl-@GDL_CURRENT@.gir: libgdl-3.la
+Gdl_@GDL_CURRENT@_gir_INCLUDES = GObject-2.0 Gtk-3.0
 Gdl_@GDL_CURRENT@_gir_CFLAGS = $(INCLUDES)
 Gdl_@GDL_CURRENT@_gir_LIBS = libgdl-1.la
 Gdl_@GDL_CURRENT@_gir_FILES = $(addprefix $(srcdir)/,$(introspection_sources))

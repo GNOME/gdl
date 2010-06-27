@@ -11,11 +11,11 @@ AC_INIT(gdl)
 AM_CONFIG_HEADER(config.h)
 
 GDL_MAJOR_VERSION=2
-GDL_MINOR_VERSION=31
-GDL_MICRO_VERSION=2
+GDL_MINOR_VERSION=90
+GDL_MICRO_VERSION=0
 
 dnl increment if the interface has additions, changes, removals.
-GDL_CURRENT=3
+GDL_CURRENT=4
 
 dnl increment any time the source changes; set to
 dnl  0 if you increment CURRENT
@@ -46,10 +46,10 @@ AC_SUBST(GDL_MINOR_VERSION)
 AC_SUBST(GDL_MICRO_VERSION)
 AC_SUBST(GDL_VERSION)
 
-SNAPSHOT=0_`date +%Y%m%d_%H%M%S`_cvs
+SNAPSHOT=0_`date +%Y%m%d_%H%M%S`_git
 AC_SUBST(SNAPSHOT)
 
-GTK_REQUIRED=2.20.0
+GTK_REQUIRED=2.90.4
 XML_REQUIRED=2.2.8
 
 AC_SUBST(GTK_REQUIRED)
@@ -82,7 +82,7 @@ AC_SUBST(XML_CFLAGS)
 AC_SUBST(XML_LIBS)
 
 PKG_CHECK_MODULES(GDL_DEPENDENCIES, 
-	gtk+-2.0 >= $GTK_REQUIRED)
+	gtk+-3.0 >= $GTK_REQUIRED)
 AC_SUBST(GDL_DEPENDENCIES_CFLAGS)
 AC_SUBST(GDL_DEPENDENCIES_LIBS)
 
@@ -119,7 +119,7 @@ GLIB_MKENUMS="`$PKG_CONFIG --variable=glib_mkenums glib-2.0`"
 AC_SUBST(GLIB_MKENUMS)
 
 ALL_LINGUAS=""
-GETTEXT_PACKAGE=gdl-1
+GETTEXT_PACKAGE=gdl-3
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Package name for gettext])
 IT_PROG_INTLTOOL([0.35.0])
@@ -150,5 +150,5 @@ po/Makefile.in
 docs/Makefile
 docs/reference/Makefile
 gdl.spec
-gdl-1.0.pc
+gdl-3.0.pc
 ])

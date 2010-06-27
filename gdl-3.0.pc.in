@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@/libgdl-3.0
+datarootdir=@datarootdir@
+
+Name: gdl
+Description: Gnome Docking Library
+Version: @VERSION@
+Requires: gtk+-3.0 libxml-2.0
+Libs: -L${libdir} -lgdl-3
+Cflags: -I${includedir}
