@@ -1,3 +1,14 @@
+Changes in 2.90.0
+
+* Depends on gtk+-3.0 now:
+ - new library name libgdl3
+ - new pkg-config name gdl-3.0
+Note: You cannot use that version for building anjuta yet because there are
+still problems with gtk+-3.0 support in anjuta (libgladeui, libvte).
+
+Thanks to Andre Klapper, Javier Jardon and Mirsal Ennaime for the GSEAL and
+deprecation patches.
+
 Changes in 2.31.2
 
 * Translation updates

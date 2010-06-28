@@ -13,8 +13,8 @@ EXTRA_DIST = 			\
 	m4/introspection.m4
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gdl-1.0.pc 
+pkgconfig_DATA = gdl-3.0.pc 
 
-CLEANFILES = gdl-1.0.pc intltool-extract intltool-merge intltool-update
+CLEANFILES = gdl-3.0.pc intltool-extract intltool-merge intltool-update
 
 

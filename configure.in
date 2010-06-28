@@ -5,9 +5,9 @@ dnl it too, or it will never make it into the spec file!
 dnl
 dnl ==========================================================================
 
-AC_PREREQ(2.62)
-AC_CONFIG_MACRO_DIR([m4])
+AC_PREREQ(2.65)
 AC_INIT(gdl)
+AC_CONFIG_MACRO_DIR([m4])
 AM_CONFIG_HEADER(config.h)
 
 GDL_MAJOR_VERSION=2
@@ -15,7 +15,7 @@ GDL_MINOR_VERSION=90
 GDL_MICRO_VERSION=0
 
 dnl increment if the interface has additions, changes, removals.
-GDL_CURRENT=4
+GDL_CURRENT=1
 
 dnl increment any time the source changes; set to
 dnl  0 if you increment CURRENT

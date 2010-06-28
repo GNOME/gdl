@@ -143,7 +143,7 @@ introspection_sources = $(libgdl_3_la_SOURCES)
 Gdl-@GDL_CURRENT@.gir: libgdl-3.la
 Gdl_@GDL_CURRENT@_gir_INCLUDES = GObject-2.0 Gtk-3.0
 Gdl_@GDL_CURRENT@_gir_CFLAGS = $(INCLUDES)
-Gdl_@GDL_CURRENT@_gir_LIBS = libgdl-1.la
+Gdl_@GDL_CURRENT@_gir_LIBS = libgdl-3.la
 Gdl_@GDL_CURRENT@_gir_FILES = $(addprefix $(srcdir)/,$(introspection_sources))
 INTROSPECTION_GIRS += Gdl-@GDL_CURRENT@.gir
 
