@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gdl master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gdl&component=general\n"
-"POT-Creation-Date: 2010-07-14 11:33+0000\n"
+"POT-Creation-Date: 2010-07-18 19:45+0000\n"
 "PO-Revision-Date: 2010-07-17 15:20+0800\n"
 "Last-Translator: Tao Wang <dancefire@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -333,18 +333,16 @@ msgid "X Coordinate"
 msgstr "横坐标"
 
 #: ../gdl/gdl-dock-placeholder.c:190
-#, fuzzy
 msgid "X coordinate for dock when floating"
-msgstr "浮动时的横坐标"
+msgstr "浮动对象浮动时的横坐标"
 
 #: ../gdl/gdl-dock-placeholder.c:196
 msgid "Y Coordinate"
 msgstr "纵坐标"
 
 #: ../gdl/gdl-dock-placeholder.c:197
-#, fuzzy
 msgid "Y coordinate for dock when floating"
-msgstr "浮动时的纵坐标"
+msgstr "浮动对象浮动时的纵坐标"
 
 #: ../gdl/gdl-dock-placeholder.c:499
 msgid "Attempt to dock a dock object to an unbound placeholder"
