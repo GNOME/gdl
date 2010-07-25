@@ -458,9 +458,8 @@ static void gdl_dock_bar_size_vrequest (GtkWidget *widget,
                                         GtkRequisition *requisition )
 {
     GtkBox *box;
-    GtkBoxChild *child;
     GtkRequisition child_requisition;
-    GList *children;
+    GList *child;
     gint nvis_children;
     gint height;
     guint border_width;
@@ -470,24 +469,34 @@ static void gdl_dock_bar_size_vrequest (GtkWidget *widget,
     requisition->height = 0;
     nvis_children = 0;
 
-    children = gtk_container_get_children (GTK_CONTAINER (box));
-    while (children)
+    
+    for (child = gtk_container_get_children (GTK_CONTAINER (box));
+         child != NULL; child = g_list_next (child))
     {
-        child = children->data;
-        children = children->next;
-
-        if (gtk_widget_get_visible (child->widget))
+        if (gtk_widget_get_visible (GTK_WIDGET (child->data)))
         {
-            gtk_widget_size_request (child->widget, &child_requisition);
+            guint padding;
+            gboolean expand;
+            gboolean fill;
+            GtkPackType pack_type;
 
+            gtk_widget_size_request (GTK_WIDGET (child->data), &child_requisition);
+
+            gtk_box_query_child_packing (box,
+                                         child->data,
+                                         &expand,
+                                         &fill,
+                                         &padding,
+                                         &pack_type);
+            
             if (gtk_box_get_homogeneous (box))
             {
-                height = child_requisition.height + child->padding * 2;
+                height = child_requisition.height +  padding * 2;
                 requisition->height = MAX (requisition->height, height);
             }
             else
             {
-                requisition->height += child_requisition.height + child->padding * 2;
+                requisition->height += child_requisition.height + padding * 2;
             }
 
             requisition->width = MAX (requisition->width, child_requisition.width);
@@ -513,8 +522,7 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                                          GtkAllocation *allocation)
 {
     GtkBox *box;
-    GtkBoxChild *child;
-    GList *children;
+    GList *child;
     GtkAllocation child_allocation;
     gint nvis_children;
     gint nexpand_children;
@@ -532,17 +540,25 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
 
     nvis_children = 0;
     nexpand_children = 0;
-    children = gtk_container_get_children (GTK_CONTAINER (box));
 
-    while (children)
+    for (child = gtk_container_get_children (GTK_CONTAINER (box));
+         child != NULL; child = g_list_next (child))
     {
-        child = children->data;
-        children = children->next;
+        guint padding;
+        gboolean expand;
+        gboolean fill;
+        GtkPackType pack_type;
 
-        if (gtk_widget_get_visible (child->widget))
+        gtk_box_query_child_packing (box,
+                                     child->data,
+                                     &expand,
+                                     &fill,
+                                     &padding,
+                                     &pack_type);
+        if (gtk_widget_get_visible (GTK_WIDGET(child->data)))
         {
             nvis_children += 1;
-            if (child->expand)
+            if (expand)
                 nexpand_children += 1;
         }
     }
@@ -573,13 +589,22 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
         child_allocation.x = allocation->x + border_width;
         child_allocation.width = MAX (1, (gint) allocation->width - (gint) border_width * 2);
 
-        children = gtk_container_get_children (GTK_CONTAINER (box));
-        while (children)
+        for (child = gtk_container_get_children (GTK_CONTAINER (box));
+             child != NULL; child = g_list_next (child))
         {
-            child = children->data;
-            children = children->next;
+            guint padding;
+            gboolean expand;
+            gboolean fill;
+            GtkPackType pack_type;
 
-            if ((child->pack == GTK_PACK_START) && gtk_widget_get_visible (child->widget))
+            gtk_box_query_child_packing (box,
+                                         child->data,
+                                         &expand,
+                                         &fill,
+                                         &padding,
+                                         &pack_type);
+            
+            if ((pack_type == GTK_PACK_START) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 if (gtk_box_get_homogeneous (box))
                 {
@@ -595,10 +620,10 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (child->widget, &child_requisition);
-                    child_height = child_requisition.height + child->padding * 2;
+                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
+                    child_height = child_requisition.height + padding * 2;
 
-                    if (child->expand)
+                    if (expand)
                     {
                         if (nexpand_children == 1)
                             child_height += height;
@@ -610,21 +635,21 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                     }
                 }
 
-                if (child->fill)
+                if (fill)
                 {
-                    child_allocation.height = MAX (1, child_height - (gint)child->padding * 2);
-                    child_allocation.y = y + child->padding;
+                    child_allocation.height = MAX (1, child_height - padding * 2);
+                    child_allocation.y = y + padding;
                 }
                 else
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (child->widget, &child_requisition);
+                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
                     child_allocation.height = child_requisition.height;
                     child_allocation.y = y + (child_height - child_allocation.height) / 2;
                 }
 
-                gtk_widget_size_allocate (child->widget, &child_allocation);
+                gtk_widget_size_allocate (GTK_WIDGET (child->data), &child_allocation);
 
                 y += child_height + gtk_box_get_spacing (box);
             }
@@ -632,16 +657,25 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
 
         y = allocation->y + allocation->height - border_width;
 
-        children = gtk_container_get_children (GTK_CONTAINER (box));
-        while (children)
+        for (child = gtk_container_get_children (GTK_CONTAINER (box));
+             child != NULL; child = g_list_next (child))
         {
-            child = children->data;
-            children = children->next;
+            guint padding;
+            gboolean expand;
+            gboolean fill;
+            GtkPackType pack_type;
 
-            if ((child->pack == GTK_PACK_END) && gtk_widget_get_visible (child->widget))
+            gtk_box_query_child_packing (box,
+                                         child->data,
+                                         &expand,
+                                         &fill,
+                                         &padding,
+                                         &pack_type);
+            
+            if ((pack_type == GTK_PACK_END) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 GtkRequisition child_requisition;
-                gtk_widget_get_child_requisition (child->widget, &child_requisition);
+                gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
 
                 if (gtk_box_get_homogeneous (box))
                 {
@@ -655,9 +689,9 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                 }
                 else
                 {
-                    child_height = child_requisition.height + child->padding * 2;
+                    child_height = child_requisition.height + padding * 2;
 
-                    if (child->expand)
+                    if (expand)
                     {
                         if (nexpand_children == 1)
                             child_height += height;
@@ -669,10 +703,10 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                     }
                 }
 
-                if (child->fill)
+                if (fill)
                 {
-                    child_allocation.height = MAX (1, child_height - (gint)child->padding * 2);
-                    child_allocation.y = y + child->padding - child_height;
+                    child_allocation.height = MAX (1, child_height - padding * 2);
+                    child_allocation.y = y + padding - child_height;
                 }
                 else
                 {
@@ -680,7 +714,7 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                     child_allocation.y = y + (child_height - child_allocation.height) / 2 - child_height;
                 }
 
-                gtk_widget_size_allocate (child->widget, &child_allocation);
+                gtk_widget_size_allocate (GTK_WIDGET (child->data), &child_allocation);
 
                 y -= (child_height + gtk_box_get_spacing (box));
             }
@@ -692,8 +726,7 @@ static void gdl_dock_bar_size_hrequest (GtkWidget *widget,
                                         GtkRequisition *requisition )
 {
     GtkBox *box;
-    GtkBoxChild *child;
-    GList *children;
+    GList *child;
     gint nvis_children;
     gint width;
     guint border_width;
@@ -703,26 +736,36 @@ static void gdl_dock_bar_size_hrequest (GtkWidget *widget,
     requisition->height = 0;
     nvis_children = 0;
 
-    children = gtk_container_get_children (GTK_CONTAINER (box));
-    while (children)
+    for (child = gtk_container_get_children (GTK_CONTAINER (box));
+         child != NULL; child = g_list_next (child))
     {
-        child = children->data;
-        children = children->next;
+        guint padding;
+        gboolean expand;
+        gboolean fill;
+        GtkPackType pack_type;
 
-        if (gtk_widget_get_visible (child->widget))
+        gtk_box_query_child_packing (box,
+                                     child->data,
+                                     &expand,
+                                     &fill,
+                                     &padding,
+                                     &pack_type);
+
+
+        if (gtk_widget_get_visible (GTK_WIDGET (child->data)))
         {
             GtkRequisition child_requisition;
 
-            gtk_widget_size_request (child->widget, &child_requisition);
+            gtk_widget_size_request (GTK_WIDGET (child->data), &child_requisition);
 
             if (gtk_box_get_homogeneous (box))
             {
-                width = child_requisition.width + child->padding * 2;
+                width = child_requisition.width + padding * 2;
                 requisition->width = MAX (requisition->width, width);
             }
             else
             {
-                requisition->width += child_requisition.width + child->padding * 2;
+                requisition->width += child_requisition.width + padding * 2;
             }
 
             requisition->height = MAX (requisition->height, child_requisition.height);
@@ -747,8 +790,7 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                                          GtkAllocation *allocation)
 {
     GtkBox *box;
-    GtkBoxChild *child;
-    GList *children;
+    GList *child;
     GtkAllocation child_allocation;
     gint nvis_children;
     gint nexpand_children;
@@ -768,17 +810,26 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
 
     nvis_children = 0;
     nexpand_children = 0;
-    children = gtk_container_get_children (GTK_CONTAINER (box));
 
-    while (children)
+    for (child = gtk_container_get_children (GTK_CONTAINER (box));
+         child != NULL; child = g_list_next (child))
     {
-        child = children->data;
-        children = children->next;
+        guint padding;
+        gboolean expand;
+        gboolean fill;
+        GtkPackType pack_type;
 
-        if (gtk_widget_get_visible (child->widget))
+        gtk_box_query_child_packing (box,
+                                     child->data,
+                                     &expand,
+                                     &fill,
+                                     &padding,
+                                     &pack_type);
+
+        if (gtk_widget_get_visible (GTK_WIDGET (child->data)))
         {
             nvis_children += 1;
-            if (child->expand)
+            if (expand)
                 nexpand_children += 1;
         }
     }
@@ -809,13 +860,22 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
         child_allocation.y = allocation->y + border_width;
         child_allocation.height = MAX (1, (gint) allocation->height - (gint) border_width * 2);
 
-        children = gtk_container_get_children (GTK_CONTAINER (box));
-        while (children)
+        for (child = gtk_container_get_children (GTK_CONTAINER (box));
+             child != NULL; child = g_list_next (child))
         {
-            child = children->data;
-            children = children->next;
+            guint padding;
+            gboolean expand;
+            gboolean fill;
+            GtkPackType pack_type;
 
-            if ((child->pack == GTK_PACK_START) && gtk_widget_get_visible (child->widget))
+            gtk_box_query_child_packing (box,
+                                         child->data,
+                                         &expand,
+                                         &fill,
+                                         &padding,
+                                         &pack_type);
+
+            if ((pack_type == GTK_PACK_START) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 if (gtk_box_get_homogeneous (box))
                 {
@@ -831,11 +891,11 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (child->widget, &child_requisition);
+                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
 
-                    child_width = child_requisition.width + child->padding * 2;
+                    child_width = child_requisition.width + padding * 2;
 
-                    if (child->expand)
+                    if (expand)
                     {
                         if (nexpand_children == 1)
                             child_width += width;
@@ -847,16 +907,16 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                     }
                 }
 
-                if (child->fill)
+                if (fill)
                 {
-                    child_allocation.width = MAX (1, (gint) child_width - (gint) child->padding * 2);
-                    child_allocation.x = x + child->padding;
+                    child_allocation.width = MAX (1, child_width - padding * 2);
+                    child_allocation.x = x + padding;
                 }
                 else
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (child->widget, &child_requisition);
+                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
                     child_allocation.width = child_requisition.width;
                     child_allocation.x = x + (child_width - child_allocation.width) / 2;
                 }
@@ -864,7 +924,7 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                 if (direction == GTK_TEXT_DIR_RTL)
                     child_allocation.x = allocation->x + allocation->width - (child_allocation.x - allocation->x) - child_allocation.width;
 
-                gtk_widget_size_allocate (child->widget, &child_allocation);
+                gtk_widget_size_allocate (GTK_WIDGET (child->data), &child_allocation);
 
                 x += child_width + gtk_box_get_spacing (box);
             }
@@ -872,16 +932,25 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
 
         x = allocation->x + allocation->width - border_width;
 
-        children = gtk_container_get_children (GTK_CONTAINER (box));
-        while (children)
+        for (child = gtk_container_get_children (GTK_CONTAINER (box));
+             child != NULL; child = g_list_next (child))
         {
-            child = children->data;
-            children = children->next;
+            guint padding;
+            gboolean expand;
+            gboolean fill;
+            GtkPackType pack_type;
 
-            if ((child->pack == GTK_PACK_END) && gtk_widget_get_visible (child->widget))
+            gtk_box_query_child_packing (box,
+                                         child->data,
+                                         &expand,
+                                         &fill,
+                                         &padding,
+                                         &pack_type);
+
+            if ((pack_type == GTK_PACK_END) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 GtkRequisition child_requisition;
-                gtk_widget_get_child_requisition (child->widget, &child_requisition);
+                gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
 
                 if (gtk_box_get_homogeneous (box))
                 {
@@ -895,9 +964,9 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                 }
                 else
                 {
-                    child_width = child_requisition.width + child->padding * 2;
+                    child_width = child_requisition.width + padding * 2;
 
-                    if (child->expand)
+                    if (expand)
                     {
                         if (nexpand_children == 1)
                             child_width += width;
@@ -909,10 +978,10 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                     }
                 }
 
-                if (child->fill)
+                if (fill)
                 {
-                    child_allocation.width = MAX (1, (gint)child_width - (gint)child->padding * 2);
-                    child_allocation.x = x + child->padding - child_width;
+                    child_allocation.width = MAX (1, child_width - padding * 2);
+                    child_allocation.x = x + padding - child_width;
                 }
                 else
                 {
@@ -923,7 +992,7 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                 if (direction == GTK_TEXT_DIR_RTL)
                     child_allocation.x = allocation->x + allocation->width - (child_allocation.x - allocation->x) - child_allocation.width;
 
-                gtk_widget_size_allocate (child->widget, &child_allocation);
+                gtk_widget_size_allocate (GTK_WIDGET (child->data), &child_allocation);
 
                 x -= (child_width + gtk_box_get_spacing (box));
             }

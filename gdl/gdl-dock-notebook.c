@@ -58,7 +58,7 @@ static void  gdl_dock_notebook_dock          (GdlDockObject    *object,
                                               GValue           *other_data);
 
 static void  gdl_dock_notebook_switch_page_cb  (GtkNotebook     *nb,
-                                                GtkNotebookPage *page,
+                                                GtkWidget       *page,
                                                 gint             page_num,
                                                 gpointer         data);
 
@@ -259,7 +259,7 @@ gdl_dock_notebook_destroy (GtkObject *object)
 
 static void
 gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
-                                  GtkNotebookPage *page,
+                                  GtkWidget       *page,
                                   gint             page_num,
                                   gpointer         data)
 {
@@ -280,7 +280,7 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
 
     /* activate new label */
     tablabel = gtk_notebook_get_tab_label (
-        nb, gtk_notebook_get_nth_page (nb, page_num));
+        nb, page);
     if (tablabel && GDL_IS_DOCK_TABLABEL (tablabel))
         gdl_dock_tablabel_activate (GDL_DOCK_TABLABEL (tablabel));
 
@@ -290,7 +290,7 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
                                "layout-changed");
 
     /* Signal that a new dock item has been selected */
-    item = GDL_DOCK_ITEM (gtk_notebook_get_nth_page (nb, page_num));
+    item = GDL_DOCK_ITEM (page);
     gdl_dock_item_notify_selected (item);
 }
 
