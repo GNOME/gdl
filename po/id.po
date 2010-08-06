@@ -5,15 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&component=general\n"
-"POT-Creation-Date: 2010-04-25 19:18+0000\n"
-"PO-Revision-Date: 2010-04-26 14:38+0700\n"
-"Last-Translator: Taufiq Wirahman <taufiq.wirahman@gmail.com>\n"
+"Project-Id-Version: gdl 2.30\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&component=general\n"
+"POT-Creation-Date: 2010-08-06 08:08+0000\n"
+"PO-Revision-Date: 2010-08-06 15:09+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Indonesian\n"
+"X-Poedit-Country: Indonesia\n"
 
 #: ../gdl/gdl-dock-item-grip.c:342
 msgid "Iconify this dock"
@@ -23,8 +26,7 @@ msgstr "Ikonkan dok ini"
 msgid "Close this dock"
 msgstr "Tutup dok ini"
 
-#: ../gdl/gdl-dock-item-grip.c:662
-#: ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Mengontrol butir dok"
 
@@ -32,93 +34,108 @@ msgstr "Mengontrol butir dok"
 msgid "Dockitem which 'owns' this grip"
 msgstr "Butir dok yang 'memiliki' pegangan ini"
 
-#: ../gdl/gdl-dock-item.c:257
+#: ../gdl/gdl-dock-item.c:254
 msgid "Orientation"
 msgstr "Orientasi"
 
-#: ../gdl/gdl-dock-item.c:258
+#: ../gdl/gdl-dock-item.c:255
 msgid "Orientation of the docking item"
 msgstr "Orientasi butir dok"
 
-#: ../gdl/gdl-dock-item.c:273
+#: ../gdl/gdl-dock-item.c:270
 msgid "Resizable"
 msgstr "Dapat diubah ukurannya"
 
-#: ../gdl/gdl-dock-item.c:274
+#: ../gdl/gdl-dock-item.c:271
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr "Jika diatur, butir dok dapat diubah ukurannya saat dilabuhkan pada sebuah perkakas GtkPanel"
+msgstr ""
+"Jika diatur, butir dok dapat diubah ukurannya saat dilabuhkan pada sebuah "
+"perkakas GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:281
+#: ../gdl/gdl-dock-item.c:278
 msgid "Item behavior"
 msgstr "Butir perilaku"
 
-#: ../gdl/gdl-dock-item.c:282
-msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
-msgstr "Perilaku umum untuk butir dok (misalnya apakah bisa mengambang, jika terkunci, dll)"
+#: ../gdl/gdl-dock-item.c:279
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Perilaku umum untuk butir dok (misalnya apakah bisa mengambang, jika "
+"terkunci, dll)"
 
-#: ../gdl/gdl-dock-item.c:290
-#: ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
 msgstr "Terkunci"
 
-#: ../gdl/gdl-dock-item.c:291
-msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr "Jika diatur, butir dok tidak dapat diseret sekeliling dan tidak menunjukkan pegangan"
+#: ../gdl/gdl-dock-item.c:288
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Jika diatur, butir dok tidak dapat diseret sekeliling dan tidak menunjukkan "
+"pegangan"
 
-#: ../gdl/gdl-dock-item.c:299
+#: ../gdl/gdl-dock-item.c:296
 msgid "Preferred width"
 msgstr "Lebar yang dipilih"
 
-#: ../gdl/gdl-dock-item.c:300
+#: ../gdl/gdl-dock-item.c:297
 msgid "Preferred width for the dock item"
 msgstr "Lebar yang dipilih untuk butir dok"
 
-#: ../gdl/gdl-dock-item.c:306
+#: ../gdl/gdl-dock-item.c:303
 msgid "Preferred height"
 msgstr "Tinggi yang dipilih"
 
-#: ../gdl/gdl-dock-item.c:307
+#: ../gdl/gdl-dock-item.c:304
 msgid "Preferred height for the dock item"
 msgstr "Tinggi yang dipilih untuk butir dok"
 
-#: ../gdl/gdl-dock-item.c:650
+#: ../gdl/gdl-dock-item.c:592
 #, c-format
-msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
-msgstr "Anda tidak dapat menambahkan objek dok (%p dari tipe %s) di dalam %s. Gunakan GdlDock atau beberapa objek dok campuran lainnya."
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Anda tidak dapat menambahkan objek dok (%p dari tipe %s) di dalam %s. "
+"Gunakan GdlDock atau beberapa objek dok campuran lainnya."
 
-#: ../gdl/gdl-dock-item.c:657
+#: ../gdl/gdl-dock-item.c:599
 #, c-format
-msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
-msgstr "Mencoba untuk menambahkan sebuah perkakas dengan tipe %s ke %s, tetapi hanya dapat berisi satu perkakas dalam satu waktu; sudah berisi sebuah perkakas dari tipe %s"
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Mencoba untuk menambahkan sebuah perkakas dengan tipe %s ke %s, tetapi hanya "
+"dapat berisi satu perkakas dalam satu waktu; sudah berisi sebuah perkakas "
+"dari tipe %s"
 
-#: ../gdl/gdl-dock-item.c:1345
-#: ../gdl/gdl-dock-item.c:1395
+#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Strategi pelabuhan %s tidak didukung di objek dok dari tipe %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1503
+#: ../gdl/gdl-dock-item.c:1443
 msgid "UnLock"
 msgstr "Buka Kunci"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1510
+#: ../gdl/gdl-dock-item.c:1450
 msgid "Hide"
 msgstr "Sembunyikan"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1515
+#: ../gdl/gdl-dock-item.c:1455
 msgid "Lock"
 msgstr "Kunci"
 
-#: ../gdl/gdl-dock-item.c:1748
+#: ../gdl/gdl-dock-item.c:1693
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Mencoba untuk mengikat sebuah butir %p yang tidak terikat"
 
-#: ../gdl/gdl-dock-layout.c:122
-#: ../gdl/gdl-dock-bar.c:107
+#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "Induk"
 
@@ -147,18 +164,20 @@ msgstr "Terlihat"
 msgid "Item"
 msgstr "Butir"
 
-#: ../gdl/gdl-dock-layout.c:712
-#: ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Nama"
 
 #: ../gdl/gdl-dock-layout.c:770
 #, c-format
-msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
-msgstr "Ketika memuat tata letak: tidak tahu cara membuat objek dok yang julukannya adalah '%s'"
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"Ketika memuat tata letak: tidak tahu cara membuat objek dok yang julukannya "
+"adalah '%s'"
 
-#: ../gdl/gdl-dock-master.c:140
-#: ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "Judul bawaan"
 
@@ -167,28 +186,38 @@ msgid "Default title for newly created floating docks"
 msgstr "Judul bawaan untuk dok mengambang yang baru dibuat"
 
 #: ../gdl/gdl-dock-master.c:148
-msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr "Jika diatur ke 1, semua butir dok yang terikat pada induk terkunci, jika 0, semua akan dibuka; -1 menunjukkan inkonsistensi antar butir"
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Jika diatur ke 1, semua butir dok yang terikat pada induk terkunci, jika 0, "
+"semua akan dibuka; -1 menunjukkan inkonsistensi antar butir"
 
-#: ../gdl/gdl-dock-master.c:156
-#: ../gdl/gdl-switcher.c:731
+#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
 msgid "Switcher Style"
 msgstr "Pengganti Gaya"
 
-#: ../gdl/gdl-dock-master.c:157
-#: ../gdl/gdl-switcher.c:732
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
 msgid "Switcher buttons style"
 msgstr "Gaya tombol pengganti"
 
 #: ../gdl/gdl-dock-master.c:763
 #, c-format
-msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
-msgstr "induk %p: tidak dapat menambahkan objek %p[%s] pada campuran. Sudah terdapat butir dengan nama tersebut (%p)."
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"induk %p: tidak dapat menambahkan objek %p[%s] pada campuran. Sudah terdapat "
+"butir dengan nama tersebut (%p)."
 
 #: ../gdl/gdl-dock-master.c:935
 #, c-format
-msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
-msgstr "Pengendali dok baru %p adalah otomatis. Hanya objek dok manual harus dinamai pengendali."
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"Pengendali dok baru %p adalah otomatis. Hanya objek dok manual harus dinamai "
+"pengendali."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -228,23 +257,35 @@ msgstr "Induk dok untuk objek dok ini terikat pada"
 
 #: ../gdl/gdl-dock-object.c:444
 #, c-format
-msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
-msgstr "Panggil gdl_dock_object_dock pada objek dok %p (jenis objek adalah %s) yang tidak menerapkan metode ini"
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Panggil gdl_dock_object_dock pada objek dok %p (jenis objek adalah %s) yang "
+"tidak menerapkan metode ini"
+
+#: ../gdl/gdl-dock-object.c:576
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"Operasi dok yang diminta dalam objek tidak-terikat %p. Aplikasi ini mungkin "
+"gagal"
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
-msgid "Dock operation requested in a non-bound object %p. The application might crash"
-msgstr "Operasi dok yang diminta dalam objek tidak-terikat %p. Aplikasi ini mungkin gagal"
-
-#: ../gdl/gdl-dock-object.c:590
-#, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "Tidak dapat melabuhkan %p ke %p karena mereka adalah milik induk yang berbeda"
+msgstr ""
+"Tidak dapat melabuhkan %p ke %p karena mereka adalah milik induk yang berbeda"
 
-#: ../gdl/gdl-dock-object.c:632
+#: ../gdl/gdl-dock-object.c:625
 #, c-format
-msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr "Mencoba untuk mengikat ke %p objek dok %p yang sudah terikat (induk sekarang: %p)"
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"Mencoba untuk mengikat ke %p objek dok %p yang sudah terikat (induk "
+"sekarang: %p)"
 
 #: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
@@ -259,8 +300,12 @@ msgid "Sticky"
 msgstr "Lengket"
 
 #: ../gdl/gdl-dock-placeholder.c:145
-msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
-msgstr "Apakah placeholder akan tetap menjadi tuan rumah atau naik hirarki saat tuan rumah dilabukan kembali"
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Apakah placeholder akan tetap menjadi tuan rumah atau naik hirarki saat tuan "
+"rumah dilabukan kembali"
 
 #: ../gdl/gdl-dock-placeholder.c:152
 msgid "Host"
@@ -275,11 +320,14 @@ msgid "Next placement"
 msgstr "Penempatan berikutnya"
 
 #: ../gdl/gdl-dock-placeholder.c:161
-msgid "The position an item will be docked to our host if a request is made to dock to us"
-msgstr "Posisi butir akan dilabuhkan pada tuan rumah kami jika ada permintaan dibuat untuk melabuhkan kepada kami"
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"Posisi butir akan dilabuhkan pada tuan rumah kami jika ada permintaan dibuat "
+"untuk melabuhkan kepada kami"
 
-#: ../gdl/gdl-dock-placeholder.c:170
-#: ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "Lebar"
 
@@ -287,8 +335,7 @@ msgstr "Lebar"
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Lebar untuk perkakas ketika melekat pada placeholder"
 
-#: ../gdl/gdl-dock-placeholder.c:178
-#: ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "Tinggi"
 
@@ -305,34 +352,39 @@ msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Apakah placeholder ini berada pada dok mengambang tingkat atas"
 
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X Coordinate"
+msgid "X-Coordinate"
 msgstr "Koordinat X"
 
 #: ../gdl/gdl-dock-placeholder.c:193
-msgid "X coordinate for dock when floating"
+msgid "X-Coordinate for dock when floating"
 msgstr "Koordinat X untuk dok saat mengambang"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y Coordinate"
+msgid "Y-Coordinate"
 msgstr "Koordinat Y"
 
 #: ../gdl/gdl-dock-placeholder.c:200
-msgid "Y coordinate for dock when floating"
+msgid "Y-Coordinate for dock when floating"
 msgstr "Koordinat Y untuk dok saat mengambang"
 
-#: ../gdl/gdl-dock-placeholder.c:497
+#: ../gdl/gdl-dock-placeholder.c:495
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Mencoba untuk melabuhkan objek dok ke placeholder yang tidak terikat"
 
-#: ../gdl/gdl-dock-placeholder.c:608
+#: ../gdl/gdl-dock-placeholder.c:619
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr "Mendapat sinyal pelepasan dari objek (%p) yang bukan merupakan tuan rumah kami %p"
+msgstr ""
+"Mendapat sinyal pelepasan dari objek (%p) yang bukan merupakan tuan rumah "
+"kami %p"
 
-#: ../gdl/gdl-dock-placeholder.c:633
+#: ../gdl/gdl-dock-placeholder.c:644
 #, c-format
-msgid "Something weird happened while getting the child placement for %p from parent %p"
-msgstr "Sesuatu yang aneh terjadi ketika mendapatkan penempatan anak %p dari induk %p"
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Sesuatu yang aneh terjadi ketika mendapatkan penempatan anak %p dari induk %p"
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
@@ -386,7 +438,7 @@ msgstr "Y Mengambang"
 msgid "Y coordinate for a floating dock"
 msgstr "Koordinat Y untuk dok mengambang"
 
-#: ../gdl/gdl-dock.c:480
+#: ../gdl/gdl-dock.c:484
 #, c-format
 msgid "Dock #%d"
 msgstr "Dok #%d"
@@ -410,4 +462,3 @@ msgstr "_Muat"
 #: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
 msgstr "_Kunci butir dok"
-
