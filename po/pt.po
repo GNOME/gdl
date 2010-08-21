@@ -1,76 +1,60 @@
 # gdl's Portuguese Translation
-# Copyright © 2002, 2003, 2004, 2008 gdl.
+# Copyright © 2002, 2003, 2004, 2008, 2010 gdl.
 # This file is distributed under the same license as the gdl package.
 # Paulo Silva <paulojjs@yahoo.com>, 2002
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2003, 2004, 2008.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2003, 2004, 2008, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.22\n"
+"Project-Id-Version: 2.32\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-12 23:22+0000\n"
-"PO-Revision-Date: 2008-02-12 23:25+0000\n"
+"POT-Creation-Date: 2010-08-21 17:20+0100\n"
+"PO-Revision-Date: 2010-08-21 17:25+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-data-view.c:418
-msgid "Expander Size"
-msgstr "Tamanho do Expansor"
-
-#: ../gdl/gdl-data-view.c:419
-msgid "Size of the expander arrow."
-msgstr "Tamanho da seta do expansor."
-
-#: ../gdl/gdl-dock-item-grip.c:373
-msgid "Iconify"
-msgstr "Reduzir a ícone"
-
-#: ../gdl/gdl-dock-item-grip.c:373
+#: ../gdl/gdl-dock-item-grip.c:381
 msgid "Iconify this dock"
 msgstr "Reduzir a ícone este anexável"
 
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Close"
-msgstr "Fechar"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:383
 msgid "Close this dock"
 msgstr "Fechar este anexável"
 
-#: ../gdl/gdl-dock-item-grip.c:684 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:703 ../gdl/gdl-dock-tablabel.c:125
 msgid "Controlling dock item"
 msgstr "Item anexável controlador"
 
-#: ../gdl/gdl-dock-item-grip.c:685
+#: ../gdl/gdl-dock-item-grip.c:704
 msgid "Dockitem which 'owns' this grip"
 msgstr "Item anexável que 'detém' este manípulo"
 
-#: ../gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:255
 msgid "Orientation"
 msgstr "Orientação"
 
-#: ../gdl/gdl-dock-item.c:244
+#: ../gdl/gdl-dock-item.c:256
 msgid "Orientation of the docking item"
 msgstr "Orientação do item anexável"
 
-#: ../gdl/gdl-dock-item.c:259
+#: ../gdl/gdl-dock-item.c:271
 msgid "Resizable"
 msgstr "Redimensionável"
 
-#: ../gdl/gdl-dock-item.c:260
+#: ../gdl/gdl-dock-item.c:272
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Se definido, o item anexável pode ser redimensionado quando anexado a um "
 "widget GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:279
 msgid "Item behavior"
 msgstr "Comportamento do item"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:280
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -78,34 +62,34 @@ msgstr ""
 "Comportamento geral do item anexável (por ex. se pode flutuar, se está "
 "trancado, etc.)"
 
-#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:288 ../gdl/gdl-dock-master.c:145
 msgid "Locked"
 msgstr "Trancado"
 
-#: ../gdl/gdl-dock-item.c:277
+#: ../gdl/gdl-dock-item.c:289
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Se definido, o item anexável não pode ser arrastado e não apresenta um "
 "manípulo"
 
-#: ../gdl/gdl-dock-item.c:285
+#: ../gdl/gdl-dock-item.c:297
 msgid "Preferred width"
 msgstr "Largura preferida"
 
-#: ../gdl/gdl-dock-item.c:286
+#: ../gdl/gdl-dock-item.c:298
 msgid "Preferred width for the dock item"
 msgstr "Largura preferida para o item anexável"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:304
 msgid "Preferred height"
 msgstr "Altura preferida"
 
-#: ../gdl/gdl-dock-item.c:293
+#: ../gdl/gdl-dock-item.c:305
 msgid "Preferred height for the dock item"
 msgstr "Altura preferida para o item anexável"
 
-#: ../gdl/gdl-dock-item.c:543
+#: ../gdl/gdl-dock-item.c:644
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -114,7 +98,7 @@ msgstr ""
 "Não pode adicionar um objecto anexável (%p do tipo %s) dentro de um %s. "
 "Utilize um GdlDock ou outro objecto anexável composto."
 
-#: ../gdl/gdl-dock-item.c:550
+#: ../gdl/gdl-dock-item.c:651
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -123,77 +107,68 @@ msgstr ""
 "A tentar adicionar um widget com o tipo %s a um %s, mas este apenas pode "
 "conter um widget de cada vez; já contém um widget do tipo %s"
 
-#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1358 ../gdl/gdl-dock-item.c:1408
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "Estratégia de anexação %s não suportada pelo objecto anexável do tipo %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1390
+#: ../gdl/gdl-dock-item.c:1516
 msgid "UnLock"
 msgstr "Destrancar"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1397
+#: ../gdl/gdl-dock-item.c:1523
 msgid "Hide"
 msgstr "Esconder"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1402
+#: ../gdl/gdl-dock-item.c:1528
 msgid "Lock"
 msgstr "Trancar"
 
-#: ../gdl/gdl-dock-item.c:1608
+#: ../gdl/gdl-dock-item.c:1766
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Tentativa de associar um item desassociado %p"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:119 ../gdl/gdl-dock-bar.c:105
 msgid "Master"
 msgstr "Mestre"
 
-#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-layout.c:120
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Objecto GdlDockMaster a que o objecto de disposição está anexado"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:127
 msgid "Dirty"
 msgstr "Alterado"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:128
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "Verdadeiro se as disposições foram alteradas e têm de ser gravadas para um "
 "ficheiro"
 
-#. FIXME: pop up an error dialog
-#: ../gdl/gdl-dock-layout.c:563
+#: ../gdl/gdl-dock-layout.c:560
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Incapaz de ler o ficheiro de disposição de utilizador '%s'"
 
-#: ../gdl/gdl-dock-layout.c:618
+#: ../gdl/gdl-dock-layout.c:617
 msgid "Visible"
 msgstr "Visível"
 
-#: ../gdl/gdl-dock-layout.c:625
+#: ../gdl/gdl-dock-layout.c:624
 msgid "Item"
 msgstr "Item"
 
-#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:117
 msgid "Name"
 msgstr "Nome"
 
-#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
-msgid "Dock items"
-msgstr "Itens anexáveis"
-
-#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
-msgid "Saved layouts"
-msgstr "Disposições gravadas"
-
-#: ../gdl/gdl-dock-layout.c:789
+#: ../gdl/gdl-dock-layout.c:767
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
@@ -202,11 +177,7 @@ msgstr ""
 "Ao ler a disposição: desconhece-se como criar um objecto anexável cuja "
 "alcunha é '%s'"
 
-#: ../gdl/gdl-dock-layout.c:1268
-msgid "Layout managment"
-msgstr "Gestão de disposições"
-
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:184
 msgid "Default title"
 msgstr "Título por omissão"
 
@@ -223,15 +194,15 @@ msgstr ""
 "trancados; se 0, estão todos destrancados; -1 indica inconsistência entre "
 "itens"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:727
 msgid "Switcher Style"
 msgstr "Estilo do Alternador"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:728
 msgid "Switcher buttons style"
 msgstr "Estilo dos botões de alternar"
 
-#: ../gdl/gdl-dock-master.c:761
+#: ../gdl/gdl-dock-master.c:768
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -240,7 +211,7 @@ msgstr ""
 "mestre %p: incapaz de adicionar o objecto %p[%s] à pilha. Já existe um item "
 "com esse nome (%p)."
 
-#: ../gdl/gdl-dock-master.c:934
+#: ../gdl/gdl-dock-master.c:940
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -249,43 +220,43 @@ msgstr ""
 "O novo controlador de anexáveis %p é automático. Apenas objectos anexáveis "
 "manuais deverão ser denominados controladores."
 
-#: ../gdl/gdl-dock-notebook.c:134
+#: ../gdl/gdl-dock-notebook.c:132
 msgid "Page"
 msgstr "Página"
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:133
 msgid "The index of the current page"
 msgstr "O índice da página actual"
 
-#: ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-object.c:118
 msgid "Unique name for identifying the dock object"
 msgstr "Nome único para identificar o objecto anexável"
 
-#: ../gdl/gdl-dock-object.c:127
+#: ../gdl/gdl-dock-object.c:125
 msgid "Long name"
 msgstr "Nome extenso"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:126
 msgid "Human readable name for the dock object"
 msgstr "Nome humanamente legível do objecto anexável"
 
-#: ../gdl/gdl-dock-object.c:134
+#: ../gdl/gdl-dock-object.c:132
 msgid "Stock Icon"
 msgstr "Ícone Base"
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:133
 msgid "Stock icon for the dock object"
 msgstr "Ícone base do objecto anexável"
 
-#: ../gdl/gdl-dock-object.c:141
+#: ../gdl/gdl-dock-object.c:139
 msgid "Dock master"
 msgstr "Mestre de anexáveis"
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:140
 msgid "Dock master this dock object is bound to"
 msgstr "Mestre de anexáveis a que este objecto está associado"
 
-#: ../gdl/gdl-dock-object.c:444
+#: ../gdl/gdl-dock-object.c:442
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -294,7 +265,7 @@ msgstr ""
 "Chamada a gdl_dock_object_dock num objecto anexável %p (tipo de objecto é %"
 "s) que não possui este método implementado"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:581
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -303,12 +274,12 @@ msgstr ""
 "Operação de anexação pedida a um objecto %p desassociado. A aplicação poderá "
 "terminar em erro"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:588
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Incapaz de anexar %p a %p pois pertencem a mestres diferentes"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:630
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -316,19 +287,19 @@ msgstr ""
 "Tentativa de associar a %p um objecto anexável %p já associado (mestre "
 "actual: %p)"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:130
 msgid "Position"
 msgstr "Posição"
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:131
 msgid "Position of the divider in pixels"
 msgstr "Posição do divisor em pixels"
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:141
 msgid "Sticky"
 msgstr "Persistente"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:142
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
@@ -336,19 +307,19 @@ msgstr ""
 "Se o repositório se manterá persistente relativamente ao hospedeiro ou se "
 "irá mover acima na hierarquia se o hospedeiro for reanexado"
 
-#: ../gdl/gdl-dock-placeholder.c:151
+#: ../gdl/gdl-dock-placeholder.c:149
 msgid "Host"
 msgstr "Hospedeiro"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:150
 msgid "The dock object this placeholder is attached to"
 msgstr "O objecto anexável a que este repositório está anexado"
 
-#: ../gdl/gdl-dock-placeholder.c:159
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "Next placement"
 msgstr "Colocação seguinte"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:158
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
@@ -356,133 +327,155 @@ msgstr ""
 "A posição em que um item será anexado ao nosso hospedeiro se nos for "
 "efectuado um pedido de anexação"
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:167 ../gdl/gdl-dock.c:191
 msgid "Width"
 msgstr "Largura"
 
-#: ../gdl/gdl-dock-placeholder.c:170
+#: ../gdl/gdl-dock-placeholder.c:168
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Largura do widget quando anexado ao repositório"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:175 ../gdl/gdl-dock.c:199
 msgid "Height"
 msgstr "Altura"
 
-#: ../gdl/gdl-dock-placeholder.c:178
+#: ../gdl/gdl-dock-placeholder.c:176
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Altura do widget quando anexado ao repositório"
 
-#: ../gdl/gdl-dock-placeholder.c:184
+#: ../gdl/gdl-dock-placeholder.c:182
 msgid "Floating Toplevel"
 msgstr "Flutuante de Nível de Topo"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr ""
 "Se o repositório está a funcionar como um repositório de anexáveis de topo"
 
-#: ../gdl/gdl-dock-placeholder.c:191
-msgid "X-Coordinate"
-msgstr "Coordenada-X"
+#: ../gdl/gdl-dock-placeholder.c:189
+msgid "X Coordinate"
+msgstr "Coordenada X"
 
-#: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate for dock when floating"
-msgstr "Coordenada-X para um anexável quando a flutuar"
+#: ../gdl/gdl-dock-placeholder.c:190
+msgid "X coordinate for dock when floating"
+msgstr "Coordenada X para um anexável quando a flutuar"
 
-#: ../gdl/gdl-dock-placeholder.c:198
-msgid "Y-Coordinate"
-msgstr "Coordenada-Y"
+#: ../gdl/gdl-dock-placeholder.c:196
+msgid "Y Coordinate"
+msgstr "Coordenada Y"
 
-#: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate for dock when floating"
-msgstr "Coordenada-Y para um anexável quando a flutuar"
+#: ../gdl/gdl-dock-placeholder.c:197
+msgid "Y coordinate for dock when floating"
+msgstr "Coordenada Y para um anexável quando a flutuar"
 
-#: ../gdl/gdl-dock-placeholder.c:494
+#: ../gdl/gdl-dock-placeholder.c:499
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Tentativa de anexar um objecto anexável a um repositório desassociado"
 
-#: ../gdl/gdl-dock-placeholder.c:618
+#: ../gdl/gdl-dock-placeholder.c:611
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 "Obtido um sinal de desassociar de um objecto (%p) que não é o hospedeiro %p"
 
-#: ../gdl/gdl-dock-placeholder.c:643
+#: ../gdl/gdl-dock-placeholder.c:636
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr "Resultado anormal ao obter a colocação de filho para %p do pai %p"
 
-#: ../gdl/gdl-dock-tablabel.c:129
+#: ../gdl/gdl-dock-tablabel.c:126
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Item anexável que 'detém' esta etiqueta de separador"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:106
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "Objecto GdlDockMaster a que o objecto de disposição está anexado"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:113
 msgid "Dockbar style"
 msgstr "Estilo da barra de anexação"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:114
 msgid "Dockbar style to show items on it"
 msgstr "Estilo da barra de anexação onde apresentar itens"
 
-#: ../gdl/gdl-dock.c:178
+#: ../gdl/gdl-dock.c:176
 msgid "Floating"
 msgstr "Flutuante"
 
-#: ../gdl/gdl-dock.c:179
+#: ../gdl/gdl-dock.c:177
 msgid "Whether the dock is floating in its own window"
 msgstr "Se o anexável está ou não a flutuar na sua própria janela"
 
-#: ../gdl/gdl-dock.c:187
+#: ../gdl/gdl-dock.c:185
 msgid "Default title for the newly created floating docks"
 msgstr "Título por omissão para os novos anexos flutuantes"
 
-#: ../gdl/gdl-dock.c:194
+#: ../gdl/gdl-dock.c:192
 msgid "Width for the dock when it's of floating type"
 msgstr "Largura do anexável quando é do tipo flutuante"
 
-#: ../gdl/gdl-dock.c:202
+#: ../gdl/gdl-dock.c:200
 msgid "Height for the dock when it's of floating type"
 msgstr "Altura do anexável quando é do tipo flutuante"
 
-#: ../gdl/gdl-dock.c:209
+#: ../gdl/gdl-dock.c:207
 msgid "Float X"
 msgstr "Flutuante X"
 
-#: ../gdl/gdl-dock.c:210
+#: ../gdl/gdl-dock.c:208
 msgid "X coordinate for a floating dock"
 msgstr "Coordenada X de um anexável flutuante"
 
-#: ../gdl/gdl-dock.c:217
+#: ../gdl/gdl-dock.c:215
 msgid "Float Y"
 msgstr "Flutuante Y"
 
-#: ../gdl/gdl-dock.c:218
+#: ../gdl/gdl-dock.c:216
 msgid "Y coordinate for a floating dock"
 msgstr "Coordenada Y de um anexável flutuante"
 
-#: ../gdl/gdl-dock.c:499
+#: ../gdl/gdl-dock.c:475
 #, c-format
 msgid "Dock #%d"
 msgstr "Anexável Nº%d"
 
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
-msgid "Icon size"
-msgstr "Tamanho do ícone"
+#: ../gdl/layout.ui.h:1
+msgid "Dock items"
+msgstr "Itens anexáveis"
 
-#: ../gdl/layout.glade.h:2
+#: ../gdl/layout.ui.h:2
 msgid "Layout Managment"
 msgstr "Gestão de Disposições"
 
-#: ../gdl/layout.glade.h:4
+#: ../gdl/layout.ui.h:3
+msgid "Saved layouts"
+msgstr "Disposições gravadas"
+
+#: ../gdl/layout.ui.h:4
 msgid "_Load"
 msgstr "_Ler"
 
-#: ../gdl/layout.glade.h:5
+#: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
 msgstr "_Trancar os itens anexáveis"
+
+#~ msgid "Expander Size"
+#~ msgstr "Tamanho do Expansor"
+
+#~ msgid "Size of the expander arrow."
+#~ msgstr "Tamanho da seta do expansor."
+
+#~ msgid "Iconify"
+#~ msgstr "Reduzir a ícone"
+
+#~ msgid "Close"
+#~ msgstr "Fechar"
+
+#~ msgid "Layout managment"
+#~ msgstr "Gestão de disposições"
+
+#~ msgid "Icon size"
+#~ msgstr "Tamanho do ícone"
