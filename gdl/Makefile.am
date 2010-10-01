@@ -1,5 +1,6 @@
 INCLUDES = \
 	-DG_LOG_DOMAIN=\"Gdl\"				\
+	-DGNOMELOCALEDIR=\"$(localedir)\" 		\
 	-DGDL_UIDIR=\""$(uidir)"\"		\
 	-I$(includedir) -I$(top_srcdir)			\
 	$(WARN_CFLAGS) $(DEPRECATED_FLAGS)		\
