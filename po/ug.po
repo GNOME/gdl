@@ -2,15 +2,16 @@
 # Copyright (C) 2003,2005,2007-2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gdl package.
 # Gheyret Kenji <gheyret@gmail.com>, 2010.
+# Sahran <sahran.ug@gmail.com>, 2010
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl gnome-2-26\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gdl&component=general\n"
-"POT-Creation-Date: 2010-05-27 10:20+0000\n"
-"PO-Revision-Date: 2009-03-24 00:10+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"POT-Creation-Date: 2010-09-28 16:18+0000\n"
+"PO-Revision-Date: 2010-07-05 15:36+0600\n"
+"Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,27 +19,27 @@ msgstr ""
 
 #: ../gdl/gdl-dock-item-grip.c:342
 msgid "Iconify this dock"
-msgstr "بۇ dock نى سىنبەلگىلەشتۈرۈش"
+msgstr "بۇ لەڭگەرنى سىنبەلگىلەشتۈر"
 
 #: ../gdl/gdl-dock-item-grip.c:344
 msgid "Close this dock"
-msgstr "بۇ dock نى تاقا"
+msgstr "بۇ لەڭگەرنى ياپ"
 
 #: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
-msgstr "dock تۇرلىرىنى كونترول قىلىۋاتىدۇ"
+msgstr "لەڭگەر تۈرلىرىنى كونترول قىلىۋاتىدۇ"
 
 #: ../gdl/gdl-dock-item-grip.c:663
 msgid "Dockitem which 'owns' this grip"
-msgstr "بۇ grip نىڭ ئىگىسى بولغان Dockitem"
+msgstr "بۇ تۇتقۇنىڭ ئىگىسى بولغان لەڭگەر تۈرى"
 
 #: ../gdl/gdl-dock-item.c:254
 msgid "Orientation"
-msgstr "يۆنىلىشى"
+msgstr "يۆنىلىش"
 
 #: ../gdl/gdl-dock-item.c:255
 msgid "Orientation of the docking item"
-msgstr "dock قىلىنىدىغان تۇرنىڭ يۆنىلىشى"
+msgstr "لەڭگەر قىلىنغان تۈرنىڭ يۆنىلىشى"
 
 #: ../gdl/gdl-dock-item.c:270
 msgid "Resizable"
@@ -47,19 +48,19 @@ msgstr "چوڭلۇقىنى ئۆزگەرتكىلى بولىدۇ"
 #: ../gdl/gdl-dock-item.c:271
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
-"ئىناۋەتلىك قىلىنسا، GtkPanel widget نىڭ ئىچىگە dock قىلىنغاندا چوڭلۇقىنى "
+"ئىناۋەتلىك قىلىنسا، GtkPanel widget نىڭ ئىچىگە لەڭگەر قىلىنغاندا چوڭلۇقىنى "
 "ئۆزگەرتكىلى بولىدۇ"
 
 #: ../gdl/gdl-dock-item.c:278
 msgid "Item behavior"
-msgstr "تۇرنىڭ ئىش-ھەرىكىتى"
+msgstr "تۈرنىڭ ئىش-ھەرىكىتى"
 
 #: ../gdl/gdl-dock-item.c:279
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
-"dock تۇرىنىڭ ئادەتتىكى ئىش-ھەرىكىتى(ھەرىكەتچان، قۇلۇپلانغان) قاتارلىقلار"
+"لەڭگەر تۈرىنىڭ ئادەتتىكى ئىش-ھەرىكىتى(ھەرىكەتچان، قۇلۇپلانغان) قاتارلىقلار"
 
 #: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
@@ -69,7 +70,7 @@ msgstr "قۇلۇپلانغان"
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
-"ئىناۋەتلىك قىلىنسا، dock item نى باشقا يەرگە يۆتكىگىلى بولمايدۇ ھەم grip نى "
+"ئىناۋەتلىك قىلىنسا، لەڭگەر تۈرىنى باشقا يەرگە يۆتكىگىلى بولمايدۇ ھەم تۇتقۇنى "
 "كۆرسەتمەيدۇ"
 
 #: ../gdl/gdl-dock-item.c:296
@@ -78,7 +79,7 @@ msgstr "ئادەتتىكى كەڭلىكى"
 
 #: ../gdl/gdl-dock-item.c:297
 msgid "Preferred width for the dock item"
-msgstr "dock item نىڭ ئادەتتىكى كەڭلىكى"
+msgstr "لەڭگەر تۈرىنىڭ ئادەتتىكى كەڭلىكى"
 
 #: ../gdl/gdl-dock-item.c:303
 msgid "Preferred height"
@@ -86,7 +87,7 @@ msgstr "ئادەتتىكى ئېگىزلىكى"
 
 #: ../gdl/gdl-dock-item.c:304
 msgid "Preferred height for the dock item"
-msgstr "dock item نىڭ ئادەتتىكى ئېگىزلىكى"
+msgstr "لەڭگەر تۈرىنىڭ ئادەتتىكى ئېگىزلىكى"
 
 #: ../gdl/gdl-dock-item.c:592
 #, c-format
@@ -94,8 +95,8 @@ msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
-"Dock ئوبيېكتى(%p تىپى:%s) نى %s غا قوشالمايسىز. GdlDock ياكى باشقا بىرىكمە "
-"dock ئوبيېكتىنى ئىشلىتىڭ."
+"لەڭگەر ئوبيېكتى(%p تىپى:%s) نى %s غا قوشالمايسىز. GdlDock ياكى باشقا بىرىكمە "
+"لەڭگەر ئوبيېكتىنى ئىشلىتىڭ."
 
 #: ../gdl/gdl-dock-item.c:599
 #, c-format
@@ -103,13 +104,13 @@ msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"تىپى %s بولغان  widget نى %s قوشماقچى، بىراق بىرلا ۋاقىتتا بىرلا widget نى "
-"ئىشلەتكىلى بولىدۇ. بۇ يەردە ئاللىقاچان تىپى %s بولغان widget بار."
+"تىپى %s بولغان  تۇلۇقنى %s قوشماقچى، بىراق بىرلا ۋاقىتتا بىرلا تۇلۇقنى "
+"ئىشلەتكىلى بولىدۇ. بۇ يەردە ئاللىقاچان تىپى %s بولغان تۇلۇق بار."
 
 #: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "dock قائىدىسى %s ، تىپى %s بولغان dock ئوبيېكتىنى قوللىمايدۇ"
+msgstr "لەڭگەر قائىدىسى %s ، تىپى %s بولغان لەڭگەر ئوبيېكتىنى قوللىمايدۇ"
 
 #. UnLock menuitem
 #: ../gdl/gdl-dock-item.c:1443
@@ -129,7 +130,7 @@ msgstr "قۇلۇپلا"
 #: ../gdl/gdl-dock-item.c:1693
 #, c-format
 msgid "Attempt to bind an unbound item %p"
-msgstr "باغلانمىغان تۇر %p نى باغلىماقچى بولۇۋاتىدۇ"
+msgstr "باغلانمىغان تۈر %p نى باغلىماقچى بولۇۋاتىدۇ"
 
 #: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
@@ -137,7 +138,7 @@ msgstr "باش"
 
 #: ../gdl/gdl-dock-layout.c:123
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "layout ئوبيېكتىغا غا چاپلانغان GdlDockMaster ئوبيېكتى"
+msgstr "جايلاشتۇرۇش ئوبيېكتىغا چاپلانغان GdlDockMaster ئوبيېكتى"
 
 #: ../gdl/gdl-dock-layout.c:130
 msgid "Dirty"
@@ -145,16 +146,16 @@ msgstr "ساقلانمىغان"
 
 #: ../gdl/gdl-dock-layout.c:131
 msgid "True if the layouts have changed and need to be saved to a file"
-msgstr "layout لىرى ئۆزگىرىپ، ھۆججەتكە ساقلاش توغرا كەلگەندە true بولىدۇ"
+msgstr "جايلاشتۇرۇش ئۆزگىرىپ، ھۆججەتكە ساقلاش توغرا كەلگەندە راست بولىدۇ"
 
 #: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
-msgstr "layout user interface ھۆججىتى '%s' ئوقۇغىلى بولمىدى"
+msgstr "جايلاشتۇرۇش ئىشلەتكۈچى ئارايۈز ھۆججىتى '%s' نى يۈكلىيەلمىدى"
 
 #: ../gdl/gdl-dock-layout.c:620
 msgid "Visible"
-msgstr "كۆرۈنسۇن"
+msgstr "كۆرۈنۈشچان"
 
 #: ../gdl/gdl-dock-layout.c:627
 msgid "Item"
@@ -170,6 +171,8 @@ msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr ""
+"جايلاشتۇرۇش يۈكلەۋاتقاندا:  '%s' تەخەللۇستىكى لەڭگەر ئوبيېكتىنى قانداق "
+"قۇرۇشنى بىلەلمىدى"
 
 #: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
 msgid "Default title"
@@ -177,24 +180,24 @@ msgstr "كۆڭۈلدىكى ماۋزۇ"
 
 #: ../gdl/gdl-dock-master.c:141
 msgid "Default title for newly created floating docks"
-msgstr "يېڭىدىن ياسالغان ھەرىكەتچان docks لارنىڭ كۆڭۈلدىكى ماۋزۇسى"
+msgstr "يېڭىدىن ياسالغان ھەرىكەتچان لەڭگەرلەرنىڭ كۆڭۈلدىكى ماۋزۇسى"
 
 #: ../gdl/gdl-dock-master.c:148
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"1 بېكىتىلسە، master غا باغلانغان بارلىق dock تۇرلىرى قۇلۇپلىنىدۇ؛0 "
-"بېكىتىلسە، ھەممە dock تۇرلىرىنىڭ قۇلۇپى ئېچىلىدۇ;-1 بېكىتىلسە رەتلىنىپ "
+"1 بېكىتىلسە، ئاساسىي ئوبيېكتقا باغلانغان بارلىق لەڭگەر تۈرلىرى قۇلۇپلىنىدۇ؛ "
+"0 بېكىتىلسە، ھەممە لەڭگەر تۈرلىرىنىڭ قۇلۇپى ئېچىلىدۇ;-1 بېكىتىلسە رەتلىنىپ "
 "كۆرۈنمەيدىغان بولىدۇ."
 
 #: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
 msgid "Switcher Style"
-msgstr "Switcher نىڭ ئۇسلۇبى"
+msgstr "ئالماشتۇرغۇچنىڭ ئۇسلۇبى"
 
 #: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
 msgid "Switcher buttons style"
-msgstr "Switcher نىڭ توپچىلىرىنىڭ ئۇسلۇبلىرى"
+msgstr "ئالماشتۇرغۇچنىڭ توپچىلىرىنىڭ ئۇسلۇبلىرى"
 
 #: ../gdl/gdl-dock-master.c:763
 #, c-format
@@ -202,8 +205,8 @@ msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
-"master %p: ئوبيېكت  %p[%s]  نى hash كە قوشقىلى بولمىدى. (%p) ئاتى بار تۇر بۇ "
-"ئاللىقاچان بار ئىكەن."
+"ئاساسىي ئوبيېكت %p: ئوبيېكت  %p[%s]  نى hash كە قوشقىلى بولمىدى. (%p) ئاتلىق "
+"تۈر ئاللىقاچان مەۋجۇت."
 
 #: ../gdl/gdl-dock-master.c:935
 #, c-format
@@ -211,6 +214,8 @@ msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
+"يېڭى لەڭگەر كونتروللىغۇچ %p ئاپتوماتىك. پەقەت قولدا تەڭشەيدىغان لەڭگەر "
+"ئوبيېكتىغىلا كونتروللىغۇچ بەلگىلىگىلى بولىدۇ."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -222,31 +227,31 @@ msgstr "ھازىرقى بەتنىڭ ئىندىكىسى"
 
 #: ../gdl/gdl-dock-object.c:120
 msgid "Unique name for identifying the dock object"
-msgstr "Dock ئوبيېكتىنى پەرق قىلىش ئۈچۈن قويۇلغان ئات"
+msgstr "لەڭگەر ئوبيېكتىنى پەرق قىلىش ئۈچۈن قويۇلغان ئات"
 
 #: ../gdl/gdl-dock-object.c:127
 msgid "Long name"
-msgstr "ئاتى"
+msgstr "ئۇزۇن ئاتى"
 
 #: ../gdl/gdl-dock-object.c:128
 msgid "Human readable name for the dock object"
-msgstr "ئوقۇغىلى بولىدىغان Dock ئوبيېكتىنىڭ ئاتى"
+msgstr "ئوقۇغىلى بولىدىغان لەڭگەر ئوبيېكتىنىڭ ئاتى"
 
 #: ../gdl/gdl-dock-object.c:134
 msgid "Stock Icon"
-msgstr "Stock سىنبەلگە"
+msgstr "قالدۇرۇلغان سىنبەلگە"
 
 #: ../gdl/gdl-dock-object.c:135
 msgid "Stock icon for the dock object"
-msgstr "Dock ئوبيېكتىنىڭ Stock سىنبەلگىسى"
+msgstr "لەڭگەر ئوبيېكتىنىڭ قالدۇرۇلغان سىنبەلگىسى"
 
 #: ../gdl/gdl-dock-object.c:141
 msgid "Dock master"
-msgstr "Dock master"
+msgstr "لەڭگەر ئاساسىي ئوبيېكتى"
 
 #: ../gdl/gdl-dock-object.c:142
 msgid "Dock master this dock object is bound to"
-msgstr "بۇ Dock ئوبيېكتى باغلانغان Dock master"
+msgstr "بۇ لەڭگەر ئوبيېكتى باغلانغان لەڭگەر ئاساسىي ئوبيېكتى"
 
 #: ../gdl/gdl-dock-object.c:444
 #, c-format
@@ -254,7 +259,7 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Dock ئوبيېكتى %p (ئوبيېكت تىپى %s) نىڭ ئىچىدە تېخى ئەمەلگە ئاشۇرۇلمىغان "
+"لەڭگەر ئوبيېكتى %p (ئوبيېكت تىپى %s) نىڭ ئىچىدە تېخى ئەمەلگە ئاشۇرۇلمىغان "
 "gdl_dock_object_dock فۇنكسىيىسىنى ئىجرا قىلدى"
 
 #: ../gdl/gdl-dock-object.c:576
@@ -263,21 +268,22 @@ msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
-"Dock مەشغۇلاتىدا باغلانمىغان ئوبيېكت %p نى ئىشلەتمەكچى بولدى. پروگرامما "
+"لەڭگەر مەشغۇلاتىدا باغلانمىغان ئوبيېكت %p نى ئىشلەتمەكچى بولدى. پروگرامما "
 "توختاپ قېلىشى مۇمكىن."
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "ئوخشاشمىغان master لارغا تەۋە بولغاچقا %p نى  %p غا Dock قىلالمىدى"
+msgstr ""
+"ئوخشاشمىغان ئاساسىي ئوبيېكتلارغا تەۋە بولغاچقا %p نى  %p غا لەڭگەر قىلالمىدى"
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
-"%p غا، ئاللىقاچان باغلىنىپ بولغان ئوبيېكت %p (ھازىرقى master: %p) نى "
-"باغلىماقچى بولۇۋاتىدۇ."
+"%p غا، ئاللىقاچان باغلىنىپ بولغان ئوبيېكت %p (ھازىرقى ئاساسىي ئوبيېكت: %p) "
+"نى باغلىماقچى بولۇۋاتىدۇ."
 
 #: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
@@ -289,21 +295,23 @@ msgstr "بۆلگۈچنىڭ ئورنى(بىرلىكى پىكسېل)"
 
 #: ../gdl/gdl-dock-placeholder.c:144
 msgid "Sticky"
-msgstr "Sticky"
+msgstr "يېپىشقاق"
 
 #: ../gdl/gdl-dock-placeholder.c:145
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
+"ئاساسىي ئاپپارات قايتىدىن سىڭدۈرۈلگەندە، ئورۇن بەلگىسى ئاساسىي ئاپپاراتقا "
+"يېپىشامدۇ ياكى قاتلام مۇناسىۋىتى بويىچە ئۈستىگە يۆتكىلەمدۇ"
 
 #: ../gdl/gdl-dock-placeholder.c:152
 msgid "Host"
-msgstr "Host"
+msgstr "باش ئاپپارات"
 
 #: ../gdl/gdl-dock-placeholder.c:153
 msgid "The dock object this placeholder is attached to"
-msgstr "このプレースホルダが張り付いているDockオブジェクト"
+msgstr "لەڭگەر ئوبيېكتى تەۋە ئورۇن بەلگىسى"
 
 #: ../gdl/gdl-dock-placeholder.c:160
 msgid "Next placement"
@@ -314,7 +322,7 @@ msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
-"Dock قىلىش تەلىپى كەلسە،  تۇر Dock قىلىنىدىغان ئورۇننى كۆرسىتىپ بېرىدۇ."
+"لەڭگەر قىلىش تەلىپى كەلسە،  تۈر لەڭگەر قىلىنىدىغان ئورۇننى كۆرسىتىپ بېرىدۇ."
 
 #: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
 msgid "Width"
@@ -322,7 +330,7 @@ msgstr "كەڭلىك"
 
 #: ../gdl/gdl-dock-placeholder.c:171
 msgid "Width for the widget when it's attached to the placeholder"
-msgstr ""
+msgstr "ئورۇن بەلگىسىگە يېپىشقان تۇلۇقنىڭ كەڭلىكى"
 
 #: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
 msgid "Height"
@@ -330,35 +338,36 @@ msgstr "ئېگىزلىك"
 
 #: ../gdl/gdl-dock-placeholder.c:179
 msgid "Height for the widget when it's attached to the placeholder"
-msgstr ""
+msgstr "ئورۇن بەلگىسىگە يېپىشقاندىكى تۇلۇق ئېگىزلىكى"
 
 #: ../gdl/gdl-dock-placeholder.c:185
 msgid "Floating Toplevel"
-msgstr "ھەرىكەتچان ئۇستى قەۋەت"
+msgstr "لەيلىمە ئۇستى قەۋەت"
 
 #: ../gdl/gdl-dock-placeholder.c:186
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
-msgstr ""
+msgstr "ئورۇن بەلگىسى لەيلىمە ئۈستى قەۋەت لەڭگەردە ئىشلىتىلەمدۇ يوق"
 
 #: ../gdl/gdl-dock-placeholder.c:192
 msgid "X-Coordinate"
-msgstr "X كوردىناتى"
+msgstr "X كوئوردېنات"
 
 #: ../gdl/gdl-dock-placeholder.c:193
 msgid "X-Coordinate for dock when floating"
-msgstr "dock ھەرىكەتچان ھالەتكە ئوتكەن چاغدىكى X كوردىناتى"
+msgstr "لەڭگەر لەيلىمە ھالەتكە ئوتكەن چاغدىكى X كوئوردېناتى"
 
 #: ../gdl/gdl-dock-placeholder.c:199
 msgid "Y-Coordinate"
-msgstr "Y كوردىناتى"
+msgstr "Y كوئوردېنات"
 
 #: ../gdl/gdl-dock-placeholder.c:200
 msgid "Y-Coordinate for dock when floating"
-msgstr "dock ھەرىكەتچان ھالەتكە ئوتكەن چاغدىكى Y كوردىناتى"
+msgstr "لەڭگەر لەيلىمە ھالەتكە ئوتكەن چاغدىكى Y كوئوردېناتى"
 
 #: ../gdl/gdl-dock-placeholder.c:495
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr "باغلانمىغان placeholder غا Dock ئوبيېكتىنى Dock قىلماقچى بولۇۋاتىدۇ"
+msgstr ""
+"باغلانمىغان ئورۇن بەلگىسىگە لەڭگەر ئوبيېكتىنى لەڭگەر قىلماقچى بولۇۋاتىدۇ"
 
 #: ../gdl/gdl-dock-placeholder.c:619
 #, c-format
@@ -372,68 +381,68 @@ msgstr ""
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
-msgstr ""
+msgstr "%p ئاتا ئورنىدىن %p تارماق ئورۇنغا ئېرىشكەندە غەلىتە ئەھۋال كۆرۈلدى"
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "tablabel نىڭ ئىگىسى بولغان Dock تۇرى"
+msgstr "بەتكۈچنىڭ ئىگىسى بولغان لەڭگەر تۈرى"
 
 #: ../gdl/gdl-dock-bar.c:108
 msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "dockbar widget چاپلانغان GdlDockMaster ئوبيېكتى"
+msgstr "لەڭگەر بالداق تۇلۇققا چاپلانغان GdlDockMaster ئوبيېكتى"
 
 #: ../gdl/gdl-dock-bar.c:115
 msgid "Dockbar style"
-msgstr "dockbar نىڭ ئۇسلۇبى"
+msgstr "لەڭگەر بالداقنىڭ ئۇسلۇبى"
 
 #: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style to show items on it"
-msgstr "dockbar دىكى تۈرلەرنىڭ ئۇسلۇبى"
+msgstr "لەڭگەر بالداقتىكى تۈرلەرنىڭ ئۇسلۇبى"
 
 #: ../gdl/gdl-dock.c:178
 msgid "Floating"
-msgstr "ھەرىكەتچان"
+msgstr "لەيلەت"
 
 #: ../gdl/gdl-dock.c:179
 msgid "Whether the dock is floating in its own window"
-msgstr "Dock ئۆزىنىڭ ئىگىسىنىڭ كۆزنىكىدە ھەرىكەتچانمۇ يوق"
+msgstr "لەڭگەر ئۆز ئىگىسىنىڭ كۆزنىكىدە لەيلەمدۇ يوق"
 
 #: ../gdl/gdl-dock.c:187
 msgid "Default title for the newly created floating docks"
-msgstr "يېڭىدىن ياسالغان ھەرىكەتچان Dock نىڭ كۆڭۈلدىكى ماۋزۇسى"
+msgstr "يېڭىدىن ياسالغان ھەرىكەتچان لەڭگەرنىڭ كۆڭۈلدىكى ماۋزۇسى"
 
 #: ../gdl/gdl-dock.c:194
 msgid "Width for the dock when it's of floating type"
-msgstr "Dock نى ئايرىۋەتكەن چاغدىكى كەڭلىكى"
+msgstr "لەڭگەرنى ئايرىۋەتكەن چاغدىكى كەڭلىكى"
 
 #: ../gdl/gdl-dock.c:202
 msgid "Height for the dock when it's of floating type"
-msgstr "Dock نى ئايرىۋەتكەن چاغدىكى ئېگىزلىكى"
+msgstr "لەڭگەرنى ئايرىۋەتكەن چاغدىكى ئېگىزلىكى"
 
 #: ../gdl/gdl-dock.c:209
 msgid "Float X"
-msgstr "ھەرىكەتچان X"
+msgstr "لەيلىمە X"
 
 #: ../gdl/gdl-dock.c:210
 msgid "X coordinate for a floating dock"
-msgstr "dock ھەرىكەتچان ھالەتكە ئوتكەن چاغدىكى X كوردىناتى"
+msgstr "لەڭگەر لەيلىمە ھالەتكە ئوتكەن چاغدىكى X كوئوردېناتى"
 
 #: ../gdl/gdl-dock.c:217
 msgid "Float Y"
-msgstr "ھەرىكەتچان Y"
+msgstr "لەيلىمە Y"
 
 #: ../gdl/gdl-dock.c:218
 msgid "Y coordinate for a floating dock"
-msgstr "dock ھەرىكەتچان ھالەتكە ئوتكەن چاغدىكى Y كوردىناتى"
+msgstr "لەڭگەر لەيلىمە ھالەتكە ئوتكەن چاغدىكى Y كوئوردېناتى"
 
 #: ../gdl/gdl-dock.c:484
 #, c-format
 msgid "Dock #%d"
-msgstr "Dock #%d"
+msgstr "لەڭگەر #%d"
 
 #: ../gdl/layout.ui.h:1
 msgid "Dock items"
-msgstr "Dock تۇرلىرى"
+msgstr "لەڭگەر تۈرلىرى"
 
 #: ../gdl/layout.ui.h:2
 msgid "Layout Managment"
@@ -445,11 +454,11 @@ msgstr "ساقلانغان ئورۇنلاشتۇرۇشلار"
 
 #: ../gdl/layout.ui.h:4
 msgid "_Load"
-msgstr "ئوقۇ(_L)"
+msgstr "يۈكلە(_L)"
 
 #: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
-msgstr "dock تۇرلىرىنى قۇلۇپلا(_L)"
+msgstr "لەڭگەر تۈرلىرىنى قۇلۇپلا(_L)"
 
 #~ msgid "Layout managment"
 #~ msgstr "ئورۇنلاشتۇرۇشنى باشقۇرۇش"
