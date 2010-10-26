@@ -185,7 +185,7 @@ gdl_dock_item_grip_item_notify (GObject    *master,
 }
 
 static void
-gdl_dock_item_grip_destroy (GtkObject *object)
+gdl_dock_item_grip_destroy (GtkWidget *object)
 {
     GdlDockItemGrip *grip = GDL_DOCK_ITEM_GRIP (object);
         
@@ -207,7 +207,7 @@ gdl_dock_item_grip_destroy (GtkObject *object)
         g_free (priv);
     }
     
-    GTK_OBJECT_CLASS (gdl_dock_item_grip_parent_class)->destroy (object);
+    GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->destroy (object);
 }
 
 static void
@@ -672,18 +672,16 @@ static void
 gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
 {
     GObjectClass *gobject_class;
-    GtkObjectClass *gtk_object_class;
     GtkWidgetClass *widget_class;
     GtkContainerClass *container_class;
 
     gobject_class = G_OBJECT_CLASS (klass);
-    gtk_object_class = GTK_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
 
     gobject_class->set_property = gdl_dock_item_grip_set_property;
 
-    gtk_object_class->destroy = gdl_dock_item_grip_destroy;
+    widget_class->destroy = gdl_dock_item_grip_destroy;
 
     widget_class->expose_event = gdl_dock_item_grip_expose;
     widget_class->realize = gdl_dock_item_grip_realize;

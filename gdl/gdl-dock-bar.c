@@ -51,7 +51,7 @@ static void  gdl_dock_bar_set_property    (GObject         *object,
                                            const GValue    *value,
                                            GParamSpec      *pspec);
 
-static void  gdl_dock_bar_destroy         (GtkObject       *object);
+static void  gdl_dock_bar_destroy         (GtkWidget       *object);
 
 static void  gdl_dock_bar_attach          (GdlDockBar      *dockbar,
                                            GdlDockMaster   *master);
@@ -89,16 +89,14 @@ void
 gdl_dock_bar_class_init (GdlDockBarClass *klass)
 {
     GObjectClass       *g_object_class;
-    GtkObjectClass     *gtk_object_class;
     GtkWidgetClass     *widget_class;
     
     g_object_class = G_OBJECT_CLASS (klass);
-    gtk_object_class = GTK_OBJECT_CLASS (klass);
 
     g_object_class->get_property = gdl_dock_bar_get_property;
     g_object_class->set_property = gdl_dock_bar_set_property;
 
-    gtk_object_class->destroy = gdl_dock_bar_destroy;
+    widget_class->destroy = gdl_dock_bar_destroy;
 
     g_object_class_install_property (
         g_object_class, PROP_MASTER,
@@ -180,7 +178,7 @@ on_dock_item_foreach_disconnect (GdlDockItem *item, GdlDockBar *dock_bar)
 }
 
 static void
-gdl_dock_bar_destroy (GtkObject *object)
+gdl_dock_bar_destroy (GtkWidget *object)
 {
     GdlDockBar *dockbar = GDL_DOCK_BAR (object);
 
@@ -207,7 +205,7 @@ gdl_dock_bar_destroy (GtkObject *object)
         g_free (priv);
     }
     
-   GTK_OBJECT_CLASS (gdl_dock_bar_parent_class)->destroy (object);
+   GTK_WIDGET_CLASS (gdl_dock_bar_parent_class)->destroy (object);
 }
 
 static void

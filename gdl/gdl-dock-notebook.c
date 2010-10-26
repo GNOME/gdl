@@ -42,7 +42,7 @@ static void  gdl_dock_notebook_get_property  (GObject              *object,
                                               GValue               *value,
                                               GParamSpec           *pspec);
 
-static void  gdl_dock_notebook_destroy       (GtkObject    *object);
+static void  gdl_dock_notebook_destroy       (GtkWidget    *object);
 
 static void  gdl_dock_notebook_add           (GtkContainer *container,
 					      GtkWidget    *widget);
@@ -96,14 +96,12 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
     static gboolean style_initialized = FALSE;
     
     GObjectClass       *g_object_class;
-    GtkObjectClass     *gtk_object_class;
     GtkWidgetClass     *widget_class;
     GtkContainerClass  *container_class;
     GdlDockObjectClass *object_class;
     GdlDockItemClass   *item_class;
 
     g_object_class = G_OBJECT_CLASS (klass);
-    gtk_object_class = GTK_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
     object_class = GDL_DOCK_OBJECT_CLASS (klass);
@@ -112,7 +110,7 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
     g_object_class->set_property = gdl_dock_notebook_set_property;
     g_object_class->get_property = gdl_dock_notebook_get_property;
     
-    gtk_object_class->destroy = gdl_dock_notebook_destroy;
+    widget_class->destroy = gdl_dock_notebook_destroy;
 
     container_class->add = gdl_dock_notebook_add;
     container_class->forall = gdl_dock_notebook_forall;
@@ -242,13 +240,13 @@ gdl_dock_notebook_get_property (GObject    *object,
 
 
 static void
-gdl_dock_notebook_destroy (GtkObject *object)
+gdl_dock_notebook_destroy (GtkWidget *object)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
 
     /* we need to call the virtual first, since in GdlDockDestroy our
        children dock objects are detached */
-    GTK_OBJECT_CLASS (gdl_dock_notebook_parent_class)->destroy (object);
+    GTK_WIDGET_CLASS (gdl_dock_notebook_parent_class)->destroy (object);
 
     /* after that we can remove the GtkNotebook */
     if (item->child) {

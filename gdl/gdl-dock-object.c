@@ -56,7 +56,7 @@ static void     gdl_dock_object_get_property       (GObject            *g_object
                                                     GParamSpec         *pspec);
 static void     gdl_dock_object_finalize           (GObject            *g_object);
 
-static void     gdl_dock_object_destroy            (GtkObject          *gtk_object);
+static void     gdl_dock_object_destroy            (GtkWidget          *dock_object);
 
 static void     gdl_dock_object_show               (GtkWidget          *widget);
 static void     gdl_dock_object_hide               (GtkWidget          *widget);
@@ -99,12 +99,10 @@ static void
 gdl_dock_object_class_init (GdlDockObjectClass *klass)
 {
     GObjectClass      *g_object_class;
-    GtkObjectClass    *object_class;
     GtkWidgetClass    *widget_class;
     GtkContainerClass *container_class;
 
     g_object_class = G_OBJECT_CLASS (klass);
-    object_class = GTK_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
 
@@ -141,7 +139,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                              GDL_TYPE_DOCK_MASTER,
                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
     
-    object_class->destroy = gdl_dock_object_destroy;
+    widget_class->destroy = gdl_dock_object_destroy;
     
     widget_class->show = gdl_dock_object_show;
     widget_class->hide = gdl_dock_object_hide;
@@ -277,13 +275,13 @@ gdl_dock_object_foreach_detach (GdlDockObject *object,
 }
 
 static void
-gdl_dock_object_destroy (GtkObject *gtk_object)
+gdl_dock_object_destroy (GtkWidget *dock_object)
 {
     GdlDockObject *object;
 
-    g_return_if_fail (GDL_IS_DOCK_OBJECT (gtk_object));
+    g_return_if_fail (GDL_IS_DOCK_OBJECT (dock_object));
 
-    object = GDL_DOCK_OBJECT (gtk_object);
+    object = GDL_DOCK_OBJECT (dock_object);
     if (gdl_dock_object_is_compound (object)) {
         /* detach our dock object children if we have some, and even
            if we are not attached, so they can get notification */
@@ -303,7 +301,7 @@ gdl_dock_object_destroy (GtkObject *gtk_object)
     if (object->master)
         gdl_dock_object_unbind (object);
         
-    GTK_OBJECT_CLASS(gdl_dock_object_parent_class)->destroy (gtk_object);
+    GTK_WIDGET_CLASS(gdl_dock_object_parent_class)->destroy (dock_object);
 }
 
 static void

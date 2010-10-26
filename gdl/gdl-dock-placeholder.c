@@ -49,7 +49,7 @@ static void     gdl_dock_placeholder_get_property   (GObject                 *g_
                                                      GValue                  *value,
                                                      GParamSpec              *pspec);
 
-static void     gdl_dock_placeholder_destroy        (GtkObject               *object);
+static void     gdl_dock_placeholder_destroy        (GtkWidget               *object);
 
 static void     gdl_dock_placeholder_add            (GtkContainer            *container,
                                                      GtkWidget               *widget);
@@ -124,12 +124,12 @@ static void
 gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
 {
     GObjectClass       *g_object_class;
-    GtkObjectClass     *gtk_object_class;
+    GtkWidgetClass     *widget_class;
     GtkContainerClass  *container_class;
     GdlDockObjectClass *object_class;
     
     g_object_class = G_OBJECT_CLASS (klass);
-    gtk_object_class = GTK_OBJECT_CLASS (klass);
+    widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
     object_class = GDL_DOCK_OBJECT_CLASS (klass);
 
@@ -200,7 +200,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
                           	GDL_DOCK_PARAM_EXPORT));
     
 	
-    gtk_object_class->destroy = gdl_dock_placeholder_destroy;
+    widget_class->destroy = gdl_dock_placeholder_destroy;
     container_class->add = gdl_dock_placeholder_add;
     
     object_class->is_compound = FALSE;
@@ -312,7 +312,7 @@ gdl_dock_placeholder_get_property (GObject    *g_object,
 }
 
 static void
-gdl_dock_placeholder_destroy (GtkObject *object)
+gdl_dock_placeholder_destroy (GtkWidget *object)
 {
     GdlDockPlaceholder *ph = GDL_DOCK_PLACEHOLDER (object);
 
@@ -323,7 +323,7 @@ gdl_dock_placeholder_destroy (GtkObject *object)
         ph->_priv = NULL;
     }
 
-    GTK_OBJECT_CLASS (gdl_dock_placeholder_parent_class)->destroy (object);
+    GTK_WIDGET_CLASS (gdl_dock_placeholder_parent_class)->destroy (object);
 }
 
 static void 

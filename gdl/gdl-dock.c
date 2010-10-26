@@ -61,7 +61,7 @@ static void  gdl_dock_notify_cb       (GObject      *object,
 
 static void  gdl_dock_set_title       (GdlDock      *dock);
 
-static void  gdl_dock_destroy         (GtkObject    *object);
+static void  gdl_dock_destroy         (GtkWidget    *object);
 
 static void  gdl_dock_size_request    (GtkWidget      *widget,
                                        GtkRequisition *requisition);
@@ -154,13 +154,11 @@ static void
 gdl_dock_class_init (GdlDockClass *klass)
 {
     GObjectClass       *g_object_class;
-    GtkObjectClass     *gtk_object_class;
     GtkWidgetClass     *widget_class;
     GtkContainerClass  *container_class;
     GdlDockObjectClass *object_class;
     
     g_object_class = G_OBJECT_CLASS (klass);
-    gtk_object_class = GTK_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
     object_class = GDL_DOCK_OBJECT_CLASS (klass);
@@ -218,7 +216,7 @@ gdl_dock_class_init (GdlDockClass *klass)
                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
                           GDL_DOCK_PARAM_EXPORT));
     
-    gtk_object_class->destroy = gdl_dock_destroy;
+    widget_class->destroy = gdl_dock_destroy;
 
     widget_class->size_request = gdl_dock_size_request;
     widget_class->size_allocate = gdl_dock_size_allocate;
@@ -502,7 +500,7 @@ gdl_dock_notify_cb (GObject    *object,
 }
 
 static void
-gdl_dock_destroy (GtkObject *object)
+gdl_dock_destroy (GtkWidget *object)
 {
     GdlDock *dock = GDL_DOCK (object);
 
@@ -525,7 +523,7 @@ gdl_dock_destroy (GtkObject *object)
         g_free (priv);
     }
     
-   GTK_OBJECT_CLASS (gdl_dock_parent_class)->destroy (object);
+   GTK_WIDGET_CLASS (gdl_dock_parent_class)->destroy (object);
 }
 
 static void
