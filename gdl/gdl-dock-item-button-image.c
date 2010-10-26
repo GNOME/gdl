@@ -31,8 +31,8 @@ G_DEFINE_TYPE (GdlDockItemButtonImage,
                GTK_TYPE_WIDGET);
                        
 static gint
-gdl_dock_item_button_image_expose (GtkWidget      *widget,
-                                   GdkEventExpose *event)
+gdl_dock_item_button_image_draw (GtkWidget      *widget,
+                                 cairo_t *cr)
 {
     GdlDockItemButtonImage *button_image;
     GtkStyle *style;
@@ -41,9 +41,6 @@ gdl_dock_item_button_image_expose (GtkWidget      *widget,
     g_return_val_if_fail (widget != NULL, 0);
     button_image = GDL_DOCK_ITEM_BUTTON_IMAGE (widget);
     
-    cairo_t *cr = gdk_cairo_create (event->window);
-    cairo_translate (cr, event->area.x, event->area.y);
-
     /* Set up the pen */
     cairo_set_line_width(cr, 1.0);
     
@@ -107,9 +104,6 @@ gdl_dock_item_button_image_expose (GtkWidget      *widget,
     
     cairo_fill (cr);
     
-    /* Finish up */
-    cairo_destroy (cr);
-    
     return 0;
 }
 
@@ -138,8 +132,8 @@ gdl_dock_item_button_image_class_init (
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
     
-    widget_class->expose_event =
-        gdl_dock_item_button_image_expose;
+    widget_class->draw =
+        gdl_dock_item_button_image_draw;
     widget_class->size_request =
         gdl_dock_item_button_image_size_request;
 }

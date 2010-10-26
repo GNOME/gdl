@@ -58,7 +58,9 @@ libgdl_3_la_SOURCES = \
 	libgdltypebuiltins.h \
 	libgdltypebuiltins.c \
 	libgdlmarshal.h \
-	libgdlmarshal.c
+	libgdlmarshal.c \
+	gdl-preview-window.h \
+	gdl-preview-window.c
 
 libgdl_3_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
@@ -67,7 +69,7 @@ libgdl_3_la_LIBADD = \
 libgdl_3_la_LDFLAGS = $(EXTRA_LDFLAGS) \
 		      -version-info $(GDL_CURRENT):$(GDL_REVISION):$(GDL_AGE)
 
-noinst_PROGRAMS=test-dock
+bin_PROGRAMS=test-dock
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-3.la $(XML_LIBS)

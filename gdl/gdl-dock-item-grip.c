@@ -101,38 +101,25 @@ gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
 }
 
 static gint
-gdl_dock_item_grip_expose (GtkWidget      *widget,
-                           GdkEventExpose *event)
+gdl_dock_item_grip_draw (GtkWidget      *widget,
+                         cairo_t *cr)
 {
     GdlDockItemGrip *grip;
     GtkAllocation allocation;
-    GdkRectangle handle_area;
-    GdkRectangle expose_area;
+    cairo_rectangle_int_t handle_area;
+    cairo_rectangle_int_t expose_area;
 
     grip = GDL_DOCK_ITEM_GRIP (widget);
 
-    if(grip->_priv->handle_shown) {
-
-        gtk_widget_get_allocation (widget, &allocation);
-
-        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
-            handle_area.x = allocation.x;
-            handle_area.y = allocation.y;
-            handle_area.width = DRAG_HANDLE_SIZE;
-            handle_area.height = allocation.height;
-        } else {
-            handle_area.x = allocation.x + allocation.width - DRAG_HANDLE_SIZE;
-            handle_area.y = allocation.y;
-            handle_area.width = DRAG_HANDLE_SIZE;
-            handle_area.height = allocation.height;
-        }
-
-        if (gdk_rectangle_intersect (&handle_area, &event->area, &expose_area)) {
-
+    if (grip->_priv->handle_shown) 
+    {
+        if (gtk_cairo_should_draw_window (cr, gtk_widget_get_window (widget)))
+        {
             gtk_paint_handle (gtk_widget_get_style (widget),
-                              gtk_widget_get_window (widget),
+                              cr,
                               gtk_widget_get_state (widget),
-                              GTK_SHADOW_NONE, &expose_area, widget,
+                              GTK_SHADOW_NONE, 
+                              widget,
                               "handlebox", handle_area.x, handle_area.y,
                               handle_area.width, handle_area.height,
                               GTK_ORIENTATION_VERTICAL);
@@ -141,7 +128,7 @@ gdl_dock_item_grip_expose (GtkWidget      *widget,
         
     }
 
-    return GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->expose_event (widget, event);
+    return GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->draw (widget, cr);
 }
 
 static void
@@ -683,7 +670,7 @@ gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
 
     widget_class->destroy = gdl_dock_item_grip_destroy;
 
-    widget_class->expose_event = gdl_dock_item_grip_expose;
+    widget_class->draw = gdl_dock_item_grip_draw;
     widget_class->realize = gdl_dock_item_grip_realize;
     widget_class->unrealize = gdl_dock_item_grip_unrealize;
     widget_class->map = gdl_dock_item_grip_map;

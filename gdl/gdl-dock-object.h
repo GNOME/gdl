@@ -71,11 +71,11 @@ typedef struct _GdlDockObjectClass GdlDockObjectClass;
 typedef struct _GdlDockRequest     GdlDockRequest;
 
 struct _GdlDockRequest {
-    GdlDockObject    *applicant;
-    GdlDockObject    *target;
-    GdlDockPlacement  position;
-    GdkRectangle      rect;
-    GValue            extra;
+    GdlDockObject               *applicant;
+    GdlDockObject               *target;
+    GdlDockPlacement            position;
+    cairo_rectangle_int_t       rect;
+    GValue                      extra;
 };
 
 struct _GdlDockObject {

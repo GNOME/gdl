@@ -93,6 +93,7 @@ GdlDock       *gdl_dock_object_get_toplevel (GdlDockObject *object);
 
 void           gdl_dock_xor_rect            (GdlDock       *dock,
                                              GdkRectangle  *rect);
+void           gdl_dock_xor_rect_hide       (GdlDock       *dock);
 
 G_END_DECLS
 

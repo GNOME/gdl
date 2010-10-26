@@ -31,6 +31,7 @@
 #include "gdl-dock.h"
 #include "gdl-dock-item.h"
 #include "gdl-dock-notebook.h"
+#include "gdl-preview-window.h"
 #include "gdl-switcher.h"
 #include "libgdlmarshal.h"
 #include "libgdltypebuiltins.h"
@@ -91,7 +92,6 @@ struct _GdlDockMasterPrivate {
     gint            number;             /* for naming nameless manual objects */
     gchar          *default_title;
     
-    GdkGC          *root_xor_gc;
     gboolean        rect_drawn;
     GdlDock        *rect_owner;
     
@@ -109,6 +109,9 @@ struct _GdlDockMasterPrivate {
     GHashTable     *unlocked_items;
     
     GdlSwitcherStyle switcher_style;
+
+    /* Window for preview rect */
+    GtkWidget* area_window;
 };
 
 #define COMPUTE_LOCKED(master)                                          \
@@ -282,10 +285,6 @@ gdl_dock_master_dispose (GObject *g_object)
         if (master->_priv->idle_layout_changed_id)
             g_source_remove (master->_priv->idle_layout_changed_id);
         
-        if (master->_priv->root_xor_gc) {
-            g_object_unref (master->_priv->root_xor_gc);
-            master->_priv->root_xor_gc = NULL;
-        }
         if (master->_priv->drag_request) {
             if (G_IS_VALUE (&master->_priv->drag_request->extra))
                 g_value_unset (&master->_priv->drag_request->extra);
@@ -299,6 +298,12 @@ gdl_dock_master_dispose (GObject *g_object)
         master->_priv->locked_items = NULL;
         g_hash_table_destroy (master->_priv->unlocked_items);
         master->_priv->unlocked_items = NULL;
+
+        if (master->_priv->area_window)
+        {
+            gtk_widget_destroy (master->_priv->area_window);
+            master->_priv->area_window = NULL;
+        }
         
         g_free (master->_priv);
         master->_priv = NULL;
@@ -435,8 +440,14 @@ gdl_dock_master_drag_end (GdlDockItem *item,
     
     /* Erase previously drawn rectangle */
     if (master->_priv->rect_drawn)
-        gdl_dock_master_xor_rect (master);
-    
+    {
+        gtk_widget_hide (master->_priv->area_window);
+    }
+    if (master->_priv->rect_owner)
+    {
+        gdl_dock_xor_rect_hide (master->_priv->rect_owner);
+    }
+
     /* cancel conditions */
     if (cancelled || request->applicant == request->target)
         return;
@@ -605,9 +616,7 @@ _gdl_dock_master_foreach (gpointer key,
 static void
 gdl_dock_master_xor_rect (GdlDockMaster *master)
 {
-    gint8         dash_list [2];
-    GdkWindow    *window;
-    GdkRectangle *rect;
+    cairo_rectangle_int_t *rect;
     
     if (!master->_priv || !master->_priv->drag_request)
         return;
@@ -615,41 +624,23 @@ gdl_dock_master_xor_rect (GdlDockMaster *master)
     master->_priv->rect_drawn = ~master->_priv->rect_drawn;
     
     if (master->_priv->rect_owner) {
+        if (master->_priv->area_window)
+        {
+            gtk_widget_hide (master->_priv->area_window);
+        }
         gdl_dock_xor_rect (master->_priv->rect_owner,
                            &master->_priv->drag_request->rect);
         return;
     }
     
     rect = &master->_priv->drag_request->rect;
-    window = gdk_get_default_root_window ();
 
-    if (!master->_priv->root_xor_gc) {
-        GdkGCValues values;
+    if (!master->_priv->area_window)
+    {
+        master->_priv->area_window = gdl_preview_window_new ();
+    }
 
-        values.function = GDK_INVERT;
-        values.subwindow_mode = GDK_INCLUDE_INFERIORS;
-        master->_priv->root_xor_gc = gdk_gc_new_with_values (
-            window, &values, GDK_GC_FUNCTION | GDK_GC_SUBWINDOW);
-    };
-
-    gdk_gc_set_line_attributes (master->_priv->root_xor_gc, 1,
-                                GDK_LINE_ON_OFF_DASH,
-                                GDK_CAP_NOT_LAST,
-                                GDK_JOIN_BEVEL);
-    
-    dash_list[0] = 1;
-    dash_list[1] = 1;
-    gdk_gc_set_dashes (master->_priv->root_xor_gc, 1, dash_list, 2);
-
-    gdk_draw_rectangle (window, master->_priv->root_xor_gc, 0, 
-                        rect->x, rect->y,
-                        rect->width, rect->height);
-
-    gdk_gc_set_dashes (master->_priv->root_xor_gc, 0, dash_list, 2);
-
-    gdk_draw_rectangle (window, master->_priv->root_xor_gc, 0, 
-                        rect->x + 1, rect->y + 1,
-                        rect->width - 2, rect->height - 2);
+    gdl_preview_window_update (GDL_PREVIEW_WINDOW (master->_priv->area_window), rect);
 }
 
 static void

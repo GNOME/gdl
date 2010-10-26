@@ -540,18 +540,18 @@ gdl_switcher_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 }
 
 static gint
-gdl_switcher_expose (GtkWidget *widget, GdkEventExpose *event)
+gdl_switcher_draw (GtkWidget *widget, cairo_t *cr)
 {
     GSList *p;
     GdlSwitcher *switcher = GDL_SWITCHER (widget);
     if (switcher->priv->show) {
         for (p = switcher->priv->buttons; p != NULL; p = p->next) {
             GtkWidget *button = ((Button *) p->data)->button_widget;
-            gtk_container_propagate_expose (GTK_CONTAINER (widget),
-                                            button, event);
+            gtk_container_propagate_draw (GTK_CONTAINER (widget),
+                                          button, cr);
         }
     }
-    return GTK_WIDGET_CLASS (gdl_switcher_parent_class)->expose_event (widget, event);
+    return GTK_WIDGET_CLASS (gdl_switcher_parent_class)->draw (widget, cr);
 }
 
 static void
@@ -714,7 +714,7 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
 
     widget_class->size_request = gdl_switcher_size_request;
     widget_class->size_allocate = gdl_switcher_size_allocate;
-    widget_class->expose_event = gdl_switcher_expose;
+    widget_class->draw = gdl_switcher_draw;
     widget_class->map = gdl_switcher_map;
     
     object_class->dispose  = gdl_switcher_dispose;

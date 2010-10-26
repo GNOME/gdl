@@ -33,6 +33,7 @@
 #include "gdl-dock-paned.h"
 #include "gdl-dock-notebook.h"
 #include "gdl-dock-placeholder.h"
+#include "gdl-preview-window.h"
 
 #include "libgdlmarshal.h"
 
@@ -122,8 +123,7 @@ struct _GdlDockPrivate
     gint                width;
     gint                height;
 
-    /* auxiliary fields */
-    GdkGC              *xor_gc;
+    GtkWidget          *area_window;
 };
 
 enum {
@@ -513,13 +513,13 @@ gdl_dock_destroy (GtkWidget *object)
             priv->floating = FALSE;
             priv->window = NULL;
         }
-        
-        /* destroy the xor gc */
-        if (priv->xor_gc) {
-            g_object_unref (priv->xor_gc);
-            priv->xor_gc = NULL;
-        }
 
+        if (priv->area_window)
+        {
+            gtk_widget_destroy (priv->area_window);
+            priv->area_window = NULL;
+        }
+        
         g_free (priv);
     }
     
@@ -1319,45 +1319,25 @@ gdl_dock_object_get_toplevel (GdlDockObject *object)
 
 void
 gdl_dock_xor_rect (GdlDock      *dock,
-                   GdkRectangle *rect)
+                   cairo_rectangle_int_t *rect)
 {
-    GtkWidget *widget;
-    GdkWindow *window;
-    gint8      dash_list [2];
-
-    widget = GTK_WIDGET (dock);
-
-    if (!dock->_priv->xor_gc) {
-        if (gtk_widget_get_realized (widget)) {
-            GdkGCValues values;
-
-            values.function = GDK_INVERT;
-            values.subwindow_mode = GDK_INCLUDE_INFERIORS;
-            dock->_priv->xor_gc = gdk_gc_new_with_values 
-                (gtk_widget_get_window (widget), &values, GDK_GC_FUNCTION | GDK_GC_SUBWINDOW);
-        } else 
-            return;
-    };
-
-    gdk_gc_set_line_attributes (dock->_priv->xor_gc, 1,
-                                GDK_LINE_ON_OFF_DASH,
-                                GDK_CAP_NOT_LAST,
-                                GDK_JOIN_BEVEL);
-
-    window = gtk_widget_get_window (widget);
-
-    dash_list [0] = 1;
-    dash_list [1] = 1;
+    gint x, y;
+    GdkWindow* window = gtk_widget_get_window (GTK_WIDGET (dock));
+    gdk_window_get_origin (window, &x, &y);
     
-    gdk_gc_set_dashes (dock->_priv->xor_gc, 1, dash_list, 2);
+    if (!dock->_priv->area_window) {
+        dock->_priv->area_window = gdl_preview_window_new ();
+    }
 
-    gdk_draw_rectangle (window, dock->_priv->xor_gc, FALSE,
-                        rect->x, rect->y,
-                        rect->width, rect->height);
+    rect->x += x;
+    rect->y += y;
+    
+    gdl_preview_window_update (GDL_PREVIEW_WINDOW (dock->_priv->area_window), rect);
+}
 
-    gdk_gc_set_dashes (dock->_priv->xor_gc, 0, dash_list, 2);
-
-    gdk_draw_rectangle (window, dock->_priv->xor_gc, FALSE,
-                        rect->x + 1, rect->y + 1,
-                        rect->width - 2, rect->height - 2);
+void
+gdl_dock_xor_rect_hide (GdlDock      *dock)
+{
+    if (dock->_priv->area_window)
+        gtk_widget_hide (dock->_priv->area_window);
 }
