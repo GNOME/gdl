@@ -47,7 +47,7 @@ CFILE_GLOB=$(top_srcdir)/gdl/*.c
 
 # Header files to ignore when scanning.
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h
-IGNORE_HFILES=gdl-data-* gdl-i18n.h libgdl*
+IGNORE_HFILES=gdl-data-* gdl-i18n.h libgdl* gdl-preview-window.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png
@@ -76,7 +76,7 @@ GTKDOC_LIBS=$(GDL_DEPENDENCIES_LIBS) \
 	$(XML_LIBS) \
 	$(GNOME_LIBS) \
 	-L$(top_builddir)/gdl \
-	-lgdl-1
+	-lgdl-3
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
 include $(top_srcdir)/gtk-doc.make

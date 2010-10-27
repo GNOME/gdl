@@ -69,7 +69,7 @@ libgdl_3_la_LIBADD = \
 libgdl_3_la_LDFLAGS = $(EXTRA_LDFLAGS) \
 		      -version-info $(GDL_CURRENT):$(GDL_REVISION):$(GDL_AGE)
 
-bin_PROGRAMS=test-dock
+noinst_PROGRAMS=test-dock
 
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-3.la $(XML_LIBS)
