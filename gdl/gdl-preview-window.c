@@ -1,11 +1,11 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 4; tab-width: 8 -*- */
 /*
  * gdl
- * Copyright (C) Johannes Schmid 2010 <jhs@Obelix>
+ * Copyright (C) Johannes Schmid 2010 <jhs@gnome.org>
  * 
  * gdl is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation, either version 3 of the License, or
+ * by the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  * 
  * gdl is distributed in the hope that it will be useful, but
