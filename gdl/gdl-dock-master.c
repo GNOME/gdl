@@ -439,10 +439,6 @@ gdl_dock_master_drag_end (GdlDockItem *item,
     g_return_if_fail (GDL_DOCK_OBJECT (item) == request->applicant);
     
     /* Erase previously drawn rectangle */
-    if (master->_priv->rect_drawn)
-    {
-        gtk_widget_hide (master->_priv->area_window);
-    }
     if (master->_priv->rect_owner)
     {
         gdl_dock_xor_rect_hide (master->_priv->rect_owner);
