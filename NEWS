@@ -1,3 +1,14 @@
+Changes in 2.91.1
+
+* Ported to lastest gtk+ master:
+ * bgo#633049 - Stop using GtkObject
+ * bgo#630841 - Don't use deprecated GDK drawing APIs
+ * bgo#631070 - Use upstream gettext instead the Glib one
+ * bgo#624636 - Update to new GtkNotebook switch-page signal signature
+* Due to new drawing API we have much niver preview windows now :)
+
+Thanks to Javier Jardon, Frederic Peters and Kjartan Maraas
+
 Changes in 2.90.0
 
 * Depends on gtk+-3.0 now:
