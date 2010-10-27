@@ -74,7 +74,7 @@ gdl_preview_window_draw (GtkWidget *window,
         cairo_paint (cr);
     }
 
-    return TRUE;
+    return FALSE;
 }
 
 static void

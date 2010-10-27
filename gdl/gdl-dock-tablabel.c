@@ -57,7 +57,7 @@ static void  gdl_dock_tablabel_size_allocate (GtkWidget          *widget,
                                               
 static void  gdl_dock_tablabel_paint         (GtkWidget      *widget,
                                               cairo_t *cr);
-static gint  gdl_dock_tablabel_draw        (GtkWidget      *widget,
+static gboolean  gdl_dock_tablabel_draw        (GtkWidget      *widget,
                                             cairo_t *cr);
 
 static gboolean gdl_dock_tablabel_button_event  (GtkWidget      *widget,
@@ -381,7 +381,7 @@ gdl_dock_tablabel_paint (GtkWidget      *widget,
     };
 }
 
-static gint
+static gboolean
 gdl_dock_tablabel_draw (GtkWidget      *widget,
                         cairo_t *cr)
 {

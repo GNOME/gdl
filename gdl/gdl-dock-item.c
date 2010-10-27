@@ -88,8 +88,6 @@ static void  gdl_dock_item_unmap         (GtkWidget *widget);
 static void  gdl_dock_item_realize       (GtkWidget *widget);
 static void  gdl_dock_item_style_set     (GtkWidget *widget,
                                           GtkStyle  *previous_style);
-static gint  gdl_dock_item_draw          (GtkWidget *widget,
-                                          cairo_t *cr);
 
 static gint  gdl_dock_item_button_changed (GtkWidget *widget,
                                            GdkEventButton *event);
@@ -220,7 +218,6 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     widget_class->size_request = gdl_dock_item_size_request;
     widget_class->size_allocate = gdl_dock_item_size_allocate;
     widget_class->style_set = gdl_dock_item_style_set;
-    widget_class->draw = gdl_dock_item_draw;
     widget_class->button_press_event = gdl_dock_item_button_changed;
     widget_class->button_release_event = gdl_dock_item_button_changed;
     widget_class->motion_notify_event = gdl_dock_item_motion;
@@ -955,40 +952,6 @@ gdl_dock_item_style_set (GtkWidget *widget,
                                   window,
                                   gtk_widget_get_state (widget));
     }
-}
-
-static void
-gdl_dock_item_paint (GtkWidget      *widget,
-                     cairo_t *cr)
-{
-    GdlDockItem  *item;
-
-    item = GDL_DOCK_ITEM (widget);
-
-    gtk_paint_box (gtk_widget_get_style (widget),
-                   cr,
-                   gtk_widget_get_state (widget),
-                   GTK_SHADOW_NONE,
-                   widget,
-                   "dockitem",
-                   0, 0, 0, 0);
-}
-
-static gint
-gdl_dock_item_draw (GtkWidget      *widget,
-                    cairo_t *cr)
-{
-    g_return_val_if_fail (widget != NULL, FALSE);
-    g_return_val_if_fail (GDL_IS_DOCK_ITEM (widget), FALSE);
-    g_return_val_if_fail (cr != NULL, FALSE);
-
-    if (gtk_widget_is_drawable (widget)) 
-    {
-        gdl_dock_item_paint (widget, cr);
-        GTK_WIDGET_CLASS (gdl_dock_item_parent_class)->draw (widget, cr);
-    }
-  
-    return FALSE;
 }
 
 #define EVENT_IN_GRIP_EVENT_WINDOW(ev,gr) \

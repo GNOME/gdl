@@ -100,7 +100,7 @@ gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
     return GTK_WIDGET(label_box);
 }
 
-static gint
+static gboolean
 gdl_dock_item_grip_draw (GtkWidget      *widget,
                          cairo_t *cr)
 {

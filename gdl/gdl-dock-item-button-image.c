@@ -30,7 +30,7 @@ G_DEFINE_TYPE (GdlDockItemButtonImage,
                gdl_dock_item_button_image,
                GTK_TYPE_WIDGET);
                        
-static gint
+static gboolean
 gdl_dock_item_button_image_draw (GtkWidget      *widget,
                                  cairo_t *cr)
 {
@@ -104,7 +104,7 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
     
     cairo_fill (cr);
     
-    return 0;
+    return FALSE;
 }
 
 static void
