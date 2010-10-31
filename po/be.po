@@ -2,58 +2,60 @@
 # Copyright (C) 2009 THE gdl'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gdl package.
 # Iryna Nikanchuk <defragbrain@gmail.com>, 2009.
+# Wladzimir Manulenka <wladzimir.manulenka@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gdl\n"
+"Project-Id-Version: gdl.gnome-2-30\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-23 22:58+0300\n"
-"PO-Revision-Date: 2009-04-23 17:24+0300\n"
-"Last-Translator: Iryna Nikanchuk <defragbrain@gmail.com>\n"
+"POT-Creation-Date: 2010-10-31 20:11+0200\n"
+"PO-Revision-Date: 2010-10-28 14:32+0200\n"
+"Last-Translator: Jim <vlma@tut.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
+"Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-dock-item-grip.c:300
+#: ../gdl/gdl-dock-item-grip.c:342
 msgid "Iconify this dock"
 msgstr "Зрабіць з гэтай панэлі іконку"
 
-#: ../gdl/gdl-dock-item-grip.c:302
+#: ../gdl/gdl-dock-item-grip.c:344
 msgid "Close this dock"
 msgstr "Закрыць гэтую панэль"
 
-#: ../gdl/gdl-dock-item-grip.c:615 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Кіруючы ўбудаваны элемэнт"
 
-#: ../gdl/gdl-dock-item-grip.c:616
+#: ../gdl/gdl-dock-item-grip.c:663
 msgid "Dockitem which 'owns' this grip"
 msgstr "Элемэнт панэлі, адказны за гэтую паласу"
 
-#: ../gdl/gdl-dock-item.c:253
+#: ../gdl/gdl-dock-item.c:254
 msgid "Orientation"
 msgstr "Арыентацыя"
 
-#: ../gdl/gdl-dock-item.c:254
+#: ../gdl/gdl-dock-item.c:255
 msgid "Orientation of the docking item"
 msgstr "Арыентацыя элемэнта мэню"
 
-#: ../gdl/gdl-dock-item.c:269
+#: ../gdl/gdl-dock-item.c:270
 msgid "Resizable"
 msgstr "Памер можна зьмяняць"
 
-#: ../gdl/gdl-dock-item.c:270
+#: ../gdl/gdl-dock-item.c:271
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Калі ключ усталяваны, памер элемэнта можа быць зьменены, калі ён прычэплены "
 "да віджэта GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:277
+#: ../gdl/gdl-dock-item.c:278
 msgid "Item behavior"
 msgstr "Паводзіны элемэнта"
 
-#: ../gdl/gdl-dock-item.c:278
+#: ../gdl/gdl-dock-item.c:279
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -61,34 +63,34 @@ msgstr ""
 "Агульныя паводзіны элемэнта мэню (ці будзе ён плыўкім, калі ён заблякаваны, "
 "ды інш.)"
 
-#: ../gdl/gdl-dock-item.c:286 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
 msgstr "Заблякаваны"
 
-#: ../gdl/gdl-dock-item.c:287
+#: ../gdl/gdl-dock-item.c:288
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Калі ключ усталяваны, элемэнт мэню немагчыма перасоўваць і ён не паказвае "
 "паласу"
 
-#: ../gdl/gdl-dock-item.c:295
+#: ../gdl/gdl-dock-item.c:296
 msgid "Preferred width"
 msgstr "Улюбёная шырыня"
 
-#: ../gdl/gdl-dock-item.c:296
+#: ../gdl/gdl-dock-item.c:297
 msgid "Preferred width for the dock item"
 msgstr "Улюбёная шырыня элемэнта мэню"
 
-#: ../gdl/gdl-dock-item.c:302
+#: ../gdl/gdl-dock-item.c:303
 msgid "Preferred height"
 msgstr "Улюбёная вышыня"
 
-#: ../gdl/gdl-dock-item.c:303
+#: ../gdl/gdl-dock-item.c:304
 msgid "Preferred height for the dock item"
 msgstr "Улюбёная вышыня элемэнта мэню"
 
-#: ../gdl/gdl-dock-item.c:575
+#: ../gdl/gdl-dock-item.c:592
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -97,129 +99,123 @@ msgstr ""
 "Немагчыма дадаць убудаваны аб'ект (%p тыпу %s) унутры %s. Карыстайцеся "
 "GdlDock альбо іншымі складанымі аб'ектамі."
 
-#: ../gdl/gdl-dock-item.c:582
+#: ../gdl/gdl-dock-item.c:599
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"Спроба дадаць віджэт тыпу %s да %s, але ён можа мець толькі адзіны віджэт; ён "
-"ужо мае віджэт тыпу %s"
+"Спроба дадаць віджэт тыпу %s да %s, але ён можа мець толькі адзіны віджэт; "
+"ён ужо мае віджэт тыпу %s"
 
-#: ../gdl/gdl-dock-item.c:1268 ../gdl/gdl-dock-item.c:1318
+#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Непадтрыманы мэтад прычапленьня %s ва ўбудаваным аб'екце тыпу %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1426
+#: ../gdl/gdl-dock-item.c:1443
 msgid "UnLock"
 msgstr "Разблякаваць"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1433
+#: ../gdl/gdl-dock-item.c:1450
 msgid "Hide"
 msgstr "Схаваць"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1438
+#: ../gdl/gdl-dock-item.c:1455
 msgid "Lock"
 msgstr "Заблякаваць"
 
-#: ../gdl/gdl-dock-item.c:1676
+#: ../gdl/gdl-dock-item.c:1693
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Спроба прычапіць адчэплены элемэнт %p"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
+#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "Кіраўнік панэлі"
 
-#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-layout.c:123
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Аб'ект GdlDockMaster, да якога далучаны аб'ект раскладу"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:130
 msgid "Dirty"
 msgstr "Зьменены"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:131
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Праўда, калі расклад зьменены і павінны быць запісаны ў файл"
 
-#. FIXME: pop up an error dialog
 #: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Немагчыма загрузіць файл раскладу элемэнтаў інтэрфэйсу '%s'"
 
-#: ../gdl/gdl-dock-layout.c:618
+#: ../gdl/gdl-dock-layout.c:620
 msgid "Visible"
 msgstr "Бачны"
 
-#: ../gdl/gdl-dock-layout.c:625
+#: ../gdl/gdl-dock-layout.c:627
 msgid "Item"
 msgstr "Элемэнт"
 
-#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "Назва"
 
-#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
-msgid "Dock items"
-msgstr "Убудаваныя элемэнты"
-
-#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
-msgid "Saved layouts"
-msgstr "Захаваныя расклады"
-
-#: ../gdl/gdl-dock-layout.c:789
+#: ../gdl/gdl-dock-layout.c:770
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is '%"
-"s'"
+"While loading layout: don't know how to create a dock object whose nick is "
+"'%s'"
 msgstr ""
 "Памылка падчас загрузкі раскладу: невядома, як стварыць убудаваны аб'ект '%s'"
 
-#: ../gdl/gdl-dock-layout.c:1322
-msgid "Layout managment"
-msgstr "Кіраваньне раскладамі"
-
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "Прадвызначаная назва"
 
-#: ../gdl/gdl-dock-master.c:139
+#: ../gdl/gdl-dock-master.c:141
 msgid "Default title for newly created floating docks"
 msgstr "Прадвызначаная назва для новых створаных плыўкіх панэляў"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:148
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
+"Калі выстаўленае на 1, то ўсе ўбудаваныя элемэнты, зьвязаныя з галоўным, "
+"заблякаваныя; калі на 0, то ўсе элемэнты разблякаваныя; -1 азначае "
+"няўзгодненасьць элемэнтаў."
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:696
+#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
 msgid "Switcher Style"
 msgstr "Стыль пераключальніка"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:697
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
 msgid "Switcher buttons style"
 msgstr "Стыль кнопак пераключальніка"
 
-#: ../gdl/gdl-dock-master.c:761
+#: ../gdl/gdl-dock-master.c:763
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
+"галоўны элемэнт %p: не ўдалося дадаць аб'ект %p[%s] да хэшу. Ужо існуе "
+"элемэнт з такой назвай (%p)."
 
-#: ../gdl/gdl-dock-master.c:933
+#: ../gdl/gdl-dock-master.c:935
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
+"Новы кантролер убудовы %p зьяўляецца аўтаматычным. Толькі ўручную ўбудаваныя "
+"аб'екты мусяць называцца кантролерамі."
 
 #: ../gdl/gdl-dock-notebook.c:134
 msgid "Page"
@@ -263,6 +259,8 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
+"Выклік gdl_dock_object_dock ва ўбудаваным аб'екце %p (тып аб'екту %s), які "
+"ня мае гэтага мэтаду"
 
 #: ../gdl/gdl-dock-object.c:576
 #, c-format
@@ -270,105 +268,114 @@ msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
+"Апэрацыя ўбудаваньня запытаная для незьвязанага аб'екта %p. Можа адбыцца "
+"аварыя ў праграме."
 
 #: ../gdl/gdl-dock-object.c:583
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
+"Немагчыма ўбудаваць %p у %p, таму што яны належыць розным галоўным элемэнтам"
 
 #: ../gdl/gdl-dock-object.c:625
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
+"Спроба прывязаць да %p ужо павязаны ўбудаваны аб'ект %p (дзейны галоўны "
+"элемэнт: %p)"
 
 #: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
-msgstr ""
+msgstr "Пазыцыя"
 
 #: ../gdl/gdl-dock-paned.c:132
 msgid "Position of the divider in pixels"
-msgstr ""
-
-#: ../gdl/gdl-dock-placeholder.c:143
-msgid "Sticky"
-msgstr ""
+msgstr "Пазыцыя сэпаратара ў піксэлях"
 
 #: ../gdl/gdl-dock-placeholder.c:144
+msgid "Sticky"
+msgstr "Ліпкі"
+
+#: ../gdl/gdl-dock-placeholder.c:145
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-
-#: ../gdl/gdl-dock-placeholder.c:151
-msgid "Host"
-msgstr ""
+"Ці будзе займальнік месца трымацца свайго вузла або пасунецца вышэй у "
+"герархіі, калі вузел зьменіць аснову ўбудовы"
 
 #: ../gdl/gdl-dock-placeholder.c:152
-msgid "The dock object this placeholder is attached to"
-msgstr ""
+msgid "Host"
+msgstr "Вузел"
 
-#: ../gdl/gdl-dock-placeholder.c:159
-msgid "Next placement"
-msgstr ""
+#: ../gdl/gdl-dock-placeholder.c:153
+msgid "The dock object this placeholder is attached to"
+msgstr "Убудаваны аб'ект, да якога дачэплены займальнік месца"
 
 #: ../gdl/gdl-dock-placeholder.c:160
+msgid "Next placement"
+msgstr "Наступнае месца"
+
+#: ../gdl/gdl-dock-placeholder.c:161
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
+"Пазыцыя, у якой элемэнт будзе дачэплены да нашага вузла, калі будзе атрыманы "
+"запыт да ўбудовы"
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "Шырыня"
 
-#: ../gdl/gdl-dock-placeholder.c:170
+#: ../gdl/gdl-dock-placeholder.c:171
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Шырыня віджэта, калі той злучаны зь меткай"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "Вышыня"
 
-#: ../gdl/gdl-dock-placeholder.c:178
+#: ../gdl/gdl-dock-placeholder.c:179
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Вышыня віджэта, калі той злучаны зь меткай"
 
-#: ../gdl/gdl-dock-placeholder.c:184
+#: ../gdl/gdl-dock-placeholder.c:185
 msgid "Floating Toplevel"
 msgstr "Плыўкі верх"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:186
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Ці будзе метка нерухомай адносна плыўкай панэлі верхняга ўзроўню"
 
-#: ../gdl/gdl-dock-placeholder.c:191
-msgid "X-Coordinate"
-msgstr "X"
-
 #: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate for dock when floating"
-msgstr "Каардыната X для плыўкай панэлі"
+msgid "X-Coordinate"
+msgstr "X-каардыната"
 
-#: ../gdl/gdl-dock-placeholder.c:198
-msgid "Y-Coordinate"
-msgstr "Y"
+#: ../gdl/gdl-dock-placeholder.c:193
+msgid "X-Coordinate for dock when floating"
+msgstr "X-каардыната для ўбудаваньня плыўкай панэлі"
 
 #: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate for dock when floating"
-msgstr "Каардыната Y для плыўкай панэлі"
+msgid "Y-Coordinate"
+msgstr "Y-каардыната"
 
-#: ../gdl/gdl-dock-placeholder.c:494
+#: ../gdl/gdl-dock-placeholder.c:200
+msgid "Y-Coordinate for dock when floating"
+msgstr "Y-каардыната для ўбудаваньня плыўкай панэлі"
+
+#: ../gdl/gdl-dock-placeholder.c:495
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Спроба далучыць убудаваны аб'ект да нясчэпленай меткі"
 
-#: ../gdl/gdl-dock-placeholder.c:618
+#: ../gdl/gdl-dock-placeholder.c:619
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 "Атрыманы сыгнал адлучэньня ад аб'екта (%p), які не з'яўляецца бацькоўскім %p"
 
-#: ../gdl/gdl-dock-placeholder.c:643
+#: ../gdl/gdl-dock-placeholder.c:644
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -427,19 +434,30 @@ msgstr "Плыўкі Y"
 msgid "Y coordinate for a floating dock"
 msgstr "Каардыната Y для плыўкай панэлі"
 
-#: ../gdl/gdl-dock.c:499
+#: ../gdl/gdl-dock.c:484
 #, c-format
 msgid "Dock #%d"
 msgstr "Панэль #%d"
 
-#: ../gdl/layout.glade.h:2
+#: ../gdl/layout.ui.h:1
+msgid "Dock items"
+msgstr "Убудаваныя элемэнты"
+
+#: ../gdl/layout.ui.h:2
 msgid "Layout Managment"
 msgstr "Кіраўнік раскладаў"
 
-#: ../gdl/layout.glade.h:4
+#: ../gdl/layout.ui.h:3
+msgid "Saved layouts"
+msgstr "Захаваныя расклады"
+
+#: ../gdl/layout.ui.h:4
 msgid "_Load"
 msgstr "_Загрузіць"
 
-#: ../gdl/layout.glade.h:5
+#: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
 msgstr "_Заблякаваць убудаваныя элемэнты"
+
+#~ msgid "Layout managment"
+#~ msgstr "Кіраваньне раскладамі"
