@@ -79,8 +79,13 @@ static void  gdl_dock_item_forall        (GtkContainer *container,
                                           gpointer      callback_data);
 static GType gdl_dock_item_child_type  (GtkContainer *container);
 
-static void  gdl_dock_item_size_request  (GtkWidget *widget,
-                                          GtkRequisition *requisition);
+static void  gdl_dock_item_get_preferred_width  (GtkWidget *widget,
+                                                 gint      *minimum,
+                                                 gint      *natural);
+static void  gdl_dock_item_get_preferred_height (GtkWidget *widget,
+                                                 gint      *minimum,
+                                                 gint      *natural);
+
 static void  gdl_dock_item_size_allocate (GtkWidget *widget,
                                           GtkAllocation *allocation);
 static void  gdl_dock_item_map           (GtkWidget *widget);
@@ -215,7 +220,8 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     widget_class->realize = gdl_dock_item_realize;
     widget_class->map = gdl_dock_item_map;
     widget_class->unmap = gdl_dock_item_unmap;
-    widget_class->size_request = gdl_dock_item_size_request;
+    widget_class->get_preferred_width = gdl_dock_item_get_preferred_width;
+    widget_class->get_preferred_height = gdl_dock_item_get_preferred_height;
     widget_class->size_allocate = gdl_dock_item_size_allocate;
     widget_class->style_set = gdl_dock_item_style_set;
     widget_class->button_press_event = gdl_dock_item_button_changed;
@@ -227,6 +233,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     container_class->remove = gdl_dock_item_remove;
     container_class->forall = gdl_dock_item_forall;
     container_class->child_type = gdl_dock_item_child_type;
+    gtk_container_class_handle_border_width (container_class);
     
     object_class->is_compound = FALSE;
 
@@ -719,64 +726,91 @@ gdl_dock_item_child_type (GtkContainer *container)
 }
 
 static void
-gdl_dock_item_size_request (GtkWidget      *widget,
-                            GtkRequisition *requisition)
+gdl_dock_item_get_preferred_width (GtkWidget *widget,
+                                   gint      *minimum,
+                                   gint      *natural)
 {
     GdlDockItem    *item;
-    GtkRequisition  child_requisition;
-    GtkRequisition  grip_requisition;
+    gint child_min, child_nat;
     GtkStyle       *style;
-    guint           border_width;
 
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
-    g_return_if_fail (requisition != NULL);
 
     item = GDL_DOCK_ITEM (widget);
 
     /* If our child is not visible, we still request its size, since
        we won't have any useful hint for our size otherwise.  */
     if (item->child)
-        gtk_widget_size_request (item->child, &child_requisition);
-    else {
-        child_requisition.width = 0;
-        child_requisition.height = 0;
-    }
+        gtk_widget_get_preferred_width (item->child, &child_min, &child_nat);
+    else
+        child_min = child_nat = 0;
 
     if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
-            gtk_widget_size_request (item->_priv->grip, &grip_requisition);
-            requisition->width = grip_requisition.width;
-        } else {
-            requisition->width = 0;
-        }
+            gtk_widget_get_preferred_width (item->_priv->grip, minimum, natural);
+        } else
+            *minimum = *natural = 0;
 
         if (item->child) {
-            requisition->width += child_requisition.width;
-            requisition->height = child_requisition.height;
-        } else
-            requisition->height = 0;
+            *minimum += child_min;
+            *natural += child_nat;
+        }
     } else {
-        if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
-            gtk_widget_size_request (item->_priv->grip, &grip_requisition);
-            requisition->height = grip_requisition.height;
-        } else {
-            requisition->height = 0;
-        }
-
         if (item->child) {
-            requisition->width = child_requisition.width;
-            requisition->height += child_requisition.height;
+            *minimum = child_min;
+            *natural = child_nat;
         } else
-            requisition->width = 0;
+            *minimum = *natural = 0;
     }
 
-    border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
     style = gtk_widget_get_style (widget);
 
-    requisition->width += (border_width + style->xthickness) * 2;
-    requisition->height += (border_width + style->ythickness) * 2;
+    *minimum += style->xthickness * 2;
+    *natural += style->xthickness * 2;
+}
 
-    //gtk_widget_size_request (widget, requisition);    
+static void
+gdl_dock_item_get_preferred_height (GtkWidget *widget,
+                                    gint      *minimum,
+                                    gint      *natural)
+{
+    GdlDockItem    *item;
+    gint child_min, child_nat;
+    GtkStyle       *style;
+
+    g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
+
+    item = GDL_DOCK_ITEM (widget);
+
+    /* If our child is not visible, we still request its size, since
+       we won't have any useful hint for our size otherwise.  */
+    if (item->child)
+        gtk_widget_get_preferred_height (item->child, &child_min, &child_nat);
+    else
+        child_min = child_nat = 0;
+
+    if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
+        if (item->child) {
+            *minimum = child_min;
+            *natural = child_nat;
+        } else
+            *minimum = *natural = 0;
+    } else {
+        if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
+            gtk_widget_get_preferred_height (item->_priv->grip, minimum, natural);
+        } else
+            *minimum = *natural = 0;
+
+        if (item->child) {
+            *minimum += child_min;
+            *natural += child_nat;
+        }
+    }
+
+    style = gtk_widget_get_style (widget);
+
+    *minimum += style->ythickness * 2;
+    *natural += style->ythickness * 2;
 }
 
 static void
@@ -806,17 +840,15 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
     if (item->child && gtk_widget_get_visible (item->child)) {
         GtkAllocation  child_allocation;
         GtkStyle      *style;
-        guint          border_width;
 
-        border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
         style = gtk_widget_get_style (widget);
 
-        child_allocation.x = border_width + style->xthickness;
-        child_allocation.y = border_width + style->ythickness;
+        child_allocation.x = style->xthickness;
+        child_allocation.y = style->ythickness;
         child_allocation.width = allocation->width
-            - 2 * (border_width + style->xthickness);
+            - 2 * style->xthickness;
         child_allocation.height = allocation->height
-            - 2 * (border_width + style->ythickness);
+            - 2 * style->ythickness;
         
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
             GtkAllocation grip_alloc = child_allocation;

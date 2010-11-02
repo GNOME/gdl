@@ -461,43 +461,67 @@ gdl_dock_item_grip_unmap (GtkWidget *widget)
 }
 
 static void
-gdl_dock_item_grip_size_request (GtkWidget      *widget,
-                                 GtkRequisition *requisition)
+gdl_dock_item_grip_get_preferred_width (GtkWidget *widget,
+                                        gint      *minimum,
+                                        gint      *natural)
 {
-    GtkRequisition   child_requisition;
     GdlDockItemGrip *grip;
-    gint             layout_height = 0;
-    guint            border_width;
+    gint child_min, child_nat;
 
     g_return_if_fail (GDL_IS_DOCK_ITEM_GRIP (widget));
-    g_return_if_fail (requisition != NULL);
 
-    border_width  = gtk_container_get_border_width (GTK_CONTAINER (widget));
     grip = GDL_DOCK_ITEM_GRIP (widget);
-    
-    requisition->width = border_width * 2/* + ALIGN_BORDER*/;
-    requisition->height = border_width * 2;
 
-    if(grip->_priv->handle_shown)
-        requisition->width += DRAG_HANDLE_SIZE;
+    *minimum = *natural = 0;
 
-    gtk_widget_size_request (grip->_priv->close_button, &child_requisition);
-    layout_height = MAX (layout_height, child_requisition.height);
+    if(grip->_priv->handle_shown) {
+        *minimum += DRAG_HANDLE_SIZE;
+        *natural += DRAG_HANDLE_SIZE;
+    }
+
     if (gtk_widget_get_visible (grip->_priv->close_button)) {
-       requisition->width += child_requisition.width;
+       gtk_widget_get_preferred_width (grip->_priv->close_button, &child_min, &child_nat);
+       *minimum += child_min;
+       *natural += child_nat;
     }
-    
-    gtk_widget_size_request (grip->_priv->iconify_button, &child_requisition);
-    layout_height = MAX (layout_height, child_requisition.height);
+
     if (gtk_widget_get_visible (grip->_priv->iconify_button)) {
-        requisition->width += child_requisition.width;
+        gtk_widget_get_preferred_width (grip->_priv->iconify_button, &child_min, &child_nat);
+       *minimum += child_min;
+       *natural += child_nat;
     }
-   
-    gtk_widget_size_request (grip->_priv->label, &child_requisition);
-    requisition->width += child_requisition.width;
-    layout_height = MAX (layout_height, child_requisition.height);
-    
-    requisition->height += layout_height;
+
+    gtk_widget_get_preferred_width (grip->_priv->label, &child_min, &child_nat);
+    *minimum += child_min;
+    *natural += child_nat;
+}
+
+static void
+gdl_dock_item_grip_get_preferred_height (GtkWidget *widget,
+                                         gint      *minimum,
+                                         gint      *natural)
+{
+    GdlDockItemGrip *grip;
+    gint child_min, child_nat;
+    gint layout_height = 0;
+
+    g_return_if_fail (GDL_IS_DOCK_ITEM_GRIP (widget));
+
+    grip = GDL_DOCK_ITEM_GRIP (widget);
+
+    *minimum = *natural = 0;
+
+    gtk_widget_get_preferred_height (grip->_priv->close_button, &child_min, &child_nat);
+    *minimum = MAX (*minimum, child_min);
+    *natural = MAX (*natural, child_nat);
+
+    gtk_widget_get_preferred_height (grip->_priv->iconify_button, &child_min, &child_nat);
+    *minimum = MAX (*minimum, child_min);
+    *natural = MAX (*natural, child_nat);
+
+    gtk_widget_get_preferred_height (grip->_priv->label, &child_min, &child_nat);
+    *minimum = MAX (*minimum, child_min);
+    *natural = MAX (*natural, child_nat);
 }
 
 static void
@@ -509,34 +533,31 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
     GtkRequisition   iconify_requisition = { 0, };
     GtkAllocation    child_allocation;
     GdkRectangle     label_area;
-    guint            border_width;
 
     g_return_if_fail (GDL_IS_DOCK_ITEM_GRIP (widget));
     g_return_if_fail (allocation != NULL);
   
     grip = GDL_DOCK_ITEM_GRIP (widget);
-    border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
 
     GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->size_allocate (widget, allocation);
 
-    gtk_widget_size_request (grip->_priv->close_button,
-        &close_requisition);
-    gtk_widget_size_request (grip->_priv->iconify_button,
-        &iconify_requisition);
+    gtk_widget_get_preferred_size (grip->_priv->close_button,
+        &close_requisition, NULL);
+    gtk_widget_get_preferred_size (grip->_priv->iconify_button,
+        &iconify_requisition, NULL);
     
     /* Calculate the Minimum Width where buttons will fit */
-    int min_width = close_requisition.width + iconify_requisition.width
-        + border_width * 2;
+    int min_width = close_requisition.width + iconify_requisition.width;
     if(grip->_priv->handle_shown)
       min_width += DRAG_HANDLE_SIZE;
     const gboolean space_for_buttons = (allocation->width >= min_width);
         
     /* Set up the rolling child_allocation rectangle */
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-        child_allocation.x = border_width/* + ALIGN_BORDER*/;
+        child_allocation.x = 0;
     else
-        child_allocation.x = allocation->width - border_width;
-    child_allocation.y = border_width;
+        child_allocation.x = allocation->width;
+    child_allocation.y = 0;
 
     /* Layout Close Button */
     if (gtk_widget_get_visible (grip->_priv->close_button)) {
@@ -579,7 +600,7 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
     /* Layout the Grip Handle*/
     if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
         child_allocation.width = child_allocation.x;
-        child_allocation.x = border_width/* + ALIGN_BORDER*/;
+        child_allocation.x = 0;
         
         if(grip->_priv->handle_shown) {
             child_allocation.x += DRAG_HANDLE_SIZE;
@@ -597,8 +618,8 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
     if(child_allocation.width < 0)
       child_allocation.width = 0;
     
-    child_allocation.y = border_width;
-    child_allocation.height = allocation->height - border_width * 2;
+    child_allocation.y = 0;
+    child_allocation.height = allocation->height;
     if(grip->_priv->label) {
       gtk_widget_size_allocate (grip->_priv->label, &child_allocation);
     }
@@ -675,13 +696,15 @@ gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
     widget_class->unrealize = gdl_dock_item_grip_unrealize;
     widget_class->map = gdl_dock_item_grip_map;
     widget_class->unmap = gdl_dock_item_grip_unmap;
-    widget_class->size_request = gdl_dock_item_grip_size_request;
+    widget_class->get_preferred_width = gdl_dock_item_grip_get_preferred_width;
+    widget_class->get_preferred_height = gdl_dock_item_grip_get_preferred_height;
     widget_class->size_allocate = gdl_dock_item_grip_size_allocate;
 
     container_class->add = gdl_dock_item_grip_add;
     container_class->remove = gdl_dock_item_grip_remove;
     container_class->forall = gdl_dock_item_grip_forall;
     container_class->child_type = gdl_dock_item_grip_child_type;
+    gtk_container_class_handle_border_width (container_class);
 
     g_object_class_install_property (
         gobject_class, PROP_ITEM,

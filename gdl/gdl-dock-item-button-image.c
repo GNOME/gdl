@@ -115,14 +115,19 @@ gdl_dock_item_button_image_init (
 }
 
 static void
-gdl_dock_item_button_image_size_request (GtkWidget      *widget,
-                                         GtkRequisition *requisition)
+gdl_dock_item_button_image_get_preferred_width (GtkWidget *widget,
+                                                gint      *minimum,
+                                                gint      *natural)
 {
-    g_return_if_fail (GDL_IS_DOCK_ITEM_BUTTON_IMAGE (widget));
-    g_return_if_fail (requisition != NULL);
-    
-    requisition->width = ICON_SIZE;
-    requisition->height = ICON_SIZE;
+   *minimum = *natural = ICON_SIZE;
+}
+
+static void
+gdl_dock_item_button_image_get_preferred_height (GtkWidget *widget,
+                                                 gint      *minimum,
+                                                 gint      *natural)
+{
+   *minimum = *natural = ICON_SIZE;
 }
 
 static void
@@ -134,8 +139,10 @@ gdl_dock_item_button_image_class_init (
     
     widget_class->draw =
         gdl_dock_item_button_image_draw;
-    widget_class->size_request =
-        gdl_dock_item_button_image_size_request;
+    widget_class->get_preferred_width =
+        gdl_dock_item_button_image_get_preferred_width;
+    widget_class->get_preferred_height =
+        gdl_dock_item_button_image_get_preferred_height;
 }
 
 /* ----- Public interface ----- */

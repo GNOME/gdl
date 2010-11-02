@@ -64,8 +64,13 @@ static void  gdl_dock_set_title       (GdlDock      *dock);
 
 static void  gdl_dock_destroy         (GtkWidget    *object);
 
-static void  gdl_dock_size_request    (GtkWidget      *widget,
-                                       GtkRequisition *requisition);
+static void  gdl_dock_get_preferred_width  (GtkWidget *widget,
+                                            gint      *minimum,
+                                            gint      *natural);
+static void  gdl_dock_get_preferred_height (GtkWidget *widget,
+                                            gint      *minimum,
+                                            gint      *natural);
+
 static void  gdl_dock_size_allocate   (GtkWidget      *widget,
                                        GtkAllocation  *allocation);
 static void  gdl_dock_map             (GtkWidget      *widget);
@@ -218,7 +223,8 @@ gdl_dock_class_init (GdlDockClass *klass)
     
     widget_class->destroy = gdl_dock_destroy;
 
-    widget_class->size_request = gdl_dock_size_request;
+    widget_class->get_preferred_width = gdl_dock_get_preferred_width;
+    widget_class->get_preferred_height = gdl_dock_get_preferred_height;
     widget_class->size_allocate = gdl_dock_size_allocate;
     widget_class->map = gdl_dock_map;
     widget_class->unmap = gdl_dock_unmap;
@@ -229,7 +235,8 @@ gdl_dock_class_init (GdlDockClass *klass)
     container_class->remove = gdl_dock_remove;
     container_class->forall = gdl_dock_forall;
     container_class->child_type = gdl_dock_child_type;
-    
+    gtk_container_class_handle_border_width (container_class);
+
     object_class->is_compound = TRUE;
     
     object_class->detach = gdl_dock_detach;
@@ -527,32 +534,45 @@ gdl_dock_destroy (GtkWidget *object)
 }
 
 static void
-gdl_dock_size_request (GtkWidget      *widget,
-                       GtkRequisition *requisition)
+gdl_dock_get_preferred_width (GtkWidget *widget,
+                              gint      *minimum,
+                              gint      *natural)
 {
     GdlDock       *dock;
     GtkContainer  *container;
-    guint          border_width;
 
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
 
     dock = GDL_DOCK (widget);
     container = GTK_CONTAINER (widget);
-    border_width = gtk_container_get_border_width (container);
 
     /* make request to root */
     if (dock->root && gtk_widget_get_visible (GTK_WIDGET (dock->root)))
-        gtk_widget_size_request (GTK_WIDGET (dock->root), requisition);
-    else {
-        requisition->width = 0;
-        requisition->height = 0;
-    };
+        gtk_widget_get_preferred_width (GTK_WIDGET (dock->root), minimum, natural);
+    else
+        *minimum = *natural = 0;
+}
 
-    requisition->width += 2 * border_width;
-    requisition->height += 2 * border_width;
+static void
+gdl_dock_get_preferred_height (GtkWidget *widget,
+                               gint      *minimum,
+                               gint      *natural)
+{
+    GdlDock       *dock;
+    GtkContainer  *container;
 
-    //gtk_widget_size_request (widget, requisition);    
+    g_return_if_fail (widget != NULL);
+    g_return_if_fail (GDL_IS_DOCK (widget));
+
+    dock = GDL_DOCK (widget);
+    container = GTK_CONTAINER (widget);
+
+    /* make request to root */
+    if (dock->root && gtk_widget_get_visible (GTK_WIDGET (dock->root)))
+        gtk_widget_get_preferred_height (GTK_WIDGET (dock->root), minimum, natural);
+    else
+        *minimum = *natural = 0;
 }
 
 static void
@@ -561,22 +581,14 @@ gdl_dock_size_allocate (GtkWidget     *widget,
 {
     GdlDock       *dock;
     GtkContainer  *container;
-    guint          border_width;
 
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
-    
+
     dock = GDL_DOCK (widget);
     container = GTK_CONTAINER (widget);
-    border_width = gtk_container_get_border_width (container);
 
     gtk_widget_set_allocation (widget, allocation);
-
-    /* reduce allocation by border width */
-    allocation->x += border_width;
-    allocation->y += border_width;
-    allocation->width = MAX (1, allocation->width - 2 * border_width);
-    allocation->height = MAX (1, allocation->height - 2 * border_width);
 
     if (dock->root && gtk_widget_get_visible (GTK_WIDGET (dock->root)))
         gtk_widget_size_allocate (GTK_WIDGET (dock->root), allocation);

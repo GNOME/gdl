@@ -254,7 +254,7 @@ button_toggled_callback (GtkToggleButton *toggle_button,
 static int
 layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
 {
-    GtkRequisition client_requisition = {0,};
+    gint min_height, nat_height;
     GdlSwitcherStyle switcher_style;
     gboolean icons_only;
     int num_btns = g_slist_length (switcher->priv->buttons);
@@ -272,7 +272,7 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
     
     last_buttons_height = switcher->priv->buttons_height_request;
     
-    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->size_request (GTK_WIDGET (switcher), &client_requisition);
+    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->get_preferred_height (GTK_WIDGET (switcher), &min_height, &nat_height);
 
     y = allocation->y + allocation->height - V_PADDING - 1;
 
@@ -288,8 +288,8 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
         GtkRequisition requisition;
 
         button = p->data;
-        gtk_widget_size_request (GTK_WIDGET (button->button_widget),
-                                 &requisition);
+        gtk_widget_get_preferred_size (GTK_WIDGET (button->button_widget),
+                                       &requisition, NULL);
         optimal_layout_width += requisition.width + H_PADDING;
         max_btn_height = MAX (max_btn_height, requisition.height);
         max_btn_width = MAX (max_btn_width, requisition.width);    
@@ -376,7 +376,7 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
         /* Check for possible size over flow (taking into account client
          * requisition
          */
-        if (y < (allocation->y + client_requisition.height)) {
+        if (y < (allocation->y + min_height)) {
             /* We have an overflow: Insufficient allocation */
             if (last_buttons_height < switcher->priv->buttons_height_request) {
                 /* Request for a new resize */
@@ -400,8 +400,8 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
             if (rows_count == 1 && row_number == 0)
             {
                 GtkRequisition child_requisition;
-                gtk_widget_size_request (GTK_WIDGET (p->data),
-                                         &child_requisition);
+                gtk_widget_get_preferred_size (GTK_WIDGET (p->data),
+                                               &child_requisition, NULL);
                 child_allocation.width = child_requisition.width;
             }
             else
@@ -497,13 +497,13 @@ gdl_switcher_remove (GtkContainer *container, GtkWidget *widget)
 /* GtkWidget methods.  */
 
 static void
-gdl_switcher_size_request (GtkWidget *widget, GtkRequisition *requisition)
+gdl_switcher_get_preferred_width (GtkWidget *widget, gint *minimum, gint *natural)
 {
     GdlSwitcher *switcher = GDL_SWITCHER (widget);
     GSList *p;
     gint button_height = 0;
     
-    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->size_request (GTK_WIDGET (switcher), requisition);
+    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->get_preferred_width (GTK_WIDGET (switcher), minimum, natural);
 
     if (!switcher->priv->show)
         return;
@@ -511,19 +511,42 @@ gdl_switcher_size_request (GtkWidget *widget, GtkRequisition *requisition)
     for (p = switcher->priv->buttons; p != NULL; p = p->next) {
         gint button_width;
         Button *button = p->data;
-        GtkRequisition button_requisition;
+        gint min, nat;
 
-        gtk_widget_size_request (button->button_widget, &button_requisition);
-        button_width = button_requisition.width + 2 * H_PADDING;
-        requisition->width = MAX (requisition->width, button_width);
-        button_height = MAX (button_height,
-                             button_requisition.height + 2 * V_PADDING);
+        gtk_widget_get_preferred_width(button->button_widget, &min, &nat);
+        *minimum = MAX (*minimum, min + 2 * H_PADDING);
+        *natural = MAX (*natural, nat + 2 * H_PADDING);
     }
+}
+
+static void
+gdl_switcher_get_preferred_height (GtkWidget *widget, gint *minimum, gint *natural)
+{
+    GdlSwitcher *switcher = GDL_SWITCHER (widget);
+    GSList *p;
+    gint button_min = 0;
+    gint button_nat = 0;
+ 
+    GTK_WIDGET_CLASS (gdl_switcher_parent_class)->get_preferred_height (GTK_WIDGET (switcher), minimum, natural);
+
+    if (!switcher->priv->show)
+        return;
     
+    for (p = switcher->priv->buttons; p != NULL; p = p->next) {
+        Button *button = p->data;
+        gint min, nat;
+
+        gtk_widget_get_preferred_height (button->button_widget, &min, &nat);
+        button_min = MAX (button_min, min + 2 * V_PADDING);
+        button_nat = MAX (button_nat, nat + 2 * V_PADDING);
+    }
+
     if (switcher->priv->buttons_height_request > 0) {
-        requisition->height += switcher->priv->buttons_height_request;
+        *minimum += switcher->priv->buttons_height_request;
+        *natural += switcher->priv->buttons_height_request;
     } else {
-        requisition->height += button_height + V_PADDING;
+        *minimum += button_min + V_PADDING;
+        *natural += button_nat + V_PADDING;
     }
 }
 
@@ -707,7 +730,8 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
     container_class->forall = gdl_switcher_forall;
     container_class->remove = gdl_switcher_remove;
 
-    widget_class->size_request = gdl_switcher_size_request;
+    widget_class->get_preferred_width = gdl_switcher_get_preferred_width;
+    widget_class->get_preferred_height = gdl_switcher_get_preferred_height;
     widget_class->size_allocate = gdl_switcher_size_allocate;
     widget_class->draw = gdl_switcher_draw;
     widget_class->map = gdl_switcher_map;

@@ -50,8 +50,12 @@ static void  gdl_dock_tablabel_item_notify   (GObject            *master,
                                               GParamSpec         *pspec,
                                               gpointer            data);
 
-static void  gdl_dock_tablabel_size_request  (GtkWidget          *widget,
-                                              GtkRequisition     *requisition);
+static void  gdl_dock_tablabel_get_preferred_width  (GtkWidget *widget,
+                                                     gint      *minimum,
+                                                     gint      *natural);
+static void  gdl_dock_tablabel_get_preferred_height (GtkWidget *widget,
+                                                     gint      *minimum,
+                                                     gint      *natural);
 static void  gdl_dock_tablabel_size_allocate (GtkWidget          *widget,
                                               GtkAllocation      *allocation);
                                               
@@ -107,7 +111,8 @@ gdl_dock_tablabel_class_init (GdlDockTablabelClass *klass)
     g_object_class->set_property = gdl_dock_tablabel_set_property;
     g_object_class->get_property = gdl_dock_tablabel_get_property;
 
-    widget_class->size_request = gdl_dock_tablabel_size_request;
+    widget_class->get_preferred_width = gdl_dock_tablabel_get_preferred_width;
+    widget_class->get_preferred_height = gdl_dock_tablabel_get_preferred_height;
     widget_class->size_allocate = gdl_dock_tablabel_size_allocate;
     widget_class->draw = gdl_dock_tablabel_draw;
     widget_class->button_press_event = gdl_dock_tablabel_button_event;
@@ -269,38 +274,62 @@ gdl_dock_tablabel_item_notify (GObject    *master,
 }
 
 static void
-gdl_dock_tablabel_size_request (GtkWidget      *widget,
-                                GtkRequisition *requisition)
+gdl_dock_tablabel_get_preferred_width (GtkWidget *widget,
+                                       gint      *minimum,
+                                       gint      *natural)
 {
     GtkBin          *bin;
-    GtkRequisition   child_req;
+    gint child_min, child_nat;
     GdlDockTablabel *tablabel;
     guint            border_width;
 
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK_TABLABEL (widget));
-    g_return_if_fail (requisition != NULL);
 
     tablabel = GDL_DOCK_TABLABEL (widget);
     bin = GTK_BIN (widget);
 
-    requisition->width = tablabel->drag_handle_size;
-    requisition->height = 0;
+    *minimum = *natural = tablabel->drag_handle_size;
 
     if (gtk_bin_get_child (bin))
-        gtk_widget_size_request (gtk_bin_get_child (bin), &child_req);
+        gtk_widget_get_preferred_width (gtk_bin_get_child (bin), &child_min, &child_nat);
     else
-        child_req.width = child_req.height = 0;
-        
-    requisition->width += child_req.width;
-    requisition->height += child_req.height;
+        child_min = child_nat = 0;
+
+    *minimum += child_min + border_width * 2;
+    *natural += child_nat + border_width * 2;
+}
+
+static void
+gdl_dock_tablabel_get_preferred_height (GtkWidget *widget,
+                                        gint      *minimum,
+                                        gint      *natural)
+{
+    GtkBin          *bin;
+    gint child_min, child_nat;
+    GdlDockTablabel *tablabel;
+    guint            border_width;
+
+    g_return_if_fail (widget != NULL);
+    g_return_if_fail (GDL_IS_DOCK_TABLABEL (widget));
+
+    tablabel = GDL_DOCK_TABLABEL (widget);
+    bin = GTK_BIN (widget);
+
+    *minimum = *natural = 0;
+
+    if (gtk_bin_get_child (bin))
+        gtk_widget_get_preferred_height (gtk_bin_get_child (bin), &child_min, &child_nat);
+    else
+        child_min = child_nat = 0;
+
+    *minimum = child_min;
+    *natural = child_nat;
 
     border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
 
-    requisition->width += border_width * 2;
-    requisition->height += border_width * 2;
-
-    //gtk_widget_size_request (widget, requisition);    
+    *minimum += border_width * 2;
+    *natural += border_width * 2;
 }
 
 static void

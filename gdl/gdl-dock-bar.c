@@ -71,8 +71,12 @@ struct _GdlDockBarPrivate {
 
 G_DEFINE_TYPE (GdlDockBar, gdl_dock_bar, GTK_TYPE_BOX)
 
-static void gdl_dock_bar_size_request (GtkWidget *widget,
-		                       GtkRequisition *requisition );
+static void gdl_dock_bar_get_preferred_width  (GtkWidget *widget,
+                                               gint      *minimum,
+                                               gint      *natural);
+static void gdl_dock_bar_get_preferred_height (GtkWidget *widget,
+                                               gint      *minimum,
+                                               gint      *natural);
 static void gdl_dock_bar_size_allocate (GtkWidget *widget,
 		                       GtkAllocation *allocation );
 static void gdl_dock_bar_size_vrequest (GtkWidget *widget,
@@ -115,7 +119,8 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
     widget_class = GTK_WIDGET_CLASS (klass);
-    widget_class->size_request = gdl_dock_bar_size_request;
+    widget_class->get_preferred_width = gdl_dock_bar_get_preferred_width;
+    widget_class->get_preferred_height = gdl_dock_bar_get_preferred_height;
     widget_class->size_allocate = gdl_dock_bar_size_allocate;
 }
 
@@ -431,6 +436,28 @@ static void gdl_dock_bar_size_request (GtkWidget *widget,
 		gdl_dock_bar_size_vrequest (widget, requisition);
 		break;
     }
+}
+
+static void gdl_dock_bar_get_preferred_width (GtkWidget *widget,
+                                              gint      *minimum,
+                                              gint      *natural)
+{
+    GtkRequisition requisition;
+
+    gdl_dock_bar_size_request (widget, &requisition);
+
+   *minimum = *natural = requisition.width;
+}
+
+static void gdl_dock_bar_get_preferred_height (GtkWidget *widget,
+                                               gint      *minimum,
+                                               gint      *natural)
+{
+    GtkRequisition requisition;
+
+    gdl_dock_bar_size_request (widget, &requisition);
+
+   *minimum = *natural = requisition.height;
 }
 
 static void gdl_dock_bar_size_allocate (GtkWidget *widget,
