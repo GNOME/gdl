@@ -443,6 +443,10 @@ gdl_dock_master_drag_end (GdlDockItem *item,
     {
         gdl_dock_xor_rect_hide (master->_priv->rect_owner);
     }
+    if (master->_priv->area_window)
+    {
+        gtk_widget_hide (master->_priv->area_window);
+    }
 
     /* cancel conditions */
     if (cancelled || request->applicant == request->target)
