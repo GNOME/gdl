@@ -100,8 +100,6 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
     g_object_class->get_property = gdl_dock_bar_get_property;
     g_object_class->set_property = gdl_dock_bar_set_property;
 
-    widget_class->destroy = gdl_dock_bar_destroy;
-
     g_object_class_install_property (
         g_object_class, PROP_MASTER,
         g_param_spec_object ("master", _("Master"),
@@ -122,6 +120,7 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
     widget_class->get_preferred_width = gdl_dock_bar_get_preferred_width;
     widget_class->get_preferred_height = gdl_dock_bar_get_preferred_height;
     widget_class->size_allocate = gdl_dock_bar_size_allocate;
+    widget_class->destroy = gdl_dock_bar_destroy;
 }
 
 static void
