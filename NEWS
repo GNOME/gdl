@@ -1,3 +1,11 @@
+Changes in 2.91.2
+
+* bgo#633499 - prepare for the demise of size_request
+* Some smaller fixes for leftovers of the gtk+-3.0 transition
+
+Thanks to Ignacio Casal Quinteiro, Matthias Clasen, Wladzimir Manulenka,
+Xandru Armesto
+
 Changes in 2.91.1
 
 * Ported to lastest gtk+ master:
