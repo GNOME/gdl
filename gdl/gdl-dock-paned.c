@@ -195,11 +195,8 @@ gdl_dock_paned_create_child (GdlDockPaned   *paned,
         gtk_widget_unparent (GTK_WIDGET (item->child));
     
     /* create the container paned */
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-        item->child = gtk_hpaned_new ();
-    else
-        item->child = gtk_vpaned_new ();
-    
+    item->child = gtk_paned_new (orientation);
+
     /* get notification for propagation */
     g_signal_connect (item->child, "notify::position",
                       (GCallback) gdl_dock_paned_notify_cb, (gpointer) item);
