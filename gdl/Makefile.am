@@ -81,7 +81,7 @@ libgdlinclude_HEADERS = \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
 
-uidir = $(datadir)/gdl/ui
+uidir = $(datadir)/gdl-3/ui
 ui_DATA = layout.ui
 
 EXTRA_DIST = libgdlmarshal.list \
