@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the gdl package.
 # Gheyret Kenji <gheyret@gmail.com>, 2010.
 # Sahran <sahran.ug@gmail.com>, 2010
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&component=general\n"
-"POT-Creation-Date: 2010-11-02 11:20+0000\n"
+"POT-Creation-Date: 2010-11-13 21:06+0000\n"
 "PO-Revision-Date: 2010-07-05 15:36+0600\n"
 "Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -122,7 +122,7 @@ msgstr "قۇلۇپلا"
 msgid "Attempt to bind an unbound item %p"
 msgstr "باغلانمىغان تۈر %p نى باغلىماقچى بولۇۋاتىدۇ"
 
-#: ../gdl/gdl-dock-layout.c:119 ../gdl/gdl-dock-bar.c:107
+#: ../gdl/gdl-dock-layout.c:119 ../gdl/gdl-dock-bar.c:105
 msgid "Master"
 msgstr "باش"
 
@@ -184,14 +184,14 @@ msgstr "ئالماشتۇرغۇچنىڭ ئۇسلۇبى"
 msgid "Switcher buttons style"
 msgstr "ئالماشتۇرغۇچنىڭ توپچىلىرىنىڭ ئۇسلۇبلىرى"
 
-#: ../gdl/gdl-dock-master.c:755
+#: ../gdl/gdl-dock-master.c:759
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr "ئاساسىي ئوبيېكت %p: ئوبيېكت  %p[%s]  نى hash كە قوشقىلى بولمىدى. (%p) ئاتلىق تۈر ئاللىقاچان مەۋجۇت."
 
-#: ../gdl/gdl-dock-master.c:927
+#: ../gdl/gdl-dock-master.c:931
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -355,15 +355,15 @@ msgstr "%p ئاتا ئورنىدىن %p تارماق ئورۇنغا ئېرىشك
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "بەتكۈچنىڭ ئىگىسى بولغان لەڭگەر تۈرى"
 
-#: ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-bar.c:106
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "لەڭگەر بالداق تۇلۇققا چاپلانغان GdlDockMaster ئوبيېكتى"
 
-#: ../gdl/gdl-dock-bar.c:115
+#: ../gdl/gdl-dock-bar.c:113
 msgid "Dockbar style"
 msgstr "لەڭگەر بالداقنىڭ ئۇسلۇبى"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:114
 msgid "Dockbar style to show items on it"
 msgstr "لەڭگەر بالداقتىكى تۈرلەرنىڭ ئۇسلۇبى"
 
