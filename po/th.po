@@ -1,96 +1,89 @@
 # Thai translation of gdl.
-# Copyright (C) 2008 Free Software Foundation, Inc.
+# Copyright (C) 2008-2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gdl package.
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2008.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2008-2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-04 17:08+0700\n"
-"PO-Revision-Date: 2008-07-04 17:08+0700\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&component=general\n"
+"POT-Creation-Date: 2010-04-12 21:19+0000\n"
+"PO-Revision-Date: 2010-11-27 14:40+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-data-view.c:418
-msgid "Expander Size"
-msgstr "ขนาดปุ่มขยาย"
-
-#: ../gdl/gdl-data-view.c:419
-msgid "Size of the expander arrow."
-msgstr "ขนาดของปุ่มขยายรูปลูกศร"
-
-#: ../gdl/gdl-dock-item-grip.c:365
+#: ../gdl/gdl-dock-item-grip.c:342
 msgid "Iconify this dock"
 msgstr "ยุบ dock นี้เป็นไอคอน"
 
-#: ../gdl/gdl-dock-item-grip.c:367
+#: ../gdl/gdl-dock-item-grip.c:344
 msgid "Close this dock"
 msgstr "ปิด dock นี้"
 
-#: ../gdl/gdl-dock-item-grip.c:676 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "วัตถุ dock ที่ควบคุมอยู่"
 
-#: ../gdl/gdl-dock-item-grip.c:677
+#: ../gdl/gdl-dock-item-grip.c:663
 msgid "Dockitem which 'owns' this grip"
 msgstr "วัตถุ dock ที่ 'เป็นเจ้าของ' ที่จับนี้"
 
-#: ../gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:254
 msgid "Orientation"
 msgstr "แนววาง"
 
-#: ../gdl/gdl-dock-item.c:244
+#: ../gdl/gdl-dock-item.c:255
 msgid "Orientation of the docking item"
 msgstr "แนววางของวัตถุ dock"
 
-#: ../gdl/gdl-dock-item.c:259
+#: ../gdl/gdl-dock-item.c:270
 msgid "Resizable"
 msgstr "เปลี่ยนขนาดได้"
 
-#: ../gdl/gdl-dock-item.c:260
+#: ../gdl/gdl-dock-item.c:271
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr "ถ้ากำหนด วัตถุ dock จะสามารถเปลี่ยนขนาดได้ขณะ dock ในวิดเจ็ต GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:278
 msgid "Item behavior"
 msgstr "พฤติกรรมวัตถุ dock"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:279
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "พฤติกรรมทั่วไปของวัตถุ dock (กล่าวคือ สามารถลอยตัวได้หรือไม่ ถูกล็อคหรือไม่ ฯลฯ)"
 
-#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
 msgid "Locked"
 msgstr "ล็อคอยู่"
 
-#: ../gdl/gdl-dock-item.c:277
+#: ../gdl/gdl-dock-item.c:288
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "ถ้ากำหนด จะไม่สามารถลากวัตถุ dock ไปมาได้ และจะไม่มีที่จับ"
 
-#: ../gdl/gdl-dock-item.c:285
+#: ../gdl/gdl-dock-item.c:296
 msgid "Preferred width"
 msgstr "ความกว้างที่ต้องการ"
 
-#: ../gdl/gdl-dock-item.c:286
+#: ../gdl/gdl-dock-item.c:297
 msgid "Preferred width for the dock item"
 msgstr "ความกว้างที่ต้องการสำหรับวัตถุ dock"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:303
 msgid "Preferred height"
 msgstr "ความสูงที่ต้องการ"
 
-#: ../gdl/gdl-dock-item.c:293
+#: ../gdl/gdl-dock-item.c:304
 msgid "Preferred height for the dock item"
 msgstr "ความสูงที่ต้องการสำหรับวัตถุ dock"
 
-#: ../gdl/gdl-dock-item.c:543
+#: ../gdl/gdl-dock-item.c:592
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -99,7 +92,7 @@ msgstr ""
 "คุณไม่สามารถ dock วัตถุ (%p ซึ่งเป็นชนิด %s) ภายใน %s ได้  ควรใช้ GdlDock หรือวัตถุ dock "
 "เชิงประกอบชนิดอื่น"
 
-#: ../gdl/gdl-dock-item.c:550
+#: ../gdl/gdl-dock-item.c:599
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -108,93 +101,80 @@ msgstr ""
 "มีความพยายามเพิ่มวิดเจ็ตชนิด %s เข้าใน %s  แต่สามารถบรรจุได้ทีละวิดเจ็ตเท่านั้น "
 "และได้บรรจุวิดเจ็ตชนิด %s อยู่ก่อนแล้ว"
 
-#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "ไม่รองรับวิธีการ dock แบบ %s ในวัตถุ dock ชนิด %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1390
+#: ../gdl/gdl-dock-item.c:1443
 msgid "UnLock"
 msgstr "ปลดล็อค"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1397
+#: ../gdl/gdl-dock-item.c:1450
 msgid "Hide"
 msgstr "ซ่อน"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1402
+#: ../gdl/gdl-dock-item.c:1455
 msgid "Lock"
 msgstr "ล็อค"
 
-#: ../gdl/gdl-dock-item.c:1608
+#: ../gdl/gdl-dock-item.c:1693
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "มีความพยายามผูกโยงวัตถุ %p ซึ่งไม่มีการผูกโยง"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:107
+#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
 msgid "Master"
 msgstr "มาสเตอร์"
 
-#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-layout.c:123
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "ออบเจกต์ GdlDocMaster ที่ออบเจกต์ผังจัดวางเชื่อมติดอยู่"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:130
 msgid "Dirty"
 msgstr "เปื้อน"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:131
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "เป็นจริงถ้าผังจัดวางมีการเปลี่ยนแปลง และต้องบันทึกลงแฟ้ม"
 
-#. FIXME: pop up an error dialog
 #: ../gdl/gdl-dock-layout.c:563
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "ไม่สามารถเรียกอ่านแฟ้มส่วนติดต่อผู้ใช้ของผังจัดวาง '%s'"
 
-#: ../gdl/gdl-dock-layout.c:618
+#: ../gdl/gdl-dock-layout.c:620
 msgid "Visible"
 msgstr "มองเห็นได้"
 
-#: ../gdl/gdl-dock-layout.c:625
+#: ../gdl/gdl-dock-layout.c:627
 msgid "Item"
 msgstr "วัตถุ"
 
-#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
 msgid "Name"
 msgstr "ชื่อ"
 
-#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
-msgid "Dock items"
-msgstr "วัตถุ Dock"
-
-#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
-msgid "Saved layouts"
-msgstr "ผังจัดวางที่บันทึกไว้"
-
-#: ../gdl/gdl-dock-layout.c:789
+#: ../gdl/gdl-dock-layout.c:770
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr "ขณะเรียกอ่านผังจัดวาง: ไม่ทราบวิธีสร้างวัตถุ dock ที่มีชื่อเล่นเป็น '%s'"
 
-#: ../gdl/gdl-dock-layout.c:1268
-msgid "Layout managment"
-msgstr "การจัดการผังจัดวาง"
-
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
 msgid "Default title"
 msgstr "ป้ายชื่อปริยาย"
 
-#: ../gdl/gdl-dock-master.c:139
+#: ../gdl/gdl-dock-master.c:141
 msgid "Default title for newly created floating docks"
 msgstr "ป้ายชื่อปริยายสำหรับวัตถุ dock แบบลอยตัวที่สร้างใหม่"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:148
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -202,15 +182,15 @@ msgstr ""
 "ถ้ากำหนดเป็น 1 วัตถุ dock ที่ผูกโยงกับมาสเตอร์นี้จะถูกล็อคทั้งหมด; ถ้าเป็น 0 จะปลดล็อคทั้งหมด; "
 "ค่า -1 จะหมายถึงล็อคบ้างไม่ล็อคบ้าง"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:700
+#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
 msgid "Switcher Style"
 msgstr "รูปแบบปุ่มสลับ"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:701
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
 msgid "Switcher buttons style"
 msgstr "รูปแบบของปุ่มสลับ"
 
-#: ../gdl/gdl-dock-master.c:761
+#: ../gdl/gdl-dock-master.c:763
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -219,7 +199,7 @@ msgstr ""
 "มาสเตอร์ %p: ไม่สามารถเพิ่มออบเจกต์ %p[%s] เข้าใน hash เนื่องจากมีออบเจกต์ชื่อนี้อยู่ก่อนแล้ว "
 "(%p)"
 
-#: ../gdl/gdl-dock-master.c:934
+#: ../gdl/gdl-dock-master.c:935
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -288,92 +268,92 @@ msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr "พยายามเชื่อมอ็อบเจกต์ %2$p ที่ถูกเชื่อมอยู่แล้ว เข้ากับ %1$p (มาสเตอร์ปัจจุบัน: %3$p)"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:131
 msgid "Position"
 msgstr "ตำแหน่ง"
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:132
 msgid "Position of the divider in pixels"
 msgstr "ตำแหน่งของเส้นแบ่ง ในหน่วยพิกเซล"
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:144
 msgid "Sticky"
 msgstr "ยึดติด"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:145
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr "กำหนดว่าช่องวางนี้จะติดไปกับวัตถุแหล่งวาง หรือจะย้ายชั้นขึ้นไปแทนที่ เมื่อวัตถุถูกย้าย dock"
 
-#: ../gdl/gdl-dock-placeholder.c:151
+#: ../gdl/gdl-dock-placeholder.c:152
 msgid "Host"
 msgstr "แหล่งวาง"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:153
 msgid "The dock object this placeholder is attached to"
 msgstr "วัตถุ dock ที่ช่องวางนี้เกาะอยู่"
 
-#: ../gdl/gdl-dock-placeholder.c:159
+#: ../gdl/gdl-dock-placeholder.c:160
 msgid "Next placement"
 msgstr "ตำแหน่งวางถัดไป"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:161
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr "ตำแหน่งที่จะ dock วัตถุในแหล่งวางเมื่อมีการร้องขอ dock"
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
 msgid "Width"
 msgstr "ความกว้าง"
 
-#: ../gdl/gdl-dock-placeholder.c:170
+#: ../gdl/gdl-dock-placeholder.c:171
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "ความกว้างของวิดเจ็ตเมื่อติดเข้ากับช่องวาง"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
 msgid "Height"
 msgstr "ความสูง"
 
-#: ../gdl/gdl-dock-placeholder.c:178
+#: ../gdl/gdl-dock-placeholder.c:179
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "ความสูงของวิดเจ็ตเมื่อติดเข้ากับช่องวาง"
 
-#: ../gdl/gdl-dock-placeholder.c:184
+#: ../gdl/gdl-dock-placeholder.c:185
 msgid "Floating Toplevel"
 msgstr "ระดับบนสุดแบบลอยตัว"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:186
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "กำหนดว่าช่องวางเป็นช่องสำหรับ dock ระดับบนสุดแบบลอยตัวหรือไม่"
 
-#: ../gdl/gdl-dock-placeholder.c:191
-msgid "X-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:192
+msgid "X Coordinate"
 msgstr "พิกัด X"
 
-#: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:193
+msgid "X coordinate for dock when floating"
 msgstr "พิกัด X ของ dock เมื่อลอยตัว"
 
-#: ../gdl/gdl-dock-placeholder.c:198
-msgid "Y-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:199
+msgid "Y Coordinate"
 msgstr "พิกัด Y"
 
-#: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:200
+msgid "Y coordinate for dock when floating"
 msgstr "พิกัด Y ของ dock เมื่อลอยตัว"
 
-#: ../gdl/gdl-dock-placeholder.c:494
+#: ../gdl/gdl-dock-placeholder.c:495
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "มีความพยายามจะ dock วัตถุ dock ในช่องวางที่ไม่มีการผูกโยง"
 
-#: ../gdl/gdl-dock-placeholder.c:618
+#: ../gdl/gdl-dock-placeholder.c:619
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "ได้รับสัญญาณการแยกตัวจากออบเจกต์ (%p) ซึ่งไม่ใช่แหล่งวาง %p ของเรา"
 
-#: ../gdl/gdl-dock-placeholder.c:643
+#: ../gdl/gdl-dock-placeholder.c:644
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -432,26 +412,42 @@ msgstr "ตำแหน่ง Y ของการลอยตัว"
 msgid "Y coordinate for a floating dock"
 msgstr "พิกัด Y ของ dock แบบลอยตัว"
 
-#: ../gdl/gdl-dock.c:499
+#: ../gdl/gdl-dock.c:484
 #, c-format
 msgid "Dock #%d"
 msgstr "Dock #%d"
 
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
-msgid "Icon size"
-msgstr "ขนาดไอคอน"
+#: ../gdl/layout.ui.h:1
+msgid "Dock items"
+msgstr "วัตถุ Dock"
 
-#: ../gdl/layout.glade.h:2
+#: ../gdl/layout.ui.h:2
 msgid "Layout Managment"
 msgstr "การจัดการผังจัดวาง"
 
-#: ../gdl/layout.glade.h:4
+#: ../gdl/layout.ui.h:3
+msgid "Saved layouts"
+msgstr "ผังจัดวางที่บันทึกไว้"
+
+#: ../gdl/layout.ui.h:4
 msgid "_Load"
 msgstr "เรียก_อ่าน"
 
-#: ../gdl/layout.glade.h:5
+#: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
 msgstr "_ล็อควัตถุ dock"
+
+#~ msgid "Expander Size"
+#~ msgstr "ขนาดปุ่มขยาย"
+
+#~ msgid "Size of the expander arrow."
+#~ msgstr "ขนาดของปุ่มขยายรูปลูกศร"
+
+#~ msgid "Layout managment"
+#~ msgstr "การจัดการผังจัดวาง"
+
+#~ msgid "Icon size"
+#~ msgstr "ขนาดไอคอน"
 
 #~ msgid "Iconify"
 #~ msgstr "ยุบเป็นไอคอน"
