@@ -1,3 +1,11 @@
+Changes in 2.91.3
+
+* GIR build fixed for vala
+* Use gtk_paned_new instead() of gtk_[h,v]paned_new()
+
+Thanks to Theppitak Karoonboonyanan, Evan Nemerson, Gheyret T.Kenji,
+Javier Jardón
+
 Changes in 2.91.2
 
 * bgo#633499 - prepare for the demise of size_request
