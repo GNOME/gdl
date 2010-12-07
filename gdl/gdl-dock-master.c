@@ -504,7 +504,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
                 /* verify that the pointer is still in that dock
                    (the user could have moved it) */
                 gdk_window_get_geometry (widget_window,
-                                         NULL, NULL, &win_w, &win_h, NULL);
+                                         NULL, NULL, &win_w, &win_h);
                 gdk_window_get_origin (widget_window, &win_x, &win_y);
                 if (root_x >= win_x && root_x < win_x + win_w &&
                     root_y >= win_y && root_y < win_y + win_h)
