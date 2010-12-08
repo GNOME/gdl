@@ -147,7 +147,7 @@ Gdl-@GDL_CURRENT@.gir: libgdl-3.la
 Gdl_@GDL_CURRENT@_gir_INCLUDES = GObject-2.0 Gtk-3.0
 Gdl_@GDL_CURRENT@_gir_CFLAGS = $(INCLUDES)
 Gdl_@GDL_CURRENT@_gir_LIBS = libgdl-3.la
-Gdl_@GDL_CURRENT@_gir_FILES = $(addprefix $(srcdir)/,$(introspection_sources))
+Gdl_@GDL_CURRENT@_gir_FILES = $(introspection_sources)
 Gdl_@GDL_CURRENT@_gir_EXPORT_PACKAGES = gdl-3.0
 Gdl_@GDL_CURRENT@_gir_SCANNERFLAGS = --c-include gdl/gdl.h
 INTROSPECTION_GIRS += Gdl-@GDL_CURRENT@.gir
