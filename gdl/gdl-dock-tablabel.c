@@ -401,12 +401,8 @@ gdl_dock_tablabel_paint (GtkWidget      *widget,
     
     if (gtk_cairo_should_draw_window (cr, gtk_widget_get_window (widget)))
     {
-        gtk_paint_handle (gtk_widget_get_style (widget), cr, 
-                          tablabel->active ? GTK_STATE_NORMAL : GTK_STATE_ACTIVE, 
-                          GTK_SHADOW_NONE,
-                          widget, "dock-tablabel",
-                          rect.x, rect.y, rect.width, rect.height,
-                          GTK_ORIENTATION_VERTICAL);
+        gtk_render_handle (gtk_widget_get_style_context (widget),
+                           cr, rect.x, rect.y, rect.width, rect.height);                           
     };
 }
 

@@ -114,15 +114,11 @@ gdl_dock_item_grip_draw (GtkWidget      *widget,
     if (grip->_priv->handle_shown) 
     {
         if (gtk_cairo_should_draw_window (cr, gtk_widget_get_window (widget)))
-        {
-            gtk_paint_handle (gtk_widget_get_style (widget),
+        {                               
+            gtk_render_handle (gtk_widget_get_style_context (widget),
                               cr,
-                              gtk_widget_get_state (widget),
-                              GTK_SHADOW_NONE, 
-                              widget,
-                              "handlebox", handle_area.x, handle_area.y,
-                              handle_area.width, handle_area.height,
-                              GTK_ORIENTATION_VERTICAL);
+                              handle_area.x, handle_area.y,
+                              handle_area.width, handle_area.height);
         
         }
         
