@@ -105,14 +105,31 @@ gdl_dock_item_grip_draw (GtkWidget      *widget,
                          cairo_t *cr)
 {
     GdlDockItemGrip *grip;
-    GtkAllocation allocation;
     cairo_rectangle_int_t handle_area;
     cairo_rectangle_int_t expose_area;
+
+    gint width = gtk_widget_get_allocated_width (widget);
+    gint height = gtk_widget_get_allocated_height (widget);
 
     grip = GDL_DOCK_ITEM_GRIP (widget);
 
     if (grip->_priv->handle_shown) 
     {
+        GtkAllocation allocation;
+        gtk_widget_get_allocation (widget, &allocation);
+        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
+            handle_area.x = allocation.x;
+            handle_area.y = allocation.y;
+            handle_area.width = DRAG_HANDLE_SIZE;
+            handle_area.height = allocation.height;
+        } else {
+            handle_area.x = allocation.x + allocation.width
+                - DRAG_HANDLE_SIZE;
+            handle_area.y = allocation.y;
+            handle_area.width = DRAG_HANDLE_SIZE;
+            handle_area.height = allocation.height;
+        }
+        
         if (gtk_cairo_should_draw_window (cr, gtk_widget_get_window (widget)))
         {                               
             gtk_render_handle (gtk_widget_get_style_context (widget),
@@ -123,6 +140,11 @@ gdl_dock_item_grip_draw (GtkWidget      *widget,
         }
         
     }
+
+    gtk_render_background (gtk_widget_get_style_context (widget),
+                           cr,
+                           0, 0,
+                           width, height);
 
     return GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->draw (widget, cr);
 }

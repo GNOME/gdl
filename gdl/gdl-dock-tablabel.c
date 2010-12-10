@@ -401,6 +401,10 @@ gdl_dock_tablabel_paint (GtkWidget      *widget,
     
     if (gtk_cairo_should_draw_window (cr, gtk_widget_get_window (widget)))
     {
+        GtkStyleContext* context = gtk_widget_get_style_context (widget);
+        gtk_style_context_set_state (context,
+                                     tablabel->active ? 0 : GTK_STATE_FLAG_ACTIVE);
+        
         gtk_render_handle (gtk_widget_get_style_context (widget),
                            cr, rect.x, rect.y, rect.width, rect.height);                           
     };
