@@ -916,6 +916,9 @@ gdl_dock_item_unmap (GtkWidget *widget)
 
     gdk_window_hide (gtk_widget_get_window (widget));
 
+    if (item->child)
+	gtk_widget_unmap (item->child);
+
     if (item->_priv->grip)
         gtk_widget_unmap (item->_priv->grip);
 }
