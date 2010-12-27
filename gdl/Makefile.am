@@ -143,14 +143,14 @@ INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
 if HAVE_INTROSPECTION
 introspection_sources = $(libgdl_3_la_SOURCES)
 
-Gdl-@GDL_CURRENT@.gir: libgdl-3.la
-Gdl_@GDL_CURRENT@_gir_INCLUDES = GObject-2.0 Gtk-3.0
-Gdl_@GDL_CURRENT@_gir_CFLAGS = $(INCLUDES)
-Gdl_@GDL_CURRENT@_gir_LIBS = libgdl-3.la
-Gdl_@GDL_CURRENT@_gir_FILES = $(introspection_sources)
-Gdl_@GDL_CURRENT@_gir_EXPORT_PACKAGES = gdl-3.0
-Gdl_@GDL_CURRENT@_gir_SCANNERFLAGS = --c-include gdl/gdl.h
-INTROSPECTION_GIRS += Gdl-@GDL_CURRENT@.gir
+Gdl-3.gir: libgdl-3.la
+Gdl_3_gir_INCLUDES = GObject-2.0 Gtk-3.0
+Gdl_3_gir_CFLAGS = $(INCLUDES)
+Gdl_3_gir_LIBS = libgdl-3.la
+Gdl_3_gir_FILES = $(introspection_sources)
+Gdl_3_gir_EXPORT_PACKAGES = gdl-3.0
+Gdl_3_gir_SCANNERFLAGS = --c-include gdl/gdl.h
+INTROSPECTION_GIRS += Gdl-3.gir
 
 girdir = $(datadir)/gir-1.0
 dist_gir_DATA = $(INTROSPECTION_GIRS)
