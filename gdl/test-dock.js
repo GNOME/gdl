@@ -33,7 +33,18 @@ function create_text_item () {
 function create_styles_item (dock) {
 	function create_style_button (dock, box, group, style, style_text) {
 		current_style = dock.master.switcher_style;
+		/* This won't work because of a bug in G-I, a workaround is below
+
 		button1 = new Gtk.RadioButton.with_label_from_widget (group, style_text);
+		*/
+
+		if (group == null) {
+			button1 = new Gtk.RadioButton ();
+		} else {
+			button1 = group.new_with_label_from_widget (style_text);
+		}
+		/* end workaround */
+
 		button1.show ();
 		button1.__style_id = style;
 		if (current_style == style) {
