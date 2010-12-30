@@ -74,6 +74,8 @@ noinst_PROGRAMS=test-dock
 test_dock_sources=test-dock.c
 test_dock_LDADD=libgdl-3.la $(XML_LIBS)
 
+noinst_SCRIPTS = test-dock-seed.js test-dock-gjs.js
+
 libgdlincludedir = $(includedir)/libgdl-3.0/gdl
 libgdlinclude_HEADERS = \
 	$(libgdl_headers) \
