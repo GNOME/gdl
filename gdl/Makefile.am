@@ -88,7 +88,8 @@ EXTRA_DIST = libgdlmarshal.list \
 	tree-expand.xpm \
 	tree-contract.xpm \
 	layout.ui \
-	program.xpm static.xpm shared.xpm
+	program.xpm static.xpm shared.xpm \
+	$(noinst_SCRIPTS)
 
 # enumerations code generation
 
