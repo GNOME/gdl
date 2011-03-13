@@ -72,7 +72,7 @@ libgdl_3_la_LDFLAGS = $(EXTRA_LDFLAGS) \
 noinst_PROGRAMS=test-dock
 
 test_dock_sources=test-dock.c
-test_dock_LDADD=libgdl-3.la $(XML_LIBS)
+test_dock_LDADD=libgdl-3.la $(XML_LIBS) $(GDL_DEPENDENCIES_LIBS)
 
 noinst_SCRIPTS = test-dock-seed.js test-dock-gjs.js
 
