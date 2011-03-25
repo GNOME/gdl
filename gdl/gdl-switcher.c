@@ -93,8 +93,9 @@ G_DEFINE_TYPE (GdlSwitcher, gdl_switcher, GTK_TYPE_NOTEBOOK)
             GDL_SWITCHER_STYLE_TOOLBAR ? switcher->priv->toolbar_style : \
             switcher->priv->switcher_style)
 
-#define H_PADDING 2
-#define V_PADDING 2
+#define H_PADDING 0
+#define V_PADDING 0
+#define V_SPACING 2
 
 /* Utility functions.  */
 
@@ -394,7 +395,9 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
             extra_width = 0;
         for (p = rows [i]; p != NULL; p = p->next) {
             GtkAllocation child_allocation;
-            
+            GtkStyleContext *style_context;
+            GtkJunctionSides junction = 0;
+
             child_allocation.x = x;
             child_allocation.y = y;
             if (rows_count == 1 && row_number == 0)
@@ -410,14 +413,35 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
             }
             child_allocation.height = max_btn_height;
 
+            style_context = gtk_widget_get_style_context (GTK_WIDGET (p->data));
+
+            if (row_last) {
+                if (i) {
+                    junction |= GTK_JUNCTION_TOP;
+                }
+                if (i != row_last) {
+                    junction |= GTK_JUNCTION_BOTTOM;
+                }
+            }
+
+            if (p->next) {
+                junction |= GTK_JUNCTION_RIGHT;
+            }
+
+            if (p != rows [i]) {
+                junction |= GTK_JUNCTION_LEFT;
+            }
+
+            gtk_style_context_set_junction_sides (style_context, junction);
+
             gtk_widget_size_allocate (GTK_WIDGET (p->data), &child_allocation);
 
             x += child_allocation.width + H_PADDING;
         }
-
-        y -= V_PADDING;
     }
-    
+
+    y -= V_SPACING;
+
     for (i = 0; i <= row_last; i ++)
         g_slist_free (rows [i]);
     g_free (rows);
