@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&component=general\n"
-"POT-Creation-Date: 2010-11-20 10:21+0000\n"
+"POT-Creation-Date: 2010-12-23 17:46+0000\n"
 "PO-Revision-Date: 2010-07-05 15:36+0600\n"
 "Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -16,19 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-dock-item-grip.c:368
+#: ../gdl/gdl-dock-item-grip.c:386
 msgid "Iconify this dock"
 msgstr "بۇ لەڭگەرنى سىنبەلگىلەشتۈر"
 
-#: ../gdl/gdl-dock-item-grip.c:370
+#: ../gdl/gdl-dock-item-grip.c:388
 msgid "Close this dock"
 msgstr "بۇ لەڭگەرنى ياپ"
 
-#: ../gdl/gdl-dock-item-grip.c:711 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:729 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "لەڭگەر تۈرلىرىنى كونترول قىلىۋاتىدۇ"
 
-#: ../gdl/gdl-dock-item-grip.c:712
+#: ../gdl/gdl-dock-item-grip.c:730
 msgid "Dockitem which 'owns' this grip"
 msgstr "بۇ تۇتقۇنىڭ ئىگىسى بولغان لەڭگەر تۈرى"
 
@@ -220,7 +220,7 @@ msgstr "ئوقۇغىلى بولىدىغان لەڭگەر ئوبيېكتىنىڭ 
 
 #: ../gdl/gdl-dock-object.c:130
 msgid "Stock Icon"
-msgstr "قالدۇرۇلغان سىنبەلگە"
+msgstr "Stock سىنبەلگە"
 
 #: ../gdl/gdl-dock-object.c:131
 msgid "Stock icon for the dock object"
