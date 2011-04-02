@@ -11,69 +11,54 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 23:49+0100\n"
-"PO-Revision-Date: 2008-03-09 20:46+0100\n"
+"POT-Creation-Date: 2011-04-02 19:32+0200\n"
+"PO-Revision-Date: 2011-03-30 23:49+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: ../gdl/gdl-data-view.c:418
-msgid "Expander Size"
-msgstr "Udviderstørrelse"
-
-#: ../gdl/gdl-data-view.c:419
-msgid "Size of the expander arrow."
-msgstr "Størrelse af udvidepilen."
-
-#: ../gdl/gdl-dock-item-grip.c:375
-msgid "Iconify"
-msgstr "Til ikon"
-
-#: ../gdl/gdl-dock-item-grip.c:375
+#: ../gdl/gdl-dock-item-grip.c:386
 msgid "Iconify this dock"
 msgstr "Ikonificér denne dok"
 
-#: ../gdl/gdl-dock-item-grip.c:377
-msgid "Close"
-msgstr "Luk"
-
-#: ../gdl/gdl-dock-item-grip.c:377
+#: ../gdl/gdl-dock-item-grip.c:388
 msgid "Close this dock"
 msgstr "Luk denne dok"
 
-#: ../gdl/gdl-dock-item-grip.c:686 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:729 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "Styrende dokelement"
 
-#: ../gdl/gdl-dock-item-grip.c:687
+#: ../gdl/gdl-dock-item-grip.c:730
 msgid "Dockitem which 'owns' this grip"
 msgstr "Dokelement som \"ejer\" dette greb"
 
-#: ../gdl/gdl-dock-item.c:243
+#: ../gdl/gdl-dock-item.c:257
 msgid "Orientation"
 msgstr "Orientering"
 
-#: ../gdl/gdl-dock-item.c:244
+#: ../gdl/gdl-dock-item.c:258
 msgid "Orientation of the docking item"
 msgstr "Orientering af dokelementet"
 
-#: ../gdl/gdl-dock-item.c:259
+#: ../gdl/gdl-dock-item.c:273
 msgid "Resizable"
 msgstr "Kan ændre størrelse"
 
-#: ../gdl/gdl-dock-item.c:260
+#: ../gdl/gdl-dock-item.c:274
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Hvis valgt, kan dokelementet ændre størrelse når det indlejres i en GtkPanel-"
 "kontrol"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:281
 msgid "Item behavior"
 msgstr "Elementopførsel"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:282
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -81,34 +66,34 @@ msgstr ""
 "Generel opførsel af dokelementet (f.eks. om det kan flyde, om det er låst, "
 "osv.)"
 
-#: ../gdl/gdl-dock-item.c:276 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:290 ../gdl/gdl-dock-master.c:148
 msgid "Locked"
 msgstr "Låst"
 
-#: ../gdl/gdl-dock-item.c:277
+#: ../gdl/gdl-dock-item.c:291
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Hvis valgt, kan dokelementet ikke trækkes omkring og der vil ikke vises et "
 "greb"
 
-#: ../gdl/gdl-dock-item.c:285
+#: ../gdl/gdl-dock-item.c:299
 msgid "Preferred width"
 msgstr "Foretrukken bredde"
 
-#: ../gdl/gdl-dock-item.c:286
+#: ../gdl/gdl-dock-item.c:300
 msgid "Preferred width for the dock item"
 msgstr "Foretrukken bredde af dokelementet"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:306
 msgid "Preferred height"
 msgstr "Foretrukken højde"
 
-#: ../gdl/gdl-dock-item.c:293
+#: ../gdl/gdl-dock-item.c:307
 msgid "Preferred height for the dock item"
 msgstr "Foretrukken højde af dokelementet"
 
-#: ../gdl/gdl-dock-item.c:543
+#: ../gdl/gdl-dock-item.c:646
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -117,105 +102,92 @@ msgstr ""
 "Du kan ikke tilføje et dokobjekt (%p af type %s) i en %s. Brug en GdlDock "
 "eller et andet sammensat dokobjekt."
 
-#: ../gdl/gdl-dock-item.c:550
+#: ../gdl/gdl-dock-item.c:653
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
 "Forsøger at tilføje en kontrol af typen %s til en %s, men denne kan kun "
-"indeholde én kontrol ad gangen; den indeholder allerede en kontrol af typen %"
-"s"
+"indeholde én kontrol ad gangen; den indeholder allerede en kontrol af typen "
+"%s"
 
-#: ../gdl/gdl-dock-item.c:1236 ../gdl/gdl-dock-item.c:1286
+#: ../gdl/gdl-dock-item.c:1349 ../gdl/gdl-dock-item.c:1399
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Dokstrategien %s i dokobjektet af type %s understøttes ikke"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1390
+#: ../gdl/gdl-dock-item.c:1507
 msgid "UnLock"
 msgstr "OpLås"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1397
+#: ../gdl/gdl-dock-item.c:1514
 msgid "Hide"
 msgstr "Skjul"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1402
+#: ../gdl/gdl-dock-item.c:1519
 msgid "Lock"
 msgstr "Lås"
 
-#: ../gdl/gdl-dock-item.c:1608
+#: ../gdl/gdl-dock-item.c:1757
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Forsøg at binde et ubundet element %p"
 
-#: ../gdl/gdl-dock-layout.c:123 ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:119 ../gdl/gdl-dock-bar.c:105
 msgid "Master"
 msgstr "Master"
 
-#: ../gdl/gdl-dock-layout.c:124
+#: ../gdl/gdl-dock-layout.c:120
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "GdlDockMaster-objekt som layout-objektet er tilknyttet"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:127
 msgid "Dirty"
 msgstr "Snavset"
 
-#: ../gdl/gdl-dock-layout.c:132
+#: ../gdl/gdl-dock-layout.c:128
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Sand hvis layout er ændret og skal gemmes til en fil"
 
-#. FIXME: pop up an error dialog
-#: ../gdl/gdl-dock-layout.c:563
+#: ../gdl/gdl-dock-layout.c:560
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr "Kunne ikke indlæse brugergrænseflade-layoutfilen \"%s\""
 
-#: ../gdl/gdl-dock-layout.c:618
+#: ../gdl/gdl-dock-layout.c:617
 msgid "Visible"
 msgstr "Synlig"
 
-#: ../gdl/gdl-dock-layout.c:625
+#: ../gdl/gdl-dock-layout.c:624
 msgid "Item"
 msgstr "Element"
 
-#: ../gdl/gdl-dock-layout.c:708 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:115
 msgid "Name"
 msgstr "Navn"
 
-#: ../gdl/gdl-dock-layout.c:741 ../gdl/layout.glade.h:1
-msgid "Dock items"
-msgstr "Dokelementer"
-
-#: ../gdl/gdl-dock-layout.c:747 ../gdl/layout.glade.h:3
-msgid "Saved layouts"
-msgstr "Gemte layout"
-
-#: ../gdl/gdl-dock-layout.c:789
+#: ../gdl/gdl-dock-layout.c:767
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is '%"
-"s'"
+"While loading layout: don't know how to create a dock object whose nick is "
+"'%s'"
 msgstr ""
 "Ved indlæsning af layout: ved ikke hvordan et dokobjekt ved navn \"%s\" "
 "oprettes"
 
-#: ../gdl/gdl-dock-layout.c:1268
-msgid "Layout managment"
-msgstr "Layouthåndtering"
-
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:141 ../gdl/gdl-dock.c:187
 msgid "Default title"
 msgstr "Standardtitel"
 
-#: ../gdl/gdl-dock-master.c:139
+#: ../gdl/gdl-dock-master.c:142
 msgid "Default title for newly created floating docks"
 msgstr "Standardtitel for nyoprettede flydende dokke"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:149
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -224,15 +196,15 @@ msgstr ""
 "0, vil alle være låst op; -1 angiver indbyrdes inkonsistens elementerne "
 "imellem"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:704
+#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:746
 msgid "Switcher Style"
 msgstr "Skifterstil"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:705
+#: ../gdl/gdl-dock-master.c:158 ../gdl/gdl-switcher.c:747
 msgid "Switcher buttons style"
 msgstr "Stil for skifter-knapper"
 
-#: ../gdl/gdl-dock-master.c:761
+#: ../gdl/gdl-dock-master.c:759
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -241,7 +213,7 @@ msgstr ""
 "master %p: kan ikke tilføje objekt %p[%s] til hash.  Der er allerede et "
 "element ved det navn (%p)."
 
-#: ../gdl/gdl-dock-master.c:934
+#: ../gdl/gdl-dock-master.c:931
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -250,43 +222,43 @@ msgstr ""
 "Den nye dok-controller %p er automatisk.  Kun manuelle dokobjekter bør "
 "kaldes controller."
 
-#: ../gdl/gdl-dock-notebook.c:134
+#: ../gdl/gdl-dock-notebook.c:130
 msgid "Page"
 msgstr "Side"
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:131
 msgid "The index of the current page"
 msgstr "Indeks af den aktuelle side"
 
-#: ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-object.c:116
 msgid "Unique name for identifying the dock object"
 msgstr "Unikt navn der identificerer dokobjektet"
 
-#: ../gdl/gdl-dock-object.c:127
+#: ../gdl/gdl-dock-object.c:123
 msgid "Long name"
 msgstr "Langt navn"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:124
 msgid "Human readable name for the dock object"
 msgstr "Menneske-læseligt navn til dokobjektet"
 
-#: ../gdl/gdl-dock-object.c:134
+#: ../gdl/gdl-dock-object.c:130
 msgid "Stock Icon"
 msgstr "Lagerikon"
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:131
 msgid "Stock icon for the dock object"
 msgstr "Lagerikon for dokobjektet"
 
-#: ../gdl/gdl-dock-object.c:141
+#: ../gdl/gdl-dock-object.c:137
 msgid "Dock master"
 msgstr "Dok-master"
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:138
 msgid "Dock master this dock object is bound to"
 msgstr "Dok-masteren, dette dokobjekt er bundet til"
 
-#: ../gdl/gdl-dock-object.c:444
+#: ../gdl/gdl-dock-object.c:440
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -295,7 +267,7 @@ msgstr ""
 "Kald til gdl_dock_object_dock i et dokobjekt %p (objekttypen er %s) som ikke "
 "har implementeret denne metode"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:579
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -304,12 +276,12 @@ msgstr ""
 "Dokoperationen forespurgt i et ikke-bundet objekt %p. Programmet vil måske "
 "bryde ned"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:586
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Kan ikke dokke %p til %p fordi de tilhører forskellige master-objekter"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:628
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -317,19 +289,19 @@ msgstr ""
 "Forsøg på at binde et allerede bundet dokobjekt %2$p til %1$p) (nuværende "
 "master: %3$p)"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:128
 msgid "Position"
 msgstr "Position"
 
-#: ../gdl/gdl-dock-paned.c:133
+#: ../gdl/gdl-dock-paned.c:129
 msgid "Position of the divider in pixels"
 msgstr "Separatorpositionen i pixler"
 
-#: ../gdl/gdl-dock-placeholder.c:143
+#: ../gdl/gdl-dock-placeholder.c:141
 msgid "Sticky"
 msgstr "Klæbrig"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:142
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
@@ -337,19 +309,19 @@ msgstr ""
 "Om pladsholderen klæber til dens vært eller flyttes op i hierarkiet når "
 "værten omdokkes"
 
-#: ../gdl/gdl-dock-placeholder.c:151
+#: ../gdl/gdl-dock-placeholder.c:149
 msgid "Host"
 msgstr "Vært"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:150
 msgid "The dock object this placeholder is attached to"
 msgstr "Dokobjektet, denne pladsholder er tilknyttet"
 
-#: ../gdl/gdl-dock-placeholder.c:159
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "Next placement"
 msgstr "Næste placering"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:158
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
@@ -357,56 +329,56 @@ msgstr ""
 "Positionen, hvorpå et element vil blive dokket til vores vært i tilfælde af "
 "en dokningsforespørgsel"
 
-#: ../gdl/gdl-dock-placeholder.c:169 ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:167 ../gdl/gdl-dock.c:194
 msgid "Width"
 msgstr "Bredde"
 
-#: ../gdl/gdl-dock-placeholder.c:170
+#: ../gdl/gdl-dock-placeholder.c:168
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Bredde af kontrollen når den er påhæftet pladsholderen"
 
-#: ../gdl/gdl-dock-placeholder.c:177 ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:175 ../gdl/gdl-dock.c:202
 msgid "Height"
 msgstr "Højde"
 
-#: ../gdl/gdl-dock-placeholder.c:178
+#: ../gdl/gdl-dock-placeholder.c:176
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Højde af kontrollen når den er påhæftet pladsholderen"
 
-#: ../gdl/gdl-dock-placeholder.c:184
+#: ../gdl/gdl-dock-placeholder.c:182
 msgid "Floating Toplevel"
 msgstr "Flydende topniveau"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Om pladsholderen afløser en flydende topniveau-dok"
 
-#: ../gdl/gdl-dock-placeholder.c:191
-msgid "X-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:189
+msgid "X Coordinate"
 msgstr "X-koordinat"
 
-#: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:190
+msgid "X coordinate for dock when floating"
 msgstr "X-koordinat for dokken når den flyder"
 
-#: ../gdl/gdl-dock-placeholder.c:198
-msgid "Y-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:196
+msgid "Y Coordinate"
 msgstr "Y-koordinat"
 
-#: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:197
+msgid "Y coordinate for dock when floating"
 msgstr "Y-koordinat for dokken når den flyder"
 
-#: ../gdl/gdl-dock-placeholder.c:494
+#: ../gdl/gdl-dock-placeholder.c:499
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Forsøg at dokke et dokobjekt til en ubunden pladsholder"
 
-#: ../gdl/gdl-dock-placeholder.c:618
+#: ../gdl/gdl-dock-placeholder.c:611
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "Fik et afhæftesignal fra et objekt (%p) som ikke er vores vært %p"
 
-#: ../gdl/gdl-dock-placeholder.c:643
+#: ../gdl/gdl-dock-placeholder.c:636
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -419,74 +391,96 @@ msgstr ""
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Dokelement som \"ejer\" denne tablabel"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:106
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "GdlDockMaster-objekt som dokbar-kontrollen er vedhæftet"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:113
 msgid "Dockbar style"
 msgstr "Dokbjælkestil"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:114
 msgid "Dockbar style to show items on it"
 msgstr "Dokbjælkestil hvormed indlejrede elementer vises"
 
-#: ../gdl/gdl-dock.c:178
+#: ../gdl/gdl-dock.c:179
 msgid "Floating"
 msgstr "Flydende"
 
-#: ../gdl/gdl-dock.c:179
+#: ../gdl/gdl-dock.c:180
 msgid "Whether the dock is floating in its own window"
 msgstr "Om dokken flyder i sit eget vindue"
 
-#: ../gdl/gdl-dock.c:187
+#: ../gdl/gdl-dock.c:188
 msgid "Default title for the newly created floating docks"
 msgstr "Standardtitel for de nyoprettede flydende dokke"
 
-#: ../gdl/gdl-dock.c:194
+#: ../gdl/gdl-dock.c:195
 msgid "Width for the dock when it's of floating type"
 msgstr "Bredde af dokken når dens type er flydende"
 
-#: ../gdl/gdl-dock.c:202
+#: ../gdl/gdl-dock.c:203
 msgid "Height for the dock when it's of floating type"
 msgstr "Højde af dokken når dens type er flydende"
 
-#: ../gdl/gdl-dock.c:209
+#: ../gdl/gdl-dock.c:210
 msgid "Float X"
 msgstr "Flydende X"
 
-#: ../gdl/gdl-dock.c:210
+#: ../gdl/gdl-dock.c:211
 msgid "X coordinate for a floating dock"
 msgstr "X-koordinat for en flydende dok"
 
-#: ../gdl/gdl-dock.c:217
+#: ../gdl/gdl-dock.c:218
 msgid "Float Y"
 msgstr "Flydende Y"
 
-#: ../gdl/gdl-dock.c:218
+#: ../gdl/gdl-dock.c:219
 msgid "Y coordinate for a floating dock"
 msgstr "Y-koordinat for en flydende dok"
 
-#: ../gdl/gdl-dock.c:499
+#: ../gdl/gdl-dock.c:480
 #, c-format
 msgid "Dock #%d"
 msgstr "Dok #%d"
 
-#: ../gdl/gdl-icons.c:134 ../gdl/gdl-icons.c:135
-msgid "Icon size"
-msgstr "Ikonstørrelse"
+#: ../gdl/layout.ui.h:1
+msgid "Dock items"
+msgstr "Dokelementer"
 
-#: ../gdl/layout.glade.h:2
+#: ../gdl/layout.ui.h:2
 msgid "Layout Managment"
 msgstr "Layouthåndtering"
 
-#: ../gdl/layout.glade.h:4
+#: ../gdl/layout.ui.h:3
+msgid "Saved layouts"
+msgstr "Gemte layout"
+
+#: ../gdl/layout.ui.h:4
 msgid "_Load"
 msgstr "_Indlæs"
 
-#: ../gdl/layout.glade.h:5
+#: ../gdl/layout.ui.h:5
 msgid "_Lock dock items"
 msgstr "_Lås dokelementer"
+
+#~ msgid "Expander Size"
+#~ msgstr "Udviderstørrelse"
+
+#~ msgid "Size of the expander arrow."
+#~ msgstr "Størrelse af udvidepilen."
+
+#~ msgid "Iconify"
+#~ msgstr "Til ikon"
+
+#~ msgid "Close"
+#~ msgstr "Luk"
+
+#~ msgid "Layout managment"
+#~ msgstr "Layouthåndtering"
+
+#~ msgid "Icon size"
+#~ msgstr "Ikonstørrelse"
 
 #~ msgid "_Replace"
 #~ msgstr "E_rstat"
