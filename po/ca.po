@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-29 15:54+0200\n"
-"PO-Revision-Date: 2010-08-29 15:54+0200\n"
+"PO-Revision-Date: 2011-04-03 22:43+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -229,7 +229,7 @@ msgstr "L'índex de la pàgina actual"
 
 #: ../gdl/gdl-dock-object.c:118
 msgid "Unique name for identifying the dock object"
-msgstr "Nom únic per a identificar l'objecte acoblat"
+msgstr "Nom únic per identificar l'objecte acoblat"
 
 #: ../gdl/gdl-dock-object.c:125
 msgid "Long name"
@@ -261,7 +261,7 @@ msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"S'ha cridat al mètode gdl_dock_object_dock en un objecte acoblat %p (el "
+"S'ha cridat el mètode gdl_dock_object_dock en un objecte acoblat %p (el "
 "tipus d'objecte és %s) que no té implementat aquest mètode"
 
 #: ../gdl/gdl-dock-object.c:581
@@ -402,7 +402,7 @@ msgstr "Estil de la barra acoblable"
 
 #: ../gdl/gdl-dock-bar.c:114
 msgid "Dockbar style to show items on it"
-msgstr "Estil de la barra acoblable per a mostrar-hi elements"
+msgstr "Estil de la barra acoblable per mostrar-hi elements"
 
 #: ../gdl/gdl-dock.c:176
 msgid "Floating"
