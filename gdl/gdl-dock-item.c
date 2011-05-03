@@ -187,6 +187,10 @@ struct _GdlDockItemPrivate {
     gint       start_x, start_y;
 };
 
+struct _GdlDockItemClassPrivate {
+    GtkCssProvider *css;
+};
+
 /* FIXME: implement the rest of the behaviors */
 
 #define SPLIT_RATIO  0.4
@@ -194,18 +198,21 @@ struct _GdlDockItemPrivate {
 
 /* ----- Private functions ----- */
 
-G_DEFINE_TYPE (GdlDockItem, gdl_dock_item, GDL_TYPE_DOCK_OBJECT);
+G_DEFINE_TYPE_WITH_CODE (GdlDockItem, gdl_dock_item, GDL_TYPE_DOCK_OBJECT,
+                         g_type_add_class_private (g_define_type_id, sizeof (GdlDockItemClassPrivate)))
 
 static void
 gdl_dock_item_class_init (GdlDockItemClass *klass)
 {
-    static gboolean style_initialized = FALSE;
-    
     GObjectClass       *object_class;
     GtkWidgetClass     *widget_class;
     GtkContainerClass  *container_class;
     GdlDockObjectClass *dock_object_class;
-    
+    static const gchar style[] =
+       "* {\n"
+           "padding: 0;\n"
+       "}";
+
     object_class = G_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
@@ -238,6 +245,12 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
 
     dock_object_class->dock_request = gdl_dock_item_dock_request;
     dock_object_class->dock = gdl_dock_item_dock;
+
+    klass->has_grip = TRUE;
+    klass->dock_drag_begin = NULL;
+    klass->dock_drag_motion = NULL;
+    klass->dock_drag_end = NULL;
+    klass->set_orientation = gdl_dock_item_real_set_orientation;
 
     /* properties */
 
@@ -383,25 +396,13 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                       G_TYPE_NONE,
                       0);
 
-    klass->has_grip = TRUE;
-    klass->dock_drag_begin = NULL;
-    klass->dock_drag_motion = NULL;
-    klass->dock_drag_end = NULL;
-    klass->set_orientation = gdl_dock_item_real_set_orientation;
-
-    if (!style_initialized)
-    {
-        style_initialized = TRUE;
-        gtk_rc_parse_string (
-            "style \"gdl-dock-item-default\" {\n"
-            "xthickness = 0\n"
-            "ythickness = 0\n"
-            "}\n"
-            "class \"GdlDockItem\" "
-            "style : gtk \"gdl-dock-item-default\"\n");
-    }
-
     g_type_class_add_private (object_class, sizeof (GdlDockItemPrivate));
+
+    /* set the style */
+    klass->priv = G_TYPE_CLASS_GET_PRIVATE (klass, GDL_TYPE_DOCK_ITEM, GdlDockItemClassPrivate);
+
+    klass->priv->css = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (klass->priv->css, style, -1, NULL);
 }
 
 static void

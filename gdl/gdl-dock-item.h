@@ -96,9 +96,10 @@ typedef enum {
     GDL_DOCK_USER_ACTION         = 1 << (GDL_DOCK_OBJECT_FLAGS_SHIFT + 3)
 } GdlDockItemFlags;
 
-typedef struct _GdlDockItem        GdlDockItem;
-typedef struct _GdlDockItemClass   GdlDockItemClass;
-typedef struct _GdlDockItemPrivate GdlDockItemPrivate;
+typedef struct _GdlDockItem             GdlDockItem;
+typedef struct _GdlDockItemPrivate      GdlDockItemPrivate;
+typedef struct _GdlDockItemClass        GdlDockItemClass;
+typedef struct _GdlDockItemClassPrivate GdlDockItemClassPrivate;
 
 struct _GdlDockItem {
     GdlDockObject        object;
@@ -117,6 +118,8 @@ struct _GdlDockItem {
 
 struct _GdlDockItemClass {
     GdlDockObjectClass  parent_class;
+
+    GdlDockItemClassPrivate *priv;
 
     gboolean            has_grip;
     
