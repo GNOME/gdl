@@ -62,7 +62,7 @@ static void  gdl_dock_notify_cb       (GObject      *object,
 
 static void  gdl_dock_set_title       (GdlDock      *dock);
 
-static void  gdl_dock_destroy         (GtkWidget    *object);
+static void  gdl_dock_dispose         (GObject      *object);
 
 static void  gdl_dock_get_preferred_width  (GtkWidget *widget,
                                             gint      *minimum,
@@ -171,6 +171,7 @@ gdl_dock_class_init (GdlDockClass *klass)
     g_object_class->constructor = gdl_dock_constructor;
     g_object_class->set_property = gdl_dock_set_property;
     g_object_class->get_property = gdl_dock_get_property;
+    g_object_class->dispose = gdl_dock_dispose;
     
     /* properties */
 
@@ -220,8 +221,6 @@ gdl_dock_class_init (GdlDockClass *klass)
                           G_MININT, G_MAXINT, 0,
                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
                           GDL_DOCK_PARAM_EXPORT));
-    
-    widget_class->destroy = gdl_dock_destroy;
 
     widget_class->get_preferred_width = gdl_dock_get_preferred_width;
     widget_class->get_preferred_height = gdl_dock_get_preferred_height;
@@ -509,30 +508,23 @@ gdl_dock_notify_cb (GObject    *object,
 }
 
 static void
-gdl_dock_destroy (GtkWidget *object)
+gdl_dock_dispose (GObject *object)
 {
-    GdlDock *dock = GDL_DOCK (object);
+    GdlDockPrivate *priv = GDL_DOCK (object)->priv;
 
-    if (dock->priv) {
-        GdlDockPrivate *priv = dock->priv;
-        dock->priv = NULL;
-
-        if (priv->window) {
-            gtk_widget_destroy (priv->window);
-            priv->floating = FALSE;
-            priv->window = NULL;
-        }
-
-        if (priv->area_window)
-        {
-            gtk_widget_destroy (priv->area_window);
-            priv->area_window = NULL;
-        }
-        
-        g_free (priv);
+    if (priv->window) {
+        gtk_widget_destroy (priv->window);
+        priv->floating = FALSE;
+        priv->window = NULL;
     }
-    
-   GTK_WIDGET_CLASS (gdl_dock_parent_class)->destroy (object);
+
+    if (priv->area_window)
+    {
+        gtk_widget_destroy (priv->area_window);
+        priv->area_window = NULL;
+    }
+
+    G_OBJECT_CLASS (gdl_dock_parent_class)->dispose (object);
 }
 
 static void
