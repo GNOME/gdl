@@ -49,7 +49,7 @@ static void     gdl_dock_placeholder_get_property   (GObject                 *g_
                                                      GValue                  *value,
                                                      GParamSpec              *pspec);
 
-static void     gdl_dock_placeholder_destroy        (GtkWidget               *object);
+static void     gdl_dock_placeholder_dispose        (GObject                 *object);
 
 static void     gdl_dock_placeholder_add            (GtkContainer            *container,
                                                      GtkWidget               *widget);
@@ -124,19 +124,17 @@ static void
 gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
 {
     GObjectClass       *object_class;
-    GtkWidgetClass     *widget_class;
     GtkContainerClass  *container_class;
     GdlDockObjectClass *dock_object_class;
     
     object_class = G_OBJECT_CLASS (klass);
-    widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
     dock_object_class = GDL_DOCK_OBJECT_CLASS (klass);
 
     object_class->get_property = gdl_dock_placeholder_get_property;
     object_class->set_property = gdl_dock_placeholder_set_property;
+    object_class->dispose = gdl_dock_placeholder_dispose;
 
-    widget_class->destroy = gdl_dock_placeholder_destroy;
     container_class->add = gdl_dock_placeholder_add;
 
     dock_object_class->is_compound = FALSE;
@@ -315,18 +313,14 @@ gdl_dock_placeholder_get_property (GObject    *g_object,
 }
 
 static void
-gdl_dock_placeholder_destroy (GtkWidget *object)
+gdl_dock_placeholder_dispose (GObject *object)
 {
     GdlDockPlaceholder *ph = GDL_DOCK_PLACEHOLDER (object);
 
-    if (ph->priv) {
-        if (ph->priv->host)
-            gdl_dock_placeholder_detach (GDL_DOCK_OBJECT (object), FALSE);
-        g_free (ph->priv);
-        ph->priv = NULL;
-    }
+    if (ph->priv->host)
+        gdl_dock_placeholder_detach (GDL_DOCK_OBJECT (object), FALSE);
 
-    GTK_WIDGET_CLASS (gdl_dock_placeholder_parent_class)->destroy (object);
+    G_OBJECT_CLASS (gdl_dock_placeholder_parent_class)->dispose (object);
 }
 
 static void 
