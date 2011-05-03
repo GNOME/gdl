@@ -35,8 +35,9 @@ G_BEGIN_DECLS
 #define GDL_DOCK_NOTEBOOK_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_DOCK_NOTEBOOK, GdlDockNotebookClass))
 
 /* data types & structures */
-typedef struct _GdlDockNotebook        GdlDockNotebook;
-typedef struct _GdlDockNotebookClass   GdlDockNotebookClass;
+typedef struct _GdlDockNotebook             GdlDockNotebook;
+typedef struct _GdlDockNotebookClass        GdlDockNotebookClass;
+typedef struct _GdlDockNotebookClassPrivate GdlDockNotebookClassPrivate;
 
 struct _GdlDockNotebook {
     GdlDockItem  item;
@@ -44,6 +45,8 @@ struct _GdlDockNotebook {
 
 struct _GdlDockNotebookClass {
     GdlDockItemClass  parent_class;
+
+    GdlDockNotebookClassPrivate *priv;
 };
 
 

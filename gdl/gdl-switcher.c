@@ -87,7 +87,12 @@ struct _GdlSwitcherPrivate {
     gboolean in_toggle;
 };
 
-G_DEFINE_TYPE (GdlSwitcher, gdl_switcher, GTK_TYPE_NOTEBOOK)
+struct _GdlSwitcherClassPrivate {
+    GtkCssProvider *css;
+};
+
+G_DEFINE_TYPE_WITH_CODE (GdlSwitcher, gdl_switcher, GTK_TYPE_NOTEBOOK,
+                         g_type_add_class_private (g_define_type_id, sizeof (GdlSwitcherClassPrivate)))
 
 #define INTERNAL_MODE(switcher)  (switcher->priv->switcher_style == \
             GDL_SWITCHER_STYLE_TOOLBAR ? switcher->priv->toolbar_style : \
@@ -746,6 +751,12 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
     GtkContainerClass *container_class = GTK_CONTAINER_CLASS (klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    static const gchar button_style[] =
+       "* {\n"
+           "-GtkWidget-focus-line-width : 1;\n"
+           "-GtkWidget-focus-padding : 1;\n"
+           "padding: 0;\n"
+       "}";
 
     container_class->forall = gdl_switcher_forall;
     container_class->remove = gdl_switcher_remove;
@@ -771,14 +782,11 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
 
     g_type_class_add_private (object_class, sizeof (GdlSwitcherPrivate));
 
-    gtk_rc_parse_string ("style \"gdl-button-style\"\n"
-                         "{\n"
-                         "GtkWidget::focus-padding = 1\n"
-                         "GtkWidget::focus-line-width = 1\n"
-                         "xthickness = 0\n"
-                         "ythickness = 0\n"
-                         "}\n"
-                         "widget \"*.gdl-button\" style \"gdl-button-style\"");
+    /* set the style */
+    klass->priv = G_TYPE_CLASS_GET_PRIVATE (klass, GDL_TYPE_SWITCHER, GdlSwitcherClassPrivate);
+
+    klass->priv->css = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (klass->priv->css, button_style, -1, NULL);
 }
 
 static void
@@ -829,7 +837,6 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
     GtkWidget *arrow;
     
     button_widget = gtk_toggle_button_new ();
-    gtk_widget_set_name (button_widget, "gdl-button");
     gtk_button_set_relief (GTK_BUTTON(button_widget), GTK_RELIEF_HALF);
     if (switcher->priv->show)
         gtk_widget_show (button_widget);

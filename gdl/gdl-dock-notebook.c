@@ -80,6 +80,10 @@ static gboolean gdl_dock_notebook_reorder         (GdlDockObject    *object,
 
 /* Class variables and definitions */
 
+struct _GdlDockNotebookClassPrivate {
+    GtkCssProvider *css;
+};
+
 enum {
     PROP_0,
     PROP_PAGE
@@ -88,18 +92,21 @@ enum {
 
 /* ----- Private functions ----- */
 
-G_DEFINE_TYPE (GdlDockNotebook, gdl_dock_notebook, GDL_TYPE_DOCK_ITEM);
+G_DEFINE_TYPE_WITH_CODE (GdlDockNotebook, gdl_dock_notebook, GDL_TYPE_DOCK_ITEM,
+                         g_type_add_class_private (g_define_type_id, sizeof (GdlDockNotebookClassPrivate)))
 
 static void
 gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
 {
-    static gboolean style_initialized = FALSE;
-    
     GObjectClass       *g_object_class;
     GtkWidgetClass     *widget_class;
     GtkContainerClass  *container_class;
     GdlDockObjectClass *object_class;
     GdlDockItemClass   *item_class;
+    static const gchar notebook_style[] =
+       "* {\n"
+           "padding: 2;\n"
+       "}";
 
     g_object_class = G_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
@@ -134,17 +141,11 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
                           G_PARAM_READWRITE |
                           GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
 
-    if (!style_initialized) {
-        style_initialized = TRUE;
-        
-        gtk_rc_parse_string (
-            "style \"gdl-dock-notebook-default\" {\n"
-            "xthickness = 2\n"
-            "ythickness = 2\n"
-            "}\n"
-            "widget_class \"*.GtkNotebook.GdlDockItem\" "
-            "style : gtk \"gdl-dock-notebook-default\"\n");
-    }
+    /* set the style */
+    klass->priv = G_TYPE_CLASS_GET_PRIVATE (klass, GDL_TYPE_DOCK_NOTEBOOK, GdlDockNotebookClassPrivate);
+
+    klass->priv->css = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (klass->priv->css, notebook_style, -1, NULL);
 }
 
 static void 

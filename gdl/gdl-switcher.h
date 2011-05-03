@@ -37,9 +37,10 @@ G_BEGIN_DECLS
 #define GDL_IS_SWITCHER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDL_TYPE_SWITCHER))
 #define GDL_IS_SWITCHER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), GDL_TYPE_SWITCHER))
 
-typedef struct _GdlSwitcher        GdlSwitcher;
-typedef struct _GdlSwitcherPrivate GdlSwitcherPrivate;
-typedef struct _GdlSwitcherClass   GdlSwitcherClass;
+typedef struct _GdlSwitcher             GdlSwitcher;
+typedef struct _GdlSwitcherPrivate      GdlSwitcherPrivate;
+typedef struct _GdlSwitcherClass        GdlSwitcherClass;
+typedef struct _GdlSwitcherClassPrivate GdlSwitcherClassPrivate;
 
 struct _GdlSwitcher {
     GtkNotebook parent;
@@ -49,6 +50,8 @@ struct _GdlSwitcher {
 
 struct _GdlSwitcherClass {
     GtkNotebookClass parent_class;
+
+    GdlSwitcherClassPrivate *priv;
 };
 
 GType      gdl_switcher_get_type     (void);
