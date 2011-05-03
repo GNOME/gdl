@@ -190,29 +190,24 @@ gdl_dock_item_grip_item_notify (GObject    *master,
 }
 
 static void
-gdl_dock_item_grip_destroy (GtkWidget *object)
+gdl_dock_item_grip_dispose (GObject *object)
 {
     GdlDockItemGrip *grip = GDL_DOCK_ITEM_GRIP (object);
-        
-    if (grip->priv) {
-        GdlDockItemGripPrivate *priv = grip->priv;
+    GdlDockItemGripPrivate *priv = grip->priv;
 
-        if (priv->label) {
-            gtk_widget_unparent(grip->priv->label);
-            priv->label = NULL;
-        }
-
-        if (grip->item)
-            g_signal_handlers_disconnect_by_func (grip->item,
-                                                  gdl_dock_item_grip_item_notify,
-                                                  grip);
-        grip->item = NULL;
-
-        grip->priv = NULL;
-        g_free (priv);
+    if (priv->label) {
+        gtk_widget_unparent(priv->label);
+        priv->label = NULL;
     }
-    
-    GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->destroy (object);
+
+    if (grip->item) {
+        g_signal_handlers_disconnect_by_func (grip->item,
+                                              gdl_dock_item_grip_item_notify,
+                                              grip);
+        grip->item = NULL;
+    }
+
+    G_OBJECT_CLASS (gdl_dock_item_grip_parent_class)->dispose (object);
 }
 
 static void
@@ -709,8 +704,7 @@ gdl_dock_item_grip_class_init (GdlDockItemGripClass *klass)
     container_class = GTK_CONTAINER_CLASS (klass);
 
     object_class->set_property = gdl_dock_item_grip_set_property;
-
-    widget_class->destroy = gdl_dock_item_grip_destroy;
+    object_class->dispose = gdl_dock_item_grip_dispose;
 
     widget_class->draw = gdl_dock_item_grip_draw;
     widget_class->realize = gdl_dock_item_grip_realize;

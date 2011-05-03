@@ -67,7 +67,7 @@ static void  gdl_dock_item_get_property  (GObject      *object,
                                           GValue       *value,
                                           GParamSpec   *pspec);
 
-static void  gdl_dock_item_destroy       (GtkWidget    *object);
+static void  gdl_dock_item_dispose       (GObject      *object);
 
 static void  gdl_dock_item_add           (GtkContainer *container,
                                           GtkWidget    *widget);
@@ -214,8 +214,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     object_class->constructor = gdl_dock_item_constructor;
     object_class->set_property = gdl_dock_item_set_property;
     object_class->get_property = gdl_dock_item_get_property;
-
-    widget_class->destroy = gdl_dock_item_destroy;
+    object_class->dispose = gdl_dock_item_dispose;
 
     widget_class->realize = gdl_dock_item_realize;
     widget_class->map = gdl_dock_item_map;
@@ -608,34 +607,31 @@ gdl_dock_item_get_property  (GObject      *g_object,
 }
 
 static void
-gdl_dock_item_destroy (GtkWidget *object)
+gdl_dock_item_dispose (GObject *object)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
+    GdlDockItemPrivate *priv = item->priv;
 
-    if (item->priv) {
-        GdlDockItemPrivate *priv = item->priv;
-        
-        if (priv->tab_label) {
-            gdl_dock_item_set_tablabel (item, NULL);
-        };
-        if (priv->menu) {
-            gtk_menu_detach (GTK_MENU (priv->menu));
-            priv->menu = NULL;
-        };
-        if (priv->grip) {
-            gtk_container_remove (GTK_CONTAINER (item), priv->grip);
-            priv->grip = NULL;
-        }
-        if (priv->ph) {
-            g_object_unref (priv->ph);
-            priv->ph = NULL;
-        }
-        
-        item->priv = NULL;
-        g_free (priv);
+    if (priv->tab_label) {
+        gdl_dock_item_set_tablabel (item, NULL);
     }
 
-    GTK_WIDGET_CLASS (gdl_dock_item_parent_class)->destroy (object);
+    if (priv->menu) {
+        gtk_menu_detach (GTK_MENU (priv->menu));
+        priv->menu = NULL;
+    }
+
+    if (priv->grip) {
+        gtk_container_remove (GTK_CONTAINER (item), priv->grip);
+        priv->grip = NULL;
+    }
+
+    if (priv->ph) {
+        g_object_unref (priv->ph);
+        priv->ph = NULL;
+    }
+
+    G_OBJECT_CLASS (gdl_dock_item_parent_class)->dispose (object);
 }
 
 static void 
