@@ -211,8 +211,6 @@ gdl_dock_layout_dispose (GObject *object)
         layout->priv->layouts_model = NULL;
     }
 
-    xmlFreeDoc(layout->priv->doc);
-
     G_OBJECT_CLASS (gdl_dock_layout_parent_class)->dispose (object);
 }
 
