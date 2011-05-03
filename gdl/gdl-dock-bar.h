@@ -51,7 +51,7 @@ struct _GdlDockBar {
 
     GdlDock *dock;
 
-    GdlDockBarPrivate *_priv;
+    GdlDockBarPrivate *priv;
 };
 
 struct _GdlDockBarClass {

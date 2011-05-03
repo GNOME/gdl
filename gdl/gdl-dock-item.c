@@ -201,19 +201,19 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
 {
     static gboolean style_initialized = FALSE;
     
-    GObjectClass       *g_object_class;
+    GObjectClass       *object_class;
     GtkWidgetClass     *widget_class;
     GtkContainerClass  *container_class;
-    GdlDockObjectClass *object_class;
+    GdlDockObjectClass *dock_object_class;
     
-    g_object_class = G_OBJECT_CLASS (klass);
+    object_class = G_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
-    object_class = GDL_DOCK_OBJECT_CLASS (klass);
+    dock_object_class = GDL_DOCK_OBJECT_CLASS (klass);
 
-    g_object_class->constructor = gdl_dock_item_constructor;
-    g_object_class->set_property = gdl_dock_item_set_property;
-    g_object_class->get_property = gdl_dock_item_get_property;
+    object_class->constructor = gdl_dock_item_constructor;
+    object_class->set_property = gdl_dock_item_set_property;
+    object_class->get_property = gdl_dock_item_get_property;
 
     widget_class->destroy = gdl_dock_item_destroy;
 
@@ -234,11 +234,11 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     container_class->forall = gdl_dock_item_forall;
     container_class->child_type = gdl_dock_item_child_type;
     gtk_container_class_handle_border_width (container_class);
-    
-    object_class->is_compound = FALSE;
 
-    object_class->dock_request = gdl_dock_item_dock_request;
-    object_class->dock = gdl_dock_item_dock;
+    dock_object_class->is_compound = FALSE;
+
+    dock_object_class->dock_request = gdl_dock_item_dock_request;
+    dock_object_class->dock = gdl_dock_item_dock;
 
     /* properties */
 
@@ -253,7 +253,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
      * widget text direction is set to RTL).
      */
     g_object_class_install_property (
-        g_object_class, PROP_ORIENTATION,
+        object_class, PROP_ORIENTATION,
         g_param_spec_enum ("orientation", _("Orientation"),
                            _("Orientation of the docking item"),
                            GTK_TYPE_ORIENTATION,
@@ -269,7 +269,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     /* --- end of registration */
     
     g_object_class_install_property (
-        g_object_class, PROP_RESIZE,
+        object_class, PROP_RESIZE,
         g_param_spec_boolean ("resize", _("Resizable"),
                               _("If set, the dock item can be resized when "
                                 "docked in a GtkPanel widget"),
@@ -277,7 +277,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                               G_PARAM_READWRITE));
                                      
     g_object_class_install_property (
-        g_object_class, PROP_BEHAVIOR,
+        object_class, PROP_BEHAVIOR,
         g_param_spec_flags ("behavior", _("Item behavior"),
                             _("General behavior for the dock item (i.e. "
                               "whether it can float, if it's locked, etc.)"),
@@ -286,7 +286,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                             G_PARAM_READWRITE));
                                      
     g_object_class_install_property (
-        g_object_class, PROP_LOCKED,
+        object_class, PROP_LOCKED,
         g_param_spec_boolean ("locked", _("Locked"),
                               _("If set, the dock item cannot be dragged around "
                                 "and it doesn't show a grip"),
@@ -295,14 +295,14 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                               GDL_DOCK_PARAM_EXPORT));
 
     g_object_class_install_property (
-        g_object_class, PROP_PREFERRED_WIDTH,
+        object_class, PROP_PREFERRED_WIDTH,
         g_param_spec_int ("preferred-width", _("Preferred width"),
                           _("Preferred width for the dock item"),
                           -1, G_MAXINT, -1,
                           G_PARAM_READWRITE));
 
     g_object_class_install_property (
-        g_object_class, PROP_PREFERRED_HEIGHT,
+        object_class, PROP_PREFERRED_HEIGHT,
         g_param_spec_int ("preferred-height", _("Preferred height"),
                           _("Preferred height for the dock item"),
                           -1, G_MAXINT, -1,
@@ -401,11 +401,17 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
             "class \"GdlDockItem\" "
             "style : gtk \"gdl-dock-item-default\"\n");
     }
+
+    g_type_class_add_private (object_class, sizeof (GdlDockItemPrivate));
 }
 
 static void
 gdl_dock_item_init (GdlDockItem *item)
 {
+    item->priv = G_TYPE_INSTANCE_GET_PRIVATE (item,
+                                              GDL_TYPE_DOCK_ITEM,
+                                              GdlDockItemPrivate);
+
     gtk_widget_set_has_window (GTK_WIDGET (item), TRUE);
 
     item->child = NULL;
@@ -417,14 +423,13 @@ gdl_dock_item_init (GdlDockItem *item)
 
     item->dragoff_x = item->dragoff_y = 0;
 
-    item->_priv = g_new0 (GdlDockItemPrivate, 1);
-    item->_priv->menu = NULL;
+    item->priv->menu = NULL;
 
-    item->_priv->preferred_width = item->_priv->preferred_height = -1;
-    item->_priv->tab_label = NULL;
-    item->_priv->intern_tab_label = FALSE;
+    item->priv->preferred_width = item->priv->preferred_height = -1;
+    item->priv->tab_label = NULL;
+    item->priv->intern_tab_label = FALSE;
 
-    item->_priv->ph = NULL;
+    item->priv->ph = NULL;
 }
 
 static void
@@ -468,13 +473,13 @@ gdl_dock_item_constructor (GType                  type,
         gchar* stock_id;
 
         if (GDL_DOCK_ITEM_HAS_GRIP (item)) {
-            item->_priv->grip_shown = TRUE;
-            item->_priv->grip = gdl_dock_item_grip_new (item);
-            gtk_widget_set_parent (item->_priv->grip, GTK_WIDGET (item));
-            gtk_widget_show (item->_priv->grip);
+            item->priv->grip_shown = TRUE;
+            item->priv->grip = gdl_dock_item_grip_new (item);
+            gtk_widget_set_parent (item->priv->grip, GTK_WIDGET (item));
+            gtk_widget_show (item->priv->grip);
         }
         else {
-            item->_priv->grip_shown = FALSE;
+            item->priv->grip_shown = FALSE;
         }
 
         g_object_get (g_object, "long-name", &long_name, "stock-id", &stock_id, NULL);
@@ -488,17 +493,17 @@ gdl_dock_item_constructor (GType                  type,
         gtk_box_pack_start (GTK_BOX (hbox), icon, FALSE, FALSE, 0);
         gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
-        item->_priv->notify_label = 
+        item->priv->notify_label = 
             g_signal_connect (item, "notify::long-name", G_CALLBACK (on_long_name_changed),
                               label);
-        item->_priv->notify_stock_id = 
+        item->priv->notify_stock_id = 
             g_signal_connect (item, "notify::stock-id", G_CALLBACK (on_stock_id_changed),
                               icon);
         
         gtk_widget_show_all (hbox);
         
         gdl_dock_item_set_tablabel (item, hbox);
-        item->_priv->intern_tab_label = TRUE;
+        item->priv->intern_tab_label = TRUE;
 
         g_free (long_name);
         g_free (stock_id);
@@ -558,10 +563,10 @@ gdl_dock_item_set_property  (GObject      *g_object,
             break;
         }
         case PROP_PREFERRED_WIDTH:
-            item->_priv->preferred_width = g_value_get_int (value);
+            item->priv->preferred_width = g_value_get_int (value);
             break;
         case PROP_PREFERRED_HEIGHT:
-            item->_priv->preferred_height = g_value_get_int (value);
+            item->priv->preferred_height = g_value_get_int (value);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
@@ -591,10 +596,10 @@ gdl_dock_item_get_property  (GObject      *g_object,
             g_value_set_boolean (value, !GDL_DOCK_ITEM_NOT_LOCKED (item));
             break;
         case PROP_PREFERRED_WIDTH:
-            g_value_set_int (value, item->_priv->preferred_width);
+            g_value_set_int (value, item->priv->preferred_width);
             break;
         case PROP_PREFERRED_HEIGHT:
-            g_value_set_int (value, item->_priv->preferred_height);
+            g_value_set_int (value, item->priv->preferred_height);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
@@ -607,8 +612,8 @@ gdl_dock_item_destroy (GtkWidget *object)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
 
-    if (item->_priv) {
-        GdlDockItemPrivate *priv = item->_priv;
+    if (item->priv) {
+        GdlDockItemPrivate *priv = item->priv;
         
         if (priv->tab_label) {
             gdl_dock_item_set_tablabel (item, NULL);
@@ -626,7 +631,7 @@ gdl_dock_item_destroy (GtkWidget *object)
             priv->ph = NULL;
         }
         
-        item->_priv = NULL;
+        item->priv = NULL;
         g_free (priv);
     }
 
@@ -673,10 +678,10 @@ gdl_dock_item_remove (GtkContainer *container,
     g_return_if_fail (GDL_IS_DOCK_ITEM (container));
     
     item = GDL_DOCK_ITEM (container);
-    if (item->_priv && widget == item->_priv->grip) {
+    if (item->priv && widget == item->priv->grip) {
         gboolean grip_was_visible = gtk_widget_get_visible (widget);
         gtk_widget_unparent (widget);
-        item->_priv->grip = NULL;
+        item->priv->grip = NULL;
         if (grip_was_visible)
             gtk_widget_queue_resize (GTK_WIDGET (item));
         return;
@@ -707,8 +712,8 @@ gdl_dock_item_forall (GtkContainer *container,
     
     g_return_if_fail (callback != NULL);
     
-    if (include_internals && item->_priv->grip)
-        (* callback) (item->_priv->grip, callback_data);
+    if (include_internals && item->priv->grip)
+        (* callback) (item->priv->grip, callback_data);
     
     if (item->child)
         (* callback) (item->child, callback_data);
@@ -747,7 +752,7 @@ gdl_dock_item_get_preferred_width (GtkWidget *widget,
 
     if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
-            gtk_widget_get_preferred_width (item->_priv->grip, minimum, natural);
+            gtk_widget_get_preferred_width (item->priv->grip, minimum, natural);
         } else
             *minimum = *natural = 0;
 
@@ -797,7 +802,7 @@ gdl_dock_item_get_preferred_height (GtkWidget *widget,
             *minimum = *natural = 0;
     } else {
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
-            gtk_widget_get_preferred_height (item->_priv->grip, minimum, natural);
+            gtk_widget_get_preferred_height (item->priv->grip, minimum, natural);
         } else
             *minimum = *natural = 0;
 
@@ -827,8 +832,8 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
     gtk_widget_set_allocation (widget, allocation);
 
     /* Once size is allocated, preferred size is no longer necessary */
-    item->_priv->preferred_height = -1;
-    item->_priv->preferred_width = -1;
+    item->priv->preferred_height = -1;
+    item->priv->preferred_width = -1;
     
     if (gtk_widget_get_realized (widget))
         gdk_window_move_resize (gtk_widget_get_window (widget),
@@ -854,7 +859,7 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
             GtkAllocation grip_alloc = child_allocation;
             GtkRequisition grip_req;
             
-            gtk_widget_size_request (item->_priv->grip, &grip_req);
+            gtk_widget_size_request (item->priv->grip, &grip_req);
             
             if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
                 child_allocation.x += grip_req.width;
@@ -865,8 +870,8 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
                 child_allocation.height -= grip_req.height;
                 grip_alloc.height = grip_req.height;
             }
-            if (item->_priv->grip)
-                gtk_widget_size_allocate (item->_priv->grip, &grip_alloc);
+            if (item->priv->grip)
+                gtk_widget_size_allocate (item->priv->grip, &grip_alloc);
         }
         /* Allocation can't be negative */
         if (child_allocation.width < 0)
@@ -896,10 +901,10 @@ gdl_dock_item_map (GtkWidget *widget)
         && !gtk_widget_get_mapped (item->child))
         gtk_widget_map (item->child);
 
-    if (item->_priv->grip
-        && gtk_widget_get_visible (GTK_WIDGET (item->_priv->grip))
-        && !gtk_widget_get_mapped (GTK_WIDGET (item->_priv->grip)))
-        gtk_widget_map (item->_priv->grip);
+    if (item->priv->grip
+        && gtk_widget_get_visible (GTK_WIDGET (item->priv->grip))
+        && !gtk_widget_get_mapped (GTK_WIDGET (item->priv->grip)))
+        gtk_widget_map (item->priv->grip);
 }
 
 static void
@@ -919,8 +924,8 @@ gdl_dock_item_unmap (GtkWidget *widget)
     if (item->child)
 	gtk_widget_unmap (item->child);
 
-    if (item->_priv->grip)
-        gtk_widget_unmap (item->_priv->grip);
+    if (item->priv->grip)
+        gtk_widget_unmap (item->priv->grip);
 }
 
 static void
@@ -966,8 +971,8 @@ gdl_dock_item_realize (GtkWidget *widget)
     if (item->child)
         gtk_widget_set_parent_window (item->child, window);
 
-    if (item->_priv->grip)
-        gtk_widget_set_parent_window (item->_priv->grip, window);
+    if (item->priv->grip)
+        gtk_widget_set_parent_window (item->priv->grip, window);
 }
 
 static void
@@ -1012,14 +1017,14 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
     
     item = GDL_DOCK_ITEM (widget);
 
-    if (!EVENT_IN_GRIP_EVENT_WINDOW (event, item->_priv->grip))
+    if (!EVENT_IN_GRIP_EVENT_WINDOW (event, item->priv->grip))
         return FALSE;
     
     locked = !GDL_DOCK_ITEM_NOT_LOCKED (item);
 
     event_handled = FALSE;
 
-    gtk_widget_get_allocation (item->_priv->grip, &allocation);
+    gtk_widget_get_allocation (item->priv->grip, &allocation);
 
     /* Check if user clicked on the drag handle. */      
     switch (item->orientation) {
@@ -1038,14 +1043,14 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
     if (!locked && event->button == 1 && event->type == GDK_BUTTON_PRESS) {
         /* Set in_drag flag, grab pointer and call begin drag operation. */      
         if (in_handle) {
-            item->_priv->start_x = event->x;
-            item->_priv->start_y = event->y;
+            item->priv->start_x = event->x;
+            item->priv->start_y = event->y;
 
             GDL_DOCK_ITEM_SET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
             
             cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
                                                  GDK_FLEUR);
-            gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window,
+            gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
                                    cursor);
             gdk_cursor_unref (cursor);
         
@@ -1065,10 +1070,10 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
 
         /* we check the window since if the item was redocked it's
            been unrealized and maybe it's not realized again yet */
-        if (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window) {
+        if (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window) {
             cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
                                                  GDK_HAND2);
-            gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window,
+            gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
                                    cursor);
             gdk_cursor_unref (cursor);
         }
@@ -1094,18 +1099,18 @@ gdl_dock_item_motion (GtkWidget      *widget,
 
     item = GDL_DOCK_ITEM (widget);
 
-    if (!EVENT_IN_GRIP_EVENT_WINDOW (event, item->_priv->grip))
+    if (!EVENT_IN_GRIP_EVENT_WINDOW (event, item->priv->grip))
         return FALSE;
 
     if (GDL_DOCK_ITEM_IN_PREDRAG (item)) {
         if (gtk_drag_check_threshold (widget,
-                                      item->_priv->start_x,
-                                      item->_priv->start_y,
+                                      item->priv->start_x,
+                                      item->priv->start_y,
                                       event->x,
                                       event->y)) {
             GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
-            item->dragoff_x = item->_priv->start_x;
-            item->dragoff_y = item->_priv->start_y;
+            item->dragoff_x = item->priv->start_x;
+            item->dragoff_y = item->priv->start_y;
 
             gdl_dock_item_drag_start (item);
         }
@@ -1485,7 +1490,7 @@ gdl_dock_item_detach_menu (GtkWidget *widget,
     GdlDockItem *item;
    
     item = GDL_DOCK_ITEM (widget);
-    item->_priv->menu = NULL;
+    item->priv->menu = NULL;
 }
 
 static void
@@ -1495,37 +1500,37 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
 {
     GtkWidget *mitem;
 
-    if (!item->_priv->menu) {
+    if (!item->priv->menu) {
         /* Create popup menu and attach it to the dock item */
-        item->_priv->menu = gtk_menu_new ();
-        gtk_menu_attach_to_widget (GTK_MENU (item->_priv->menu),
+        item->priv->menu = gtk_menu_new ();
+        gtk_menu_attach_to_widget (GTK_MENU (item->priv->menu),
                                    GTK_WIDGET (item),
                                    gdl_dock_item_detach_menu);
         
         if (item->behavior & GDL_DOCK_ITEM_BEH_LOCKED) {
             /* UnLock menuitem */
             mitem = gtk_menu_item_new_with_label (_("UnLock"));
-            gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), 
+            gtk_menu_shell_append (GTK_MENU_SHELL (item->priv->menu), 
                                    mitem);
             g_signal_connect (mitem, "activate",
                               G_CALLBACK (gdl_dock_item_unlock_cb), item);
         } else {
             /* Hide menuitem. */
             mitem = gtk_menu_item_new_with_label (_("Hide"));
-            gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
+            gtk_menu_shell_append (GTK_MENU_SHELL (item->priv->menu), mitem);
             g_signal_connect (mitem, "activate", 
                               G_CALLBACK (gdl_dock_item_hide_cb), item);
             /* Lock menuitem */
             mitem = gtk_menu_item_new_with_label (_("Lock"));
-            gtk_menu_shell_append (GTK_MENU_SHELL (item->_priv->menu), mitem);
+            gtk_menu_shell_append (GTK_MENU_SHELL (item->priv->menu), mitem);
             g_signal_connect (mitem, "activate",
                               G_CALLBACK (gdl_dock_item_lock_cb), item);
         }
     }
 
     /* Show popup menu. */
-    gtk_widget_show_all (item->_priv->menu);
-    gtk_menu_popup (GTK_MENU (item->_priv->menu), NULL, NULL, NULL, NULL, 
+    gtk_widget_show_all (item->priv->menu);
+    gtk_menu_popup (GTK_MENU (item->priv->menu), NULL, NULL, NULL, NULL, 
                     button, time);
 }
 
@@ -1582,12 +1587,12 @@ gdl_dock_item_tab_button (GtkWidget      *widget,
         switch (item->orientation) {
         case GTK_ORIENTATION_HORIZONTAL:
             gtk_widget_get_allocation (GTK_WIDGET (data), &allocation);
-            /*item->dragoff_x = item->_priv->grip_size / 2;*/
+            /*item->dragoff_x = item->priv->grip_size / 2;*/
             item->dragoff_y = allocation.height / 2;
             break;
         case GTK_ORIENTATION_VERTICAL:
             /*item->dragoff_x = GTK_WIDGET (data)->allocation.width / 2;*/
-            item->dragoff_y = item->_priv->grip_size / 2;
+            item->dragoff_y = item->priv->grip_size / 2;
             break;
         };
         gdl_dock_item_drag_start (item);
@@ -1642,13 +1647,13 @@ gdl_dock_item_showhide_grip (GdlDockItem *item)
     display = gtk_widget_get_display (GTK_WIDGET (item));
     cursor = NULL;
     
-    if (item->_priv->grip) {
+    if (item->priv->grip) {
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item) && 
             GDL_DOCK_ITEM_NOT_LOCKED(item))
              cursor = gdk_cursor_new_for_display (display, GDK_HAND2);
     }
-    if (item->_priv->grip && GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window)
-        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->_priv->grip)->title_window, cursor);
+    if (item->priv->grip && GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window)
+        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window, cursor);
 
     if (cursor)
         gdk_cursor_unref (cursor);
@@ -1826,7 +1831,7 @@ gdl_dock_item_get_tablabel (GdlDockItem *item)
     g_return_val_if_fail (item != NULL, NULL);
     g_return_val_if_fail (GDL_IS_DOCK_ITEM (item), NULL);
 
-    return item->_priv->tab_label;
+    return item->priv->tab_label;
 }
 
 /**
@@ -1844,29 +1849,29 @@ gdl_dock_item_set_tablabel (GdlDockItem *item,
 {
     g_return_if_fail (item != NULL);
 
-    if (item->_priv->intern_tab_label)
+    if (item->priv->intern_tab_label)
     {
-        item->_priv->intern_tab_label = FALSE;
-        g_signal_handler_disconnect (item, item->_priv->notify_label);        
-        g_signal_handler_disconnect (item, item->_priv->notify_stock_id);
+        item->priv->intern_tab_label = FALSE;
+        g_signal_handler_disconnect (item, item->priv->notify_label);        
+        g_signal_handler_disconnect (item, item->priv->notify_stock_id);
     }
     
-    if (item->_priv->tab_label) {
+    if (item->priv->tab_label) {
         /* disconnect and unref the previous tablabel */
-        if (GDL_IS_DOCK_TABLABEL (item->_priv->tab_label)) {
-            g_signal_handlers_disconnect_matched (item->_priv->tab_label,
+        if (GDL_IS_DOCK_TABLABEL (item->priv->tab_label)) {
+            g_signal_handlers_disconnect_matched (item->priv->tab_label,
                                                   G_SIGNAL_MATCH_DATA,
                                                   0, 0, NULL,
                                                   NULL, item);
-            g_object_set (item->_priv->tab_label, "item", NULL, NULL);
+            g_object_set (item->priv->tab_label, "item", NULL, NULL);
         }
-        g_object_unref (item->_priv->tab_label);
-        item->_priv->tab_label = NULL;
+        g_object_unref (item->priv->tab_label);
+        item->priv->tab_label = NULL;
     }
     
     if (tablabel) {
         g_object_ref_sink (G_OBJECT (tablabel));
-        item->_priv->tab_label = tablabel;
+        item->priv->tab_label = tablabel;
         if (GDL_IS_DOCK_TABLABEL (tablabel)) {
             g_object_set (tablabel, "item", item, NULL);
             /* connect to tablabel signal */
@@ -1890,7 +1895,7 @@ gdl_dock_item_get_grip(GdlDockItem *item)
     g_return_val_if_fail (item != NULL, NULL);
     g_return_val_if_fail (GDL_IS_DOCK_ITEM (item), NULL);
 
-    return item->_priv->grip;
+    return item->priv->grip;
 }
 
 /**
@@ -1903,8 +1908,8 @@ void
 gdl_dock_item_hide_grip (GdlDockItem *item)
 {
     g_return_if_fail (item != NULL);
-    if (item->_priv->grip_shown) {
-        item->_priv->grip_shown = FALSE;
+    if (item->priv->grip_shown) {
+        item->priv->grip_shown = FALSE;
         gdl_dock_item_showhide_grip (item);
     };
     g_warning ("Grips always show unless GDL_DOCK_ITEM_BEH_NO_GRIP is set\n" );
@@ -1920,8 +1925,8 @@ void
 gdl_dock_item_show_grip (GdlDockItem *item)
 {
     g_return_if_fail (item != NULL);
-    if (!item->_priv->grip_shown) {
-        item->_priv->grip_shown = TRUE;
+    if (!item->priv->grip_shown) {
+        item->priv->grip_shown = TRUE;
         gdl_dock_item_showhide_grip (item);
     };
 }
@@ -1997,8 +2002,8 @@ gdl_dock_item_hide_item (GdlDockItem *item)
     /* if the object is manual, create a new placeholder to be able to
        restore the position later */
     if (!GDL_DOCK_OBJECT_AUTOMATIC (item)) {
-        if (item->_priv->ph)
-            g_object_unref (item->_priv->ph); 
+        if (item->priv->ph)
+            g_object_unref (item->priv->ph); 
         
         gboolean isFloating = FALSE;
         gint width=0, height=0, x=0, y = 0;
@@ -2015,10 +2020,10 @@ gdl_dock_item_hide_item (GdlDockItem *item)
                           NULL);
         } else {
             gtk_widget_get_allocation (GTK_WIDGET (item), &allocation);
-            item->_priv->preferred_width = allocation.width;
-            item->_priv->preferred_height = allocation.height;
+            item->priv->preferred_width = allocation.width;
+            item->priv->preferred_height = allocation.height;
         }
-        item->_priv->ph = GDL_DOCK_PLACEHOLDER (
+        item->priv->ph = GDL_DOCK_PLACEHOLDER (
             g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
                           "sticky", FALSE,
                           "host", item,
@@ -2028,7 +2033,7 @@ gdl_dock_item_hide_item (GdlDockItem *item)
                           "floatx", x,
                           "floaty", y,
                           NULL));
-        g_object_ref_sink (item->_priv->ph);
+        g_object_ref_sink (item->priv->ph);
     }
     
     gdl_dock_object_freeze (GDL_DOCK_OBJECT (item));
@@ -2079,10 +2084,10 @@ gdl_dock_item_show_item (GdlDockItem *item)
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
     
-    if (item->_priv->ph) {
+    if (item->priv->ph) {
         gboolean isFloating=FALSE;
         gint width = 0, height = 0, x= 0, y = 0;
-        g_object_get (G_OBJECT(item->_priv->ph),
+        g_object_get (G_OBJECT(item->priv->ph),
                       "width", &width,
                       "height", &height,
                       "floating",&isFloating,
@@ -2095,11 +2100,11 @@ gdl_dock_item_show_item (GdlDockItem *item)
             gdl_dock_add_floating_item (GDL_DOCK (controller),
                                         item, x, y, width, height);
         } else {
-            gtk_container_add (GTK_CONTAINER (item->_priv->ph),
+            gtk_container_add (GTK_CONTAINER (item->priv->ph),
                                GTK_WIDGET (item));
         }
-        g_object_unref (item->_priv->ph);
-        item->_priv->ph = NULL;
+        g_object_unref (item->priv->ph);
+        item->priv->ph = NULL;
         
     } else if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
         GdlDockObject *toplevel;
@@ -2164,22 +2169,22 @@ gdl_dock_item_set_default_position (GdlDockItem   *item,
 {
     g_return_if_fail (item != NULL);
 
-    if (item->_priv->ph) {
-        g_object_unref (item->_priv->ph);
-        item->_priv->ph = NULL;
+    if (item->priv->ph) {
+        g_object_unref (item->priv->ph);
+        item->priv->ph = NULL;
     }
 
     if (reference && GDL_DOCK_OBJECT_ATTACHED (reference)) {
         if (GDL_IS_DOCK_PLACEHOLDER (reference)) {
             g_object_ref_sink (reference);
-            item->_priv->ph = GDL_DOCK_PLACEHOLDER (reference);
+            item->priv->ph = GDL_DOCK_PLACEHOLDER (reference);
         } else {
-            item->_priv->ph = GDL_DOCK_PLACEHOLDER (
+            item->priv->ph = GDL_DOCK_PLACEHOLDER (
                 g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
                               "sticky", TRUE,
                               "host", reference,
                               NULL));
-            g_object_ref_sink (item->_priv->ph);
+            g_object_ref_sink (item->priv->ph);
         }
     }
 }
@@ -2203,8 +2208,8 @@ gdl_dock_item_preferred_size (GdlDockItem    *item,
 
     gtk_widget_get_allocation (GTK_WIDGET (item), &allocation);
 
-    req->width = MAX (item->_priv->preferred_width, allocation.width);
-    req->height = MAX (item->_priv->preferred_height, allocation.height);
+    req->width = MAX (item->priv->preferred_width, allocation.width);
+    req->height = MAX (item->priv->preferred_height, allocation.height);
 }
 
 

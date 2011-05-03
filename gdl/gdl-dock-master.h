@@ -62,7 +62,7 @@ struct _GdlDockMaster {
     
     gint                  dock_number;     /* for toplevel dock numbering */
     
-    GdlDockMasterPrivate *_priv;
+    GdlDockMasterPrivate *priv;
 };
 
 struct _GdlDockMasterClass {

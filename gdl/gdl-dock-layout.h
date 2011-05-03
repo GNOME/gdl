@@ -48,7 +48,7 @@ struct _GdlDockLayout {
     gboolean              dirty;
     GdlDockMaster        *master;
 
-    GdlDockLayoutPrivate *_priv;
+    GdlDockLayoutPrivate *priv;
 };
 
 struct _GdlDockLayoutClass {

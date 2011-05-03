@@ -252,17 +252,12 @@ static void
 gdl_dock_object_finalize (GObject *g_object)
 {
     GdlDockObject *object;
-    
-    g_return_if_fail (g_object != NULL && GDL_IS_DOCK_OBJECT (g_object));
 
     object = GDL_DOCK_OBJECT (g_object);
 
     g_free (object->name);
-    object->name = NULL;
     g_free (object->long_name);
-    object->long_name = NULL;
     g_free (object->stock_id);
-    object->stock_id = NULL;
 
     G_OBJECT_CLASS (gdl_dock_object_parent_class)->finalize (g_object);
 }

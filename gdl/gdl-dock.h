@@ -47,7 +47,7 @@ struct _GdlDock {
 
     GdlDockObject   *root;
 
-    GdlDockPrivate  *_priv;
+    GdlDockPrivate  *priv;
 };
 
 struct _GdlDockClass {
