@@ -112,7 +112,7 @@ struct _GdlDockItem {
     gint                 dragoff_x, dragoff_y;    /* these need to be
                                                      accesible from
                                                      outside */
-    GdlDockItemPrivate  *_priv;
+    GdlDockItemPrivate  *priv;
 };
 
 struct _GdlDockItemClass {

@@ -674,10 +674,6 @@ gdl_switcher_dispose (GObject *object)
 static void
 gdl_switcher_finalize (GObject *object)
 {
-    GdlSwitcherPrivate *priv = GDL_SWITCHER (object)->priv;
-
-    g_free (priv);
-
     G_OBJECT_CLASS (gdl_switcher_parent_class)->finalize (object);
 }
 
@@ -772,7 +768,9 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
                            GDL_TYPE_SWITCHER_STYLE,
                            GDL_SWITCHER_STYLE_BOTH,
                            G_PARAM_READWRITE));
-    
+
+    g_type_class_add_private (object_class, sizeof (GdlSwitcherPrivate));
+
     gtk_rc_parse_string ("style \"gdl-button-style\"\n"
                          "{\n"
                          "GtkWidget::focus-padding = 1\n"
@@ -790,8 +788,10 @@ gdl_switcher_init (GdlSwitcher *switcher)
 
     gtk_widget_set_has_window (GTK_WIDGET (switcher), FALSE);
   
-    priv = g_new0 (GdlSwitcherPrivate, 1);
-    switcher->priv = priv;
+    switcher->priv = G_TYPE_INSTANCE_GET_PRIVATE (switcher,
+                                                  GDL_TYPE_SWITCHER,
+                                                  GdlSwitcherPrivate);
+    priv = switcher->priv;
 
     priv->show = TRUE;
     priv->buttons_height_request = -1;
@@ -813,8 +813,7 @@ gdl_switcher_init (GdlSwitcher *switcher)
 GtkWidget *
 gdl_switcher_new (void)
 {
-    GdlSwitcher *switcher = g_object_new (gdl_switcher_get_type (), NULL);
-    return GTK_WIDGET (switcher);
+    return g_object_new (gdl_switcher_get_type (), NULL);
 }
 
 void

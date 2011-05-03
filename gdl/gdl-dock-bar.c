@@ -51,7 +51,7 @@ static void  gdl_dock_bar_set_property    (GObject         *object,
                                            const GValue    *value,
                                            GParamSpec      *pspec);
 
-static void  gdl_dock_bar_destroy         (GtkWidget       *object);
+static void  gdl_dock_bar_dispose         (GObject         *object);
 
 static void  gdl_dock_bar_attach          (GdlDockBar      *dockbar,
                                            GdlDockMaster   *master);
@@ -92,16 +92,17 @@ static void update_dock_items (GdlDockBar *dockbar, gboolean full_update);
 void
 gdl_dock_bar_class_init (GdlDockBarClass *klass)
 {
-    GObjectClass       *g_object_class;
+    GObjectClass       *object_class;
     GtkWidgetClass     *widget_class;
     
-    g_object_class = G_OBJECT_CLASS (klass);
+    object_class = G_OBJECT_CLASS (klass);
 
-    g_object_class->get_property = gdl_dock_bar_get_property;
-    g_object_class->set_property = gdl_dock_bar_set_property;
+    object_class->get_property = gdl_dock_bar_get_property;
+    object_class->set_property = gdl_dock_bar_set_property;
+    object_class->dispose = gdl_dock_bar_dispose;
 
     g_object_class_install_property (
-        g_object_class, PROP_MASTER,
+        object_class, PROP_MASTER,
         g_param_spec_object ("master", _("Master"),
                              _("GdlDockMaster object which the dockbar widget "
                                "is attached to"),
@@ -109,7 +110,7 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
                              G_PARAM_READWRITE));
 
     g_object_class_install_property (
-        g_object_class, PROP_DOCKBAR_STYLE,
+        object_class, PROP_DOCKBAR_STYLE,
         g_param_spec_enum ("dockbar-style", _("Dockbar style"),
                            _("Dockbar style to show items on it"),
                            GDL_TYPE_DOCK_BAR_STYLE,
@@ -120,17 +121,21 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
     widget_class->get_preferred_width = gdl_dock_bar_get_preferred_width;
     widget_class->get_preferred_height = gdl_dock_bar_get_preferred_height;
     widget_class->size_allocate = gdl_dock_bar_size_allocate;
-    widget_class->destroy = gdl_dock_bar_destroy;
+
+    g_type_class_add_private (object_class, sizeof (GdlDockBarPrivate));
 }
 
 static void
 gdl_dock_bar_init (GdlDockBar *dockbar)
 {
-    dockbar->_priv = g_new0 (GdlDockBarPrivate, 1);
-    dockbar->_priv->master = NULL;
-    dockbar->_priv->items = NULL;
-    dockbar->_priv->orientation = GTK_ORIENTATION_VERTICAL;
-    dockbar->_priv->dockbar_style = GDL_DOCK_BAR_BOTH;
+    dockbar->priv = G_TYPE_INSTANCE_GET_PRIVATE (dockbar,
+                                                 GDL_TYPE_DOCK_BAR,
+                                                 GdlDockBarPrivate);
+
+    dockbar->priv->master = NULL;
+    dockbar->priv->items = NULL;
+    dockbar->priv->orientation = GTK_ORIENTATION_VERTICAL;
+    dockbar->priv->dockbar_style = GDL_DOCK_BAR_BOTH;
 }
 
 static void
@@ -143,10 +148,10 @@ gdl_dock_bar_get_property (GObject         *object,
 
     switch (prop_id) {
         case PROP_MASTER:
-            g_value_set_object (value, dockbar->_priv->master);
+            g_value_set_object (value, dockbar->priv->master);
             break;
         case PROP_DOCKBAR_STYLE:
-            g_value_set_enum (value, dockbar->_priv->dockbar_style);
+            g_value_set_enum (value, dockbar->priv->dockbar_style);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -166,7 +171,7 @@ gdl_dock_bar_set_property (GObject         *object,
             gdl_dock_bar_attach (dockbar, g_value_get_object (value));
             break;
         case PROP_DOCKBAR_STYLE:
-            dockbar->_priv->dockbar_style = g_value_get_enum (value);
+            dockbar->priv->dockbar_style = g_value_get_enum (value);
             update_dock_items (dockbar, TRUE);
             break;
         default:
@@ -182,34 +187,28 @@ on_dock_item_foreach_disconnect (GdlDockItem *item, GdlDockBar *dock_bar)
 }
 
 static void
-gdl_dock_bar_destroy (GtkWidget *object)
+gdl_dock_bar_dispose (GObject *object)
 {
     GdlDockBar *dockbar = GDL_DOCK_BAR (object);
+    GdlDockBarPrivate *priv = dockbar->priv;
 
-    if (dockbar->_priv) {
-        GdlDockBarPrivate *priv = dockbar->_priv;
-
-        if (priv->items) {
-            g_slist_foreach (priv->items,
-                             (GFunc) on_dock_item_foreach_disconnect,
-                             object);
-            g_slist_free (priv->items);
-        }
-        
-        if (priv->master) {
-            g_signal_handlers_disconnect_matched (priv->master,
-                                                  G_SIGNAL_MATCH_DATA,
-                                                  0, 0, NULL, NULL, dockbar);
-            g_object_unref (priv->master);
-            priv->master = NULL;
-        }
-
-        dockbar->_priv = NULL;
-
-        g_free (priv);
+    if (priv->items) {
+        g_slist_foreach (priv->items,
+                         (GFunc) on_dock_item_foreach_disconnect,
+                         object);
+        g_slist_free (priv->items);
+        priv->items = NULL;
     }
-    
-   GTK_WIDGET_CLASS (gdl_dock_bar_parent_class)->destroy (object);
+
+    if (priv->master) {
+        g_signal_handlers_disconnect_matched (priv->master,
+                                              G_SIGNAL_MATCH_DATA,
+                                              0, 0, NULL, NULL, dockbar);
+        g_object_unref (priv->master);
+        priv->master = NULL;
+    }
+
+   G_OBJECT_CLASS (gdl_dock_bar_parent_class)->dispose (object);
 }
 
 static void
@@ -222,7 +221,7 @@ gdl_dock_bar_remove_item (GdlDockBar  *dockbar,
     g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
     g_return_if_fail (GDL_IS_DOCK_ITEM (item));
 
-    priv = dockbar->_priv;
+    priv = dockbar->priv;
 
     if (g_slist_index (priv->items, item) == -1) {
         g_warning ("Item has not been added to the dockbar");
@@ -274,7 +273,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
     g_return_if_fail (GDL_IS_DOCK_ITEM (item));
 
-    priv = dockbar->_priv;
+    priv = dockbar->priv;
 
     if (g_slist_index (priv->items, item) != -1) {
         g_warning ("Item has already been added to the dockbar");
@@ -287,26 +286,26 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     button = gtk_button_new ();
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
     
-    if (dockbar->_priv->orientation == GTK_ORIENTATION_HORIZONTAL)
+    if (dockbar->priv->orientation == GTK_ORIENTATION_HORIZONTAL)
         box = gtk_hbox_new (FALSE, 0);
     else
         box = gtk_vbox_new (FALSE, 0);
     
     g_object_get (item, "stock-id", &stock_id, "long-name", &name, NULL);
 
-    if (dockbar->_priv->dockbar_style == GDL_DOCK_BAR_TEXT ||
-        dockbar->_priv->dockbar_style == GDL_DOCK_BAR_BOTH) {
+    if (dockbar->priv->dockbar_style == GDL_DOCK_BAR_TEXT ||
+        dockbar->priv->dockbar_style == GDL_DOCK_BAR_BOTH) {
         label = gtk_label_new (name);
-        if (dockbar->_priv->orientation == GTK_ORIENTATION_VERTICAL)
+        if (dockbar->priv->orientation == GTK_ORIENTATION_VERTICAL)
             gtk_label_set_angle (GTK_LABEL (label), 90);
         gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
     }
     
     /* FIXME: For now AUTO behaves same as BOTH */
     
-    if (dockbar->_priv->dockbar_style == GDL_DOCK_BAR_ICONS ||
-        dockbar->_priv->dockbar_style == GDL_DOCK_BAR_BOTH ||
-        dockbar->_priv->dockbar_style == GDL_DOCK_BAR_AUTO) {
+    if (dockbar->priv->dockbar_style == GDL_DOCK_BAR_ICONS ||
+        dockbar->priv->dockbar_style == GDL_DOCK_BAR_BOTH ||
+        dockbar->priv->dockbar_style == GDL_DOCK_BAR_AUTO) {
         if (stock_id) {
             image = gtk_image_new_from_stock (stock_id,
                                               GTK_ICON_SIZE_SMALL_TOOLBAR);
@@ -353,10 +352,10 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
 
     g_return_if_fail (dockbar != NULL);
     
-    if (!dockbar->_priv->master)
+    if (!dockbar->priv->master)
         return;
 
-    master = dockbar->_priv->master;
+    master = dockbar->priv->master;
     
     /* build items list */
     items = NULL;
@@ -366,10 +365,10 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
         for (l = items; l != NULL; l = l->next) {
             GdlDockItem *item = GDL_DOCK_ITEM (l->data);
             
-            if (g_slist_index (dockbar->_priv->items, item) != -1 &&
+            if (g_slist_index (dockbar->priv->items, item) != -1 &&
                 !GDL_DOCK_ITEM_ICONIFIED (item))
                 gdl_dock_bar_remove_item (dockbar, item);
-            else if (g_slist_index (dockbar->_priv->items, item) == -1 &&
+            else if (g_slist_index (dockbar->priv->items, item) == -1 &&
                 GDL_DOCK_ITEM_ICONIFIED (item))
                 gdl_dock_bar_add_item (dockbar, item);
         }
@@ -377,7 +376,7 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
         for (l = items; l != NULL; l = l->next) {
             GdlDockItem *item = GDL_DOCK_ITEM (l->data);
             
-            if (g_slist_index (dockbar->_priv->items, item) != -1)
+            if (g_slist_index (dockbar->priv->items, item) != -1)
                 gdl_dock_bar_remove_item (dockbar, item);
             if (GDL_DOCK_ITEM_ICONIFIED (item))
                 gdl_dock_bar_add_item (dockbar, item);
@@ -400,17 +399,17 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
     g_return_if_fail (dockbar != NULL);
     g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
     
-    if (dockbar->_priv->master) {
-        g_signal_handlers_disconnect_matched (dockbar->_priv->master,
+    if (dockbar->priv->master) {
+        g_signal_handlers_disconnect_matched (dockbar->priv->master,
                                               G_SIGNAL_MATCH_DATA,
                                               0, 0, NULL, NULL, dockbar);
-        g_object_unref (dockbar->_priv->master);
+        g_object_unref (dockbar->priv->master);
     }
     
-    dockbar->_priv->master = master;
-    if (dockbar->_priv->master) {
-        g_object_ref (dockbar->_priv->master);
-        g_signal_connect (dockbar->_priv->master, "layout-changed",
+    dockbar->priv->master = master;
+    if (dockbar->priv->master) {
+        g_object_ref (dockbar->priv->master);
+        g_signal_connect (dockbar->priv->master, "layout-changed",
                           G_CALLBACK (gdl_dock_bar_layout_changed_cb),
                           dockbar);
     }
@@ -426,7 +425,7 @@ static void gdl_dock_bar_size_request (GtkWidget *widget,
     dockbar = GDL_DOCK_BAR (widget);
     
     /* default to vertical for unknown values */
-    switch (dockbar->_priv->orientation) {
+    switch (dockbar->priv->orientation) {
 	case GTK_ORIENTATION_HORIZONTAL:
 		gdl_dock_bar_size_hrequest (widget, requisition);
 		break;
@@ -467,7 +466,7 @@ static void gdl_dock_bar_size_allocate (GtkWidget *widget,
     dockbar = GDL_DOCK_BAR (widget);
     
     /* default to vertical for unknown values */
-    switch (dockbar->_priv->orientation) {
+    switch (dockbar->priv->orientation) {
 	case GTK_ORIENTATION_HORIZONTAL:
 		gdl_dock_bar_size_hallocate (widget, allocation);
 		break;
@@ -1042,7 +1041,7 @@ GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar)
     g_return_val_if_fail (GDL_IS_DOCK_BAR (dockbar),
                           GTK_ORIENTATION_VERTICAL);
 
-    return dockbar->_priv->orientation;
+    return dockbar->priv->orientation;
 }
 
 void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
@@ -1050,7 +1049,7 @@ void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
 {
     g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
 
-    dockbar->_priv->orientation = orientation;
+    dockbar->priv->orientation = orientation;
 
     gtk_widget_queue_resize (GTK_WIDGET (dockbar));
 }

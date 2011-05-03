@@ -261,17 +261,22 @@ gdl_dock_class_init (GdlDockClass *klass)
                       0);
 
     klass->layout_changed = NULL;
+
+    g_type_class_add_private (object_class, sizeof (GdlDockPrivate));
 }
 
 static void
 gdl_dock_init (GdlDock *dock)
 {
+    dock->priv = G_TYPE_INSTANCE_GET_PRIVATE (dock,
+                                              GDL_TYPE_DOCK,
+                                              GdlDockPrivate);
+
     gtk_widget_set_has_window (GTK_WIDGET (dock), FALSE);
 
     dock->root = NULL;
-    dock->_priv = g_new0 (GdlDockPrivate, 1);
-    dock->_priv->width = -1;
-    dock->_priv->height = -1;
+    dock->priv->width = -1;
+    dock->priv->height = -1;
 }
 
 static gboolean 
@@ -284,10 +289,10 @@ gdl_dock_floating_configure_event_cb (GtkWidget         *widget,
     g_return_val_if_fail (user_data != NULL && GDL_IS_DOCK (user_data), TRUE);
 
     dock = GDL_DOCK (user_data);
-    dock->_priv->float_x = event->x;
-    dock->_priv->float_y = event->y;
-    dock->_priv->width = event->width;
-    dock->_priv->height = event->height;
+    dock->priv->float_x = event->x;
+    dock->priv->float_y = event->y;
+    dock->priv->width = event->width;
+    dock->priv->height = event->height;
 
     return FALSE;
 }
@@ -315,29 +320,29 @@ gdl_dock_constructor (GType                  type,
             gdl_dock_object_bind (GDL_DOCK_OBJECT (dock), G_OBJECT (master));
         }
 
-        if (dock->_priv->floating) {
+        if (dock->priv->floating) {
             GdlDockObject *controller;
 
             /* create floating window for this dock */
-            dock->_priv->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-            g_object_set_data (G_OBJECT (dock->_priv->window), "dock", dock);
+            dock->priv->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+            g_object_set_data (G_OBJECT (dock->priv->window), "dock", dock);
 
             /* set position and default size */
-            gtk_window_set_position (GTK_WINDOW (dock->_priv->window),
+            gtk_window_set_position (GTK_WINDOW (dock->priv->window),
                                      GTK_WIN_POS_MOUSE);
-            gtk_window_set_default_size (GTK_WINDOW (dock->_priv->window),
-                                         dock->_priv->width,
-                                         dock->_priv->height);
-            gtk_window_set_type_hint (GTK_WINDOW (dock->_priv->window),
+            gtk_window_set_default_size (GTK_WINDOW (dock->priv->window),
+                                         dock->priv->width,
+                                         dock->priv->height);
+            gtk_window_set_type_hint (GTK_WINDOW (dock->priv->window),
                                       GDK_WINDOW_TYPE_HINT_NORMAL);
 
             /* metacity ignores this */
-            gtk_window_move (GTK_WINDOW (dock->_priv->window),
-                             dock->_priv->float_x,
-                             dock->_priv->float_y);
+            gtk_window_move (GTK_WINDOW (dock->priv->window),
+                             dock->priv->float_x,
+                             dock->priv->float_y);
 
             /* connect to the configure event so we can track down window geometry */
-            g_signal_connect (dock->_priv->window, "configure_event",
+            g_signal_connect (dock->priv->window, "configure_event",
                               (GCallback) gdl_dock_floating_configure_event_cb,
                               dock);
 
@@ -347,9 +352,9 @@ gdl_dock_constructor (GType                  type,
             g_signal_connect (dock, "notify::long-name",
                               (GCallback) gdl_dock_notify_cb, NULL);
 
-            gtk_container_add (GTK_CONTAINER (dock->_priv->window), GTK_WIDGET (dock));
+            gtk_container_add (GTK_CONTAINER (dock->priv->window), GTK_WIDGET (dock));
 
-            g_signal_connect (dock->_priv->window, "delete_event",
+            g_signal_connect (dock->priv->window, "delete_event",
                               G_CALLBACK (gdl_dock_floating_window_delete_event_cb), 
                               NULL);
         }
@@ -369,7 +374,7 @@ gdl_dock_set_property  (GObject      *object,
     
     switch (prop_id) {
         case PROP_FLOATING:
-            dock->_priv->floating = g_value_get_boolean (value);
+            dock->priv->floating = g_value_get_boolean (value);
             break;
         case PROP_DEFAULT_TITLE:
             if (GDL_DOCK_OBJECT (object)->master)
@@ -378,16 +383,16 @@ gdl_dock_set_property  (GObject      *object,
                               NULL);
             break;
         case PROP_WIDTH:
-            dock->_priv->width = g_value_get_int (value);
+            dock->priv->width = g_value_get_int (value);
             break;
         case PROP_HEIGHT:
-            dock->_priv->height = g_value_get_int (value);
+            dock->priv->height = g_value_get_int (value);
             break;
         case PROP_FLOAT_X:
-            dock->_priv->float_x = g_value_get_int (value);
+            dock->priv->float_x = g_value_get_int (value);
             break;
         case PROP_FLOAT_Y:
-            dock->_priv->float_y = g_value_get_int (value);
+            dock->priv->float_y = g_value_get_int (value);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -399,10 +404,10 @@ gdl_dock_set_property  (GObject      *object,
         case PROP_HEIGHT:
         case PROP_FLOAT_X:
         case PROP_FLOAT_Y:
-            if (dock->_priv->floating && dock->_priv->window) {
-                gtk_window_resize (GTK_WINDOW (dock->_priv->window),
-                                   dock->_priv->width,
-                                   dock->_priv->height);
+            if (dock->priv->floating && dock->priv->window) {
+                gtk_window_resize (GTK_WINDOW (dock->priv->window),
+                                   dock->priv->width,
+                                   dock->priv->height);
             }
             break;
     }
@@ -418,7 +423,7 @@ gdl_dock_get_property  (GObject      *object,
 
     switch (prop_id) {
         case PROP_FLOATING:
-            g_value_set_boolean (value, dock->_priv->floating);
+            g_value_set_boolean (value, dock->priv->floating);
             break;
         case PROP_DEFAULT_TITLE:
             if (GDL_DOCK_OBJECT (object)->master) {
@@ -436,16 +441,16 @@ gdl_dock_get_property  (GObject      *object,
                 g_value_set_string (value, NULL);
             break;
         case PROP_WIDTH:
-            g_value_set_int (value, dock->_priv->width);
+            g_value_set_int (value, dock->priv->width);
             break;
         case PROP_HEIGHT:
-            g_value_set_int (value, dock->_priv->height);
+            g_value_set_int (value, dock->priv->height);
             break;
         case PROP_FLOAT_X:
-            g_value_set_int (value, dock->_priv->float_x);
+            g_value_set_int (value, dock->priv->float_x);
             break;
         case PROP_FLOAT_Y:
-            g_value_set_int (value, dock->_priv->float_y);
+            g_value_set_int (value, dock->priv->float_y);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -459,10 +464,10 @@ gdl_dock_set_title (GdlDock *dock)
     GdlDockObject *object = GDL_DOCK_OBJECT (dock);
     gchar         *title = NULL;
     
-    if (!dock->_priv->window)
+    if (!dock->priv->window)
         return;
     
-    if (!dock->_priv->auto_title && object->long_name) {
+    if (!dock->priv->auto_title && object->long_name) {
         title = object->long_name;
     }
     else if (object->master) {
@@ -475,12 +480,12 @@ gdl_dock_set_title (GdlDock *dock)
     
     if (!title) {
         /* set a default title in the long_name */
-        dock->_priv->auto_title = TRUE;
+        dock->priv->auto_title = TRUE;
         title = g_strdup_printf (
             _("Dock #%d"), GDL_DOCK_MASTER (object->master)->dock_number++);
     }
 
-    gtk_window_set_title (GTK_WINDOW (dock->_priv->window), title);
+    gtk_window_set_title (GTK_WINDOW (dock->priv->window), title);
 
     g_free (title);
 }
@@ -500,7 +505,7 @@ gdl_dock_notify_cb (GObject    *object,
     if (long_name)
     {
         dock = GDL_DOCK (object);
-        dock->_priv->auto_title = FALSE;
+        dock->priv->auto_title = FALSE;
         gdl_dock_set_title (dock);
     }
     g_free (long_name);
@@ -511,9 +516,9 @@ gdl_dock_destroy (GtkWidget *object)
 {
     GdlDock *dock = GDL_DOCK (object);
 
-    if (dock->_priv) {
-        GdlDockPrivate *priv = dock->_priv;
-        dock->_priv = NULL;
+    if (dock->priv) {
+        GdlDockPrivate *priv = dock->priv;
+        dock->priv = NULL;
 
         if (priv->window) {
             gtk_widget_destroy (priv->window);
@@ -633,8 +638,8 @@ gdl_dock_unmap (GtkWidget *widget)
             gtk_widget_unmap (child);
     }
     
-    if (dock->_priv->window)
-        gtk_widget_unmap (dock->_priv->window);
+    if (dock->priv->window)
+        gtk_widget_unmap (dock->priv->window);
 }
 
 static void
@@ -658,8 +663,8 @@ gdl_dock_show (GtkWidget *widget)
     GTK_WIDGET_CLASS (gdl_dock_parent_class)->show (widget);
     
     dock = GDL_DOCK (widget);
-    if (dock->_priv->floating && dock->_priv->window)
-        gtk_widget_show (dock->_priv->window);
+    if (dock->priv->floating && dock->priv->window)
+        gtk_widget_show (dock->priv->window);
 
     if (GDL_DOCK_IS_CONTROLLER (dock)) {
         gdl_dock_master_foreach_toplevel (GDL_DOCK_OBJECT_GET_MASTER (dock),
@@ -679,8 +684,8 @@ gdl_dock_hide (GtkWidget *widget)
     GTK_WIDGET_CLASS (gdl_dock_parent_class)->hide (widget);
     
     dock = GDL_DOCK (widget);
-    if (dock->_priv->floating && dock->_priv->window)
-        gtk_widget_hide (dock->_priv->window);
+    if (dock->priv->floating && dock->priv->window)
+        gtk_widget_hide (dock->priv->window);
 
     if (GDL_DOCK_IS_CONTROLLER (dock)) {
         gdl_dock_master_foreach_toplevel (GDL_DOCK_OBJECT_GET_MASTER (dock),
@@ -776,7 +781,7 @@ gdl_dock_reduce (GdlDockObject *object)
 
     } else if (!GDL_DOCK_OBJECT_ATTACHED (dock)) {
         /* if the user explicitly detached the object */
-        if (dock->_priv->floating)
+        if (dock->priv->floating)
             gtk_widget_hide (GTK_WIDGET (dock));
         else {
             GtkWidget *widget = GTK_WIDGET (object);
@@ -975,7 +980,7 @@ gdl_dock_reorder (GdlDockObject    *object,
     GdlDock *dock = GDL_DOCK (object);
     gboolean handled = FALSE;
     
-    if (dock->_priv->floating &&
+    if (dock->priv->floating &&
         new_position == GDL_DOCK_FLOATING &&
         dock->root == requestor) {
         
@@ -983,7 +988,7 @@ gdl_dock_reorder (GdlDockObject    *object,
             GdkRectangle *rect;
 
             rect = g_value_get_boxed (other_data);
-            gtk_window_move (GTK_WINDOW (dock->_priv->window),
+            gtk_window_move (GTK_WINDOW (dock->priv->window),
                              rect->x,
                              rect->y);
             handled = TRUE;
@@ -1018,8 +1023,8 @@ gdl_dock_present (GdlDockObject *object,
 {
     GdlDock *dock = GDL_DOCK (object);
 
-    if (dock->_priv->floating)
-        gtk_window_present (GTK_WINDOW (dock->_priv->window));
+    if (dock->priv->floating)
+        gtk_window_present (GTK_WINDOW (dock->priv->window));
 }
 
 
@@ -1337,19 +1342,19 @@ gdl_dock_xor_rect (GdlDock      *dock,
     GdkWindow* window = gtk_widget_get_window (GTK_WIDGET (dock));
     gdk_window_get_origin (window, &x, &y);
     
-    if (!dock->_priv->area_window) {
-        dock->_priv->area_window = gdl_preview_window_new ();
+    if (!dock->priv->area_window) {
+        dock->priv->area_window = gdl_preview_window_new ();
     }
 
     rect->x += x;
     rect->y += y;
     
-    gdl_preview_window_update (GDL_PREVIEW_WINDOW (dock->_priv->area_window), rect);
+    gdl_preview_window_update (GDL_PREVIEW_WINDOW (dock->priv->area_window), rect);
 }
 
 void
 gdl_dock_xor_rect_hide (GdlDock      *dock)
 {
-    if (dock->_priv->area_window)
-        gtk_widget_hide (dock->_priv->area_window);
+    if (dock->priv->area_window)
+        gtk_widget_hide (dock->priv->area_window);
 }

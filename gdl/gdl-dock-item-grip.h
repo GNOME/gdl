@@ -58,7 +58,7 @@ struct _GdlDockItemGrip {
     
     GdkWindow *title_window;
     
-    GdlDockItemGripPrivate *_priv;
+    GdlDockItemGripPrivate *priv;
 };
 
 struct _GdlDockItemGripClass {

@@ -44,7 +44,7 @@ typedef struct _GdlDockPlaceholderPrivate GdlDockPlaceholderPrivate;
 struct _GdlDockPlaceholder {
     GdlDockObject              object;
 
-    GdlDockPlaceholderPrivate *_priv;
+    GdlDockPlaceholderPrivate *priv;
 };
 
 struct _GdlDockPlaceholderClass {
