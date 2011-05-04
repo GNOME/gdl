@@ -35,8 +35,8 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
                                  cairo_t *cr)
 {
     GdlDockItemButtonImage *button_image;
-    GtkStyle *style;
-    GdkColor *color;
+    GtkStyleContext *context;
+    GdkRGBA color;
     
     g_return_val_if_fail (widget != NULL, 0);
     button_image = GDL_DOCK_ITEM_BUTTON_IMAGE (widget);
@@ -44,11 +44,10 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
     /* Set up the pen */
     cairo_set_line_width(cr, 1.0);
     
-    style = gtk_widget_get_style (widget);
-    g_return_val_if_fail (style != NULL, 0);
-    color = &style->fg[GTK_STATE_NORMAL];
-    cairo_set_source_rgba(cr, color->red / 65535.0,
-        color->green / 65535.0, color->blue / 65535.0, 0.55);
+    context = gtk_widget_get_style_context (widget);
+    gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
+    color.alpha = 0.55;
+    gdk_cairo_set_source_rgba(cr, &color);
 
     /* Draw the icon border */
     cairo_move_to (cr, 10.5, 2.5);
