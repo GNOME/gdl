@@ -19,8 +19,6 @@
 
 #include "gdl-preview-window.h"
 
-
-
 G_DEFINE_TYPE (GdlPreviewWindow, gdl_preview_window, GTK_TYPE_WINDOW);
 
 static void
@@ -45,9 +43,12 @@ gdl_preview_window_draw (GtkWidget *window,
                          cairo_t *cr)
 {
     GtkAllocation allocation;
-    GtkStyle *style;
+    GtkStyleContext *context;
+    GdkRGBA selected;
 
-    style = gtk_widget_get_style (window);
+    context = gtk_widget_get_style_context (window);
+    gtk_style_context_get_background_color (context, GTK_STATE_FLAG_SELECTED,
+                                            &selected);
 
     if (gtk_widget_get_app_paintable (window))
     {
@@ -60,8 +61,9 @@ gdl_preview_window_draw (GtkWidget *window,
         cairo_paint (cr);
 
         cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-        gdk_cairo_set_source_color (cr, &style->base[GTK_STATE_SELECTED]);
-        cairo_paint_with_alpha (cr, 0.25);
+        selected.alpha = 0.25;
+        gdk_cairo_set_source_rgba (cr, &selected);
+        cairo_paint (cr);
 
         cairo_rectangle (cr,
                          allocation.x + 0.5, allocation.y + 0.5,
@@ -70,7 +72,7 @@ gdl_preview_window_draw (GtkWidget *window,
     }
     else
     {
-        gdk_cairo_set_source_color (cr, &style->base[GTK_STATE_SELECTED]);
+        gdk_cairo_set_source_rgba (cr, &selected);
         cairo_paint (cr);
     }
 
@@ -80,17 +82,17 @@ gdl_preview_window_draw (GtkWidget *window,
 static void
 gdl_preview_window_class_init (GdlPreviewWindowClass *klass)
 {
-	GtkWidgetClass* widget_class = GTK_WIDGET_CLASS (klass);
+    GtkWidgetClass* widget_class = GTK_WIDGET_CLASS (klass);
 
-	widget_class->draw = gdl_preview_window_draw;
+    widget_class->draw = gdl_preview_window_draw;
 }
 
 
 GtkWidget*
 gdl_preview_window_new (void)
 {
-	return GTK_WIDGET (g_object_new (GDL_TYPE_PREVIEW_WINDOW,
-	                                 "type", GTK_WINDOW_POPUP, NULL));
+    return GTK_WIDGET (g_object_new (GDL_TYPE_PREVIEW_WINDOW,
+                                     "type", GTK_WINDOW_POPUP, NULL));
 }
 
 void
