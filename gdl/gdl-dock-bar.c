@@ -65,6 +65,8 @@ struct _GdlDockBarPrivate {
     GSList          *items;
     GtkOrientation   orientation;
     GdlDockBarStyle  dockbar_style;
+
+    glong layout_changed_id;
 };
 
 /* ----- Private functions ----- */
@@ -201,11 +203,7 @@ gdl_dock_bar_dispose (GObject *object)
     }
 
     if (priv->master) {
-        g_signal_handlers_disconnect_matched (priv->master,
-                                              G_SIGNAL_MATCH_DATA,
-                                              0, 0, NULL, NULL, dockbar);
-        g_object_unref (priv->master);
-        priv->master = NULL;
+        gdl_dock_bar_attach (dockbar, NULL);
     }
 
    G_OBJECT_CLASS (gdl_dock_bar_parent_class)->dispose (object);
@@ -398,20 +396,20 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
 {
     g_return_if_fail (dockbar != NULL);
     g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
-    
+
     if (dockbar->priv->master) {
-        g_signal_handlers_disconnect_matched (dockbar->priv->master,
-                                              G_SIGNAL_MATCH_DATA,
-                                              0, 0, NULL, NULL, dockbar);
+        g_signal_handler_disconnect (dockbar->priv->master,
+                                     dockbar->priv->layout_changed_id);
         g_object_unref (dockbar->priv->master);
     }
-    
+
     dockbar->priv->master = master;
     if (dockbar->priv->master) {
         g_object_ref (dockbar->priv->master);
-        g_signal_connect (dockbar->priv->master, "layout-changed",
-                          G_CALLBACK (gdl_dock_bar_layout_changed_cb),
-                          dockbar);
+        dockbar->priv->layout_changed_id =
+            g_signal_connect (dockbar->priv->master, "layout-changed",
+                              G_CALLBACK (gdl_dock_bar_layout_changed_cb),
+                              dockbar);
     }
 
     update_dock_items (dockbar, FALSE);
