@@ -64,6 +64,8 @@ struct _GdlDockLayoutPrivate {
     GtkListStore     *items_model;
     GtkListStore     *layouts_model;
 
+    glong             layout_changed_id;
+
     /* idle control */
     gboolean          idle_save_pending;
 };
@@ -1134,8 +1136,8 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
     g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
     
     if (layout->master) {
-        g_signal_handlers_disconnect_matched (layout->master, G_SIGNAL_MATCH_DATA,
-                                              0, 0, NULL, NULL, layout);
+        g_signal_handler_disconnect (layout->master,
+                                     layout->priv->layout_changed_id);
         g_object_unref (layout->master);
     }
     
@@ -1144,9 +1146,10 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
     layout->master = master;
     if (layout->master) {
         g_object_ref (layout->master);
-        g_signal_connect (layout->master, "layout-changed",
-                          (GCallback) gdl_dock_layout_layout_changed_cb,
-                          layout);
+        layout->priv->layout_changed_id =
+            g_signal_connect (layout->master, "layout-changed",
+                              (GCallback) gdl_dock_layout_layout_changed_cb,
+                              layout);
     }
 
     update_items_model (layout);
