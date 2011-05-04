@@ -1155,7 +1155,7 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
 /** 
 * gdl_dock_layout_load_layout:
 * @layout: The dock item. 
-* @name: The name of the layout to load.
+* @name: (allow-none): The name of the layout to load or %NULL for a default layout name.
 *
 * Loads the layout with the given name to the memory.
 * This will set #GdlDockLayout:dirty to %TRUE.
@@ -1194,8 +1194,8 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
 
 /** 
 * gdl_dock_layout_save_layout:
-* @layout: The dock item. 
-* @name: The name of the layout to save.
+* @layout: The dock item.
+* @name: (allow-none): The name of the layout to save or %NULL for a default layout name.
 *
 * Saves the @layout with the given name to the memory.
 * This will set #GdlDockLayout:dirty to %TRUE.
@@ -1247,7 +1247,6 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
 * Deletes the layout with the given name from the memory.
 * This will set #GdlDockLayout:dirty to %TRUE.
 */
-
 void
 gdl_dock_layout_delete_layout (GdlDockLayout *layout,
                                const gchar   *name)
@@ -1275,7 +1274,6 @@ gdl_dock_layout_delete_layout (GdlDockLayout *layout,
 *
 * Runs the layout manager.
 */
-
 void
 gdl_dock_layout_run_manager (GdlDockLayout *layout)
 {
@@ -1305,7 +1303,6 @@ gdl_dock_layout_run_manager (GdlDockLayout *layout)
 *
 * Returns: %TRUE if @layout successfully loaded else %FALSE
 */
-
 gboolean
 gdl_dock_layout_load_from_file (GdlDockLayout *layout,
                                 const gchar   *filename)
