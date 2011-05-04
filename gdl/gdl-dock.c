@@ -528,9 +528,10 @@ gdl_dock_dispose (GObject *object)
 }
 
 static void
-gdl_dock_get_preferred_width (GtkWidget *widget,
-                              gint      *minimum,
-                              gint      *natural)
+gdl_dock_get_size (GtkWidget     *widget,
+                   GtkOrientation orientation,
+                   gint          *minimum,
+                   gint          *natural)
 {
     GdlDock       *dock;
     GtkContainer  *container;
@@ -541,11 +542,25 @@ gdl_dock_get_preferred_width (GtkWidget *widget,
     dock = GDL_DOCK (widget);
     container = GTK_CONTAINER (widget);
 
+    *minimum = *natural = 0;
+
     /* make request to root */
-    if (dock->root && gtk_widget_get_visible (GTK_WIDGET (dock->root)))
-        gtk_widget_get_preferred_width (GTK_WIDGET (dock->root), minimum, natural);
-    else
-        *minimum = *natural = 0;
+    if (dock->root && gtk_widget_get_visible (GTK_WIDGET (dock->root))) {
+        if (orientation == GTK_ORIENTATION_HORIZONTAL) {
+            gtk_widget_get_preferred_width (GTK_WIDGET (dock->root), minimum, natural);
+        }
+        else {
+            gtk_widget_get_preferred_height (GTK_WIDGET (dock->root), minimum, natural);
+        }
+    }
+}
+
+static void
+gdl_dock_get_preferred_width (GtkWidget *widget,
+                              gint      *minimum,
+                              gint      *natural)
+{
+    gdl_dock_get_size (widget, GTK_ORIENTATION_HORIZONTAL, minimum, natural);
 }
 
 static void
@@ -553,20 +568,7 @@ gdl_dock_get_preferred_height (GtkWidget *widget,
                                gint      *minimum,
                                gint      *natural)
 {
-    GdlDock       *dock;
-    GtkContainer  *container;
-
-    g_return_if_fail (widget != NULL);
-    g_return_if_fail (GDL_IS_DOCK (widget));
-
-    dock = GDL_DOCK (widget);
-    container = GTK_CONTAINER (widget);
-
-    /* make request to root */
-    if (dock->root && gtk_widget_get_visible (GTK_WIDGET (dock->root)))
-        gtk_widget_get_preferred_height (GTK_WIDGET (dock->root), minimum, natural);
-    else
-        *minimum = *natural = 0;
+    gdl_dock_get_size (widget, GTK_ORIENTATION_VERTICAL, minimum, natural);
 }
 
 static void
