@@ -668,9 +668,8 @@ gdl_switcher_dispose (GObject *object)
     }
     g_object_unref (gconf_client);
 #endif
-    
-    g_slist_foreach (priv->buttons, (GFunc) button_free, NULL);
-    g_slist_free (priv->buttons);
+
+    g_slist_free_full (priv->buttons, (GDestroyNotify)button_free);
     priv->buttons = NULL;
 
     G_OBJECT_CLASS (gdl_switcher_parent_class)->dispose (object);
