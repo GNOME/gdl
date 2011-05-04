@@ -41,6 +41,7 @@
 static void     gdl_dock_master_class_init    (GdlDockMasterClass *klass);
 
 static void     gdl_dock_master_dispose       (GObject            *g_object);
+static void     gdl_dock_master_finalize      (GObject            *g_object);
 static void     gdl_dock_master_set_property  (GObject            *object,
                                                guint               prop_id,
                                                const GValue       *value,
@@ -133,6 +134,7 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
     object_class = G_OBJECT_CLASS (klass);
 
     object_class->dispose = gdl_dock_master_dispose;
+    object_class->finalize = gdl_dock_master_finalize;
     object_class->set_property = gdl_dock_master_set_property;
     object_class->get_property = gdl_dock_master_get_property;
 
@@ -260,9 +262,7 @@ ht_foreach_build_slist (gpointer  key,
 static void
 gdl_dock_master_dispose (GObject *object)
 {
-    GdlDockMaster *master;
-
-    master = GDL_DOCK_MASTER (object);
+    GdlDockMaster *master = GDL_DOCK_MASTER (object);
 
     if (master->toplevel_docks) {
         g_list_foreach (master->toplevel_docks,
@@ -270,7 +270,7 @@ gdl_dock_master_dispose (GObject *object)
         g_list_free (master->toplevel_docks);
         master->toplevel_docks = NULL;
     }
-    
+
     if (master->dock_objects) {
         GSList *alive_docks = NULL;
         g_hash_table_foreach (master->dock_objects,
@@ -279,13 +279,15 @@ gdl_dock_master_dispose (GObject *object)
             gdl_dock_object_unbind (GDL_DOCK_OBJECT (alive_docks->data));
             alive_docks = g_slist_delete_link (alive_docks, alive_docks);
         }
-        
-        g_hash_table_destroy (master->dock_objects);
+
+        g_hash_table_unref (master->dock_objects);
         master->dock_objects = NULL;
     }
 
-    if (master->priv->idle_layout_changed_id)
+    if (master->priv->idle_layout_changed_id) {
         g_source_remove (master->priv->idle_layout_changed_id);
+        master->priv->idle_layout_changed_id = 0;
+    }
 
     if (master->priv->drag_request) {
         if (G_IS_VALUE (&master->priv->drag_request->extra))
@@ -294,9 +296,6 @@ gdl_dock_master_dispose (GObject *object)
         g_free (master->priv->drag_request);
         master->priv->drag_request = NULL;
     }
-
-    g_free (master->priv->default_title);
-    master->priv->default_title = NULL;
 
     if (master->priv->locked_items) {
         g_hash_table_unref (master->priv->locked_items);
@@ -314,6 +313,16 @@ gdl_dock_master_dispose (GObject *object)
     }
 
     G_OBJECT_CLASS (gdl_dock_master_parent_class)->dispose (object);
+}
+
+static void
+gdl_dock_master_finalize (GObject *object)
+{
+    GdlDockMaster *master = GDL_DOCK_MASTER (object);
+
+    g_free (master->priv->default_title);
+
+    G_OBJECT_CLASS (gdl_dock_master_parent_class)->finalize (object);
 }
 
 static void 
