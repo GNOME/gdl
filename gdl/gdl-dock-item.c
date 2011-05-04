@@ -91,8 +91,6 @@ static void  gdl_dock_item_size_allocate (GtkWidget *widget,
 static void  gdl_dock_item_map           (GtkWidget *widget);
 static void  gdl_dock_item_unmap         (GtkWidget *widget);
 static void  gdl_dock_item_realize       (GtkWidget *widget);
-static void  gdl_dock_item_style_set     (GtkWidget *widget,
-                                          GtkStyle  *previous_style);
 
 static gint  gdl_dock_item_button_changed (GtkWidget *widget,
                                            GdkEventButton *event);
@@ -229,7 +227,6 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     widget_class->get_preferred_width = gdl_dock_item_get_preferred_width;
     widget_class->get_preferred_height = gdl_dock_item_get_preferred_height;
     widget_class->size_allocate = gdl_dock_item_size_allocate;
-    widget_class->style_set = gdl_dock_item_style_set;
     widget_class->button_press_event = gdl_dock_item_button_changed;
     widget_class->button_release_event = gdl_dock_item_button_changed;
     widget_class->motion_notify_event = gdl_dock_item_motion;
@@ -734,7 +731,8 @@ gdl_dock_item_get_preferred_width (GtkWidget *widget,
 {
     GdlDockItem    *item;
     gint child_min, child_nat;
-    GtkStyle       *style;
+    GtkStyleContext *context;
+    GtkBorder padding;
 
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
@@ -765,10 +763,12 @@ gdl_dock_item_get_preferred_width (GtkWidget *widget,
             *minimum = *natural = 0;
     }
 
-    style = gtk_widget_get_style (widget);
+    context = gtk_widget_get_style_context (widget);
+    gtk_style_context_get_padding (context, gtk_style_context_get_state (context),
+                                   &padding);
 
-    *minimum += style->xthickness * 2;
-    *natural += style->xthickness * 2;
+    *minimum += padding.left + padding.right;
+    *natural += padding.left + padding.right;
 }
 
 static void
@@ -778,7 +778,8 @@ gdl_dock_item_get_preferred_height (GtkWidget *widget,
 {
     GdlDockItem    *item;
     gint child_min, child_nat;
-    GtkStyle       *style;
+    GtkStyleContext *context;
+    GtkBorder padding;
 
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
@@ -809,10 +810,12 @@ gdl_dock_item_get_preferred_height (GtkWidget *widget,
         }
     }
 
-    style = gtk_widget_get_style (widget);
+    context = gtk_widget_get_style_context (widget);
+    gtk_style_context_get_padding (context, gtk_style_context_get_state (context),
+                                   &padding);
 
-    *minimum += style->ythickness * 2;
-    *natural += style->ythickness * 2;
+    *minimum += padding.top + padding.bottom;
+    *natural += padding.top + padding.bottom;
 }
 
 static void
@@ -841,16 +844,20 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
 
     if (item->child && gtk_widget_get_visible (item->child)) {
         GtkAllocation  child_allocation;
-        GtkStyle      *style;
+        GtkStyleContext *context;
+        GtkStateFlags state;
+        GtkBorder padding;
 
-        style = gtk_widget_get_style (widget);
+        context = gtk_widget_get_style_context (widget);
+        state = gtk_style_context_get_state (context);
+        gtk_style_context_get_padding (context, state, &padding);
 
-        child_allocation.x = style->xthickness;
-        child_allocation.y = style->ythickness;
+        child_allocation.x = padding.left;
+        child_allocation.y = padding.top;
         child_allocation.width = allocation->width
-            - 2 * style->xthickness;
+            - padding.left - padding.right;
         child_allocation.height = allocation->height
-            - 2 * style->ythickness;
+            - padding.top - padding.bottom;
         
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item)) {
             GtkAllocation grip_alloc = child_allocation;
@@ -961,34 +968,14 @@ gdl_dock_item_realize (GtkWidget *widget)
     gtk_widget_set_window (widget, window);
     gdk_window_set_user_data (window, widget);
 
-    gtk_widget_style_attach (widget);
-    gtk_style_set_background (gtk_widget_get_style (widget), window,
-                              gtk_widget_get_state (GTK_WIDGET (item)));
+    gtk_style_context_set_background (gtk_widget_get_style_context (widget),
+                                      window);
 
     if (item->child)
         gtk_widget_set_parent_window (item->child, window);
 
     if (item->priv->grip)
         gtk_widget_set_parent_window (item->priv->grip, window);
-}
-
-static void
-gdl_dock_item_style_set (GtkWidget *widget,
-                         GtkStyle  *previous_style)
-{
-    GdkWindow *window;
-
-    g_return_if_fail (widget != NULL);
-    g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
-
-    if (gtk_widget_get_realized (widget) &&
-            gtk_widget_get_has_window (widget))
-    {
-        window = gtk_widget_get_window (widget);
-        gtk_style_set_background (gtk_widget_get_style (widget),
-                                  window,
-                                  gtk_widget_get_state (widget));
-    }
 }
 
 #define EVENT_IN_GRIP_EVENT_WINDOW(ev,gr) \
