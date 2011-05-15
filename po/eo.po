@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gdl&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2011-05-04 11:11+0000\n"
-"PO-Revision-Date: 2011-05-15 08:13+0200\n"
+"PO-Revision-Date: 2011-05-15 08:21+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
 "Language: eo\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../gdl/gdl-dock-item-grip.c:384
 msgid "Iconify this dock"
-msgstr "Bildsimboligi ĉi tiun dokon"
+msgstr "Piktogramigi ĉi tiun dokon"
 
 #: ../gdl/gdl-dock-item-grip.c:386
 msgid "Close this dock"
@@ -134,7 +134,7 @@ msgstr "Provi bindi sendependan eron %p"
 
 #: ../gdl/gdl-dock-layout.c:121 ../gdl/gdl-dock-bar.c:108
 msgid "Master"
-msgstr "Ĉefa"
+msgstr "Ĉefo"
 
 #: ../gdl/gdl-dock-layout.c:122
 msgid "GdlDockMaster object which the layout object is attached to"
@@ -142,7 +142,7 @@ msgstr ""
 
 #: ../gdl/gdl-dock-layout.c:129
 msgid "Dirty"
-msgstr "Malpura"
+msgstr "Malpure"
 
 #: ../gdl/gdl-dock-layout.c:130
 msgid "True if the layouts have changed and need to be saved to a file"
@@ -289,7 +289,7 @@ msgstr "Pozicio de la dividilo en bilderoj"
 
 #: ../gdl/gdl-dock-placeholder.c:148
 msgid "Sticky"
-msgstr "Fiksa"
+msgstr "Fikse"
 
 #: ../gdl/gdl-dock-placeholder.c:149
 msgid ""
@@ -348,18 +348,16 @@ msgid "X Coordinate"
 msgstr "X-koordinato"
 
 #: ../gdl/gdl-dock-placeholder.c:197
-#, fuzzy
 msgid "X coordinate for dock when floating"
-msgstr "X-koordinato por doko se glitas"
+msgstr "X-koordinato de glitanta doko"
 
 #: ../gdl/gdl-dock-placeholder.c:203
 msgid "Y Coordinate"
 msgstr "Y-koordinato"
 
 #: ../gdl/gdl-dock-placeholder.c:204
-#, fuzzy
 msgid "Y coordinate for dock when floating"
-msgstr "Y-koordinato por doko se glitas"
+msgstr "Y-koordinato de glitanta doko"
 
 #: ../gdl/gdl-dock-placeholder.c:496
 msgid "Attempt to dock a dock object to an unbound placeholder"
@@ -420,7 +418,7 @@ msgstr "Glita X"
 
 #: ../gdl/gdl-dock.c:212
 msgid "X coordinate for a floating dock"
-msgstr "X-koordinato por la glita doko"
+msgstr "X-koordinato por glita doko"
 
 #: ../gdl/gdl-dock.c:219
 msgid "Float Y"
@@ -428,7 +426,7 @@ msgstr "Glita Y"
 
 #: ../gdl/gdl-dock.c:220
 msgid "Y coordinate for a floating dock"
-msgstr "Y-koordinato por la glita doko"
+msgstr "Y-koordinato por glita doko"
 
 #: ../gdl/gdl-dock.c:481
 #, c-format
