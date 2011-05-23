@@ -1,3 +1,9 @@
+Changes in 3.0.2
+
+* Bug 649254 - Use the gobject way to create the private structs
+* Bug 649258 - Use the new GtkStyleContext
+* Bug 649259 - Remove deprecated methods (all Ignacio Casal Quinteiro (nacho))
+
 Changes in 3.0.1
 
 * Set GtkJunctionSides for GdlSwitcher toggle buttons (Christian Hergert)
