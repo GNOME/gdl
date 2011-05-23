@@ -88,6 +88,7 @@ gdl_dock_item_lock
 gdl_dock_item_unlock
 gdl_dock_item_set_default_position
 gdl_dock_item_preferred_size
+GdlDockItemClassPrivate
 GdlDockItemPrivate
 <SUBSECTION Standard>
 GDL_DOCK_ITEM
@@ -123,6 +124,7 @@ GDL_DOCK_TABLABEL_GET_CLASS
 GdlDockNotebook
 GdlDockNotebookClass
 gdl_dock_notebook_new
+GdlDockNotebookClassPrivate
 <SUBSECTION Standard>
 GDL_DOCK_NOTEBOOK
 GDL_IS_DOCK_NOTEBOOK
@@ -158,6 +160,7 @@ GdlSwitcherClass
 gdl_switcher_new
 gdl_switcher_insert_page
 GdlSwitcherPrivate
+GdlSwitcherClassPrivate
 <SUBSECTION Standard>
 GDL_SWITCHER
 GDL_IS_SWITCHER
