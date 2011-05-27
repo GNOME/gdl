@@ -189,6 +189,7 @@ GtkWidget     *gdl_dock_item_get_grip          (GdlDockItem *item);
 void           gdl_dock_item_hide_grip         (GdlDockItem *item);
 void           gdl_dock_item_show_grip         (GdlDockItem *item);
 void           gdl_dock_item_notify_selected   (GdlDockItem *item);
+void           gdl_dock_item_notify_deselected (GdlDockItem *item);
 
 /* bind and unbind items to a dock */
 void           gdl_dock_item_bind              (GdlDockItem *item,

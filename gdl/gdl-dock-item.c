@@ -157,6 +157,7 @@ enum {
     DOCK_DRAG_MOTION,
     DOCK_DRAG_END,
     SELECTED,
+    DESELECTED,
     LAST_SIGNAL
 };
 
@@ -384,6 +385,22 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
      */
     gdl_dock_item_signals [SELECTED] =
         g_signal_new ("selected",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_FIRST,
+                      0,
+                      NULL,
+                      NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE,
+                      0);
+
+    /**
+     * GdlDockItem::deselected:
+     *
+     * Signals that this dock has been deselected in a switcher.
+     */
+    gdl_dock_item_signals [DESELECTED] =
+        g_signal_new ("deselected",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_FIRST,
                       0,
@@ -1926,6 +1943,19 @@ void
 gdl_dock_item_notify_selected (GdlDockItem *item)
 {
     g_signal_emit (item, gdl_dock_item_signals [SELECTED], 0);
+}
+
+/**
+ * gdl_dock_item_notify_deselected:
+ * @item: the dock item to emit a deselected signal on.
+ * 
+ * This function emits the deselected signal. It is used by #GdlSwitcher
+ * to let clients know that this item has been deselected.
+ **/
+void
+gdl_dock_item_notify_deselected (GdlDockItem *item)
+{
+    g_signal_emit (item, gdl_dock_item_signals [DESELECTED], 0);
 }
 
 /* convenient function (and to preserve source compat) */
