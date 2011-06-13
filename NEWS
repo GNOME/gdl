@@ -1,3 +1,8 @@
+Changes in 3.1.2
+
+* Add a deselected signal to GdlDockItem (James Liggett)
+* Use "const" instead G_CONST_RETURN (Javier Jardon)
+
 Changes in 3.1.1
 
 * Bug 649254 - Use the gobject way to create the private structs
