@@ -1,3 +1,7 @@
+Changes in 3.1.4
+
+* Bug 655099 - Resizing one DockItem affects another
+
 Changes in 3.1.2
 
 * Add a deselected signal to GdlDockItem (James Liggett)
