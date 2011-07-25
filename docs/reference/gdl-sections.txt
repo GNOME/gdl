@@ -79,6 +79,7 @@ gdl_dock_item_get_grip
 gdl_dock_item_hide_grip
 gdl_dock_item_show_grip
 gdl_dock_item_notify_selected
+gdl_dock_item_notify_deselected
 gdl_dock_item_bind
 gdl_dock_item_unbind
 gdl_dock_item_hide_item
