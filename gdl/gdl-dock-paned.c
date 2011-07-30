@@ -365,17 +365,24 @@ gdl_dock_paned_request_foreach (GdlDockObject *object,
                                 gpointer       user_data)
 {
     struct {
+        GtkWidget *parent;
         gint            x, y;
         GdlDockRequest *request;
         gboolean        may_dock;
     } *data = user_data;
-    
+
+    gint child_x, child_y;
     GdlDockRequest my_request;
     gboolean       may_dock;
     
+    /* Translate parent coordinate to child coordinate */
+    gtk_widget_translate_coordinates (data->parent, GTK_WIDGET (object), data->x, data->y, &child_x, &child_y);
+
     my_request = *data->request;
-    may_dock = gdl_dock_object_dock_request (object, data->x, data->y, &my_request);
+    may_dock = gdl_dock_object_dock_request (object, child_x, child_y, &my_request);
     if (may_dock) {
+        /* Translate request coordinate back to parent coordinate */
+        gtk_widget_translate_coordinates (GTK_WIDGET (object), data->parent, my_request.rect.x, my_request.rect.y, &my_request.rect.x, &my_request.rect.y);
         data->may_dock = TRUE;
         *data->request = my_request;
     }
@@ -453,14 +460,18 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
             
         } else { /* Otherwise try our children. */
             struct {
+                GtkWidget *parent;
                 gint            x, y;
                 GdlDockRequest *request;
                 gboolean        may_dock;
             } data;
 
             /* give them coordinates in their allocation system... the
-               GtkPaned has no window, so our children allocation
-               coordinates are our window coordinates */
+               GtkPaned has its own window in Gtk 3.1.6, so our children
+               allocation coordinates has to be translated to and from
+               our window coordinates. It is done in the
+               gdl_dock_paned_request_foreach function. */
+            data.parent = GTK_WIDGET (object);
             data.x = rel_x;
             data.y = rel_y;
             data.request = &my_request;
