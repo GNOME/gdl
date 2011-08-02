@@ -55,7 +55,7 @@ struct _GdlDockBar {
 };
 
 struct _GdlDockBarClass {
-    GtkVBoxClass parent_class;
+    GtkBoxClass parent_class;
 };
 
 GType      gdl_dock_bar_get_type            (void); 

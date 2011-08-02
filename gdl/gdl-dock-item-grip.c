@@ -62,13 +62,13 @@ G_DEFINE_TYPE (GdlDockItemGrip, gdl_dock_item_grip, GTK_TYPE_CONTAINER);
 GtkWidget*
 gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
 {
-    GtkHBox *label_box;
+    GtkBox *label_box;
     GtkImage *image;
     GtkLabel *label;
     gchar *stock_id = NULL;
     gchar *title = NULL;
   
-    label_box = (GtkHBox*)gtk_hbox_new (FALSE, 0);
+    label_box = (GtkBox*)gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     
     g_object_get (G_OBJECT (grip->item), "stock-id", &stock_id, NULL);
     if(stock_id) {   
