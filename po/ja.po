@@ -8,87 +8,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl gnome-2-30\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gdl&component=general\n"
-"POT-Creation-Date: 2010-08-06 08:10+0000\n"
-"PO-Revision-Date: 2009-03-24 00:10+0900\n"
-"Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-08-12 22:29+0000\n"
+"PO-Revision-Date: 2011-09-11 00:10+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-dock-item-grip.c:342
+#: ../gdl/gdl-dock-item-grip.c:384
 msgid "Iconify this dock"
 msgstr "このドックをアイコン化します"
 
-#: ../gdl/gdl-dock-item-grip.c:344
+#: ../gdl/gdl-dock-item-grip.c:386
 msgid "Close this dock"
 msgstr "このドックを閉じます"
 
-#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/gdl-dock-item-grip.c:726 ../gdl/gdl-dock-tablabel.c:128
 msgid "Controlling dock item"
 msgstr "コントロールするドッキング・アイテム"
 
-#: ../gdl/gdl-dock-item-grip.c:663
+#: ../gdl/gdl-dock-item-grip.c:727
 msgid "Dockitem which 'owns' this grip"
 msgstr "このグリップを所有している組み込みアイテムです"
 
-#: ../gdl/gdl-dock-item.c:254
+#: ../gdl/gdl-dock-item.c:267
 msgid "Orientation"
 msgstr "向き"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock-item.c:268
 msgid "Orientation of the docking item"
 msgstr "アイテムをドッキングする向きです"
 
-#: ../gdl/gdl-dock-item.c:270
+#: ../gdl/gdl-dock-item.c:283
 msgid "Resizable"
 msgstr "サイズ変更可能"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:284
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "有効にすると、GtkPanel 型のウィジェットの中にドッキングしたらアイテムの大きさ"
 "を変更できます"
 
-#: ../gdl/gdl-dock-item.c:278
+#: ../gdl/gdl-dock-item.c:291
 msgid "Item behavior"
 msgstr "アイテムの挙動"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:292
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "ドッキングするアイテムの一般的な挙動 (可動式か、固定式か) を設定します"
 
-#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:300 ../gdl/gdl-dock-master.c:152
 msgid "Locked"
 msgstr "ロック"
 
-#: ../gdl/gdl-dock-item.c:288
+#: ../gdl/gdl-dock-item.c:301
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "有効にすると、ドッキングしたアイテムをドラッグできなくなり、把手も表示しませ"
 "ん"
 
-#: ../gdl/gdl-dock-item.c:296
+#: ../gdl/gdl-dock-item.c:309
 msgid "Preferred width"
 msgstr "優先する幅"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:310
 msgid "Preferred width for the dock item"
 msgstr "ドッキングするアイテムで優先する幅です"
 
-#: ../gdl/gdl-dock-item.c:303
+#: ../gdl/gdl-dock-item.c:316
 msgid "Preferred height"
 msgstr "優先する高さ"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:317
 msgid "Preferred height for the dock item"
 msgstr "ドッキングするアイテムで優先する高さです"
 
-#: ../gdl/gdl-dock-item.c:592
+#: ../gdl/gdl-dock-item.c:662
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -97,7 +97,7 @@ msgstr ""
 "ドック・オブジェクト(%p 種類:%s) を %s の中に追加できません。GdlDock もしくは"
 "他の複合型のドック・オブジェクトを利用してください。"
 
-#: ../gdl/gdl-dock-item.c:599
+#: ../gdl/gdl-dock-item.c:669
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -106,70 +106,70 @@ msgstr ""
 "%s のウィジットを %s に追加しようとしていますが、これは同時に一つのウィジット"
 "しか保持できません; 既に %s のウィジットを保持しています"
 
-#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
+#: ../gdl/gdl-dock-item.c:1355 ../gdl/gdl-dock-item.c:1405
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "%2$s のドック・オブジェクトは %1$s のドッキング形式をサポートしていません"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1443
+#: ../gdl/gdl-dock-item.c:1513
 msgid "UnLock"
 msgstr "ロックの解除"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1450
+#: ../gdl/gdl-dock-item.c:1520
 msgid "Hide"
 msgstr "隠す"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1455
+#: ../gdl/gdl-dock-item.c:1525
 msgid "Lock"
 msgstr "ロックする"
 
-#: ../gdl/gdl-dock-item.c:1693
+#: ../gdl/gdl-dock-item.c:1763
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "未バインドのアイテム %p のバインドを試みます"
 
-#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
+#: ../gdl/gdl-dock-layout.c:121 ../gdl/gdl-dock-bar.c:108
 msgid "Master"
-msgstr "マスタ"
+msgstr "マスター"
 
-#: ../gdl/gdl-dock-layout.c:123
+#: ../gdl/gdl-dock-layout.c:122
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr ""
 "レイアウト・オブジェクトが貼り付けられている GdlDockMaster オブジェクトです"
 
-#: ../gdl/gdl-dock-layout.c:130
+#: ../gdl/gdl-dock-layout.c:129
 msgid "Dirty"
 msgstr "未保存"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:130
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "レイアウトが変更されており、ファイルに保存する必要がある場合に true になりま"
 "す"
 
-#: ../gdl/gdl-dock-layout.c:563
+#: ../gdl/gdl-dock-layout.c:561
 #, c-format
 msgid "Could not load layout user interface file '%s'"
 msgstr ""
-"レイアウトのユーザ・インタフェース・ファイル '%s' を読み込めませんでした"
+"レイアウトのユーザー・インターフェース・ファイル '%s' を読み込めませんでした"
 
-#: ../gdl/gdl-dock-layout.c:620
+#: ../gdl/gdl-dock-layout.c:618
 msgid "Visible"
 msgstr "可視"
 
-#: ../gdl/gdl-dock-layout.c:627
+#: ../gdl/gdl-dock-layout.c:625
 msgid "Item"
 msgstr "アイテム"
 
-#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
+#: ../gdl/gdl-dock-layout.c:710 ../gdl/gdl-dock-object.c:115
 msgid "Name"
 msgstr "名前"
 
-#: ../gdl/gdl-dock-layout.c:770
+#: ../gdl/gdl-dock-layout.c:768
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
@@ -177,86 +177,86 @@ msgid ""
 msgstr ""
 "レイアウトを読み込んでいます: '%s' というドック・オブジェクトを生成できません"
 
-#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
+#: ../gdl/gdl-dock-master.c:145 ../gdl/gdl-dock.c:188
 msgid "Default title"
 msgstr "デフォルトのタイトル"
 
-#: ../gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-master.c:146
 msgid "Default title for newly created floating docks"
 msgstr "新しく生成した可動式のドックのデフォルトのタイトル"
 
-#: ../gdl/gdl-dock-master.c:148
+#: ../gdl/gdl-dock-master.c:153
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"1 に設定すると、マスタにバインドされているすべてのドッキング・アイテムが固定"
-"されます; 0 の場合は、すべてのドッキング・アイテムの固定は解除されます; -1 の"
-"場合、アイテムが整列して表示されなくなります"
+"1 に設定すると、マスターにバインドされているすべてのドッキング・アイテムが固"
+"定されます; 0 の場合は、すべてのドッキング・アイテムの固定は解除されます; -1 "
+"の場合、アイテムが整列して表示されなくなります"
 
-#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
+#: ../gdl/gdl-dock-master.c:161 ../gdl/gdl-switcher.c:778
 msgid "Switcher Style"
 msgstr "スイッチャーのスタイル"
 
-#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
+#: ../gdl/gdl-dock-master.c:162 ../gdl/gdl-switcher.c:779
 msgid "Switcher buttons style"
 msgstr "スィッチャー・ボタンのスタイルです"
 
-#: ../gdl/gdl-dock-master.c:763
+#: ../gdl/gdl-dock-master.c:772
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
-"マスタ %p: オブジェクト %p[%s] をハッシュに追加できません。その名前を持つアイ"
-"テム (%p) が既に存在します。"
+"マスター %p: オブジェクト %p[%s] をハッシュに追加できません。その名前を持つア"
+"イテム (%p) が既に存在します。"
 
-#: ../gdl/gdl-dock-master.c:935
+#: ../gdl/gdl-dock-master.c:944
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
-"新しいドック・コントローラ %p は自動です。手動のドック・オブジェクトのみ、コ"
-"ントローラに名前を付けてください。"
+"新しいドック・コントローラー %p は自動です。手動のドック・オブジェクトのみ、"
+"コントローラーに名前を付けてください。"
 
-#: ../gdl/gdl-dock-notebook.c:134
+#: ../gdl/gdl-dock-notebook.c:137
 msgid "Page"
 msgstr "ページ"
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:138
 msgid "The index of the current page"
 msgstr "現在のページのインデックスです"
 
-#: ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-object.c:116
 msgid "Unique name for identifying the dock object"
 msgstr "ドック・オブジェクトを特定するためのユニークな名前です"
 
-#: ../gdl/gdl-dock-object.c:127
+#: ../gdl/gdl-dock-object.c:123
 msgid "Long name"
 msgstr "名前"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:124
 msgid "Human readable name for the dock object"
 msgstr "人間が判読できるドック・オブジェクトの名前です"
 
-#: ../gdl/gdl-dock-object.c:134
+#: ../gdl/gdl-dock-object.c:130
 msgid "Stock Icon"
 msgstr "ストック・アイコン"
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:131
 msgid "Stock icon for the dock object"
 msgstr "ドック・オブジェクトのストック・アイコンです"
 
-#: ../gdl/gdl-dock-object.c:141
+#: ../gdl/gdl-dock-object.c:137
 msgid "Dock master"
-msgstr "ドック・マスタ"
+msgstr "ドック・マスター"
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:138
 msgid "Dock master this dock object is bound to"
-msgstr "このドック・オブジェクトがバインドされているドック・マスタです"
+msgstr "このドック・オブジェクトがバインドされているドック・マスターです"
 
-#: ../gdl/gdl-dock-object.c:444
+#: ../gdl/gdl-dock-object.c:435
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -265,7 +265,7 @@ msgstr ""
 "ドックオブジェクト %p (オブジェクトタイプは %s) 内で gdl_dock_object_dock を"
 "呼び出しましたが、このメソッドは実装されていません"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:574
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -274,112 +274,120 @@ msgstr ""
 "ドック操作はバインドされていないオブジェクト %p を要求しました。アプリケー"
 "ションがクラッシュするかも知れません。"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:581
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "異なるマスタに所属しているので、 %p を %p にドックできません"
+msgstr "異なるマスターに所属しているので、 %p を %p にドックできません"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:623
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
-"%p に既にバインドされているドックオブジェクト%p (現在のマスタ: %p) をバインド"
-"しようと試みています"
+"%p に既にバインドされているドックオブジェクト%p (現在のマスター: %p) をバイン"
+"ドしようと試みています"
 
-#: ../gdl/gdl-dock-paned.c:131
+#: ../gdl/gdl-dock-paned.c:128
 msgid "Position"
 msgstr "位置"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:129
 msgid "Position of the divider in pixels"
 msgstr "区切りの位置 (ピクセル単位)"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:148
 msgid "Sticky"
 msgstr "スティッキー"
 
-#: ../gdl/gdl-dock-placeholder.c:145
+#: ../gdl/gdl-dock-placeholder.c:149
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-"ホストが再度ドックされた時に、プレースホルダがホストに付いていくかヒエラル"
+"ホストが再度ドックされた時に、プレースホルダーがホストに付いていくかヒエラル"
 "キーを上がっていくか設定します。"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:156
 msgid "Host"
 msgstr "ホスト"
 
-#: ../gdl/gdl-dock-placeholder.c:153
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "The dock object this placeholder is attached to"
-msgstr "このプレースホルダが張り付いているドックオブジェクト"
+msgstr "このプレースホルダーが張り付いているドックオブジェクト"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:164
 msgid "Next placement"
 msgstr "次の配置"
 
-#: ../gdl/gdl-dock-placeholder.c:161
+#: ../gdl/gdl-dock-placeholder.c:165
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
 "ドックするリクエストがあった時に、アイテムがドックされる場所を指定します"
 
-#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
+#: ../gdl/gdl-dock-placeholder.c:174 ../gdl/gdl-dock.c:195
 msgid "Width"
 msgstr "幅"
 
-#: ../gdl/gdl-dock-placeholder.c:171
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "ドックを格納した時のウィジェットの幅です"
 
-#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
+#: ../gdl/gdl-dock-placeholder.c:182 ../gdl/gdl-dock.c:203
 msgid "Height"
 msgstr "高さ"
 
-#: ../gdl/gdl-dock-placeholder.c:179
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "ドックを格納した時のウィジェットの高さです"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:189
 msgid "Floating Toplevel"
 msgstr "可動式のトップレベル"
 
-#: ../gdl/gdl-dock-placeholder.c:186
+#: ../gdl/gdl-dock-placeholder.c:190
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr ""
 "トップレベルのドックを取り外す際にドックを格納する部分を表示するかどうかです"
 
-#: ../gdl/gdl-dock-placeholder.c:192
-msgid "X-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:196
+#, fuzzy
+#| msgid "X-Coordinate"
+msgid "X Coordinate"
 msgstr "X座標"
 
-#: ../gdl/gdl-dock-placeholder.c:193
-msgid "X-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:197
+#, fuzzy
+#| msgid "X-Coordinate for dock when floating"
+msgid "X coordinate for dock when floating"
 msgstr "取り外したドックを表示する位置 (X座標) です"
 
-#: ../gdl/gdl-dock-placeholder.c:199
-msgid "Y-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:203
+#, fuzzy
+#| msgid "Y-Coordinate"
+msgid "Y Coordinate"
 msgstr "Y座標"
 
-#: ../gdl/gdl-dock-placeholder.c:200
-msgid "Y-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:204
+#, fuzzy
+#| msgid "Y-Coordinate for dock when floating"
+msgid "Y coordinate for dock when floating"
 msgstr "取り外したドックを表示する位置 (Y座標) です"
 
-#: ../gdl/gdl-dock-placeholder.c:495
+#: ../gdl/gdl-dock-placeholder.c:496
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr ""
-"バインドされていないプレースホルダにドックオブジェクトをドックしてみます"
+"バインドされていないプレースホルダーにドックオブジェクトをドックしてみます"
 
-#: ../gdl/gdl-dock-placeholder.c:619
+#: ../gdl/gdl-dock-placeholder.c:608
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 "オブジェクト (%p) から取り外しシグナルを受け取りましたが、このオブジェクトは"
 "これのホスト %p ではありません"
 
-#: ../gdl/gdl-dock-placeholder.c:644
+#: ../gdl/gdl-dock-placeholder.c:633
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -391,56 +399,56 @@ msgstr ""
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "タブラベルを '持つ' ドックアイテム"
 
-#: ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-bar.c:109
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr ""
 "ドックバー・ウィジットが取り付けられている GdlDockMaster オブジェクトです"
 
-#: ../gdl/gdl-dock-bar.c:115
+#: ../gdl/gdl-dock-bar.c:116
 msgid "Dockbar style"
 msgstr "ドックバーのスタイル"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:117
 msgid "Dockbar style to show items on it"
 msgstr "ドックバーに表示するアイテムのスタイルです"
 
-#: ../gdl/gdl-dock.c:178
+#: ../gdl/gdl-dock.c:180
 msgid "Floating"
 msgstr "可動式"
 
-#: ../gdl/gdl-dock.c:179
+#: ../gdl/gdl-dock.c:181
 msgid "Whether the dock is floating in its own window"
 msgstr "ドックを取り外してウィンドウ上を移動できるかどうかです"
 
-#: ../gdl/gdl-dock.c:187
+#: ../gdl/gdl-dock.c:189
 msgid "Default title for the newly created floating docks"
 msgstr "新しく生成した可動式ドックのデフォルトのタイトルです"
 
-#: ../gdl/gdl-dock.c:194
+#: ../gdl/gdl-dock.c:196
 msgid "Width for the dock when it's of floating type"
 msgstr "ドックを取り外した時の幅です"
 
-#: ../gdl/gdl-dock.c:202
+#: ../gdl/gdl-dock.c:204
 msgid "Height for the dock when it's of floating type"
 msgstr "ドックを取り外した時の高さです"
 
-#: ../gdl/gdl-dock.c:209
+#: ../gdl/gdl-dock.c:211
 msgid "Float X"
 msgstr "可動時のX座標"
 
-#: ../gdl/gdl-dock.c:210
+#: ../gdl/gdl-dock.c:212
 msgid "X coordinate for a floating dock"
 msgstr "取り外したドックのX座標です"
 
-#: ../gdl/gdl-dock.c:217
+#: ../gdl/gdl-dock.c:219
 msgid "Float Y"
 msgstr "Y座標"
 
-#: ../gdl/gdl-dock.c:218
+#: ../gdl/gdl-dock.c:220
 msgid "Y coordinate for a floating dock"
 msgstr "取り外したドックのY座標です"
 
-#: ../gdl/gdl-dock.c:484
+#: ../gdl/gdl-dock.c:481
 #, c-format
 msgid "Dock #%d"
 msgstr "ドック #%d"
