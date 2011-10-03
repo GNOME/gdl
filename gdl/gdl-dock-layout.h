@@ -77,8 +77,6 @@ void             gdl_dock_layout_delete_layout  (GdlDockLayout *layout,
 GList           *gdl_dock_layout_get_layouts    (GdlDockLayout *layout,
                                                  gboolean       include_default);
 
-void             gdl_dock_layout_run_manager    (GdlDockLayout *layout);
-
 gboolean         gdl_dock_layout_load_from_file (GdlDockLayout *layout,
                                                  const gchar   *filename);
 
