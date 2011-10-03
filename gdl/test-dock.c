@@ -131,13 +131,6 @@ button_dump_cb (GtkWidget *button, gpointer data)
 }
 
 static void
-run_layout_manager_cb (GtkWidget *w, gpointer data)
-{
-	GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
-	gdl_dock_layout_run_manager (layout);
-}
-
-static void
 save_layout_cb (GtkWidget *w, gpointer data)
 {
 	GdlDockLayout *layout = GDL_DOCK_LAYOUT (data);
@@ -294,11 +287,6 @@ main (int argc, char **argv)
 	button = gtk_button_new_from_stock (GTK_STOCK_SAVE);
 	g_signal_connect (button, "clicked",
 			  G_CALLBACK (save_layout_cb), layout);
-	gtk_box_pack_end (GTK_BOX (box), button, FALSE, TRUE, 0);
-
-	button = gtk_button_new_with_label ("Layout Manager");
-	g_signal_connect (button, "clicked",
-			  G_CALLBACK (run_layout_manager_cb), layout);
 	gtk_box_pack_end (GTK_BOX (box), button, FALSE, TRUE, 0);
 	
 	button = gtk_button_new_with_label ("Dump XML");

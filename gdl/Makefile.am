@@ -81,13 +81,9 @@ libgdlinclude_HEADERS = \
 	$(libgdl_headers) \
 	libgdltypebuiltins.h
 
-uidir = $(datadir)/gdl-3/ui
-ui_DATA = layout.ui
-
 EXTRA_DIST = libgdlmarshal.list \
 	tree-expand.xpm \
 	tree-contract.xpm \
-	layout.ui \
 	program.xpm static.xpm shared.xpm \
 	$(noinst_SCRIPTS)
 
