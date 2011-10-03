@@ -1,3 +1,8 @@
+Changes in 3.2.0
+
+* Use maintainer-mode by default (Javier Jardon)
+* Translation updates
+
 Changes in 3.1.5
 
 * Fix a crash while docking (Sébastien Granjoux)
