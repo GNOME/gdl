@@ -33,7 +33,7 @@ AC_SUBST(GDL_AGE)
 PACKAGE=gdl
 GDL_VERSION=$GDL_MAJOR_VERSION.$GDL_MINOR_VERSION.$GDL_MICRO_VERSION
 
-AM_INIT_AUTOMAKE($PACKAGE, $GDL_VERSION, [-Wno-portability])
+AM_INIT_AUTOMAKE($PACKAGE, $GDL_VERSION, [1.10 dist-xz no-dist-gzip])
 
 dnl with higher autotools, we can set ACLOCAL_AMFLAGS instead, which is
 dnl the better solution; this does the trick for automake-1.4

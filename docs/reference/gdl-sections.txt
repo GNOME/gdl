@@ -95,7 +95,6 @@ gdl_dock_layout_load_layout
 gdl_dock_layout_save_layout
 gdl_dock_layout_delete_layout
 gdl_dock_layout_get_layouts
-gdl_dock_layout_run_manager
 gdl_dock_layout_load_from_file
 gdl_dock_layout_save_to_file
 gdl_dock_layout_is_dirty
