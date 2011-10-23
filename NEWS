@@ -1,3 +1,9 @@
+Changes in 3.3.1
+
+* Remove GdlLayoutManager API as it wasn't used by everybody and
+complicated the code refactoring needed to remember hidden/iconified
+windows (James Liggett)
+
 Changes in 3.2.0
 
 * Use maintainer-mode by default (Javier Jardon)
