@@ -1208,25 +1208,37 @@ gdl_dock_item_dock_request (GdlDockObject  *object,
         request->rect.width = alloc.width;
         request->rect.height = alloc.height;
 
+        GdlDockItemBehavior behavior = GDL_DOCK_ITEM(object)->behavior;
+
         /* Calculate docking indicator rectangle size for new locations. Only
            do this when we're not over the item's current location. */
         if (request->applicant != object) {
             switch (request->position) {
                 case GDL_DOCK_TOP:
+                    if (behavior & GDL_DOCK_ITEM_BEH_CANT_DOCK_TOP)
+                        return FALSE;
                     request->rect.height *= SPLIT_RATIO;
                     break;
                 case GDL_DOCK_BOTTOM:
+                    if (behavior & GDL_DOCK_ITEM_BEH_CANT_DOCK_BOTTOM)
+                        return FALSE;
                     request->rect.y += request->rect.height * (1 - SPLIT_RATIO);
                     request->rect.height *= SPLIT_RATIO;
                     break;
                 case GDL_DOCK_LEFT:
+                    if (behavior & GDL_DOCK_ITEM_BEH_CANT_DOCK_LEFT)
+                        return FALSE;
                     request->rect.width *= SPLIT_RATIO;
                     break;
                 case GDL_DOCK_RIGHT:
+                    if (behavior & GDL_DOCK_ITEM_BEH_CANT_DOCK_RIGHT)
+                        return FALSE;
                     request->rect.x += request->rect.width * (1 - SPLIT_RATIO);
                     request->rect.width *= SPLIT_RATIO;
                     break;
                 case GDL_DOCK_CENTER:
+                    if (behavior & GDL_DOCK_ITEM_BEH_CANT_DOCK_CENTER)
+                        return FALSE;
                     request->rect.x = request->rect.width * SPLIT_RATIO/2;
                     request->rect.y = request->rect.height * SPLIT_RATIO/2;
                     request->rect.width = (request->rect.width *
