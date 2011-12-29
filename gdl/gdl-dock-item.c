@@ -1747,6 +1747,27 @@ gdl_dock_item_new_with_stock (const gchar         *name,
     return GTK_WIDGET (item);
 }
 
+GtkWidget *
+gdl_dock_item_new_with_pixbuf_icon (const gchar         *name,
+                                    const gchar         *long_name,
+                                    const GdkPixbuf     *pixbuf_icon,
+                                    GdlDockItemBehavior  behavior)
+{
+    GdlDockItem *item;
+
+    item = GDL_DOCK_ITEM (g_object_new (GDL_TYPE_DOCK_ITEM, 
+                                        "name", name, 
+                                        "long-name", long_name,
+                                        "pixbuf-icon", pixbuf_icon,
+                                        "behavior", behavior,
+                                        NULL));
+
+    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_AUTOMATIC);
+    gdl_dock_item_set_tablabel (item, gtk_label_new (long_name));
+
+    return GTK_WIDGET (item);
+}
+
 /* convenient function (and to preserve source compat) */
 /**
  * gdl_dock_item_dock_to:

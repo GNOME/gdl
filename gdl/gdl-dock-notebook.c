@@ -393,11 +393,12 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             GdlDockItem *item = GDL_DOCK_ITEM (object);
             GdlDockItem *requestor_item = GDL_DOCK_ITEM (requestor);
             gchar       *long_name, *stock_id;
+            GdkPixbuf   *pixbuf_icon;
             GtkWidget   *label;
             gint         position = -1;
             
             g_object_get (requestor_item, "long-name", &long_name,
-                          "stock-id", &stock_id, NULL);
+                          "stock-id", &stock_id, "pixbuf-icon", &pixbuf_icon, NULL);
             label = gdl_dock_item_get_tablabel (requestor_item);
             if (!label) {
                 label = gtk_label_new (long_name);
@@ -417,7 +418,7 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             position = gdl_switcher_insert_page (GDL_SWITCHER (item->child), 
                                                  GTK_WIDGET (requestor), label,
                                                  long_name, long_name,
-                                                 stock_id, position);
+                                                 stock_id, pixbuf_icon, position);
             
             GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
             

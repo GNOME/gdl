@@ -266,6 +266,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     GtkWidget *button;
     gchar *stock_id;
     gchar *name;
+    GdkPixbuf *pixbuf_icon;
     GtkWidget *image, *box, *label;
 
     g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
@@ -289,7 +290,8 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     else
         box = gtk_vbox_new (FALSE, 0);
     
-    g_object_get (item, "stock-id", &stock_id, "long-name", &name, NULL);
+    g_object_get (item, "stock-id", &stock_id, "pixbuf-icon", &pixbuf_icon,
+                  "long-name", &name, NULL);
 
     if (dockbar->priv->dockbar_style == GDL_DOCK_BAR_TEXT ||
         dockbar->priv->dockbar_style == GDL_DOCK_BAR_BOTH) {
@@ -308,6 +310,8 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
             image = gtk_image_new_from_stock (stock_id,
                                               GTK_ICON_SIZE_SMALL_TOOLBAR);
             g_free (stock_id);
+        } else if (pixbuf_icon) {
+            image = gtk_image_new_from_pixbuf (pixbuf_icon);
         } else {
             image = gtk_image_new_from_stock (GTK_STOCK_NEW,
                                               GTK_ICON_SIZE_SMALL_TOOLBAR);

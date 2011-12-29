@@ -63,6 +63,7 @@ gint       gdl_switcher_insert_page  (GdlSwitcher *switcher,
                                       const gchar *label,
                                       const gchar *tooltips,
                                       const gchar *stock_id,
+                                      const GdkPixbuf *pixbuf_icon,
                                       gint position);
 G_END_DECLS
 

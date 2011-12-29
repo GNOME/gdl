@@ -79,6 +79,7 @@ enum {
     PROP_NAME,
     PROP_LONG_NAME,
     PROP_STOCK_ID,
+    PROP_PIXBUF_ICON,
     PROP_MASTER,
     PROP_EXPORT_PROPERTIES
 };
@@ -131,6 +132,12 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                              _("Stock icon for the dock object"),
                              NULL,
                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+    g_object_class_install_property (
+        g_object_class, PROP_PIXBUF_ICON,
+        g_param_spec_pointer ("pixbuf-icon", _("Pixbuf Icon"),
+                              _("Pixbuf icon for the dock object"),
+                              G_PARAM_READWRITE));
 
     g_object_class_install_property (
         g_object_class, PROP_MASTER,
@@ -209,6 +216,9 @@ gdl_dock_object_set_property  (GObject      *g_object,
         g_free (object->stock_id);
         object->stock_id = g_value_dup_string (value);
         break;
+    case PROP_PIXBUF_ICON:
+        object->pixbuf_icon = g_value_get_pointer (value);
+        break;
     case PROP_MASTER:
         if (g_value_get_object (value)) 
             gdl_dock_object_bind (object, g_value_get_object (value));
@@ -239,6 +249,9 @@ gdl_dock_object_get_property  (GObject      *g_object,
     case PROP_STOCK_ID:
         g_value_set_string (value, object->stock_id);
         break;
+    case PROP_PIXBUF_ICON:
+        g_value_set_pointer (value, object->pixbuf_icon);
+        break;
     case PROP_MASTER:
         g_value_set_object (value, object->master);
         break;
@@ -258,6 +271,7 @@ gdl_dock_object_finalize (GObject *g_object)
     g_free (object->name);
     g_free (object->long_name);
     g_free (object->stock_id);
+    g_free (object->pixbuf_icon);
 
     G_OBJECT_CLASS (gdl_dock_object_parent_class)->finalize (g_object);
 }

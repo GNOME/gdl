@@ -88,6 +88,7 @@ struct _GdlDockObject {
     gchar              *name;
     gchar              *long_name;
     gchar              *stock_id;
+    GdkPixbuf          *pixbuf_icon;
     
     gboolean            reduce_pending;
 };

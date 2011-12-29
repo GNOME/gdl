@@ -67,10 +67,12 @@ gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
     GtkLabel *label;
     gchar *stock_id = NULL;
     gchar *title = NULL;
+    GdkPixbuf *pixbuf;
   
     label_box = (GtkBox*)gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     
     g_object_get (G_OBJECT (grip->item), "stock-id", &stock_id, NULL);
+    g_object_get (G_OBJECT (grip->item), "pixbuf-icon", &pixbuf, NULL);
     if(stock_id) {   
         image = GTK_IMAGE(gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_MENU));
         
@@ -78,6 +80,12 @@ gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
         gtk_box_pack_start(GTK_BOX(label_box), GTK_WIDGET(image), FALSE, TRUE, 0);
             
         g_free (stock_id);
+    }
+    else if (pixbuf) {
+        image = GTK_IMAGE(gtk_image_new_from_pixbuf (pixbuf));
+	    
+        gtk_widget_show (GTK_WIDGET(image));
+        gtk_box_pack_start(GTK_BOX(label_box), GTK_WIDGET(image), FALSE, TRUE, 0);
     }
         
     g_object_get (G_OBJECT (grip->item), "long-name", &title, NULL);

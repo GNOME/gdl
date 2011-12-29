@@ -172,6 +172,11 @@ GtkWidget     *gdl_dock_item_new_with_stock    (const gchar         *name,
                                                 const gchar         *stock_id,
                                                 GdlDockItemBehavior  behavior);
 
+GtkWidget     *gdl_dock_item_new_with_pixbuf_icon (const gchar         *name,
+                                                   const gchar         *long_name,
+                                                   const GdkPixbuf     *pixbuf_icon,
+                                                   GdlDockItemBehavior  behavior);
+
 GType          gdl_dock_item_get_type          (void);
 
 void           gdl_dock_item_dock_to           (GdlDockItem      *item,

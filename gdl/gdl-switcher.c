@@ -50,6 +50,7 @@ static void gdl_switcher_add_button  (GdlSwitcher *switcher,
                                       const gchar *label,
                                       const gchar *tooltips,
                                       const gchar *stock_id,
+                                      const GdkPixbuf *pixbuf_icon,
                                       gint switcher_id,
                                       GtkWidget *page);
 /* static void gdl_switcher_remove_button (GdlSwitcher *switcher, gint switcher_id); */
@@ -707,10 +708,12 @@ gdl_switcher_page_added_cb (GtkNotebook *nb, GtkWidget *page,
                             gint page_num, GdlSwitcher *switcher)
 {
     gint         switcher_id;
- 
+
+    (void)nb;
+    (void)page_num;
     switcher_id = gdl_switcher_get_page_id (page);
     
-    gdl_switcher_add_button (GDL_SWITCHER (switcher), NULL, NULL, NULL,
+    gdl_switcher_add_button (GDL_SWITCHER (switcher), NULL, NULL, NULL, NULL,
                              switcher_id, page);
     gdl_switcher_select_button (GDL_SWITCHER (switcher), switcher_id);
 }
@@ -828,6 +831,7 @@ gdl_switcher_new (void)
 void
 gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
                          const gchar *tooltips, const gchar *stock_id,
+			 const GdkPixbuf *pixbuf_icon,
                          gint switcher_id, GtkWidget* page)
 {
     GtkWidget *event_box;
@@ -849,7 +853,14 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
     gtk_container_add (GTK_CONTAINER (button_widget), hbox);
     gtk_widget_show (hbox);
 
-    icon_widget = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_MENU);
+    if (stock_id) {
+        icon_widget = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_MENU);
+    } else if (pixbuf_icon) {
+        icon_widget = gtk_image_new_from_pixbuf (pixbuf_icon);
+    } else {
+        icon_widget = gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU);
+    }
+
     gtk_widget_show (icon_widget);
     
     if (!label) {
@@ -927,7 +938,7 @@ gint
 gdl_switcher_insert_page (GdlSwitcher *switcher, GtkWidget *page,
                           GtkWidget *tab_widget, const gchar *label,
                           const gchar *tooltips, const gchar *stock_id,
-                          gint position)
+                          const GdkPixbuf *pixbuf_icon, gint position)
 {
     gint ret_position;
     gint switcher_id;
@@ -940,7 +951,7 @@ gdl_switcher_insert_page (GdlSwitcher *switcher, GtkWidget *page,
         gtk_widget_show (tab_widget);
     }
     switcher_id = gdl_switcher_get_page_id (page);
-    gdl_switcher_add_button (switcher, label, tooltips, stock_id, switcher_id, page);
+    gdl_switcher_add_button (switcher, label, tooltips, stock_id, pixbuf_icon, switcher_id, page);
     
     ret_position = gtk_notebook_insert_page (GTK_NOTEBOOK (switcher), page,
                                              tab_widget, position);
