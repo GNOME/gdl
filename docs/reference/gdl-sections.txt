@@ -85,6 +85,7 @@ gdl_dock_item_new_with_pixbuf_icon
 gdl_dock_item_new_with_stock
 gdl_dock_item_notify_deselected
 gdl_dock_item_notify_selected
+gdl_dock_item_or_child_has_focus
 gdl_dock_item_preferred_size
 gdl_dock_item_set_default_position
 gdl_dock_item_set_orientation
@@ -333,6 +334,7 @@ gdl_switcher_get_type
 <FILE>libgdlmarshal</FILE>
 gdl_marshal_VOID__BOOLEAN
 gdl_marshal_VOID__BOXED
+gdl_marshal_VOID__ENUM
 gdl_marshal_VOID__INT_INT
 gdl_marshal_VOID__OBJECT_ENUM_BOXED
 gdl_marshal_VOID__UINT_UINT

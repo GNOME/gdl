@@ -18,6 +18,5 @@
     <xi:include href="xml/gdl-dock-object.xml" />
     <xi:include href="xml/gdl-dock-bar.xml" />
     <xi:include href="xml/gdl-dock-placeholder.xml" />
-    <xi:include href="xml/gdl-tools.xml" />
   </chapter>
 </book>

@@ -130,6 +130,8 @@ struct _GdlDockItemClass {
                                    gint            y);
     void     (* dock_drag_end)    (GdlDockItem    *item,
                                    gboolean        cancelled);
+    void     (* move_focus_child) (GdlDockItem      *item,
+                                   GtkDirectionType  direction);
     void     (* set_orientation)  (GdlDockItem    *item,
                                    GtkOrientation  orientation);
 };
@@ -218,6 +220,7 @@ void        gdl_dock_item_set_default_position (GdlDockItem      *item,
 void        gdl_dock_item_preferred_size       (GdlDockItem      *item,
                                                 GtkRequisition   *req);
 
+gboolean    gdl_dock_item_or_child_has_focus  (GdlDockItem      *item);
 
 G_END_DECLS
 

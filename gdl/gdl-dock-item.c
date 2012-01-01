@@ -86,11 +86,17 @@ static void  gdl_dock_item_get_preferred_height (GtkWidget *widget,
                                                  gint      *minimum,
                                                  gint      *natural);
 
+static void  gdl_dock_item_set_focus_child (GtkContainer *container,
+                                            GtkWidget    *widget);
+
 static void  gdl_dock_item_size_allocate (GtkWidget *widget,
                                           GtkAllocation *allocation);
 static void  gdl_dock_item_map           (GtkWidget *widget);
 static void  gdl_dock_item_unmap         (GtkWidget *widget);
 static void  gdl_dock_item_realize       (GtkWidget *widget);
+
+static void  gdl_dock_item_move_focus_child (GdlDockItem      *item,
+                                             GtkDirectionType  dir);
 
 static gint  gdl_dock_item_button_changed (GtkWidget *widget,
                                            GdkEventButton *event);
@@ -158,6 +164,7 @@ enum {
     DOCK_DRAG_END,
     SELECTED,
     DESELECTED,
+    MOVE_FOCUS_CHILD,
     LAST_SIGNAL
 };
 
@@ -201,6 +208,40 @@ G_DEFINE_TYPE_WITH_CODE (GdlDockItem, gdl_dock_item, GDL_TYPE_DOCK_OBJECT,
                          g_type_add_class_private (g_define_type_id, sizeof (GdlDockItemClassPrivate)))
 
 static void
+add_tab_bindings (GtkBindingSet    *binding_set,
+		  GdkModifierType   modifiers,
+		  GtkDirectionType  direction)
+{
+    gtk_binding_entry_add_signal (binding_set, GDK_KEY_Tab, modifiers,
+                                  "move_focus_child", 1,
+                                  GTK_TYPE_DIRECTION_TYPE, direction);
+    gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Tab, modifiers,
+                                  "move_focus_child", 1,
+                                  GTK_TYPE_DIRECTION_TYPE, direction);
+}
+
+static void
+add_arrow_bindings (GtkBindingSet    *binding_set,
+		    guint             keysym,
+		    GtkDirectionType  direction)
+{
+    guint keypad_keysym = keysym - GDK_KEY_Left + GDK_KEY_KP_Left;
+
+    gtk_binding_entry_add_signal (binding_set, keysym, 0,
+                                  "move_focus_child", 1,
+                                  GTK_TYPE_DIRECTION_TYPE, direction);
+    gtk_binding_entry_add_signal (binding_set, keysym, GDK_CONTROL_MASK,
+                                  "move_focus_child", 1,
+                                  GTK_TYPE_DIRECTION_TYPE, direction);
+    gtk_binding_entry_add_signal (binding_set, keysym, GDK_CONTROL_MASK,
+                                  "move_focus_child", 1,
+                                  GTK_TYPE_DIRECTION_TYPE, direction);
+    gtk_binding_entry_add_signal (binding_set, keypad_keysym, GDK_CONTROL_MASK,
+                                  "move_focus_child", 1,
+                                  GTK_TYPE_DIRECTION_TYPE, direction);
+}
+
+static void
 gdl_dock_item_class_init (GdlDockItemClass *klass)
 {
     GObjectClass       *object_class;
@@ -211,6 +252,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
        "* {\n"
            "padding: 0;\n"
        "}";
+    GtkBindingSet      *binding_set;
 
     object_class = G_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
@@ -237,6 +279,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     container_class->remove = gdl_dock_item_remove;
     container_class->forall = gdl_dock_item_forall;
     container_class->child_type = gdl_dock_item_child_type;
+    container_class->set_focus_child = gdl_dock_item_set_focus_child;
     gtk_container_class_handle_border_width (container_class);
 
     dock_object_class->is_compound = FALSE;
@@ -248,6 +291,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     klass->dock_drag_begin = NULL;
     klass->dock_drag_motion = NULL;
     klass->dock_drag_end = NULL;
+    klass->move_focus_child = gdl_dock_item_move_focus_child;
     klass->set_orientation = gdl_dock_item_real_set_orientation;
 
     /* properties */
@@ -393,6 +437,30 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                       g_cclosure_marshal_VOID__VOID,
                       G_TYPE_NONE,
                       0);
+    
+    /**
+     * GdlDockItem::move-focus-child:
+     * @gdldockitem: The dock item in which a change of focus is requested
+     * @dir: The direction in which to move focus
+     *
+     * The ::move-focus-child signal is emitted when a change of focus is
+     * requested for the child widget of a dock item.  The @dir parameter 
+     * specifies the direction in which focus is to be shifted.
+     *
+     * Since: 3.3.2
+     */
+    gdl_dock_item_signals [MOVE_FOCUS_CHILD] =
+        g_signal_new ("move_focus_child",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                      G_STRUCT_OFFSET (GdlDockItemClass, move_focus_child),
+                      NULL, /* accumulator */
+                      NULL, /* accu_data */
+                      gdl_marshal_VOID__ENUM,
+                      G_TYPE_NONE,
+                      1,
+                      GTK_TYPE_DIRECTION_TYPE);
+
 
     /**
      * GdlDockItem::deselected:
@@ -409,6 +477,20 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                       g_cclosure_marshal_VOID__VOID,
                       G_TYPE_NONE,
                       0);
+
+    /* key bindings */
+
+    binding_set = gtk_binding_set_by_class (klass);
+
+    add_arrow_bindings (binding_set, GDK_KEY_Up, GTK_DIR_UP);
+    add_arrow_bindings (binding_set, GDK_KEY_Down, GTK_DIR_DOWN);
+    add_arrow_bindings (binding_set, GDK_KEY_Left, GTK_DIR_LEFT);
+    add_arrow_bindings (binding_set, GDK_KEY_Right, GTK_DIR_RIGHT);
+
+    add_tab_bindings (binding_set, 0, GTK_DIR_TAB_FORWARD);
+    add_tab_bindings (binding_set, GDK_CONTROL_MASK, GTK_DIR_TAB_FORWARD);
+    add_tab_bindings (binding_set, GDK_SHIFT_MASK, GTK_DIR_TAB_BACKWARD);
+    add_tab_bindings (binding_set, GDK_CONTROL_MASK | GDK_SHIFT_MASK, GTK_DIR_TAB_BACKWARD);
 
     g_type_class_add_private (object_class, sizeof (GdlDockItemPrivate));
 
@@ -427,6 +509,7 @@ gdl_dock_item_init (GdlDockItem *item)
                                               GdlDockItemPrivate);
 
     gtk_widget_set_has_window (GTK_WIDGET (item), TRUE);
+    gtk_widget_set_can_focus (GTK_WIDGET (item), TRUE);
 
     item->child = NULL;
     
@@ -742,6 +825,19 @@ gdl_dock_item_child_type (GtkContainer *container)
 }
 
 static void
+gdl_dock_item_set_focus_child (GtkContainer *container,
+                               GtkWidget    *child)
+{
+    g_return_if_fail (GDL_IS_DOCK_ITEM (container));
+    
+    if (GTK_CONTAINER_CLASS (gdl_dock_item_parent_class)->set_focus_child) {
+        (* GTK_CONTAINER_CLASS (gdl_dock_item_parent_class)->set_focus_child) (container, child);
+    }
+
+    gdl_dock_item_showhide_grip (GDL_DOCK_ITEM (container));
+}
+
+static void
 gdl_dock_item_get_preferred_width (GtkWidget *widget,
                                    gint      *minimum,
                                    gint      *natural)
@@ -995,6 +1091,14 @@ gdl_dock_item_realize (GtkWidget *widget)
         gtk_widget_set_parent_window (item->priv->grip, window);
 }
 
+static void
+gdl_dock_item_move_focus_child (GdlDockItem      *item,
+                                GtkDirectionType  dir)
+{
+    g_return_if_fail (GDL_IS_DOCK_ITEM (item));
+    gtk_widget_child_focus (GTK_WIDGET (item->child), dir);
+}
+
 #define EVENT_IN_GRIP_EVENT_WINDOW(ev,gr) \
     ((gr) != NULL && (ev)->window == GDL_DOCK_ITEM_GRIP (gr)->title_window)
 
@@ -1042,6 +1146,10 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
 
     /* Left mousebutton click on dockitem. */
     if (!locked && event->button == 1 && event->type == GDK_BUTTON_PRESS) {
+
+        if (!gdl_dock_item_or_child_has_focus (item))
+            gtk_widget_grab_focus (GTK_WIDGET (item));
+            
         /* Set in_drag flag, grab pointer and call begin drag operation. */      
         if (in_handle) {
             item->priv->start_x = event->x;
@@ -1062,6 +1170,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
         if (GDL_DOCK_ITEM_IN_DRAG (item)) {
             /* User dropped widget somewhere. */
             gdl_dock_item_drag_end (item, FALSE);
+            gtk_widget_grab_focus (GTK_WIDGET (item));
             event_handled = TRUE;
         }
         else if (GDL_DOCK_ITEM_IN_PREDRAG (item)) {
@@ -2271,6 +2380,37 @@ gdl_dock_item_preferred_size (GdlDockItem    *item,
 
     req->width = MAX (item->priv->preferred_width, allocation.width);
     req->height = MAX (item->priv->preferred_height, allocation.height);
+}
+
+/**
+ * gdl_dock_item_or_child_has_focus:
+ * @item: The dock item to be checked
+ *
+ * Checks whether a given #GdlDockItem or its child widget has focus.  
+ * This check is performed recursively on child widgets.
+ *
+ * Returns: %TRUE if the dock item or its child widget has focus;
+ * %FALSE otherwise.
+ *
+ * Since: 3.3.2
+ */
+gboolean
+gdl_dock_item_or_child_has_focus (GdlDockItem *item)
+{
+    GtkWidget *item_child;
+    gboolean item_or_child_has_focus;
+
+    g_return_val_if_fail (GDL_IS_DOCK_ITEM (item), FALSE);
+
+    for (item_child = gtk_container_get_focus_child (GTK_CONTAINER (item));
+         item_child && GTK_IS_CONTAINER (item_child) && gtk_container_get_focus_child (GTK_CONTAINER (item_child));
+         item_child = gtk_container_get_focus_child (GTK_CONTAINER (item_child))) ;
+    
+    item_or_child_has_focus =
+        (gtk_widget_has_focus (GTK_WIDGET (item)) || 
+         (GTK_IS_WIDGET (item_child) && gtk_widget_has_focus (item_child)));
+    
+    return item_or_child_has_focus;
 }
 
 
