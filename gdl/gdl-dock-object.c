@@ -133,6 +133,13 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                              NULL,
                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+    /**
+     * GdlDockObject:pixbuf-icon
+     *
+     * A GdkPixbuf to use for the icon of the dock object.
+     *
+     * Since: 3.3.2
+     */ 
     g_object_class_install_property (
         g_object_class, PROP_PIXBUF_ICON,
         g_param_spec_pointer ("pixbuf-icon", _("Pixbuf Icon"),

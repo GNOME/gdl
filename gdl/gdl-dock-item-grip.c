@@ -59,6 +59,20 @@ struct _GdlDockItemGripPrivate {
  
 G_DEFINE_TYPE (GdlDockItemGrip, gdl_dock_item_grip, GTK_TYPE_CONTAINER);
                        
+/**
+ * gdl_dock_item_create_label_widget:
+ * @grip: The GdlDockItemGrip for which to create a label widget
+ *
+ * Creates a label for a given grip, containing an icon and title
+ * text if applicable.  The icon is created using either the 
+ * #GdlDockObject:stock-id or #GdlDockObject:pixbuf-icon properties, 
+ * depending on how the grip was created.  If both properties are %NULL, 
+ * then the icon is omitted.  The title is taken from the 
+ * #GdlDockObject:long-name property.  Again, if the property is %NULL,
+ * then the title is omitted.
+ *
+ * Returns: The newly-created label box for the grip.
+ */
 GtkWidget*
 gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
 {

@@ -828,6 +828,22 @@ gdl_switcher_new (void)
     return g_object_new (gdl_switcher_get_type (), NULL);
 }
 
+/** 
+ * gdl_switcher_add_button:
+ * @switcher: The #GdlSwitcher to which a button will be added
+ * @label: The label for the button
+ * @tooltips: The tooltip for the button
+ * @stock_id: The stock ID for the button
+ * @pixbuf_icon: The pixbuf to use for the button icon
+ * @switcher_id: The ID of the switcher
+ * @page: The notebook page
+ *
+ * Adds a button to a #GdlSwitcher.  The button icon is taken preferentially
+ * from the @stock_id parameter.  If this is %NULL, then the @pixbuf_icon
+ * parameter is used.  Failing that, the %GTK_STOCK_NEW stock icon is used.
+ * The text label for the button is specified using the @label parameter.  If 
+ * it is %NUll then a default incrementally numbered label is used instead.
+ */
 void
 gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
                          const gchar *tooltips, const gchar *stock_id,
@@ -934,6 +950,24 @@ gdl_switcher_select_button (GdlSwitcher *switcher, gint switcher_id)
 }
    
 
+/**
+ * gdl_switcher_insert_page:
+ * @switcher: The switcher to which a page will be added
+ * @page: The page to add to the switcher
+ * @tab_widget: The  to add to the switcher
+ * @label: The label text for the button
+ * @tooltips: The tooltip for the button
+ * @stock_id: The stock ID for the button icon
+ * @pixbuf_icon: The pixbuf to use for the button icon
+ * @position: The position at which to create the page
+ *
+ * Adds a page to a #GdlSwitcher.  A button is created in the switcher, with its
+ * icon taken preferentially from the @stock_id parameter.  If this parameter is 
+ * %NULL, then the @pixbuf_icon parameter is used.  Failing that, the 
+ * %GTK_STOCK_NEW stock icon is used.  The text label for the button is specified 
+ * using the @label parameter.  If it is %NUll then a default incrementally 
+ * numbered label is used instead.
+ */
 gint
 gdl_switcher_insert_page (GdlSwitcher *switcher, GtkWidget *page,
                           GtkWidget *tab_widget, const gchar *label,

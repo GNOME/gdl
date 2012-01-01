@@ -1747,6 +1747,20 @@ gdl_dock_item_new_with_stock (const gchar         *name,
     return GTK_WIDGET (item);
 }
 
+/**
+ * gdl_dock_item_new_with_pixbuf_icon:
+ * @name: Unique name for identifying the dock object.
+ * @long_name: Human readable name for the dock object.
+ * @pixbuf_icon: Pixbuf icon for the dock object.
+ * @behavior: General behavior for the dock item (i.e. whether it can
+ *            float, if it's locked, etc.), as specified by
+ *            #GdlDockItemBehavior flags.
+ * 
+ * Creates a new dock item grip widget with a given pixbuf icon.
+ * Returns: The newly created dock item grip widget.
+ *
+ * Since: 3.3.2
+ **/
 GtkWidget *
 gdl_dock_item_new_with_pixbuf_icon (const gchar         *name,
                                     const gchar         *long_name,
