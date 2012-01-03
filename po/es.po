@@ -6,14 +6,16 @@
 # Germán Poo Caamaño <gpoo@ubiobio.cl>, 2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2010.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gdl&component=general\n"
-"POT-Creation-Date: 2010-11-02 11:20+0000\n"
-"PO-Revision-Date: 2010-04-16 18:35+0200\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-01 13:17+0000\n"
+"PO-Revision-Date: 2012-01-03 18:12+0100\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,45 +23,101 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../gdl/gdl-dock-item-grip.c:368
-msgid "Iconify this dock"
-msgstr "Iconiza este empotrable"
+#: ../gdl/gdl-dock-bar.c:108 ../gdl/gdl-dock-layout.c:107
+msgid "Master"
+msgstr "Dueño"
 
-#: ../gdl/gdl-dock-item-grip.c:370
-msgid "Close this dock"
-msgstr "Cierra este empotrable"
+#: ../gdl/gdl-dock-bar.c:109
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+"Objeto GdlDockMaster al cual el widget de la barra de empotrado se encuentra "
+"adjunto"
 
-#: ../gdl/gdl-dock-item-grip.c:711 ../gdl/gdl-dock-tablabel.c:128
-msgid "Controlling dock item"
-msgstr "Elemento empotrable de control"
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "Estilo de la barra de empotrado"
 
-#: ../gdl/gdl-dock-item-grip.c:712
-msgid "Dockitem which 'owns' this grip"
-msgstr "Elemento empotrable que «posee» este tirador"
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "Estilo de la barra de empotrado para mostrar elementos en ella"
 
-#: ../gdl/gdl-dock-item.c:257
+#: ../gdl/gdl-dock.c:180
+msgid "Floating"
+msgstr "Flotante"
+
+#: ../gdl/gdl-dock.c:181
+msgid "Whether the dock is floating in its own window"
+msgstr "Define si el empotrable es flotante en su propia ventana"
+
+#: ../gdl/gdl-dock.c:188 ../gdl/gdl-dock-master.c:145
+msgid "Default title"
+msgstr "Título predeterminado"
+
+#: ../gdl/gdl-dock.c:189
+msgid "Default title for the newly created floating docks"
+msgstr ""
+"Título predeterminado para los nuevos empotrables creados recientemente"
+
+#: ../gdl/gdl-dock.c:195 ../gdl/gdl-dock-placeholder.c:174
+msgid "Width"
+msgstr "Anchura"
+
+#: ../gdl/gdl-dock.c:196
+msgid "Width for the dock when it's of floating type"
+msgstr "Anchura para el empotrable cuando es del tipo flotante"
+
+#: ../gdl/gdl-dock.c:203 ../gdl/gdl-dock-placeholder.c:182
+msgid "Height"
+msgstr "Altura"
+
+#: ../gdl/gdl-dock.c:204
+msgid "Height for the dock when it's of floating type"
+msgstr "Altura del empotrable cuando es del tipo flotante"
+
+#: ../gdl/gdl-dock.c:211
+msgid "Float X"
+msgstr "X Flotante"
+
+#: ../gdl/gdl-dock.c:212
+msgid "X coordinate for a floating dock"
+msgstr "Coordenada X para un empotrable flotante"
+
+#: ../gdl/gdl-dock.c:219
+msgid "Float Y"
+msgstr "Y Flotante"
+
+#: ../gdl/gdl-dock.c:220
+msgid "Y coordinate for a floating dock"
+msgstr "Coordenada Y para un empotrable flotante"
+
+#: ../gdl/gdl-dock.c:481
+#, c-format
+msgid "Dock #%d"
+msgstr "Empotrable #%d"
+
+#: ../gdl/gdl-dock-item.c:267
 msgid "Orientation"
 msgstr "Orientación"
 
-#: ../gdl/gdl-dock-item.c:258
+#: ../gdl/gdl-dock-item.c:268
 msgid "Orientation of the docking item"
 msgstr "Orientación del elemento que se empotra"
 
-#: ../gdl/gdl-dock-item.c:273
+#: ../gdl/gdl-dock-item.c:283
 msgid "Resizable"
 msgstr "Redimensionable"
 
-#: ../gdl/gdl-dock-item.c:274
+#: ../gdl/gdl-dock-item.c:284
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Si esta activado, el elemento empotrable se puede redimensionar cuando está "
 "empotrado en un widget GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:281
+#: ../gdl/gdl-dock-item.c:291
 msgid "Item behavior"
 msgstr "Comportamiento del elemento"
 
-#: ../gdl/gdl-dock-item.c:282
+#: ../gdl/gdl-dock-item.c:292
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -67,34 +125,34 @@ msgstr ""
 "Comportamiento general del elemento empotrable (p.e. si éste puede ser "
 "flotante, bloqueado, etc.)"
 
-#: ../gdl/gdl-dock-item.c:290 ../gdl/gdl-dock-master.c:148
+#: ../gdl/gdl-dock-item.c:300 ../gdl/gdl-dock-master.c:152
 msgid "Locked"
 msgstr "Bloqueado"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:301
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Si esta activado el elemento empotrable no puede ser arrastrado fuera y no "
 "muestra un tirador"
 
-#: ../gdl/gdl-dock-item.c:299
+#: ../gdl/gdl-dock-item.c:309
 msgid "Preferred width"
 msgstr "Anchura preferida"
 
-#: ../gdl/gdl-dock-item.c:300
+#: ../gdl/gdl-dock-item.c:310
 msgid "Preferred width for the dock item"
 msgstr "Anchura preferida para el elemento empotrado"
 
-#: ../gdl/gdl-dock-item.c:306
+#: ../gdl/gdl-dock-item.c:316
 msgid "Preferred height"
 msgstr "Altura preferida"
 
-#: ../gdl/gdl-dock-item.c:307
+#: ../gdl/gdl-dock-item.c:317
 msgid "Preferred height for the dock item"
 msgstr "Altura preferida para el elemento empotrado"
 
-#: ../gdl/gdl-dock-item.c:646
+#: ../gdl/gdl-dock-item.c:662
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -103,7 +161,7 @@ msgstr ""
 "No se puede añadir un objeto empotrado (%p del tipo %s) dentro de %s. "
 "Utilice GdlDock o algún otro objeto combinado empotrado fijo."
 
-#: ../gdl/gdl-dock-item.c:653
+#: ../gdl/gdl-dock-item.c:669
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -112,7 +170,7 @@ msgstr ""
 "Se intentó añadir un widget con tipo %s a un %s, pero éste sólo puede "
 "contener un widget a la vez, ya contiene un widget de tipo %s"
 
-#: ../gdl/gdl-dock-item.c:1346 ../gdl/gdl-dock-item.c:1396
+#: ../gdl/gdl-dock-item.c:1367 ../gdl/gdl-dock-item.c:1417
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
@@ -120,78 +178,68 @@ msgstr ""
 "%s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1504
+#: ../gdl/gdl-dock-item.c:1525
 msgid "UnLock"
 msgstr "Desbloquear"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1511
+#: ../gdl/gdl-dock-item.c:1532
 msgid "Hide"
 msgstr "Ocultar"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1516
+#: ../gdl/gdl-dock-item.c:1537
 msgid "Lock"
 msgstr "Bloquear"
 
-#: ../gdl/gdl-dock-item.c:1754
+#: ../gdl/gdl-dock-item.c:1810
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Se intentó vincular un elemento no vinculable %p"
 
-#: ../gdl/gdl-dock-layout.c:119 ../gdl/gdl-dock-bar.c:107
-msgid "Master"
-msgstr "Dueño"
+#: ../gdl/gdl-dock-item-grip.c:406
+msgid "Iconify this dock"
+msgstr "Iconiza este empotrable"
 
-#: ../gdl/gdl-dock-layout.c:120
+#: ../gdl/gdl-dock-item-grip.c:408
+msgid "Close this dock"
+msgstr "Cierra este empotrable"
+
+#: ../gdl/gdl-dock-item-grip.c:748 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Elemento empotrable de control"
+
+#: ../gdl/gdl-dock-item-grip.c:749
+msgid "Dockitem which 'owns' this grip"
+msgstr "Elemento empotrable que «posee» este tirador"
+
+#: ../gdl/gdl-dock-layout.c:108
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr ""
 "Objeto GdlDockMaster al cual el objeto de distribución se encuentra adjunto"
 
-#: ../gdl/gdl-dock-layout.c:127
+#: ../gdl/gdl-dock-layout.c:115
 msgid "Dirty"
 msgstr "Sucio"
 
-#: ../gdl/gdl-dock-layout.c:128
+#: ../gdl/gdl-dock-layout.c:116
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Verdadero si el formato ha cambiado y necesita guardarse en un archivo"
 
-#: ../gdl/gdl-dock-layout.c:560
-#, c-format
-msgid "Could not load layout user interface file '%s'"
-msgstr ""
-"No se puede cargar el archivo «%s» con el formato de interfaz de usuario"
-
-#: ../gdl/gdl-dock-layout.c:617
-msgid "Visible"
-msgstr "Visible"
-
-#: ../gdl/gdl-dock-layout.c:624
-msgid "Item"
-msgstr "Ítem"
-
-#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:115
-msgid "Name"
-msgstr "Nombre"
-
-#: ../gdl/gdl-dock-layout.c:767
+#: ../gdl/gdl-dock-layout.c:279
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is '%"
-"s'"
+"While loading layout: don't know how to create a dock object whose nick is "
+"'%s'"
 msgstr ""
 "Al cargar la colocación: No se sabe como crear un objeto empotrable cuyo "
 "apodo sea «%s»"
 
-#: ../gdl/gdl-dock-master.c:141 ../gdl/gdl-dock.c:187
-msgid "Default title"
-msgstr "Título predeterminado"
-
-#: ../gdl/gdl-dock-master.c:142
+#: ../gdl/gdl-dock-master.c:146
 msgid "Default title for newly created floating docks"
 msgstr "Título predeterminado para los empotrables flotantes recién creados"
 
-#: ../gdl/gdl-dock-master.c:149
+#: ../gdl/gdl-dock-master.c:153
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -200,15 +248,15 @@ msgstr ""
 "principalson bloqueados; si es 0 todos son desbloqueados, -1 indica una "
 "inconsistencia entre los elementos."
 
-#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:746
+#: ../gdl/gdl-dock-master.c:161 ../gdl/gdl-switcher.c:781
 msgid "Switcher Style"
 msgstr "Estilo del selector"
 
-#: ../gdl/gdl-dock-master.c:158 ../gdl/gdl-switcher.c:747
+#: ../gdl/gdl-dock-master.c:162 ../gdl/gdl-switcher.c:782
 msgid "Switcher buttons style"
 msgstr "Estilo de los botones del selector"
 
-#: ../gdl/gdl-dock-master.c:755
+#: ../gdl/gdl-dock-master.c:772
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -217,7 +265,7 @@ msgstr ""
 "el principal %p no puede añadir el objeto %p[%s] al hash.  Ya existe un ítem "
 "con dicho nombre (%p)."
 
-#: ../gdl/gdl-dock-master.c:927
+#: ../gdl/gdl-dock-master.c:944
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -226,43 +274,56 @@ msgstr ""
 "El nuevo controlador de empotrables %p es automático.  Sólo los objetos "
 "empotrados manuales deberían ser llamados controlador."
 
-#: ../gdl/gdl-dock-notebook.c:130
+#: ../gdl/gdl-dock-notebook.c:137
 msgid "Page"
 msgstr "Página"
 
-#: ../gdl/gdl-dock-notebook.c:131
+#: ../gdl/gdl-dock-notebook.c:138
 msgid "The index of the current page"
 msgstr "El índice de la página actual"
 
 #: ../gdl/gdl-dock-object.c:116
+msgid "Name"
+msgstr "Nombre"
+
+#: ../gdl/gdl-dock-object.c:117
 msgid "Unique name for identifying the dock object"
 msgstr "Nombre único para identificar al objeto empotrable"
 
-#: ../gdl/gdl-dock-object.c:123
+#: ../gdl/gdl-dock-object.c:124
 msgid "Long name"
 msgstr "Nombre largo"
 
-#: ../gdl/gdl-dock-object.c:124
+#: ../gdl/gdl-dock-object.c:125
 msgid "Human readable name for the dock object"
 msgstr "Nombre legible por el humano para el objeto empotrable"
 
-#: ../gdl/gdl-dock-object.c:130
+#: ../gdl/gdl-dock-object.c:131
 msgid "Stock Icon"
 msgstr "Icono de fábrica"
 
-#: ../gdl/gdl-dock-object.c:131
+#: ../gdl/gdl-dock-object.c:132
 msgid "Stock icon for the dock object"
 msgstr "Icono de fábrica para el objeto empotrable"
 
-#: ../gdl/gdl-dock-object.c:137
+#: ../gdl/gdl-dock-object.c:145
+msgid "Pixbuf Icon"
+msgstr "Icono Pixbuf"
+
+#: ../gdl/gdl-dock-object.c:146
+#| msgid "Stock icon for the dock object"
+msgid "Pixbuf icon for the dock object"
+msgstr "Icono Pixbuf para el objeto empotrable"
+
+#: ../gdl/gdl-dock-object.c:151
 msgid "Dock master"
 msgstr "Empotrable principal"
 
-#: ../gdl/gdl-dock-object.c:138
+#: ../gdl/gdl-dock-object.c:152
 msgid "Dock master this dock object is bound to"
 msgstr "El empotrable principal al que este objeto empotrable está vinculado"
 
-#: ../gdl/gdl-dock-object.c:440
+#: ../gdl/gdl-dock-object.c:456
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -271,7 +332,7 @@ msgstr ""
 "Llamada a gdl_dock_object_dock en el objeto empotrable %p (el objeto es del "
 "tipo %s), el cual no tiene implementado este método"
 
-#: ../gdl/gdl-dock-object.c:579
+#: ../gdl/gdl-dock-object.c:595
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -280,13 +341,13 @@ msgstr ""
 "Se solicitó una operación de empotrado en un objeto no vinculable %p. La "
 "aplicación podría fallar"
 
-#: ../gdl/gdl-dock-object.c:586
+#: ../gdl/gdl-dock-object.c:602
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "No se puede empotrar %p en %p porque pertenecen a diferentes principales"
 
-#: ../gdl/gdl-dock-object.c:628
+#: ../gdl/gdl-dock-object.c:644
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -302,11 +363,11 @@ msgstr "Posición"
 msgid "Position of the divider in pixels"
 msgstr "Posición del divisor en píxeles"
 
-#: ../gdl/gdl-dock-placeholder.c:141
+#: ../gdl/gdl-dock-placeholder.c:148
 msgid "Sticky"
 msgstr "Persistente"
 
-#: ../gdl/gdl-dock-placeholder.c:142
+#: ../gdl/gdl-dock-placeholder.c:149
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
@@ -314,19 +375,19 @@ msgstr ""
 "Define si el contenedor se pegará a su anfitrión o subirá por la jerarquía "
 "cuando el anfitrión sea re-empotrado"
 
-#: ../gdl/gdl-dock-placeholder.c:149
+#: ../gdl/gdl-dock-placeholder.c:156
 msgid "Host"
 msgstr "Anfitrión"
 
-#: ../gdl/gdl-dock-placeholder.c:150
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "The dock object this placeholder is attached to"
 msgstr "El objeto empotrable al que este contenedor se encuentra adjunto"
 
-#: ../gdl/gdl-dock-placeholder.c:157
+#: ../gdl/gdl-dock-placeholder.c:164
 msgid "Next placement"
 msgstr "Siguiente ubicación"
 
-#: ../gdl/gdl-dock-placeholder.c:158
+#: ../gdl/gdl-dock-placeholder.c:165
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
@@ -334,59 +395,51 @@ msgstr ""
 "La posición en la cual un elemento será empotrado a nuestro anfitrión si se "
 "hace una petición para empotrar"
 
-#: ../gdl/gdl-dock-placeholder.c:167 ../gdl/gdl-dock.c:194
-msgid "Width"
-msgstr "Anchura"
-
-#: ../gdl/gdl-dock-placeholder.c:168
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Anchura para el widget cuando está adjuntado al lugar reservado"
 
-#: ../gdl/gdl-dock-placeholder.c:175 ../gdl/gdl-dock.c:202
-msgid "Height"
-msgstr "Altura"
-
-#: ../gdl/gdl-dock-placeholder.c:176
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Altura para el widget cuando está adjuntado al lugar reservado"
 
-#: ../gdl/gdl-dock-placeholder.c:182
+#: ../gdl/gdl-dock-placeholder.c:189
 msgid "Floating Toplevel"
 msgstr "Nivel superior flotante"
 
-#: ../gdl/gdl-dock-placeholder.c:183
+#: ../gdl/gdl-dock-placeholder.c:190
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr ""
 "Indica si el lugar reservado está esperando para un empotrable flotante de "
 "nivel superior"
 
-#: ../gdl/gdl-dock-placeholder.c:189
+#: ../gdl/gdl-dock-placeholder.c:196
 msgid "X Coordinate"
 msgstr "Coordenada X"
 
-#: ../gdl/gdl-dock-placeholder.c:190
+#: ../gdl/gdl-dock-placeholder.c:197
 msgid "X coordinate for dock when floating"
 msgstr "Coordenada X para el empotrable flotante"
 
-#: ../gdl/gdl-dock-placeholder.c:196
+#: ../gdl/gdl-dock-placeholder.c:203
 msgid "Y Coordinate"
 msgstr "Coordenada Y"
 
-#: ../gdl/gdl-dock-placeholder.c:197
+#: ../gdl/gdl-dock-placeholder.c:204
 msgid "Y coordinate for dock when floating"
 msgstr "Coordenada Y para el empotrable flotante"
 
-#: ../gdl/gdl-dock-placeholder.c:499
+#: ../gdl/gdl-dock-placeholder.c:496
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Intenta empotrar un objeto empotrable a un contenedor suelto"
 
-#: ../gdl/gdl-dock-placeholder.c:611
+#: ../gdl/gdl-dock-placeholder.c:608
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 "Se obtuvo una señal suelta desde un objeto (%p) que no es nuestro host %p"
 
-#: ../gdl/gdl-dock-placeholder.c:636
+#: ../gdl/gdl-dock-placeholder.c:633
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -399,81 +452,30 @@ msgstr ""
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Elemento fijo que «posee» esta etiqueta de pestaña"
 
-#: ../gdl/gdl-dock-bar.c:108
-msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr ""
-"Objeto GdlDockMaster al cual el widget de la barra de empotrado se encuentra "
-"adjunto"
+#~ msgid "Could not load layout user interface file '%s'"
+#~ msgstr ""
+#~ "No se puede cargar el archivo «%s» con el formato de interfaz de usuario"
 
-#: ../gdl/gdl-dock-bar.c:115
-msgid "Dockbar style"
-msgstr "Estilo de la barra de empotrado"
+#~ msgid "Visible"
+#~ msgstr "Visible"
 
-#: ../gdl/gdl-dock-bar.c:116
-msgid "Dockbar style to show items on it"
-msgstr "Estilo de la barra de empotrado para mostrar elementos en ella"
+#~ msgid "Item"
+#~ msgstr "Ítem"
 
-#: ../gdl/gdl-dock.c:179
-msgid "Floating"
-msgstr "Flotante"
+#~ msgid "Dock items"
+#~ msgstr "Elementos empotrados"
 
-#: ../gdl/gdl-dock.c:180
-msgid "Whether the dock is floating in its own window"
-msgstr "Define si el empotrable es flotante en su propia ventana"
+#~ msgid "Layout Managment"
+#~ msgstr "Administración de formato"
 
-#: ../gdl/gdl-dock.c:188
-msgid "Default title for the newly created floating docks"
-msgstr ""
-"Título predeterminado para los nuevos empotrables creados recientemente"
+#~ msgid "Saved layouts"
+#~ msgstr "Colocaciones guardadas"
 
-#: ../gdl/gdl-dock.c:195
-msgid "Width for the dock when it's of floating type"
-msgstr "Anchura para el empotrable cuando es del tipo flotante"
+#~ msgid "_Load"
+#~ msgstr "_Cargar"
 
-#: ../gdl/gdl-dock.c:203
-msgid "Height for the dock when it's of floating type"
-msgstr "Altura del empotrable cuando es del tipo flotante"
-
-#: ../gdl/gdl-dock.c:210
-msgid "Float X"
-msgstr "X Flotante"
-
-#: ../gdl/gdl-dock.c:211
-msgid "X coordinate for a floating dock"
-msgstr "Coordenada X para un empotrable flotante"
-
-#: ../gdl/gdl-dock.c:218
-msgid "Float Y"
-msgstr "Y Flotante"
-
-#: ../gdl/gdl-dock.c:219
-msgid "Y coordinate for a floating dock"
-msgstr "Coordenada Y para un empotrable flotante"
-
-#: ../gdl/gdl-dock.c:480
-#, c-format
-msgid "Dock #%d"
-msgstr "Empotrable #%d"
-
-#: ../gdl/layout.ui.h:1
-msgid "Dock items"
-msgstr "Elementos empotrados"
-
-#: ../gdl/layout.ui.h:2
-msgid "Layout Managment"
-msgstr "Administración de formato"
-
-#: ../gdl/layout.ui.h:3
-msgid "Saved layouts"
-msgstr "Colocaciones guardadas"
-
-#: ../gdl/layout.ui.h:4
-msgid "_Load"
-msgstr "_Cargar"
-
-#: ../gdl/layout.ui.h:5
-msgid "_Lock dock items"
-msgstr "B_loquear los elementos fijos"
+#~ msgid "_Lock dock items"
+#~ msgstr "B_loquear los elementos fijos"
 
 #~ msgid "Expander Size"
 #~ msgstr "Tamaño del expansor"
