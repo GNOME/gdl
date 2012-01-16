@@ -1,3 +1,7 @@
+Changes in 3.3.4:
+
+* Include some inkscape patches (Alex Valavanis)
+
 Changes in 3.3.1
 
 * Remove GdlLayoutManager API as it wasn't used by everybody and

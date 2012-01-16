@@ -12,7 +12,7 @@ AM_CONFIG_HEADER(config.h)
 
 GDL_MAJOR_VERSION=3
 GDL_MINOR_VERSION=3
-GDL_MICRO_VERSION=2
+GDL_MICRO_VERSION=4
 
 dnl increment if the interface has additions, changes, removals.
 GDL_CURRENT=2
