@@ -1,390 +1,433 @@
 # Serbian translation of gdl
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004.
-#
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2012.
 # This file is distributed under the same license as the gdl package.
-#
 # Maintainer: Александар Урошевић <urke@gmx.net>
 # Милош Поповић <gpopac@gmail.com>, 2010.
-#
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gdl&component=general\n"
-"POT-Creation-Date: 2010-04-12 21:19+0000\n"
-"PO-Revision-Date: 2010-08-20 16:31+0200\n"
-"Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&ke"
+"ywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-01 13:17+0000\n"
+"PO-Revision-Date: 2012-02-12 12:53+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4;    plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Project-Style: gnome\n"
 
-#: ../gdl/gdl-dock-item-grip.c:342
-msgid "Iconify this dock"
-msgstr "Умањи овај панел"
+#: ../gdl/gdl-dock-bar.c:108 ../gdl/gdl-dock-layout.c:107
+msgid "Master"
+msgstr "Господар"
 
-#: ../gdl/gdl-dock-item-grip.c:344
-msgid "Close this dock"
-msgstr "Затвори овај панел"
+#: ../gdl/gdl-dock-bar.c:109
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "Објекат Господара Гдл луке за који је привезан елемент панела луке"
 
-#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
-msgid "Controlling dock item"
-msgstr "Управљач елементом припајања"
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "Стил панела луке"
 
-#: ../gdl/gdl-dock-item-grip.c:663
-msgid "Dockitem which 'owns' this grip"
-msgstr "Елемент за припајање који је „власник“ овог језичка"
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "Стил панела луке на коме ће бити приказане ставке"
 
-#: ../gdl/gdl-dock-item.c:254
+#: ../gdl/gdl-dock.c:180
+msgid "Floating"
+msgstr "Плутајућа"
+
+#: ../gdl/gdl-dock.c:181
+msgid "Whether the dock is floating in its own window"
+msgstr "Да ли је лука плутајућа у сопственом прозору"
+
+#: ../gdl/gdl-dock.c:188 ../gdl/gdl-dock-master.c:145
+msgid "Default title"
+msgstr "Основни наслов"
+
+#: ../gdl/gdl-dock.c:189
+msgid "Default title for the newly created floating docks"
+msgstr "Основни наслов за новонаправљене плутајуће луке"
+
+#: ../gdl/gdl-dock.c:195 ../gdl/gdl-dock-placeholder.c:174
+msgid "Width"
+msgstr "Ширина"
+
+#: ../gdl/gdl-dock.c:196
+msgid "Width for the dock when it's of floating type"
+msgstr "Ширина луке када је плутајуће врсте"
+
+#: ../gdl/gdl-dock.c:203 ../gdl/gdl-dock-placeholder.c:182
+msgid "Height"
+msgstr "Висина"
+
+#: ../gdl/gdl-dock.c:204
+msgid "Height for the dock when it's of floating type"
+msgstr "Висина луке када је плутајуће врсте"
+
+#: ../gdl/gdl-dock.c:211
+msgid "Float X"
+msgstr "Плутајуће X"
+
+#: ../gdl/gdl-dock.c:212
+msgid "X coordinate for a floating dock"
+msgstr "X координата за плутајућу луку"
+
+#: ../gdl/gdl-dock.c:219
+msgid "Float Y"
+msgstr "Плутајуће Y"
+
+#: ../gdl/gdl-dock.c:220
+msgid "Y coordinate for a floating dock"
+msgstr "Y координата за плутајућу луку"
+
+#: ../gdl/gdl-dock.c:481
+#, c-format
+msgid "Dock #%d"
+msgstr "Лука #%d"
+
+#: ../gdl/gdl-dock-item.c:267
 msgid "Orientation"
-msgstr "Оријентација"
+msgstr "Усмерење"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock-item.c:268
 msgid "Orientation of the docking item"
-msgstr "Оријентација ставки на панелу"
+msgstr "Усмерење ставке припајања"
 
-#: ../gdl/gdl-dock-item.c:270
+#: ../gdl/gdl-dock-item.c:283
 msgid "Resizable"
-msgstr "Променљиве величине"
+msgstr "Променљива величина"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:284
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
-"Ако је омогућено, ставци на панелу може бити промењена величина када се "
-"прилепи у GtkPanel контролу"
+"Ако је постављено, ставци у луци може бити промењена величина када се "
+"прилепи у елемент Гтк панела"
 
-#: ../gdl/gdl-dock-item.c:278
+#: ../gdl/gdl-dock-item.c:291
 msgid "Item behavior"
 msgstr "Понашање ставке"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:292
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
-"Основно понашање за ставку (нпр. да ли може да буде плутајућа, да ли је "
+"Основно понашање за ставку луке (нпр. да ли може да буде плутајућа, да ли је "
 "закључана, итд.)"
 
-#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:300 ../gdl/gdl-dock-master.c:152
 msgid "Locked"
-msgstr "Закључано"
+msgstr "Закључана"
 
-#: ../gdl/gdl-dock-item.c:288
+#: ../gdl/gdl-dock-item.c:301
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
-"Ако је постављено, прилепљена ставка се не може померати и неће имати "
-"хватаљку"
+"Ако је постављено, ставка у луци се не може померати и неће имати хватаљку"
 
-#: ../gdl/gdl-dock-item.c:296
+#: ../gdl/gdl-dock-item.c:309
 msgid "Preferred width"
-msgstr "Приоритетна ширина"
+msgstr "Жељена ширина"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:310
 msgid "Preferred width for the dock item"
-msgstr "Приоритетна ширина за ставку панела"
+msgstr "Жељена ширина за ставку у луци"
 
-#: ../gdl/gdl-dock-item.c:303
+#: ../gdl/gdl-dock-item.c:316
 msgid "Preferred height"
-msgstr "Приоритетна висина"
+msgstr "Жељена висина"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:317
 msgid "Preferred height for the dock item"
-msgstr "Приоритетна висина за ставку панела"
+msgstr "Жељена висина за ставку у луци"
 
-#: ../gdl/gdl-dock-item.c:592
+#: ../gdl/gdl-dock-item.c:662
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
-"Можете додати објекат на панел (%p типа %s) унутар %s. Користите GdlDock или "
-"неки други објекат који се може додати панел."
+"Можете додати објекат припајања (%p врсте %s) унутар %s. Користите Гдл луку "
+"или неки други објекат који се може додати луци."
 
-#: ../gdl/gdl-dock-item.c:599
+#: ../gdl/gdl-dock-item.c:669
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"Покушава да дода елемент типа %s у %s, али он може да садржи само један "
-"елемент; већ садржи елемент типа %s"
+"Покушавам да додам елемент врсте %s у %s, али он може да садржи само један "
+"елемент у исто време; већ садржи елемент врсте %s"
 
-#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
+#: ../gdl/gdl-dock-item.c:1367 ../gdl/gdl-dock-item.c:1417
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "Стратегија припајања %s није подржана у објекту панела типа %s"
+msgstr "Стратегија припајања %s није подржана у објекту луке врсте %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1443
+#: ../gdl/gdl-dock-item.c:1525
 msgid "UnLock"
 msgstr "Откључај"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1450
+#: ../gdl/gdl-dock-item.c:1532
 msgid "Hide"
 msgstr "Сакриј"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1455
+#: ../gdl/gdl-dock-item.c:1537
 msgid "Lock"
 msgstr "Закључај"
 
-#: ../gdl/gdl-dock-item.c:1693
+#: ../gdl/gdl-dock-item.c:1810
 #, c-format
 msgid "Attempt to bind an unbound item %p"
-msgstr "Покушај уградње безграничне ставке %p"
+msgstr "Покушава да угради безграничну ставку %p"
 
-#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
-msgid "Master"
-msgstr "Главно"
+#: ../gdl/gdl-dock-item-grip.c:406
+msgid "Iconify this dock"
+msgstr "Умањује ову луку"
 
-#: ../gdl/gdl-dock-layout.c:123
+#: ../gdl/gdl-dock-item-grip.c:408
+msgid "Close this dock"
+msgstr "Затвара ову луку"
+
+#: ../gdl/gdl-dock-item-grip.c:748 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Управља ставком луке"
+
+#: ../gdl/gdl-dock-item-grip.c:749
+msgid "Dockitem which 'owns' this grip"
+msgstr "Ставка луке која „поседује“ ову хватаљку"
+
+#: ../gdl/gdl-dock-layout.c:108
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "GdlDockMaster објекат за који је привезан објекат распореда"
+msgstr "Објекат Господара Гдл луке за који је привезан објекат распореда"
 
-#: ../gdl/gdl-dock-layout.c:130
+#: ../gdl/gdl-dock-layout.c:115
 msgid "Dirty"
 msgstr "Прљаво"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:116
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
-"Постављено уколико су распореди измењени и треба их сачувати у датотеку"
+"Постављено је уколико су распореди измењени и треба их сачувати у датотеку"
 
-#: ../gdl/gdl-dock-layout.c:563
-#, c-format
-msgid "Could not load layout user interface file '%s'"
-msgstr "Не могу учитати фајл са распоредом корисничког сучеља „%s‟"
-
-#: ../gdl/gdl-dock-layout.c:620
-msgid "Visible"
-msgstr "Видљиво"
-
-#: ../gdl/gdl-dock-layout.c:627
-msgid "Item"
-msgstr "Ставка"
-
-#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
-msgid "Name"
-msgstr "Назив"
-
-#: ../gdl/gdl-dock-layout.c:770
+#: ../gdl/gdl-dock-layout.c:279
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is "
-"'%s'"
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
 msgstr ""
-"Приликом учитавања распореда: не уме да направи објекат за прилепљивање чији "
-"је надимак „%s“"
+"Приликом учитавања распореда: не знам да направим објекат припајања чији је "
+"надимак „%s“"
 
-#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
-msgid "Default title"
-msgstr "Подразумевани наслов"
-
-#: ../gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-master.c:146
 msgid "Default title for newly created floating docks"
-msgstr "Подразумевани наслов за новокреирани плутајући панел"
+msgstr "Основни наслов за новостворене плутајуће луке"
 
-#: ../gdl/gdl-dock-master.c:148
+#: ../gdl/gdl-dock-master.c:153
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"Уколико је постављено на 1, сви објекти за припајање везани за главни су "
+"Уколико је постављено на 1, сви објекти луке привезани за господара су "
 "закључани; уколико је 0, сви су откључани; -1 означава недоследност међу "
 "ставкама"
 
-#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
+#: ../gdl/gdl-dock-master.c:161 ../gdl/gdl-switcher.c:781
 msgid "Switcher Style"
 msgstr "Изглед пребацивача"
 
-#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
+#: ../gdl/gdl-dock-master.c:162 ../gdl/gdl-switcher.c:782
 msgid "Switcher buttons style"
 msgstr "Изглед дугмића пребацивача"
 
-#: ../gdl/gdl-dock-master.c:763
+#: ../gdl/gdl-dock-master.c:772
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
-"главни %p: не може да дода објекат %p[%s] у хеш табелу.  Већ постоји ставка "
-"са тим именом (%p)."
+"господар %p: не могу да додам објекат %p[%s] у хеш табелу.  Већ постоји "
+"ставка са тим називом (%p)."
 
-#: ../gdl/gdl-dock-master.c:935
+#: ../gdl/gdl-dock-master.c:944
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
-"Нови управљач припајањем %p је аутоматски.  Само ручни објекти за припајање "
-"треба да буду означени као управљачи."
+"Нови управљач луком %p је аутоматски.  Само ручни објекти луке треба да буду "
+"означени као управљачи."
 
-#: ../gdl/gdl-dock-notebook.c:134
+#: ../gdl/gdl-dock-notebook.c:137
 msgid "Page"
 msgstr "Страна"
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:138
 msgid "The index of the current page"
 msgstr "Индекс одабране стране"
 
-#: ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-object.c:116
+msgid "Name"
+msgstr "Назив"
+
+#: ../gdl/gdl-dock-object.c:117
 msgid "Unique name for identifying the dock object"
-msgstr "Јединствен назив за идентификацију објекта панела"
+msgstr "Јединствен назив за одређивање објекта луке"
 
-#: ../gdl/gdl-dock-object.c:127
+#: ../gdl/gdl-dock-object.c:124
 msgid "Long name"
-msgstr "Дугачак назив"
+msgstr "Дуги назив"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:125
 msgid "Human readable name for the dock object"
-msgstr "Назив објекта панела читљив људима"
+msgstr "Назив објекта луке читљив људима"
 
-#: ../gdl/gdl-dock-object.c:134
+#: ../gdl/gdl-dock-object.c:131
 msgid "Stock Icon"
-msgstr "Испоручена икона"
+msgstr "Испоручена иконица"
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:132
 msgid "Stock icon for the dock object"
-msgstr "Испоручена икона за објекат панела"
+msgstr "Испоручена иконица за објекат припајања"
 
-#: ../gdl/gdl-dock-object.c:141
+#: ../gdl/gdl-dock-object.c:145
+msgid "Pixbuf Icon"
+msgstr "Иконица сличице"
+
+#: ../gdl/gdl-dock-object.c:146
+#| msgid "Stock icon for the dock object"
+msgid "Pixbuf icon for the dock object"
+msgstr "Иконица сличице за објекат припајања"
+
+#: ../gdl/gdl-dock-object.c:151
 msgid "Dock master"
-msgstr "Власништво панела"
+msgstr "Господар луке"
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:152
 msgid "Dock master this dock object is bound to"
-msgstr "Власништво панела је уградио овај панел на"
+msgstr "Господар луке у који је уграђен овај објекат припајања"
 
-#: ../gdl/gdl-dock-object.c:444
+#: ../gdl/gdl-dock-object.c:456
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Позив функцији gdl_dock_object_dock у објекту за припајање %p (тип објекта "
-"је %s) који не садржи ову методу"
+"Позива функцију „gdl_dock_object_dock“ у објекту луке %p (врста објекта је %"
+"s) који није применио овај начин"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:595
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr ""
 "Покушај извођења операције припајања у неповезаном објекту %p. Програм може "
-"да пукне"
+"да се уруши"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:602
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr ""
-"Не може да припоји %p на %p зато што припадају разним главним објектима"
+msgstr "Не могу да припојим %p на %p зато што припадају различитим господарима"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:644
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
-"Покушај везивања на %p већ везаног објекта за припајање %p (тренутно главни: "
-"%p)"
+"Покушавам да привежем на %p већ привезани објекат припајања %p (тренутни "
+"господар: %p)"
 
-#: ../gdl/gdl-dock-paned.c:131
+#: ../gdl/gdl-dock-paned.c:128
 msgid "Position"
-msgstr "Позиција"
+msgstr "Положај"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:129
 msgid "Position of the divider in pixels"
-msgstr "Позиција делиоца у пикселима"
+msgstr "Положај делиоца у пикселима"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:148
 msgid "Sticky"
 msgstr "Лепљиво"
 
-#: ../gdl/gdl-dock-placeholder.c:145
+#: ../gdl/gdl-dock-placeholder.c:149
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr ""
-"Да ли ће се овај чувар места држати свог домаћина или се премештати у "
-"хијерархији када се домаћин одвоји"
+"Да ли ће се овај чувар места држати свог домаћина или ће се премештати у "
+"хијерархији када се домаћин поново припоји"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:156
 msgid "Host"
 msgstr "Домаћин"
 
-#: ../gdl/gdl-dock-placeholder.c:153
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "The dock object this placeholder is attached to"
-msgstr "Објекат за припајање за који је овај чувар места везан"
+msgstr "Објекат припајања за који је овај чувар места везан"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:164
 msgid "Next placement"
 msgstr "Следећи распоред"
 
-#: ../gdl/gdl-dock-placeholder.c:161
+#: ../gdl/gdl-dock-placeholder.c:165
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
-"Позиција на коју ће ставка бити припојена домаћину ако је учињен захтев за "
+"Положај на који ће ставка бити припојена домаћину ако је учињен захтев за "
 "припајање нама"
 
-#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
-msgid "Width"
-msgstr "Ширина"
-
-#: ../gdl/gdl-dock-placeholder.c:171
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Ширина контроле када је прилепљена за држач места"
 
-#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
-msgid "Height"
-msgstr "Висина"
-
-#: ../gdl/gdl-dock-placeholder.c:179
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Висина контроле када је прилепљена за држач места"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:189
 msgid "Floating Toplevel"
 msgstr "Плутајући првог нивоа"
 
-#: ../gdl/gdl-dock-placeholder.c:186
+#: ../gdl/gdl-dock-placeholder.c:190
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
-msgstr "Да ли држач места остаје и у плутајућем панелу првог нивоа"
+msgstr "Да ли држач места остаје и у плутајућој луци првог нивоа"
 
-#: ../gdl/gdl-dock-placeholder.c:192
-#| msgid "X-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:196
 msgid "X Coordinate"
-msgstr "X коордианта"
+msgstr "X координата"
 
-#: ../gdl/gdl-dock-placeholder.c:193
-#| msgid "X-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:197
 msgid "X coordinate for dock when floating"
-msgstr "X координата за усидрење плутајућег"
+msgstr "X координата за луку када плута"
 
-#: ../gdl/gdl-dock-placeholder.c:199
-#| msgid "Y-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:203
 msgid "Y Coordinate"
 msgstr "Y координата"
 
-#: ../gdl/gdl-dock-placeholder.c:200
-#| msgid "Y-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:204
 msgid "Y coordinate for dock when floating"
-msgstr "Y координата за усидрење плутајућег"
+msgstr "Y координата за луку када плута"
 
-#: ../gdl/gdl-dock-placeholder.c:495
+#: ../gdl/gdl-dock-placeholder.c:496
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr "Покушај припајања објекта за припајање невезаном чувару места"
+msgstr "Покушаће да припоји објекат припајања невезаном чувару места"
 
-#: ../gdl/gdl-dock-placeholder.c:619
+#: ../gdl/gdl-dock-placeholder.c:608
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "Примио је сигнал за одвајање од објекта (%p) који није наш домаћин %p"
 
-#: ../gdl/gdl-dock-placeholder.c:644
+#: ../gdl/gdl-dock-placeholder.c:633
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -395,80 +438,31 @@ msgstr ""
 
 #: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "Елемент за припајање који је „власник“ ове ознаке листа"
+msgstr "Ставка луке која „поседује“ овај натпис језичка"
 
-#: ../gdl/gdl-dock-bar.c:108
-msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "GdlDockMaster објекат за који је привезан објекат распореда"
+#~ msgid "Could not load layout user interface file '%s'"
+#~ msgstr "Не могу учитати фајл са распоредом корисничког сучеља „%s‟"
 
-#: ../gdl/gdl-dock-bar.c:115
-msgid "Dockbar style"
-msgstr "Стил панела"
+#~ msgid "Visible"
+#~ msgstr "Видљиво"
 
-#: ../gdl/gdl-dock-bar.c:116
-msgid "Dockbar style to show items on it"
-msgstr "Стил панела за приказ ставки"
+#~ msgid "Item"
+#~ msgstr "Ставка"
 
-#: ../gdl/gdl-dock.c:178
-msgid "Floating"
-msgstr "Плутајуће"
+#~ msgid "Dock items"
+#~ msgstr "Ставке панела"
 
-#: ../gdl/gdl-dock.c:179
-msgid "Whether the dock is floating in its own window"
-msgstr "Да ли елемент за припајање плута у свом прозору"
+#~ msgid "Layout Managment"
+#~ msgstr "Управљање распоредом"
 
-#: ../gdl/gdl-dock.c:187
-msgid "Default title for the newly created floating docks"
-msgstr "Подразумевани наслов за новонаправљене плутајуће објекте за припајање"
+#~ msgid "Saved layouts"
+#~ msgstr "Сачувај распоред"
 
-#: ../gdl/gdl-dock.c:194
-msgid "Width for the dock when it's of floating type"
-msgstr "Ширина објекта за припајање када је плутајући"
+#~ msgid "_Load"
+#~ msgstr "_Учитај"
 
-#: ../gdl/gdl-dock.c:202
-msgid "Height for the dock when it's of floating type"
-msgstr "Висина објекта за припајање када је плутајући"
-
-#: ../gdl/gdl-dock.c:209
-msgid "Float X"
-msgstr "Плутајући X"
-
-#: ../gdl/gdl-dock.c:210
-msgid "X coordinate for a floating dock"
-msgstr "X координата плутајућег објекта за припајање"
-
-#: ../gdl/gdl-dock.c:217
-msgid "Float Y"
-msgstr "Плутајући Y"
-
-#: ../gdl/gdl-dock.c:218
-msgid "Y coordinate for a floating dock"
-msgstr "Y координата плутајућег објекта за припајање"
-
-#: ../gdl/gdl-dock.c:484
-#, c-format
-msgid "Dock #%d"
-msgstr "Припајање #%d"
-
-#: ../gdl/layout.ui.h:1
-msgid "Dock items"
-msgstr "Ставке панела"
-
-#: ../gdl/layout.ui.h:2
-msgid "Layout Managment"
-msgstr "Управљање распоредом"
-
-#: ../gdl/layout.ui.h:3
-msgid "Saved layouts"
-msgstr "Сачувај распоред"
-
-#: ../gdl/layout.ui.h:4
-msgid "_Load"
-msgstr "_Учитај"
-
-#: ../gdl/layout.ui.h:5
-msgid "_Lock dock items"
-msgstr "_Закључај ставку дијалога"
+#~ msgid "_Lock dock items"
+#~ msgstr "_Закључај ставку дијалога"
 
 #~ msgid "Layout managment"
 #~ msgstr "Управљање распоредом"
