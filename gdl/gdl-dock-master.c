@@ -452,14 +452,8 @@ gdl_dock_master_drag_end (GdlDockItem *item,
     g_return_if_fail (GDL_DOCK_OBJECT (item) == request->applicant);
     
     /* Erase previously drawn rectangle */
-    if (master->priv->rect_owner)
-    {
-        gdl_dock_xor_rect_hide (master->priv->rect_owner);
-    }
-    if (master->priv->area_window)
-    {
-        gtk_widget_hide (master->priv->area_window);
-    }
+    if (master->priv->rect_drawn)
+        gdl_dock_master_xor_rect (master);    
 
     /* cancel conditions */
     if (cancelled || request->applicant == request->target)
@@ -636,24 +630,34 @@ gdl_dock_master_xor_rect (GdlDockMaster *master)
     
     master->priv->rect_drawn = ~master->priv->rect_drawn;
     
-    if (master->priv->rect_owner) {
-        if (master->priv->area_window)
-        {
-            gtk_widget_hide (master->priv->area_window);
-        }
-        gdl_dock_xor_rect (master->priv->rect_owner,
-                           &master->priv->drag_request->rect);
-        return;
-    }
-    
-    rect = &master->priv->drag_request->rect;
-
-    if (!master->priv->area_window)
+    if (master->priv->rect_owner) 
     {
-        master->priv->area_window = gdl_preview_window_new ();
-    }
+        if (master->priv->rect_drawn)
+        {
+            gdl_dock_xor_rect (master->priv->rect_owner,
+                               &master->priv->drag_request->rect);
+        }
+        else
+        {
+            gdl_dock_xor_rect_hide(master->priv->rect_owner);
+            master->priv->rect_owner = NULL;
+        }
+    }        
+    if (master->priv->rect_drawn && !master->priv->rect_owner)
+    {
+            rect = &master->priv->drag_request->rect;
 
-    gdl_preview_window_update (GDL_PREVIEW_WINDOW (master->priv->area_window), rect);
+            if (!master->priv->area_window)
+            {
+                master->priv->area_window = gdl_preview_window_new ();
+            }
+
+            gdl_preview_window_update (GDL_PREVIEW_WINDOW (master->priv->area_window), rect);
+    }
+    else if (master->priv->area_window)
+    {
+        gtk_widget_hide (master->priv->area_window);
+    }
 }
 
 static void
