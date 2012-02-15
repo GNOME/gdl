@@ -1,63 +1,117 @@
 # translation of gdl to Turkish
 # Copyright (C) 2008 THE gdl'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gdl package.
-# Baris Cicek <baris@teamforce.name.tr>, 2008.
-# Muhammet Kara <muhammet.k@gmail.com>, 2011.
 #
+# Baris Cicek <baris@teamforce.name.tr>, 2008.
+# Muhammet Kara <muhammet.k@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gdl&component=general\n"
-"POT-Creation-Date: 2010-04-12 21:19+0000\n"
-"PO-Revision-Date: 2011-04-24 02:52+0300\n"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-01 13:17+0000\n"
+"PO-Revision-Date: 2012-02-15 14:56+0000\n"
 "Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"Language: tr\n"
 
-#: ../gdl/gdl-dock-item-grip.c:342
-msgid "Iconify this dock"
-msgstr "Bu sabitlenmişi simgelendir"
+#: ../gdl/gdl-dock-bar.c:108 ../gdl/gdl-dock-layout.c:107
+msgid "Master"
+msgstr "Ana"
 
-#: ../gdl/gdl-dock-item-grip.c:344
-msgid "Close this dock"
-msgstr "Bu sabitlenmişi kapat"
+#: ../gdl/gdl-dock-bar.c:109
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "dockbar parçasinin ekleneceği GdlDockMaster nesnesi"
 
-#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
-msgid "Controlling dock item"
-msgstr "Sabitlenmiş öğe kontrolü"
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "Dockbar biçemi"
 
-#: ../gdl/gdl-dock-item-grip.c:663
-msgid "Dockitem which 'owns' this grip"
-msgstr "Bu tutaca 'sahip' dockitem"
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "Öğelerin üzerinde gösterilecek Dockbar biçemi"
 
-#: ../gdl/gdl-dock-item.c:254
+#: ../gdl/gdl-dock.c:180
+msgid "Floating"
+msgstr "Kayan"
+
+#: ../gdl/gdl-dock.c:181
+msgid "Whether the dock is floating in its own window"
+msgstr "Sabitlenmişin kendi penceresinde kayan olması"
+
+#: ../gdl/gdl-dock.c:188 ../gdl/gdl-dock-master.c:145
+msgid "Default title"
+msgstr "Öntanımlı başlık"
+
+#: ../gdl/gdl-dock.c:189
+msgid "Default title for the newly created floating docks"
+msgstr "Yeni oluşturulan kayan sabitlenmişler için öntanımlı başlık"
+
+#: ../gdl/gdl-dock.c:195 ../gdl/gdl-dock-placeholder.c:174
+msgid "Width"
+msgstr "Genişlik"
+
+#: ../gdl/gdl-dock.c:196
+msgid "Width for the dock when it's of floating type"
+msgstr "Kayan tür olduğu zaman sabitlenmişin genişliği"
+
+#: ../gdl/gdl-dock.c:203 ../gdl/gdl-dock-placeholder.c:182
+msgid "Height"
+msgstr "Yükseklik"
+
+#: ../gdl/gdl-dock.c:204
+msgid "Height for the dock when it's of floating type"
+msgstr "Kayan tür olduğu zaman sabitlenmişin yüksekliği"
+
+#: ../gdl/gdl-dock.c:211
+msgid "Float X"
+msgstr "Kayan X"
+
+#: ../gdl/gdl-dock.c:212
+msgid "X coordinate for a floating dock"
+msgstr "Kayan sabitlenmiş için X kordinatı"
+
+#: ../gdl/gdl-dock.c:219
+msgid "Float Y"
+msgstr "Kayan Y"
+
+#: ../gdl/gdl-dock.c:220
+msgid "Y coordinate for a floating dock"
+msgstr "Kayan sabitlenmiş için Y kordinatı"
+
+#: ../gdl/gdl-dock.c:481
+#, c-format
+msgid "Dock #%d"
+msgstr "Sabitlenmiş #%d"
+
+#: ../gdl/gdl-dock-item.c:267
 msgid "Orientation"
 msgstr "Yönelim"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock-item.c:268
 msgid "Orientation of the docking item"
 msgstr "Sabitlenen öğenin yönelimi"
 
-#: ../gdl/gdl-dock-item.c:270
+#: ../gdl/gdl-dock-item.c:283
 msgid "Resizable"
 msgstr "Yeniden boyutlanabilir"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:284
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Eğer atanmışsa, sabitlenmiş öğe GtkPanel parçası içinde sabitlenmişse "
 "yeniden boyutlandırılabilir"
 
-#: ../gdl/gdl-dock-item.c:278
+#: ../gdl/gdl-dock-item.c:291
 msgid "Item behavior"
 msgstr "Öğe işleyişi"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:292
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -65,32 +119,32 @@ msgstr ""
 "Sabitlenmiş öğe için genel işleyiş (örn. taşınabilir olması ya da kilitli "
 "olması vb.)"
 
-#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:300 ../gdl/gdl-dock-master.c:152
 msgid "Locked"
 msgstr "Kilitli"
 
-#: ../gdl/gdl-dock-item.c:288
+#: ../gdl/gdl-dock-item.c:301
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "Eğer atanmışsa, sabitlenmiş öğe taşınabilir ve bir grip göstermez"
 
-#: ../gdl/gdl-dock-item.c:296
+#: ../gdl/gdl-dock-item.c:309
 msgid "Preferred width"
 msgstr "Tercih edilen genişlik"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:310
 msgid "Preferred width for the dock item"
 msgstr "Sabitlenmiş öğe için tercih edilen genişlik"
 
-#: ../gdl/gdl-dock-item.c:303
+#: ../gdl/gdl-dock-item.c:316
 msgid "Preferred height"
 msgstr "Tercih edilen yükseklik"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:317
 msgid "Preferred height for the dock item"
 msgstr "Sabitlenmiş öğe için tercih edilen yükseklik"
 
-#: ../gdl/gdl-dock-item.c:592
+#: ../gdl/gdl-dock-item.c:662
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -99,7 +153,7 @@ msgstr ""
 "Bir %3$s içine sabitleme nesnesi (%1$p tane %2$s türünden) ekleyemezsiniz. "
 "GdlDock ya da başka bir bileşen sabitleme nesnesi kullanın."
 
-#: ../gdl/gdl-dock-item.c:599
+#: ../gdl/gdl-dock-item.c:669
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -108,83 +162,74 @@ msgstr ""
 "Bir %2$s içine %1$s türünde bir parça eklemeye çalışıldı, ancak aynı anda "
 "sadece bir parça bulunablir, zaten %3$s türünde bir parça içeriyor"
 
-#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
+#: ../gdl/gdl-dock-item.c:1367 ../gdl/gdl-dock-item.c:1417
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "%2$s türündeki sabitleme nesnesinde desteklenmeyen sabitleme stratejisi %1$s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1443
+#: ../gdl/gdl-dock-item.c:1525
 msgid "UnLock"
 msgstr "Kilidi Kaldır"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1450
+#: ../gdl/gdl-dock-item.c:1532
 msgid "Hide"
 msgstr "Gizle"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1455
+#: ../gdl/gdl-dock-item.c:1537
 msgid "Lock"
 msgstr "Kilitle"
 
-#: ../gdl/gdl-dock-item.c:1693
+#: ../gdl/gdl-dock-item.c:1810
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Ayırma öğesi %p bağlama girişimi"
 
-#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
-msgid "Master"
-msgstr "Ana"
+#: ../gdl/gdl-dock-item-grip.c:406
+msgid "Iconify this dock"
+msgstr "Bu sabitlenmişi simgelendir"
 
-#: ../gdl/gdl-dock-layout.c:123
+#: ../gdl/gdl-dock-item-grip.c:408
+msgid "Close this dock"
+msgstr "Bu sabitlenmişi kapat"
+
+#: ../gdl/gdl-dock-item-grip.c:748 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Sabitlenmiş öğe kontrolü"
+
+#: ../gdl/gdl-dock-item-grip.c:749
+msgid "Dockitem which 'owns' this grip"
+msgstr "Bu tutaca 'sahip' dockitem"
+
+#: ../gdl/gdl-dock-layout.c:108
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "Düzen nesnesinin ekleneceği GdlDockMaster nesnesi"
 
-#: ../gdl/gdl-dock-layout.c:130
+#: ../gdl/gdl-dock-layout.c:115
 msgid "Dirty"
 msgstr "Kirli"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:116
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Eğer düzenle değişti ve bir dosyaya kaydedilmeleri gerekiyorsa doğru"
 
-#: ../gdl/gdl-dock-layout.c:563
-#, c-format
-msgid "Could not load layout user interface file '%s'"
-msgstr "Düzen kullanıcı arayüz dosyası '%s' yüklenemedi"
-
-#: ../gdl/gdl-dock-layout.c:620
-msgid "Visible"
-msgstr "Görünür"
-
-#: ../gdl/gdl-dock-layout.c:627
-msgid "Item"
-msgstr "Öğe"
-
-#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
-msgid "Name"
-msgstr "İsim"
-
-#: ../gdl/gdl-dock-layout.c:770
+#: ../gdl/gdl-dock-layout.c:279
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is "
-"'%s'"
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
 msgstr ""
 "Düzen yüklenirken: takma ismi '%s' olan sabitleme nesnesinin nasıl "
 "oluşturulacağı bilinmiyor"
 
-#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
-msgid "Default title"
-msgstr "Öntanımlı başlık"
-
-#: ../gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-master.c:146
 msgid "Default title for newly created floating docks"
 msgstr "Yeni oluşturulan kayan sabitlenmişler için öntanımlı başlık"
 
-#: ../gdl/gdl-dock-master.c:148
+#: ../gdl/gdl-dock-master.c:153
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -193,15 +238,15 @@ msgstr ""
 "eğer 0 olarak atanmışsa, tümünün kilidi kaldırılır; -1 öğeler arasında "
 "tutarsızlık olduğunu belirtir"
 
-#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
+#: ../gdl/gdl-dock-master.c:161 ../gdl/gdl-switcher.c:781
 msgid "Switcher Style"
 msgstr "Değiştirici Biçemi"
 
-#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
+#: ../gdl/gdl-dock-master.c:162 ../gdl/gdl-switcher.c:782
 msgid "Switcher buttons style"
 msgstr "Değiştirici düğmeleri biçemi"
 
-#: ../gdl/gdl-dock-master.c:763
+#: ../gdl/gdl-dock-master.c:772
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -210,7 +255,7 @@ msgstr ""
 "ana %p: %p [%s] nesnesi hash'e eklenemedi. Bu isimde (%p) bir öğe zaten "
 "mevcut."
 
-#: ../gdl/gdl-dock-master.c:935
+#: ../gdl/gdl-dock-master.c:944
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -219,43 +264,56 @@ msgstr ""
 "Yeni sabitleme kontrolörü %p kendiliğinden çalışıyor. Sadece el ile "
 "sabitleme nesneleri kontrolör olarak adlandırılır."
 
-#: ../gdl/gdl-dock-notebook.c:134
+#: ../gdl/gdl-dock-notebook.c:137
 msgid "Page"
 msgstr "Sayfa"
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:138
 msgid "The index of the current page"
 msgstr "Mevcut sayfanın dizini"
 
-#: ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-object.c:116
+msgid "Name"
+msgstr "İsim"
+
+#: ../gdl/gdl-dock-object.c:117
 msgid "Unique name for identifying the dock object"
 msgstr "Sabitleme nesnesini tanımlayan tekil isim"
 
-#: ../gdl/gdl-dock-object.c:127
+#: ../gdl/gdl-dock-object.c:124
 msgid "Long name"
 msgstr "Uzun isim"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:125
 msgid "Human readable name for the dock object"
 msgstr "Bağlama nesnesi için anlaşılır isim"
 
-#: ../gdl/gdl-dock-object.c:134
+#: ../gdl/gdl-dock-object.c:131
 msgid "Stock Icon"
 msgstr "Depo simgesi"
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:132
 msgid "Stock icon for the dock object"
 msgstr "Sabitleme nesnesi için depo simgesi"
 
-#: ../gdl/gdl-dock-object.c:141
+#: ../gdl/gdl-dock-object.c:145
+msgid "Pixbuf Icon"
+msgstr "Pixbuf Simgesi"
+
+#: ../gdl/gdl-dock-object.c:146
+#| msgid "Stock icon for the dock object"
+msgid "Pixbuf icon for the dock object"
+msgstr "Sabitleme nesnesi için pixbuf simgesi"
+
+#: ../gdl/gdl-dock-object.c:151
 msgid "Dock master"
 msgstr "Ana sabitlenmiş"
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:152
 msgid "Dock master this dock object is bound to"
 msgstr "Bu sabitleme nesnesinin bağlanacağı ana sabitlenmiş"
 
-#: ../gdl/gdl-dock-object.c:444
+#: ../gdl/gdl-dock-object.c:456
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -264,7 +322,7 @@ msgstr ""
 "Sabitleme nesnesi %p (nesne türü %s) içerisinde bu metodu uygulamayan "
 "gtk_dock_object_dock çağrısı"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:595
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -272,14 +330,14 @@ msgid ""
 msgstr ""
 "Bağlanmamış nesne %p içinde sabitleme işlemi istenmiş. Uygulama çakabilir"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:602
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "%p sabitlemesi %p üzerine gerçekleştirilemiyor çünkü ikisi de farklı analara "
 "ait"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:644
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -287,19 +345,19 @@ msgstr ""
 "Zaten bağlı olan bağlama nesnesi %2$p ile %1$p bağlama denemesi (mevcut ana: "
 "%3$p)"
 
-#: ../gdl/gdl-dock-paned.c:131
+#: ../gdl/gdl-dock-paned.c:128
 msgid "Position"
 msgstr "Pozisyon"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:129
 msgid "Position of the divider in pixels"
 msgstr "Piksel cinsinden bölücünün pozisyonu"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:148
 msgid "Sticky"
 msgstr "Yapışkan"
 
-#: ../gdl/gdl-dock-placeholder.c:145
+#: ../gdl/gdl-dock-placeholder.c:149
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
@@ -307,19 +365,19 @@ msgstr ""
 "Yer tutucunun kendi makinesine yapışkan olması ya da makinesi tekrar "
 "sabitlendiğinde hiyerarşide yukarıya çıkması"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:156
 msgid "Host"
 msgstr "Makine"
 
-#: ../gdl/gdl-dock-placeholder.c:153
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "The dock object this placeholder is attached to"
 msgstr "Bu yer tutucunun ilişkilendirildiği sabitleme nesnesi"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:164
 msgid "Next placement"
 msgstr "Sonraki yerleştirme"
 
-#: ../gdl/gdl-dock-placeholder.c:161
+#: ../gdl/gdl-dock-placeholder.c:165
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
@@ -327,60 +385,48 @@ msgstr ""
 "Eğer istek bize sabitlenmek için yapıldıysa, makinemizde bir nesnenin "
 "sabitleneceği pozisyon"
 
-#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
-msgid "Width"
-msgstr "Genişlik"
-
-#: ../gdl/gdl-dock-placeholder.c:171
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Bir yer tutucuya eklendiğinde parçanın genişliği"
 
-#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
-msgid "Height"
-msgstr "Yükseklik"
-
-#: ../gdl/gdl-dock-placeholder.c:179
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Bir yertutucuya eklendiği zaman parçanın yüksekliği"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:189
 msgid "Floating Toplevel"
 msgstr "Kayan Üst Seviye"
 
-#: ../gdl/gdl-dock-placeholder.c:186
+#: ../gdl/gdl-dock-placeholder.c:190
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Yer tutucunun bir kayan üst seviye sabitleyici içinde durması"
 
-#: ../gdl/gdl-dock-placeholder.c:192
-#| msgid "X-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:196
 msgid "X Coordinate"
 msgstr "X Koordinatı"
 
-#: ../gdl/gdl-dock-placeholder.c:193
-#| msgid "X-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:197
 msgid "X coordinate for dock when floating"
 msgstr "Sabitleyicinin kaydığı zamanki X Koordinatı"
 
-#: ../gdl/gdl-dock-placeholder.c:199
-#| msgid "Y-Coordinate"
+#: ../gdl/gdl-dock-placeholder.c:203
 msgid "Y Coordinate"
 msgstr "Y Koordinatı"
 
-#: ../gdl/gdl-dock-placeholder.c:200
-#| msgid "Y-Coordinate for dock when floating"
+#: ../gdl/gdl-dock-placeholder.c:204
 msgid "Y coordinate for dock when floating"
 msgstr "Sabitleyicinin kaydığı zamanki Y Koordinatı"
 
-#: ../gdl/gdl-dock-placeholder.c:495
+#: ../gdl/gdl-dock-placeholder.c:496
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Bir sabitleme nesnesinin bağlı olmayan yer tutucuya sabitleme girişimi"
 
-#: ../gdl/gdl-dock-placeholder.c:619
+#: ../gdl/gdl-dock-placeholder.c:608
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "Bizim makinemiz %2$p olmayan bir nesneden (%1$p) ayırma sinyali alındı"
 
-#: ../gdl/gdl-dock-placeholder.c:644
+#: ../gdl/gdl-dock-placeholder.c:633
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
@@ -391,78 +437,29 @@ msgstr "%p için %p üstünden alt yerleşimi alınırken garip bir şeyler oldu
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Bu tablabel'e 'sahip' dockitem"
 
-#: ../gdl/gdl-dock-bar.c:108
-msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "dockbar parçasinin ekleneceği GdlDockMaster nesnesi"
+#~ msgid "Could not load layout user interface file '%s'"
+#~ msgstr "Düzen kullanıcı arayüz dosyası '%s' yüklenemedi"
 
-#: ../gdl/gdl-dock-bar.c:115
-msgid "Dockbar style"
-msgstr "Dockbar biçemi"
+#~ msgid "Visible"
+#~ msgstr "Görünür"
 
-#: ../gdl/gdl-dock-bar.c:116
-msgid "Dockbar style to show items on it"
-msgstr "Öğelerin üzerinde gösterilecek Dockbar biçemi"
+#~ msgid "Item"
+#~ msgstr "Öğe"
 
-#: ../gdl/gdl-dock.c:178
-msgid "Floating"
-msgstr "Kayan"
+#~ msgid "Dock items"
+#~ msgstr "Bağlama öğeleri"
 
-#: ../gdl/gdl-dock.c:179
-msgid "Whether the dock is floating in its own window"
-msgstr "Sabitlenmişin kendi penceresinde kayan olması"
+#~ msgid "Layout Managment"
+#~ msgstr "Düzen Yönetimi"
 
-#: ../gdl/gdl-dock.c:187
-msgid "Default title for the newly created floating docks"
-msgstr "Yeni oluşturulan kayan sabitlenmişler için öntanımlı başlık"
+#~ msgid "Saved layouts"
+#~ msgstr "Kaydedilmiş düzenler"
 
-#: ../gdl/gdl-dock.c:194
-msgid "Width for the dock when it's of floating type"
-msgstr "Kayan tür olduğu zaman sabitlenmişin genişliği"
+#~ msgid "_Load"
+#~ msgstr "_Yükle"
 
-#: ../gdl/gdl-dock.c:202
-msgid "Height for the dock when it's of floating type"
-msgstr "Kayan tür olduğu zaman sabitlenmişin yüksekliği"
-
-#: ../gdl/gdl-dock.c:209
-msgid "Float X"
-msgstr "Kayan X"
-
-#: ../gdl/gdl-dock.c:210
-msgid "X coordinate for a floating dock"
-msgstr "Kayan sabitlenmiş için X kordinatı"
-
-#: ../gdl/gdl-dock.c:217
-msgid "Float Y"
-msgstr "Kayan Y"
-
-#: ../gdl/gdl-dock.c:218
-msgid "Y coordinate for a floating dock"
-msgstr "Kayan sabitlenmiş için Y kordinatı"
-
-#: ../gdl/gdl-dock.c:484
-#, c-format
-msgid "Dock #%d"
-msgstr "Sabitlenmiş #%d"
-
-#: ../gdl/layout.ui.h:1
-msgid "Dock items"
-msgstr "Bağlama öğeleri"
-
-#: ../gdl/layout.ui.h:2
-msgid "Layout Managment"
-msgstr "Düzen Yönetimi"
-
-#: ../gdl/layout.ui.h:3
-msgid "Saved layouts"
-msgstr "Kaydedilmiş düzenler"
-
-#: ../gdl/layout.ui.h:4
-msgid "_Load"
-msgstr "_Yükle"
-
-#: ../gdl/layout.ui.h:5
-msgid "_Lock dock items"
-msgstr "Sabitleme öğelerini _kilitle"
+#~ msgid "_Lock dock items"
+#~ msgstr "Sabitleme öğelerini _kilitle"
 
 #~ msgid "Expander Size"
 #~ msgstr "Genişletici Boyutu"
