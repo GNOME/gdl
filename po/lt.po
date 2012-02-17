@@ -7,459 +7,411 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-17 17:33+0300\n"
-"PO-Revision-Date: 2010-08-17 17:33+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-01 13:17+0000\n"
+"PO-Revision-Date: 2012-02-17 23:36+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: UTF-8\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../gdl/gdl-dock-item-grip.c:381
-msgid "Iconify this dock"
-msgstr "Paversti šį įstatą piktograma"
+#: ../gdl/gdl-dock-bar.c:108
+#: ../gdl/gdl-dock-layout.c:107
+msgid "Master"
+msgstr "Pagrindinis"
 
-#: ../gdl/gdl-dock-item-grip.c:383
-msgid "Close this dock"
-msgstr "Uždaryti šį įstatą"
+#: ../gdl/gdl-dock-bar.c:109
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "GdlDockMaster objektas, prie kurio prikabinta įstatų juosta"
 
-#: ../gdl/gdl-dock-item-grip.c:703 ../gdl/gdl-dock-tablabel.c:125
-msgid "Controlling dock item"
-msgstr "Įstatomojo elemento kontrolė"
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "Įstatų juostos stilius"
 
-#: ../gdl/gdl-dock-item-grip.c:704
-msgid "Dockitem which 'owns' this grip"
-msgstr "Įstatomasis elementas, kuriam „priklauso“ ši griebiamoji zona"
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "Įstatų juostos elementų rodymo stilius"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock.c:180
+msgid "Floating"
+msgstr "Slankusis"
+
+#: ../gdl/gdl-dock.c:181
+msgid "Whether the dock is floating in its own window"
+msgstr "Ar įstatas slankioja savo paties lange"
+
+#: ../gdl/gdl-dock.c:188
+#: ../gdl/gdl-dock-master.c:145
+msgid "Default title"
+msgstr "Numatytasis pavadinimas"
+
+#: ../gdl/gdl-dock.c:189
+msgid "Default title for the newly created floating docks"
+msgstr "Numatytasis pavadinimas naujai sukuriamiems slankiesiems įstatams"
+
+#: ../gdl/gdl-dock.c:195
+#: ../gdl/gdl-dock-placeholder.c:174
+msgid "Width"
+msgstr "Plotis"
+
+#: ../gdl/gdl-dock.c:196
+msgid "Width for the dock when it's of floating type"
+msgstr "Įstatymo plotis kai jo tipas slankusis"
+
+#: ../gdl/gdl-dock.c:203
+#: ../gdl/gdl-dock-placeholder.c:182
+msgid "Height"
+msgstr "Aukštis"
+
+#: ../gdl/gdl-dock.c:204
+msgid "Height for the dock when it's of floating type"
+msgstr "Įstatymo aukštis kai jo tipas slankusis"
+
+#: ../gdl/gdl-dock.c:211
+msgid "Float X"
+msgstr "Slinktis X"
+
+#: ../gdl/gdl-dock.c:212
+msgid "X coordinate for a floating dock"
+msgstr "X koordinatė slankiajam įstatui"
+
+#: ../gdl/gdl-dock.c:219
+msgid "Float Y"
+msgstr "Slinktis Y"
+
+#: ../gdl/gdl-dock.c:220
+msgid "Y coordinate for a floating dock"
+msgstr "Y koordinatė slankiajam įstatui"
+
+#: ../gdl/gdl-dock.c:481
+#, c-format
+msgid "Dock #%d"
+msgstr "Įstatyti #%d"
+
+#: ../gdl/gdl-dock-item.c:267
 msgid "Orientation"
 msgstr "Kryptis"
 
-#: ../gdl/gdl-dock-item.c:256
+#: ../gdl/gdl-dock-item.c:268
 msgid "Orientation of the docking item"
 msgstr "Įstatomojo elemento kryptis"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:283
 msgid "Resizable"
 msgstr "Keičiamo dydžio"
 
-#: ../gdl/gdl-dock-item.c:272
+#: ../gdl/gdl-dock-item.c:284
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr ""
-"Jei nustatyta, įstatomojo elemento dydis gali būti pakeistas, kai jis "
-"įstatytas į GtkPanel valdiklį"
+msgstr "Jei nustatyta, įstatomojo elemento dydis gali būti pakeistas, kai jis įstatytas į GtkPanel valdiklį"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:291
 msgid "Item behavior"
 msgstr "Elemento elgsena"
 
-#: ../gdl/gdl-dock-item.c:280
-msgid ""
-"General behavior for the dock item (i.e. whether it can float, if it's "
-"locked, etc.)"
-msgstr ""
-"Įstatomojo elemento bendroji elgsena (pvz. ar gali slankioti, jei "
-"užrakintas, ir pan.)"
+#: ../gdl/gdl-dock-item.c:292
+msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
+msgstr "Įstatomojo elemento bendroji elgsena (pvz. ar gali slankioti, jei užrakintas, ir pan.)"
 
-#: ../gdl/gdl-dock-item.c:288 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:300
+#: ../gdl/gdl-dock-master.c:152
 msgid "Locked"
 msgstr "Užrakintas"
 
-#: ../gdl/gdl-dock-item.c:289
-msgid ""
-"If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr ""
-"Jei nustatyta, įstatomasis elementas negali būti tampomas ir neturi "
-"griebiamosios zonos"
+#: ../gdl/gdl-dock-item.c:301
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr "Jei nustatyta, įstatomasis elementas negali būti tampomas ir neturi griebiamosios zonos"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:309
 msgid "Preferred width"
 msgstr "Pageidautinas plotis"
 
-#: ../gdl/gdl-dock-item.c:298
+#: ../gdl/gdl-dock-item.c:310
 msgid "Preferred width for the dock item"
 msgstr "Pageidautinas dydis įstatomajam elementui"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:316
 msgid "Preferred height"
 msgstr "Pageidautinas aukštis"
 
-#: ../gdl/gdl-dock-item.c:305
+#: ../gdl/gdl-dock-item.c:317
 msgid "Preferred height for the dock item"
 msgstr "Pageidautinas aukštis įstatomajam elementui"
 
-#: ../gdl/gdl-dock-item.c:644
+#: ../gdl/gdl-dock-item.c:662
 #, c-format
-msgid ""
-"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
-"some other compound dock object."
-msgstr ""
-"Jūs negalite pridėti įstato objekto (%p tipo %s) %s viduje. naudokite "
-"GdlDock ar kitą sudėtinį įstato objektą"
+msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
+msgstr "Jūs negalite pridėti įstato objekto (%p tipo %s) %s viduje. naudokite GdlDock ar kitą sudėtinį įstato objektą"
 
-#: ../gdl/gdl-dock-item.c:651
+#: ../gdl/gdl-dock-item.c:669
 #, c-format
-msgid ""
-"Attempting to add a widget with type %s to a %s, but it can only contain one "
-"widget at a time; it already contains a widget of type %s"
-msgstr ""
-"Bandoma pridėti %s tipo valdiklį prie %s, tačiau jis gali talpinti tik vieną "
-"valdiklį; jis jau talpina %s tipo valdiklį"
+msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
+msgstr "Bandoma pridėti %s tipo valdiklį prie %s, tačiau jis gali talpinti tik vieną valdiklį; jis jau talpina %s tipo valdiklį"
 
-#: ../gdl/gdl-dock-item.c:1358 ../gdl/gdl-dock-item.c:1408
+#: ../gdl/gdl-dock-item.c:1367
+#: ../gdl/gdl-dock-item.c:1417
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nepalaikoma įstatimo strategija %s %s tipo įstatomajame objekte"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1516
+#: ../gdl/gdl-dock-item.c:1525
 msgid "UnLock"
 msgstr "Atrakinti"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1523
+#: ../gdl/gdl-dock-item.c:1532
 msgid "Hide"
 msgstr "Slėpti"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1528
+#: ../gdl/gdl-dock-item.c:1537
 msgid "Lock"
 msgstr "Užrakinti"
 
-#: ../gdl/gdl-dock-item.c:1766
+#: ../gdl/gdl-dock-item.c:1810
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Bandoma susieti nesusietą elementą %p"
 
-#: ../gdl/gdl-dock-layout.c:119 ../gdl/gdl-dock-bar.c:105
-msgid "Master"
-msgstr "Pagrindinis"
+#: ../gdl/gdl-dock-item-grip.c:406
+msgid "Iconify this dock"
+msgstr "Paversti šį įstatą piktograma"
 
-#: ../gdl/gdl-dock-layout.c:120
+#: ../gdl/gdl-dock-item-grip.c:408
+msgid "Close this dock"
+msgstr "Uždaryti šį įstatą"
+
+#: ../gdl/gdl-dock-item-grip.c:748
+#: ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "Įstatomojo elemento kontrolė"
+
+#: ../gdl/gdl-dock-item-grip.c:749
+msgid "Dockitem which 'owns' this grip"
+msgstr "Įstatomasis elementas, kuriam „priklauso“ ši griebiamoji zona"
+
+#: ../gdl/gdl-dock-layout.c:108
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "GdlDockMaster objektas, prie kurio yra prikabintas išdėstymo objektas"
 
-#: ../gdl/gdl-dock-layout.c:127
+#: ../gdl/gdl-dock-layout.c:115
 msgid "Dirty"
 msgstr "Nešvarus"
 
-#: ../gdl/gdl-dock-layout.c:128
+#: ../gdl/gdl-dock-layout.c:116
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Teigiama, jei išdėstymas pakito ir reikalauja išsaugojimo į bylą"
 
-#: ../gdl/gdl-dock-layout.c:560
+#: ../gdl/gdl-dock-layout.c:279
 #, c-format
-msgid "Could not load layout user interface file '%s'"
-msgstr "Nepavyko įkelti vartotojo sąsajos bylos '%s'"
+msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
+msgstr "Išdėstymo įkėlimo metu: nežinoma, kaip sukurti įstato objektą, kurio slapyvardis „%s“"
 
-#: ../gdl/gdl-dock-layout.c:617
-msgid "Visible"
-msgstr "Matomas"
-
-#: ../gdl/gdl-dock-layout.c:624
-msgid "Item"
-msgstr "Elementas"
-
-#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:117
-msgid "Name"
-msgstr "Vardas"
-
-#: ../gdl/gdl-dock-layout.c:767
-#, c-format
-msgid ""
-"While loading layout: don't know how to create a dock object whose nick is '%"
-"s'"
-msgstr ""
-"Išdėstymo įkėlimo metu: nežinoma, kaip sukurti įstato objektą, kurio "
-"slapyvardis „%s“"
-
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:184
-msgid "Default title"
-msgstr "Numatytasis pavadinimas"
-
-#: ../gdl/gdl-dock-master.c:139
+#: ../gdl/gdl-dock-master.c:146
 msgid "Default title for newly created floating docks"
 msgstr "Numatytasis pavadinimas naujai sukuriamiems slankiesiems įstatams"
 
-#: ../gdl/gdl-dock-master.c:146
-msgid ""
-"If is set to 1, all the dock items bound to the master are locked; if it's "
-"0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr ""
-"Jei nustatyta 1, visi įstatomieji elementai susieti su pagrindiniu yra "
-"užrakinami; jei nustatyta 0, visi įstatomieji elementai atrakinami; -1 "
-"reiškia, kad tarp elementų nėra darnos"
+#: ../gdl/gdl-dock-master.c:153
+msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr "Jei nustatyta 1, visi įstatomieji elementai susieti su pagrindiniu yra užrakinami; jei nustatyta 0, visi įstatomieji elementai atrakinami; -1 reiškia, kad tarp elementų nėra darnos"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:727
+#: ../gdl/gdl-dock-master.c:161
+#: ../gdl/gdl-switcher.c:781
 msgid "Switcher Style"
 msgstr "Jungiklio stilius"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:728
+#: ../gdl/gdl-dock-master.c:162
+#: ../gdl/gdl-switcher.c:782
 msgid "Switcher buttons style"
 msgstr "Jungiklio mygtuko stilius"
 
-#: ../gdl/gdl-dock-master.c:768
+#: ../gdl/gdl-dock-master.c:772
 #, c-format
-msgid ""
-"master %p: unable to add object %p[%s] to the hash.  There already is an "
-"item with that name (%p)."
-msgstr ""
-"pagrindinis %p: nepavyko pridėti objekto %p[%s] į groteles.  Jau yra "
-"elementas tokiu vardu (%p)."
+msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
+msgstr "pagrindinis %p: nepavyko pridėti objekto %p[%s] į groteles.  Jau yra elementas tokiu vardu (%p)."
 
-#: ../gdl/gdl-dock-master.c:940
+#: ../gdl/gdl-dock-master.c:944
 #, c-format
-msgid ""
-"The new dock controller %p is automatic.  Only manual dock objects should be "
-"named controller."
-msgstr ""
-"Naujasis %p įstatymo valdiklis yra automatinis. Tik rankiniu būdu įstatomi "
-"elementai turėtų būti vadinami valdikliais."
+msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
+msgstr "Naujasis %p įstatymo valdiklis yra automatinis. Tik rankiniu būdu įstatomi elementai turėtų būti vadinami valdikliais."
 
-#: ../gdl/gdl-dock-notebook.c:132
+#: ../gdl/gdl-dock-notebook.c:137
 msgid "Page"
 msgstr "Puslapis"
 
-#: ../gdl/gdl-dock-notebook.c:133
+#: ../gdl/gdl-dock-notebook.c:138
 msgid "The index of the current page"
 msgstr "Dabartinio puslapio indeksas"
 
-#: ../gdl/gdl-dock-object.c:118
+#: ../gdl/gdl-dock-object.c:116
+msgid "Name"
+msgstr "Vardas"
+
+#: ../gdl/gdl-dock-object.c:117
 msgid "Unique name for identifying the dock object"
 msgstr "Unikalus vardas įstatomojo objekto atpažinimui"
 
-#: ../gdl/gdl-dock-object.c:125
+#: ../gdl/gdl-dock-object.c:124
 msgid "Long name"
 msgstr "Ilgasis vardas"
 
-#: ../gdl/gdl-dock-object.c:126
+#: ../gdl/gdl-dock-object.c:125
 msgid "Human readable name for the dock object"
 msgstr "Žmogui skaitomas įstato objekto vardas"
 
-#: ../gdl/gdl-dock-object.c:132
+#: ../gdl/gdl-dock-object.c:131
 msgid "Stock Icon"
 msgstr "Saugyklos piktograma"
 
-#: ../gdl/gdl-dock-object.c:133
+#: ../gdl/gdl-dock-object.c:132
 msgid "Stock icon for the dock object"
 msgstr "Saugyklos piktograma įstatomajam objektui"
 
-#: ../gdl/gdl-dock-object.c:139
+#: ../gdl/gdl-dock-object.c:145
+msgid "Pixbuf Icon"
+msgstr "Piktograma"
+
+#: ../gdl/gdl-dock-object.c:146
+#| msgid "Stock icon for the dock object"
+msgid "Pixbuf icon for the dock object"
+msgstr "Piktograma įstatomajam objektui"
+
+#: ../gdl/gdl-dock-object.c:151
 msgid "Dock master"
 msgstr "Pagrindinis įstatas"
 
-#: ../gdl/gdl-dock-object.c:140
+#: ../gdl/gdl-dock-object.c:152
 msgid "Dock master this dock object is bound to"
 msgstr "Pagrindinis įstatas, su kuriuo yra susietas šis įstato objektas"
 
-#: ../gdl/gdl-dock-object.c:442
+#: ../gdl/gdl-dock-object.c:456
 #, c-format
-msgid ""
-"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
-"hasn't implemented this method"
-msgstr ""
-"gdl_dock_object_dock iškvietimas įstato objekte %p (objekto tipas %s), kuris "
-"nerealizavo šio metodo"
+msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
+msgstr "gdl_dock_object_dock iškvietimas įstato objekte %p (objekto tipas %s), kuris nerealizavo šio metodo"
 
-#: ../gdl/gdl-dock-object.c:581
+#: ../gdl/gdl-dock-object.c:595
 #, c-format
-msgid ""
-"Dock operation requested in a non-bound object %p. The application might "
-"crash"
-msgstr ""
-"Prašoma įstatymo operacija nesusietame objekte %p. Programa gali nulūžti"
+msgid "Dock operation requested in a non-bound object %p. The application might crash"
+msgstr "Prašoma įstatymo operacija nesusietame objekte %p. Programa gali nulūžti"
 
-#: ../gdl/gdl-dock-object.c:588
+#: ../gdl/gdl-dock-object.c:602
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr ""
-"Negalima įstatyti %p į %p, kadangi jie priklauso skirtingiems pagrindams"
+msgstr "Negalima įstatyti %p į %p, kadangi jie priklauso skirtingiems pagrindams"
 
-#: ../gdl/gdl-dock-object.c:630
+#: ../gdl/gdl-dock-object.c:644
 #, c-format
-msgid ""
-"Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr ""
-"Bandoma susieti su %p jau susietą objektą %p (dabartinis pagrindas: %p)"
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "Bandoma susieti su %p jau susietą objektą %p (dabartinis pagrindas: %p)"
 
-#: ../gdl/gdl-dock-paned.c:130
+#: ../gdl/gdl-dock-paned.c:128
 msgid "Position"
 msgstr "Vieta"
 
-#: ../gdl/gdl-dock-paned.c:131
+#: ../gdl/gdl-dock-paned.c:129
 msgid "Position of the divider in pixels"
 msgstr "Skirtuko vieta pikseliais"
 
-#: ../gdl/gdl-dock-placeholder.c:141
+#: ../gdl/gdl-dock-placeholder.c:148
 msgid "Sticky"
 msgstr "Lipnus"
 
-#: ../gdl/gdl-dock-placeholder.c:142
-msgid ""
-"Whether the placeholder will stick to its host or move up the hierarchy when "
-"the host is redocked"
-msgstr ""
-"Ar vietaženklis prilips prie savo pagrindo ar pakils hierarchija aukštyn, "
-"kai pagrindas bus perstatytas"
-
 #: ../gdl/gdl-dock-placeholder.c:149
+msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
+msgstr "Ar vietaženklis prilips prie savo pagrindo ar pakils hierarchija aukštyn, kai pagrindas bus perstatytas"
+
+#: ../gdl/gdl-dock-placeholder.c:156
 msgid "Host"
 msgstr "Pagrindas"
 
-#: ../gdl/gdl-dock-placeholder.c:150
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "The dock object this placeholder is attached to"
 msgstr "Įstato objektas, prie kurio prikabintas šis vietaženklis"
 
-#: ../gdl/gdl-dock-placeholder.c:157
+#: ../gdl/gdl-dock-placeholder.c:164
 msgid "Next placement"
 msgstr "Kita vieta"
 
-#: ../gdl/gdl-dock-placeholder.c:158
-msgid ""
-"The position an item will be docked to our host if a request is made to dock "
-"to us"
-msgstr ""
-"Vieta, kurioje elementas bus įstatytas į mūsų pagrindą, jei bus paprašyta "
-"įstatyti į mus"
+#: ../gdl/gdl-dock-placeholder.c:165
+msgid "The position an item will be docked to our host if a request is made to dock to us"
+msgstr "Vieta, kurioje elementas bus įstatytas į mūsų pagrindą, jei bus paprašyta įstatyti į mus"
 
-#: ../gdl/gdl-dock-placeholder.c:167 ../gdl/gdl-dock.c:191
-msgid "Width"
-msgstr "Plotis"
-
-#: ../gdl/gdl-dock-placeholder.c:168
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Valdiklio plotis, kai jis prikabintas prie vietaženklio"
 
-#: ../gdl/gdl-dock-placeholder.c:175 ../gdl/gdl-dock.c:199
-msgid "Height"
-msgstr "Aukštis"
-
-#: ../gdl/gdl-dock-placeholder.c:176
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Valdiklio aukštis, kai jis prikabintas prie vietaženklio"
 
-#: ../gdl/gdl-dock-placeholder.c:182
+#: ../gdl/gdl-dock-placeholder.c:189
 msgid "Floating Toplevel"
 msgstr "Slankusis aukščiausias lygis"
 
-#: ../gdl/gdl-dock-placeholder.c:183
+#: ../gdl/gdl-dock-placeholder.c:190
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Ar vietaženklis užima slankiojo aukščiausiojo lygio vietą"
 
-#: ../gdl/gdl-dock-placeholder.c:189
+#: ../gdl/gdl-dock-placeholder.c:196
 msgid "X Coordinate"
 msgstr "X koordinatė"
 
-#: ../gdl/gdl-dock-placeholder.c:190
+#: ../gdl/gdl-dock-placeholder.c:197
 msgid "X coordinate for dock when floating"
 msgstr "X koordinatė įstatui, kai jis slankusis"
 
-#: ../gdl/gdl-dock-placeholder.c:196
+#: ../gdl/gdl-dock-placeholder.c:203
 msgid "Y Coordinate"
 msgstr "Y koordinatė"
 
-#: ../gdl/gdl-dock-placeholder.c:197
+#: ../gdl/gdl-dock-placeholder.c:204
 msgid "Y coordinate for dock when floating"
 msgstr "Y koordinatė, kai jis slankusis"
 
-#: ../gdl/gdl-dock-placeholder.c:499
+#: ../gdl/gdl-dock-placeholder.c:496
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Bandoma įstatyti įstato objektą į nesusietą vietaženklį"
 
-#: ../gdl/gdl-dock-placeholder.c:611
+#: ../gdl/gdl-dock-placeholder.c:608
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr ""
-"Gautas atkabinimo signalas iš objekto (%p), kuris nėra mūsų pagrindas %p"
+msgstr "Gautas atkabinimo signalas iš objekto (%p), kuris nėra mūsų pagrindas %p"
 
-#: ../gdl/gdl-dock-placeholder.c:636
+#: ../gdl/gdl-dock-placeholder.c:633
 #, c-format
-msgid ""
-"Something weird happened while getting the child placement for %p from "
-"parent %p"
-msgstr ""
-"Atsitiko kažkas negero bandant gauti vaiko vietą objektui %p iš tėvo %p"
+msgid "Something weird happened while getting the child placement for %p from parent %p"
+msgstr "Atsitiko kažkas negero bandant gauti vaiko vietą objektui %p iš tėvo %p"
 
-#: ../gdl/gdl-dock-tablabel.c:126
+#: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Įstatomasis elementas, kuriam priklauso ši kortelės etiketė"
 
-#: ../gdl/gdl-dock-bar.c:106
-msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "GdlDockMaster objektas, prie kurio prikabinta įstatų juosta"
+#~ msgid "Could not load layout user interface file '%s'"
+#~ msgstr "Nepavyko įkelti vartotojo sąsajos bylos '%s'"
 
-#: ../gdl/gdl-dock-bar.c:113
-msgid "Dockbar style"
-msgstr "Įstatų juostos stilius"
+#~ msgid "Visible"
+#~ msgstr "Matomas"
 
-#: ../gdl/gdl-dock-bar.c:114
-msgid "Dockbar style to show items on it"
-msgstr "Įstatų juostos elementų rodymo stilius"
+#~ msgid "Item"
+#~ msgstr "Elementas"
 
-#: ../gdl/gdl-dock.c:176
-msgid "Floating"
-msgstr "Slankusis"
+#~ msgid "Dock items"
+#~ msgstr "Įstatyti elementus"
 
-#: ../gdl/gdl-dock.c:177
-msgid "Whether the dock is floating in its own window"
-msgstr "Ar įstatas slankioja savo paties lange"
+#~ msgid "Layout Managment"
+#~ msgstr "Išdėstymų tvarkymas"
 
-#: ../gdl/gdl-dock.c:185
-msgid "Default title for the newly created floating docks"
-msgstr "Numatytasis pavadinimas naujai sukuriamiems slankiesiems įstatams"
+#~ msgid "Saved layouts"
+#~ msgstr "Išsaugoti išdėstymai"
 
-#: ../gdl/gdl-dock.c:192
-msgid "Width for the dock when it's of floating type"
-msgstr "Įstatymo plotis kai jo tipas slankusis"
+#~ msgid "_Load"
+#~ msgstr "Į_kelti"
 
-#: ../gdl/gdl-dock.c:200
-msgid "Height for the dock when it's of floating type"
-msgstr "Įstatymo aukštis kai jo tipas slankusis"
-
-#: ../gdl/gdl-dock.c:207
-msgid "Float X"
-msgstr "Slinktis X"
-
-#: ../gdl/gdl-dock.c:208
-msgid "X coordinate for a floating dock"
-msgstr "X koordinatė slankiajam įstatui"
-
-#: ../gdl/gdl-dock.c:215
-msgid "Float Y"
-msgstr "Slinktis Y"
-
-#: ../gdl/gdl-dock.c:216
-msgid "Y coordinate for a floating dock"
-msgstr "Y koordinatė slankiajam įstatui"
-
-#: ../gdl/gdl-dock.c:475
-#, c-format
-msgid "Dock #%d"
-msgstr "Įstatyti #%d"
-
-#: ../gdl/layout.ui.h:1
-msgid "Dock items"
-msgstr "Įstatyti elementus"
-
-#: ../gdl/layout.ui.h:2
-msgid "Layout Managment"
-msgstr "Išdėstymų tvarkymas"
-
-#: ../gdl/layout.ui.h:3
-msgid "Saved layouts"
-msgstr "Išsaugoti išdėstymai"
-
-#: ../gdl/layout.ui.h:4
-msgid "_Load"
-msgstr "Į_kelti"
-
-#: ../gdl/layout.ui.h:5
-msgid "_Lock dock items"
-msgstr "_Užrakinti įstatytus elementus"
+#~ msgid "_Lock dock items"
+#~ msgstr "_Užrakinti įstatytus elementus"
 
 #~ msgid "Close"
 #~ msgstr "Užverti"
