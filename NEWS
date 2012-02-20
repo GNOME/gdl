@@ -1,3 +1,7 @@
+Changes in 3.3.90:
+
+* Hide preview window correctly (Johannes Schmid)
+
 Changes in 3.3.4:
 
 * Include some inkscape patches (Alex Valavanis)
