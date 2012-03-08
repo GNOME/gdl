@@ -95,6 +95,9 @@ void           gdl_dock_show_preview        (GdlDock       *dock,
                                              GdkRectangle  *rect);
 void           gdl_dock_hide_preview        (GdlDock       *dock);
 
+void           gdl_dock_set_skip_taskbar    (GdlDock       *dock,
+                                             gboolean       skip);
+
 G_END_DECLS
 
 #endif

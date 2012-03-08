@@ -129,6 +129,8 @@ struct _GdlDockPrivate
     gint                height;
 
     GtkWidget          *area_window;
+
+    gboolean            skip_taskbar;
 };
 
 enum {
@@ -143,7 +145,8 @@ enum {
     PROP_WIDTH,
     PROP_HEIGHT,
     PROP_FLOAT_X,
-    PROP_FLOAT_Y
+    PROP_FLOAT_Y,
+    PROP_SKIP_TASKBAR
 };
 
 static guint dock_signals [LAST_SIGNAL] = { 0 };
@@ -221,6 +224,25 @@ gdl_dock_class_init (GdlDockClass *klass)
                           G_MININT, G_MAXINT, 0,
                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
                           GDL_DOCK_PARAM_EXPORT));
+
+    /**
+     * GdlDock:skip-taskbar:
+     *
+     * Whether or not to prevent a floating dock window from appearing in the
+     * taskbar. Note that this only affects floating windows that are created
+     * after this flag is set; existing windows are not affected.  Usually,
+     * this property is used when you create the dock.
+     *
+     * Since: 3.6
+     */
+    g_object_class_install_property (
+        g_object_class, PROP_SKIP_TASKBAR,
+        g_param_spec_boolean ("skip-taskbar",
+                              _("Skip taskbar"),
+                              _("Whether or not to prevent a floating dock window from appearing in the taskbar"),
+                              TRUE,
+                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
+                              GDL_DOCK_PARAM_EXPORT));
 
     widget_class->get_preferred_width = gdl_dock_get_preferred_width;
     widget_class->get_preferred_height = gdl_dock_get_preferred_height;
@@ -335,6 +357,8 @@ gdl_dock_constructor (GType                  type,
             gtk_window_set_type_hint (GTK_WINDOW (dock->priv->window),
                                       GDK_WINDOW_TYPE_HINT_NORMAL);
 
+            gdl_dock_set_skip_taskbar (dock, dock->priv->skip_taskbar);
+
             /* metacity ignores this */
             gtk_window_move (GTK_WINDOW (dock->priv->window),
                              dock->priv->float_x,
@@ -393,6 +417,9 @@ gdl_dock_set_property  (GObject      *object,
         case PROP_FLOAT_Y:
             dock->priv->float_y = g_value_get_int (value);
             break;
+	case PROP_SKIP_TASKBAR:
+            gdl_dock_set_skip_taskbar (dock, g_value_get_boolean (value));
+	    break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
@@ -448,9 +475,32 @@ gdl_dock_get_property  (GObject      *object,
         case PROP_FLOAT_Y:
             g_value_set_int (value, dock->priv->float_y);
             break;
+        case PROP_SKIP_TASKBAR:
+            g_value_set_boolean (value, dock->priv->skip_taskbar);
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
+    }
+}
+
+/**
+ * gdl_dock_set_skip_taskbar:
+ * @dock: The dock whose property should be set.
+ * @skip: %TRUE if floating docks should be prevented from appearing in the taskbar
+ *
+ * Sets whether or not a floating dock window should be prevented from
+ * appearing in the system taskbar.
+ *
+ * Since: 3.6
+ */
+void
+gdl_dock_set_skip_taskbar (GdlDock *dock, gboolean skip)
+{
+    dock->priv->skip_taskbar = (skip != FALSE);
+
+    if (dock->priv->window && dock->priv->window) {
+        gtk_window_set_skip_taskbar_hint (GTK_WINDOW (dock->priv->window), dock->priv->skip_taskbar);
     }
 }
 
@@ -1256,6 +1306,7 @@ gdl_dock_add_floating_item (GdlDock        *dock,
                                        "height", height,
                                        "floatx", x,
                                        "floaty", y,
+                                       "skip-taskbar", dock->priv->skip_taskbar,
                                        NULL));
 
     if (gtk_widget_get_visible (GTK_WIDGET (dock))) {
