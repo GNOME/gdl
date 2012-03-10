@@ -1,0 +1,445 @@
+# translation of gdl.master.po to Khmer
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2012.
+# Morn Met <mornmet@khmeros.info>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-08 06:36+0000\n"
+"PO-Revision-Date: 2012-02-17 08:20+0700\n"
+"Last-Translator: Morn Met <mornmet@khmeros.info>\n"
+"Language-Team: Khmer <support@khmeros.info>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: WordForge 0.8 RC1\n"
+"X-Language: km-KH\n"
+
+#: ../gdl/gdl-dock-bar.c:108 ../gdl/gdl-dock-layout.c:107
+msgid "Master"
+msgstr "មេ"
+
+#: ../gdl/gdl-dock-bar.c:109
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+"វត្ថុ GdlDockMaster ដែល​ត្រូវ​បាន​​​​ភ្ជាប់​ជាមួយ​ធាតុ​ក្រាហ្វិក​របារ​ចត​"
+
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "រចនាប័ទ្ម​របារ​ចត"
+
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "រចនាប័ទ្ម​របារ​ចត​ដែល​ត្រូវ​បង្ហាញ​ធាតុ​នៅ​លើ​វា"
+
+#: ../gdl/gdl-dock.c:180
+msgid "Floating"
+msgstr "អណ្ដែត"
+
+#: ../gdl/gdl-dock.c:181
+msgid "Whether the dock is floating in its own window"
+msgstr "ថា​តើ​ការ​ចត​កំពុងតែ​អណ្ដែត​នៅ​ក្នុង​បង្អួច​វា​ផ្ទាល់​ដែរ​ឬទេ"
+
+#: ../gdl/gdl-dock.c:188 ../gdl/gdl-dock-master.c:145
+msgid "Default title"
+msgstr "ចំណងជើង​លំនាំដើម"
+
+#: ../gdl/gdl-dock.c:189
+msgid "Default title for the newly created floating docks"
+msgstr "ចំណងជើង​លំនាំដើម​សម្រាប់​ការ​ចត​​​អណ្ដែត​ដែល​បាន​បង្កើត​ថ្មីៗ"
+
+#: ../gdl/gdl-dock.c:195 ../gdl/gdl-dock-placeholder.c:174
+msgid "Width"
+msgstr "ទទឹង"
+
+#: ../gdl/gdl-dock.c:196
+msgid "Width for the dock when it's of floating type"
+msgstr "ទទឹង​សម្រាប់​ការ​ចត​ នៅ​ពេល​ដែល​វា​ជា​ប្រភេទ​ដែល​អណ្ដែត"
+
+#: ../gdl/gdl-dock.c:203 ../gdl/gdl-dock-placeholder.c:182
+msgid "Height"
+msgstr "កម្ពស់"
+
+#: ../gdl/gdl-dock.c:204
+msgid "Height for the dock when it's of floating type"
+msgstr "កម្ពស់​សម្រាប់​ការ​ចត នៅ​ពេល​ដែល​វា​ជា​ប្រភេទដែល​​អណ្ដែត"
+
+#: ../gdl/gdl-dock.c:211
+msgid "Float X"
+msgstr "ទសភាគ X"
+
+#: ../gdl/gdl-dock.c:212
+msgid "X coordinate for a floating dock"
+msgstr "កូអរដោនេ X សម្រាប់​ការ​ចត​​ដែល​អណ្ដែត"
+
+#: ../gdl/gdl-dock.c:219
+msgid "Float Y"
+msgstr "ទសភាគ Y"
+
+#: ../gdl/gdl-dock.c:220
+msgid "Y coordinate for a floating dock"
+msgstr "កូអរដោនេ Y សម្រាប់​ការ​ចត​ដែល​​អណ្ដែត"
+
+#: ../gdl/gdl-dock.c:481
+#, c-format
+msgid "Dock #%d"
+msgstr "ចត #%d"
+
+#: ../gdl/gdl-dock-item.c:267
+msgid "Orientation"
+msgstr "ទិស"
+
+#: ../gdl/gdl-dock-item.c:268
+msgid "Orientation of the docking item"
+msgstr "ទិស​នៃ​ធាតុ​ចត"
+
+#: ../gdl/gdl-dock-item.c:283
+msgid "Resizable"
+msgstr "អាច​ប្ដូរ​ទំហំ​បាន"
+
+#: ../gdl/gdl-dock-item.c:284
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr ""
+"ប្រសិនបើ​បាន​កំណត់ ធាតុ​ចត​អាច​ត្រូវ​បាន​ប្ដូរ​ទំហំ "
+"នៅ​ពេល​ចូល​ទៅ​ក្នុង​ធាតុ​ក្រាហ្វិក GtkPanel"
+
+#: ../gdl/gdl-dock-item.c:291
+msgid "Item behavior"
+msgstr "ឥរិយាបថ​របស់​ធាតុ"
+
+#: ../gdl/gdl-dock-item.c:292
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"ឥរិយាបថ​ទូទៅ​សម្រាប់​ធាតុ​ចត (ឧ. ថា​​តើ​វា​អាច​អណ្ដែត​បាន​ដែរ​ឬទេ "
+"ប្រសិនបើ​វា​ត្រូវ​បាន​ចាក់សោ)"
+
+#: ../gdl/gdl-dock-item.c:300 ../gdl/gdl-dock-master.c:152
+msgid "Locked"
+msgstr "បាន​ចាក់​សោ"
+
+#: ../gdl/gdl-dock-item.c:301
+msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"ប្រសិនបើ​បាន​កំណត់ នឹង​មិន​អាច​អូស​ធាតុ​ចត​ទៅមក​បាន​ទេ "
+"ហើយ​វា​ក៏​មិន​បង្ហាញ​ចំណុច​ចាប់​ទាញ​ដែរ"
+
+#: ../gdl/gdl-dock-item.c:309
+msgid "Preferred width"
+msgstr "ទទឹង​ដែល​ពេញចិត្ត"
+
+#: ../gdl/gdl-dock-item.c:310
+msgid "Preferred width for the dock item"
+msgstr "ទទឹង​ដែល​ពេញចិត្ត​សម្រាប់​ធាតុ​ចត"
+
+#: ../gdl/gdl-dock-item.c:316
+msgid "Preferred height"
+msgstr "កម្ពស់​ដែល​ពេញចិត្ត"
+
+#: ../gdl/gdl-dock-item.c:317
+msgid "Preferred height for the dock item"
+msgstr "កម្ពស់​ដែល​ពេញចិត្ត​សម្រាប់​ធាតុ​ចត"
+
+#: ../gdl/gdl-dock-item.c:662
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"អ្នក​អាច​បន្ថែម​វត្ថុ​ចត (%p ប្រភេទ %s) នៅ​ខាង​ក្នុង %s ។ ប្រើ GdlDock "
+"ឬ​វត្ថុ​ចត​រួម​ផ្សេងទៀត ។"
+
+#: ../gdl/gdl-dock-item.c:669
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"ប៉ុនប៉ង​បន្ថែម​ធាតុ​ក្រាហ្វិក​ជាមួយ​ប្រភេទ %s ទៅកាន់ %s "
+"ប៉ុន្តែ​វា​អាច​មាន​តែ​ធាតុ​ក្រាហ្វិក​មួយ​ប៉ុណ្ណោះ​ក្នុង​ពេល​តែមួយ "
+"វា​មាន​ធាតុ​ក្រាហ្វិក​ប្រភេទ %s រួចហើយ"
+
+#: ../gdl/gdl-dock-item.c:1367 ../gdl/gdl-dock-item.c:1417
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "មិន​គាំទ្រ​យុទ្ធសាស្ត្រ​ចត %s ក្នុង​វត្ថុ​ប្រភេទ %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1525
+msgid "UnLock"
+msgstr "ដោះសោ"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1532
+msgid "Hide"
+msgstr "លាក់"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1537
+msgid "Lock"
+msgstr "ចាក់​សោ"
+
+#: ../gdl/gdl-dock-item.c:1810
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "ប៉ុនប៉ង​ចង​ធាតុ​ដែល​មិន​បាន​ភ្ជាប់ %p"
+
+#: ../gdl/gdl-dock-item-grip.c:406
+msgid "Iconify this dock"
+msgstr "កំណត់​រូបតំណាង​ការ​ចត​​នេះ"
+
+#: ../gdl/gdl-dock-item-grip.c:408
+msgid "Close this dock"
+msgstr "បិទ​ការ​ចត​នេះ"
+
+#: ../gdl/gdl-dock-item-grip.c:748 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "គ្រប់គ្រង​ធាតុចត"
+
+#: ../gdl/gdl-dock-item-grip.c:749
+msgid "Dockitem which 'owns' this grip"
+msgstr "ធាតុ​ចត​ដែល 'មាន' ចំណុច​ចាប់​ទាញ​នេះ"
+
+#: ../gdl/gdl-dock-layout.c:108
+msgid "GdlDockMaster object which the layout object is attached to"
+msgstr "វត្ថុ GdlDockMaster ដែល​ត្រូវ​បាន​ភ្ជាប់​ជាមួយ​វត្ថុ​ប្លង់"
+
+#: ../gdl/gdl-dock-layout.c:115
+#, fuzzy
+msgid "Dirty"
+msgstr "កខ្វក់"
+
+#: ../gdl/gdl-dock-layout.c:116
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr ""
+"ពិត ប្រសិនបើ​ប្លង់​បាន​ផ្លាស់ប្ដូរ និង​ទាមទារ​ឲ្យ​រក្សាទុក​ទៅ​កាន់​ឯកសារ"
+
+#: ../gdl/gdl-dock-layout.c:279
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"ខណៈ​ពេល​ផ្ទុក​ប្លង់ ៖ មិន​ដឹង​អំពី​របៀប​បង្កើត​វត្ថុ​ចត​ដែល​មាន​សម្មតិនាម​ថា "
+"'%s'"
+
+#: ../gdl/gdl-dock-master.c:146
+msgid "Default title for newly created floating docks"
+msgstr "ចំណង​ជើង​លំនាំដើម​សម្រាប់​ការ​ចត​​អណ្ដែត​ដែល​ទើប​បាន​បង្កើត​ថ្មីៗ"
+
+#: ../gdl/gdl-dock-master.c:153
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"ប្រសិនបើ​កំណត់​ត្រឹម ០ "
+"ធាតុ​ចត​ទាំងអស់​នឹង​ចង​ភ្ជាប់​ទៅ​នឹង​មេ​ដែល​បាន​ចាក់សោ ប្រសិនបើ​វា​ជា ០ "
+"ធាតុ​ចត​ទាំងអស់​នឹង​ត្រូវ​បាន​ដោះ​សោ -១ "
+"បង្ហាញ​ថា​មាន​ភាព​មិនស្រប​គ្នា​រវាង​ធាតុ​ទាំងអស់"
+
+#: ../gdl/gdl-dock-master.c:161 ../gdl/gdl-switcher.c:781
+msgid "Switcher Style"
+msgstr "រចនាប័ទ្ម​របស់​កម្មវិធី​ប្ដូរ"
+
+#: ../gdl/gdl-dock-master.c:162 ../gdl/gdl-switcher.c:782
+msgid "Switcher buttons style"
+msgstr "រចនាប័ទ្ម​ប៊ូតុង​របស់​កម្មវិធី​ប្ដូរ"
+
+#: ../gdl/gdl-dock-master.c:772
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"មេ %p ៖ មិន​អាច​បន្ថែម​វត្ថុ %p[%s] ទៅ​សញ្ញា​បាន​ទេ ។  "
+"មាន​ធាតុ​ដែល​មាន​ឈ្មោះ​នោះ​រួចហើយ (%p)​ ។"
+
+#: ../gdl/gdl-dock-master.c:944
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"ឧបករណ៍​ត្រួតពិនិត្យ​ការ​ចត​ថ្មី %p បាន​ដំណើរការ​​ដោយ​ស្វ័យប្រវត្តិ​។  "
+"មាន​តែ​វត្ថុ​ចត​ដោយ​ដៃ​ប៉ុណ្ណោះ ដែល​គួរ​ជា​ឧបករណ៍​ត្រួតពិនិត្យ​ដែល​មានឈ្មោះ "
+"។"
+
+#: ../gdl/gdl-dock-notebook.c:137
+msgid "Page"
+msgstr "ទំព័រ"
+
+#: ../gdl/gdl-dock-notebook.c:138
+msgid "The index of the current page"
+msgstr "លិបិក្រម​នៃ​ទំព័រ​បច្ចុប្បន្ន"
+
+#: ../gdl/gdl-dock-object.c:116
+msgid "Name"
+msgstr "ឈ្មោះ"
+
+#: ../gdl/gdl-dock-object.c:117
+msgid "Unique name for identifying the dock object"
+msgstr "ឈ្មោះ​តែមួយ​សម្រាប់​កំណត់​វត្ថុ​ចត"
+
+#: ../gdl/gdl-dock-object.c:124
+msgid "Long name"
+msgstr "ឈ្មោះ​ពេញ"
+
+#: ../gdl/gdl-dock-object.c:125
+msgid "Human readable name for the dock object"
+msgstr "ឈ្មោះ​ដែល​មនុស្ស​អាច​អាន​បាន​សម្រាប់​វត្ថុ​ចត"
+
+#: ../gdl/gdl-dock-object.c:131
+msgid "Stock Icon"
+msgstr "រូបតំណាង​សន្និធិ"
+
+#: ../gdl/gdl-dock-object.c:132
+msgid "Stock icon for the dock object"
+msgstr "រូបតំណាង​សន្និធិ​សម្រាប់​វត្ថុ​ចត"
+
+#: ../gdl/gdl-dock-object.c:145
+msgid "Pixbuf Icon"
+msgstr "រូបតំណាង Pixbuf"
+
+#: ../gdl/gdl-dock-object.c:146
+msgid "Pixbuf icon for the dock object"
+msgstr "រូបតំណាង Pixbuf សម្រាប់​វត្ថុ​ចត"
+
+#: ../gdl/gdl-dock-object.c:151
+msgid "Dock master"
+msgstr "ការ​ចត​មេ"
+
+#: ../gdl/gdl-dock-object.c:152
+msgid "Dock master this dock object is bound to"
+msgstr "វត្ថុ​ចត​ត្រូវ​បាន​ចង​ភ្ជាប់​ទៅ​នឹងការ​​ចត​មេ"
+
+#: ../gdl/gdl-dock-object.c:456
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"ហៅ gdl_dock_object_dock នៅ​ក្នុង​វត្ថុ​ចត %p (ប្រភេទ​វត្ថុ​គឺ %s) "
+"ដែល​មិន​បាន​អនុវត្ត​វិធីសាស្ត្រ​នេះ"
+
+#: ../gdl/gdl-dock-object.c:595
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"ប្រតិបត្តិការ​ចត​ត្រូវ​បាន​ស្នើសុំ​នៅ​ក្នុង​វត្ថុ​មិន​បាន​ចង %p​ ។ "
+"កម្មវិធី​អាច​នឹង​គាំង"
+
+#: ../gdl/gdl-dock-object.c:602
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "មិន​អាច​ចត %p ទៅ​នឹង %p ពីព្រោះ​ពួកវា​ស្ថិត​នៅ​ជាមួយ​មេ​ផ្សេងគ្នា"
+
+#: ../gdl/gdl-dock-object.c:644
+#, c-format
+msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"ប៉ុនប៉ង​ចង​ភ្ជាប់​ទៅ​នឹង %p វត្ថុ​ចត​ដែល​បាន​ចង​រួចហើយ %p (មេ​បច្ចុប្បន្ន ៖ "
+"%p)"
+
+#: ../gdl/gdl-dock-paned.c:128
+msgid "Position"
+msgstr "ទីតាំង"
+
+#: ../gdl/gdl-dock-paned.c:129
+msgid "Position of the divider in pixels"
+msgstr "ទីតាំង​របស់​សញ្ញាចែក​គិត​ជា​ភីកសែល"
+
+#: ../gdl/gdl-dock-placeholder.c:148
+msgid "Sticky"
+msgstr "ស្អិត"
+
+#: ../gdl/gdl-dock-placeholder.c:149
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"ថា​តើ​កន្លែង​ដាក់​នឹង​បិទភ្ជាប់​ទៅ​នឹង​ម៉ាស៊ីន​របស់​វា "
+"ឬ​ផ្លាស់​ទី​ឋានានុក្រម​ឡើងលើ នៅ​ពេល​ម៉ាស៊ីន​ត្រូវ​បាន​ចត​ឡើងវិញ​ដែរ​ឬ​ទេ"
+
+#: ../gdl/gdl-dock-placeholder.c:156
+msgid "Host"
+msgstr "ម៉ាស៊ីន"
+
+#: ../gdl/gdl-dock-placeholder.c:157
+msgid "The dock object this placeholder is attached to"
+msgstr "វត្ថុ​ចត​ដែល​ភ្ជាប់​ជាមួយ​កន្លែង​ដាក់​នេះ"
+
+#: ../gdl/gdl-dock-placeholder.c:164
+msgid "Next placement"
+msgstr "កន្លែង​ដាក់បន្ទាប់"
+
+#: ../gdl/gdl-dock-placeholder.c:165
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"ទីតាំង​ដែល​ធាតុ​នឹង​ត្រូវ​ចត​ទៅ​នឹង​ម៉ាស៊ីន​របស់​យើង "
+"ប្រសិនបើ​សំណើ​ត្រូវ​បាន​ធ្វើ​ចំពោះ​ការ​ចត​របស់​យើង"
+
+#: ../gdl/gdl-dock-placeholder.c:175
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr ""
+"ទទឹង​សម្រាប់​ធាតុ​ក្រាហ្វិក នៅ​ពេល​វា​ត្រូវ​បាន​ភ្ជាប់​ជាមួយ​កន្លែង​ដាក់"
+
+#: ../gdl/gdl-dock-placeholder.c:183
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr ""
+"កម្ពស់​សម្រាប់​ធាតុ​ក្រាហ្វិក នៅ​ពេល​វា​ត្រូវ​បាន​ភ្ជាប់​ជាមួយ​កន្លែង​ដាក់"
+
+#: ../gdl/gdl-dock-placeholder.c:189
+msgid "Floating Toplevel"
+msgstr "អណ្ដែត​កម្រិត​ខ្ពស់"
+
+#: ../gdl/gdl-dock-placeholder.c:190
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr ""
+"ថា​តើ​កន្លែង​ដាក់​ស្ថិត​នៅ​ខាង​ក្នុង​សម្រាប់​ការ​​ចត​ដែល​​អណ្ដែត​កម្រិត​ខ្ពស"
+"់​ដែរ​ឬទេ"
+
+#: ../gdl/gdl-dock-placeholder.c:196
+msgid "X Coordinate"
+msgstr "កូអរដោនេ X"
+
+#: ../gdl/gdl-dock-placeholder.c:197
+msgid "X coordinate for dock when floating"
+msgstr "កូអរដោនេ X សម្រាប់​ចត នៅ​ពេល​អណ្ដែត"
+
+#: ../gdl/gdl-dock-placeholder.c:203
+msgid "Y Coordinate"
+msgstr "កូអរដោនេ Y"
+
+#: ../gdl/gdl-dock-placeholder.c:204
+msgid "Y coordinate for dock when floating"
+msgstr "កូអរដោនេ Y សម្រាប់​ចត នៅ​ពេល​អណ្ដែត"
+
+#: ../gdl/gdl-dock-placeholder.c:496
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "ប៉ុនប៉ង​ចត​វត្ថុ​ចត​ទៅ​នឹង​កន្លែង​ដាក់​ដែល​មិន​បាន​ចងភ្ជាប់"
+
+#: ../gdl/gdl-dock-placeholder.c:608
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "ទទួល​បាន​សញ្ញា​ផ្ដាច់​ពី​វត្ថុ (%p) ដែល​មិន​មែន​ជា​ម៉ាស៊ីន​របស់​យើង %p"
+
+#: ../gdl/gdl-dock-placeholder.c:633
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"មាន​អ្វី​ម្យ៉ាង​មិន​ប្រក្រតី​បាន​កើតឡើង "
+"ខណៈ​ពេល​ទទួល​យក​កន្លែង​ដាក់​បន្ទាប់​សម្រាប់ %p ពី​កន្លែង​ដាក់​មេ %p"
+
+#: ../gdl/gdl-dock-tablabel.c:129
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "ធាតុ​ចត​ដែល 'មាន'  tablabel នេះ"
