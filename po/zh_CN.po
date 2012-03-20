@@ -9,83 +9,136 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gdl&component=general\n"
-"POT-Creation-Date: 2010-07-18 19:45+0000\n"
-"PO-Revision-Date: 2010-07-17 15:20+0800\n"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-01 13:17+0000\n"
+"PO-Revision-Date: 2012-03-20 14:45+0000\n"
 "Last-Translator: Tao Wang <dancefire@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gdl/gdl-dock-item-grip.c:381
-msgid "Iconify this dock"
-msgstr "图标化此浮动对象"
+#: ../gdl/gdl-dock-bar.c:108 ../gdl/gdl-dock-layout.c:107
+msgid "Master"
+msgstr "主对象"
 
-#: ../gdl/gdl-dock-item-grip.c:383
-msgid "Close this dock"
-msgstr "关闭此浮动对象"
+#: ../gdl/gdl-dock-bar.c:109
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "浮动条控件附着的 GdlDocMaster 对象"
 
-#: ../gdl/gdl-dock-item-grip.c:703 ../gdl/gdl-dock-tablabel.c:125
-msgid "Controlling dock item"
-msgstr "控制浮动项"
+#: ../gdl/gdl-dock-bar.c:116
+msgid "Dockbar style"
+msgstr "浮动条风格"
 
-#: ../gdl/gdl-dock-item-grip.c:704
-msgid "Dockitem which 'owns' this grip"
-msgstr "拥有控制柄的浮动项"
+#: ../gdl/gdl-dock-bar.c:117
+msgid "Dockbar style to show items on it"
+msgstr "用于显示项目的浮动条风格"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock.c:180
+msgid "Floating"
+msgstr "浮动"
+
+#: ../gdl/gdl-dock.c:181
+msgid "Whether the dock is floating in its own window"
+msgstr "浮动对象是否在自己的窗体内浮动"
+
+#: ../gdl/gdl-dock.c:188 ../gdl/gdl-dock-master.c:145
+msgid "Default title"
+msgstr "默认标题"
+
+#: ../gdl/gdl-dock.c:189
+msgid "Default title for the newly created floating docks"
+msgstr "新创建的浮动对象的默认标题"
+
+#: ../gdl/gdl-dock.c:195 ../gdl/gdl-dock-placeholder.c:174
+msgid "Width"
+msgstr "宽度"
+
+#: ../gdl/gdl-dock.c:196
+msgid "Width for the dock when it's of floating type"
+msgstr "浮动状态时的宽"
+
+#: ../gdl/gdl-dock.c:203 ../gdl/gdl-dock-placeholder.c:182
+msgid "Height"
+msgstr "高度"
+
+#: ../gdl/gdl-dock.c:204
+msgid "Height for the dock when it's of floating type"
+msgstr "浮动状态时的高"
+
+#: ../gdl/gdl-dock.c:211
+msgid "Float X"
+msgstr "浮动横坐标"
+
+#: ../gdl/gdl-dock.c:212
+msgid "X coordinate for a floating dock"
+msgstr "浮动时的横坐标"
+
+#: ../gdl/gdl-dock.c:219
+msgid "Float Y"
+msgstr "浮动纵坐标"
+
+#: ../gdl/gdl-dock.c:220
+msgid "Y coordinate for a floating dock"
+msgstr "浮动时的纵坐标"
+
+#: ../gdl/gdl-dock.c:481
+#, c-format
+msgid "Dock #%d"
+msgstr "浮动对象 #%d"
+
+#: ../gdl/gdl-dock-item.c:267
 msgid "Orientation"
 msgstr "方向"
 
-#: ../gdl/gdl-dock-item.c:256
+#: ../gdl/gdl-dock-item.c:268
 msgid "Orientation of the docking item"
 msgstr "浮动项的方向"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:283
 msgid "Resizable"
 msgstr "可改变大小"
 
-#: ../gdl/gdl-dock-item.c:272
+#: ../gdl/gdl-dock-item.c:284
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr "如果设定，浮动项在嵌入至 GtkPanel 部件时也可改变大小。"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:291
 msgid "Item behavior"
 msgstr "项目行为"
 
-#: ../gdl/gdl-dock-item.c:280
+#: ../gdl/gdl-dock-item.c:292
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "浮动项的一般行为(如是锁定后否可浮动，等。)"
 
-#: ../gdl/gdl-dock-item.c:288 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock-item.c:300 ../gdl/gdl-dock-master.c:152
 msgid "Locked"
 msgstr "锁定"
 
-#: ../gdl/gdl-dock-item.c:289
+#: ../gdl/gdl-dock-item.c:301
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "如果设定，浮动项不能被拖动且不显示控制柄。"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:309
 msgid "Preferred width"
 msgstr "首选宽度"
 
-#: ../gdl/gdl-dock-item.c:298
+#: ../gdl/gdl-dock-item.c:310
 msgid "Preferred width for the dock item"
 msgstr "浮动项的首选宽度"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:316
 msgid "Preferred height"
 msgstr "首选高度"
 
-#: ../gdl/gdl-dock-item.c:305
+#: ../gdl/gdl-dock-item.c:317
 msgid "Preferred height for the dock item"
 msgstr "浮动项的首选高度"
 
-#: ../gdl/gdl-dock-item.c:644
+#: ../gdl/gdl-dock-item.c:662
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -94,7 +147,7 @@ msgstr ""
 "您不能将浮动对象 (%p，类型 %s) 添加到 %s 中。请使用 GdlDock 或者其他符合浮动"
 "对象。"
 
-#: ../gdl/gdl-dock-item.c:651
+#: ../gdl/gdl-dock-item.c:669
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -103,80 +156,71 @@ msgstr ""
 "尝试添加类型为 %s 的控件到 %s，但它一次只能包含一个控件；它已经包含了类型为 %"
 "s 的控件"
 
-#: ../gdl/gdl-dock-item.c:1358 ../gdl/gdl-dock-item.c:1408
+#: ../gdl/gdl-dock-item.c:1367 ../gdl/gdl-dock-item.c:1417
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "不支持将浮动策略 %s 用于类型为 %s 的浮动对象"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1516
+#: ../gdl/gdl-dock-item.c:1525
 msgid "UnLock"
 msgstr "解锁"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1523
+#: ../gdl/gdl-dock-item.c:1532
 msgid "Hide"
 msgstr "隐藏"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1528
+#: ../gdl/gdl-dock-item.c:1537
 msgid "Lock"
 msgstr "锁定"
 
-#: ../gdl/gdl-dock-item.c:1766
+#: ../gdl/gdl-dock-item.c:1810
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "尝试绑定自由项 %p"
 
-#: ../gdl/gdl-dock-layout.c:119 ../gdl/gdl-dock-bar.c:105
-msgid "Master"
-msgstr "主对象"
+#: ../gdl/gdl-dock-item-grip.c:406
+msgid "Iconify this dock"
+msgstr "图标化此浮动对象"
 
-#: ../gdl/gdl-dock-layout.c:120
+#: ../gdl/gdl-dock-item-grip.c:408
+msgid "Close this dock"
+msgstr "关闭此浮动对象"
+
+#: ../gdl/gdl-dock-item-grip.c:748 ../gdl/gdl-dock-tablabel.c:128
+msgid "Controlling dock item"
+msgstr "控制浮动项"
+
+#: ../gdl/gdl-dock-item-grip.c:749
+msgid "Dockitem which 'owns' this grip"
+msgstr "拥有控制柄的浮动项"
+
+#: ../gdl/gdl-dock-layout.c:108
 msgid "GdlDockMaster object which the layout object is attached to"
 msgstr "布局对象所附着的 GdlDockMaster 对象"
 
-#: ../gdl/gdl-dock-layout.c:127
+#: ../gdl/gdl-dock-layout.c:115
 msgid "Dirty"
 msgstr "脏"
 
-#: ../gdl/gdl-dock-layout.c:128
+#: ../gdl/gdl-dock-layout.c:116
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "当布局改变并需要存储到文件时为真"
 
-#: ../gdl/gdl-dock-layout.c:560
-#, c-format
-msgid "Could not load layout user interface file '%s'"
-msgstr "无法载入布局用户界面文件“%s”"
-
-#: ../gdl/gdl-dock-layout.c:617
-msgid "Visible"
-msgstr "可见"
-
-#: ../gdl/gdl-dock-layout.c:624
-msgid "Item"
-msgstr "项目"
-
-#: ../gdl/gdl-dock-layout.c:709 ../gdl/gdl-dock-object.c:117
-msgid "Name"
-msgstr "名称"
-
-#: ../gdl/gdl-dock-layout.c:767
+#: ../gdl/gdl-dock-layout.c:279
 #, c-format
 msgid ""
 "While loading layout: don't know how to create a dock object whose nick is '%"
 "s'"
 msgstr "当加载布局时：不知道如何创建昵称为“%s”的浮动对象"
 
-#: ../gdl/gdl-dock-master.c:138 ../gdl/gdl-dock.c:184
-msgid "Default title"
-msgstr "默认标题"
-
-#: ../gdl/gdl-dock-master.c:139
+#: ../gdl/gdl-dock-master.c:146
 msgid "Default title for newly created floating docks"
 msgstr "新创建的浮动对象的默认标题"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:153
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -184,15 +228,15 @@ msgstr ""
 "如果设置为1，所有绑定到主对象的浮动项将被锁定；如果为0，所有的将被解锁；-1表"
 "示项目不统一"
 
-#: ../gdl/gdl-dock-master.c:154 ../gdl/gdl-switcher.c:729
+#: ../gdl/gdl-dock-master.c:161 ../gdl/gdl-switcher.c:781
 msgid "Switcher Style"
 msgstr "切换器风格"
 
-#: ../gdl/gdl-dock-master.c:155 ../gdl/gdl-switcher.c:730
+#: ../gdl/gdl-dock-master.c:162 ../gdl/gdl-switcher.c:782
 msgid "Switcher buttons style"
 msgstr "切换器按钮风格"
 
-#: ../gdl/gdl-dock-master.c:768
+#: ../gdl/gdl-dock-master.c:772
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -200,242 +244,197 @@ msgid ""
 msgstr ""
 "主对象 %p：无法添加对象 %p[%s] 到 hash 表格。已经有一个项目用了这个名字(%p)。"
 
-#: ../gdl/gdl-dock-master.c:940
+#: ../gdl/gdl-dock-master.c:944
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr "新浮动控制器 %p 是自动的。只有手动浮动对象才能指定控制器。"
 
-#: ../gdl/gdl-dock-notebook.c:132
+#: ../gdl/gdl-dock-notebook.c:137
 msgid "Page"
 msgstr "页面"
 
-#: ../gdl/gdl-dock-notebook.c:133
+#: ../gdl/gdl-dock-notebook.c:138
 msgid "The index of the current page"
 msgstr "当前页面的索引"
 
-#: ../gdl/gdl-dock-object.c:118
+#: ../gdl/gdl-dock-object.c:116
+msgid "Name"
+msgstr "名称"
+
+#: ../gdl/gdl-dock-object.c:117
 msgid "Unique name for identifying the dock object"
 msgstr "用来识别浮动对象的唯一名称"
 
-#: ../gdl/gdl-dock-object.c:125
+#: ../gdl/gdl-dock-object.c:124
 msgid "Long name"
 msgstr "长名字"
 
-#: ../gdl/gdl-dock-object.c:126
+#: ../gdl/gdl-dock-object.c:125
 msgid "Human readable name for the dock object"
 msgstr "浮动对象的人类可读名称。"
 
-#: ../gdl/gdl-dock-object.c:132
+#: ../gdl/gdl-dock-object.c:131
 msgid "Stock Icon"
 msgstr "嵌入图标"
 
-#: ../gdl/gdl-dock-object.c:133
+#: ../gdl/gdl-dock-object.c:132
 msgid "Stock icon for the dock object"
 msgstr "浮动对象的嵌入图标"
 
-#: ../gdl/gdl-dock-object.c:139
+#: ../gdl/gdl-dock-object.c:145
+msgid "Pixbuf Icon"
+msgstr "Pixbuf 图标"
+
+#: ../gdl/gdl-dock-object.c:146
+msgid "Pixbuf icon for the dock object"
+msgstr "浮动对象的 Pixbuf 图标"
+
+#: ../gdl/gdl-dock-object.c:151
 msgid "Dock master"
 msgstr "浮动主对象"
 
-#: ../gdl/gdl-dock-object.c:140
+#: ../gdl/gdl-dock-object.c:152
 msgid "Dock master this dock object is bound to"
 msgstr "绑定此浮动对象的浮动主对象"
 
-#: ../gdl/gdl-dock-object.c:442
+#: ../gdl/gdl-dock-object.c:456
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr "浮动对象 %p(对象类型为%s)调用了 gdl_doc_object_dock，但此方法尚未实现"
 
-#: ../gdl/gdl-dock-object.c:581
+#: ../gdl/gdl-dock-object.c:595
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr "非绑定对象 %p 请求了浮动操作。应用程序可能会崩溃"
 
-#: ../gdl/gdl-dock-object.c:588
+#: ../gdl/gdl-dock-object.c:602
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "无法将 %p 嵌入到 %p 因为它们属于不同的主对象"
 
-#: ../gdl/gdl-dock-object.c:630
+#: ../gdl/gdl-dock-object.c:644
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr "尝试在 %p 绑定一个已经被绑定的浮动对象 %p (当前主对象：%p)"
 
-#: ../gdl/gdl-dock-paned.c:130
+#: ../gdl/gdl-dock-paned.c:128
 msgid "Position"
 msgstr "位置"
 
-#: ../gdl/gdl-dock-paned.c:131
+#: ../gdl/gdl-dock-paned.c:129
 msgid "Position of the divider in pixels"
 msgstr "分离器的位置，以像素计算"
 
-#: ../gdl/gdl-dock-placeholder.c:141
+#: ../gdl/gdl-dock-placeholder.c:148
 msgid "Sticky"
 msgstr "粘滞"
 
-#: ../gdl/gdl-dock-placeholder.c:142
+#: ../gdl/gdl-dock-placeholder.c:149
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
 msgstr "当宿主重新嵌入时，占位器是粘滞于其宿主还是延层次关系上移"
 
-#: ../gdl/gdl-dock-placeholder.c:149
+#: ../gdl/gdl-dock-placeholder.c:156
 msgid "Host"
 msgstr "主机"
 
-#: ../gdl/gdl-dock-placeholder.c:150
+#: ../gdl/gdl-dock-placeholder.c:157
 msgid "The dock object this placeholder is attached to"
 msgstr "浮动对象所附属的占位器"
 
-#: ../gdl/gdl-dock-placeholder.c:157
+#: ../gdl/gdl-dock-placeholder.c:164
 msgid "Next placement"
 msgstr "下一个位置"
 
-#: ../gdl/gdl-dock-placeholder.c:158
+#: ../gdl/gdl-dock-placeholder.c:165
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr "当请求嵌入我们时，项目将被嵌入我们宿主的位置"
 
-#: ../gdl/gdl-dock-placeholder.c:167 ../gdl/gdl-dock.c:191
-msgid "Width"
-msgstr "宽度"
-
-#: ../gdl/gdl-dock-placeholder.c:168
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "当附着在占位器时控件的宽度"
 
-#: ../gdl/gdl-dock-placeholder.c:175 ../gdl/gdl-dock.c:199
-msgid "Height"
-msgstr "高度"
-
-#: ../gdl/gdl-dock-placeholder.c:176
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "当附着在占位器时控件的高度"
 
-#: ../gdl/gdl-dock-placeholder.c:182
+#: ../gdl/gdl-dock-placeholder.c:189
 msgid "Floating Toplevel"
 msgstr "浮动的顶层"
 
-#: ../gdl/gdl-dock-placeholder.c:183
+#: ../gdl/gdl-dock-placeholder.c:190
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "占位器是否用于浮动的顶层窗体"
 
-#: ../gdl/gdl-dock-placeholder.c:189
+#: ../gdl/gdl-dock-placeholder.c:196
 msgid "X Coordinate"
 msgstr "横坐标"
 
-#: ../gdl/gdl-dock-placeholder.c:190
+#: ../gdl/gdl-dock-placeholder.c:197
 msgid "X coordinate for dock when floating"
 msgstr "浮动对象浮动时的横坐标"
 
-#: ../gdl/gdl-dock-placeholder.c:196
+#: ../gdl/gdl-dock-placeholder.c:203
 msgid "Y Coordinate"
 msgstr "纵坐标"
 
-#: ../gdl/gdl-dock-placeholder.c:197
+#: ../gdl/gdl-dock-placeholder.c:204
 msgid "Y coordinate for dock when floating"
 msgstr "浮动对象浮动时的纵坐标"
 
-#: ../gdl/gdl-dock-placeholder.c:499
+#: ../gdl/gdl-dock-placeholder.c:496
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "尝试向未绑定的占位器嵌入浮动对象"
 
-#: ../gdl/gdl-dock-placeholder.c:611
+#: ../gdl/gdl-dock-placeholder.c:608
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "收到来自一个对象(%p)的分离信号，但它并不在我们的宿主 %p"
 
-#: ../gdl/gdl-dock-placeholder.c:636
+#: ../gdl/gdl-dock-placeholder.c:633
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr "当为 %p 从父位置 %p 取得子位置时发生了一些奇怪的事"
 
-#: ../gdl/gdl-dock-tablabel.c:126
+#: ../gdl/gdl-dock-tablabel.c:129
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "拥有标签的浮动项"
 
-#: ../gdl/gdl-dock-bar.c:106
-msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "浮动条控件附着的 GdlDocMaster 对象"
+#~ msgid "Could not load layout user interface file '%s'"
+#~ msgstr "无法载入布局用户界面文件“%s”"
 
-#: ../gdl/gdl-dock-bar.c:113
-msgid "Dockbar style"
-msgstr "浮动条风格"
+#~ msgid "Visible"
+#~ msgstr "可见"
 
-#: ../gdl/gdl-dock-bar.c:114
-msgid "Dockbar style to show items on it"
-msgstr "用于显示项目的浮动条风格"
+#~ msgid "Item"
+#~ msgstr "项目"
 
-#: ../gdl/gdl-dock.c:176
-msgid "Floating"
-msgstr "浮动"
+#~ msgid "Dock items"
+#~ msgstr "浮动项"
 
-#: ../gdl/gdl-dock.c:177
-msgid "Whether the dock is floating in its own window"
-msgstr "浮动对象是否在自己的窗体内浮动"
+#~ msgid "Layout Managment"
+#~ msgstr "布局管理"
 
-#: ../gdl/gdl-dock.c:185
-msgid "Default title for the newly created floating docks"
-msgstr "新创建的浮动对象的默认标题"
+#~ msgid "Saved layouts"
+#~ msgstr "保存布局"
 
-#: ../gdl/gdl-dock.c:192
-msgid "Width for the dock when it's of floating type"
-msgstr "浮动状态时的宽"
+#~ msgid "_Load"
+#~ msgstr "载入(_L)"
 
-#: ../gdl/gdl-dock.c:200
-msgid "Height for the dock when it's of floating type"
-msgstr "浮动状态时的高"
-
-#: ../gdl/gdl-dock.c:207
-msgid "Float X"
-msgstr "浮动横坐标"
-
-#: ../gdl/gdl-dock.c:208
-msgid "X coordinate for a floating dock"
-msgstr "浮动时的横坐标"
-
-#: ../gdl/gdl-dock.c:215
-msgid "Float Y"
-msgstr "浮动纵坐标"
-
-#: ../gdl/gdl-dock.c:216
-msgid "Y coordinate for a floating dock"
-msgstr "浮动时的纵坐标"
-
-#: ../gdl/gdl-dock.c:475
-#, c-format
-msgid "Dock #%d"
-msgstr "浮动对象 #%d"
-
-#: ../gdl/layout.ui.h:1
-msgid "Dock items"
-msgstr "浮动项"
-
-#: ../gdl/layout.ui.h:2
-msgid "Layout Managment"
-msgstr "布局管理"
-
-#: ../gdl/layout.ui.h:3
-msgid "Saved layouts"
-msgstr "保存布局"
-
-#: ../gdl/layout.ui.h:4
-msgid "_Load"
-msgstr "载入(_L)"
-
-#: ../gdl/layout.ui.h:5
-msgid "_Lock dock items"
-msgstr "锁定浮动项(_L)"
+#~ msgid "_Lock dock items"
+#~ msgstr "锁定浮动项(_L)"
 
 #~ msgid "Expander Size"
 #~ msgstr "扩展器大小"
