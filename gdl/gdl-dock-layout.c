@@ -32,6 +32,23 @@
 #include "gdl-dock-layout.h"
 #include "gdl-dock-placeholder.h"
 
+/**
+ * SECTION:gdl-dock-layout
+ * @title: GdlDockLayout
+ * @short_description: save and restore docking widgets.
+ *
+ * The layout of all docking widgets can be saved using this #GdlDockLayout
+ * object. It automatically monitors the layout_changed signal of the
+ * dock master and stores the position of all widgets in memory after each
+ * change.
+ *
+ * The layout "dirty" property is set to %TRUE when the widget position in
+ * memory is updated.
+ * To keep an external file in sync with the dock, monitor this "dirty"
+ * property and call gdl_dock_layout_save_to_file when
+ * this changes to %TRUE. Informations are stored in XML format.
+ */
+
 
 /* ----- Private variables ----- */
 
@@ -84,7 +101,7 @@ static void     gdl_dock_layout_dispose         (GObject            *object);
 
 static void     gdl_dock_layout_build_doc       (GdlDockLayout      *layout);
 
-static xmlNodePtr gdl_dock_layout_find_layout   (GdlDockLayout      *layout, 
+static xmlNodePtr gdl_dock_layout_find_layout   (GdlDockLayout      *layout,
                                                  const gchar        *name);
 
 
@@ -107,7 +124,7 @@ gdl_dock_layout_class_init (GdlDockLayoutClass *klass)
         g_param_spec_object ("master", _("Master"),
                              _("GdlDockMaster object which the layout object "
                                "is attached to"),
-                             GDL_TYPE_DOCK_MASTER, 
+                             GDL_TYPE_DOCK_MASTER,
                              G_PARAM_READWRITE));
 
     g_object_class_install_property (
@@ -177,7 +194,7 @@ gdl_dock_layout_dispose (GObject *object)
     GdlDockLayout *layout;
 
     layout = GDL_DOCK_LAYOUT (object);
-    
+
     if (layout->master)
         gdl_dock_layout_attach (layout, NULL);
 
@@ -201,19 +218,19 @@ gdl_dock_layout_build_doc (GdlDockLayout *layout)
 
     xmlIndentTreeOutput = TRUE;
     layout->priv->doc = xmlNewDoc (BAD_CAST "1.0");
-    layout->priv->doc->children = xmlNewDocNode (layout->priv->doc, NULL, 
+    layout->priv->doc->children = xmlNewDocNode (layout->priv->doc, NULL,
                                                   BAD_CAST ROOT_ELEMENT, NULL);
 }
 
 static xmlNodePtr
-gdl_dock_layout_find_layout (GdlDockLayout *layout, 
+gdl_dock_layout_find_layout (GdlDockLayout *layout,
                              const gchar   *name)
 {
     xmlNodePtr node;
     gboolean   found = FALSE;
 
     g_return_val_if_fail (layout != NULL, NULL);
-    
+
     if (!layout->priv->doc)
         return NULL;
 
@@ -221,7 +238,7 @@ gdl_dock_layout_find_layout (GdlDockLayout *layout,
     node = layout->priv->doc->children;
     for (node = node->children; node; node = node->next) {
         xmlChar *layout_name;
-        
+
         if (strcmp ((char*)node->name, LAYOUT_ELEMENT_NAME))
             /* skip non-layout element */
             continue;
@@ -246,7 +263,7 @@ gdl_dock_layout_find_layout (GdlDockLayout *layout,
 #define GDL_DOCK_PARAM_CONSTRUCTION(p) \
     (((p)->flags & (G_PARAM_CONSTRUCT | G_PARAM_CONSTRUCT_ONLY)) != 0)
 
-static GdlDockObject * 
+static GdlDockObject *
 gdl_dock_layout_setup_object (GdlDockMaster *master,
                               xmlNodePtr     node,
                               gint          *n_after_params,
@@ -262,7 +279,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
     GParameter    *params = NULL;
     gint           n_params = 0;
     GValue         serialized = { 0, };
-    
+
     object_name = xmlGetProp (node, BAD_CAST GDL_DOCK_NAME_PROPERTY);
     if (object_name && strlen ((char*)object_name) > 0) {
         /* the object must already be bound to the master */
@@ -280,22 +297,22 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
                          "a dock object whose nick is '%s'"), node->name);
         }
     }
-    
+
     if (object_type == G_TYPE_NONE || !G_TYPE_IS_CLASSED (object_type))
         return NULL;
 
     object_class = g_type_class_ref (object_type);
     props = g_object_class_list_properties (object_class, &n_props);
-        
+
     /* create parameter slots */
     /* extra parameter is the master */
     params = g_new0 (GParameter, n_props + 1);
     *after_params = g_new0 (GParameter, n_props);
     *n_after_params = 0;
-    
+
     /* initialize value used for transformations */
     g_value_init (&serialized, GDL_TYPE_DOCK_PARAM);
-    
+
     for (i = 0; i < n_props; i++) {
         xmlChar *xml_prop;
 
@@ -310,7 +327,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
         xml_prop = xmlGetProp (node, BAD_CAST props [i]->name);
         if (xml_prop) {
             g_value_set_static_string (&serialized, (char*)xml_prop);
-            
+
             if (!GDL_DOCK_PARAM_CONSTRUCTION (props [i]) &&
                 (props [i]->flags & GDL_DOCK_PARAM_AFTER)) {
                 (*after_params) [*n_after_params].name = props [i]->name;
@@ -337,7 +354,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
         g_value_init (&params [n_params].value, GDL_TYPE_DOCK_MASTER);
         g_value_set_object (&params [n_params].value, master);
         n_params++;
-        
+
         /* construct the object if we have to */
         /* set the master, so toplevels are created correctly and
            other objects are bound */
@@ -369,7 +386,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
 {
     GdlDockObject *object;
     xmlNodePtr     node;
-    
+
     g_return_if_fail (master != NULL && parent_node != NULL);
 
     /* if parent is NULL we should build toplevels */
@@ -380,17 +397,17 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
         object = gdl_dock_layout_setup_object (master, node,
                                                &n_after_params,
                                                &after_params);
-        
+
         if (object) {
             gdl_dock_object_freeze (object);
 
             /* recurse here to catch placeholders */
             gdl_dock_layout_recursive_build (master, node, object);
-            
+
             if (GDL_IS_DOCK_PLACEHOLDER (object))
                 /* placeholders are later attached to the parent */
                 gdl_dock_object_detach (object, FALSE);
-            
+
             /* apply "after" parameters */
             for (i = 0; i < n_after_params; i++) {
                 g_object_set_property (G_OBJECT (object),
@@ -400,7 +417,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
                 g_value_unset (&after_params [i].value);
             }
             g_free (after_params);
-            
+
             /* add the object to the parent */
             if (parent) {
                 if (GDL_IS_DOCK_PLACEHOLDER (object))
@@ -417,7 +434,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
                 if (controller != object && gtk_widget_get_visible (GTK_WIDGET (controller)))
                     gtk_widget_show (GTK_WIDGET (object));
             }
-                
+
             /* call reduce just in case any child is missing */
             if (gdl_dock_object_is_compound (object))
                 gdl_dock_object_reduce (object);
@@ -450,11 +467,11 @@ gdl_dock_layout_load (GdlDockMaster *master, xmlNodePtr node)
     gdl_dock_master_foreach_toplevel (master, TRUE,
                                       (GFunc) gdl_dock_layout_foreach_toplevel_detach,
                                       NULL);
-    
+
     gdl_dock_layout_recursive_build (master, node, NULL);
 }
 
-static void 
+static void
 gdl_dock_layout_foreach_object_save (GdlDockObject *object,
                                      gpointer       user_data)
 {
@@ -467,10 +484,10 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
     guint        n_props, i;
     GParamSpec **props;
     GValue       attr = { 0, };
-    
+
     g_return_if_fail (object != NULL && GDL_IS_DOCK_OBJECT (object));
     g_return_if_fail (info->where != NULL);
-    
+
     node = xmlNewChild (info->where,
                         NULL,               /* ns */
                         BAD_CAST gdl_dock_object_nick_from_type (G_TYPE_FROM_INSTANCE (object)),
@@ -485,7 +502,7 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
 
         if (p->flags & GDL_DOCK_PARAM_EXPORT) {
             GValue v = { 0, };
-            
+
             /* export this parameter */
             /* get the parameter value */
             g_value_init (&v, p->value_type);
@@ -500,7 +517,7 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
                 if (g_value_transform (&v, &attr))
                     xmlSetProp (node, BAD_CAST p->name, BAD_CAST g_value_get_string (&attr));
             }
-            
+
             /* free the parameter value */
             g_value_unset (&v);
         }
@@ -518,7 +535,7 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
             gdl_dock_layout_foreach_object_save (GDL_DOCK_OBJECT (lph->data),
                                                  (gpointer) &info_child);
     }
-    
+
     /* recurse the object if appropiate */
     if (gdl_dock_object_is_compound (object)) {
         gtk_container_foreach (GTK_CONTAINER (object),
@@ -534,7 +551,7 @@ add_placeholder (GdlDockObject *object,
     if (GDL_IS_DOCK_PLACEHOLDER (object)) {
         GdlDockObject *host;
         GList *l;
-        
+
         g_object_get (object, "host", &host, NULL);
         if (host) {
             l = g_hash_table_lookup (placeholders, host);
@@ -542,7 +559,7 @@ add_placeholder (GdlDockObject *object,
                for that host */
             if (l)
                 g_hash_table_steal (placeholders, host);
-            
+
             l = g_list_prepend (l, object);
             g_hash_table_insert (placeholders, host, l);
             g_object_unref (host);
@@ -550,7 +567,7 @@ add_placeholder (GdlDockObject *object,
     }
 }
 
-static void 
+static void
 gdl_dock_layout_save (GdlDockMaster *master,
                       xmlNodePtr     where)
 {
@@ -558,9 +575,9 @@ gdl_dock_layout_save (GdlDockMaster *master,
         xmlNodePtr  where;
         GHashTable *placeholders;
     } info;
-    
+
     GHashTable *placeholders;
-    
+
     g_return_if_fail (master != NULL && where != NULL);
 
     /* build the placeholder's hash: the hash keeps lists of
@@ -570,11 +587,11 @@ gdl_dock_layout_save (GdlDockMaster *master,
     placeholders = g_hash_table_new_full (g_direct_hash, g_direct_equal,
                                           NULL, (GDestroyNotify) g_list_free);
     gdl_dock_master_foreach (master, (GFunc) add_placeholder, placeholders);
-    
+
     /* save the layout recursively */
     info.where = where;
     info.placeholders = placeholders;
-    
+
     gdl_dock_master_foreach_toplevel (master, TRUE,
                                       (GFunc) gdl_dock_layout_foreach_object_save,
                                       (gpointer) &info);
@@ -596,11 +613,11 @@ GdlDockLayout *
 gdl_dock_layout_new (GdlDock *dock)
 {
     GdlDockMaster *master = NULL;
-    
+
     /* get the master of the given dock */
     if (dock)
         master = GDL_DOCK_OBJECT_GET_MASTER (dock);
-    
+
     return g_object_new (GDL_TYPE_DOCK_LAYOUT,
                          "master", master,
                          NULL);
@@ -611,9 +628,9 @@ gdl_dock_layout_idle_save (GdlDockLayout *layout)
 {
     /* save default layout */
     gdl_dock_layout_save_layout (layout, NULL);
-    
+
     layout->priv->idle_save_pending = FALSE;
-    
+
     return FALSE;
 }
 
@@ -642,13 +659,13 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
 {
     g_return_if_fail (layout != NULL);
     g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
-    
+
     if (layout->master) {
         g_signal_handler_disconnect (layout->master,
                                      layout->priv->layout_changed_id);
         g_object_unref (layout->master);
     }
-    
+
     layout->master = master;
     if (layout->master) {
         g_object_ref (layout->master);
@@ -659,14 +676,14 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
     }
 }
 
-/** 
+/**
 * gdl_dock_layout_load_layout:
-* @layout: The dock item. 
+* @layout: The dock item.
 * @name: (allow-none): The name of the layout to load or %NULL for a default layout name.
 *
 * Loads the layout with the given name to the memory.
 * This will set #GdlDockLayout:dirty to %TRUE.
-* 
+*
 * See also gdl_dock_layout_load_from_file()
 * Returns: %TRUE if layout successfully loaded else %FALSE
 */
@@ -678,7 +695,7 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
     gchar      *layout_name;
 
     g_return_val_if_fail (layout != NULL, FALSE);
-    
+
     if (!layout->priv->doc || !layout->master)
         return FALSE;
 
@@ -699,14 +716,14 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
         return FALSE;
 }
 
-/** 
+/**
 * gdl_dock_layout_save_layout:
 * @layout: The dock item.
 * @name: (allow-none): The name of the layout to save or %NULL for a default layout name.
 *
 * Saves the @layout with the given name to the memory.
 * This will set #GdlDockLayout:dirty to %TRUE.
-* 
+*
 * See also gdl_dock_layout_save_to_file().
 */
 
@@ -719,7 +736,7 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
 
     g_return_if_fail (layout != NULL);
     g_return_if_fail (layout->master != NULL);
-    
+
     if (!layout->priv->doc)
         gdl_dock_layout_build_doc (layout);
 
@@ -736,7 +753,7 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
     };
 
     /* create the new node */
-    node = xmlNewChild (layout->priv->doc->children, NULL, 
+    node = xmlNewChild (layout->priv->doc->children, NULL,
                         BAD_CAST LAYOUT_ELEMENT_NAME, NULL);
     xmlSetProp (node, BAD_CAST NAME_ATTRIBUTE_NAME, BAD_CAST layout_name);
 
@@ -746,9 +763,9 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
     g_object_notify (G_OBJECT (layout), "dirty");
 }
 
-/** 
+/**
 * gdl_dock_layout_delete_layout:
-* @layout: The dock item. 
+* @layout: The dock item.
 * @name: The name of the layout to delete.
 *
 * Deletes the layout with the given name from the memory.
@@ -765,7 +782,7 @@ gdl_dock_layout_delete_layout (GdlDockLayout *layout,
     /* don't allow the deletion of the default layout */
     if (!name || !strcmp (DEFAULT_LAYOUT, name))
         return;
-    
+
     node = gdl_dock_layout_find_layout (layout, name);
     if (node) {
         xmlUnlinkNode (node);
@@ -775,9 +792,9 @@ gdl_dock_layout_delete_layout (GdlDockLayout *layout,
     }
 }
 
-/** 
+/**
 * gdl_dock_layout_load_from_file:
-* @layout: The layout item. 
+* @layout: The layout item.
 * @filename: The name of the file to load.
 *
 * Loads the layout from file with the given @filename.
@@ -809,19 +826,19 @@ gdl_dock_layout_load_from_file (GdlDockLayout *layout,
             } else {
                 xmlFreeDoc (layout->priv->doc);
                 layout->priv->doc = NULL;
-            }		
+            }
         }
     }
 
     return retval;
 }
 
-/** 
+/**
  * gdl_dock_layout_save_to_file:
  * @layout: The layout item.
  * @filename: Name of the file we want to save in layout
  *
- * This function saves the current layout in XML format to 
+ * This function saves the current layout in XML format to
  * the file with the given @filename.
  *
  * Returns: %TRUE if @layout successfuly save to the file, otherwise %FALSE.
@@ -870,6 +887,17 @@ gdl_dock_layout_is_dirty (GdlDockLayout *layout)
     return layout->dirty;
 };
 
+/**
+ * gdl_dock_layout_get_layouts:
+ * @layout: The layout item.
+ * @include_default: %TRUE to include the default layout.
+ *
+ * Get the list of layout names including or not the default layout.
+ *
+ * Returns: (element-type utf8) (transfer full): a #GList list
+ *  holding the layout names. You must first free each element in the list
+ *  with g_free(), then free the list itself with g_list_free().
+ */
 GList *
 gdl_dock_layout_get_layouts (GdlDockLayout *layout,
                              gboolean       include_default)

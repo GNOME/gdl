@@ -39,12 +39,19 @@ G_BEGIN_DECLS
 
 /* data types & structures */
 typedef struct _GdlDockLayout GdlDockLayout;
-typedef struct _GdlDockLayoutClass GdlDockLayoutClass;
 typedef struct _GdlDockLayoutPrivate GdlDockLayoutPrivate;
+typedef struct _GdlDockLayoutClass GdlDockLayoutClass;
 
+/**
+ * GdlDockLayout:
+ *
+ * The GdlDockLayout struct contains only private fields
+ * and should not be directly accessed.
+ */
 struct _GdlDockLayout {
     GObject               g_object;
 
+    /*< private >*/
     gboolean              dirty;
     GdlDockMaster        *master;
 
@@ -57,7 +64,7 @@ struct _GdlDockLayoutClass {
 
 
 /* public interface */
- 
+
 GType            gdl_dock_layout_get_type       (void);
 
 GdlDockLayout   *gdl_dock_layout_new            (GdlDock       *dock);
@@ -85,7 +92,6 @@ gboolean         gdl_dock_layout_save_to_file   (GdlDockLayout *layout,
 
 gboolean         gdl_dock_layout_is_dirty       (GdlDockLayout *layout);
 
-GtkWidget       *gdl_dock_layout_get_layouts_ui (GdlDockLayout *layout);
 
 G_END_DECLS
 
