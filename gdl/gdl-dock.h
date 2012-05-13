@@ -62,7 +62,7 @@ struct _GdlDockClass {
      GDL_DOCK_OBJECT (dock))
 
 /* public interface */
- 
+
 GtkWidget     *gdl_dock_new               (void);
 
 GtkWidget     *gdl_dock_new_from          (GdlDock          *original,
@@ -91,9 +91,9 @@ GList         *gdl_dock_get_named_items   (GdlDock    *dock);
 
 GdlDock       *gdl_dock_object_get_toplevel (GdlDockObject *object);
 
-void           gdl_dock_xor_rect            (GdlDock       *dock,
+void           gdl_dock_show_preview        (GdlDock       *dock,
                                              GdkRectangle  *rect);
-void           gdl_dock_xor_rect_hide       (GdlDock       *dock);
+void           gdl_dock_hide_preview        (GdlDock       *dock);
 
 G_END_DECLS
 

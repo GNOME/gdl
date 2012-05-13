@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * gdl-dock-master.c - Object which manages a dock ring
  *
@@ -54,13 +54,13 @@ static void     gdl_dock_master_get_property  (GObject            *object,
 static void     _gdl_dock_master_remove       (GdlDockObject      *object,
                                                GdlDockMaster      *master);
 
-static void     gdl_dock_master_drag_begin    (GdlDockItem        *item, 
+static void     gdl_dock_master_drag_begin    (GdlDockItem        *item,
                                                gpointer            data);
 static void     gdl_dock_master_drag_end      (GdlDockItem        *item,
                                                gboolean            cancelled,
                                                gpointer            data);
-static void     gdl_dock_master_drag_motion   (GdlDockItem        *item, 
-                                               gint                x, 
+static void     gdl_dock_master_drag_motion   (GdlDockItem        *item,
+                                               gint                x,
                                                gint                y,
                                                gpointer            data);
 
@@ -68,7 +68,9 @@ static void     _gdl_dock_master_foreach      (gpointer            key,
                                                gpointer            value,
                                                gpointer            user_data);
 
-static void     gdl_dock_master_xor_rect      (GdlDockMaster      *master);
+static void     gdl_dock_master_show_preview   (GdlDockMaster      *master);
+
+static void     gdl_dock_master_hide_preview   (GdlDockMaster      *master);
 
 static void     gdl_dock_master_layout_changed (GdlDockMaster     *master);
 
@@ -92,10 +94,9 @@ enum {
 struct _GdlDockMasterPrivate {
     gint            number;             /* for naming nameless manual objects */
     gchar          *default_title;
-    
-    gboolean        rect_drawn;
+
     GdlDock        *rect_owner;
-    
+
     GdlDockRequest *drag_request;
 
     /* source id for the idle handler to emit a layout_changed signal */
@@ -108,7 +109,7 @@ struct _GdlDockMasterPrivate {
      */
     GHashTable     *locked_items;
     GHashTable     *unlocked_items;
-    
+
     GdlSwitcherStyle switcher_style;
 
     /* Window for preview rect */
@@ -146,7 +147,7 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
                              _("Default title for newly created floating docks"),
                              NULL,
                              G_PARAM_READWRITE));
-    
+
     g_object_class_install_property (
         object_class, PROP_LOCKED,
         g_param_spec_int ("locked", _("Locked"),
@@ -164,8 +165,8 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
                            GDL_SWITCHER_STYLE_BOTH,
                            G_PARAM_READWRITE));
 
-    master_signals [LAYOUT_CHANGED] = 
-        g_signal_new ("layout-changed", 
+    master_signals [LAYOUT_CHANGED] =
+        g_signal_new ("layout-changed",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (GdlDockMasterClass, layout_changed),
@@ -213,7 +214,7 @@ _gdl_dock_master_remove (GdlDockObject *object,
         if (object == master->controller) {
             GList *last;
             GdlDockObject *new_controller = NULL;
-            
+
             /* now find some other non-automatic toplevel to use as a
                new controller.  start from the last dock, since it's
                probably a non-floating and manual */
@@ -237,7 +238,7 @@ _gdl_dock_master_remove (GdlDockObject *object,
         }
     }
     /* disconnect dock object signals */
-    g_signal_handlers_disconnect_matched (object, G_SIGNAL_MATCH_DATA, 
+    g_signal_handlers_disconnect_matched (object, G_SIGNAL_MATCH_DATA,
                                           0, 0, NULL, NULL, master);
 
     /* unref the object from the hash if it's there */
@@ -325,13 +326,13 @@ gdl_dock_master_finalize (GObject *object)
     G_OBJECT_CLASS (gdl_dock_master_parent_class)->finalize (object);
 }
 
-static void 
+static void
 foreach_lock_unlock (GdlDockItem *item,
                      gboolean     locked)
 {
     if (!GDL_IS_DOCK_ITEM (item))
         return;
-    
+
     g_object_set (item, "locked", locked, NULL);
     if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (item)))
         gtk_container_foreach (GTK_CONTAINER (item),
@@ -344,7 +345,7 @@ gdl_dock_master_lock_unlock (GdlDockMaster *master,
                              gboolean       locked)
 {
     GList *l;
-    
+
     for (l = master->toplevel_docks; l; l = l->next) {
         GdlDock *dock = GDL_DOCK (l->data);
         if (dock->root)
@@ -413,7 +414,7 @@ gdl_dock_master_drag_begin (GdlDockItem *item,
 {
     GdlDockMaster  *master;
     GdlDockRequest *request;
-    
+
     g_return_if_fail (data != NULL);
     g_return_if_fail (item != NULL);
 
@@ -423,7 +424,7 @@ gdl_dock_master_drag_begin (GdlDockItem *item,
         master->priv->drag_request = g_new0 (GdlDockRequest, 1);
 
     request = master->priv->drag_request;
-    
+
     /* Set the target to itself so it won't go floating with just a click. */
     request->applicant = GDL_DOCK_OBJECT (item);
     request->target = GDL_DOCK_OBJECT (item);
@@ -431,46 +432,44 @@ gdl_dock_master_drag_begin (GdlDockItem *item,
     if (G_IS_VALUE (&request->extra))
         g_value_unset (&request->extra);
 
-    master->priv->rect_drawn = FALSE;
     master->priv->rect_owner = NULL;
 }
 
 static void
-gdl_dock_master_drag_end (GdlDockItem *item, 
+gdl_dock_master_drag_end (GdlDockItem *item,
                           gboolean     cancelled,
                           gpointer     data)
 {
     GdlDockMaster  *master;
     GdlDockRequest *request;
-    
+
     g_return_if_fail (data != NULL);
     g_return_if_fail (item != NULL);
 
     master = GDL_DOCK_MASTER (data);
     request = master->priv->drag_request;
-    
+
     g_return_if_fail (GDL_DOCK_OBJECT (item) == request->applicant);
-    
-    /* Erase previously drawn rectangle */
-    if (master->priv->rect_drawn)
-        gdl_dock_master_xor_rect (master);    
+
+    /* Hide the preview window */
+    gdl_dock_master_hide_preview (master);
 
     /* cancel conditions */
     if (cancelled || request->applicant == request->target)
         return;
-    
+
     /* dock object to the requested position */
     gdl_dock_object_dock (request->target,
                           request->applicant,
                           request->position,
                           &request->extra);
-    
+
     g_signal_emit (master, master_signals [LAYOUT_CHANGED], 0);
 }
 
 static void
-gdl_dock_master_drag_motion (GdlDockItem *item, 
-                             gint         root_x, 
+gdl_dock_master_drag_motion (GdlDockItem *item,
+                             gint         root_x,
                              gint         root_y,
                              gpointer     data)
 {
@@ -482,14 +481,14 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     gint            x, y;
     GdlDock        *dock = NULL;
     gboolean        may_dock = FALSE;
-    
+
     g_return_if_fail (item != NULL && data != NULL);
 
     master = GDL_DOCK_MASTER (data);
     request = master->priv->drag_request;
 
     g_return_if_fail (GDL_DOCK_OBJECT (item) == request->applicant);
-    
+
     my_request = *request;
 
     /* first look under the pointer */
@@ -500,12 +499,12 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
            get to a GdlDock by walking up the hierarchy */
         gdk_window_get_user_data (window, (gpointer) &widget);
         if (GTK_IS_WIDGET (widget)) {
-            while (widget && (!GDL_IS_DOCK (widget) || 
+            while (widget && (!GDL_IS_DOCK (widget) ||
 	           GDL_DOCK_OBJECT_GET_MASTER (widget) != master))
                 widget = gtk_widget_get_parent (widget);
             if (widget) {
                 gint win_w, win_h;
-                
+
                 widget_window = gtk_widget_get_window (widget);
 
                 /* verify that the pointer is still in that dock
@@ -551,7 +550,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
         }
     }
 
-  
+
     if (!may_dock) {
         GtkRequisition req;
 	/* Special case for GdlDockItems : they must respect the flags */
@@ -587,24 +586,20 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
 	&& dock != GDL_DOCK(master->controller))
 	    return;
 
-    if (!(my_request.rect.x == request->rect.x &&
-          my_request.rect.y == request->rect.y &&
-          my_request.rect.width == request->rect.width &&
-          my_request.rect.height == request->rect.height &&
-          dock == master->priv->rect_owner)) {
-
-        /* erase the previous rectangle */
-        if (master->priv->rect_drawn)
-            gdl_dock_master_xor_rect (master);
+    /* the previous windows is drawn by the dock master object if the preview
+     * is floating or by the corresponding dock object. It is not necessary
+     * the dock master could handle all cases but then it would be more
+     * difficult to implement different preview window in both cases */
+    /* erase previous preview window if necessary */
+    if (master->priv->rect_owner != dock)
+    {
+        gdl_dock_master_hide_preview (master);
+        master->priv->rect_owner = dock;
     }
 
-    /* set the new values */
+    /* draw the preview window */
     *request = my_request;
-    master->priv->rect_owner = dock;
-    
-    /* draw the previous rectangle */
-    if (~master->priv->rect_drawn)
-        gdl_dock_master_xor_rect (master);
+    gdl_dock_master_show_preview (master);
 }
 
 static void
@@ -621,40 +616,45 @@ _gdl_dock_master_foreach (gpointer key,
 }
 
 static void
-gdl_dock_master_xor_rect (GdlDockMaster *master)
+gdl_dock_master_show_preview (GdlDockMaster *master)
 {
-    cairo_rectangle_int_t *rect;
-    
     if (!master->priv || !master->priv->drag_request)
         return;
-    
-    master->priv->rect_drawn = ~master->priv->rect_drawn;
-    
-    if (master->priv->rect_owner) 
+
+    if (master->priv->rect_owner)
     {
-        if (master->priv->rect_drawn)
-        {
-            gdl_dock_xor_rect (master->priv->rect_owner,
+        gdl_dock_show_preview (master->priv->rect_owner,
                                &master->priv->drag_request->rect);
-        }
-        else
-        {
-            gdl_dock_xor_rect_hide(master->priv->rect_owner);
-            master->priv->rect_owner = NULL;
-        }
-    }        
-    if (master->priv->rect_drawn && !master->priv->rect_owner)
-    {
-            rect = &master->priv->drag_request->rect;
-
-            if (!master->priv->area_window)
-            {
-                master->priv->area_window = gdl_preview_window_new ();
-            }
-
-            gdl_preview_window_update (GDL_PREVIEW_WINDOW (master->priv->area_window), rect);
     }
-    else if (master->priv->area_window)
+    else
+    {
+        cairo_rectangle_int_t *rect;
+
+        rect = &master->priv->drag_request->rect;
+
+        if (!master->priv->area_window)
+        {
+            master->priv->area_window = gdl_preview_window_new ();
+        }
+
+        gdl_preview_window_update (GDL_PREVIEW_WINDOW (master->priv->area_window), rect);
+    }
+}
+
+static void
+gdl_dock_master_hide_preview (GdlDockMaster *master)
+{
+    cairo_rectangle_int_t *rect;
+
+    if (!master->priv)
+        return;
+
+    if (master->priv->rect_owner)
+    {
+        gdl_dock_hide_preview (master->priv->rect_owner);
+        master->priv->rect_owner = NULL;
+    }
+    if (master->priv->area_window)
     {
         gtk_widget_hide (master->priv->area_window);
     }
@@ -686,11 +686,11 @@ idle_emit_layout_changed (gpointer user_data)
 
     master->priv->idle_layout_changed_id = 0;
     g_signal_emit (master, master_signals [LAYOUT_CHANGED], 0);
-    
+
     return FALSE;
 }
 
-static void 
+static void
 item_dock_cb (GdlDockObject    *object,
               GdlDockObject    *requestor,
               GdlDockPlacement  position,
@@ -698,7 +698,7 @@ item_dock_cb (GdlDockObject    *object,
               gpointer          user_data)
 {
     GdlDockMaster *master = user_data;
-    
+
     g_return_if_fail (requestor && GDL_IS_DOCK_OBJECT (requestor));
     g_return_if_fail (master && GDL_IS_DOCK_MASTER (master));
 
@@ -713,13 +713,13 @@ item_dock_cb (GdlDockObject    *object,
     }
 }
 
-static void 
+static void
 item_detach_cb (GdlDockObject *object,
                 gboolean       recursive,
                 gpointer       user_data)
 {
     GdlDockMaster *master = user_data;
-    
+
     g_return_if_fail (object && GDL_IS_DOCK_OBJECT (object));
     g_return_if_fail (master && GDL_IS_DOCK_MASTER (master));
 
@@ -739,7 +739,7 @@ item_notify_cb (GdlDockObject *object,
     GdlDockMaster *master = user_data;
     gint locked = COMPUTE_LOCKED (master);
     gboolean item_locked;
-    
+
     g_object_get (object, "locked", &item_locked, NULL);
 
     if (item_locked) {
@@ -749,7 +749,7 @@ item_notify_cb (GdlDockObject *object,
         g_hash_table_remove (master->priv->locked_items, object);
         g_hash_table_insert (master->priv->unlocked_items, object, NULL);
     }
-    
+
     if (COMPUTE_LOCKED (master) != locked)
         g_object_notify (G_OBJECT (master), "locked");
 }
@@ -764,13 +764,13 @@ gdl_dock_master_add (GdlDockMaster *master,
 
     if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
         GdlDockObject *found_object;
-        
+
         /* create a name for the object if it doesn't have one */
         if (!object->name)
             /* directly set the name, since it's a construction only
                property */
             object->name = g_strdup_printf ("__dock_%u", master->priv->number++);
-        
+
         /* add the object to our hash list */
         if ((found_object = g_hash_table_lookup (master->dock_objects, object->name))) {
             g_warning (_("master %p: unable to add object %p[%s] to the hash.  "
@@ -782,15 +782,15 @@ gdl_dock_master_add (GdlDockMaster *master,
             g_hash_table_insert (master->dock_objects, g_strdup (object->name), object);
         }
     }
-    
+
     if (GDL_IS_DOCK (object)) {
         gboolean floating;
-        
+
         /* if this is the first toplevel we are adding, name it controller */
         if (!master->toplevel_docks)
             /* the dock should already have the ref */
             master->controller = object;
-        
+
         /* add dock to the toplevel list */
         g_object_get (object, "floating", &floating, NULL);
         if (floating)
@@ -824,7 +824,7 @@ gdl_dock_master_add (GdlDockMaster *master,
                               G_CALLBACK (item_notify_cb), master);
             item_notify_cb (object, NULL, master);
         }
-        
+
         /* If the item is notebook, set the switcher style */
         if (GDL_IS_DOCK_NOTEBOOK (object) &&
             GDL_IS_SWITCHER (GDL_DOCK_ITEM (object)->child))
@@ -832,7 +832,7 @@ gdl_dock_master_add (GdlDockMaster *master,
             g_object_set (GDL_DOCK_ITEM (object)->child, "switcher-style",
                           master->priv->switcher_style, NULL);
         }
-        
+
         /* post a layout_changed emission if the item is not automatic
          * (since it should be added to the items model) */
         if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
@@ -859,10 +859,10 @@ gdl_dock_master_remove (GdlDockMaster *master,
                 g_object_notify (G_OBJECT (master), "locked");
         }
     }
-        
+
     /* ref the master, since removing the controller could cause master disposal */
     g_object_ref (master);
-    
+
     /* all the interesting stuff happens in _gdl_dock_master_remove */
     _gdl_dock_master_remove (object, master);
 
@@ -873,7 +873,7 @@ gdl_dock_master_remove (GdlDockMaster *master,
             master->priv->idle_layout_changed_id =
                 g_idle_add (idle_emit_layout_changed, master);
     }
-    
+
     /* balance ref count */
     g_object_unref (master);
 }
@@ -902,7 +902,7 @@ gdl_dock_master_foreach_toplevel (GdlDockMaster *master,
                                   gpointer       user_data)
 {
     GList *l;
-    
+
     g_return_if_fail (master != NULL && function != NULL);
 
     for (l = master->toplevel_docks; l; ) {
@@ -918,7 +918,7 @@ gdl_dock_master_get_object (GdlDockMaster *master,
                             const gchar   *nick_name)
 {
     gpointer *found;
-    
+
     g_return_val_if_fail (master != NULL, NULL);
 
     if (!nick_name)
@@ -947,7 +947,7 @@ gdl_dock_master_set_controller (GdlDockMaster *master,
         if (GDL_DOCK_OBJECT_AUTOMATIC (new_controller))
             g_warning (_("The new dock controller %p is automatic.  Only manual "
                          "dock objects should be named controller."), new_controller);
-        
+
         /* check that the controller is in the toplevel list */
         if (!g_list_find (master->toplevel_docks, new_controller))
             gdl_dock_master_add (master, new_controller);
@@ -964,19 +964,19 @@ static void
 set_switcher_style_foreach (GtkWidget *obj, gpointer user_data)
 {
     GdlSwitcherStyle style = GPOINTER_TO_INT (user_data);
-    
+
     if (!GDL_IS_DOCK_ITEM (obj))
         return;
-    
+
     if (GDL_IS_DOCK_NOTEBOOK (obj)) {
-        
+
         GtkWidget *child = GDL_DOCK_ITEM (obj)->child;
         if (GDL_IS_SWITCHER (child)) {
-            
+
             g_object_set (child, "switcher-style", style, NULL);
         }
     } else if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (obj))) {
-        
+
         gtk_container_foreach (GTK_CONTAINER (obj),
                                set_switcher_style_foreach,
                                user_data);
@@ -989,7 +989,7 @@ gdl_dock_master_set_switcher_style (GdlDockMaster *master,
 {
     GList *l;
     g_return_if_fail (GDL_IS_DOCK_MASTER (master));
-    
+
     master->priv->switcher_style = switcher_style;
     for (l = master->toplevel_docks; l; l = l->next) {
         GdlDock *dock = GDL_DOCK (l->data);
