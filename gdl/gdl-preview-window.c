@@ -2,22 +2,34 @@
 /*
  * gdl
  * Copyright (C) Johannes Schmid 2010 <jhs@gnome.org>
- * 
+ *
  * gdl is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published
  * by the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * gdl is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "gdl-preview-window.h"
+
+/**
+ * SECTION:gdl-preview-window
+ * @title: GdlPreviewWindow
+ * @short_description: show destination docking site.
+ * @stability: Internal
+ *
+ *The #GdlPreviewWindow is used to indicate the position where the widget
+ * will be dropped. Depending on the capability of the screen it can use
+ * a transparent window or just a border.
+ */
+
 
 G_DEFINE_TYPE (GdlPreviewWindow, gdl_preview_window, GTK_TYPE_WINDOW);
 
@@ -26,7 +38,7 @@ gdl_preview_window_init (GdlPreviewWindow *window)
 {
     GdkScreen *screen;
     GdkVisual *visual;
-    
+
     screen = gdk_screen_get_default ();
     visual = gdk_screen_get_rgba_visual (screen);
 
@@ -88,6 +100,13 @@ gdl_preview_window_class_init (GdlPreviewWindowClass *klass)
 }
 
 
+/**
+ * gdl_preview_window_new:
+ *
+ * Creates a new #GdlPreviewWindow
+ *
+ * Returns: New #GdlPreviewWindow item.
+ */
 GtkWidget*
 gdl_preview_window_new (void)
 {
@@ -95,25 +114,32 @@ gdl_preview_window_new (void)
                                      "type", GTK_WINDOW_POPUP, NULL));
 }
 
+/**
+ * gdl_preview_window_update:
+ * @window: a #GdlPreviewWindow
+ * @rect: the new position and size of the window
+ *
+ * Update the size and position of the preview window. This function is
+ * called on drag_motion event to update the representation of the docking site
+ * in real time.
+ */
 void
-gdl_preview_window_update (GdlPreviewWindow * pre_window, GdkRectangle *rect)
+gdl_preview_window_update (GdlPreviewWindow * window, GdkRectangle *rect)
 {
-    GtkWidget* window = GTK_WIDGET (pre_window);
-    
     if (rect->width <= 0 || rect->height <= 0)
     {
-        gtk_widget_hide (window);
+        gtk_widget_hide (GTK_WIDGET (window));
         return;
     }
 
     gtk_window_move (GTK_WINDOW (window), rect->x, rect->y);
     gtk_window_resize (GTK_WINDOW (window), rect->width, rect->height);
-    gtk_widget_show (window);
+    gtk_widget_show (GTK_WIDGET (window));
 
     /* We (ab)use app-paintable to indicate if we have an RGBA window */
-    if (!gtk_widget_get_app_paintable (window))
+    if (!gtk_widget_get_app_paintable (GTK_WIDGET (window)))
     {
-        GdkWindow *gdkwindow = gtk_widget_get_window (window);
+        GdkWindow *gdkwindow = gtk_widget_get_window (GTK_WIDGET (window));
 
         /* Shape the window to make only the outline visible */
         if (rect->width > 2 && rect->height > 2)
