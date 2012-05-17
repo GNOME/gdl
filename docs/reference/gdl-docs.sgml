@@ -11,12 +11,13 @@
 
   <chapter id="gdl-main">
     <title>GDL - Gnome Development/Docking library</title>
-    <xi:include href="xml/gdl-dock-layout.xml" />
     <xi:include href="xml/gdl-dock-master.xml" />
-    <xi:include href="xml/gdl-dock-item.xml" />
-    <xi:include href="xml/gdl-dock.xml" />
     <xi:include href="xml/gdl-dock-object.xml" />
+    <xi:include href="xml/gdl-dock.xml" />
+    <xi:include href="xml/gdl-dock-item.xml" />
+    <xi:include href="xml/gdl-dock-item-grip.xml" />
     <xi:include href="xml/gdl-dock-bar.xml" />
     <xi:include href="xml/gdl-dock-placeholder.xml" />
+    <xi:include href="xml/gdl-dock-layout.xml" />
   </chapter>
 </book>

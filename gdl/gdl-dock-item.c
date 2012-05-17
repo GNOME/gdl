@@ -48,6 +48,18 @@
 #include "libgdltypebuiltins.h"
 #include "libgdlmarshal.h"
 
+/**
+ * SECTION:gdl-dock-item
+ * @title: GdlDockItem
+ * @short_description: Adds docking capability to its child widget.
+ *
+ * A dock item is a container widget that can be docked at different place.
+ * It accepts a single child and adds a grip allowing the user to click on it
+ * to drag and drop the widget.
+ *
+ * The grip is implemented as a #GdlDockItemGrip.
+ */
+
 #define NEW_DOCK_ITEM_RATIO 0.3
 
 /* ----- Private prototypes ----- */
