@@ -118,7 +118,7 @@ static void  gdl_dock_item_popup_menu    (GdlDockItem *item,
                                           guint        button,
                                           guint32      time);
 static void  gdl_dock_item_drag_start    (GdlDockItem *item);
-static void  gdl_dock_item_drag_end      (GdlDockItem *item,
+static gboolean gdl_dock_item_drag_end   (GdlDockItem *item,
                                           gboolean     cancel);
 
 static void  gdl_dock_item_tab_button    (GtkWidget      *widget,
@@ -534,23 +534,7 @@ on_grab_broken_event (GtkWidget *widget,
                       GdkEvent  *event,
                       gpointer   user_data)
 {
-    GdlDockItem *item = GDL_DOCK_ITEM (user_data);
-
-    if (GDL_DOCK_ITEM_IN_DRAG (item)) {
-        gdl_dock_item_drag_end (item, TRUE);
-    }
-    else if (GDL_DOCK_ITEM_IN_PREDRAG (item)) {
-        GdkCursor *cursor;
-
-        GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
-        cursor = gdk_cursor_new_for_display (gtk_widget_get_display (item->priv->grip),
-                                             GDK_HAND2);
-        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
-                               cursor);
-        gdk_cursor_unref (cursor);
-    }
-
-    return FALSE;
+    return gdl_dock_item_drag_end (GDL_DOCK_ITEM (user_data), TRUE);
 }
 
 static void
@@ -811,9 +795,7 @@ gdl_dock_item_remove (GtkContainer *container,
         return;
     }
 
-    if (GDL_DOCK_ITEM_IN_DRAG (item)) {
-        gdl_dock_item_drag_end (item, TRUE);
-    }
+    gdl_dock_item_drag_end (item, TRUE);
 
     g_return_if_fail (item->child == widget);
 
@@ -1197,26 +1179,8 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
         };
 
     } else if (!locked &&event->type == GDK_BUTTON_RELEASE && event->button == 1) {
-        if (GDL_DOCK_ITEM_IN_DRAG (item)) {
-            /* User dropped widget somewhere. */
-            gdl_dock_item_drag_end (item, FALSE);
-            gtk_widget_grab_focus (GTK_WIDGET (item));
-            event_handled = TRUE;
-        }
-        else if (GDL_DOCK_ITEM_IN_PREDRAG (item)) {
-            GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
-            event_handled = TRUE;
-        }
-
-        /* we check the window since if the item was redocked it's
-           been unrealized and maybe it's not realized again yet */
-        if (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window) {
-            cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
-                                                 GDK_HAND2);
-            gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
-                                   cursor);
-            gdk_cursor_unref (cursor);
-        }
+        /* User dropped widget somewhere */
+        event_handled = gdl_dock_item_drag_end (item, FALSE);
 
     } else if (event->button == 3 && event->type == GDK_BUTTON_PRESS && in_handle) {
         gdl_dock_item_popup_menu (item, event->button, event->time);
@@ -1274,16 +1238,8 @@ static gboolean
 gdl_dock_item_key_press (GtkWidget   *widget,
                          GdkEventKey *event)
 {
-    gboolean event_handled = FALSE;
-
-    if (GDL_DOCK_ITEM_IN_DRAG (widget)) {
-        if (event->keyval == GDK_KEY_Escape) {
-            gdl_dock_item_drag_end (GDL_DOCK_ITEM (widget), TRUE);
-            event_handled = TRUE;
-        }
-    }
-
-    if (event_handled)
+    /* Cancel drag */
+    if (gdl_dock_item_drag_end (GDL_DOCK_ITEM (widget), TRUE))
         return TRUE;
     else
         return GTK_WIDGET_CLASS (gdl_dock_item_parent_class)->key_press_event (widget, event);
@@ -1691,35 +1647,54 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
 static void
 gdl_dock_item_drag_start (GdlDockItem *item)
 {
-    GdkCursor *fleur;
-
     if (!gtk_widget_get_realized (GTK_WIDGET (item)))
         gtk_widget_realize (GTK_WIDGET (item));
 
     GDL_DOCK_ITEM_SET_FLAGS (item, GDL_DOCK_IN_DRAG);
 
-    /* grab the pointer so we receive all mouse events */
-    fleur = gdk_cursor_new (GDK_FLEUR);
-
     /* grab the keyboard & pointer. The pointer has already been grabbed by the grip
      * window when it has received a press button event. See gdk_pointer_grab. */
     gtk_grab_add (GTK_WIDGET (item));
 
-    gdk_cursor_unref (fleur);
-
     g_signal_emit (item, gdl_dock_item_signals [DOCK_DRAG_BEGIN], 0);
 }
 
-static void
+/* Terminate a drag operation, return TRUE if a drag or pre-drag was running */
+static gboolean
 gdl_dock_item_drag_end (GdlDockItem *item,
                         gboolean     cancel)
 {
-    /* Release pointer & keyboard. */
-    gtk_grab_remove (gtk_grab_get_current ());
+    if (GDL_DOCK_ITEM_IN_DRAG (item)) {
+        /* Release pointer & keyboard. */
+        gtk_grab_remove (gtk_grab_get_current ());
+        g_signal_emit (item, gdl_dock_item_signals [DOCK_DRAG_END], 0, cancel);
+        gtk_widget_grab_focus (GTK_WIDGET (item));
 
-    g_signal_emit (item, gdl_dock_item_signals [DOCK_DRAG_END], 0, cancel);
+        GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_DRAG);
+    }
+    else if (GDL_DOCK_ITEM_IN_PREDRAG (item)) {
+        GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
+    }
+    else {
+        /* No drag not pre-drag has been started */
+        return FALSE;
+    }
 
-    GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_DRAG);
+    /* We check the window since if the item could have been redocked and have
+     * been unrealized, maybe it's not realized again yet */
+    if (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window)
+    {
+        /* Restore old cursor */
+        GdkCursor *cursor;
+
+        cursor = gdk_cursor_new_for_display (gtk_widget_get_display (GTK_WIDGET (item)),
+                                             GDK_HAND2);
+        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
+                               cursor);
+        gdk_cursor_unref (cursor);
+    }
+
+    return TRUE;
 }
 
 static void
