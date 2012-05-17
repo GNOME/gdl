@@ -539,6 +539,16 @@ on_grab_broken_event (GtkWidget *widget,
     if (GDL_DOCK_ITEM_IN_DRAG (item)) {
         gdl_dock_item_drag_end (item, TRUE);
     }
+    else if (GDL_DOCK_ITEM_IN_PREDRAG (item)) {
+        GdkCursor *cursor;
+
+        GDL_DOCK_ITEM_UNSET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
+        cursor = gdk_cursor_new_for_display (gtk_widget_get_display (item->priv->grip),
+                                             GDK_HAND2);
+        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
+                               cursor);
+        gdk_cursor_unref (cursor);
+    }
 
     return FALSE;
 }
