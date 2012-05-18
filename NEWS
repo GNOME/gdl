@@ -1,3 +1,8 @@
+Changes in 3.4.2
+
+* Really fixed shared library name
+* Translation updates
+
 Changes in 3.4.1
 
 * Fix shared library name
