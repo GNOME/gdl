@@ -41,6 +41,7 @@
  * @title: GdlDockMaster
  * @short_description: Manage all dock widgets
  * @stability: Internal
+ * @see_also: #GdlDockNotebook, #GdlDockPaned
  *
  * For the toplevel docks to be able to interact with each other, when the user
  * drags items from one place to another, they're all kept in a user-invisible
@@ -48,6 +49,12 @@
  * every #GdlDockObject must have the same master, the binding to the master is
  * done automatically.  The master also keeps track of the manual items,
  * mostly those created with gdl_dock_*_new functions which are in the dock.
+ *
+ * The master is responsible for creating automatically compound widgets.
+ * When the user drops a widget on a simple one, a notebook or a paned compound
+ * widget containing both widgets is created and replace it.
+ * Such widgets are destroyed automatically too when they have less than two
+ * children.
  */
 
 /* ----- Private prototypes ----- */

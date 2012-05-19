@@ -29,6 +29,19 @@
 #include "gdl-dock-notebook.h"
 #include "gdl-dock-tablabel.h"
 
+/**
+ * SECTION:gdl-dock-notebook
+ * @title: GdlDockNotebook
+ * @short_description: Group dock widgets in a notebook
+ * @stability: Unstable
+ * @see_also: #GdlDockPaned, #GdlDockMaster
+ *
+ * A #GdlDockNotebook is a compound dock widget like #GdlDockPaned.
+ * Other dock widgets can be added to it, simply by dropping them on the
+ * widget. Contrary to the #GdlDockPaned, a #GdlDockNotebook can contain
+ * only simple dock widget.
+ */
+
 
 /* Private prototypes */
 
@@ -64,7 +77,7 @@ static void  gdl_dock_notebook_switch_page_cb  (GtkNotebook     *nb,
 
 static void  gdl_dock_notebook_set_orientation (GdlDockItem     *item,
                                                 GtkOrientation   orientation);
-					       
+
 static gboolean gdl_dock_notebook_child_placement (GdlDockObject    *object,
                                                    GdlDockObject    *child,
                                                    GdlDockPlacement *placement);
@@ -116,22 +129,22 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
 
     g_object_class->set_property = gdl_dock_notebook_set_property;
     g_object_class->get_property = gdl_dock_notebook_get_property;
-    
+
     widget_class->destroy = gdl_dock_notebook_destroy;
 
     container_class->add = gdl_dock_notebook_add;
     container_class->forall = gdl_dock_notebook_forall;
     container_class->child_type = gdl_dock_notebook_child_type;
-    
+
     object_class->is_compound = TRUE;
     object_class->dock = gdl_dock_notebook_dock;
     object_class->child_placement = gdl_dock_notebook_child_placement;
     object_class->present = gdl_dock_notebook_present;
     object_class->reorder = gdl_dock_notebook_reorder;
-    
+
     item_class->has_grip = FALSE;
-    item_class->set_orientation = gdl_dock_notebook_set_orientation;    
-    
+    item_class->set_orientation = gdl_dock_notebook_set_orientation;
+
     g_object_class_install_property (
         g_object_class, PROP_PAGE,
         g_param_spec_int ("page", _("Page"),
@@ -148,10 +161,10 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
     gtk_css_provider_load_from_data (klass->priv->css, notebook_style, -1, NULL);
 }
 
-static void 
+static void
 gdl_dock_notebook_notify_cb (GObject    *g_object,
                              GParamSpec *pspec,
-                             gpointer    user_data) 
+                             gpointer    user_data)
 {
     g_return_if_fail (user_data != NULL && GDL_IS_DOCK_NOTEBOOK (user_data));
 
@@ -159,7 +172,7 @@ gdl_dock_notebook_notify_cb (GObject    *g_object,
     g_object_notify (G_OBJECT (user_data), pspec->name);
 }
 
-static gboolean 
+static gboolean
 gdl_dock_notebook_button_cb (GtkWidget      *widget,
                              GdkEventButton *event,
                              gpointer        user_data)
@@ -171,7 +184,7 @@ gdl_dock_notebook_button_cb (GtkWidget      *widget,
 
     return FALSE;
 }
-    
+
 static void
 gdl_dock_notebook_init (GdlDockNotebook *notebook)
 {
@@ -195,7 +208,7 @@ gdl_dock_notebook_init (GdlDockNotebook *notebook)
     gtk_widget_show (item->child);
 }
 
-static void 
+static void
 gdl_dock_notebook_set_property (GObject      *object,
                                 guint         prop_id,
                                 const GValue *value,
@@ -209,7 +222,7 @@ gdl_dock_notebook_set_property (GObject      *object,
                 gtk_notebook_set_current_page (GTK_NOTEBOOK (item->child),
                                                g_value_get_int (value));
             }
-            
+
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -217,7 +230,7 @@ gdl_dock_notebook_set_property (GObject      *object,
     }
 }
 
-static void 
+static void
 gdl_dock_notebook_get_property (GObject    *object,
                                 guint       prop_id,
                                 GValue     *value,
@@ -231,7 +244,7 @@ gdl_dock_notebook_get_property (GObject    *object,
                 g_value_set_int (value, gtk_notebook_get_current_page
                                  (GTK_NOTEBOOK (item->child)));
             }
-            
+
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -267,7 +280,7 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
     GtkWidget       *tablabel;
     GdlDockItem     *current_item;
     GdlDockItem     *new_item;
-    
+
     notebook = GDL_DOCK_NOTEBOOK (data);
     current_page = gtk_notebook_get_current_page (nb);
 
@@ -329,7 +342,7 @@ gdl_dock_notebook_forall (GtkContainer *container,
 
     if (include_internals) {
         /* use GdlDockItem's forall */
-        GTK_CONTAINER_CLASS (gdl_dock_notebook_parent_class)->forall 
+        GTK_CONTAINER_CLASS (gdl_dock_notebook_parent_class)->forall
             (container, include_internals, callback, callback_data);
     }
     else {
@@ -344,7 +357,7 @@ gdl_dock_notebook_child_type (GtkContainer *container)
 {
     return GDL_TYPE_DOCK_ITEM;
 }
-    
+
 static void
 gdl_dock_notebook_dock_child (GdlDockObject *requestor,
                               gpointer       user_data)
@@ -379,11 +392,11 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             } data;
 
             gdl_dock_object_freeze (requestor);
-            
+
             data.object = object;
             data.position = position;
             data.other_data = other_data;
-             
+
             gtk_container_foreach (GTK_CONTAINER (requestor),
                                    (GtkCallback) gdl_dock_notebook_dock_child, &data);
 
@@ -396,7 +409,7 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
             GdkPixbuf   *pixbuf_icon;
             GtkWidget   *label;
             gint         position = -1;
-            
+
             g_object_get (requestor_item, "long-name", &long_name,
                           "stock-id", &stock_id, "pixbuf-icon", &pixbuf_icon, NULL);
             label = gdl_dock_item_get_tablabel (requestor_item);
@@ -414,14 +427,14 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
 
             if (other_data && G_VALUE_HOLDS (other_data, G_TYPE_INT))
                 position = g_value_get_int (other_data);
-            
-            position = gdl_switcher_insert_page (GDL_SWITCHER (item->child), 
+
+            position = gdl_switcher_insert_page (GDL_SWITCHER (item->child),
                                                  GTK_WIDGET (requestor), label,
                                                  long_name, long_name,
                                                  stock_id, pixbuf_icon, position);
-            
+
             GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
-            
+
             /* Set current page to the newly docked widget. set current page
              * really doesn't work if the page widget is not shown
              */
@@ -450,14 +463,14 @@ gdl_dock_notebook_set_orientation (GdlDockItem    *item,
     GDL_DOCK_ITEM_CLASS (gdl_dock_notebook_parent_class)->set_orientation (item, orientation);
 }
 
-static gboolean 
+static gboolean
 gdl_dock_notebook_child_placement (GdlDockObject    *object,
                                    GdlDockObject    *child,
                                    GdlDockPlacement *placement)
 {
     GdlDockItem      *item = GDL_DOCK_ITEM (object);
     GdlDockPlacement  pos = GDL_DOCK_NONE;
-    
+
     if (item->child) {
         GList *children, *l;
 
@@ -486,7 +499,7 @@ gdl_dock_notebook_present (GdlDockObject *object,
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
     int i;
-    
+
     i = gtk_notebook_page_num (GTK_NOTEBOOK (item->child),
                                GTK_WIDGET (child));
     if (i >= 0)
@@ -495,7 +508,7 @@ gdl_dock_notebook_present (GdlDockObject *object,
     GDL_DOCK_OBJECT_CLASS (gdl_dock_notebook_parent_class)->present (object, child);
 }
 
-static gboolean 
+static gboolean
 gdl_dock_notebook_reorder (GdlDockObject    *object,
                            GdlDockObject    *requestor,
                            GdlDockPlacement  new_position,
@@ -504,17 +517,17 @@ gdl_dock_notebook_reorder (GdlDockObject    *object,
     GdlDockItem *item = GDL_DOCK_ITEM (object);
     gint         current_position, new_pos = -1;
     gboolean     handled = FALSE;
-    
+
     if (item->child && new_position == GDL_DOCK_CENTER) {
         current_position = gtk_notebook_page_num (GTK_NOTEBOOK (item->child),
                                                   GTK_WIDGET (requestor));
         if (current_position >= 0) {
             handled = TRUE;
-    
+
             if (other_data && G_VALUE_HOLDS (other_data, G_TYPE_INT))
                 new_pos = g_value_get_int (other_data);
-            
-            gtk_notebook_reorder_child (GTK_NOTEBOOK (item->child), 
+
+            gtk_notebook_reorder_child (GTK_NOTEBOOK (item->child),
                                         GTK_WIDGET (requestor),
                                         new_pos);
         }
@@ -524,6 +537,14 @@ gdl_dock_notebook_reorder (GdlDockObject    *object,
 
 /* ----- Public interface ----- */
 
+/**
+ * gdl_dock_notebook_new:
+ *
+ * Creates a new GDL notebook. This widget is normally created and destroyed
+ * automatically when needed by the master.
+ *
+ * Returns: The newly created #GdlDockNotebook.
+ */
 GtkWidget *
 gdl_dock_notebook_new (void)
 {
@@ -531,7 +552,6 @@ gdl_dock_notebook_new (void)
 
     notebook = GDL_DOCK_NOTEBOOK (g_object_new (GDL_TYPE_DOCK_NOTEBOOK, NULL));
     GDL_DOCK_OBJECT_UNSET_FLAGS (notebook, GDL_DOCK_AUTOMATIC);
-    
+
     return GTK_WIDGET (notebook);
 }
-
