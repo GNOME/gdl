@@ -39,6 +39,16 @@ typedef struct _GdlDockBar        GdlDockBar;
 typedef struct _GdlDockBarClass   GdlDockBarClass;
 typedef struct _GdlDockBarPrivate GdlDockBarPrivate;
 
+/**
+ * GdlDockBarStyle:
+ * @GDL_DOCK_BAR_ICONS: Buttons display only icons in the dockbar.
+ * @GDL_DOCK_BAR_TEXT: Buttons display only text labels in the dockbar.
+ * @GDL_DOCK_BAR_BOTH: Buttons display text and icons in the dockbar.
+ * @GDL_DOCK_BAR_AUTO: identical to @GDL_DOCK_BAR_BOTH.
+ *
+ * Used to customize the appearance of a #GdlDockBar.
+ *
+ **/
 typedef enum {
     GDL_DOCK_BAR_ICONS,
     GDL_DOCK_BAR_TEXT,
@@ -58,7 +68,7 @@ struct _GdlDockBarClass {
     GtkBoxClass parent_class;
 };
 
-GType      gdl_dock_bar_get_type            (void); 
+GType      gdl_dock_bar_get_type            (void);
 
 GtkWidget *gdl_dock_bar_new                 (GdlDock     *dock);
 

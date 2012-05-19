@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * This file is part of the GNOME Devtools Libraries.
  *
@@ -31,6 +31,18 @@
 #include "gdl-dock-master.h"
 #include "gdl-dock-bar.h"
 #include "libgdltypebuiltins.h"
+
+/**
+ * SECTION:gdl-dock-bar
+ * @title: GdlDockBar
+ * @short_description: A docking bar
+ * @stability: Unstable
+ *
+ * A docking bar contains buttons representing minimized dock widgets.
+ * The widget can be re-opened by clicking on it. A dock bar is associated
+ * to one #GdlDock and will get all minimized widgets of this dock object.
+ */
+
 
 enum {
     PROP_0,
@@ -96,21 +108,31 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
 {
     GObjectClass       *object_class;
     GtkWidgetClass     *widget_class;
-    
+
     object_class = G_OBJECT_CLASS (klass);
 
     object_class->get_property = gdl_dock_bar_get_property;
     object_class->set_property = gdl_dock_bar_set_property;
     object_class->dispose = gdl_dock_bar_dispose;
 
+    /**
+     * GdlDockBar:master:
+     *
+     * The #GdlDockMaster object attached to the dockbar.
+     */
     g_object_class_install_property (
         object_class, PROP_MASTER,
         g_param_spec_object ("master", _("Master"),
                              _("GdlDockMaster object which the dockbar widget "
                                "is attached to"),
-                             GDL_TYPE_DOCK_MASTER, 
+                             GDL_TYPE_DOCK_MASTER,
                              G_PARAM_READWRITE));
 
+    /**
+     * GdlDockBar:style:
+     *
+     * The style of the buttons in the dockbar.
+     */
     g_object_class_install_property (
         object_class, PROP_DOCKBAR_STYLE,
         g_param_spec_enum ("dockbar-style", _("Dockbar style"),
@@ -225,9 +247,9 @@ gdl_dock_bar_remove_item (GdlDockBar  *dockbar,
         g_warning ("Item has not been added to the dockbar");
         return;
     }
-    
+
     priv->items = g_slist_remove (priv->items, item);
-    
+
     button = g_object_get_data (G_OBJECT (item), "GdlDockBarButton");
     g_assert (button != NULL);
     gtk_container_remove (GTK_CONTAINER (dockbar), button);
@@ -245,7 +267,7 @@ gdl_dock_bar_item_clicked (GtkWidget   *button,
     GdlDockObject *controller;
 
     g_return_if_fail (item != NULL);
-    
+
     dockbar = g_object_get_data (G_OBJECT (item), "GdlDockBar");
     g_assert (dockbar != NULL);
     g_object_set_data (G_OBJECT (item), "GdlDockBar", NULL);
@@ -280,16 +302,16 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     }
 
     priv->items = g_slist_append (priv->items, item);
-    
+
     /* Create a button for the item. */
     button = gtk_button_new ();
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
-    
+
     if (dockbar->priv->orientation == GTK_ORIENTATION_HORIZONTAL)
         box = gtk_hbox_new (FALSE, 0);
     else
         box = gtk_vbox_new (FALSE, 0);
-    
+
     g_object_get (item, "stock-id", &stock_id, "pixbuf-icon", &pixbuf_icon,
                   "long-name", &name, NULL);
 
@@ -300,9 +322,9 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
             gtk_label_set_angle (GTK_LABEL (label), 90);
         gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
     }
-    
+
     /* FIXME: For now AUTO behaves same as BOTH */
-    
+
     if (dockbar->priv->dockbar_style == GDL_DOCK_BAR_ICONS ||
         dockbar->priv->dockbar_style == GDL_DOCK_BAR_BOTH ||
         dockbar->priv->dockbar_style == GDL_DOCK_BAR_AUTO) {
@@ -318,7 +340,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
         }
         gtk_box_pack_start (GTK_BOX (box), image, TRUE, TRUE, 0);
     }
-    
+
     gtk_container_add (GTK_CONTAINER (button), box);
     gtk_box_pack_start (GTK_BOX (dockbar), button, FALSE, FALSE, 0);
 
@@ -331,7 +353,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
                       G_CALLBACK (gdl_dock_bar_item_clicked), item);
 
     gtk_widget_show_all (button);
-    
+
     /* Set up destroy notify */
     g_signal_connect_swapped (item, "destroy",
                               G_CALLBACK (gdl_dock_bar_remove_item),
@@ -353,20 +375,20 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
     GList *items, *l;
 
     g_return_if_fail (dockbar != NULL);
-    
+
     if (!dockbar->priv->master)
         return;
 
     master = dockbar->priv->master;
-    
+
     /* build items list */
     items = NULL;
     gdl_dock_master_foreach (master, (GFunc) build_list, &items);
-    
+
     if (!full_update) {
         for (l = items; l != NULL; l = l->next) {
             GdlDockItem *item = GDL_DOCK_ITEM (l->data);
-            
+
             if (g_slist_index (dockbar->priv->items, item) != -1 &&
                 !GDL_DOCK_ITEM_ICONIFIED (item))
                 gdl_dock_bar_remove_item (dockbar, item);
@@ -377,7 +399,7 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
     } else {
         for (l = items; l != NULL; l = l->next) {
             GdlDockItem *item = GDL_DOCK_ITEM (l->data);
-            
+
             if (g_slist_index (dockbar->priv->items, item) != -1)
                 gdl_dock_bar_remove_item (dockbar, item);
             if (GDL_DOCK_ITEM_ICONIFIED (item))
@@ -425,7 +447,7 @@ static void gdl_dock_bar_size_request (GtkWidget *widget,
     GdlDockBar *dockbar;
 
     dockbar = GDL_DOCK_BAR (widget);
-    
+
     /* default to vertical for unknown values */
     switch (dockbar->priv->orientation) {
 	case GTK_ORIENTATION_HORIZONTAL:
@@ -466,7 +488,7 @@ static void gdl_dock_bar_size_allocate (GtkWidget *widget,
     GdlDockBar *dockbar;
 
     dockbar = GDL_DOCK_BAR (widget);
-    
+
     /* default to vertical for unknown values */
     switch (dockbar->priv->orientation) {
 	case GTK_ORIENTATION_HORIZONTAL:
@@ -494,7 +516,7 @@ static void gdl_dock_bar_size_vrequest (GtkWidget *widget,
     requisition->height = 0;
     nvis_children = 0;
 
-    
+
     for (child = gtk_container_get_children (GTK_CONTAINER (box));
          child != NULL; child = g_list_next (child))
     {
@@ -513,7 +535,7 @@ static void gdl_dock_bar_size_vrequest (GtkWidget *widget,
                                          &fill,
                                          &padding,
                                          &pack_type);
-            
+
             if (gtk_box_get_homogeneous (box))
             {
                 height = child_requisition.height +  padding * 2;
@@ -628,7 +650,7 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                                          &fill,
                                          &padding,
                                          &pack_type);
-            
+
             if ((pack_type == GTK_PACK_START) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 if (gtk_box_get_homogeneous (box))
@@ -696,7 +718,7 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                                          &fill,
                                          &padding,
                                          &pack_type);
-            
+
             if ((pack_type == GTK_PACK_END) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 GtkRequisition child_requisition;
@@ -1025,11 +1047,19 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
     }
 }
 
+/**
+ * gdl_dock_bar_new:
+ * @dock: The associated #GdlDock object
+ *
+ * Creates a new GDL dock bar.
+ *
+ * Returns: The newly created dock bar.
+ */
 GtkWidget *
 gdl_dock_bar_new (GdlDock *dock)
 {
     GdlDockMaster *master = NULL;
-    
+
     /* get the master of the given dock */
     if (dock)
         master = GDL_DOCK_OBJECT_GET_MASTER (dock);
@@ -1038,6 +1068,14 @@ gdl_dock_bar_new (GdlDock *dock)
                          "master", master, NULL);
 }
 
+/**
+ * gdl_dock_bar_get_orientation:
+ * @dockbar: a #GdlDockBar
+ *
+ * Retrieves the orientation of the @dockbar.
+ *
+ * Returns: the orientation of the @docbar
+ */
 GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar)
 {
     g_return_val_if_fail (GDL_IS_DOCK_BAR (dockbar),
@@ -1046,6 +1084,13 @@ GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar)
     return dockbar->priv->orientation;
 }
 
+/**
+ * gdl_dock_bar_set_orientation:
+ * @dockbar: a #GdlDockBar
+ * @orientation: the new orientation
+ *
+ * Set the orientation of the @dockbar.
+ */
 void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
 	                             GtkOrientation orientation)
 {
@@ -1056,12 +1101,27 @@ void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
     gtk_widget_queue_resize (GTK_WIDGET (dockbar));
 }
 
+/**
+ * gdl_dock_bar_set_style:
+ * @dockbar: a #GdlDockBar
+ * @style: the new style
+ *
+ * Set the style of the @dockbar.
+ */
 void gdl_dock_bar_set_style(GdlDockBar* dockbar,
 			    GdlDockBarStyle style)
 {
     g_object_set(G_OBJECT(dockbar), "dockbar-style", style, NULL);
 }
 
+/**
+ * gdl_dock_bar_get_style:
+ * @dockbar: a #GdlDockBar
+ *
+ * Retrieves the style of the @dockbar.
+ *
+ * Returns: the style of the @docbar
+ */
 GdlDockBarStyle gdl_dock_bar_get_style(GdlDockBar* dockbar)
 {
     GdlDockBarStyle style;
