@@ -435,7 +435,7 @@ gdl_dock_item_grip_realize (GtkWidget *widget)
 
         g_return_if_fail (grip->priv->label != NULL);
 
-        gtk_widget_get_allocation (grip->priv->label, &allocation);
+        gtk_widget_get_allocation (widget, &allocation);
 
         attributes.x           = allocation.x;
         attributes.y           = allocation.y;
