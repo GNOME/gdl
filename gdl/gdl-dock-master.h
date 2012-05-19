@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * gdl-dock-master.h - Object which manages a dock ring
  *
@@ -28,7 +28,6 @@
 #include <gtk/gtk.h>
 #include <gdl/gdl-dock-object.h>
 
-
 G_BEGIN_DECLS
 
 /* standard macros */
@@ -44,6 +43,17 @@ typedef struct _GdlDockMaster        GdlDockMaster;
 typedef struct _GdlDockMasterClass   GdlDockMasterClass;
 typedef struct _GdlDockMasterPrivate GdlDockMasterPrivate;
 
+/**
+ * GdlSwitcherStyle:
+ * @GDL_SWITCHER_STYLE_TEXT: Tabs display only text labels.
+ * @GDL_SWITCHER_STYLE_ICON: Tabs display only icons.
+ * @GDL_SWITCHER_STYLE_BOTH: Tabs display text and icons.
+ * @GDL_SWITCHER_STYLE_TOOLBAR: Same as @GDL_SWITCHER_STYLE_BOTH.
+ * @GDL_SWITCHER_STYLE_TABS: Tabs display like notebook tabs.
+ * @GDL_SWITCHER_STYLE_NONE: Do not display tabs.
+ *
+ * Used to customize the appearance of the tabs in #GdlDockNotebook.
+ */
 typedef enum {
     GDL_SWITCHER_STYLE_TEXT,
     GDL_SWITCHER_STYLE_ICON,
@@ -59,9 +69,9 @@ struct _GdlDockMaster {
     GHashTable           *dock_objects;
     GList                *toplevel_docks;
     GdlDockObject        *controller;      /* GUI root object */
-    
+
     gint                  dock_number;     /* for toplevel dock numbering */
-    
+
     GdlDockMasterPrivate *priv;
 };
 
@@ -78,7 +88,7 @@ struct _GdlDockMasterClass {
         GDL_DOCK_MASTER (GDL_DOCK_OBJECT (object)->master) : NULL)
 
 /* public interface */
- 
+
 GType          gdl_dock_master_get_type         (void);
 
 void           gdl_dock_master_add              (GdlDockMaster *master,

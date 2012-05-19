@@ -36,6 +36,20 @@
 #include "libgdlmarshal.h"
 #include "libgdltypebuiltins.h"
 
+/**
+ * SECTION:gdl-dock-master
+ * @title: GdlDockMaster
+ * @short_description: Manage all dock widgets
+ * @stability: Internal
+ *
+ * For the toplevel docks to be able to interact with each other, when the user
+ * drags items from one place to another, they're all kept in a user-invisible
+ * and automatic object called the master. To participate in docking operations
+ * every #GdlDockObject must have the same master, the binding to the master is
+ * done automatically.  The master also keeps track of the manual items,
+ * mostly those created with gdl_dock_*_new functions which are in the dock.
+ */
+
 /* ----- Private prototypes ----- */
 
 static void     gdl_dock_master_class_init    (GdlDockMasterClass *klass);
@@ -756,6 +770,13 @@ item_notify_cb (GdlDockObject *object,
 
 /* ----- Public interface ----- */
 
+/**
+ * gdl_dock_master_add:
+ * @master: a #GdlDockMaster
+ * @object: a #GdlDockObject
+ *
+ * Add a new dock widget to the master.
+ */
 void
 gdl_dock_master_add (GdlDockMaster *master,
                      GdlDockObject *object)
@@ -843,6 +864,13 @@ gdl_dock_master_add (GdlDockMaster *master,
     }
 }
 
+/**
+ * gdl_dock_master_remove:
+ * @master: a #GdlDockMaster
+ * @object: a #GdlDockObject
+ *
+ * Remove one dock widget from the master.
+ */
 void
 gdl_dock_master_remove (GdlDockMaster *master,
                         GdlDockObject *object)
@@ -878,6 +906,14 @@ gdl_dock_master_remove (GdlDockMaster *master,
     g_object_unref (master);
 }
 
+/**
+ * gdl_dock_master_foreach:
+ * @master: a #GdlDockMaster
+ * @function: the function to call with each element's data
+ * @user_data: user data to pass to the function
+ *
+ * Call @function on each dock widget of the master.
+ */
 void
 gdl_dock_master_foreach (GdlDockMaster *master,
                          GFunc          function,
@@ -895,6 +931,16 @@ gdl_dock_master_foreach (GdlDockMaster *master,
     g_hash_table_foreach (master->dock_objects, _gdl_dock_master_foreach, &data);
 }
 
+/**
+ * gdl_dock_master_foreach_toplevel:
+ * @master: a #GdlDockMaster
+ * @include_controller: %TRUE to include the controller
+ * @function: the function to call with each element's data
+ * @user_data: user data to pass to the function
+ *
+ * Call @function on each top level dock widget of the master, including or not
+ * the controller.
+ */
 void
 gdl_dock_master_foreach_toplevel (GdlDockMaster *master,
                                   gboolean       include_controller,
@@ -913,6 +959,15 @@ gdl_dock_master_foreach_toplevel (GdlDockMaster *master,
     }
 }
 
+/**
+ * gdl_dock_master_get_object:
+ * @master: a #GdlDockMaster
+ * @nick_name: the name of the dock widget.
+ *
+ * Looks for a #GdlDockObject named @nick_name.
+ *
+ * Returns: A #GdlDockObject named @nick_name or %NULL if it does not exist.
+ */
 GdlDockObject *
 gdl_dock_master_get_object (GdlDockMaster *master,
                             const gchar   *nick_name)
@@ -929,6 +984,14 @@ gdl_dock_master_get_object (GdlDockMaster *master,
     return found ? GDL_DOCK_OBJECT (found) : NULL;
 }
 
+/**
+ * gdl_dock_master_get_controller:
+ * @master: a #GdlDockMaster
+ *
+ * Retrieves the #GdlDockObject acting as the controller.
+ *
+ * Returns: A #GdlDockObject.
+ */
 GdlDockObject *
 gdl_dock_master_get_controller (GdlDockMaster *master)
 {
@@ -937,6 +1000,13 @@ gdl_dock_master_get_controller (GdlDockMaster *master)
     return master->controller;
 }
 
+/**
+ * gdl_dock_master_set_controller:
+ * @master: a #GdlDockMaster
+ * @new_controller: a #GdlDockObject
+ *
+ * Set a new controller. The controller must be a top level #GdlDockObject.
+ */
 void
 gdl_dock_master_set_controller (GdlDockMaster *master,
                                 GdlDockObject *new_controller)
