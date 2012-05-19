@@ -35,7 +35,7 @@
 /**
  * SECTION:gdl-dock-layout
  * @title: GdlDockLayout
- * @short_description: save and restore docking widgets.
+ * @short_description: save and restore dock widgets.
  *
  * The layout of all docking widgets can be saved using this #GdlDockLayout
  * object. It automatically monitors the layout_changed signal of the

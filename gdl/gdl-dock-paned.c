@@ -31,6 +31,18 @@
 
 #include "gdl-dock-paned.h"
 
+/**
+ * SECTION:gdl-dock-paned
+ * @title: GdlDockPaned
+ * @short_description: Arrange dock widget in two adjustable panes
+ * @stability: Unstable
+ * @see_also: #GdlDockNotebook, #GdlDockMaster
+ *
+ * A #GdlDockPaned is a compound dock widget like #GdlDockNotebook.
+ * Other dock widgets can be added to it, simply by dropping them on the
+ * widget.
+ */
+
 
 /* Private prototypes */
 
@@ -58,9 +70,9 @@ static void     gdl_dock_paned_forall         (GtkContainer      *container,
                                                gpointer           callback_data);
 static GType    gdl_dock_paned_child_type     (GtkContainer      *container);
 
-static gboolean gdl_dock_paned_dock_request   (GdlDockObject     *object, 
+static gboolean gdl_dock_paned_dock_request   (GdlDockObject     *object,
                                                gint               x,
-                                               gint               y, 
+                                               gint               y,
                                                GdlDockRequest    *request);
 static void     gdl_dock_paned_dock           (GdlDockObject    *object,
                                                GdlDockObject    *requestor,
@@ -107,21 +119,21 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
     g_object_class->set_property = gdl_dock_paned_set_property;
     g_object_class->get_property = gdl_dock_paned_get_property;
     g_object_class->constructor = gdl_dock_paned_constructor;
-    
+
     widget_class->destroy = gdl_dock_paned_destroy;
 
     container_class->add = gdl_dock_paned_add;
     container_class->forall = gdl_dock_paned_forall;
     container_class->child_type = gdl_dock_paned_child_type;
-    
+
     object_class->is_compound = TRUE;
-    
+
     object_class->dock_request = gdl_dock_paned_dock_request;
     object_class->dock = gdl_dock_paned_dock;
     object_class->child_placement = gdl_dock_paned_child_placement;
-    
+
     item_class->has_grip = FALSE;
-    item_class->set_orientation = gdl_dock_paned_set_orientation;    
+    item_class->set_orientation = gdl_dock_paned_set_orientation;
 
     g_object_class_install_property (
         g_object_class, PROP_POSITION,
@@ -138,33 +150,33 @@ gdl_dock_paned_init (GdlDockPaned *paned)
     paned->position_changed = FALSE;
 }
 
-static void 
+static void
 gdl_dock_paned_notify_cb (GObject    *g_object,
                           GParamSpec *pspec,
-                          gpointer    user_data) 
+                          gpointer    user_data)
 {
     GdlDockPaned *paned;
-    
+
     g_return_if_fail (user_data != NULL && GDL_IS_DOCK_PANED (user_data));
-    
+
     /* chain the notification to the GdlDockPaned */
     g_object_notify (G_OBJECT (user_data), pspec->name);
-    
+
     paned = GDL_DOCK_PANED (user_data);
-    
+
     if (GDL_DOCK_ITEM_USER_ACTION (user_data) && !strcmp (pspec->name, "position"))
         paned->position_changed = TRUE;
 }
 
-static gboolean 
+static gboolean
 gdl_dock_paned_button_cb (GtkWidget      *widget,
                           GdkEventButton *event,
                           gpointer        user_data)
 {
     GdlDockPaned *paned;
-    
+
     g_return_val_if_fail (user_data != NULL && GDL_IS_DOCK_PANED (user_data), FALSE);
-    
+
     paned = GDL_DOCK_PANED (user_data);
     if (event->button == 1) {
         if (event->type == GDK_BUTTON_PRESS)
@@ -179,21 +191,21 @@ gdl_dock_paned_button_cb (GtkWidget      *widget,
             }
         }
     }
-    
+
     return FALSE;
 }
 
-static void 
+static void
 gdl_dock_paned_create_child (GdlDockPaned   *paned,
-                             GtkOrientation  orientation) 
+                             GtkOrientation  orientation)
 {
     GdlDockItem *item;
-    
+
     item = GDL_DOCK_ITEM (paned);
-    
+
     if (item->child)
         gtk_widget_unparent (GTK_WIDGET (item->child));
-    
+
     /* create the container paned */
     item->child = gtk_paned_new (orientation);
 
@@ -204,7 +216,7 @@ gdl_dock_paned_create_child (GdlDockPaned   *paned,
                       (GCallback) gdl_dock_paned_button_cb, (gpointer) item);
     g_signal_connect (item->child, "button-release-event",
                       (GCallback) gdl_dock_paned_button_cb, (gpointer) item);
-    
+
     gtk_widget_set_parent (item->child, GTK_WIDGET (item));
     gtk_widget_show (item->child);
 }
@@ -221,14 +233,14 @@ gdl_dock_paned_constructor (GType                  type,
                                                                           construct_param);
     if (g_object) {
         GdlDockItem *item = GDL_DOCK_ITEM (g_object);
-        
+
         if (!item->child)
             gdl_dock_paned_create_child (GDL_DOCK_PANED (g_object),
                                          item->orientation);
         /* otherwise, the orientation was set as a construction
            parameter and the child is already created */
     }
-    
+
     return g_object;
 }
 
@@ -239,7 +251,7 @@ gdl_dock_paned_set_property (GObject        *object,
                              GParamSpec     *pspec)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
-      
+
     switch (prop_id) {
         case PROP_POSITION:
             if (item->child && GTK_IS_PANED (item->child))
@@ -259,7 +271,7 @@ gdl_dock_paned_get_property (GObject        *object,
                              GParamSpec     *pspec)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
-      
+
     switch (prop_id) {
         case PROP_POSITION:
             if (item->child && GTK_IS_PANED (item->child))
@@ -299,7 +311,7 @@ gdl_dock_paned_add (GtkContainer *container,
     GdlDockPlacement pos = GDL_DOCK_NONE;
     GtkPaned        *paned;
     GtkWidget       *child1, *child2;
-    
+
     g_return_if_fail (container != NULL && widget != NULL);
     g_return_if_fail (GDL_IS_DOCK_PANED (container));
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
@@ -339,7 +351,7 @@ gdl_dock_paned_forall (GtkContainer *container,
 
     if (include_internals) {
         /* use GdlDockItem's forall */
-        GTK_CONTAINER_CLASS (gdl_dock_paned_parent_class)->forall 
+        GTK_CONTAINER_CLASS (gdl_dock_paned_parent_class)->forall
                            (container, include_internals, callback, callback_data);
     }
     else {
@@ -374,7 +386,7 @@ gdl_dock_paned_request_foreach (GdlDockObject *object,
     gint child_x, child_y;
     GdlDockRequest my_request;
     gboolean       may_dock;
-    
+
     /* Translate parent coordinate to child coordinate */
     gtk_widget_translate_coordinates (data->parent, GTK_WIDGET (object), data->x, data->y, &child_x, &child_y);
 
@@ -389,9 +401,9 @@ gdl_dock_paned_request_foreach (GdlDockObject *object,
 }
 
 static gboolean
-gdl_dock_paned_dock_request (GdlDockObject  *object, 
+gdl_dock_paned_dock_request (GdlDockObject  *object,
                              gint            x,
-                             gint            y, 
+                             gint            y,
                              GdlDockRequest *request)
 {
     GdlDockItem        *item;
@@ -404,9 +416,9 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
     g_return_val_if_fail (GDL_IS_DOCK_ITEM (object), FALSE);
 
     /* we get (x,y) in our allocation coordinates system */
-    
+
     item = GDL_DOCK_ITEM (object);
-    
+
     /* Get item's allocation. */
     gtk_widget_get_allocation (GTK_WIDGET (object), &alloc);
     bw = gtk_container_get_border_width (GTK_CONTAINER (object));
@@ -417,13 +429,13 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
 
     if (request)
         my_request = *request;
-        
+
     /* Check if coordinates are inside the widget. */
     if (rel_x > 0 && rel_x < alloc.width &&
         rel_y > 0 && rel_y < alloc.height) {
         GtkRequisition my, other;
         gint divider = -1;
-        
+
         gdl_dock_item_preferred_size (GDL_DOCK_ITEM (my_request.applicant), &other);
         gdl_dock_item_preferred_size (GDL_DOCK_ITEM (object), &my);
 
@@ -457,7 +469,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
             my_request.rect.y += my_request.rect.height * (1 - SPLIT_RATIO);
             my_request.rect.height *= SPLIT_RATIO;
             divider = MAX (0, my.height - other.height);
-            
+
         } else { /* Otherwise try our children. */
             struct {
                 GtkWidget *parent;
@@ -476,7 +488,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
             data.y = rel_y;
             data.request = &my_request;
             data.may_dock = FALSE;
-            
+
             gtk_container_foreach (GTK_CONTAINER (object),
                                    (GtkCallback) gdl_dock_paned_request_foreach,
                                    &data);
@@ -518,7 +530,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
             g_value_init (&my_request.extra, G_TYPE_UINT);
             g_value_set_uint (&my_request.extra, (guint) divider);
         }
-        
+
         if (may_dock) {
             /* adjust returned coordinates so they are relative to
                our allocation */
@@ -529,7 +541,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
 
     if (may_dock && request)
         *request = my_request;
-    
+
     return may_dock;
 }
 
@@ -545,7 +557,7 @@ gdl_dock_paned_dock (GdlDockObject    *object,
     gboolean  hresize = FALSE;
     gboolean  wresize = FALSE;
     gint      temp = 0;
-    
+
     g_return_if_fail (GDL_IS_DOCK_PANED (object));
     g_return_if_fail (GDL_DOCK_ITEM (object)->child != NULL);
 
@@ -606,7 +618,7 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
 {
     GtkPaned    *old_paned = NULL, *new_paned;
     GtkWidget   *child1, *child2;
-    
+
     g_return_if_fail (GDL_IS_DOCK_PANED (item));
 
     if (item->child) {
@@ -615,14 +627,14 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
         gtk_widget_unparent (GTK_WIDGET (old_paned));
         item->child = NULL;
     }
-    
+
     gdl_dock_paned_create_child (GDL_DOCK_PANED (item), orientation);
-    
+
     if (old_paned) {
         new_paned = GTK_PANED (item->child);
         child1 = gtk_paned_get_child1 (old_paned);
         child2 = gtk_paned_get_child2 (old_paned);
-    
+
         if (child1) {
             g_object_ref (child1);
             gtk_container_remove (GTK_CONTAINER (old_paned), child1);
@@ -636,11 +648,11 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
             g_object_unref (child2);
         }
     }
-    
+
     GDL_DOCK_ITEM_CLASS (gdl_dock_paned_parent_class)->set_orientation (item, orientation);
 }
 
-static gboolean 
+static gboolean
 gdl_dock_paned_child_placement (GdlDockObject    *object,
                                 GdlDockObject    *child,
                                 GdlDockPlacement *placement)
@@ -648,7 +660,7 @@ gdl_dock_paned_child_placement (GdlDockObject    *object,
     GdlDockItem      *item = GDL_DOCK_ITEM (object);
     GtkPaned         *paned;
     GdlDockPlacement  pos = GDL_DOCK_NONE;
-    
+
     if (item->child) {
         paned = GTK_PANED (item->child);
         if (GTK_WIDGET (child) == gtk_paned_get_child1 (paned))
@@ -671,6 +683,15 @@ gdl_dock_paned_child_placement (GdlDockObject    *object,
 
 /* ----- Public interface ----- */
 
+/**
+ * gdl_dock_paned_new:
+ * @orientation: the pane's orientation.
+ *
+ * Creates a new #GdlDockPaned widget. This widget is normally created and destroyed
+ * automatically when needed by the master.
+ *
+ * Returns: a new #GdlDockPaned.
+ */
 GtkWidget *
 gdl_dock_paned_new (GtkOrientation orientation)
 {
@@ -679,7 +700,7 @@ gdl_dock_paned_new (GtkOrientation orientation)
     paned = GDL_DOCK_PANED (g_object_new (GDL_TYPE_DOCK_PANED,
                                           "orientation", orientation, NULL));
     GDL_DOCK_OBJECT_UNSET_FLAGS (paned, GDL_DOCK_AUTOMATIC);
-    
+
     return GTK_WIDGET (paned);
 }
 

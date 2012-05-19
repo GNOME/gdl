@@ -32,7 +32,7 @@
 /**
  * SECTION:gdl-dock-notebook
  * @title: GdlDockNotebook
- * @short_description: Group dock widgets in a notebook
+ * @short_description: Arrange dock widgets in a tabbed notebook
  * @stability: Unstable
  * @see_also: #GdlDockPaned, #GdlDockMaster
  *
