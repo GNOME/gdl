@@ -1,9 +1,9 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * gdl-dock-item-button-image.c
  *
  * Author: Joel Holdsworth <joel@airwebreathe.org.uk>
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
@@ -19,17 +19,30 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
- 
+
 #include "gdl-dock-item-button-image.h"
 
 #include <math.h>
+
+/**
+ * SECTION:gdl-dock-item-button-image
+ * @title: GdlDockItemButtonImage
+ * @short_description: A widget displaying an image used in dock grip
+ * @stability: Internal
+ * @see_also: GtlDockItemGrip
+ *
+ * The #GdlDockItemButtonImage displays a small image which could be a cross
+ * (close) or a triangle (iconify). These images are used for buttons in the
+ * #GdlDockItemGrip object.
+ */
+
 
 #define ICON_SIZE 12
 
 G_DEFINE_TYPE (GdlDockItemButtonImage,
                gdl_dock_item_button_image,
                GTK_TYPE_WIDGET);
-                       
+
 static gboolean
 gdl_dock_item_button_image_draw (GtkWidget      *widget,
                                  cairo_t *cr)
@@ -37,13 +50,13 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
     GdlDockItemButtonImage *button_image;
     GtkStyleContext *context;
     GdkRGBA color;
-    
+
     g_return_val_if_fail (widget != NULL, 0);
     button_image = GDL_DOCK_ITEM_BUTTON_IMAGE (widget);
-    
+
     /* Set up the pen */
     cairo_set_line_width(cr, 1.0);
-    
+
     context = gtk_widget_get_style_context (widget);
     gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
     color.alpha = 0.55;
@@ -59,9 +72,9 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
     cairo_line_to (cr, 2.5, 4.5);
     cairo_arc (cr, 4.5, 4.5, 2, M_PI, 1.5 * M_PI);
     cairo_close_path (cr);
-    
+
     cairo_stroke (cr);
-    
+
     /* Draw the icon */
     cairo_new_path (cr);
 
@@ -82,7 +95,7 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
         cairo_line_to (cr, 5.5, 4.0);
         cairo_close_path (cr);
         break;
-    
+
     case GDL_DOCK_ITEM_BUTTON_IMAGE_ICONIFY:
         if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
             cairo_move_to (cr, 4.5, 7.5);
@@ -96,13 +109,13 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
             cairo_close_path (cr);
         }
         break;
-        
+
     default:
         break;
     }
-    
+
     cairo_fill (cr);
-    
+
     return FALSE;
 }
 
@@ -135,7 +148,7 @@ gdl_dock_item_button_image_class_init (
 {
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-    
+
     widget_class->draw =
         gdl_dock_item_button_image_draw;
     widget_class->get_preferred_width =
@@ -148,12 +161,12 @@ gdl_dock_item_button_image_class_init (
 
 /**
  * gdl_dock_item_button_image_new:
- * @image_type: Specifies what type of image the widget should
- * display
- * 
+ * @image_type: Specifies what type of image the widget should display
+ *
  * Creates a new GDL dock button image object.
- * Returns: The newly created dock item button image widget.
- **/
+ *
+ * Returns: The newly created dock item button image widget
+ */
 GtkWidget*
 gdl_dock_item_button_image_new (GdlDockItemButtonImageType image_type)
 {

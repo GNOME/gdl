@@ -1,9 +1,9 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * gdl-dock-item-button-image.h
  *
  * Author: Joel Holdsworth <joel@airwebreathe.org.uk>
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
@@ -19,7 +19,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
- 
+
 #ifndef _GDL_DOCK_ITEM_BUTTON_IMAGE_H_
 #define _GDL_DOCK_ITEM_BUTTON_IMAGE_H_
 
@@ -41,6 +41,15 @@ G_BEGIN_DECLS
 #define GDL_DOCK_ITEM_BUTTON_IMAGE_GET_CLASS(obj)  \
     (G_TYPE_INSTANCE_GET_CLASS ((obj), GDL_TYPE_DOCK_ITEM_BUTTON_IMAGE, GdlDockItemButtonImageClass))
 
+
+/**
+ * GdlDockItemButtonImageType:
+ * @GDL_DOCK_ITEM_BUTTON_IMAGE_CLOSE: Display a small cross
+ * @GDL_DOCK_ITEM_BUTTON_IMAGE_ICONIFY: Display a small triangle
+ *
+ * Define the image displayed.
+ *
+ */
 /* Data Types & Structures */
 typedef enum {
     GDL_DOCK_ITEM_BUTTON_IMAGE_CLOSE,
@@ -52,7 +61,7 @@ typedef struct _GdlDockItemButtonImageClass GdlDockItemButtonImageClass;
 
 struct _GdlDockItemButtonImage {
     GtkWidget parent;
-    
+
     GdlDockItemButtonImageType image_type;
 };
 
