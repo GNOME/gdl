@@ -57,6 +57,12 @@ struct _GdlDockClass {
 };
 
 /* additional macros */
+/**
+ * GDL_DOCK_IS_CONTROLLER:
+ * @obj: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the dock is the controller.
+ */
 #define GDL_DOCK_IS_CONTROLLER(dock)  \
     (gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (dock)) == \
      GDL_DOCK_OBJECT (dock))

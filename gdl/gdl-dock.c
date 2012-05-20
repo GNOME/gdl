@@ -37,6 +37,17 @@
 
 #include "libgdlmarshal.h"
 
+/**
+ * SECTION:gdl-dock
+ * @title: GdlDock
+ * @short_description: A docking area widget.
+ * @see_also: #GdlDockItem, #GdlDockMaster
+ *
+ * A #GdlDock is the toplevel widget which in turn hold a tree of #GdlDockItem
+ * widgets. Each #GdlDock widget is bound to a #GdlDockMaster object.
+ * They can exchange widgets between each other if they share the same master.
+ */
+
 #ifndef __FUNCTION__
 #define __FUNCTION__ __func__
 #endif
@@ -1071,6 +1082,13 @@ gdl_dock_present (GdlDockObject *object,
 
 /* ----- Public interface ----- */
 
+/**
+ * gdl_dock_new:
+ *
+ * Create a new dock.
+ *
+ * Returns: A new #GdlDock widget.
+ */
 GtkWidget *
 gdl_dock_new (void)
 {
@@ -1082,6 +1100,15 @@ gdl_dock_new (void)
     return GTK_WIDGET (dock);
 }
 
+/**
+ * gdl_dock_new_from:
+ * @original: The original #GdlDock
+ * @floating: %TRUE to create a floating dock
+ *
+ * Create a new dock widget having the same master than @original.
+ *
+ * Returns: A new #GdlDock widget
+ */
 GtkWidget *
 gdl_dock_new_from (GdlDock  *original,
                    gboolean  floating)
@@ -1251,6 +1278,16 @@ gdl_dock_find_best_placement_item (GdlDockItem *dock_item,
     return ret_item;
 }
 
+/**
+ * gdl_dock_add_item:
+ * @dock: A #GdlDock widget
+ * @item: A #GdlDockItem widget
+ * @placement: A position for the widget
+ *
+ * Dock in @dock, the widget @item at the position defined by @placement. The
+ * function takes care of finding the right parent widget eventually creating
+ * it if needed.
+ */
 void
 gdl_dock_add_item (GdlDock          *dock,
                    GdlDockItem      *item,
@@ -1286,6 +1323,18 @@ gdl_dock_add_item (GdlDock          *dock,
     }
 }
 
+/**
+ * gdl_dock_add_floating_item:
+ * @dock: A #GdlDock widget
+ * @item: A #GdlDockItem widget
+ * @x: X coordinate of the floating item
+ * @y: Y coordinate of the floating item
+ * @width: width of the floating item
+ * @height: height of the floating item
+ *
+ * Dock an item as a floating item. It creates a new window containing a new
+ * dock widget sharing the same master where the item is docked.
+ */
 void
 gdl_dock_add_floating_item (GdlDock        *dock,
                             GdlDockItem    *item,
@@ -1321,6 +1370,16 @@ gdl_dock_add_floating_item (GdlDock        *dock,
     gdl_dock_add_item (GDL_DOCK (new_dock), item, GDL_DOCK_TOP);
 }
 
+/**
+ * gdl_dock_get_item_by_name
+ * @dock: A #GdlDock widget
+ * @name: An item name
+ *
+ * Looks for an #GdlDockItem widget bound to the master of the dock item. It
+ * does not search only in the children of this particular dock widget.
+ *
+ * Returns: A #GdlDockItem widget or %NULL
+ */
 GdlDockItem *
 gdl_dock_get_item_by_name (GdlDock     *dock,
                            const gchar *name)
@@ -1335,6 +1394,16 @@ gdl_dock_get_item_by_name (GdlDock     *dock,
     return (found && GDL_IS_DOCK_ITEM (found)) ? GDL_DOCK_ITEM (found) : NULL;
 }
 
+/**
+ * gdl_dock_get_placeholder_by_name
+ * @dock: A #GdlDock widget
+ * @name: An item name
+ *
+ * Looks for an #GdlDockPlaceholder object bound to the master of the dock item.
+ * It does not search only in the children of this particular dock widget.
+ *
+ * Returns: A #GdlDockPlaceholder object or %NULL
+ */
 GdlDockPlaceholder *
 gdl_dock_get_placeholder_by_name (GdlDock     *dock,
                                   const gchar *name)
@@ -1350,6 +1419,16 @@ gdl_dock_get_placeholder_by_name (GdlDock     *dock,
         GDL_DOCK_PLACEHOLDER (found) : NULL;
 }
 
+/**
+ * gdl_dock_get_named_items:
+ * @dock: A #GdlDock widget
+ *
+ * Returns a list of all item bound to the master of the dock, not only
+ * the children of this particular dock widget.
+ *
+ * Returns: A list of #GdlDockItem. The list should be freedwith g_list_free(),
+ * but the item still belong to the master.
+ */
 GList *
 gdl_dock_get_named_items (GdlDock *dock)
 {
@@ -1363,6 +1442,14 @@ gdl_dock_get_named_items (GdlDock *dock)
     return list;
 }
 
+/**
+ * gdl_dock_object_get_toplevel:
+ * @object: A #GdlDockObject
+ *
+ * Get the top level #GdlDock widget of @object or %NULL if cannot be found.
+ *
+ * Returns: A #GdlDock or %NULL.
+ */
 GdlDock *
 gdl_dock_object_get_toplevel (GdlDockObject *object)
 {
@@ -1376,6 +1463,13 @@ gdl_dock_object_get_toplevel (GdlDockObject *object)
     return parent ? GDL_DOCK (parent) : NULL;
 }
 
+/**
+ * gdl_dock_show_preview:
+ * @dock: A #GdlDock widget
+ * @rect: The position and the size of the preview window
+ *
+ * Show a preview window used to materialize the dock target.
+ */
 void
 gdl_dock_show_preview (GdlDock      *dock,
                        cairo_rectangle_int_t *rect)
@@ -1394,6 +1488,12 @@ gdl_dock_show_preview (GdlDock      *dock,
     gdl_preview_window_update (GDL_PREVIEW_WINDOW (dock->priv->area_window), rect);
 }
 
+/**
+ * gdl_dock_hide_preview:
+ * @dock: A #GdlDock widget
+ *
+ * Hide the preview window used to materialize the dock target.
+ */
 void
 gdl_dock_hide_preview (GdlDock      *dock)
 {
