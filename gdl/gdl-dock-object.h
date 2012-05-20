@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * gdl-dock-object.h - Abstract base class for all dock related objects
  *
@@ -37,6 +37,16 @@ G_BEGIN_DECLS
 #define GDL_DOCK_OBJECT_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_DOCK_OBJECT, GdlDockObjectClass))
 
 /* data types & structures */
+
+/**
+ * GdlDockParamFlags:
+ * @GDL_DOCK_PARAM_EXPORT: The parameter is to be exported for later layout rebuilding
+ * @GDL_DOCK_PARAM_AFTER: The parameter must be set after adding the children objects
+ *
+ * Used to flag additional characteristics to GObject properties used in dock
+ * object.
+ *
+ **/
 typedef enum {
     /* the parameter is to be exported for later layout rebuilding */
     GDL_DOCK_PARAM_EXPORT = 1 << G_PARAM_USER_SHIFT,
@@ -47,6 +57,16 @@ typedef enum {
 #define GDL_DOCK_NAME_PROPERTY    "name"
 #define GDL_DOCK_MASTER_PROPERTY  "master"
 
+/**
+ * GdlDockObjectFlags:
+ * @GDL_DOCK_AUTOMATIC: Object is created and destroyed by the master, not the user
+ * @GDL_DOCK_ATTACHED: Object has a parent
+ * @GDL_DOCK_IN_REFLOW: Object is currently part of a rearrangement
+ * @GDL_DOCK_IN_DETACH: Object will be removed
+ *
+ * Described the state of a #GdlDockObject.
+ *
+ **/
 typedef enum {
     GDL_DOCK_AUTOMATIC  = 1 << 0,
     GDL_DOCK_ATTACHED   = 1 << 1,
@@ -56,6 +76,19 @@ typedef enum {
 
 #define GDL_DOCK_OBJECT_FLAGS_SHIFT 8
 
+/**
+ * GdlDockPlacement:
+ * @GDL_DOCK_NONE: No position defined
+ * @GDL_DOCK_TOP: Dock object on the top
+ * @GDL_DOCK_BOTTOM: Dock object on the bottom
+ * @GDL_DOCK_RIGHT: Dock object on the right
+ * @GDL_DOCK_LEFT: Dock object on the left
+ * @GDL_DOCK_CENTER: Dock object on top of the other
+ * @GDL_DOCK_FLOATING: Dock object in its own window
+ *
+ * Described the docking position.
+ *
+ **/
 typedef enum {
     GDL_DOCK_NONE = 0,
     GDL_DOCK_TOP,
@@ -70,6 +103,16 @@ typedef struct _GdlDockObject      GdlDockObject;
 typedef struct _GdlDockObjectClass GdlDockObjectClass;
 typedef struct _GdlDockRequest     GdlDockRequest;
 
+/**
+ * GdlDockRequest:
+ * @applicant: A #GdlDockObject to dock
+ * @target: The #GdlDockObject target
+ * @position: how to dock @applicant in @target
+ * @rect: Precise position
+ * @extra: Additional information
+ *
+ * Full docking information.
+ **/
 struct _GdlDockRequest {
     GdlDockObject               *applicant;
     GdlDockObject               *target;
@@ -83,13 +126,13 @@ struct _GdlDockObject {
 
     GdlDockObjectFlags  flags;
     gint                freeze_count;
-    
+
     GObject            *master;
     gchar              *name;
     gchar              *long_name;
     gchar              *stock_id;
     GdkPixbuf          *pixbuf_icon;
-    
+
     gboolean            reduce_pending;
 };
 
@@ -97,7 +140,7 @@ struct _GdlDockObjectClass {
     GtkContainerClass parent_class;
 
     gboolean          is_compound;
-    
+
     void     (* detach)          (GdlDockObject    *object,
                                   gboolean          recursive);
     void     (* reduce)          (GdlDockObject    *object);
@@ -111,7 +154,7 @@ struct _GdlDockObjectClass {
                                   GdlDockObject    *requestor,
                                   GdlDockPlacement  position,
                                   GValue           *other_data);
-    
+
     gboolean (* reorder)         (GdlDockObject    *object,
                                   GdlDockObject    *child,
                                   GdlDockPlacement  new_position,
@@ -126,26 +169,84 @@ struct _GdlDockObjectClass {
 };
 
 /* additional macros */
+
+/**
+ * GDL_DOCK_OBJECT_FLAGS:
+ * @obj: A #GdlDockObject
+ *
+ * Get all flags of #GdlDockObject.
+ */
 #define GDL_DOCK_OBJECT_FLAGS(obj)  (GDL_DOCK_OBJECT (obj)->flags)
+
+/**
+ * GDL_DOCK_OBJECT_AUTOMATIC:
+ * @obj: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the object's lifecycle is entirely managed by the dock
+ * master.
+ */
 #define GDL_DOCK_OBJECT_AUTOMATIC(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_AUTOMATIC) != 0)
+
+/**
+ * GDL_DOCK_OBJECT_ATTACHED:
+ * @obj: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the object has a parent.
+ */
 #define GDL_DOCK_OBJECT_ATTACHED(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_ATTACHED) != 0)
+
+/**
+ * GDL_DOCK_OBJECT_IN_REFLOW:
+ * @obj: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the object is currently rearranged.
+ */
 #define GDL_DOCK_OBJECT_IN_REFLOW(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_IN_REFLOW) != 0)
+
+/**
+ * GDL_DOCK_OBJECT_IN_DETACH:
+ * @obj: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the object will be detached.
+ */
 #define GDL_DOCK_OBJECT_IN_DETACH(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_IN_DETACH) != 0)
 
+/**
+ * GDL_DOCK_OBJECT_SET_FLAGS:
+ * @obj: A #GdlDockObject
+ * @flags: One or more #GdlDockObjectFlags
+ *
+ * Set one or more flags of a dock object.
+ */
 #define GDL_DOCK_OBJECT_SET_FLAGS(obj,flag) \
     G_STMT_START { (GDL_DOCK_OBJECT_FLAGS (obj) |= (flag)); } G_STMT_END
+
+
+/**
+ * GDL_DOCK_OBJECT_UNSET_FLAGS:
+ * @obj: A #GdlDockObject
+ * @flags: One or more #GdlDockObjectFlags
+ *
+ * Clear one or more flags of a dock object.
+ */
 #define GDL_DOCK_OBJECT_UNSET_FLAGS(obj,flag) \
     G_STMT_START { (GDL_DOCK_OBJECT_FLAGS (obj) &= ~(flag)); } G_STMT_END
- 
+
+/**
+ * GDL_DOCK_OBJECT_FROZEN:
+ * @obj: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the object is frozen.
+ */
 #define GDL_DOCK_OBJECT_FROZEN(obj) (GDL_DOCK_OBJECT (obj)->freeze_count > 0)
 
 
 /* public interface */
- 
+
 GType          gdl_dock_object_get_type          (void);
 
 gboolean       gdl_dock_object_is_compound       (GdlDockObject    *object);
@@ -203,6 +304,14 @@ GType                 gdl_dock_object_set_type_for_nick (const gchar *nick,
 
 
 /* helper macros */
+/**
+ * GDL_TRACE_OBJECT:
+ * @obj: A #GdlDockObject
+ * @format: Additional printf format string
+ * @...: Additional arguments
+ *
+ * Output a debugging message for the corresponding dock object.
+ */
 #define GDL_TRACE_OBJECT(object, format, args...) \
     G_STMT_START {                            \
     g_log (G_LOG_DOMAIN,                      \
@@ -215,8 +324,8 @@ GType                 gdl_dock_object_set_type_for_nick (const gchar *nick,
            G_OBJECT (object)->ref_count, \
            (GTK_IS_OBJECT (object) && g_object_is_floating (object)) ? "(float)" : "", \
            GDL_IS_DOCK_OBJECT (object) ? GDL_DOCK_OBJECT (object)->freeze_count : -1, \
-	   ##args); } G_STMT_END                   
-    
+	   ##args); } G_STMT_END
+
 
 
 G_END_DECLS
