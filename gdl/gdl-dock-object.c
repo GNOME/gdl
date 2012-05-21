@@ -130,7 +130,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
     g_object_class->finalize = gdl_dock_object_finalize;
 
     /**
-     * GdlDockObject:name
+     * GdlDockObject:name:
      *
      * The object name.  If the object is manual the name can be used
      * to recall the object from any other object in the ring
@@ -144,7 +144,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                              GDL_DOCK_PARAM_EXPORT));
 
     /**
-     * GdlDockObject:long-name
+     * GdlDockObject:long-name:
      *
      * A long descriptive name.
      */
@@ -156,7 +156,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
     /**
-     * GdlDockObject:stock-id
+     * GdlDockObject:stock-id:
      *
      * A stock id to use for the icon of the dock object.
      */
@@ -168,7 +168,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
     /**
-     * GdlDockObject:pixbuf-icon
+     * GdlDockObject:pixbuf-icon:
      *
      * A GdkPixbuf to use for the icon of the dock object.
      *
@@ -181,7 +181,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                               G_PARAM_READWRITE));
 
     /**
-     * GdlDockObject:master
+     * GdlDockObject:master:
      *
      * The master which manages all the objects in a dock ring
      */
@@ -560,7 +560,7 @@ gdl_dock_object_detach (GdlDockObject *object,
  *
  * Returns a parent #GdlDockObject if it exists.
  *
- * Returns: a #GdlDockObject or %NULL if such object does not exist.
+ * Returns: (allow-none) (transfer none): a #GdlDockObject or %NULL if such object does not exist.
  */
 GdlDockObject *
 gdl_dock_object_get_parent_object (GdlDockObject *object)
@@ -830,7 +830,7 @@ gdl_dock_object_reorder (GdlDockObject    *object,
 /**
  * gdl_dock_object_present:
  * @object: A #GdlDockObject
- * @child: The child widget to present or %NULL
+ * @child: (allow-none): The child widget to present or %NULL
  *
  * Presents the GDL object to the user. By example, this will select the
  * corresponding page if the object is in a notebook. If @child is missing,
@@ -857,7 +857,7 @@ gdl_dock_object_present (GdlDockObject *object,
  * gdl_dock_object_child_placement:
  * @object: the dock object we are asking for child placement
  * @child: the child of the @object we want the placement for
- * @placement: where to return the placement information
+ * @placement: (allow-none): where to return the placement information
  *
  * This function returns information about placement of a child dock
  * object inside another dock object.  The function returns %TRUE if

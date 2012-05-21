@@ -1087,7 +1087,7 @@ gdl_dock_present (GdlDockObject *object,
  *
  * Create a new dock.
  *
- * Returns: A new #GdlDock widget.
+ * Returns: (transfer full): A new #GdlDock widget.
  */
 GtkWidget *
 gdl_dock_new (void)
@@ -1107,7 +1107,7 @@ gdl_dock_new (void)
  *
  * Create a new dock widget having the same master than @original.
  *
- * Returns: A new #GdlDock widget
+ * Returns: (transfer full): A new #GdlDock widget
  */
 GtkWidget *
 gdl_dock_new_from (GdlDock  *original,
@@ -1371,14 +1371,14 @@ gdl_dock_add_floating_item (GdlDock        *dock,
 }
 
 /**
- * gdl_dock_get_item_by_name
+ * gdl_dock_get_item_by_name:
  * @dock: A #GdlDock widget
  * @name: An item name
  *
  * Looks for an #GdlDockItem widget bound to the master of the dock item. It
  * does not search only in the children of this particular dock widget.
  *
- * Returns: A #GdlDockItem widget or %NULL
+ * Returns: (transfer none): A #GdlDockItem widget or %NULL
  */
 GdlDockItem *
 gdl_dock_get_item_by_name (GdlDock     *dock,
@@ -1395,14 +1395,14 @@ gdl_dock_get_item_by_name (GdlDock     *dock,
 }
 
 /**
- * gdl_dock_get_placeholder_by_name
+ * gdl_dock_get_placeholder_by_name:
  * @dock: A #GdlDock widget
  * @name: An item name
  *
  * Looks for an #GdlDockPlaceholder object bound to the master of the dock item.
  * It does not search only in the children of this particular dock widget.
  *
- * Returns: A #GdlDockPlaceholder object or %NULL
+ * Returns: (transfer none): A #GdlDockPlaceholder object or %NULL
  */
 GdlDockPlaceholder *
 gdl_dock_get_placeholder_by_name (GdlDock     *dock,
@@ -1426,7 +1426,7 @@ gdl_dock_get_placeholder_by_name (GdlDock     *dock,
  * Returns a list of all item bound to the master of the dock, not only
  * the children of this particular dock widget.
  *
- * Returns: A list of #GdlDockItem. The list should be freedwith g_list_free(),
+ * Returns: (element-type GdlDockObject) (transfer container): A list of #GdlDockItem. The list should be freedwith g_list_free(),
  * but the item still belong to the master.
  */
 GList *
@@ -1448,7 +1448,7 @@ gdl_dock_get_named_items (GdlDock *dock)
  *
  * Get the top level #GdlDock widget of @object or %NULL if cannot be found.
  *
- * Returns: A #GdlDock or %NULL.
+ * Returns: (allow-none) (transfer none): A #GdlDock or %NULL.
  */
 GdlDock *
 gdl_dock_object_get_toplevel (GdlDockObject *object)

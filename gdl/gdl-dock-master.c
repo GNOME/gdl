@@ -918,7 +918,7 @@ gdl_dock_master_remove (GdlDockMaster *master,
 /**
  * gdl_dock_master_foreach:
  * @master: a #GdlDockMaster
- * @function: the function to call with each element's data
+ * @function: (scope call): the function to call with each element's data
  * @user_data: user data to pass to the function
  *
  * Call @function on each dock widget of the master.
@@ -944,7 +944,7 @@ gdl_dock_master_foreach (GdlDockMaster *master,
  * gdl_dock_master_foreach_toplevel:
  * @master: a #GdlDockMaster
  * @include_controller: %TRUE to include the controller
- * @function: the function to call with each element's data
+ * @function: (scope call): the function to call with each element's data
  * @user_data: user data to pass to the function
  *
  * Call @function on each top level dock widget of the master, including or not
@@ -975,7 +975,7 @@ gdl_dock_master_foreach_toplevel (GdlDockMaster *master,
  *
  * Looks for a #GdlDockObject named @nick_name.
  *
- * Returns: A #GdlDockObject named @nick_name or %NULL if it does not exist.
+ * Returns: (allow-none) (transfer none): A #GdlDockObject named @nick_name or %NULL if it does not exist.
  */
 GdlDockObject *
 gdl_dock_master_get_object (GdlDockMaster *master,
@@ -999,7 +999,7 @@ gdl_dock_master_get_object (GdlDockMaster *master,
  *
  * Retrieves the #GdlDockObject acting as the controller.
  *
- * Returns: A #GdlDockObject.
+ * Returns: (transfer none): A #GdlDockObject.
  */
 GdlDockObject *
 gdl_dock_master_get_controller (GdlDockMaster *master)

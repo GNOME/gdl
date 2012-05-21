@@ -2001,7 +2001,7 @@ gdl_dock_item_set_orientation (GdlDockItem    *item,
  * only visible when the "switcher-style" property of the #GdlDockMaster
  * is set to #GDL_SWITCHER_STYLE_TABS
  *
- * Returns: Returns the tab label widget.
+ * Returns: (transfer none): Returns the tab label widget.
  **/
 GtkWidget *
 gdl_dock_item_get_tablabel (GdlDockItem *item)
@@ -2065,7 +2065,7 @@ gdl_dock_item_set_tablabel (GdlDockItem *item,
  *
  * This function returns the dock item's grip label widget.
  *
- * Returns: Returns the current label widget.
+ * Returns: (allow-none) (transfer none): Returns the current label widget.
  **/
 GtkWidget *
 gdl_dock_item_get_grip(GdlDockItem *item)

@@ -78,7 +78,7 @@ GType          gdl_dock_get_type          (void);
 
 void           gdl_dock_add_item          (GdlDock          *dock,
                                            GdlDockItem      *item,
-                                           GdlDockPlacement  place);
+                                           GdlDockPlacement  placement);
 
 void           gdl_dock_add_floating_item (GdlDock        *dock,
                                            GdlDockItem    *item,
