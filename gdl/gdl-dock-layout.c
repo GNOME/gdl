@@ -36,6 +36,7 @@
  * SECTION:gdl-dock-layout
  * @title: GdlDockLayout
  * @short_description: save and restore dock widgets.
+ * @stability: Unstable
  *
  * The layout of all docking widgets can be saved using this #GdlDockLayout
  * object. It automatically monitors the layout_changed signal of the

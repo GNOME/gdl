@@ -42,6 +42,7 @@
  * @title: GdlDock
  * @short_description: A docking area widget.
  * @see_also: #GdlDockItem, #GdlDockMaster
+ * @stability: Unstable
  *
  * A #GdlDock is the toplevel widget which in turn hold a tree of #GdlDockItem
  * widgets. Each #GdlDock widget is bound to a #GdlDockMaster object.

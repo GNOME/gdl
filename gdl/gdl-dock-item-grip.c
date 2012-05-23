@@ -45,6 +45,7 @@
  * @title: GdlDockItemGrip
  * @short_description: A grip for dock widgets.
  * @see_also: GtlDockItem, GdlDockItemButtonImage
+ * @stability: Internal
  *
  * This widget contains an area where the user can click to drag the dock item
  * and two buttons. The first button allows to iconify the dock item.

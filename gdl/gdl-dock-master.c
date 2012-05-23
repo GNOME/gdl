@@ -40,7 +40,7 @@
  * SECTION:gdl-dock-master
  * @title: GdlDockMaster
  * @short_description: Manage all dock widgets
- * @stability: Internal
+ * @stability: Unstable
  * @see_also: #GdlDockObject, #GdlDockNotebook, #GdlDockPaned
  *
  * For the toplevel docks to be able to interact with each other, when the user

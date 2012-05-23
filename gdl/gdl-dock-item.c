@@ -53,6 +53,7 @@
  * @title: GdlDockItem
  * @short_description: Adds docking capability to its child widget.
  * @see_also: #GdlDockItem
+ * @stability: Unstable
  *
  * A dock item is a container widget that can be docked at different place.
  * It accepts a single child and adds a grip allowing the user to click on it

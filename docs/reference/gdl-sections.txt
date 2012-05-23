@@ -8,16 +8,17 @@
 <TITLE>GdlDock</TITLE>
 GdlDock
 GdlDockClass
-gdl_dock_add_floating_item
+gdl_dock_new
+gdl_dock_new_from
 gdl_dock_add_item
+gdl_dock_add_floating_item
+gdl_dock_hide_preview
+gdl_dock_show_preview
+gdl_dock_set_skip_taskbar
 gdl_dock_get_item_by_name
 gdl_dock_get_named_items
 gdl_dock_get_placeholder_by_name
-gdl_dock_new
-gdl_dock_new_from
 gdl_dock_object_get_toplevel
-gdl_dock_xor_rect
-gdl_dock_xor_rect_hide
 <SUBSECTION Standard>
 GDL_DOCK
 GDL_DOCK_CLASS
@@ -34,14 +35,14 @@ gdl_dock_get_type
 <FILE>gdl-dock-bar</FILE>
 <TITLE>GdlDockBar</TITLE>
 GdlDockBar
-GdlDockBarClass
 GdlDockBarStyle
-gdl_dock_bar_get_orientation
-gdl_dock_bar_get_style
 gdl_dock_bar_new
 gdl_dock_bar_set_orientation
+gdl_dock_bar_get_orientation
 gdl_dock_bar_set_style
+gdl_dock_bar_get_style
 <SUBSECTION Standard>
+GdlDockBarClass
 GDL_DOCK_BAR
 GDL_DOCK_BAR_CLASS
 GDL_DOCK_BAR_GET_CLASS
@@ -70,30 +71,29 @@ GDL_DOCK_ITEM_USER_ACTION
 GdlDockItem
 GdlDockItemBehavior
 GdlDockItemClass
-GdlDockItemClassPrivate
 GdlDockItemFlags
-gdl_dock_item_bind
-gdl_dock_item_dock_to
-gdl_dock_item_get_grip
-gdl_dock_item_get_tablabel
-gdl_dock_item_hide_grip
-gdl_dock_item_hide_item
-gdl_dock_item_iconify_item
-gdl_dock_item_lock
 gdl_dock_item_new
 gdl_dock_item_new_with_pixbuf_icon
 gdl_dock_item_new_with_stock
+gdl_dock_item_bind
+gdl_dock_item_unbind
+gdl_dock_item_show_grip
+gdl_dock_item_hide_grip
+gdl_dock_item_show_item
+gdl_dock_item_hide_item
+gdl_dock_item_iconify_item
+gdl_dock_item_dock_to
+gdl_dock_item_lock
+gdl_dock_item_unlock
 gdl_dock_item_notify_deselected
 gdl_dock_item_notify_selected
+gdl_dock_item_get_grip
+gdl_dock_item_get_tablabel
 gdl_dock_item_or_child_has_focus
 gdl_dock_item_preferred_size
 gdl_dock_item_set_default_position
 gdl_dock_item_set_orientation
 gdl_dock_item_set_tablabel
-gdl_dock_item_show_grip
-gdl_dock_item_show_item
-gdl_dock_item_unbind
-gdl_dock_item_unlock
 <SUBSECTION Standard>
 GDL_DOCK_ITEM
 GDL_DOCK_ITEM_CLASS
@@ -102,6 +102,7 @@ GDL_IS_DOCK_ITEM
 GDL_IS_DOCK_ITEM_CLASS
 GDL_TYPE_DOCK_ITEM
 GdlDockItemPrivate
+GdlDockItemClassPrivate
 gdl_dock_item_get_type
 </SECTION>
 
@@ -109,7 +110,6 @@ gdl_dock_item_get_type
 <FILE>gdl-dock-item-button-image</FILE>
 <TITLE>GdlDockItemButtonImage</TITLE>
 GdlDockItemButtonImage
-GdlDockItemButtonImageClass
 GdlDockItemButtonImageType
 gdl_dock_item_button_image_new
 <SUBSECTION Standard>
@@ -119,6 +119,7 @@ GDL_DOCK_ITEM_BUTTON_IMAGE_GET_CLASS
 GDL_IS_DOCK_ITEM_BUTTON_IMAGE
 GDL_IS_DOCK_ITEM_BUTTON_IMAGE_CLASS
 GDL_TYPE_DOCK_ITEM_BUTTON_IMAGE
+GdlDockItemButtonImageClass
 gdl_dock_item_button_image_get_type
 </SECTION>
 
@@ -126,11 +127,10 @@ gdl_dock_item_button_image_get_type
 <FILE>gdl-dock-item-grip</FILE>
 <TITLE>GdlDockItemGrip</TITLE>
 GdlDockItemGrip
-GdlDockItemGripClass
-gdl_dock_item_grip_hide_handle
 gdl_dock_item_grip_new
 gdl_dock_item_grip_set_label
 gdl_dock_item_grip_show_handle
+gdl_dock_item_grip_hide_handle
 <SUBSECTION Standard>
 GDL_DOCK_ITEM_GRIP
 GDL_DOCK_ITEM_GRIP_CLASS
@@ -139,6 +139,7 @@ GDL_IS_DOCK_ITEM_GRIP
 GDL_IS_DOCK_ITEM_GRIP_CLASS
 GDL_TYPE_DOCK_ITEM_GRIP
 GdlDockItemGripPrivate
+GdlDockItemGripClass
 gdl_dock_item_grip_get_type
 </SECTION>
 
@@ -146,15 +147,13 @@ gdl_dock_item_grip_get_type
 <FILE>gdl-dock-layout</FILE>
 <TITLE>GdlDockLayout</TITLE>
 GdlDockLayout
-GdlDockLayoutClass
+gdl_dock_layout_new
 gdl_dock_layout_attach
 gdl_dock_layout_delete_layout
 gdl_dock_layout_get_layouts
-gdl_dock_layout_get_layouts_ui
 gdl_dock_layout_is_dirty
-gdl_dock_layout_load_from_file
 gdl_dock_layout_load_layout
-gdl_dock_layout_new
+gdl_dock_layout_load_from_file
 gdl_dock_layout_save_layout
 gdl_dock_layout_save_to_file
 <SUBSECTION Standard>
@@ -165,6 +164,7 @@ GDL_IS_DOCK_LAYOUT
 GDL_IS_DOCK_LAYOUT_CLASS
 GDL_TYPE_DOCK_LAYOUT
 GdlDockLayoutPrivate
+GdlDockLayoutClass
 gdl_dock_layout_get_type
 </SECTION>
 
@@ -173,15 +173,14 @@ gdl_dock_layout_get_type
 <TITLE>GdlDockMaster</TITLE>
 GDL_DOCK_OBJECT_GET_MASTER
 GdlDockMaster
-GdlDockMasterClass
 GdlSwitcherStyle
 gdl_dock_master_add
-gdl_dock_master_foreach
-gdl_dock_master_foreach_toplevel
-gdl_dock_master_get_controller
-gdl_dock_master_get_object
 gdl_dock_master_remove
 gdl_dock_master_set_controller
+gdl_dock_master_get_controller
+gdl_dock_master_get_object
+gdl_dock_master_foreach
+gdl_dock_master_foreach_toplevel
 <SUBSECTION Standard>
 GDL_DOCK_MASTER
 GDL_DOCK_MASTER_CLASS
@@ -197,10 +196,10 @@ gdl_dock_master_get_type
 <FILE>gdl-dock-notebook</FILE>
 <TITLE>GdlDockNotebook</TITLE>
 GdlDockNotebook
-GdlDockNotebookClass
-GdlDockNotebookClassPrivate
 gdl_dock_notebook_new
 <SUBSECTION Standard>
+GdlDockNotebookClass
+GdlDockNotebookClassPrivate
 GDL_DOCK_NOTEBOOK
 GDL_DOCK_NOTEBOOK_CLASS
 GDL_DOCK_NOTEBOOK_GET_CLASS
@@ -213,8 +212,6 @@ gdl_dock_notebook_get_type
 <SECTION>
 <FILE>gdl-dock-object</FILE>
 <TITLE>GdlDockObject</TITLE>
-GDL_DOCK_MASTER_PROPERTY
-GDL_DOCK_NAME_PROPERTY
 GDL_DOCK_OBJECT_ATTACHED
 GDL_DOCK_OBJECT_AUTOMATIC
 GDL_DOCK_OBJECT_FLAGS
@@ -258,15 +255,18 @@ GDL_TYPE_DOCK_OBJECT
 GDL_TYPE_DOCK_PARAM
 gdl_dock_object_get_type
 gdl_dock_param_get_type
+<SUBSECTION Private>
+GDL_DOCK_MASTER_PROPERTY
+GDL_DOCK_NAME_PROPERTY
 </SECTION>
 
 <SECTION>
 <FILE>gdl-dock-paned</FILE>
 <TITLE>GdlDockPaned</TITLE>
 GdlDockPaned
-GdlDockPanedClass
 gdl_dock_paned_new
 <SUBSECTION Standard>
+GdlDockPanedClass
 GDL_DOCK_PANED
 GDL_DOCK_PANED_CLASS
 GDL_DOCK_PANED_GET_CLASS
@@ -280,10 +280,10 @@ gdl_dock_paned_get_type
 <FILE>gdl-dock-placeholder</FILE>
 <TITLE>GdlDockPlaceholder</TITLE>
 GdlDockPlaceholder
-GdlDockPlaceholderClass
-gdl_dock_placeholder_attach
 gdl_dock_placeholder_new
+gdl_dock_placeholder_attach
 <SUBSECTION Standard>
+GdlDockPlaceholderClass
 GDL_DOCK_PLACEHOLDER
 GDL_DOCK_PLACEHOLDER_CLASS
 GDL_DOCK_PLACEHOLDER_GET_CLASS
@@ -298,11 +298,11 @@ gdl_dock_placeholder_get_type
 <FILE>gdl-dock-tablabel</FILE>
 <TITLE>GdlDockTablabel</TITLE>
 GdlDockTablabel
-GdlDockTablabelClass
+gdl_dock_tablabel_new
 gdl_dock_tablabel_activate
 gdl_dock_tablabel_deactivate
-gdl_dock_tablabel_new
 <SUBSECTION Standard>
+GdlDockTablabelClass
 GDL_DOCK_TABLABEL
 GDL_DOCK_TABLABEL_CLASS
 GDL_DOCK_TABLABEL_GET_CLASS
@@ -313,14 +313,31 @@ gdl_dock_tablabel_get_type
 </SECTION>
 
 <SECTION>
+<FILE>gdl-preview-window</FILE>
+<TITLE>GdlPreviewWindow</TITLE>
+GdlPreviewWindow
+gdl_preview_window_new
+gdl_preview_window_update
+<SUBSECTION Standard>
+GdlPreviewWindowClass
+GDL_IS_PREVIEW_WINDOW
+GDL_IS_PREVIEW_WINDOW_CLASS
+GDL_PREVIEW_WINDOW
+GDL_PREVIEW_WINDOW_CLASS
+GDL_PREVIEW_WINDOW_GET_CLASS
+GDL_TYPE_PREVIEW_WINDOW
+gdl_preview_window_get_type
+</SECTION>
+
+<SECTION>
 <FILE>gdl-switcher</FILE>
 <TITLE>GdlSwitcher</TITLE>
 GdlSwitcher
+gdl_switcher_new
+gdl_switcher_insert_page
+<SUBSECTION Standard>
 GdlSwitcherClass
 GdlSwitcherClassPrivate
-gdl_switcher_insert_page
-gdl_switcher_new
-<SUBSECTION Standard>
 GDL_IS_SWITCHER
 GDL_IS_SWITCHER_CLASS
 GDL_SWITCHER
@@ -328,35 +345,5 @@ GDL_SWITCHER_CLASS
 GDL_TYPE_SWITCHER
 GdlSwitcherPrivate
 gdl_switcher_get_type
-</SECTION>
-
-<SECTION>
-<FILE>libgdlmarshal</FILE>
-gdl_marshal_VOID__BOOLEAN
-gdl_marshal_VOID__BOXED
-gdl_marshal_VOID__ENUM
-gdl_marshal_VOID__INT_INT
-gdl_marshal_VOID__OBJECT_ENUM_BOXED
-gdl_marshal_VOID__UINT_UINT
-gdl_marshal_VOID__VOID
-</SECTION>
-
-<SECTION>
-<FILE>libgdltypebuiltins</FILE>
-<SUBSECTION Standard>
-GDL_TYPE_DOCK_BAR_STYLE
-GDL_TYPE_DOCK_ITEM_BEHAVIOR
-GDL_TYPE_DOCK_ITEM_FLAGS
-GDL_TYPE_DOCK_OBJECT_FLAGS
-GDL_TYPE_DOCK_PARAM_FLAGS
-GDL_TYPE_DOCK_PLACEMENT
-GDL_TYPE_SWITCHER_STYLE
-gdl_dock_bar_style_get_type
-gdl_dock_item_behavior_get_type
-gdl_dock_item_flags_get_type
-gdl_dock_object_flags_get_type
-gdl_dock_param_flags_get_type
-gdl_dock_placement_get_type
-gdl_switcher_style_get_type
 </SECTION>
 
