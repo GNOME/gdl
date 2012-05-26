@@ -292,53 +292,12 @@ gdl_dock_item_grip_close_clicked (GtkWidget       *widget,
 }
 
 static void
-gdl_dock_item_grip_fix_iconify_button (GdlDockItemGrip *grip)
-{
-    GtkWidget *iconify_button = grip->priv->iconify_button;
-    GdkWindow *window = NULL;
-    GdkEvent  *event = NULL;
-
-    GdkModifierType modifiers;
-    gint x = 0, y = 0;
-    gboolean ev_ret;
-
-    g_return_if_fail (gtk_widget_get_realized (iconify_button));
-
-    window = gtk_widget_get_parent_window (iconify_button);
-    event = gdk_event_new (GDK_LEAVE_NOTIFY);
-
-    g_assert (GDK_IS_WINDOW (window));
-    gdk_window_get_pointer (window, &x, &y, &modifiers);
-
-    event->crossing.window = g_object_ref (window);
-    event->crossing.send_event = FALSE;
-    event->crossing.subwindow = g_object_ref (window);
-    event->crossing.time = GDK_CURRENT_TIME;
-    event->crossing.x = x;
-    event->crossing.y = y;
-    event->crossing.x_root = event->crossing.y_root = 0;
-    event->crossing.mode = GDK_CROSSING_STATE_CHANGED;
-    event->crossing.detail = GDK_NOTIFY_NONLINEAR;
-    event->crossing.focus = FALSE;
-    event->crossing.state = modifiers;
-
-    //GTK_BUTTON (iconify_button)->in_button = FALSE;
-    g_signal_emit_by_name (iconify_button, "leave-notify-event",
-                           event, &ev_ret, 0);
-
-    gdk_event_free (event);
-}
-
-static void
 gdl_dock_item_grip_iconify_clicked (GtkWidget       *widget,
                                     GdlDockItemGrip *grip)
 {
     GtkWidget *parent;
 
     g_return_if_fail (grip->item != NULL);
-
-    /* Workaround to unhighlight the iconify button. */
-    gdl_dock_item_grip_fix_iconify_button (grip);
 
     parent = gtk_widget_get_parent (GTK_WIDGET (grip->item));
     if (GDL_IS_SWITCHER (parent))
@@ -363,6 +322,12 @@ gdl_dock_item_grip_iconify_clicked (GtkWidget       *widget,
     {
         gdl_dock_item_iconify_item (grip->item);
     }
+
+    /* Workaround to unhighlight the iconify button. See bug #676890
+     * Set button insensitive in order to set priv->in_button = FALSE
+     */
+    gtk_widget_set_state_flags (grip->priv->iconify_button, GTK_STATE_FLAG_INSENSITIVE, TRUE);
+    gtk_widget_set_state_flags (grip->priv->iconify_button, GTK_STATE_FLAG_NORMAL, TRUE);
 }
 
 static void
@@ -469,7 +434,7 @@ gdl_dock_item_grip_realize (GtkWidget *widget)
                                              GDK_HAND2);
         gdk_window_set_cursor (grip->title_window, cursor);
         if (cursor)
-            gdk_cursor_unref (cursor);
+            g_object_unref (cursor);
     }
 }
 

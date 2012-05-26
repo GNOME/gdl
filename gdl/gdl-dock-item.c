@@ -398,6 +398,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     /**
      * GdlDockItem::dock-drag-motion:
      * @item: The dock item which is being dragged.
+     * @device: The device used.
      * @x: The x-position that the dock item has been dragged to.
      * @y: The y-position that the dock item has been dragged to.
      *
@@ -410,9 +411,10 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                       G_STRUCT_OFFSET (GdlDockItemClass, dock_drag_motion),
                       NULL, /* accumulator */
                       NULL, /* accu_data */
-                      gdl_marshal_VOID__INT_INT,
+                      gdl_marshal_VOID__OBJECT_INT_INT,
                       G_TYPE_NONE,
-                      2,
+                      3,
+                      GDK_TYPE_DEVICE,
                       G_TYPE_INT,
                       G_TYPE_INT);
 
@@ -609,7 +611,7 @@ gdl_dock_item_constructor (GType                  type,
 
         g_object_get (g_object, "long-name", &long_name, "stock-id", &stock_id, NULL);
 
-        hbox = gtk_hbox_new (FALSE, 5);
+        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
         label = gtk_label_new (long_name);
         icon = gtk_image_new ();
         if (stock_id)
@@ -1002,7 +1004,7 @@ gdl_dock_item_size_allocate (GtkWidget     *widget,
             GtkAllocation grip_alloc = child_allocation;
             GtkRequisition grip_req;
 
-            gtk_widget_size_request (item->priv->grip, &grip_req);
+            gtk_widget_get_preferred_size (item->priv->grip, &grip_req, NULL);
 
             if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
                 child_allocation.x += grip_req.width;
@@ -1187,7 +1189,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
                                                  GDK_FLEUR);
             gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
                                    cursor);
-            gdk_cursor_unref (cursor);
+            g_object_unref (cursor);
 
             event_handled = TRUE;
         };
@@ -1243,7 +1245,7 @@ gdl_dock_item_motion (GtkWidget      *widget,
     new_y = event->y_root;
 
     g_signal_emit (item, gdl_dock_item_signals [DOCK_DRAG_MOTION],
-                   0, new_x, new_y);
+                   0, event->device, new_x, new_y);
 
     return TRUE;
 }
@@ -1705,7 +1707,7 @@ gdl_dock_item_drag_end (GdlDockItem *item,
                                              GDK_HAND2);
         gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
                                cursor);
-        gdk_cursor_unref (cursor);
+        g_object_unref (cursor);
     }
 
     return TRUE;
@@ -1800,7 +1802,7 @@ gdl_dock_item_showhide_grip (GdlDockItem *item)
         gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window, cursor);
 
     if (cursor)
-        gdk_cursor_unref (cursor);
+        g_object_unref (cursor);
 
     gtk_widget_queue_resize (GTK_WIDGET (item));
 }

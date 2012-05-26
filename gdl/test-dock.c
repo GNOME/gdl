@@ -40,7 +40,7 @@ create_style_button (GtkWidget *dock, GtkWidget *box, GtkWidget *group,
 	GdlSwitcherStyle current_style;
 	GtkWidget *button1;
 	GdlDockMaster *master = GDL_DOCK_OBJECT_GET_MASTER (dock);
-	
+
 	g_object_get (master, "switcher-style", &current_style, NULL);
 	button1 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (group),
 						   style_text);
@@ -62,8 +62,8 @@ create_styles_item (GtkWidget *dock)
 {
 	GtkWidget *vbox1;
 	GtkWidget *group;
-	
-	vbox1 = gtk_vbox_new (FALSE, 0);
+
+	vbox1 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show (vbox1);
 
 	group = create_style_button (dock, vbox1, NULL,
@@ -104,7 +104,7 @@ create_text_item ()
 	GtkWidget *scrolledwindow1;
 	GtkWidget *text;
 
-	vbox1 = gtk_vbox_new (FALSE, 0);
+	vbox1 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show (vbox1);
 
 	scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
@@ -145,13 +145,13 @@ save_layout_cb (GtkWidget *w, gpointer data)
 					      GTK_RESPONSE_OK,
 					      NULL);
 
-	hbox = gtk_hbox_new (FALSE, 8);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 	gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
 	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_action_area (GTK_DIALOG (dialog))), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new ("Name:");
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	
+
 	entry = gtk_entry_new ();
 	gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
 
@@ -191,16 +191,16 @@ main (int argc, char **argv)
 	gtk_init (&argc, &argv);
 
 	/*gtk_widget_set_default_direction (GTK_TEXT_DIR_RTL);*/
-	
+
         /* window creation */
 	win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	g_signal_connect (win, "delete_event", 
+	g_signal_connect (win, "delete_event",
 			  G_CALLBACK (gtk_main_quit), NULL);
 	gtk_window_set_title (GTK_WINDOW (win), "Docking widget test");
 	gtk_window_set_default_size (GTK_WINDOW (win), 400, 400);
 
 	/* table */
-        table = gtk_vbox_new (FALSE, 5);
+        table = gtk_box_new (GTK_ORIENTATION_VERTICAL, 5);
         gtk_container_add (GTK_CONTAINER (win), table);
 	gtk_container_set_border_width (GTK_CONTAINER (table), 10);
 
@@ -214,16 +214,16 @@ main (int argc, char **argv)
 	dockbar = gdl_dock_bar_new (GDL_DOCK (dock));
   gdl_dock_bar_set_style(GDL_DOCK_BAR(dockbar), GDL_DOCK_BAR_TEXT);
 
-	box = gtk_hbox_new (FALSE, 5);
+	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
 	gtk_box_pack_start (GTK_BOX (table), box, TRUE, TRUE, 0);
 
         gtk_box_pack_start (GTK_BOX (box), dockbar, FALSE, FALSE, 0);
         gtk_box_pack_end (GTK_BOX (box), dock, TRUE, TRUE, 0);
-  
+
 	/* create the dock items */
         item1 = gdl_dock_item_new ("item1", "Item #1", GDL_DOCK_ITEM_BEH_LOCKED);
         gtk_container_add (GTK_CONTAINER (item1), create_text_item ());
-	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item1), 
+	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item1),
 			   GDL_DOCK_TOP);
 	gtk_widget_show (item1);
 
@@ -232,7 +232,7 @@ main (int argc, char **argv)
 					      GDL_DOCK_ITEM_BEH_NORMAL);
 	g_object_set (item2, "resize", FALSE, NULL);
 	gtk_container_add (GTK_CONTAINER (item2), create_styles_item (dock));
-	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2), 
+	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item2),
 			   GDL_DOCK_RIGHT);
 	gtk_widget_show (item2);
 
@@ -243,7 +243,7 @@ main (int argc, char **argv)
 	name_button = create_item ("Change name");
 	gtk_container_add (GTK_CONTAINER (item3), name_button);
 	g_signal_connect (name_button, "clicked", G_CALLBACK(on_change_name), item3);
-	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item3), 
+	gdl_dock_add_item (GDL_DOCK (dock), GDL_DOCK_ITEM (item3),
 			   GDL_DOCK_BOTTOM);
 	gtk_widget_show (item3);
 
@@ -262,7 +262,7 @@ main (int argc, char **argv)
 						      GDL_DOCK_ITEM_BEH_NORMAL);
 	    gtk_container_add (GTK_CONTAINER (items [i]), create_text_item ());
 	    gtk_widget_show (items [i]);
-	    
+
 	    gdl_dock_object_dock (GDL_DOCK_OBJECT (items [0]),
 				  GDL_DOCK_OBJECT (items [i]),
 				  GDL_DOCK_CENTER, NULL);
@@ -272,38 +272,39 @@ main (int argc, char **argv)
 	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item3), GDL_DOCK_ITEM (item1),
 			       GDL_DOCK_TOP, -1);
 
-	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), GDL_DOCK_ITEM (item3), 
+	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), GDL_DOCK_ITEM (item3),
 			       GDL_DOCK_RIGHT, -1);
 
-	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), GDL_DOCK_ITEM (item3), 
+	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), GDL_DOCK_ITEM (item3),
 			       GDL_DOCK_LEFT, -1);
 
-	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), NULL, 
+	gdl_dock_item_dock_to (GDL_DOCK_ITEM (item2), NULL,
 			       GDL_DOCK_FLOATING, -1);
-        
-	box = gtk_hbox_new (TRUE, 5);
+
+	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
+	gtk_box_set_homogeneous (GTK_BOX (box), TRUE);
 	gtk_box_pack_end (GTK_BOX (table), box, FALSE, FALSE, 0);
 
 	button = gtk_button_new_from_stock (GTK_STOCK_SAVE);
 	g_signal_connect (button, "clicked",
 			  G_CALLBACK (save_layout_cb), layout);
 	gtk_box_pack_end (GTK_BOX (box), button, FALSE, TRUE, 0);
-	
+
 	button = gtk_button_new_with_label ("Dump XML");
 	g_signal_connect (button, "clicked",
 			  G_CALLBACK (button_dump_cb), layout);
 	gtk_box_pack_end (GTK_BOX (box), button, FALSE, TRUE, 0);
-	
+
 	gtk_widget_show_all (win);
 
 	gdl_dock_placeholder_new ("ph1", GDL_DOCK_OBJECT (dock), GDL_DOCK_TOP, FALSE);
 	gdl_dock_placeholder_new ("ph2", GDL_DOCK_OBJECT (dock), GDL_DOCK_BOTTOM, FALSE);
 	gdl_dock_placeholder_new ("ph3", GDL_DOCK_OBJECT (dock), GDL_DOCK_LEFT, FALSE);
 	gdl_dock_placeholder_new ("ph4", GDL_DOCK_OBJECT (dock), GDL_DOCK_RIGHT, FALSE);
-	
+
 	gtk_main ();
 
   	g_object_unref (layout);
-	
+
 	return 0;
 }

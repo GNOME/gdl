@@ -83,6 +83,7 @@ static void     gdl_dock_master_drag_end      (GdlDockItem        *item,
                                                gboolean            cancelled,
                                                gpointer            data);
 static void     gdl_dock_master_drag_motion   (GdlDockItem        *item,
+                                               GdkDevice          *device,
                                                gint                x,
                                                gint                y,
                                                gpointer            data);
@@ -492,6 +493,7 @@ gdl_dock_master_drag_end (GdlDockItem *item,
 
 static void
 gdl_dock_master_drag_motion (GdlDockItem *item,
+                             GdkDevice *device,
                              gint         root_x,
                              gint         root_y,
                              gpointer     data)
@@ -515,7 +517,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     my_request = *request;
 
     /* first look under the pointer */
-    window = gdk_window_at_pointer (&win_x, &win_y);
+    window = gdk_device_get_window_at_position (device, &win_x, &win_y);
     if (window) {
         GtkWidget *widget;
         /* ok, now get the widget who owns that window and see if we can

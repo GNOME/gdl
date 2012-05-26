@@ -307,10 +307,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     button = gtk_button_new ();
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
 
-    if (dockbar->priv->orientation == GTK_ORIENTATION_HORIZONTAL)
-        box = gtk_hbox_new (FALSE, 0);
-    else
-        box = gtk_vbox_new (FALSE, 0);
+    box = gtk_box_new (dockbar->priv->orientation, 0);
 
     g_object_get (item, "stock-id", &stock_id, "pixbuf-icon", &pixbuf_icon,
                   "long-name", &name, NULL);
@@ -527,7 +524,7 @@ static void gdl_dock_bar_size_vrequest (GtkWidget *widget,
             gboolean fill;
             GtkPackType pack_type;
 
-            gtk_widget_size_request (GTK_WIDGET (child->data), &child_requisition);
+            gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
 
             gtk_box_query_child_packing (box,
                                          child->data,
@@ -667,7 +664,7 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
+                    gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
                     child_height = child_requisition.height + padding * 2;
 
                     if (expand)
@@ -691,7 +688,7 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
+                    gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
                     child_allocation.height = child_requisition.height;
                     child_allocation.y = y + (child_height - child_allocation.height) / 2;
                 }
@@ -722,7 +719,7 @@ static void gdl_dock_bar_size_vallocate (GtkWidget     *widget,
             if ((pack_type == GTK_PACK_END) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 GtkRequisition child_requisition;
-                gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
+                gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
 
                 if (gtk_box_get_homogeneous (box))
                 {
@@ -803,7 +800,7 @@ static void gdl_dock_bar_size_hrequest (GtkWidget *widget,
         {
             GtkRequisition child_requisition;
 
-            gtk_widget_size_request (GTK_WIDGET (child->data), &child_requisition);
+            gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
 
             if (gtk_box_get_homogeneous (box))
             {
@@ -938,7 +935,7 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
+                    gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
 
                     child_width = child_requisition.width + padding * 2;
 
@@ -963,7 +960,7 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
                 {
                     GtkRequisition child_requisition;
 
-                    gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
+                    gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
                     child_allocation.width = child_requisition.width;
                     child_allocation.x = x + (child_width - child_allocation.width) / 2;
                 }
@@ -997,7 +994,7 @@ static void gdl_dock_bar_size_hallocate (GtkWidget     *widget,
             if ((pack_type == GTK_PACK_END) && gtk_widget_get_visible (GTK_WIDGET (child->data)))
             {
                 GtkRequisition child_requisition;
-                gtk_widget_get_child_requisition (GTK_WIDGET (child->data), &child_requisition);
+                gtk_widget_get_preferred_size (GTK_WIDGET (child->data), &child_requisition, NULL);
 
                 if (gtk_box_get_homogeneous (box))
                 {
