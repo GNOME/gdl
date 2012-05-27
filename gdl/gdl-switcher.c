@@ -37,6 +37,20 @@
 
 #include <gtk/gtk.h>
 
+/**
+ * SECTION:gdl-switcher
+ * @title: GdlSwitcher
+ * @short_description: An improved notebook widget.
+ * @stability: Unstable
+ * @see_also: #GdlDockNotebook
+ *
+ * A #GdlSwitcher widget is an improved version of the #GtkNotebook. The
+ * tab labels could have different style and could be layouted on several lines.
+ *
+ * It is used by the #GdlDockNotebook widget to dock other widgets.
+ */
+
+
 static void gdl_switcher_set_property  (GObject            *object,
                                         guint               prop_id,
                                         const GValue       *value,
@@ -822,6 +836,13 @@ gdl_switcher_init (GdlSwitcher *switcher)
                       G_CALLBACK (gdl_switcher_notify_cb), switcher);
 }
 
+/**
+ * gdl_switcher_new:
+ *
+ * Creates a new notebook widget with no pages.
+ *
+ * Returns: The newly created #GdlSwitcher
+ */
 GtkWidget *
 gdl_switcher_new (void)
 {
@@ -967,6 +988,8 @@ gdl_switcher_select_button (GdlSwitcher *switcher, gint switcher_id)
  * %GTK_STOCK_NEW stock icon is used.  The text label for the button is specified
  * using the @label parameter.  If it is %NULL then a default incrementally
  * numbered label is used instead.
+ *
+ * Returns: The index (starting from 0) of the appended page in the notebook, or -1 if function fails
  */
 gint
 gdl_switcher_insert_page (GdlSwitcher *switcher, GtkWidget *page,

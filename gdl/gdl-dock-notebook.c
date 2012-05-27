@@ -33,7 +33,7 @@
  * @title: GdlDockNotebook
  * @short_description: Arrange dock widgets in a tabbed notebook
  * @stability: Unstable
- * @see_also: #GdlDockPaned, #GdlDockMaster
+ * @see_also: #GdlDockPaned, #GdlDockMaster, #GdlSwitcher
  *
  * A #GdlDockNotebook is a compound dock widget like #GdlDockPaned.
  * Other dock widgets can be added to it, simply by dropping them on the
