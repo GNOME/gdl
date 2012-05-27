@@ -24,6 +24,9 @@
 
 #include <gtk/gtk.h>
 
+#include <gdl/gdl-dock.h>
+
+
 G_BEGIN_DECLS
 
 /* standard macros */
@@ -59,6 +62,7 @@ typedef enum {
 struct _GdlDockBar {
     GtkBox parent;
 
+    /*< private >*/
     GdlDock *dock;
 
     GdlDockBarPrivate *priv;
@@ -72,12 +76,13 @@ GType      gdl_dock_bar_get_type            (void);
 
 GtkWidget *gdl_dock_bar_new                 (GdlDock     *dock);
 
-GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar);
-void           gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
-                                             GtkOrientation orientation);
 void           gdl_dock_bar_set_style       (GdlDockBar *dockbar,
                                              GdlDockBarStyle style);
 GdlDockBarStyle gdl_dock_bar_get_style      (GdlDockBar *dockbar);
+
+GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar) G_GNUC_DEPRECATED_FOR(gtk_orientable_get_orientation);
+void           gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
+                                             GtkOrientation orientation) G_GNUC_DEPRECATED_FOR(gtk_orientable_set_orientation);
 
 G_END_DECLS
 

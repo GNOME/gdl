@@ -75,7 +75,6 @@ static void gdl_dock_bar_remove_item      (GdlDockBar      *dockbar,
 struct _GdlDockBarPrivate {
     GdlDockMaster   *master;
     GSList          *items;
-    GtkOrientation   orientation;
     GdlDockBarStyle  dockbar_style;
 
     glong layout_changed_id;
@@ -158,8 +157,8 @@ gdl_dock_bar_init (GdlDockBar *dockbar)
 
     dockbar->priv->master = NULL;
     dockbar->priv->items = NULL;
-    dockbar->priv->orientation = GTK_ORIENTATION_VERTICAL;
     dockbar->priv->dockbar_style = GDL_DOCK_BAR_BOTH;
+    gtk_orientable_set_orientation (GTK_ORIENTABLE (dockbar), GTK_ORIENTATION_VERTICAL);
 }
 
 static void
@@ -307,7 +306,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     button = gtk_button_new ();
     gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
 
-    box = gtk_box_new (dockbar->priv->orientation, 0);
+    box = gtk_box_new (gtk_orientable_get_orientation (GTK_ORIENTABLE (dockbar)), 0);
 
     g_object_get (item, "stock-id", &stock_id, "pixbuf-icon", &pixbuf_icon,
                   "long-name", &name, NULL);
@@ -315,7 +314,7 @@ gdl_dock_bar_add_item (GdlDockBar  *dockbar,
     if (dockbar->priv->dockbar_style == GDL_DOCK_BAR_TEXT ||
         dockbar->priv->dockbar_style == GDL_DOCK_BAR_BOTH) {
         label = gtk_label_new (name);
-        if (dockbar->priv->orientation == GTK_ORIENTATION_VERTICAL)
+        if (gtk_orientable_get_orientation (GTK_ORIENTABLE (dockbar)) == GTK_ORIENTATION_VERTICAL)
             gtk_label_set_angle (GTK_LABEL (label), 90);
         gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
     }
@@ -446,7 +445,7 @@ static void gdl_dock_bar_size_request (GtkWidget *widget,
     dockbar = GDL_DOCK_BAR (widget);
 
     /* default to vertical for unknown values */
-    switch (dockbar->priv->orientation) {
+    switch (gtk_orientable_get_orientation (GTK_ORIENTABLE (dockbar))) {
 	case GTK_ORIENTATION_HORIZONTAL:
 		gdl_dock_bar_size_hrequest (widget, requisition);
 		break;
@@ -487,7 +486,7 @@ static void gdl_dock_bar_size_allocate (GtkWidget *widget,
     dockbar = GDL_DOCK_BAR (widget);
 
     /* default to vertical for unknown values */
-    switch (dockbar->priv->orientation) {
+    switch (gtk_orientable_get_orientation (GTK_ORIENTABLE (dockbar))) {
 	case GTK_ORIENTATION_HORIZONTAL:
 		gdl_dock_bar_size_hallocate (widget, allocation);
 		break;
@@ -1063,39 +1062,6 @@ gdl_dock_bar_new (GdlDock *dock)
 
     return g_object_new (GDL_TYPE_DOCK_BAR,
                          "master", master, NULL);
-}
-
-/**
- * gdl_dock_bar_get_orientation:
- * @dockbar: a #GdlDockBar
- *
- * Retrieves the orientation of the @dockbar.
- *
- * Returns: the orientation of the @docbar
- */
-GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar)
-{
-    g_return_val_if_fail (GDL_IS_DOCK_BAR (dockbar),
-                          GTK_ORIENTATION_VERTICAL);
-
-    return dockbar->priv->orientation;
-}
-
-/**
- * gdl_dock_bar_set_orientation:
- * @dockbar: a #GdlDockBar
- * @orientation: the new orientation
- *
- * Set the orientation of the @dockbar.
- */
-void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
-	                             GtkOrientation orientation)
-{
-    g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
-
-    dockbar->priv->orientation = orientation;
-
-    gtk_widget_queue_resize (GTK_WIDGET (dockbar));
 }
 
 /**

@@ -7,13 +7,7 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#include "gdl-dock.h"
-#include "gdl-dock-item.h"
-#include "gdl-dock-notebook.h"
-#include "gdl-dock-layout.h"
-#include "gdl-dock-placeholder.h"
-#include "gdl-dock-bar.h"
-#include "gdl-switcher.h"
+#include "gdl/gdl.h"
 
 #include <glib.h>
 
@@ -212,7 +206,7 @@ main (int argc, char **argv)
 
 	/* create the dockbar */
 	dockbar = gdl_dock_bar_new (GDL_DOCK (dock));
-  gdl_dock_bar_set_style(GDL_DOCK_BAR(dockbar), GDL_DOCK_BAR_TEXT);
+    gdl_dock_bar_set_style(GDL_DOCK_BAR(dockbar), GDL_DOCK_BAR_TEXT);
 
 	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
 	gtk_box_pack_start (GTK_BOX (table), box, TRUE, TRUE, 0);

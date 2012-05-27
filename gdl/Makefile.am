@@ -60,7 +60,8 @@ libgdl_3_la_SOURCES = \
 	libgdlmarshal.h \
 	libgdlmarshal.c \
 	gdl-preview-window.h \
-	gdl-preview-window.c
+	gdl-preview-window.c \
+	gdl-deprecated.c
 
 libgdl_3_la_LIBADD = \
 	$(GDL_DEPENDENCIES_LIBS) \
