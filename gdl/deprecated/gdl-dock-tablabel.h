@@ -30,6 +30,8 @@
 
 G_BEGIN_DECLS
 
+#ifndef GDL_DISABLE_DEPRECATED
+
 /* standard macros */
 #define GDL_TYPE_DOCK_TABLABEL            (gdl_dock_tablabel_get_type ())
 #define GDL_DOCK_TABLABEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GDL_TYPE_DOCK_TABLABEL, GdlDockTablabel))
@@ -62,12 +64,18 @@ struct _GdlDockTablabelClass {
 };
 
 /* public interface */
- 
+
 GtkWidget     *gdl_dock_tablabel_new           (GdlDockItem *item);
+#ifdef GDL_DISABLE_DEPRECATION_WARNINGS
 GType          gdl_dock_tablabel_get_type      (void);
+#else
+GType          gdl_dock_tablabel_get_type      (void) G_GNUC_DEPRECATED;
+#endif
 
 void           gdl_dock_tablabel_activate      (GdlDockTablabel *tablabel);
 void           gdl_dock_tablabel_deactivate    (GdlDockTablabel *tablabel);
+
+#endif
 
 G_END_DECLS
 

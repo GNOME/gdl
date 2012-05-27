@@ -48,8 +48,8 @@ libgdl_3_la_SOURCES = \
 	gdl-dock-notebook.c \
 	gdl-dock-paned.c \
 	gdl-dock-paned.h \
-	gdl-dock-tablabel.c \
-	gdl-dock-tablabel.h \
+	deprecated/gdl-dock-tablabel.c \
+	deprecated/gdl-dock-tablabel.h \
 	gdl-dock-layout.c \
 	gdl-dock-placeholder.c \
 	gdl-dock-bar.c \

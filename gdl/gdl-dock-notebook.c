@@ -27,7 +27,6 @@
 #include "gdl-switcher.h"
 
 #include "gdl-dock-notebook.h"
-#include "gdl-dock-tablabel.h"
 
 /**
  * SECTION:gdl-dock-notebook
@@ -284,21 +283,6 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
     notebook = GDL_DOCK_NOTEBOOK (data);
     current_page = gtk_notebook_get_current_page (nb);
 
-    /* deactivate old tablabel */
-    if (current_page) {
-        tablabel = gtk_notebook_get_tab_label (
-            nb, gtk_notebook_get_nth_page (
-                nb, current_page));
-        if (tablabel && GDL_IS_DOCK_TABLABEL (tablabel))
-            gdl_dock_tablabel_deactivate (GDL_DOCK_TABLABEL (tablabel));
-    };
-
-    /* activate new label */
-    tablabel = gtk_notebook_get_tab_label (
-        nb, page);
-    if (tablabel && GDL_IS_DOCK_TABLABEL (tablabel))
-        gdl_dock_tablabel_activate (GDL_DOCK_TABLABEL (tablabel));
-
     if (GDL_DOCK_ITEM_USER_ACTION (notebook) &&
         GDL_DOCK_OBJECT (notebook)->master)
         g_signal_emit_by_name (GDL_DOCK_OBJECT (notebook)->master,
@@ -417,13 +401,6 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
                 label = gtk_label_new (long_name);
                 gdl_dock_item_set_tablabel (requestor_item, label);
             }
-#if 0
-            if (GDL_IS_DOCK_TABLABEL (label)) {
-                gdl_dock_tablabel_deactivate (GDL_DOCK_TABLABEL (label));
-                /* hide the item grip, as we will use the tablabel's */
-                gdl_dock_item_hide_grip (requestor_item);
-            }
-#endif
 
             if (other_data && G_VALUE_HOLDS (other_data, G_TYPE_INT))
                 position = g_value_get_int (other_data);

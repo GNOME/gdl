@@ -25,6 +25,9 @@
 #include <config.h>
 #endif
 
+#ifndef GDL_DISABLE_DEPRECATED
+#define GDL_DISABLE_DEPRECATION_WARNINGS
+
 #include "gdl-i18n.h"
 #include <gtk/gtk.h>
 
@@ -648,6 +651,8 @@ gdl_dock_tablabel_unmap (GtkWidget *widget)
  * Creates a new GDL tab label widget.
  *
  * Returns: a new #GdlDockTablabel.
+ *
+ * Deprecated: 3.6: Use a #GtkLabel instead
  */
 GtkWidget *
 gdl_dock_tablabel_new (GdlDockItem *item)
@@ -666,6 +671,8 @@ gdl_dock_tablabel_new (GdlDockItem *item)
  * @tablabel:  A #GdlDockTablabel widget
  *
  * Set the widget in "activated" state.
+ *
+ * Deprecated: 3.6:
  */
 void
 gdl_dock_tablabel_activate (GdlDockTablabel *tablabel)
@@ -681,6 +688,8 @@ gdl_dock_tablabel_activate (GdlDockTablabel *tablabel)
  * @tablabel:  A #GdlDockTablabel widget
  *
  * Set the widget in "deactivated" state.
+ *
+ * Deprecated: 3.6:
  */
 void
 gdl_dock_tablabel_deactivate (GdlDockTablabel *tablabel)
@@ -691,3 +700,5 @@ gdl_dock_tablabel_deactivate (GdlDockTablabel *tablabel)
     /* yeah, i know it contradictive */
     gtk_widget_set_state (GTK_WIDGET (tablabel), GTK_STATE_ACTIVE);
 }
+
+#endif

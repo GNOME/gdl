@@ -42,7 +42,6 @@
 #include "gdl-dock-item-grip.h"
 #include "gdl-dock-notebook.h"
 #include "gdl-dock-paned.h"
-#include "gdl-dock-tablabel.h"
 #include "gdl-dock-placeholder.h"
 #include "gdl-dock-master.h"
 #include "libgdltypebuiltins.h"
@@ -1130,9 +1129,6 @@ gdl_dock_item_move_focus_child (GdlDockItem      *item,
 #define EVENT_IN_GRIP_EVENT_WINDOW(ev,gr) \
     ((gr) != NULL && (ev)->window == GDL_DOCK_ITEM_GRIP (gr)->title_window)
 
-#define EVENT_IN_TABLABEL_EVENT_WINDOW(ev,tl) \
-    ((tl) != NULL && (ev)->window == GDL_DOCK_TABLABEL (tl)->event_window)
-
 static gint
 gdl_dock_item_button_changed (GtkWidget      *widget,
                               GdkEventButton *event)
@@ -2039,13 +2035,6 @@ gdl_dock_item_set_tablabel (GdlDockItem *item,
 
     if (item->priv->tab_label) {
         /* disconnect and unref the previous tablabel */
-        if (GDL_IS_DOCK_TABLABEL (item->priv->tab_label)) {
-            g_signal_handlers_disconnect_matched (item->priv->tab_label,
-                                                  G_SIGNAL_MATCH_DATA,
-                                                  0, 0, NULL,
-                                                  NULL, item);
-            g_object_set (item->priv->tab_label, "item", NULL, NULL);
-        }
         g_object_unref (item->priv->tab_label);
         item->priv->tab_label = NULL;
     }
@@ -2053,12 +2042,6 @@ gdl_dock_item_set_tablabel (GdlDockItem *item,
     if (tablabel) {
         g_object_ref_sink (G_OBJECT (tablabel));
         item->priv->tab_label = tablabel;
-        if (GDL_IS_DOCK_TABLABEL (tablabel)) {
-            g_object_set (tablabel, "item", item, NULL);
-            /* connect to tablabel signal */
-            g_signal_connect (tablabel, "button_pressed_handle",
-                              G_CALLBACK (gdl_dock_item_tab_button), item);
-        }
     }
 }
 
