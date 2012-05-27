@@ -32,6 +32,15 @@
 #include "gdl-dock-item.h"
 #include "libgdlmarshal.h"
 
+/**
+ * SECTION:gdl-dock-tablabel
+ * @title: GdlDockTablabel
+ * @short_description: A custom label widget.
+ * @stability: Unstable
+ *
+ * This is a deprecated label widget.
+ */
+
 
 /* ----- Private prototypes ----- */
 
@@ -130,6 +139,13 @@ gdl_dock_tablabel_class_init (GdlDockTablabelClass *klass)
                              GDL_TYPE_DOCK_ITEM,
                              G_PARAM_READWRITE));
 
+    /**
+     * GdlDockTablabel::button-pressed-handle:
+     * @label: The #GdlDockTablabel
+     * @event: A #GdkEvent
+     *
+     * This signal is emitted when the user clicks on the label.
+     */
     dock_tablabel_signals [BUTTON_PRESSED_HANDLE] =
         g_signal_new ("button_pressed_handle",
                       G_TYPE_FROM_CLASS (klass),
@@ -625,6 +641,14 @@ gdl_dock_tablabel_unmap (GtkWidget *widget)
 
 /* ----- Public interface ----- */
 
+/**
+ * gdl_dock_tablabel_new:
+ * @item: The dock item that associated with this label widget.
+ *
+ * Creates a new GDL tab label widget.
+ *
+ * Returns: a new #GdlDockTablabel.
+ */
 GtkWidget *
 gdl_dock_tablabel_new (GdlDockItem *item)
 {
@@ -637,6 +661,12 @@ gdl_dock_tablabel_new (GdlDockItem *item)
     return GTK_WIDGET (tablabel);
 }
 
+/**
+ * gdl_dock_tablabel_activate:
+ * @tablabel:  A #GdlDockTablabel widget
+ *
+ * Set the widget in "activated" state.
+ */
 void
 gdl_dock_tablabel_activate (GdlDockTablabel *tablabel)
 {
@@ -646,6 +676,12 @@ gdl_dock_tablabel_activate (GdlDockTablabel *tablabel)
     gtk_widget_set_state (GTK_WIDGET (tablabel), GTK_STATE_NORMAL);
 }
 
+/**
+ * gdl_dock_tablabel_deactivate:
+ * @tablabel:  A #GdlDockTablabel widget
+ *
+ * Set the widget in "deactivated" state.
+ */
 void
 gdl_dock_tablabel_deactivate (GdlDockTablabel *tablabel)
 {

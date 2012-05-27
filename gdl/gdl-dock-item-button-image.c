@@ -28,7 +28,7 @@
  * SECTION:gdl-dock-item-button-image
  * @title: GdlDockItemButtonImage
  * @short_description: A widget displaying an image used in dock grip
- * @stability: Internal
+ * @stability: Private
  * @see_also: GtlDockItemGrip
  *
  * The #GdlDockItemButtonImage displays a small image which could be a cross

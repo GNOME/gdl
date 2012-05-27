@@ -80,9 +80,11 @@ void           gdl_dock_bar_set_style       (GdlDockBar *dockbar,
                                              GdlDockBarStyle style);
 GdlDockBarStyle gdl_dock_bar_get_style      (GdlDockBar *dockbar);
 
+#ifndef GDL_DISABLE_DEPRECATED
 GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar) G_GNUC_DEPRECATED_FOR(gtk_orientable_get_orientation);
 void           gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
                                              GtkOrientation orientation) G_GNUC_DEPRECATED_FOR(gtk_orientable_set_orientation);
+#endif
 
 G_END_DECLS
 

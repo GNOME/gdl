@@ -23,7 +23,7 @@
  * SECTION:gdl-preview-window
  * @title: GdlPreviewWindow
  * @short_description: show destination docking site.
- * @stability: Internal
+ * @stability: Private
  *
  *The #GdlPreviewWindow is used to indicate the position where the widget
  * will be dropped. Depending on the capability of the screen it can use
