@@ -842,7 +842,7 @@ gdl_switcher_new (void)
  * from the @stock_id parameter.  If this is %NULL, then the @pixbuf_icon
  * parameter is used.  Failing that, the %GTK_STOCK_NEW stock icon is used.
  * The text label for the button is specified using the @label parameter.  If
- * it is %NUll then a default incrementally numbered label is used instead.
+ * it is %NULL then a default incrementally numbered label is used instead.
  */
 static void
 gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
@@ -965,7 +965,7 @@ gdl_switcher_select_button (GdlSwitcher *switcher, gint switcher_id)
  * icon taken preferentially from the @stock_id parameter.  If this parameter is
  * %NULL, then the @pixbuf_icon parameter is used.  Failing that, the
  * %GTK_STOCK_NEW stock icon is used.  The text label for the button is specified
- * using the @label parameter.  If it is %NUll then a default incrementally
+ * using the @label parameter.  If it is %NULL then a default incrementally
  * numbered label is used instead.
  */
 gint

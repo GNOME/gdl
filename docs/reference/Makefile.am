@@ -82,6 +82,13 @@ GTKDOC_LIBS=$(GDL_DEPENDENCIES_LIBS) \
 	-L$(top_builddir)/gdl \
 	-lgdl-3
 
+# Extra options to supply to gtkdoc-fixref
+FIXXREF_OPTIONS= \
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/gobject \
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/glib \
+	--extra-dir=$(GLIB_PREFIX)/share/gtk-doc/html/gio \
+	--extra-dir=$(GTK_PREFIX)/share/gtk-doc/html/gtk
+
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
 include $(top_srcdir)/gtk-doc.make
 
