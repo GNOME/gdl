@@ -7,7 +7,6 @@
 <FILE>gdl-dock</FILE>
 <TITLE>GdlDock</TITLE>
 GdlDock
-GdlDockClass
 gdl_dock_new
 gdl_dock_new_from
 gdl_dock_add_item
@@ -20,6 +19,7 @@ gdl_dock_get_named_items
 gdl_dock_get_placeholder_by_name
 gdl_dock_object_get_toplevel
 <SUBSECTION Standard>
+GdlDockClass
 GDL_DOCK
 GDL_DOCK_CLASS
 GDL_DOCK_GET_CLASS

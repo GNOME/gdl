@@ -177,9 +177,9 @@ gdl_dock_notebook_button_cb (GtkWidget      *widget,
                              gpointer        user_data)
 {
     if (event->type == GDK_BUTTON_PRESS)
-        GDL_DOCK_ITEM_SET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
+        GDL_DOCK_OBJECT_SET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
     else
-        GDL_DOCK_ITEM_UNSET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
+        GDL_DOCK_OBJECT_UNSET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
 
     return FALSE;
 }

@@ -8,7 +8,9 @@
   <bookinfo>
     <title>GNOME Docking Library Reference Manual</title>
     <releaseinfo>
-      for libgdl &version;
+      This document is for libgdl version &version;.
+      The latest versions can be found online at
+      <ulink role="online-location" url="http://developer.gnome.org/gdl/">http://developer.gnome.org/gdl/</ulink>.
     </releaseinfo>
   </bookinfo>
 

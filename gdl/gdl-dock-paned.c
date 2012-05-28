@@ -180,9 +180,9 @@ gdl_dock_paned_button_cb (GtkWidget      *widget,
     paned = GDL_DOCK_PANED (user_data);
     if (event->button == 1) {
         if (event->type == GDK_BUTTON_PRESS)
-            GDL_DOCK_ITEM_SET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
+            GDL_DOCK_OBJECT_SET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
         else {
-            GDL_DOCK_ITEM_UNSET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
+            GDL_DOCK_OBJECT_UNSET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
             if (paned->position_changed) {
                 /* emit pending layout changed signal to track separator position */
                 if (GDL_DOCK_OBJECT (paned)->master)

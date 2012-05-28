@@ -8,7 +8,7 @@
  *
  * Copyright (C) 1998 Ettore Perazzoli
  * Copyright (C) 1998 Elliot Lee
- * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald 
+ * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -122,8 +122,12 @@ struct _GdlDockItemClass {
     GdlDockItemClassPrivate *priv;
 
     gboolean            has_grip;
-    
+
     /* virtuals */
+    void     (* set_orientation)  (GdlDockItem    *item,
+                                   GtkOrientation  orientation);
+
+    /* signals */
     void     (* dock_drag_begin)  (GdlDockItem    *item);
     void     (* dock_drag_motion) (GdlDockItem    *item,
                                    gint            x,
@@ -132,40 +136,133 @@ struct _GdlDockItemClass {
                                    gboolean        cancelled);
     void     (* move_focus_child) (GdlDockItem      *item,
                                    GtkDirectionType  direction);
-    void     (* set_orientation)  (GdlDockItem    *item,
-                                   GtkOrientation  orientation);
 };
 
+#ifndef GDL_DISABLE_DEPRECATED
+/**
+ * GDL_DOCK_ITEM_FLAGS:
+ * @item: A #GdlDockObject
+ *
+ * Get all flags of #GdlDockObject.
+ *
+ * Deprecated: 3.6: Use GDL_DOCK_OBJECT_FLAGS instead
+ */
 #define GDL_DOCK_ITEM_FLAGS(item)     (GDL_DOCK_OBJECT (item)->flags)
+
+
+/**
+ * GDL_DOCK_ITEM_SET_FLAGS:
+ * @item: A #GdlDockObject
+ * @flag: One or more #GdlDockObjectFlags
+ *
+ * Set one or more flags of a dock object.
+ *
+ * Deprecated: 3.6: Use GDL_DOCK_OBJECT_SET_FLAGS instead
+ */
+#define GDL_DOCK_ITEM_SET_FLAGS(item,flag) \
+    G_STMT_START { (GDL_DOCK_OBJECT_FLAGS (item) |= (flag)); } G_STMT_END
+
+/**
+ * GDL_DOCK_ITEM_UNSET_FLAGS:
+ * @item: A #GdlDockObject
+ * @flag: One or more #GdlDockObjectFlags
+ *
+ * Clear one or more flags of a dock object.
+ *
+ * Deprecated: 3.6: Use GDL_DOCK_OBJECT_UNSET_FLAGS instead
+ */
+#define GDL_DOCK_ITEM_UNSET_FLAGS(item,flag) \
+    G_STMT_START { (GDL_DOCK_OBJECT_FLAGS (item) &= ~(flag)); } G_STMT_END
+
+#endif
+
+/**
+ * GDL_DOCK_ITEM_IN_DRAG:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the user is dragging the item.
+ */
 #define GDL_DOCK_ITEM_IN_DRAG(item) \
-    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_IN_DRAG) != 0)
+    ((GDL_DOCK_OBJECT_FLAGS (item) & GDL_DOCK_IN_DRAG) != 0)
+
+/**
+ * GDL_DOCK_ITEM_IN_PREDRAG:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the user has clicked on the item but hasn't made a big
+ * enough move to start the drag operation.
+ */
 #define GDL_DOCK_ITEM_IN_PREDRAG(item) \
-    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_IN_PREDRAG) != 0)
+    ((GDL_DOCK_OBJECT_FLAGS (item) & GDL_DOCK_IN_PREDRAG) != 0)
+
+/**
+ * GDL_DOCK_ITEM_ICONIFIED:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the item is iconified, appearing only as a button in
+ * the dock bar.
+ */
 #define GDL_DOCK_ITEM_ICONIFIED(item) \
-    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_ICONIFIED) != 0)
+    ((GDL_DOCK_OBJECT_FLAGS (item) & GDL_DOCK_ICONIFIED) != 0)
+
+/**
+ * GDL_DOCK_ITEM_USER_ACTION:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE if the user currently use the item, by example dragging
+ * division of a #GdlDockPaned object.
+ */
 #define GDL_DOCK_ITEM_USER_ACTION(item) \
-    ((GDL_DOCK_ITEM_FLAGS (item) & GDL_DOCK_USER_ACTION) != 0)
+    ((GDL_DOCK_OBJECT_FLAGS (item) & GDL_DOCK_USER_ACTION) != 0)
+
+/**
+ * GDL_DOCK_ITEM_NOT_LOCKED:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE the item can be moved, closed, or iconified.
+ */
 #define GDL_DOCK_ITEM_NOT_LOCKED(item) !((item)->behavior & GDL_DOCK_ITEM_BEH_LOCKED)
+
+/**
+ * GDL_DOCK_ITEM_NO_GRIP:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE the item has not handle, so it cannot be moved.
+ */
 #define GDL_DOCK_ITEM_NO_GRIP(item) ((item)->behavior & GDL_DOCK_ITEM_BEH_NO_GRIP)
 
-#define GDL_DOCK_ITEM_SET_FLAGS(item,flag) \
-    G_STMT_START { (GDL_DOCK_ITEM_FLAGS (item) |= (flag)); } G_STMT_END
-#define GDL_DOCK_ITEM_UNSET_FLAGS(item,flag) \
-    G_STMT_START { (GDL_DOCK_ITEM_FLAGS (item) &= ~(flag)); } G_STMT_END
 
+/**
+ * GDL_DOCK_ITEM_HAS_GRIP:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE the item has a handle, so it can be moved.
+ */
 #define GDL_DOCK_ITEM_HAS_GRIP(item) ((GDL_DOCK_ITEM_GET_CLASS (item)->has_grip)&& \
 		! GDL_DOCK_ITEM_NO_GRIP (item))
 
+/**
+ * GDL_DOCK_ITEM_CANT_CLOSE:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE the item cannot be closed.
+ */
 #define GDL_DOCK_ITEM_CANT_CLOSE(item) \
     ((((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_CLOSE) != 0)|| \
      ! GDL_DOCK_ITEM_NOT_LOCKED(item))
 
+/**
+ * GDL_DOCK_ITEM_CANT_ICONIFY:
+ * @item: A #GdlDockObject
+ *
+ * Evaluates to %TRUE the item cannot be iconifyed.
+ */
 #define GDL_DOCK_ITEM_CANT_ICONIFY(item) \
     ((((item)->behavior & GDL_DOCK_ITEM_BEH_CANT_ICONIFY) != 0)|| \
      ! GDL_DOCK_ITEM_NOT_LOCKED(item))
 
 /* public interface */
- 
+
 GtkWidget     *gdl_dock_item_new               (const gchar         *name,
                                                 const gchar         *long_name,
                                                 GdlDockItemBehavior  behavior);

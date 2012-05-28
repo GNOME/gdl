@@ -189,6 +189,12 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
                            GDL_SWITCHER_STYLE_BOTH,
                            G_PARAM_READWRITE));
 
+    /**
+     * GdlDockMaster::layout-changed:
+     *
+     * Signals that the layout has changed, one or more widgets have been moved,
+     * added or removed.
+     */
     master_signals [LAYOUT_CHANGED] =
         g_signal_new ("layout-changed",
                       G_TYPE_FROM_CLASS (klass),

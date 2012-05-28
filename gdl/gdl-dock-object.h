@@ -218,7 +218,7 @@ struct _GdlDockObjectClass {
 /**
  * GDL_DOCK_OBJECT_SET_FLAGS:
  * @obj: A #GdlDockObject
- * @flags: One or more #GdlDockObjectFlags
+ * @flag: One or more #GdlDockObjectFlags
  *
  * Set one or more flags of a dock object.
  */
@@ -229,7 +229,7 @@ struct _GdlDockObjectClass {
 /**
  * GDL_DOCK_OBJECT_UNSET_FLAGS:
  * @obj: A #GdlDockObject
- * @flags: One or more #GdlDockObjectFlags
+ * @flag: One or more #GdlDockObjectFlags
  *
  * Clear one or more flags of a dock object.
  */
@@ -306,7 +306,7 @@ GType                 gdl_dock_object_set_type_for_nick (const gchar *nick,
 /* helper macros */
 /**
  * GDL_TRACE_OBJECT:
- * @obj: A #GdlDockObject
+ * @object: A #GdlDockObject
  * @format: Additional printf format string
  * @...: Additional arguments
  *

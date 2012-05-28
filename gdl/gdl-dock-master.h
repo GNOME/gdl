@@ -83,6 +83,12 @@ struct _GdlDockMasterClass {
 
 /* additional macros */
 
+/**
+ * GDL_DOCK_OBJECT_GET_MASTER:
+ * @object: A #GdlDockObject
+ *
+ * Evaluates to the #GdlDockMaster object managing the object.
+ */
 #define GDL_DOCK_OBJECT_GET_MASTER(object) \
     (GDL_DOCK_OBJECT (object)->master ? \
         GDL_DOCK_MASTER (GDL_DOCK_OBJECT (object)->master) : NULL)

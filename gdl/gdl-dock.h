@@ -51,6 +51,7 @@ struct _GdlDock {
 };
 
 struct _GdlDockClass {
+    /*< private >*/
     GdlDockObjectClass parent_class;
 
     void  (* layout_changed)  (GdlDock *dock);    /* proxy signal for the master */

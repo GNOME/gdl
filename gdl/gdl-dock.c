@@ -282,6 +282,12 @@ gdl_dock_class_init (GdlDockClass *klass)
 
     /* signals */
 
+    /**
+     * GdlDock::layout-changed:
+     *
+     * Signals that the layout has changed, one or more widgets have been moved,
+     * added or removed.
+     */
     dock_signals [LAYOUT_CHANGED] =
         g_signal_new ("layout-changed",
                       G_TYPE_FROM_CLASS (klass),

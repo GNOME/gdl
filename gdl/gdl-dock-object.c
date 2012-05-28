@@ -207,6 +207,13 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
     klass->present = gdl_dock_object_real_present;
     klass->child_placement = NULL;
 
+    /**
+     * GdlDockObject::detach:
+     * @item: The detached dock object.
+     * @recursive: %TRUE if children have to be detached too.
+     *
+     * Signals that the #GdlDockObject is detached.
+     **/
     gdl_dock_object_signals [DETACH] =
         g_signal_new ("detach",
                       G_TYPE_FROM_CLASS (klass),
@@ -219,6 +226,14 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                       1,
                       G_TYPE_BOOLEAN);
 
+    /**
+     * GdlDockObject::dock:
+     * @requestor: The widget to dock
+     * @position: The position for the child
+     * @other_data: (allow-none): Optional data giving additional information
+     *
+     * Signals that the #GdlDockObject has been docked.
+     **/
     gdl_dock_object_signals [DOCK] =
         g_signal_new ("dock",
                       G_TYPE_FROM_CLASS (klass),

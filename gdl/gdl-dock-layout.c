@@ -606,6 +606,7 @@ gdl_dock_layout_save (GdlDockMaster *master,
 /**
  * gdl_dock_layout_new:
  * @dock: The dock item.
+ *
  * Creates a new #GdlDockLayout
  *
  * Returns: New #GdlDockLayout item.
