@@ -1,3 +1,4 @@
+gdl/deprecated/gdl-dock-tablabel.c
 gdl/gdl-dock-bar.c
 gdl/gdl-dock.c
 gdl/gdl-dock-item.c
@@ -8,5 +9,4 @@ gdl/gdl-dock-notebook.c
 gdl/gdl-dock-object.c
 gdl/gdl-dock-paned.c
 gdl/gdl-dock-placeholder.c
-gdl/gdl-dock-tablabel.c
 gdl/gdl-switcher.c
