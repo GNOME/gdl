@@ -1,3 +1,10 @@
+Changes in 3.5.3
+
+* skip-taskbar property (Alex Valavanis)
+* Fix hidden buttons (Sébastien Granjoux)
+* Various deprecations and code improvements (Sébastien Granjoux)
+* Improve Documentation (Sébastien Granjoux)
+
 Changes in 3.4.0
 
 * Translation updates
