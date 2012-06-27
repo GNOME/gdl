@@ -4,350 +4,365 @@
 #
 # Raivis Dejus <orvils@gmail.com>, 2007, 2009.
 # Rudolfs <rudolfs.mazurs@gmail.com>, 2011, 2012.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gdl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-01-01 13:17+0000\n"
-"PO-Revision-Date: 2012-03-24 19:03+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-27 10:55+0300\n"
+"PO-Revision-Date: 2012-06-27 11:24+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
-"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
+"Language-Team: Latviešu <lata-l10n@googlegroups.com>\n"
+"Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.2\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"Language: lv\n"
 
-#: ../gdl/gdl-dock-bar.c:108 ../gdl/gdl-dock-layout.c:107
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140 ../gdl/gdl-dock-item-grip.c:725
+msgid "Controlling dock item"
+msgstr "Kontrolējošais doka vienums"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:141
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Doka vienums, kurai 'pieder' šis cilnes nosaukums"
+
+#: ../gdl/gdl-dock-bar.c:123 ../gdl/gdl-dock-layout.c:125
 msgid "Master"
 msgstr "Saimnieks"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:124
 msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "GdlDockMaster objekts pie kura logdaļa ir pievienota"
+msgstr "GdlDockMaster objekts, pie kura ir pievienota logdaļa"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:136
 msgid "Dockbar style"
-msgstr "Dokjoslas stils"
+msgstr "Doka joslas stils"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:137
 msgid "Dockbar style to show items on it"
-msgstr "Dokjoslas stils lai parādītu vienības uz tā"
+msgstr "Dok joslas stils, lai uz tā parādītu vienumus"
 
-#: ../gdl/gdl-dock.c:180
+#: ../gdl/gdl-dock.c:195
 msgid "Floating"
-msgstr "Peldoši"
+msgstr "Peldošs"
 
-#: ../gdl/gdl-dock.c:181
+#: ../gdl/gdl-dock.c:196
 msgid "Whether the dock is floating in its own window"
 msgstr "Vai doks ir peldošs pats savā logā"
 
-#: ../gdl/gdl-dock.c:188 ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock.c:203 ../gdl/gdl-dock-master.c:170
 msgid "Default title"
 msgstr "Noklusētais virsraksts"
 
-#: ../gdl/gdl-dock.c:189
+#: ../gdl/gdl-dock.c:204
 msgid "Default title for the newly created floating docks"
 msgstr "Noklusētais nosaukums jaunizveidotajiem peldošajiem dokiem"
 
-#: ../gdl/gdl-dock.c:195 ../gdl/gdl-dock-placeholder.c:174
+#: ../gdl/gdl-dock.c:210 ../gdl/gdl-dock-placeholder.c:174
 msgid "Width"
 msgstr "Platums"
 
-#: ../gdl/gdl-dock.c:196
+#: ../gdl/gdl-dock.c:211
 msgid "Width for the dock when it's of floating type"
-msgstr "Platums dokam kad tas ir peldoša tipa"
+msgstr "Platums dokam, kad tas ir peldoša tipa"
 
-#: ../gdl/gdl-dock.c:203 ../gdl/gdl-dock-placeholder.c:182
+#: ../gdl/gdl-dock.c:218 ../gdl/gdl-dock-placeholder.c:182
 msgid "Height"
 msgstr "Augstums"
 
-#: ../gdl/gdl-dock.c:204
+#: ../gdl/gdl-dock.c:219
 msgid "Height for the dock when it's of floating type"
-msgstr "Augstums dokam kad tas ir peldoša tipa"
+msgstr "Augstums dokam. kad tas ir peldoša tipa"
 
-#: ../gdl/gdl-dock.c:211
+#: ../gdl/gdl-dock.c:226
 msgid "Float X"
-msgstr "Plūstošais X"
+msgstr "Peldošais X"
 
-#: ../gdl/gdl-dock.c:212
+#: ../gdl/gdl-dock.c:227
 msgid "X coordinate for a floating dock"
 msgstr "X koordinātas peldošajam dokam"
 
-#: ../gdl/gdl-dock.c:219
+#: ../gdl/gdl-dock.c:234
 msgid "Float Y"
 msgstr "Peldošais Y"
 
-#: ../gdl/gdl-dock.c:220
+#: ../gdl/gdl-dock.c:235
 msgid "Y coordinate for a floating dock"
 msgstr "Y koordinātas peldošajam dokam"
 
-#: ../gdl/gdl-dock.c:481
+#: ../gdl/gdl-dock.c:253
+msgid "Skip taskbar"
+msgstr "Izlaist uzdevumu joslu"
+
+#: ../gdl/gdl-dock.c:254
+msgid ""
+"Whether or not to prevent a floating dock window from appearing in the "
+"taskbar"
+msgstr "Vai neļaut peldošā doka logam parādīties uzdevumu joslā"
+
+#: ../gdl/gdl-dock.c:549
 #, c-format
 msgid "Dock #%d"
 msgstr "Doks #%d"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock-item.c:324
 msgid "Orientation"
 msgstr "Novietojums"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:325
 msgid "Orientation of the docking item"
-msgstr "Dokošanās vienības novietojums"
+msgstr "Dokošanās vienuma novietojums"
 
-#: ../gdl/gdl-dock-item.c:283
+#: ../gdl/gdl-dock-item.c:340
 msgid "Resizable"
 msgstr "Maināma izmēra"
 
-#: ../gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:341
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
-"Ja uzlikts, tad doka vienības izmēru var mainīt, kad tas ir pieslēgts "
-"GtkPanel sīklietotnei"
+"Ja iestatīts, tad doka vienuma izmēru var mainīt, kad tas ir pieslēgts "
+"GtkPanel logdaļai"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:348
 msgid "Item behavior"
-msgstr "Vienību uzvedība"
+msgstr "Vienuma uzvedība"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:349
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr ""
-"Pamatuzvedība doka vienībai (vai tas var plūst, vai tas ir aizslēgts, u.t.t.)"
+"Pamatuzvedība doka vienumam (vai tas var peldēt, vai tas ir aizslēgts, u.t."
+"t.)"
 
-#: ../gdl/gdl-dock-item.c:300 ../gdl/gdl-dock-master.c:152
+#: ../gdl/gdl-dock-item.c:357 ../gdl/gdl-dock-master.c:177
 msgid "Locked"
 msgstr "Slēgts"
 
-#: ../gdl/gdl-dock-item.c:301
+#: ../gdl/gdl-dock-item.c:358
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
-"Ja uzstādits, doka vienība nevar tik valkāta apkārt un neizrāda tvēriens"
+"Ja iestatīts, doka vienumu nevar tik valkāt apkārt un tas nerāda rokturus"
 
-#: ../gdl/gdl-dock-item.c:309
+#: ../gdl/gdl-dock-item.c:366
 msgid "Preferred width"
 msgstr "Vēlamais platums"
 
-#: ../gdl/gdl-dock-item.c:310
+#: ../gdl/gdl-dock-item.c:367
 msgid "Preferred width for the dock item"
-msgstr "Vēlamais platums priekš doka vienības"
+msgstr "Vēlamais platums doka vienumam"
 
-#: ../gdl/gdl-dock-item.c:316
+#: ../gdl/gdl-dock-item.c:373
 msgid "Preferred height"
 msgstr "Vēlamais augstums"
 
-#: ../gdl/gdl-dock-item.c:317
+#: ../gdl/gdl-dock-item.c:374
 msgid "Preferred height for the dock item"
-msgstr "Vēlamais augstums priekš doka vienības"
+msgstr "Vēlamais augstums doka vienumam"
 
-#: ../gdl/gdl-dock-item.c:662
+#: ../gdl/gdl-dock-item.c:774
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
 "some other compound dock object."
 msgstr ""
-"Jūs nevarat pievienot doka objektu (%p ar tipu %s) iekšā %s. Lietojiet "
+"Jūs nevarat pievienot doka objektu (%p ar tipu %s) objektā %s. Lietojiet "
 "GdlDock vai citu doka objektu."
 
-#: ../gdl/gdl-dock-item.c:669
+#: ../gdl/gdl-dock-item.c:781
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
 "widget at a time; it already contains a widget of type %s"
 msgstr ""
-"Mēģinu pievienot logdaļu ar tipu %s pie %s, bet tas var saturēt tikai vienu "
+"Mēģina pievienot logdaļu ar tipu %s pie %s, bet tas var saturēt tikai vienu "
 "logdaļu vienlaikus, doks jau satur logdaļu ar tipu %s"
 
-#: ../gdl/gdl-dock-item.c:1367 ../gdl/gdl-dock-item.c:1417
+#: ../gdl/gdl-dock-item.c:1476 ../gdl/gdl-dock-item.c:1526
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Neatbalstīta dokošanās stratēģija %s doka objektā ar tipu %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1525
+#: ../gdl/gdl-dock-item.c:1634
 msgid "UnLock"
-msgstr "AtSlēgt"
+msgstr "Atslēgt"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1532
+#: ../gdl/gdl-dock-item.c:1641
 msgid "Hide"
 msgstr "Slēpt"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1537
+#: ../gdl/gdl-dock-item.c:1646
 msgid "Lock"
 msgstr "Slēgt"
 
-#: ../gdl/gdl-dock-item.c:1810
+#: ../gdl/gdl-dock-item.c:1939
 #, c-format
 msgid "Attempt to bind an unbound item %p"
-msgstr "Mēģinājums piesaistīt atklātu vienību %p"
+msgstr "Mēģinājums piesaistīt nesaistītu vienumu %p"
 
-#: ../gdl/gdl-dock-item-grip.c:406
+#: ../gdl/gdl-dock-item-grip.c:383
 msgid "Iconify this dock"
 msgstr "Ikonizēt šo doku"
 
-#: ../gdl/gdl-dock-item-grip.c:408
+#: ../gdl/gdl-dock-item-grip.c:385
 msgid "Close this dock"
 msgstr "Aizvērt šo doku"
 
-#: ../gdl/gdl-dock-item-grip.c:748 ../gdl/gdl-dock-tablabel.c:128
-msgid "Controlling dock item"
-msgstr "Doka vienība tiek kontrolēta"
-
-#: ../gdl/gdl-dock-item-grip.c:749
+#: ../gdl/gdl-dock-item-grip.c:726
 msgid "Dockitem which 'owns' this grip"
-msgstr "Doka vienība, kurai 'pieder' šis tvēriens"
+msgstr "Doka vienums, kurai “pieder” šis rokturis"
 
-#: ../gdl/gdl-dock-layout.c:108
+#: ../gdl/gdl-dock-layout.c:126
 msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "GdlDockMaster objekts, pie kura izkārtojuma objekts ir pievienots"
+msgstr "GdlDockMaster objekts, pie kura izkārtojuma objekts ir piesaistīts"
 
-#: ../gdl/gdl-dock-layout.c:115
+#: ../gdl/gdl-dock-layout.c:133
 msgid "Dirty"
 msgstr "Netīrs"
 
-#: ../gdl/gdl-dock-layout.c:116
+#: ../gdl/gdl-dock-layout.c:134
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
-"Patiess ja izkārtojumi ir mainījušies un ir nepieciešams saglabāt failā"
+"Patiess, ja izkārtojumi ir mainījušies un ir nepieciešams saglabāt datnē"
 
-#: ../gdl/gdl-dock-layout.c:279
+#: ../gdl/gdl-dock-layout.c:297
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is '%"
-"s'"
+"While loading layout: don't know how to create a dock object whose nick is "
+"'%s'"
 msgstr ""
-"Ielādējot izkārtojumu: nav zināms kā izveidot doka objektu kura iesauka ir'%"
-"s'"
+"Ielādējot izkārtojumu — nav zināms kā izveidot doka objektu, kura iesauka ir "
+"“%s”"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:171
 msgid "Default title for newly created floating docks"
-msgstr "Noklusētais virsraksts priekš jaunizveidotajiem peldošajiem dokiem"
+msgstr "Noklusētais virsraksts jaunizveidotajiem peldošajiem dokiem"
 
-#: ../gdl/gdl-dock-master.c:153
+#: ../gdl/gdl-dock-master.c:178
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
-"Ja uzstādīts uz 1 tad visas doka vienības, kuras piesaistītas pie meistara, "
-"tiek aizslēgtas; ja ir uz 0, tad visas atslēdzl -1 liecina par pretrunīgumu "
-"starp vienībām "
+"Ja iestatīts uz 1 tad visi doka vienumi, kas piesaistīti pie saimnieka, tiek "
+"aizslēgti; ja ir uz 0, tad visas atslēgtas; -1 liecina par pretrunīgumu "
+"starp vienumiem"
 
-#: ../gdl/gdl-dock-master.c:161 ../gdl/gdl-switcher.c:781
+#: ../gdl/gdl-dock-master.c:186 ../gdl/gdl-switcher.c:795
 msgid "Switcher Style"
-msgstr "Pārslēdzēja Stils"
+msgstr "Pārslēdzēja stils"
 
-#: ../gdl/gdl-dock-master.c:162 ../gdl/gdl-switcher.c:782
+#: ../gdl/gdl-dock-master.c:187 ../gdl/gdl-switcher.c:796
 msgid "Switcher buttons style"
 msgstr "Pārslēdzēja pogu stils"
 
-#: ../gdl/gdl-dock-master.c:772
+#: ../gdl/gdl-dock-master.c:814
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
 "item with that name (%p)."
 msgstr ""
-"meistars %p  nevar pievienot objektu %p[%s] hešam. Tur jau ir vienība ar "
-"tādu nosaukuymu (%p)."
+"saimnieks %p:  nevar pievienot objektu %p[%s] hešam. Tur jau ir vienums ar "
+"tādu nosaukumu (%p)."
 
-#: ../gdl/gdl-dock-master.c:944
+#: ../gdl/gdl-dock-master.c:1035
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
 "named controller."
 msgstr ""
-"Jaunais doka kontrolieris %p ir automātisks.  Tikai manuālam doka objektam "
-"var tikt piešķirst kontrolieris."
+"Jaunais doka kontrolieris %p ir automātisks. Tikai manuālam doka objektam "
+"var tikt piešķirts kontrolieris."
 
-#: ../gdl/gdl-dock-notebook.c:137
+#: ../gdl/gdl-dock-notebook.c:149
 msgid "Page"
 msgstr "Lapa"
 
-#: ../gdl/gdl-dock-notebook.c:138
+#: ../gdl/gdl-dock-notebook.c:150
 msgid "The index of the current page"
 msgstr "Pašreizējās lapas indekss"
 
-#: ../gdl/gdl-dock-object.c:116
+#: ../gdl/gdl-dock-object.c:140
 msgid "Name"
 msgstr "Nosaukums"
 
-#: ../gdl/gdl-dock-object.c:117
+#: ../gdl/gdl-dock-object.c:141
 msgid "Unique name for identifying the dock object"
-msgstr "Unikāls vārds doka objekta identificēšanai"
+msgstr "Unikāls nosaukums doka objekta identificēšanai"
 
-#: ../gdl/gdl-dock-object.c:124
+#: ../gdl/gdl-dock-object.c:153
 msgid "Long name"
-msgstr "Garš nosaukums"
+msgstr "Garais nosaukums"
 
-#: ../gdl/gdl-dock-object.c:125
+#: ../gdl/gdl-dock-object.c:154
 msgid "Human readable name for the dock object"
 msgstr "Cilvēkam lasāms doka objekta nosaukums"
 
-#: ../gdl/gdl-dock-object.c:131
+#: ../gdl/gdl-dock-object.c:165
 msgid "Stock Icon"
 msgstr "Krājuma ikona"
 
-#: ../gdl/gdl-dock-object.c:132
+#: ../gdl/gdl-dock-object.c:166
 msgid "Stock icon for the dock object"
 msgstr "Krājuma ikona doka objektam"
 
-#: ../gdl/gdl-dock-object.c:145
+#: ../gdl/gdl-dock-object.c:179
 msgid "Pixbuf Icon"
 msgstr "Pixbuf ikona"
 
-#: ../gdl/gdl-dock-object.c:146
-#| msgid "Stock icon for the dock object"
+#: ../gdl/gdl-dock-object.c:180
 msgid "Pixbuf icon for the dock object"
 msgstr "Pixbuf ikona doka objektam"
 
-#: ../gdl/gdl-dock-object.c:151
+#: ../gdl/gdl-dock-object.c:190
 msgid "Dock master"
-msgstr "Doka meistars"
+msgstr "Doka saimnieks"
 
-#: ../gdl/gdl-dock-object.c:152
+#: ../gdl/gdl-dock-object.c:191
 msgid "Dock master this dock object is bound to"
-msgstr "Doka meistars pie kura šis doka objekts ir piesaistīts"
+msgstr "Doka saimnieks, pie kura šis doka objekts ir piesaistīts"
 
-#: ../gdl/gdl-dock-object.c:456
+#: ../gdl/gdl-dock-object.c:510
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Izsaukums gdl_dock_object_dock doka objektā %p (objekta tips ir %s) kurš vēl "
-"nav šo metodi ieviesis "
+"Izsaukums gdl_dock_object_dock doka objektā %p (objekta tips ir %s), kurš "
+"vēl nav šo metodi ieviesis"
 
-#: ../gdl/gdl-dock-object.c:595
+#: ../gdl/gdl-dock-object.c:708
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
 "crash"
 msgstr "Doka operācija pieprasīta nesaistītā objektā %p. Programma var avarēt"
 
-#: ../gdl/gdl-dock-object.c:602
+#: ../gdl/gdl-dock-object.c:715
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
-msgstr "Nevar piedokot %p pie %p jo tie pieder atšķirīgiem meistariem"
+msgstr "Nevar piedokot %p pie %p, jo tie pieder atšķirīgiem saimniekiem"
 
-#: ../gdl/gdl-dock-object.c:644
+#: ../gdl/gdl-dock-object.c:765
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
-"Mēģinājums saistīt jau piesaistītu doka objektu %p pie %p (tiešais meistars: "
-"%p)"
+"Mēģinājums saistīt jau piesaistītu doka objektu %p pie %p (pašreizējais "
+"saimnieks: %p)"
 
-#: ../gdl/gdl-dock-paned.c:128
+#: ../gdl/gdl-dock-paned.c:140
 msgid "Position"
 msgstr "Pozīcija"
 
-#: ../gdl/gdl-dock-paned.c:129
+#: ../gdl/gdl-dock-paned.c:141
 msgid "Position of the divider in pixels"
 msgstr "Sadalītāja pozīcija pikseļos"
 
@@ -361,7 +376,7 @@ msgid ""
 "the host is redocked"
 msgstr ""
 "Vai nu vietturis pielips pie tā saimnieka vai pārvietosies augšup pa "
-"hierarhiju kad saimnieks ir pārdokots"
+"hierarhiju, kad saimnieks ir pārdokots"
 
 #: ../gdl/gdl-dock-placeholder.c:156
 msgid "Host"
@@ -373,31 +388,31 @@ msgstr "Doka objekts pie kā šis vietturis ir pievienots"
 
 #: ../gdl/gdl-dock-placeholder.c:164
 msgid "Next placement"
-msgstr "Nākošā izvietošana"
+msgstr "Nākošais novietojums"
 
 #: ../gdl/gdl-dock-placeholder.c:165
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
 msgstr ""
-"Pozīcija kur vienība tiks piedokota pie mūsu saimnieka, ja pieprasījums ir "
-"veikts uz doku uz mums"
+"Pozīcija, kur vienība tiks piedokota mūsu saimnieka, ja pieprasījums ir "
+"veikts uz doku mums"
 
 #: ../gdl/gdl-dock-placeholder.c:175
 msgid "Width for the widget when it's attached to the placeholder"
-msgstr "Platums logdaļai kad tā ir pievienota vietturim"
+msgstr "Platums logdaļai, kad tā ir pievienota vietturim"
 
 #: ../gdl/gdl-dock-placeholder.c:183
 msgid "Height for the widget when it's attached to the placeholder"
-msgstr "Augstums logdaļai kad tā ir pievienota vietturim"
+msgstr "Augstums logdaļai, kad tā ir pievienota vietturim"
 
 #: ../gdl/gdl-dock-placeholder.c:189
 msgid "Floating Toplevel"
-msgstr "Peldošais Augšējais līmenis"
+msgstr "Peldošais augšējais līmenis"
 
 #: ../gdl/gdl-dock-placeholder.c:190
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
-msgstr "Vai vietturis stāv peldošā augšlīmeņa dokā"
+msgstr "Vai vietturis ir peldošā augšlīmeņa dokā"
 
 #: ../gdl/gdl-dock-placeholder.c:196
 msgid "X Coordinate"
@@ -423,7 +438,7 @@ msgstr "Mēģinājums piedokot doka objektu pie nesaistīta viettura"
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
-"Saņemts atvienošanās signāls no objekta (%p) kurš nav mūsu saimnieks %p"
+"Saņemts atvienošanās signāls no objekta (%p), kas nav mūsu saimnieks %p"
 
 #: ../gdl/gdl-dock-placeholder.c:633
 #, c-format
@@ -431,11 +446,7 @@ msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr ""
-"Kautkas dīvains notika kamēr saņēmām bērna vietturi priekš %p no vecāka %p"
-
-#: ../gdl/gdl-dock-tablabel.c:129
-msgid "Dockitem which 'owns' this tablabel"
-msgstr "Doka vienība kurai 'pieder' šis tabnosaukums"
+"Kaut kas dīvains notika kamēr saņēmām bērna vietturi priekš %p no vecāka %p"
 
 #~ msgid "Could not load layout user interface file '%s'"
 #~ msgstr "Nevar ielādēt lietotāja grafiskās saskarnes izkārtojuma failu %s"
