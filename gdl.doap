@@ -6,7 +6,7 @@
 
   <name xml:lang="en">gdl</name>
   <shortdesc xml:lang="en">GNOME docking library</shortdesc>
-  <description xml:lang="en">GDL adds dockable widgets to GTK+. The user can rearrange those widgets by drag and drop and layouts can be saved and loaded. Currently it is used by anjuta, inkscape, gstranslator and others.
+  <description xml:lang="en">GDL adds dockable widgets to GTK+. The user can rearrange those widgets by drag and drop and layouts can be saved and loaded. Currently it is used by anjuta, inkscape, gtranslator and others.
   </description>
   <!--
   <homepage rdf:resource="http://www.gnome.org/" />
