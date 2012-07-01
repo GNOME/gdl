@@ -74,6 +74,12 @@ typedef enum {
     GDL_DOCK_IN_DETACH  = 1 << 3
 } GdlDockObjectFlags;
 
+/**
+ * GDL_DOCK_OBJECT_FLAGS_SHIFT:
+ *
+ * Minimum shift count to be used for user defined flags, to be stored in
+ * #GdlDockObject.flags.
+ */
 #define GDL_DOCK_OBJECT_FLAGS_SHIFT 8
 
 /**
