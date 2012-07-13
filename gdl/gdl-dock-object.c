@@ -362,16 +362,43 @@ gdl_dock_object_destroy (GtkWidget *dock_object)
         object->reduce_pending = FALSE;
         gdl_dock_object_thaw (object);
     }
-    if (GDL_DOCK_OBJECT_ATTACHED (object)) {
-        /* detach ourselves */
-        gdl_dock_object_detach (object, FALSE);
-    }
+    /* detach ourselves */
+    gdl_dock_object_detach (object, FALSE);
 
     /* finally unbind us */
     if (object->master)
         gdl_dock_object_unbind (object);
 
     GTK_WIDGET_CLASS(gdl_dock_object_parent_class)->destroy (dock_object);
+}
+
+static void
+gdl_dock_object_foreach_is_visible (GdlDockObject *object,
+                                    gpointer       user_data)
+{
+    gboolean *visible = (gboolean *)user_data;
+
+    if (!*visible && gtk_widget_get_visible (GTK_WIDGET (object))) *visible = TRUE;
+}
+
+static void
+gdl_dock_object_update_parent_visibility (GdlDockObject *object)
+{
+    GdlDockObject *parent;
+
+    g_return_if_fail (object != NULL);
+
+    parent = gdl_dock_object_get_parent_object (object);
+    if (parent && GDL_DOCK_OBJECT_AUTOMATIC (parent))
+    {
+        gboolean visible = FALSE;
+        
+        gtk_container_foreach (GTK_CONTAINER (parent),
+                               (GtkCallback) gdl_dock_object_foreach_is_visible,
+                               &visible);
+        gtk_widget_set_visible (GTK_WIDGET (parent), visible);
+    }
+    g_signal_emit_by_name (GDL_DOCK_OBJECT (object)->master, "layout-changed");
 }
 
 static void
@@ -387,23 +414,20 @@ gdl_dock_object_foreach_automatic (GdlDockObject *object,
 static void
 gdl_dock_object_show (GtkWidget *widget)
 {
-    if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (widget))) {
-        gtk_container_foreach (GTK_CONTAINER (widget),
-                               (GtkCallback) gdl_dock_object_foreach_automatic,
-                               gtk_widget_show);
-    }
     GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->show (widget);
+
+    /* Update visibility of automatic parents */
+    gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (widget));
 }
 
 static void
 gdl_dock_object_hide (GtkWidget *widget)
 {
-    if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (widget))) {
-        gtk_container_foreach (GTK_CONTAINER (widget),
-                               (GtkCallback) gdl_dock_object_foreach_automatic,
-                               gtk_widget_hide);
-    }
-    GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->hide (widget);
+   GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->hide (widget);
+
+    /* Update visibility of automatic parents */
+    gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (widget));
+    GDL_DOCK_OBJECT_UNSET_FLAGS (GDL_DOCK_OBJECT (widget), GDL_DOCK_ATTACHED);
 }
 
 static void
@@ -558,7 +582,7 @@ gdl_dock_object_detach (GdlDockObject *object,
     if (!GDL_IS_DOCK_OBJECT (object))
         return;
 
-    if (!GDL_DOCK_OBJECT_ATTACHED (object))
+    if (!GDL_DOCK_OBJECT_ATTACHED (object) && (gtk_widget_get_parent (GTK_WIDGET (object)) == NULL))
         return;
 
     /* freeze the object to avoid reducing while detaching children */
@@ -731,8 +755,7 @@ gdl_dock_object_dock (GdlDockObject    *object,
 
     /* detach the requestor before docking */
     g_object_ref (requestor);
-    if (GDL_DOCK_OBJECT_ATTACHED (requestor))
-        gdl_dock_object_detach (requestor, FALSE);
+    gdl_dock_object_detach (requestor, FALSE);
 
     if (position != GDL_DOCK_NONE)
         g_signal_emit (object, gdl_dock_object_signals [DOCK], 0,
@@ -740,6 +763,9 @@ gdl_dock_object_dock (GdlDockObject    *object,
 
     g_object_unref (requestor);
     gdl_dock_object_thaw (object);
+
+    /* Update visibility of automatic parents */
+    gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (requestor));
 }
 
 /**
@@ -788,8 +814,7 @@ gdl_dock_object_unbind (GdlDockObject *object)
     g_object_ref (object);
 
     /* detach the object first */
-    if (GDL_DOCK_OBJECT_ATTACHED (object))
-        gdl_dock_object_detach (object, TRUE);
+    gdl_dock_object_detach (object, TRUE);
 
     if (object->master) {
         GObject *master = object->master;

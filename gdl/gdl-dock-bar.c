@@ -269,7 +269,6 @@ gdl_dock_bar_item_clicked (GtkWidget   *button,
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
     gdl_dock_item_show_item (item);
-    gdl_dock_bar_remove_item (dockbar, item);
     gtk_widget_queue_resize (GTK_WIDGET (controller));
 }
 

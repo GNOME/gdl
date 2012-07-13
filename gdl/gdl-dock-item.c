@@ -1565,11 +1565,8 @@ gdl_dock_item_dock (GdlDockObject    *object,
             gtk_container_add (GTK_CONTAINER (parent), GTK_WIDGET (new_parent));
 
         /* show automatic object */
-        if (gtk_widget_get_visible (GTK_WIDGET (object)))
-        {
-            gtk_widget_show (GTK_WIDGET (new_parent));
-            GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_IN_REFLOW);
-        }
+        gtk_widget_show (GTK_WIDGET (new_parent));
+        GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_IN_REFLOW);
         gdl_dock_object_thaw (new_parent);
 
         /* use extra docking parameter */
@@ -1593,7 +1590,7 @@ gdl_dock_item_dock (GdlDockObject    *object,
     }
 
     requestor_parent = gdl_dock_object_get_parent_object (requestor);
-    if (GDL_IS_DOCK_NOTEBOOK (requestor_parent))
+    if (GDL_IS_DOCK_NOTEBOOK (requestor_parent) && gtk_widget_get_visible (GTK_WIDGET (requestor)))
     {
         /* Activate the page we just added */
         GdlDockItem* notebook = GDL_DOCK_ITEM (gdl_dock_object_get_parent_object (requestor));
@@ -1841,6 +1838,7 @@ gdl_dock_item_new (const gchar         *name,
                                         "behavior", behavior,
                                         NULL));
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_AUTOMATIC);
+    gtk_widget_show (GTK_WIDGET (item));
 
     return GTK_WIDGET (item);
 }
@@ -2160,73 +2158,18 @@ gdl_dock_item_unbind (GdlDockItem *item)
  * gdl_dock_item_hide_item:
  * @item: The dock item to hide.
  *
- * This function hides the dock item. When dock items are hidden they
- * are completely removed from the layout.
+ * This function hides the dock item. Since version 3.6, when dock items
+ * are hidden they are not removed from the layout.
  *
  * The dock item close button causes the panel to be hidden.
  **/
 void
 gdl_dock_item_hide_item (GdlDockItem *item)
 {
-    GtkAllocation allocation;
-
     g_return_if_fail (item != NULL);
 
-    if (!GDL_DOCK_OBJECT_ATTACHED (item))
-        /* already hidden/detached */
-        return;
-
-    /* if the object is manual, create a new placeholder to be able to
-       restore the position later */
-    if (!GDL_DOCK_OBJECT_AUTOMATIC (item)) {
-        if (item->priv->ph)
-            g_object_unref (item->priv->ph);
-
-        gboolean isFloating = FALSE;
-        gint width=0, height=0, x=0, y = 0;
-
-        if (GDL_IS_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item))))
-        {
-            GdlDock* dock = GDL_DOCK (gdl_dock_object_get_parent_object (GDL_DOCK_OBJECT (item)));
-            g_object_get (dock,
-                          "floating", &isFloating,
-                          "width", &width,
-                          "height",&height,
-                          "floatx",&x,
-                          "floaty",&y,
-                          NULL);
-        } else {
-            gtk_widget_get_allocation (GTK_WIDGET (item), &allocation);
-            item->priv->preferred_width = allocation.width;
-            item->priv->preferred_height = allocation.height;
-        }
-        item->priv->ph = GDL_DOCK_PLACEHOLDER (
-            g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
-                          "sticky", FALSE,
-                          "host", item,
-                          "width", width,
-                          "height", height,
-                          "floating", isFloating,
-                          "floatx", x,
-                          "floaty", y,
-                          NULL));
-        g_object_ref_sink (item->priv->ph);
-    }
-
-    gdl_dock_object_freeze (GDL_DOCK_OBJECT (item));
-
-    /* hide our children first, so they can also set placeholders */
-    if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (item)))
-        gtk_container_foreach (GTK_CONTAINER (item),
-                               (GtkCallback) gdl_dock_item_hide_item,
-                               NULL);
-
-    /* detach the item recursively */
-    gdl_dock_object_detach (GDL_DOCK_OBJECT (item), TRUE);
-
     gtk_widget_hide (GTK_WIDGET (item));
-
-    gdl_dock_object_thaw (GDL_DOCK_OBJECT (item));
+    return;
 }
 
 /**
@@ -2260,49 +2203,9 @@ gdl_dock_item_show_item (GdlDockItem *item)
     g_return_if_fail (item != NULL);
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
-
-    if (item->priv->ph) {
-        gboolean isFloating=FALSE;
-        gint width = 0, height = 0, x= 0, y = 0;
-        g_object_get (G_OBJECT(item->priv->ph),
-                      "width", &width,
-                      "height", &height,
-                      "floating",&isFloating,
-                      "floatx", &x,
-                      "floaty", &y,
-                      NULL);
-        if (isFloating) {
-            GdlDockObject *controller =
-                gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (item));
-            gdl_dock_add_floating_item (GDL_DOCK (controller),
-                                        item, x, y, width, height);
-        } else {
-            gtk_container_add (GTK_CONTAINER (item->priv->ph),
-                               GTK_WIDGET (item));
-        }
-        g_object_unref (item->priv->ph);
-        item->priv->ph = NULL;
-
-    } else if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
-        GdlDockObject *toplevel;
-
-        toplevel = gdl_dock_master_get_controller
-                        (GDL_DOCK_OBJECT_GET_MASTER (item));
-
-        if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
-            g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
-                      GDL_DOCK_OBJECT(item)->name);
-        } else if (toplevel) {
-            gdl_dock_object_dock (toplevel, GDL_DOCK_OBJECT (item),
-                                  GDL_DOCK_FLOATING, NULL);
-        } else
-            g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
-
-    } else
-        g_warning("GdlDockItem %s is not bound. It cannot be shown.\n",
-                  GDL_DOCK_OBJECT(item)->name);
-
+    GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ATTACHED);
     gtk_widget_show (GTK_WIDGET (item));
+    return;
 }
 
 /**
