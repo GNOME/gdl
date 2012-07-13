@@ -412,12 +412,13 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
 
             GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
 
-            /* Set current page to the newly docked widget. set current page
-             * really doesn't work if the page widget is not shown
-             */
-            gtk_widget_show (GTK_WIDGET (requestor));
-            gtk_notebook_set_current_page (GTK_NOTEBOOK (item->child),
-                                           position);
+            if (gtk_widget_get_visible (GTK_WIDGET (requestor))) {
+                /* Set current page to the newly docked widget. set current page
+                 * really doesn't work if the page widget is not shown
+                 */
+                    gtk_notebook_set_current_page (GTK_NOTEBOOK (item->child),
+                                                   position);
+            }
             g_free (long_name);
             g_free (stock_id);
         }

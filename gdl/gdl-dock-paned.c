@@ -606,8 +606,8 @@ gdl_dock_paned_dock (GdlDockObject    *object,
                                                                    other_data);
     }
     else {
-        gdl_dock_item_show_grip (GDL_DOCK_ITEM (requestor));
-        gtk_widget_show (GTK_WIDGET (requestor));
+        if (gtk_widget_get_visible (GTK_WIDGET (requestor)))
+            gdl_dock_item_show_grip (GDL_DOCK_ITEM (requestor));
         GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
     }
 }

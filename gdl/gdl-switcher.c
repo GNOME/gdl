@@ -145,6 +145,23 @@ gdl_switcher_stock_id_changed (GObject* object,
     g_free (id);
 }
 
+static void
+gdl_switcher_visible_changed (GObject* object,
+                               GParamSpec* spec,
+                               gpointer user_data)
+{
+    Button* button = user_data;
+
+    if (gtk_widget_get_visible (button->page))
+    {
+        gtk_widget_show_all (button->button_widget);
+    }
+    else
+    {
+        gtk_widget_hide (button->button_widget);
+    }
+}
+
 
 static Button *
 button_new (GtkWidget *button_widget, GtkWidget *label, GtkWidget *icon,
@@ -164,6 +181,8 @@ button_new (GtkWidget *button_widget, GtkWidget *label, GtkWidget *icon,
                       button);
     g_signal_connect (page, "notify::stock-id", G_CALLBACK (gdl_switcher_stock_id_changed),
                       button);
+    g_signal_connect (page, "notify::visible", G_CALLBACK (gdl_switcher_visible_changed),
+                      button);
 
     g_object_ref (button_widget);
     g_object_ref (label);
@@ -182,6 +201,9 @@ button_free (Button *button)
                                           button);
     g_signal_handlers_disconnect_by_func (button->page,
                                           gdl_switcher_stock_id_changed,
+                                          button);
+    g_signal_handlers_disconnect_by_func (button->page,
+                                          gdl_switcher_visible_changed,
                                           button);
 
     g_object_unref (button->button_widget);
@@ -271,6 +293,13 @@ button_toggled_callback (GtkToggleButton *toggle_button,
     }
 }
 
+static gboolean
+delayed_resize_switcher (gpointer data)
+{
+    gtk_widget_queue_resize (GTK_WIDGET (data));
+    return FALSE;
+}
+
 /* Returns -1 if layout didn't happen because a resize request was queued */
 static int
 layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
@@ -278,7 +307,7 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
     gint min_height, nat_height;
     GdlSwitcherStyle switcher_style;
     gboolean icons_only;
-    int num_btns = g_slist_length (switcher->priv->buttons);
+    int num_btns;
     int btns_per_row;
     GSList **rows, *p;
     Button *button;
@@ -297,23 +326,29 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
 
     y = allocation->y + allocation->height - V_PADDING - 1;
 
-    if (num_btns == 0)
+    /* Return bottom of the area if there isn't any visible button */
+    for (p = switcher->priv->buttons; p != NULL; p = p->next) if (gtk_widget_get_visible (((Button *)p->data)->button_widget)) break;
+    if (p == NULL)
         return y;
 
     switcher_style = INTERNAL_MODE (switcher);
     icons_only = (switcher_style == GDL_SWITCHER_STYLE_ICON);
 
-    /* Figure out the max width and height */
+    /* Figure out the max width and height taking into account visible buttons */
     optimal_layout_width = H_PADDING;
+    num_btns = 0;
     for (p = switcher->priv->buttons; p != NULL; p = p->next) {
         GtkRequisition requisition;
 
         button = p->data;
-        gtk_widget_get_preferred_size (GTK_WIDGET (button->button_widget),
-                                       &requisition, NULL);
-        optimal_layout_width += requisition.width + H_PADDING;
-        max_btn_height = MAX (max_btn_height, requisition.height);
-        max_btn_width = MAX (max_btn_width, requisition.width);
+        if (gtk_widget_get_visible (button->button_widget)) {
+            gtk_widget_get_preferred_size (GTK_WIDGET (button->button_widget),
+                                           &requisition, NULL);
+            optimal_layout_width += requisition.width + H_PADDING;
+            max_btn_height = MAX (max_btn_height, requisition.height);
+            max_btn_width = MAX (max_btn_width, requisition.width);
+            num_btns++;
+        }
     }
 
     /* Figure out how many rows and columns we'll use. */
@@ -339,14 +374,16 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
     if (num_btns % btns_per_row != 0)
 	rows_count++;
 
-    /* Assign buttons to rows */
+    /* Assign visible buttons to rows */
     rows = g_new0 (GSList *, rows_count);
 
     if (!icons_only && num_btns % btns_per_row != 0) {
-        button = switcher->priv->buttons->data;
+        p = switcher->priv->buttons;
+        for (; p != NULL; p = p->next) if (gtk_widget_get_visible (((Button *)p->data)->button_widget)) break;
+        button = p->data;
         rows [0] = g_slist_append (rows [0], button->button_widget);
 
-        p = switcher->priv->buttons->next;
+        p = p->next;
         row_number = p ? 1 : 0;
     } else {
         p = switcher->priv->buttons;
@@ -356,11 +393,13 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
     for (; p != NULL; p = p->next) {
         button = p->data;
 
-        if (g_slist_length (rows [row_number]) == btns_per_row)
-            row_number ++;
+        if (gtk_widget_get_visible (button->button_widget)) {
+            if (g_slist_length (rows [row_number]) == btns_per_row)
+                row_number ++;
 
-        rows [row_number] = g_slist_append (rows [row_number],
-                                            button->button_widget);
+            rows [row_number] = g_slist_append (rows [row_number],
+                                                button->button_widget);
+        }
     }
 
     row_last = row_number;
@@ -386,7 +425,7 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
      */
     if (last_buttons_height > switcher->priv->buttons_height_request)
     {
-        gtk_widget_queue_resize (GTK_WIDGET (switcher));
+        g_idle_add (delayed_resize_switcher, switcher);
         return -1;
     }
 
@@ -403,7 +442,8 @@ layout_buttons (GdlSwitcher *switcher, GtkAllocation* allocation)
             /* We have an overflow: Insufficient allocation */
             if (last_buttons_height < switcher->priv->buttons_height_request) {
                 /* Request for a new resize */
-                gtk_widget_queue_resize (GTK_WIDGET (switcher));
+                g_idle_add (delayed_resize_switcher, switcher);
+
                 return -1;
             }
         }
@@ -555,13 +595,15 @@ gdl_switcher_get_preferred_width (GtkWidget *widget, gint *minimum, gint *natura
         return;
 
     for (p = switcher->priv->buttons; p != NULL; p = p->next) {
-        gint button_width;
         Button *button = p->data;
-        gint min, nat;
 
-        gtk_widget_get_preferred_width(button->button_widget, &min, &nat);
-        *minimum = MAX (*minimum, min + 2 * H_PADDING);
-        *natural = MAX (*natural, nat + 2 * H_PADDING);
+        if (gtk_widget_get_visible (button->button_widget)) {
+            gint min, nat;
+            
+            gtk_widget_get_preferred_width(button->button_widget, &min, &nat);
+            *minimum = MAX (*minimum, min + 2 * H_PADDING);
+            *natural = MAX (*natural, nat + 2 * H_PADDING);
+		}
     }
 }
 
@@ -580,11 +622,14 @@ gdl_switcher_get_preferred_height (GtkWidget *widget, gint *minimum, gint *natur
 
     for (p = switcher->priv->buttons; p != NULL; p = p->next) {
         Button *button = p->data;
-        gint min, nat;
 
-        gtk_widget_get_preferred_height (button->button_widget, &min, &nat);
-        button_min = MAX (button_min, min + 2 * V_PADDING);
-        button_nat = MAX (button_nat, nat + 2 * V_PADDING);
+        if (gtk_widget_get_visible (button->button_widget)) {
+            gint min, nat;
+
+            gtk_widget_get_preferred_height (button->button_widget, &min, &nat);
+            button_min = MAX (button_min, min + 2 * V_PADDING);
+            button_nat = MAX (button_nat, nat + 2 * V_PADDING);
+        }
     }
 
     if (switcher->priv->buttons_height_request > 0) {
@@ -627,7 +672,9 @@ gdl_switcher_map (GtkWidget *widget)
     if (switcher->priv->show) {
         for (p = switcher->priv->buttons; p != NULL; p = p->next) {
             GtkWidget *button = ((Button *) p->data)->button_widget;
-            gtk_widget_map (button);
+            if (gtk_widget_get_visible (button) &&
+                !gtk_widget_get_mapped (button))
+                gtk_widget_map (button);
         }
     }
     GTK_WIDGET_CLASS (gdl_switcher_parent_class)->map (widget);
@@ -880,7 +927,7 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
 
     button_widget = gtk_toggle_button_new ();
     gtk_button_set_relief (GTK_BUTTON(button_widget), GTK_RELIEF_HALF);
-    if (switcher->priv->show)
+    if (switcher->priv->show && gtk_widget_get_visible (page)) 
         gtk_widget_show (button_widget);
     g_signal_connect (button_widget, "toggled",
                       G_CALLBACK (button_toggled_callback),
@@ -1005,7 +1052,7 @@ gdl_switcher_insert_page (GdlSwitcher *switcher, GtkWidget *page,
 
     if (!tab_widget) {
         tab_widget = gtk_label_new (label);
-        gtk_widget_show (tab_widget);
+        if (gtk_widget_get_visible (page)) gtk_widget_show (tab_widget);
     }
     switcher_id = gdl_switcher_get_page_id (page);
     gdl_switcher_add_button (switcher, label, tooltips, stock_id, pixbuf_icon, switcher_id, page);
