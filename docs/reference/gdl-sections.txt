@@ -18,6 +18,8 @@ gdl_dock_get_item_by_name
 gdl_dock_get_named_items
 gdl_dock_get_placeholder_by_name
 gdl_dock_object_get_toplevel
+gdl_dock_xor_rect
+gdl_dock_xor_rect_hide
 <SUBSECTION Standard>
 GdlDockClass
 GDL_DOCK

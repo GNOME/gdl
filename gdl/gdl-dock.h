@@ -104,6 +104,11 @@ void           gdl_dock_hide_preview        (GdlDock       *dock);
 
 void           gdl_dock_set_skip_taskbar    (GdlDock       *dock,
                                              gboolean       skip);
+#ifndef GDL_DISABLE_DEPRECATED
+void           gdl_dock_xor_rect            (GdlDock       *dock,
+                                             GdkRectangle  *rect) G_GNUC_DEPRECATED_FOR(gdl_dock_show_preview);
+void           gdl_dock_xor_rect_hide        (GdlDock       *dock) G_GNUC_DEPRECATED_FOR(gdl_dock_hide_preview);
+#endif
 
 G_END_DECLS
 

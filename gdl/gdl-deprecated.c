@@ -56,4 +56,35 @@ void gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
 {
     gtk_orientable_set_orientation (GTK_ORIENTABLE (dockbar), orientation);
 }
+
+/**
+ * gdl_dock_xor_rect:
+ * @dock: A #GdlDock widget
+ * @rect: The position and the size of the preview window
+ *
+ * Show a preview window used to materialize the dock target.
+ *
+ * Deprecated: 3.6: Use gdl_dock_show_preview instead.
+ */
+void
+gdl_dock_xor_rect (GdlDock      *dock,
+		   cairo_rectangle_int_t *rect)
+{
+    gdl_dock_show_preview (dock, rect);
+}
+
+/**
+ * gdl_dock_xor_rect_hide:
+ * @dock: A #GdlDock widget
+ *
+ * Hide the preview window used to materialize the dock target.
+ *
+ * Deprecated: 3.6: Use gdl_dock_hide_preview instead.
+ */
+void
+gdl_dock_xor_rect_hide (GdlDock      *dock)
+{
+    gdl_dock_hide_preview (dock);
+}
+
 #endif
