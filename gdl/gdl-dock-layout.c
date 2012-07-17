@@ -283,11 +283,11 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
 
     object_name = xmlGetProp (node, BAD_CAST GDL_DOCK_NAME_PROPERTY);
     if (object_name && strlen ((char*)object_name) > 0) {
-        /* the object must already be bound to the master */
+        /* the object can be already be bound to the master or a 
+         * placeholder object is created */
         object = gdl_dock_master_get_object (master, (char*)object_name);
 
-        xmlFree (object_name);
-        object_type = object ? G_TYPE_FROM_INSTANCE (object) : G_TYPE_NONE;
+        object_type = object ? G_TYPE_FROM_INSTANCE (object) : gdl_dock_object_type_from_nick ((char*)node->name);
     }
     else {
         /* the object should be automatic, so create it by
@@ -317,11 +317,11 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
     for (i = 0; i < n_props; i++) {
         xmlChar *xml_prop;
 
-        /* process all exported properties, skip
-           GDL_DOCK_NAME_PROPERTY, since named items should
-           already by in the master */
-        if (!(props [i]->flags & GDL_DOCK_PARAM_EXPORT) ||
-            !strcmp (props [i]->name, GDL_DOCK_NAME_PROPERTY))
+        /* process all exported properties */
+        /* keep GDL_DOCK_NAME_PROPERTY because we can create
+           placeholder object for object not already in the
+           master */
+        if (!(props [i]->flags & GDL_DOCK_PARAM_EXPORT))
             continue;
 
         /* get the property from xml if there is one */
@@ -360,6 +360,10 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
         /* set the master, so toplevels are created correctly and
            other objects are bound */
         object = g_object_newv (object_type, n_params, params);
+        if (object_name) {
+            GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_AUTOMATIC);
+            gdl_dock_master_add (master, object);
+        }
     }
     else {
         /* set the parameters to the existing object */
@@ -368,6 +372,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
                                    params [i].name,
                                    &params [i].value);
     }
+    if (object_name) xmlFree (object_name);
 
     /* free the parameters (names are static/const strings) */
     for (i = 0; i < n_params; i++)
@@ -426,14 +431,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
                                                  parent);
                 else if (gdl_dock_object_is_compound (parent)) {
                     gtk_container_add (GTK_CONTAINER (parent), GTK_WIDGET (object));
-                    if (gtk_widget_get_visible (GTK_WIDGET (parent)))
-                        gtk_widget_show (GTK_WIDGET (object));
                 }
-            }
-            else {
-                GdlDockObject *controller = gdl_dock_master_get_controller (master);
-                if (controller != object && gtk_widget_get_visible (GTK_WIDGET (controller)))
-                    gtk_widget_show (GTK_WIDGET (object));
             }
 
             /* call reduce just in case any child is missing */

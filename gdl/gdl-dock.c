@@ -1300,10 +1300,29 @@ gdl_dock_add_item (GdlDock          *dock,
                    GdlDockItem      *item,
                    GdlDockPlacement  placement)
 {
+    GdlDockObject *placeholder;
+    GdlDockObject *parent = NULL;
+    GdlDockPlacement place;
+    
     g_return_if_fail (dock != NULL);
     g_return_if_fail (item != NULL);
 
-    if (placement == GDL_DOCK_FLOATING)
+    /* Check if a placeholder widget already exist */
+    placeholder = gdl_dock_master_get_object (GDL_DOCK_OBJECT_GET_MASTER (dock), GDL_DOCK_OBJECT (item)->name);
+    if ((placeholder != NULL))
+        parent = gdl_dock_object_get_parent_object (placeholder);
+
+    if (parent && gdl_dock_object_child_placement (parent, placeholder, &place))
+    {
+        gdl_dock_object_freeze (GDL_DOCK_OBJECT (parent));
+        gtk_widget_destroy (GTK_WIDGET (placeholder));
+        
+        gdl_dock_object_dock (GDL_DOCK_OBJECT (parent),
+                              GDL_DOCK_OBJECT (item),
+                              place, NULL);
+        gdl_dock_object_thaw (GDL_DOCK_OBJECT (parent));
+    }
+    else if (placement == GDL_DOCK_FLOATING)
         /* Add the item to a new floating dock */
         gdl_dock_add_floating_item (dock, item, 0, 0, -1, -1);
 
