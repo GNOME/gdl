@@ -398,7 +398,8 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
                                &visible);
         gtk_widget_set_visible (GTK_WIDGET (parent), visible);
     }
-    g_signal_emit_by_name (GDL_DOCK_OBJECT (object)->master, "layout-changed");
+    if (object->master)
+        g_signal_emit_by_name (object->master, "layout-changed");
 }
 
 static void
