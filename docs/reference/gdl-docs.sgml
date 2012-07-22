@@ -34,12 +34,12 @@
       <title>Private Classes</title>
       <xi:include href="xml/gdl-dock-item-grip.xml" />
       <xi:include href="xml/gdl-dock-item-button-image.xml" />
-      <xi:include href="xml/gdl-dock-placeholder.xml" />
       <xi:include href="xml/gdl-preview-window.xml" />
       <xi:include href="xml/gdl-switcher.xml" />
     </chapter>
     <chapter id="deprecated">
       <title>Deprecated Classes</title>
+      <xi:include href="xml/gdl-dock-placeholder.xml" />
       <xi:include href="xml/gdl-dock-tablabel.xml" />
     </chapter>
   </part>

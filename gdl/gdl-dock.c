@@ -32,7 +32,6 @@
 #include "gdl-dock-master.h"
 #include "gdl-dock-paned.h"
 #include "gdl-dock-notebook.h"
-#include "gdl-dock-placeholder.h"
 #include "gdl-preview-window.h"
 
 #include "libgdlmarshal.h"
@@ -1418,31 +1417,6 @@ gdl_dock_get_item_by_name (GdlDock     *dock,
     found = gdl_dock_master_get_object (GDL_DOCK_OBJECT_GET_MASTER (dock), name);
 
     return (found && GDL_IS_DOCK_ITEM (found)) ? GDL_DOCK_ITEM (found) : NULL;
-}
-
-/**
- * gdl_dock_get_placeholder_by_name:
- * @dock: A #GdlDock widget
- * @name: An item name
- *
- * Looks for an #GdlDockPlaceholder object bound to the master of the dock item.
- * It does not search only in the children of this particular dock widget.
- *
- * Returns: (transfer none): A #GdlDockPlaceholder object or %NULL
- */
-GdlDockPlaceholder *
-gdl_dock_get_placeholder_by_name (GdlDock     *dock,
-                                  const gchar *name)
-{
-    GdlDockObject *found;
-
-    g_return_val_if_fail (dock != NULL && name != NULL, NULL);
-
-    /* proxy the call to our master */
-    found = gdl_dock_master_get_object (GDL_DOCK_OBJECT_GET_MASTER (dock), name);
-
-    return (found && GDL_IS_DOCK_PLACEHOLDER (found)) ?
-        GDL_DOCK_PLACEHOLDER (found) : NULL;
 }
 
 /**

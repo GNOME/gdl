@@ -42,7 +42,6 @@
 #include "gdl-dock-item-grip.h"
 #include "gdl-dock-notebook.h"
 #include "gdl-dock-paned.h"
-#include "gdl-dock-placeholder.h"
 #include "gdl-dock-master.h"
 #include "libgdltypebuiltins.h"
 #include "libgdlmarshal.h"
@@ -200,8 +199,6 @@ struct _GdlDockItemPrivate {
 
     gint       preferred_width;
     gint       preferred_height;
-
-    GdlDockPlaceholder *ph;
 
     gint       start_x, start_y;
 };
@@ -540,8 +537,6 @@ gdl_dock_item_init (GdlDockItem *item)
     item->priv->preferred_width = item->priv->preferred_height = -1;
     item->priv->tab_label = NULL;
     item->priv->intern_tab_label = FALSE;
-
-    item->priv->ph = NULL;
 }
 
 static gboolean
@@ -751,11 +746,6 @@ gdl_dock_item_dispose (GObject *object)
     if (priv->grip) {
         gtk_container_remove (GTK_CONTAINER (item), priv->grip);
         priv->grip = NULL;
-    }
-
-    if (priv->ph) {
-        g_object_unref (priv->ph);
-        priv->ph = NULL;
     }
 
     G_OBJECT_CLASS (gdl_dock_item_parent_class)->dispose (object);
@@ -2232,41 +2222,6 @@ void
 gdl_dock_item_unlock (GdlDockItem *item)
 {
     g_object_set (item, "locked", FALSE, NULL);
-}
-
-/**
- * gdl_dock_item_set_default_position:
- * @item: The dock item
- * @reference: The GdlDockObject which is the default dock for @item
- *
- * This method has only an effect when you add you dock_item with
- * GDL_DOCK_ITEM_BEH_NEVER_FLOATING. In this case you have to assign
- * it a default position.
- **/
-void
-gdl_dock_item_set_default_position (GdlDockItem   *item,
-                                    GdlDockObject *reference)
-{
-    g_return_if_fail (item != NULL);
-
-    if (item->priv->ph) {
-        g_object_unref (item->priv->ph);
-        item->priv->ph = NULL;
-    }
-
-    if (reference && GDL_DOCK_OBJECT_ATTACHED (reference)) {
-        if (GDL_IS_DOCK_PLACEHOLDER (reference)) {
-            g_object_ref_sink (reference);
-            item->priv->ph = GDL_DOCK_PLACEHOLDER (reference);
-        } else {
-            item->priv->ph = GDL_DOCK_PLACEHOLDER (
-                g_object_new (GDL_TYPE_DOCK_PLACEHOLDER,
-                              "sticky", TRUE,
-                              "host", reference,
-                              NULL));
-            g_object_ref_sink (item->priv->ph);
-        }
-    }
 }
 
 /**

@@ -30,7 +30,7 @@
 #include <gtk/gtk.h>
 
 #include "gdl-dock-layout.h"
-#include "gdl-dock-placeholder.h"
+
 
 /**
  * SECTION:gdl-dock-layout
@@ -410,10 +410,6 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
             /* recurse here to catch placeholders */
             gdl_dock_layout_recursive_build (master, node, object);
 
-            if (GDL_IS_DOCK_PLACEHOLDER (object))
-                /* placeholders are later attached to the parent */
-                gdl_dock_object_detach (object, FALSE);
-
             /* apply "after" parameters */
             for (i = 0; i < n_after_params; i++) {
                 g_object_set_property (G_OBJECT (object),
@@ -426,10 +422,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
 
             /* add the object to the parent */
             if (parent) {
-                if (GDL_IS_DOCK_PLACEHOLDER (object))
-                    gdl_dock_placeholder_attach (GDL_DOCK_PLACEHOLDER (object),
-                                                 parent);
-                else if (gdl_dock_object_is_compound (parent)) {
+                if (gdl_dock_object_is_compound (parent)) {
                     gtk_container_add (GTK_CONTAINER (parent), GTK_WIDGET (object));
                 }
             }
@@ -474,20 +467,16 @@ static void
 gdl_dock_layout_foreach_object_save (GdlDockObject *object,
                                      gpointer       user_data)
 {
-    struct {
-        xmlNodePtr  where;
-        GHashTable *placeholders;
-    } *info = user_data, info_child;
-
+    xmlNodePtr where = (xmlNodePtr)user_data;
     xmlNodePtr   node;
     guint        n_props, i;
     GParamSpec **props;
     GValue       attr = { 0, };
 
     g_return_if_fail (object != NULL && GDL_IS_DOCK_OBJECT (object));
-    g_return_if_fail (info->where != NULL);
+    g_return_if_fail (where != NULL);
 
-    node = xmlNewChild (info->where,
+    node = xmlNewChild (where,
                         NULL,               /* ns */
                         BAD_CAST gdl_dock_object_nick_from_type (G_TYPE_FROM_INSTANCE (object)),
                         BAD_CAST NULL);     /* contents */
@@ -524,45 +513,11 @@ gdl_dock_layout_foreach_object_save (GdlDockObject *object,
     g_value_unset (&attr);
     g_free (props);
 
-    info_child = *info;
-    info_child.where = node;
-
-    /* save placeholders for the object */
-    if (info->placeholders && !GDL_IS_DOCK_PLACEHOLDER (object)) {
-        GList *lph = g_hash_table_lookup (info->placeholders, object);
-        for (; lph; lph = lph->next)
-            gdl_dock_layout_foreach_object_save (GDL_DOCK_OBJECT (lph->data),
-                                                 (gpointer) &info_child);
-    }
-
     /* recurse the object if appropiate */
     if (gdl_dock_object_is_compound (object)) {
         gtk_container_foreach (GTK_CONTAINER (object),
                                (GtkCallback) gdl_dock_layout_foreach_object_save,
-                               (gpointer) &info_child);
-    }
-}
-
-static void
-add_placeholder (GdlDockObject *object,
-                 GHashTable    *placeholders)
-{
-    if (GDL_IS_DOCK_PLACEHOLDER (object)) {
-        GdlDockObject *host;
-        GList *l;
-
-        g_object_get (object, "host", &host, NULL);
-        if (host) {
-            l = g_hash_table_lookup (placeholders, host);
-            /* add the current placeholder to the list of placeholders
-               for that host */
-            if (l)
-                g_hash_table_steal (placeholders, host);
-
-            l = g_list_prepend (l, object);
-            g_hash_table_insert (placeholders, host, l);
-            g_object_unref (host);
-        }
+                               (gpointer) node);
     }
 }
 
@@ -570,32 +525,13 @@ static void
 gdl_dock_layout_save (GdlDockMaster *master,
                       xmlNodePtr     where)
 {
-    struct {
-        xmlNodePtr  where;
-        GHashTable *placeholders;
-    } info;
 
-    GHashTable *placeholders;
-
-    g_return_if_fail (master != NULL && where != NULL);
-
-    /* build the placeholder's hash: the hash keeps lists of
-     * placeholders associated to each object, so that we can save the
-     * placeholders when we are saving the object (since placeholders
-     * don't show up in the normal widget hierarchy) */
-    placeholders = g_hash_table_new_full (g_direct_hash, g_direct_equal,
-                                          NULL, (GDestroyNotify) g_list_free);
-    gdl_dock_master_foreach (master, (GFunc) add_placeholder, placeholders);
+	g_return_if_fail (master != NULL && where != NULL);
 
     /* save the layout recursively */
-    info.where = where;
-    info.placeholders = placeholders;
-
     gdl_dock_master_foreach_toplevel (master, TRUE,
                                       (GFunc) gdl_dock_layout_foreach_object_save,
-                                      (gpointer) &info);
-
-    g_hash_table_destroy (placeholders);
+                                      (gpointer) where);
 }
 
 

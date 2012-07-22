@@ -1070,7 +1070,11 @@ gdl_dock_param_get_type (void)
 static void
 gdl_dock_object_register_init (void)
 {
+#ifdef GDL_DISABLE_DEPRECATED
+    const size_t n_default = 4;
+#else    
     const size_t n_default = 5;
+#endif    
     guint i = 0;
     struct DockRegisterItem default_items[n_default];
 
@@ -1089,8 +1093,10 @@ gdl_dock_object_register_init (void)
     default_items[2].type = (gpointer) GDL_TYPE_DOCK_PANED;
     default_items[3].nick = "notebook";
     default_items[3].type = (gpointer) GDL_TYPE_DOCK_NOTEBOOK;
+#ifndef GDL_DISABLE_DEPRECATED    
     default_items[4].nick = "placeholder";
     default_items[4].type = (gpointer) GDL_TYPE_DOCK_PLACEHOLDER;
+#endif    
 
     for (i = 0; i < n_default; i++)
         g_array_append_val (dock_register, default_items[i]);

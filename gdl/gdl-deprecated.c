@@ -87,4 +87,41 @@ gdl_dock_xor_rect_hide (GdlDock      *dock)
     gdl_dock_hide_preview (dock);
 }
 
+/**
+ * gdl_dock_get_placeholder_by_name:
+ * @dock: A #GdlDock widget
+ * @name: An item name
+ *
+ * Looks for an #GdlDockPlaceholder object bound to the master of the dock item.
+ * It does not search only in the children of this particular dock widget.
+ *
+ * Returns: (transfer none): A #GdlDockPlaceholder object or %NULL
+ *
+ * Deprecated: 3.6: This function is always returning %NULL.
+ */
+GdlDockPlaceholder *
+gdl_dock_get_placeholder_by_name (GdlDock     *dock,
+                                  const gchar *name)
+{
+    return NULL;
+}
+
+/**
+ * gdl_dock_item_set_default_position:
+ * @item: The dock item
+ * @reference: The GdlDockObject which is the default dock for @item
+ *
+ * This method has only an effect when you add you dock_item with
+ * GDL_DOCK_ITEM_BEH_NEVER_FLOATING. In this case you have to assign
+ * it a default position.*
+ *
+ * Deprecated 3.6: This function is doing nothing now.
+ **/
+void
+gdl_dock_item_set_default_position (GdlDockItem   *item,
+                                    GdlDockObject *reference)
+{
+    g_return_if_fail (item != NULL);
+}
+
 #endif

@@ -28,6 +28,8 @@
 
 G_BEGIN_DECLS
 
+#ifndef GDL_DISABLE_DEPRECATED
+
 /* standard macros */
 #define GDL_TYPE_DOCK_PLACEHOLDER             (gdl_dock_placeholder_get_type ())
 #define GDL_DOCK_PLACEHOLDER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GDL_TYPE_DOCK_PLACEHOLDER, GdlDockPlaceholder))
@@ -62,7 +64,7 @@ GtkWidget  *gdl_dock_placeholder_new      (const gchar       *name,
 
 void        gdl_dock_placeholder_attach   (GdlDockPlaceholder *ph,
                                            GdlDockObject      *object);
-
+#endif
 
 G_END_DECLS
 

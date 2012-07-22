@@ -25,6 +25,9 @@
 #include <config.h>
 #endif
 
+#ifndef GDL_DISABLE_DEPRECATED
+#define GDL_DISABLE_DEPRECATION_WARNINGS
+
 #include "gdl-i18n.h"
 
 #include "gdl-dock-placeholder.h"
@@ -43,6 +46,10 @@
  * A dock placeholder is a widget allowing to keep track of a docking place.
  * Unfortunately, all the details of the initial goal have been forgotten and
  * the code has still some issues.
+ * 
+ * In GDL 3.6, this part has been deprecated. Placeholder widgets are not
+ * used anymore. Instead, closed widgets are hidden but kept in the widget
+ * hierarchy.
  */
 
 #undef PLACEHOLDER_DEBUG
@@ -562,6 +569,8 @@ gdl_dock_placeholder_present (GdlDockObject *object,
  * working though.
  * 
  * Returns: The newly created placeholder.
+ * 
+ * Deprecated: 3.6:
  */
 GtkWidget * 
 gdl_dock_placeholder_new (const gchar     *name,
@@ -698,6 +707,8 @@ detach_cb (GdlDockObject *object,
  * children and see if any of them matches the placement which is at
  * the top of the stack.  If this is the case, it tries again with the
  * new host.
+ * 
+ * Deprecated: 3.6:
  **/
 static void
 do_excursion (GdlDockPlaceholder *ph)
@@ -826,6 +837,8 @@ connect_host (GdlDockPlaceholder *ph,
  * @object: A new #GdlDockObject
  * 
  * Move the placeholder to the position of @object.
+ * 
+ * Deprecated: 3.6:
  */
 void
 gdl_dock_placeholder_attach (GdlDockPlaceholder *ph,
@@ -853,3 +866,5 @@ gdl_dock_placeholder_attach (GdlDockPlaceholder *ph,
     
     gdl_dock_object_thaw (GDL_DOCK_OBJECT (ph));
 }
+
+#endif

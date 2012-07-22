@@ -41,7 +41,7 @@
  * @short_description: A custom label widget.
  * @stability: Unstable
  *
- * This is a deprecated label widget.
+ * This is a deprecated label widget in GDL 3.6.
  */
 
 
