@@ -1,3 +1,10 @@
+Changes in 3.5.4
+
+* New handling of hidden/not existing windows in layout:
+ * Those will be placed in the position saved in the layout once created
+   even if they didn't exist when the layout was initially loaded
+   (Sébastien Granjoux)
+
 Changes in 3.5.3
 
 * skip-taskbar property (Alex Valavanis)
