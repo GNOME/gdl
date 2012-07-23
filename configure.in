@@ -24,7 +24,7 @@ GDL_REVISION=0
 dnl increment if any interfaces have been added; set to 0
 dnl  if any interfaces have been changed or removed. removal has
 dnl  precedence over adding, so set to 0 if both happened.
-GDL_AGE=2
+GDL_AGE=0
 
 AC_SUBST(GDL_CURRENT)
 AC_SUBST(GDL_REVISION)
