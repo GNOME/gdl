@@ -382,7 +382,8 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
                 !GDL_DOCK_ITEM_ICONIFIED (item))
                 gdl_dock_bar_remove_item (dockbar, item);
             else if (g_slist_index (dockbar->priv->items, item) == -1 &&
-                GDL_DOCK_ITEM_ICONIFIED (item))
+                GDL_DOCK_ITEM_ICONIFIED (item) &&
+                !gdl_dock_item_is_placeholder (item))
                 gdl_dock_bar_add_item (dockbar, item);
         }
     } else {
@@ -391,7 +392,8 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
 
             if (g_slist_index (dockbar->priv->items, item) != -1)
                 gdl_dock_bar_remove_item (dockbar, item);
-            if (GDL_DOCK_ITEM_ICONIFIED (item))
+            if (GDL_DOCK_ITEM_ICONIFIED (item) &&
+                !gdl_dock_item_is_placeholder (item))
                 gdl_dock_bar_add_item (dockbar, item);
         }
     }

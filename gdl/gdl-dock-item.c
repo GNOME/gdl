@@ -167,7 +167,8 @@ enum {
     PROP_BEHAVIOR,
     PROP_LOCKED,
     PROP_PREFERRED_WIDTH,
-    PROP_PREFERRED_HEIGHT
+    PROP_PREFERRED_HEIGHT,
+    PROP_ICONIFIED
 };
 
 enum {
@@ -372,8 +373,24 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                           -1, G_MAXINT, -1,
                           G_PARAM_READWRITE));
 
-    /* signals */
-
+    /**
+     * GdlDockItem:iconified:
+     *
+     * If set, the dock item is hidden but it has a corresponding icon in the
+     * dock bar allowing to show it again.
+     *
+     * Since: 3.6
+     */
+    g_object_class_install_property (
+        object_class, PROP_ICONIFIED,
+        g_param_spec_boolean ("iconified", _("Iconified"),
+                              _("If set, the dock item is hidden but it has a "
+                                "corresponding icon in the dock bar allowing to "
+                                "show it again."),
+                              FALSE,
+                              G_PARAM_READWRITE |
+                              GDL_DOCK_PARAM_EXPORT));
+    
     /**
      * GdlDockItem::dock-drag-begin:
      * @item: The dock item which is being dragged.
@@ -689,6 +706,16 @@ gdl_dock_item_set_property  (GObject      *g_object,
         case PROP_PREFERRED_HEIGHT:
             item->priv->preferred_height = g_value_get_int (value);
             break;
+        case PROP_ICONIFIED:
+            if (g_value_get_boolean (value)) {
+                if (!GDL_DOCK_ITEM_ICONIFIED (item)) gdl_dock_item_iconify_item (item);
+            }
+            else if (GDL_DOCK_ITEM_ICONIFIED (item)) {
+                GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
+                gtk_widget_show (GTK_WIDGET (item));
+                gtk_widget_queue_resize (GTK_WIDGET (item));
+            }
+            break;            
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
             break;
@@ -721,6 +748,9 @@ gdl_dock_item_get_property  (GObject      *g_object,
             break;
         case PROP_PREFERRED_HEIGHT:
             g_value_set_int (value, item->priv->preferred_height);
+            break;
+        case PROP_ICONIFIED:
+            g_value_set_boolean (value, GDL_DOCK_ITEM_ICONIFIED (item));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
@@ -2276,6 +2306,23 @@ gdl_dock_item_or_child_has_focus (GdlDockItem *item)
          (GTK_IS_WIDGET (item_child) && gtk_widget_has_focus (item_child)));
 
     return item_or_child_has_focus;
+}
+
+/**
+ * gdl_dock_item_is_placeholder:
+ * @item: The dock item to be checked
+ *
+ * Checks whether a given #GdlDockItem is a placeholder created by the
+ * #GdlDockLayout object and does not contain a child.
+ * 
+ * Returns: %TRUE if the dock item is a placeholder
+ *
+ * Since: 3.6
+ */
+gboolean 
+gdl_dock_item_is_placeholder (GdlDockItem *item)
+{
+    return item->child == NULL;
 }
 
 
