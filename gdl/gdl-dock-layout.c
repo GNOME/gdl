@@ -382,6 +382,11 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
     /* finally unref object class */
     g_type_class_unref (object_class);
 
+    if (GDL_IS_DOCK_ITEM (object) && 
+        !gdl_dock_item_is_placeholder (GDL_DOCK_ITEM (object)) &&
+        !GDL_DOCK_ITEM_ICONIFIED (object)) gdl_dock_item_show_item(GDL_DOCK_ITEM (object));
+
+        
     return object;
 }
 
