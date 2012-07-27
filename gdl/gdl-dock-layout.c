@@ -382,10 +382,6 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
     /* finally unref object class */
     g_type_class_unref (object_class);
 
-    if (GDL_IS_DOCK_ITEM (object) && 
-        !gdl_dock_item_is_placeholder (GDL_DOCK_ITEM (object)) &&
-        !GDL_DOCK_ITEM_ICONIFIED (object)) gdl_dock_item_show_item(GDL_DOCK_ITEM (object));
-
         
     return object;
 }
@@ -412,6 +408,13 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
         if (object) {
             gdl_dock_object_freeze (object);
 
+            /* detach children */
+            if (gdl_dock_object_is_compound (object)) {
+                gtk_container_foreach (GTK_CONTAINER (object),
+                               (GtkCallback) gdl_dock_object_detach,
+                               GINT_TO_POINTER (TRUE));
+            }
+            
             /* recurse here to catch placeholders */
             gdl_dock_layout_recursive_build (master, node, object);
 
@@ -432,10 +435,10 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
                 }
             }
 
-            /* call reduce just in case any child is missing */
-            if (gdl_dock_object_is_compound (object))
-                gdl_dock_object_reduce (object);
-
+            if (GDL_IS_DOCK_ITEM (object) && 
+                !gdl_dock_item_is_placeholder (GDL_DOCK_ITEM (object)) &&
+                !GDL_DOCK_ITEM_ICONIFIED (object)) gdl_dock_item_show_item(GDL_DOCK_ITEM (object));
+            
             gdl_dock_object_thaw (object);
         }
     }

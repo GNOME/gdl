@@ -2222,6 +2222,29 @@ gdl_dock_item_show_item (GdlDockItem *item)
 {
     g_return_if_fail (item != NULL);
 
+    /* Check if we need to dock the window */
+    if (gtk_widget_get_parent (GTK_WIDGET (item)) == NULL) {
+        if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
+            GdlDockObject *toplevel;
+        
+            toplevel = gdl_dock_master_get_controller
+                            (GDL_DOCK_OBJECT_GET_MASTER (item));
+            if (toplevel == item) return;
+        
+            if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
+                g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
+                          GDL_DOCK_OBJECT(item)->name);
+            } else if (toplevel) {
+                gdl_dock_object_dock (toplevel, GDL_DOCK_OBJECT (item),
+                                      GDL_DOCK_FLOATING, NULL);
+            } else
+                g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
+        
+        } else
+            g_warning("GdlDockItem %s is not bound. It cannot be shown.\n",
+                      GDL_DOCK_OBJECT(item)->name);
+    }
+
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
     GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ATTACHED);
     gtk_widget_show (GTK_WIDGET (item));
