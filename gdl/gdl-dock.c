@@ -1306,9 +1306,11 @@ gdl_dock_add_item (GdlDock          *dock,
     g_return_if_fail (dock != NULL);
     g_return_if_fail (item != NULL);
 
-    /* Check if a placeholder widget already exist */
+    /* Check if a placeholder widget already exist in the same dock */
     placeholder = gdl_dock_master_get_object (GDL_DOCK_OBJECT_GET_MASTER (dock), GDL_DOCK_OBJECT (item)->name);
-    if ((placeholder != NULL))
+    if ((placeholder != NULL) && 
+        gdl_dock_item_is_closed (placeholder) &&
+        (gdl_dock_object_get_toplevel (placeholder) == dock))
         parent = gdl_dock_object_get_parent_object (placeholder);
 
     if (parent && gdl_dock_object_child_placement (parent, placeholder, &place))
