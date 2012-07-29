@@ -410,8 +410,6 @@ gdl_dock_notebook_dock (GdlDockObject    *object,
                                                  long_name, long_name,
                                                  stock_id, pixbuf_icon, position);
 
-            GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
-
             if (gtk_widget_get_visible (GTK_WIDGET (requestor))) {
                 /* Set current page to the newly docked widget. set current page
                  * really doesn't work if the page widget is not shown

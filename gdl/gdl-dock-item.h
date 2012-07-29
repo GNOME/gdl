@@ -321,6 +321,8 @@ gboolean    gdl_dock_item_or_child_has_focus  (GdlDockItem      *item);
 
 gboolean    gdl_dock_item_is_placeholder       (GdlDockItem      *item);
 
+gboolean    gdl_dock_item_is_closed            (GdlDockItem      *item);
+
 G_END_DECLS
 
 #endif

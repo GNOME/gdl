@@ -392,10 +392,14 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
     if (parent && GDL_DOCK_OBJECT_AUTOMATIC (parent))
     {
         gboolean visible = FALSE;
-        
+
         gtk_container_foreach (GTK_CONTAINER (parent),
                                (GtkCallback) gdl_dock_object_foreach_is_visible,
                                &visible);
+        if (visible)
+                GDL_DOCK_OBJECT_SET_FLAGS (parent, GDL_DOCK_ATTACHED);
+        else
+                GDL_DOCK_OBJECT_UNSET_FLAGS (parent, GDL_DOCK_ATTACHED);
         gtk_widget_set_visible (GTK_WIDGET (parent), visible);
     }
     if (object->master)
@@ -428,7 +432,6 @@ gdl_dock_object_hide (GtkWidget *widget)
 
     /* Update visibility of automatic parents */
     gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (widget));
-    GDL_DOCK_OBJECT_UNSET_FLAGS (GDL_DOCK_OBJECT (widget), GDL_DOCK_ATTACHED);
 }
 
 static void
@@ -764,6 +767,9 @@ gdl_dock_object_dock (GdlDockObject    *object,
 
     g_object_unref (requestor);
     gdl_dock_object_thaw (object);
+	
+    if (gtk_widget_get_visible (GTK_WIDGET (requestor)))
+        GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
 
     /* Update visibility of automatic parents */
     gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (requestor));

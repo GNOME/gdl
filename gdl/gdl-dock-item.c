@@ -168,7 +168,8 @@ enum {
     PROP_LOCKED,
     PROP_PREFERRED_WIDTH,
     PROP_PREFERRED_HEIGHT,
-    PROP_ICONIFIED
+    PROP_ICONIFIED,
+    PROP_CLOSED,
 };
 
 enum {
@@ -389,6 +390,22 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                                 "show it again."),
                               FALSE,
                               G_PARAM_READWRITE |
+                              GDL_DOCK_PARAM_EXPORT));
+
+    /**
+     * GdlDockItem:closed:
+     *
+     * If set, the dock item is closed.
+     *
+     * Since: 3.6
+     */
+    g_object_class_install_property (
+        object_class, PROP_CLOSED,
+        g_param_spec_boolean ("closed", _("Closed"),
+                              _("Whether the widget is closed."),
+                              FALSE,
+                              G_PARAM_READWRITE |
+                              GDL_DOCK_PARAM_AFTER |
                               GDL_DOCK_PARAM_EXPORT));
     
     /**
@@ -715,7 +732,17 @@ gdl_dock_item_set_property  (GObject      *g_object,
                 gtk_widget_show (GTK_WIDGET (item));
                 gtk_widget_queue_resize (GTK_WIDGET (item));
             }
-            break;            
+            break;
+        case PROP_CLOSED:
+            if (g_value_get_boolean (value)) {
+                GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ATTACHED);
+                gtk_widget_hide (GTK_WIDGET (item));
+            } else {
+                GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ATTACHED);
+                if (!GDL_DOCK_ITEM_ICONIFIED (item))
+                    gtk_widget_show (GTK_WIDGET (item));
+	    }
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
             break;
@@ -751,6 +778,9 @@ gdl_dock_item_get_property  (GObject      *g_object,
             break;
         case PROP_ICONIFIED:
             g_value_set_boolean (value, GDL_DOCK_ITEM_ICONIFIED (item));
+            break;
+        case PROP_CLOSED:
+            g_value_set_boolean (value, !GDL_DOCK_OBJECT_ATTACHED (item));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
@@ -2188,6 +2218,7 @@ gdl_dock_item_hide_item (GdlDockItem *item)
 {
     g_return_if_fail (item != NULL);
 
+    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ATTACHED);
     gtk_widget_hide (GTK_WIDGET (item));
     return;
 }
@@ -2207,7 +2238,7 @@ gdl_dock_item_iconify_item (GdlDockItem *item)
     g_return_if_fail (item != NULL);
 
     GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ICONIFIED);
-    gdl_dock_item_hide_item (item);
+    gtk_widget_hide (GTK_WIDGET (item));
 }
 
 /**
@@ -2234,20 +2265,23 @@ gdl_dock_item_show_item (GdlDockItem *item)
             if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
                 g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
                           GDL_DOCK_OBJECT(item)->name);
+                return;
             } else if (toplevel) {
                 gdl_dock_object_dock (toplevel, GDL_DOCK_OBJECT (item),
                                       GDL_DOCK_FLOATING, NULL);
             } else
                 g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
-        
+                return;
         } else
             g_warning("GdlDockItem %s is not bound. It cannot be shown.\n",
                       GDL_DOCK_OBJECT(item)->name);
+            return;
     }
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
     GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ATTACHED);
     gtk_widget_show (GTK_WIDGET (item));
+
     return;
 }
 
@@ -2346,6 +2380,23 @@ gboolean
 gdl_dock_item_is_placeholder (GdlDockItem *item)
 {
     return item->child == NULL;
+}
+
+/**
+ * gdl_dock_item_is_closed:
+ * @item: The dock item to be checked
+ *
+ * Checks whether a given #GdlDockItem is closed: still in the widget hierarchy
+ * and hidden or detached.
+ * 
+ * Returns: %TRUE if the dock item is closed.
+ *
+ * Since: 3.6
+ */
+gboolean
+gdl_dock_item_is_closed (GdlDockItem      *item)
+{
+    return (GDL_DOCK_OBJECT_FLAGS (item) & GDL_DOCK_ATTACHED) == 0; 
 }
 
 
