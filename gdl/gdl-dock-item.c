@@ -739,7 +739,7 @@ gdl_dock_item_set_property  (GObject      *g_object,
                 gtk_widget_hide (GTK_WIDGET (item));
             } else {
                 GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ATTACHED);
-                if (!GDL_DOCK_ITEM_ICONIFIED (item))
+                if (!GDL_DOCK_ITEM_ICONIFIED (item) && !gdl_dock_item_is_placeholder (item))
                     gtk_widget_show (GTK_WIDGET (item));
 	    }
             break;
