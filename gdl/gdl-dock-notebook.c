@@ -148,8 +148,8 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
         g_object_class, PROP_PAGE,
         g_param_spec_int ("page", _("Page"),
                           _("The index of the current page"),
-                          0, G_MAXINT,
-                          0,
+                          -1, G_MAXINT,
+                          -1,
                           G_PARAM_READWRITE |
                           GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
 
