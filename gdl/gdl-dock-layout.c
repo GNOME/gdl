@@ -422,6 +422,9 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
                 }
             }
 
+            /* build children */
+            gdl_dock_layout_recursive_build (master, node, object);
+            
             /* apply "after" parameters */
             for (i = 0; i < n_after_params; i++) {
                 g_object_set_property (G_OBJECT (object),
@@ -432,9 +435,6 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
             }
             g_free (after_params);
 
-            /* build children */
-            gdl_dock_layout_recursive_build (master, node, object);
-            
             gdl_dock_object_thaw (object);
         }
     }
