@@ -125,6 +125,9 @@ static void     gdl_dock_item_dock         (GdlDockObject    *object,
                                             GdlDockObject    *requestor,
                                             GdlDockPlacement  position,
                                             GValue           *other_data);
+static void     gdl_dock_item_present      (GdlDockObject     *object,
+                                             GdlDockObject     *child);
+
 
 static void  gdl_dock_item_popup_menu    (GdlDockItem *item,
                                           guint        button,
@@ -298,6 +301,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
 
     dock_object_class->dock_request = gdl_dock_item_dock_request;
     dock_object_class->dock = gdl_dock_item_dock;
+    dock_object_class->present = gdl_dock_item_present;
 
     klass->has_grip = TRUE;
     klass->dock_drag_begin = NULL;
@@ -1650,6 +1654,16 @@ gdl_dock_item_dock (GdlDockObject    *object,
 
     if (parent)
         gdl_dock_object_thaw (parent);
+}
+
+static void
+gdl_dock_item_present (GdlDockObject     *object,
+                       GdlDockObject     *child)
+{
+    GdlDockItem *item = GDL_DOCK_ITEM (object);
+
+    gdl_dock_item_show_item (item);
+    GDL_DOCK_OBJECT_CLASS (gdl_dock_item_parent_class)->present (object, child);
 }
 
 static void
