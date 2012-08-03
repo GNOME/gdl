@@ -1899,7 +1899,7 @@ gdl_dock_item_new (const gchar         *name,
                                         "long-name", long_name,
                                         "behavior", behavior,
                                         NULL));
-    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_AUTOMATIC);
+    gdl_dock_object_set_manual (GDL_DOCK_OBJECT (item));
     gtk_widget_show (GTK_WIDGET (item));
 
     return GTK_WIDGET (item);
@@ -1931,7 +1931,7 @@ gdl_dock_item_new_with_stock (const gchar         *name,
                                         "stock-id", stock_id,
                                         "behavior", behavior,
                                         NULL));
-    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_AUTOMATIC);
+   gdl_dock_object_set_manual (GDL_DOCK_OBJECT (item));
 
     return GTK_WIDGET (item);
 }
@@ -1965,7 +1965,7 @@ gdl_dock_item_new_with_pixbuf_icon (const gchar         *name,
                                         "behavior", behavior,
                                         NULL));
 
-    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_AUTOMATIC);
+    gdl_dock_object_set_manual (GDL_DOCK_OBJECT (item));
     gdl_dock_item_set_tablabel (item, gtk_label_new (long_name));
 
     return GTK_WIDGET (item);

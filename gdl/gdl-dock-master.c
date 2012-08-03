@@ -250,7 +250,7 @@ _gdl_dock_master_remove (GdlDockObject *object,
                probably a non-floating and manual */
             last = g_list_last (master->toplevel_docks);
             while (last) {
-                if (!GDL_DOCK_OBJECT_AUTOMATIC (last->data)) {
+                if (!gdl_dock_object_is_automatic (last->data)) {
                     new_controller = GDL_DOCK_OBJECT (last->data);
                     break;
                 }
@@ -737,7 +737,7 @@ item_dock_cb (GdlDockObject    *object,
      * assumed that object will not change its visibility... for the
      * requestor, however, could mean that it's being shown */
     if (!GDL_DOCK_OBJECT_IN_REFLOW (requestor) &&
-        !GDL_DOCK_OBJECT_AUTOMATIC (requestor)) {
+        !gdl_dock_object_is_automatic (requestor)) {
         if (!master->priv->idle_layout_changed_id)
             master->priv->idle_layout_changed_id =
                 g_idle_add (idle_emit_layout_changed, master);
@@ -755,7 +755,7 @@ item_detach_cb (GdlDockObject *object,
     g_return_if_fail (master && GDL_IS_DOCK_MASTER (master));
 
     if (!GDL_DOCK_OBJECT_IN_REFLOW (object) &&
-        !GDL_DOCK_OBJECT_AUTOMATIC (object)) {
+        !gdl_dock_object_is_automatic (object)) {
         if (!master->priv->idle_layout_changed_id)
             master->priv->idle_layout_changed_id =
                 g_idle_add (idle_emit_layout_changed, master);
@@ -800,7 +800,7 @@ gdl_dock_master_add (GdlDockMaster *master,
 {
     g_return_if_fail (master != NULL && object != NULL);
 
-    if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
+    if (!gdl_dock_object_is_automatic (object)) {
         GdlDockObject *found_object;
 
         /* create a name for the object if it doesn't have one */
@@ -873,7 +873,7 @@ gdl_dock_master_add (GdlDockMaster *master,
 
         /* post a layout_changed emission if the item is not automatic
          * (since it should be added to the items model) */
-        if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
+        if (!gdl_dock_object_is_automatic (object)) {
             if (!master->priv->idle_layout_changed_id)
                 master->priv->idle_layout_changed_id =
                     g_idle_add (idle_emit_layout_changed, master);
@@ -913,7 +913,7 @@ gdl_dock_master_remove (GdlDockMaster *master,
 
     /* post a layout_changed emission if the item is not automatic
      * (since it should be removed from the items model) */
-    if (!GDL_DOCK_OBJECT_AUTOMATIC (object)) {
+    if (!gdl_dock_object_is_automatic (object)) {
         if (!master->priv->idle_layout_changed_id)
             master->priv->idle_layout_changed_id =
                 g_idle_add (idle_emit_layout_changed, master);
@@ -1031,7 +1031,7 @@ gdl_dock_master_set_controller (GdlDockMaster *master,
     g_return_if_fail (master != NULL);
 
     if (new_controller) {
-        if (GDL_DOCK_OBJECT_AUTOMATIC (new_controller))
+        if (gdl_dock_object_is_automatic (new_controller))
             g_warning (_("The new dock controller %p is automatic.  Only manual "
                          "dock objects should be named controller."), new_controller);
 

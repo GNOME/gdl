@@ -184,15 +184,19 @@ struct _GdlDockObjectClass {
  */
 #define GDL_DOCK_OBJECT_FLAGS(obj)  (GDL_DOCK_OBJECT (obj)->flags)
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_AUTOMATIC:
  * @obj: A #GdlDockObject
  *
  * Evaluates to %TRUE if the object's lifecycle is entirely managed by the dock
  * master.
+ *
+ * Deprecated: 3.6: Use gdl_dock_object_is_automatic()
  */
 #define GDL_DOCK_OBJECT_AUTOMATIC(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_AUTOMATIC) != 0)
+#endif
 
 #ifndef GDL_DISABLE_DEPRECATED
 /**
@@ -298,6 +302,9 @@ gboolean       gdl_dock_object_child_placement   (GdlDockObject    *object,
                                                   GdlDockPlacement *placement);
 
 gboolean       gdl_dock_object_is_closed         (GdlDockObject    *object);
+
+gboolean       gdl_dock_object_is_automatic      (GdlDockObject    *object);
+void           gdl_dock_object_set_manual        (GdlDockObject    *object);
 
 /* other types */
 

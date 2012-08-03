@@ -389,7 +389,7 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
     g_return_if_fail (object != NULL);
 
     parent = gdl_dock_object_get_parent_object (object);
-    if (parent && GDL_DOCK_OBJECT_AUTOMATIC (parent))
+    if (parent && gdl_dock_object_is_automatic (parent))
     {
         gboolean visible = FALSE;
 
@@ -412,7 +412,7 @@ gdl_dock_object_foreach_automatic (GdlDockObject *object,
 {
     void (* function) (GtkWidget *) = user_data;
 
-    if (GDL_DOCK_OBJECT_AUTOMATIC (object))
+    if (gdl_dock_object_is_automatic (object))
         (* function) (GTK_WIDGET (object));
 }
 
@@ -957,6 +957,44 @@ gdl_dock_object_is_closed (GdlDockObject *object)
 {
     return (object->flags & GDL_DOCK_ATTACHED) == 0; 
 }
+
+/**
+ * gdl_dock_object_is_automatic:
+ * @object: a #GdlDockObject
+ *
+ * Determine if an object is managed by the dock master, such object is
+ * destroyed automatically when it is not needed anymore.
+ *
+ * Return value: %TRUE if the object is managed automatically by the dock master.
+ *
+ * Since: 3.6
+ */
+gboolean
+gdl_dock_object_is_automatic (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), FALSE);
+
+    return (object->flags & GDL_DOCK_AUTOMATIC) != 0;
+}
+
+/**
+ * gdl_dock_object_set_manual:
+ * @object: a #GdlDockObject
+ *
+ * A #GdlDockObject is managed by default by the dock master, use this function
+ * to make it a manual object if you want to manage the destruction of the
+ * object.
+ *
+ * Since: 3.6
+ */
+void
+gdl_dock_object_set_manual (GdlDockObject *object)
+{
+    g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
+
+    object->flags &= ~GDL_DOCK_AUTOMATIC;
+}
+
 
 
 /* Dock param type functions

@@ -686,8 +686,9 @@ gdl_dock_paned_child_placement (GdlDockObject    *object,
  * gdl_dock_paned_new:
  * @orientation: the pane's orientation.
  *
- * Creates a new #GdlDockPaned widget. This widget is normally created and destroyed
- * automatically when needed by the master.
+ * Creates a new manual #GdlDockPaned widget. This function is seldom useful as
+ * such widget is normally created and destroyed automatically when needed by
+ * the master.
  *
  * Returns: a new #GdlDockPaned.
  */
@@ -698,7 +699,7 @@ gdl_dock_paned_new (GtkOrientation orientation)
 
     paned = GDL_DOCK_PANED (g_object_new (GDL_TYPE_DOCK_PANED,
                                           "orientation", orientation, NULL));
-    GDL_DOCK_OBJECT_UNSET_FLAGS (paned, GDL_DOCK_AUTOMATIC);
+    gdl_dock_object_set_manual (GDL_DOCK_OBJECT (paned));
 
     return GTK_WIDGET (paned);
 }

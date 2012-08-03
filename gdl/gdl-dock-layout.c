@@ -361,7 +361,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
            other objects are bound */
         object = g_object_newv (object_type, n_params, params);
         if (object_name) {
-            GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_AUTOMATIC);
+            gdl_dock_object_set_manual (GDL_DOCK_OBJECT (object));
             gdl_dock_master_add (master, object);
         }
     }

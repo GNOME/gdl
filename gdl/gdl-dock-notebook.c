@@ -516,8 +516,9 @@ gdl_dock_notebook_reorder (GdlDockObject    *object,
 /**
  * gdl_dock_notebook_new:
  *
- * Creates a new GDL notebook. This widget is normally created and destroyed
- * automatically when needed by the master.
+ * Creates a new manual #GdlDockNotebook widget. This function is seldom useful as
+ * such widget is normally created and destroyed automatically when needed by
+ * the master.
  *
  * Returns: The newly created #GdlDockNotebook.
  */
@@ -527,7 +528,7 @@ gdl_dock_notebook_new (void)
     GdlDockNotebook *notebook;
 
     notebook = GDL_DOCK_NOTEBOOK (g_object_new (GDL_TYPE_DOCK_NOTEBOOK, NULL));
-    GDL_DOCK_OBJECT_UNSET_FLAGS (notebook, GDL_DOCK_AUTOMATIC);
+    gdl_dock_object_set_manual (GDL_DOCK_OBJECT (notebook));
 
     return GTK_WIDGET (notebook);
 }

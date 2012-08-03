@@ -352,7 +352,7 @@ gdl_dock_constructor (GType                  type,
         /* create a master for the dock if none was provided in the construction */
         master = GDL_DOCK_OBJECT_GET_MASTER (GDL_DOCK_OBJECT (dock));
         if (!master) {
-            GDL_DOCK_OBJECT_UNSET_FLAGS (dock, GDL_DOCK_AUTOMATIC);
+            gdl_dock_object_set_manual (GDL_DOCK_OBJECT (dock));
             master = g_object_new (GDL_TYPE_DOCK_MASTER, NULL);
             /* the controller owns the master ref */
             gdl_dock_object_bind (GDL_DOCK_OBJECT (dock), G_OBJECT (master));
@@ -705,7 +705,7 @@ gdl_dock_foreach_automatic (GdlDockObject *object,
 {
     void (* function) (GtkWidget *) = user_data;
 
-    if (GDL_DOCK_OBJECT_AUTOMATIC (object))
+    if (gdl_dock_object_is_automatic (object))
         (* function) (GTK_WIDGET (object));
 }
 
@@ -831,7 +831,7 @@ gdl_dock_reduce (GdlDockObject *object)
     if (dock->root)
         return;
 
-    if (GDL_DOCK_OBJECT_AUTOMATIC (dock)) {
+    if (gdl_dock_object_is_automatic (GDL_DOCK_OBJECT (dock))) {
         gtk_widget_destroy (GTK_WIDGET (dock));
 
     } else if (gdl_dock_object_is_closed (GDL_DOCK_OBJECT (dock))) {
@@ -1097,7 +1097,7 @@ gdl_dock_new (void)
     GObject *dock;
 
     dock = g_object_new (GDL_TYPE_DOCK, NULL);
-    GDL_DOCK_OBJECT_UNSET_FLAGS (dock, GDL_DOCK_AUTOMATIC);
+    gdl_dock_object_set_manual (GDL_DOCK_OBJECT (dock));
 
     return GTK_WIDGET (dock);
 }
@@ -1123,7 +1123,7 @@ gdl_dock_new_from (GdlDock  *original,
                              "master", GDL_DOCK_OBJECT_GET_MASTER (original),
                              "floating", floating,
                              NULL);
-    GDL_DOCK_OBJECT_UNSET_FLAGS (new_dock, GDL_DOCK_AUTOMATIC);
+    gdl_dock_object_set_manual (GDL_DOCK_OBJECT (new_dock));
 
     return GTK_WIDGET (new_dock);
 }
