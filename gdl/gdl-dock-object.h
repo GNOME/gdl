@@ -194,14 +194,18 @@ struct _GdlDockObjectClass {
 #define GDL_DOCK_OBJECT_AUTOMATIC(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_AUTOMATIC) != 0)
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_ATTACHED:
  * @obj: A #GdlDockObject
  *
  * Evaluates to %TRUE if the object has a parent.
+ *
+ * Deprecated: 3.6: Use !gdl_dock_object_is_closed()
  */
 #define GDL_DOCK_OBJECT_ATTACHED(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_ATTACHED) != 0)
+#endif
 
 /**
  * GDL_DOCK_OBJECT_IN_REFLOW:
@@ -292,6 +296,8 @@ void           gdl_dock_object_present           (GdlDockObject    *object,
 gboolean       gdl_dock_object_child_placement   (GdlDockObject    *object,
                                                   GdlDockObject    *child,
                                                   GdlDockPlacement *placement);
+
+gboolean       gdl_dock_object_is_closed         (GdlDockObject    *object);
 
 /* other types */
 

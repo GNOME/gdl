@@ -938,8 +938,29 @@ gdl_dock_object_child_placement (GdlDockObject    *object,
         return FALSE;
 }
 
+/* Access functions
+ *---------------------------------------------------------------------------*/
 
-/* ----- dock param type functions start here ------ */
+/**
+ * gdl_dock_object_is_closed:
+ * @object: The dock object to be checked
+ *
+ * Checks whether a given #GdlDockObject is closed. It can be only hidden and
+ * still in the widget hierarchy or detached.
+  * 
+ * Returns: %TRUE if the dock object is closed.
+ *
+ * Since: 3.6
+ */
+gboolean
+gdl_dock_object_is_closed (GdlDockObject *object)
+{
+    return (object->flags & GDL_DOCK_ATTACHED) == 0; 
+}
+
+
+/* Dock param type functions
+ *---------------------------------------------------------------------------*/
 
 static void
 gdl_dock_param_export_int (const GValue *src,
@@ -1073,7 +1094,10 @@ gdl_dock_param_get_type (void)
     return our_type;
 }
 
-/* -------------- nick <-> type conversion functions --------------- */
+
+
+/* Nick <-> Type conversion
+ *---------------------------------------------------------------------------*/
 
 static void
 gdl_dock_object_register_init (void)

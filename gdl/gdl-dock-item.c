@@ -782,7 +782,7 @@ gdl_dock_item_get_property  (GObject      *g_object,
             g_value_set_boolean (value, GDL_DOCK_ITEM_ICONIFIED (item));
             break;
         case PROP_CLOSED:
-            g_value_set_boolean (value, !GDL_DOCK_OBJECT_ATTACHED (item));
+            g_value_set_boolean (value, gdl_dock_item_is_closed (item));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (g_object, prop_id, pspec);
@@ -2271,7 +2271,7 @@ gdl_dock_item_show_item (GdlDockItem *item)
         
             toplevel = gdl_dock_master_get_controller
                             (GDL_DOCK_OBJECT_GET_MASTER (item));
-            if (toplevel == item) return;
+            if (toplevel == GDL_DOCK_OBJECT (item)) return;
         
             if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
                 g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
@@ -2396,8 +2396,8 @@ gdl_dock_item_is_placeholder (GdlDockItem *item)
  * gdl_dock_item_is_closed:
  * @item: The dock item to be checked
  *
- * Checks whether a given #GdlDockItem is closed: still in the widget hierarchy
- * and hidden or detached.
+ * Checks whether a given #GdlDockItem is closed. It can be only hidden or
+ * detached.
  * 
  * Returns: %TRUE if the dock item is closed.
  *
@@ -2406,7 +2406,7 @@ gdl_dock_item_is_placeholder (GdlDockItem *item)
 gboolean
 gdl_dock_item_is_closed (GdlDockItem      *item)
 {
-    return (GDL_DOCK_OBJECT_FLAGS (item) & GDL_DOCK_ATTACHED) == 0; 
+    return gdl_dock_object_is_closed (GDL_DOCK_OBJECT (item));
 }
 
 

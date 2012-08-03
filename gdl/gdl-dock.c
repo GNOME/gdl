@@ -834,7 +834,7 @@ gdl_dock_reduce (GdlDockObject *object)
     if (GDL_DOCK_OBJECT_AUTOMATIC (dock)) {
         gtk_widget_destroy (GTK_WIDGET (dock));
 
-    } else if (!GDL_DOCK_OBJECT_ATTACHED (dock)) {
+    } else if (gdl_dock_object_is_closed (GDL_DOCK_OBJECT (dock))) {
         /* if the user explicitly detached the object */
         if (dock->priv->floating)
             gtk_widget_hide (GTK_WIDGET (dock));
@@ -1304,7 +1304,7 @@ gdl_dock_add_item (GdlDock          *dock,
 
     /* Check if a placeholder widget already exist in the same dock */
     placeholder = gdl_dock_master_get_object (GDL_DOCK_OBJECT_GET_MASTER (dock), GDL_DOCK_OBJECT (item)->name);
-    if ((placeholder != item) && (placeholder != NULL)) {
+    if ((placeholder != GDL_DOCK_OBJECT (item)) && (placeholder != NULL)) {
         if (gdl_dock_object_get_toplevel (placeholder) == dock) {
             parent = gdl_dock_object_get_parent_object (placeholder);
         } else {

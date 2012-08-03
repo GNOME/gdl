@@ -91,9 +91,6 @@ void           gdl_dock_add_floating_item (GdlDock        *dock,
 GdlDockItem   *gdl_dock_get_item_by_name  (GdlDock     *dock,
                                            const gchar *name);
 
-GdlDockPlaceholder *gdl_dock_get_placeholder_by_name (GdlDock     *dock,
-                                                      const gchar *name);
-
 GList         *gdl_dock_get_named_items   (GdlDock    *dock);
 
 GdlDock       *gdl_dock_object_get_toplevel (GdlDockObject *object);
@@ -105,6 +102,9 @@ void           gdl_dock_hide_preview        (GdlDock       *dock);
 void           gdl_dock_set_skip_taskbar    (GdlDock       *dock,
                                              gboolean       skip);
 #ifndef GDL_DISABLE_DEPRECATED
+GdlDockPlaceholder *gdl_dock_get_placeholder_by_name (GdlDock     *dock,
+                                                      const gchar *name);
+
 void           gdl_dock_xor_rect            (GdlDock       *dock,
                                              GdkRectangle  *rect) G_GNUC_DEPRECATED_FOR(gdl_dock_show_preview);
 void           gdl_dock_xor_rect_hide        (GdlDock       *dock) G_GNUC_DEPRECATED_FOR(gdl_dock_hide_preview);
