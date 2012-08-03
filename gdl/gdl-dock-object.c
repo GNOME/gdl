@@ -501,10 +501,8 @@ gdl_dock_object_real_reduce (GdlDockObject *object)
 
             g_object_ref (child);
             gdl_dock_object_detach (child, FALSE);
-            GDL_DOCK_OBJECT_SET_FLAGS (child, GDL_DOCK_IN_REFLOW);
             if (parent)
                 dchildren = g_list_append (dchildren, child);
-            GDL_DOCK_OBJECT_UNSET_FLAGS (child, GDL_DOCK_IN_REFLOW);
         }
         /* Now it can be detached */
         gdl_dock_object_detach (object, FALSE);

@@ -736,7 +736,7 @@ item_dock_cb (GdlDockObject    *object,
     /* here we are in fact interested in the requestor, since it's
      * assumed that object will not change its visibility... for the
      * requestor, however, could mean that it's being shown */
-    if (!GDL_DOCK_OBJECT_IN_REFLOW (requestor) &&
+    if (!gdl_dock_object_is_frozen (requestor) &&
         !gdl_dock_object_is_automatic (requestor)) {
         if (!master->priv->idle_layout_changed_id)
             master->priv->idle_layout_changed_id =
@@ -754,7 +754,7 @@ item_detach_cb (GdlDockObject *object,
     g_return_if_fail (object && GDL_IS_DOCK_OBJECT (object));
     g_return_if_fail (master && GDL_IS_DOCK_MASTER (master));
 
-    if (!GDL_DOCK_OBJECT_IN_REFLOW (object) &&
+    if (!gdl_dock_object_is_frozen (object) &&
         !gdl_dock_object_is_automatic (object)) {
         if (!master->priv->idle_layout_changed_id)
             master->priv->idle_layout_changed_id =

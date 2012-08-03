@@ -211,14 +211,18 @@ struct _GdlDockObjectClass {
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_ATTACHED) != 0)
 #endif
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_IN_REFLOW:
  * @obj: A #GdlDockObject
  *
  * Evaluates to %TRUE if the object is currently rearranged.
+ *
+ * Deprecated: 3.6: Use gdl_dock_object_is_frozen()
  */
 #define GDL_DOCK_OBJECT_IN_REFLOW(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_IN_REFLOW) != 0)
+#endif
 
 #ifndef GDL_DISABLE_DEPRECATED
 /**

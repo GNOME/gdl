@@ -1591,7 +1591,6 @@ gdl_dock_item_dock (GdlDockObject    *object,
     {
         /* ref ourselves since we could be destroyed when detached */
         g_object_ref (object);
-        GDL_DOCK_OBJECT_SET_FLAGS (object, GDL_DOCK_IN_REFLOW);
         gdl_dock_object_detach (object, FALSE);
 
         /* freeze the new parent, so reduce won't get called before it's
@@ -1618,7 +1617,6 @@ gdl_dock_item_dock (GdlDockObject    *object,
 
         /* show automatic object */
         gtk_widget_show (GTK_WIDGET (new_parent));
-        GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_IN_REFLOW);
         gdl_dock_object_thaw (new_parent);
 
         /* use extra docking parameter */
