@@ -23,7 +23,7 @@
 #include <config.h>
 #endif
 
-#include "gdl-i18n.h"
+#include <glib/gi18n-lib.h>
 #include <stdlib.h>
 #include <string.h>
 

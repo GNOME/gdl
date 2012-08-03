@@ -25,7 +25,7 @@
 #include <config.h>
 #endif
 
-#include "gdl-i18n.h"
+#include <glib/gi18n-lib.h>
 
 #include "gdl-dock-master.h"
 #include "gdl-dock.h"

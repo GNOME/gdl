@@ -28,7 +28,7 @@
 #ifndef GDL_DISABLE_DEPRECATED
 #define GDL_DISABLE_DEPRECATION_WARNINGS
 
-#include "gdl-i18n.h"
+#include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 
 #include "gdl-dock-tablabel.h"

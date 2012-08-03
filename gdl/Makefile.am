@@ -34,8 +34,6 @@ libgdl_headers = \
 	
 libgdl_3_la_SOURCES = \
 	$(libgdl_headers) \
-	gdl-i18n.h \
-	gdl-i18n.c \
 	gdl-dock-object.c \
 	gdl-dock-master.c \
 	gdl-dock.c \

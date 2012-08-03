@@ -50,7 +50,7 @@ CFILE_GLOB=$(top_srcdir)/gdl/*.c
 
 # Header files to ignore when scanning.
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h
-IGNORE_HFILES=gdl-data-* gdl-i18n.h libgdl*
+IGNORE_HFILES=gdl-data-* libgdl*
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png
