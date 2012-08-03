@@ -37,10 +37,14 @@
  * @title: GdlDockBar
  * @short_description: A docking bar
  * @stability: Unstable
+ * @see_also: #GdlDockMaster
  *
- * A docking bar contains buttons representing minimized dock widgets.
- * The widget can be re-opened by clicking on it. A dock bar is associated
- * to one #GdlDock and will get all minimized widgets of this dock object.
+ * This docking bar is a widget containing a button for each iconified 
+ * #GdlDockItem widget. The widget can be re-opened by clicking on it.
+ * 
+ * A dock bar is associated with one #GdlDockMaster and will get all iconified
+ * widgets of this master. This can includes widgets from several #GdlDock
+ * objects.
  */
 
 
@@ -66,7 +70,7 @@ static void  gdl_dock_bar_set_property    (GObject         *object,
 static void  gdl_dock_bar_dispose         (GObject         *object);
 
 static void  gdl_dock_bar_attach          (GdlDockBar      *dockbar,
-                                           GdlDockMaster   *master);
+                                           GObject         *master);
 static void gdl_dock_bar_remove_item      (GdlDockBar      *dockbar,
                                            GdlDockItem     *item);
 
@@ -123,7 +127,7 @@ gdl_dock_bar_class_init (GdlDockBarClass *klass)
         g_param_spec_object ("master", _("Master"),
                              _("GdlDockMaster object which the dockbar widget "
                                "is attached to"),
-                             GDL_TYPE_DOCK_MASTER,
+                             G_TYPE_OBJECT,
                              G_PARAM_READWRITE));
 
     /**
@@ -409,10 +413,10 @@ gdl_dock_bar_layout_changed_cb (GdlDockMaster *master,
 
 static void
 gdl_dock_bar_attach (GdlDockBar    *dockbar,
-                     GdlDockMaster *master)
+                     GObject       *master)
 {
     g_return_if_fail (dockbar != NULL);
-    g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
+    g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master) || GDL_IS_DOCK_OBJECT (master));
 
     if (dockbar->priv->master) {
         g_signal_handler_disconnect (dockbar->priv->master,
@@ -420,7 +424,12 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
         g_object_unref (dockbar->priv->master);
     }
 
-    dockbar->priv->master = master;
+    /* Accept a GdlDockObject instead of a GdlDockMaster */
+    if (GDL_IS_DOCK_OBJECT (master)) {
+        master = gdl_dock_object_get_master (GDL_DOCK_OBJECT (master));
+    }
+    
+    dockbar->priv->master = (GdlDockMaster *)master;
     if (dockbar->priv->master) {
         g_object_ref (dockbar->priv->master);
         dockbar->priv->layout_changed_id =
@@ -435,20 +444,17 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
 
 /**
  * gdl_dock_bar_new:
- * @dock: The associated #GdlDock object
+ * @master: (allow-node): The associated #GdlDockMaster or #GdlDockObject object
  *
- * Creates a new GDL dock bar.
+ * Creates a new GDL dock bar. If a #GdlDockObject is used, the dock bar will
+ * be associated with the master of this object.
  *
  * Returns: The newly created dock bar.
  */
 GtkWidget *
-gdl_dock_bar_new (GdlDock *dock)
+gdl_dock_bar_new (GObject *master)
 {
-    GdlDockMaster *master = NULL;
-
-    /* get the master of the given dock */
-    if (dock)
-        master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
+    g_return_val_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master) || GDL_IS_DOCK_OBJECT (master), NULL);
 
     return g_object_new (GDL_TYPE_DOCK_BAR,
                          "master", master, NULL);
@@ -462,8 +468,10 @@ gdl_dock_bar_new (GdlDock *dock)
  * Set the style of the @dockbar.
  */
 void gdl_dock_bar_set_style(GdlDockBar* dockbar,
-			    GdlDockBarStyle style)
+                            GdlDockBarStyle style)
 {
+    g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
+
     g_object_set(G_OBJECT(dockbar), "dockbar-style", style, NULL);
 }
 
@@ -478,6 +486,10 @@ void gdl_dock_bar_set_style(GdlDockBar* dockbar,
 GdlDockBarStyle gdl_dock_bar_get_style(GdlDockBar* dockbar)
 {
     GdlDockBarStyle style;
+
+    g_return_if_fail (GDL_IS_DOCK_BAR (dockbar));
+
     g_object_get(G_OBJECT(dockbar), "dockbar-style", &style, NULL);
+
     return style;
 }

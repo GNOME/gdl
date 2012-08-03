@@ -205,7 +205,7 @@ main (int argc, char **argv)
 	layout = gdl_dock_layout_new (GDL_DOCK (dock));
 
 	/* create the dockbar */
-	dockbar = gdl_dock_bar_new (GDL_DOCK (dock));
+	dockbar = gdl_dock_bar_new (G_OBJECT (dock));
     gdl_dock_bar_set_style(GDL_DOCK_BAR(dockbar), GDL_DOCK_BAR_TEXT);
 
 	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);

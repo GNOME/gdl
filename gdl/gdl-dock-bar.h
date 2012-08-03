@@ -63,8 +63,9 @@ struct _GdlDockBar {
     GtkBox parent;
 
     /*< private >*/
+#ifndef GDL_DISABLE_DEPRECATED    
     GdlDock *dock;
-
+#endif
     GdlDockBarPrivate *priv;
 };
 
@@ -72,18 +73,18 @@ struct _GdlDockBarClass {
     GtkBoxClass parent_class;
 };
 
-GType      gdl_dock_bar_get_type            (void);
+GType           gdl_dock_bar_get_type       (void);
 
-GtkWidget *gdl_dock_bar_new                 (GdlDock     *dock);
+GtkWidget      *gdl_dock_bar_new            (GObject           *master);
 
-void           gdl_dock_bar_set_style       (GdlDockBar *dockbar,
-                                             GdlDockBarStyle style);
-GdlDockBarStyle gdl_dock_bar_get_style      (GdlDockBar *dockbar);
+void            gdl_dock_bar_set_style      (GdlDockBar        *dockbar,
+                                             GdlDockBarStyle    style);
+GdlDockBarStyle gdl_dock_bar_get_style      (GdlDockBar        *dockbar);
 
 #ifndef GDL_DISABLE_DEPRECATED
-GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar *dockbar) G_GNUC_DEPRECATED_FOR(gtk_orientable_get_orientation);
-void           gdl_dock_bar_set_orientation (GdlDockBar *dockbar,
-                                             GtkOrientation orientation) G_GNUC_DEPRECATED_FOR(gtk_orientable_set_orientation);
+GtkOrientation gdl_dock_bar_get_orientation (GdlDockBar        *dockbar) G_GNUC_DEPRECATED_FOR(gtk_orientable_get_orientation);
+void           gdl_dock_bar_set_orientation (GdlDockBar        *dockbar,
+                                             GtkOrientation     orientation) G_GNUC_DEPRECATED_FOR(gtk_orientable_set_orientation);
 #endif
 
 G_END_DECLS
