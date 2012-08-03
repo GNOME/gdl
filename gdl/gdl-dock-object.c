@@ -627,7 +627,8 @@ gdl_dock_object_get_parent_object (GdlDockObject *object)
  * @object: A #GdlDockObject
  *
  * Temporarily freezes a dock object, any call to reduce on the object has no
- * immediate effect.
+ * immediate effect. If gdl_dock_object_freeze() has been called more than once,
+ * gdl_dock_object_thaw() must be called an equal number of times.
  */
 void
 gdl_dock_object_freeze (GdlDockObject *object)
@@ -666,6 +667,25 @@ gdl_dock_object_thaw (GdlDockObject *object)
 }
 
 /**
+ * gdl_dock_object_is_frozen:
+ * @object: A #GdlDockObject
+ *
+ * Determine if an object is frozen and is not removed immediately from the
+ * widget hierarchy when it is reduced.
+ *
+ * Return value: %TRUE if the object is frozen.
+ *
+ * Since: 3.6
+ */
+gboolean
+gdl_dock_object_is_frozen (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), FALSE);
+
+    return object->freeze_count > 0;
+}
+
+/**
  * gdl_dock_object_reduce:
  * @object: A #GdlDockObject
  *
@@ -677,7 +697,7 @@ gdl_dock_object_reduce (GdlDockObject *object)
 {
     g_return_if_fail (object != NULL);
 
-    if (GDL_DOCK_OBJECT_FROZEN (object)) {
+    if (gdl_dock_object_is_frozen (object)) {
         object->reduce_pending = TRUE;
         return;
     }

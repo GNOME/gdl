@@ -250,13 +250,17 @@ struct _GdlDockObjectClass {
 #define GDL_DOCK_OBJECT_UNSET_FLAGS(obj,flag) \
     G_STMT_START { (GDL_DOCK_OBJECT_FLAGS (obj) &= ~(flag)); } G_STMT_END
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_FROZEN:
  * @obj: A #GdlDockObject
  *
  * Evaluates to %TRUE if the object is frozen.
+ *
+ * Deprecated: 3.6: Use gdl_dock_object_is_frozen()
  */
 #define GDL_DOCK_OBJECT_FROZEN(obj) (GDL_DOCK_OBJECT (obj)->freeze_count > 0)
+#endif
 
 
 /* public interface */
@@ -272,6 +276,7 @@ GdlDockObject *gdl_dock_object_get_parent_object (GdlDockObject    *object);
 
 void           gdl_dock_object_freeze            (GdlDockObject    *object);
 void           gdl_dock_object_thaw              (GdlDockObject    *object);
+gboolean       gdl_dock_object_is_frozen          (GdlDockObject    *object);
 
 void           gdl_dock_object_reduce            (GdlDockObject    *object);
 
