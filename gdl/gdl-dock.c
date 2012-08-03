@@ -398,7 +398,6 @@ gdl_dock_constructor (GType                  type,
                               G_CALLBACK (gdl_dock_floating_window_delete_event_cb),
                               NULL);
         }
-        GDL_DOCK_OBJECT_SET_FLAGS (dock, GDL_DOCK_ATTACHED);
     }
 
     return g_object;
@@ -780,7 +779,6 @@ gdl_dock_remove (GtkContainer *container,
 
     if (GTK_WIDGET (dock->root) == widget) {
         dock->root = NULL;
-        GDL_DOCK_OBJECT_UNSET_FLAGS (widget, GDL_DOCK_ATTACHED);
         gtk_widget_unparent (widget);
 
         if (was_visible && gtk_widget_get_visible (GTK_WIDGET (container)))
@@ -822,7 +820,6 @@ gdl_dock_detach (GdlDockObject *object,
     if (recursive && dock->root) {
         gdl_dock_object_detach (dock->root, recursive);
     }
-    GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_ATTACHED);
 }
 
 static void
@@ -978,7 +975,6 @@ gdl_dock_dock (GdlDockObject    *object,
         GtkWidget *widget = GTK_WIDGET (requestor);
 
         dock->root = requestor;
-        GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
         gtk_widget_set_parent (widget, GTK_WIDGET (dock));
 
         gdl_dock_item_show_grip (GDL_DOCK_ITEM (requestor));

@@ -313,7 +313,7 @@ gdl_dock_item_grip_iconify_clicked (GtkWidget       *widget,
         for (node = items; node != NULL; node = node->next)
         {
             GdlDockItem *item = GDL_DOCK_ITEM (node->data);
-            if (!GDL_DOCK_ITEM_CANT_ICONIFY (item))
+            if (!GDL_DOCK_ITEM_CANT_ICONIFY (item) && !gdl_dock_item_is_closed (item))
                 gdl_dock_item_iconify_item (item);
         }
         g_list_free (items);

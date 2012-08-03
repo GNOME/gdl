@@ -301,11 +301,11 @@ void           gdl_dock_item_bind              (GdlDockItem *item,
 
 void           gdl_dock_item_unbind            (GdlDockItem *item);
 
-void           gdl_dock_item_hide_item         (GdlDockItem *item);
+void           gdl_dock_item_hide_item         (GdlDockItem      *item);
 
 void           gdl_dock_item_iconify_item      (GdlDockItem *item);
 
-void           gdl_dock_item_show_item         (GdlDockItem *item);
+void           gdl_dock_item_show_item         (GdlDockItem      *item);
 
 void           gdl_dock_item_lock              (GdlDockItem *item);
 
@@ -321,7 +321,7 @@ gboolean    gdl_dock_item_or_child_has_focus  (GdlDockItem      *item);
 
 gboolean    gdl_dock_item_is_placeholder       (GdlDockItem      *item);
 
-gboolean    gdl_dock_item_is_closed            (GdlDockItem      *item);
+gboolean       gdl_dock_item_is_closed         (GdlDockItem      *item);
 
 G_END_DECLS
 

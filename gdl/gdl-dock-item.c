@@ -739,10 +739,8 @@ gdl_dock_item_set_property  (GObject      *g_object,
             break;
         case PROP_CLOSED:
             if (g_value_get_boolean (value)) {
-                GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ATTACHED);
                 gtk_widget_hide (GTK_WIDGET (item));
             } else {
-                GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ATTACHED);
                 if (!GDL_DOCK_ITEM_ICONIFIED (item) && !gdl_dock_item_is_placeholder (item))
                     gtk_widget_show (GTK_WIDGET (item));
 	    }
@@ -2226,13 +2224,12 @@ gdl_dock_item_unbind (GdlDockItem *item)
  * are hidden they are not removed from the layout.
  *
  * The dock item close button causes the panel to be hidden.
- **/
+ */
 void
 gdl_dock_item_hide_item (GdlDockItem *item)
 {
     g_return_if_fail (item != NULL);
 
-    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ATTACHED);
     gtk_widget_hide (GTK_WIDGET (item));
     return;
 }
@@ -2293,7 +2290,6 @@ gdl_dock_item_show_item (GdlDockItem *item)
     }
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
-    GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_ATTACHED);
     gtk_widget_show (GTK_WIDGET (item));
 
     return;

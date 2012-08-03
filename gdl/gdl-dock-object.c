@@ -419,6 +419,7 @@ gdl_dock_object_foreach_automatic (GdlDockObject *object,
 static void
 gdl_dock_object_show (GtkWidget *widget)
 {
+    GDL_DOCK_OBJECT_SET_FLAGS (widget, GDL_DOCK_ATTACHED);
     GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->show (widget);
 
     /* Update visibility of automatic parents */
@@ -428,6 +429,7 @@ gdl_dock_object_show (GtkWidget *widget)
 static void
 gdl_dock_object_hide (GtkWidget *widget)
 {
+   GDL_DOCK_OBJECT_UNSET_FLAGS (widget, GDL_DOCK_ATTACHED);
    GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->hide (widget);
 
     /* Update visibility of automatic parents */
