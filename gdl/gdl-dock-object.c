@@ -491,8 +491,6 @@ gdl_dock_object_real_reduce (GdlDockObject *object)
          * is going to be detached. */
 
 
-        GDL_DOCK_OBJECT_SET_FLAGS (object, GDL_DOCK_IN_DETACH);
-
         for (l = children; l; l = l->next) {
             GdlDockObject *child;
 
@@ -593,9 +591,7 @@ gdl_dock_object_detach (GdlDockObject *object,
 
     /* freeze the object to avoid reducing while detaching children */
     gdl_dock_object_freeze (object);
-    GDL_DOCK_OBJECT_SET_FLAGS (object, GDL_DOCK_IN_DETACH);
     g_signal_emit (object, gdl_dock_object_signals [DETACH], 0, recursive);
-    GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_IN_DETACH);
     gdl_dock_object_thaw (object);
 }
 

@@ -220,14 +220,18 @@ struct _GdlDockObjectClass {
 #define GDL_DOCK_OBJECT_IN_REFLOW(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_IN_REFLOW) != 0)
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_IN_DETACH:
  * @obj: A #GdlDockObject
  *
  * Evaluates to %TRUE if the object will be detached.
+ *
+ * Deprecated: 3.6: This flag is no longer available
  */
 #define GDL_DOCK_OBJECT_IN_DETACH(obj) \
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_IN_DETACH) != 0)
+#endif
 
 /**
  * GDL_DOCK_OBJECT_SET_FLAGS:
