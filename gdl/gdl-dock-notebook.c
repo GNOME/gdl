@@ -283,10 +283,8 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
     notebook = GDL_DOCK_NOTEBOOK (data);
     current_page = gtk_notebook_get_current_page (nb);
 
-    if (GDL_DOCK_ITEM_USER_ACTION (notebook) &&
-        GDL_DOCK_OBJECT (notebook)->master)
-        g_signal_emit_by_name (GDL_DOCK_OBJECT (notebook)->master,
-                               "layout-changed");
+    if (GDL_DOCK_ITEM_USER_ACTION (notebook))
+        gdl_dock_object_layout_changed_notify (GDL_DOCK_OBJECT (notebook));
 
     /* Signal that the old dock has been deselected */
     current_item = GDL_DOCK_ITEM (gtk_notebook_get_nth_page (nb, current_page));

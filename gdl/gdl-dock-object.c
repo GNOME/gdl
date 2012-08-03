@@ -266,19 +266,16 @@ gdl_dock_object_set_property  (GObject      *g_object,
 
     switch (prop_id) {
     case PROP_NAME:
-        g_free (object->name);
-        object->name = g_value_dup_string (value);
+        gdl_dock_object_set_name (object, g_value_get_string (value));   
         break;
     case PROP_LONG_NAME:
-        g_free (object->long_name);
-        object->long_name = g_value_dup_string (value);
+        gdl_dock_object_set_long_name (object, g_value_get_string (value));   
         break;
     case PROP_STOCK_ID:
-        g_free (object->stock_id);
-        object->stock_id = g_value_dup_string (value);
+        gdl_dock_object_set_stock_id (object, g_value_get_string (value));   
         break;
     case PROP_PIXBUF_ICON:
-        object->pixbuf_icon = g_value_get_pointer (value);
+        gdl_dock_object_set_pixbuf (object,  g_value_get_pointer (value));   
         break;
     case PROP_MASTER:
         if (g_value_get_object (value))
@@ -402,8 +399,7 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
                 GDL_DOCK_OBJECT_UNSET_FLAGS (parent, GDL_DOCK_ATTACHED);
         gtk_widget_set_visible (GTK_WIDGET (parent), visible);
     }
-    if (object->master)
-        g_signal_emit_by_name (object->master, "layout-changed");
+    gdl_dock_object_layout_changed_notify (object);
 }
 
 static void
@@ -865,6 +861,59 @@ gdl_dock_object_is_bound (GdlDockObject *object)
 }
 
 /**
+ * gdl_dock_object_get_master:
+ * @object: a #GdlDockObject
+ *
+ * Retrieves the master of the object.
+ *
+ * Return value: (transfer none): a #GdlDockMaster object
+ *
+ * Since: 3.6
+ */
+GObject *
+gdl_dock_object_get_master (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
+
+    return object->master;
+}
+
+/**
+ * gdl_dock_object_get_controller:
+ * @object: a #GdlDockObject
+ *
+ * Retrieves the controller of the object.
+ *
+ * Return value: (transfer none): a #GdlDockObject object
+ *
+ * Since: 3.6
+ */
+GdlDockObject *
+gdl_dock_object_get_controller (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
+
+    return gdl_dock_master_get_controller (GDL_DOCK_MASTER (object->master));
+}
+
+/**
+ * gdl_dock_object_layout_changed_notify:
+ * @object: a #GdlDockObject
+ *
+ * Emits the #GdlDockMaster::layout-changed signal on the master of the object
+ * if existing.
+ *
+ * Since: 3.6
+ **/
+void
+gdl_dock_object_layout_changed_notify (GdlDockObject *object)
+{
+    if (object->master)
+        g_signal_emit_by_name (object->master, "layout-changed");
+}
+
+
+/**
  * gdl_dock_object_reorder:
  * @object: A #GdlDockObject
  * @child: The child widget to reorder
@@ -1007,6 +1056,156 @@ gdl_dock_object_set_manual (GdlDockObject *object)
     g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
 
     object->flags &= ~GDL_DOCK_AUTOMATIC;
+}
+
+/**
+ * gdl_dock_object_get_name:
+ * @object: a #GdlDockObject
+ *
+ * Retrieves the name of the object. This name is used to identify the object.
+ *
+ * Return value: the name of the object.
+ *
+ * Since: 3.6
+ */
+const gchar *
+gdl_dock_object_get_name (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
+
+    return object->name;
+}
+
+/**
+ * gdl_dock_object_set_name:
+ * @object: a #GdlDockObject
+ * @name: a name for the object
+ *
+ * Set the name of the object used to identify it.
+ *
+ * Since: 3.6
+ */
+void
+gdl_dock_object_set_name (GdlDockObject *object,
+                          const gchar *name)
+{
+    g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
+
+    g_free (object->name);
+    object->name = g_strdup (name);
+}
+
+/**
+ * gdl_dock_object_get_long_name:
+ * @object: a #GdlDockObject
+ *
+ * Retrieves the long name of the object. This name is an human readable string
+ * which can be displayed in the user interface.
+ *
+ * Return value: the name of the object.
+ *
+ * Since: 3.6
+ */
+const gchar *
+gdl_dock_object_get_long_name (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
+
+    return object->long_name;
+}
+
+/**
+ * gdl_dock_object_set_long_name:
+ * @object: a #GdlDockObject
+ * @name: a name for the object
+ *
+ * Set the long name of the object. This name is an human readable string
+ * which can be displayed in the user interface.
+ *
+ * Since: 3.6
+ */
+void
+gdl_dock_object_set_long_name (GdlDockObject *object,
+                               const gchar *name)
+{
+    g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
+
+    g_free (object->long_name);
+    object->long_name = g_strdup (name);
+}
+
+/**
+ * gdl_dock_object_get_stock_id:
+ * @object: a #GdlDockObject
+ *
+ * Retrieves the a stock id used as the object icon.
+ *
+ * Return value: A stock id corresponding to the object icon.
+ *
+ * Since: 3.6
+ */
+const gchar *
+gdl_dock_object_get_stock_id (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
+
+    return object->stock_id;
+}
+
+/**
+ * gdl_dock_object_set_stock_id:
+ * @object: a #GdlDockObject
+ * @stock_id: a stock id
+ *
+ * Set an icon for the dock object using a stock id.
+ *
+ * Since: 3.6
+ */
+void
+gdl_dock_object_set_stock_id (GdlDockObject *object,
+                              const gchar *stock_id)
+{
+    g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
+
+    g_free (object->stock_id);
+    object->stock_id = g_strdup (stock_id);
+}
+
+/**
+ * gdl_dock_object_get_pixbuf:
+ * @object: a #GdlDockObject
+ *
+ * Retrieves a pixbuf used as the dock object icon.
+ *
+ * Return value: (transfer none): icon for dock object
+ *
+ * Since: 3.6
+ */
+GdkPixbuf *
+gdl_dock_object_get_pixbuf (GdlDockObject *object)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
+
+    return object->pixbuf_icon;
+}
+
+/**
+ * gdl_dock_object_set_pixbuf:
+ * @object: a #GdlDockObject
+ * @icon: (allow-none): a icon or %NULL
+ *
+ * Set a icon for a dock object using a #GdkPixbuf.
+ *
+ * Since: 3.6
+ */
+void
+gdl_dock_object_set_pixbuf (GdlDockObject *object,
+                            GdkPixbuf *icon)
+{
+    g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
+    g_return_if_fail (icon == NULL || GDK_IS_PIXBUF (icon));
+
+    object->pixbuf_icon =icon;
 }
 
 

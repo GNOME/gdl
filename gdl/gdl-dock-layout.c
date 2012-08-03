@@ -556,7 +556,7 @@ gdl_dock_layout_new (GdlDock *dock)
 
     /* get the master of the given dock */
     if (dock)
-        master = GDL_DOCK_OBJECT_GET_MASTER (dock);
+        master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
 
     return g_object_new (GDL_TYPE_DOCK_LAYOUT,
                          "master", master,

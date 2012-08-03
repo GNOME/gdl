@@ -265,7 +265,7 @@ gdl_dock_bar_item_clicked (GtkWidget   *button,
     g_assert (dockbar != NULL);
     g_object_set_data (G_OBJECT (item), "GdlDockBar", NULL);
 
-    controller = gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (item));
+    controller = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (item));
 
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
     gdl_dock_item_show_item (item);
@@ -448,7 +448,7 @@ gdl_dock_bar_new (GdlDock *dock)
 
     /* get the master of the given dock */
     if (dock)
-        master = GDL_DOCK_OBJECT_GET_MASTER (dock);
+        master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
 
     return g_object_new (GDL_TYPE_DOCK_BAR,
                          "master", master, NULL);

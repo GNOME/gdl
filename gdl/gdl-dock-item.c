@@ -693,9 +693,7 @@ gdl_dock_item_set_property  (GObject      *g_object,
             item->behavior = g_value_get_flags (value);
 
             if ((old_beh ^ item->behavior) & GDL_DOCK_ITEM_BEH_LOCKED) {
-                if (GDL_DOCK_OBJECT_GET_MASTER (item))
-                    g_signal_emit_by_name (GDL_DOCK_OBJECT_GET_MASTER (item),
-                                           "layout-changed");
+                gdl_dock_object_layout_changed_notify (GDL_DOCK_OBJECT (item));
                 g_object_notify (g_object, "locked");
                 gdl_dock_item_showhide_grip (item);
             }
@@ -715,9 +713,7 @@ gdl_dock_item_set_property  (GObject      *g_object,
                 gdl_dock_item_showhide_grip (item);
                 g_object_notify (g_object, "behavior");
 
-                if (GDL_DOCK_OBJECT_GET_MASTER (item))
-                    g_signal_emit_by_name (GDL_DOCK_OBJECT_GET_MASTER (item),
-                                           "layout-changed");
+                gdl_dock_object_layout_changed_notify (GDL_DOCK_OBJECT (item));
             }
             break;
         }
@@ -1598,7 +1594,7 @@ gdl_dock_item_dock (GdlDockObject    *object,
         gdl_dock_object_freeze (new_parent);
 
         /* bind the new parent to our master, so the following adds work */
-        gdl_dock_object_bind (new_parent, G_OBJECT (GDL_DOCK_OBJECT_GET_MASTER (object)));
+        gdl_dock_object_bind (new_parent, gdl_dock_object_get_master (GDL_DOCK_OBJECT (object)));
 
         /* add the objects */
         if (add_ourselves_first) {
@@ -1810,11 +1806,8 @@ static void
 gdl_dock_item_hide_cb (GtkWidget   *widget,
                        GdlDockItem *item)
 {
-    GdlDockMaster *master;
-
     g_return_if_fail (item != NULL);
 
-    master = GDL_DOCK_OBJECT_GET_MASTER (item);
     gdl_dock_item_hide_item (item);
 }
 
@@ -1998,7 +1991,7 @@ gdl_dock_item_dock_to (GdlDockItem      *item,
             return;
         }
 
-        controller = gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (item));
+        controller = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (item));
 
         /* FIXME: save previous docking position for later
            re-docking... does this make sense now? */
@@ -2196,7 +2189,7 @@ gdl_dock_item_bind (GdlDockItem *item,
     g_return_if_fail (dock == NULL || GDL_IS_DOCK (dock));
 
     gdl_dock_object_bind (GDL_DOCK_OBJECT (item),
-                          G_OBJECT (GDL_DOCK_OBJECT_GET_MASTER (dock)));
+                          gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
 }
 
 /* convenient function (and to preserve source compat) */
@@ -2267,23 +2260,22 @@ gdl_dock_item_show_item (GdlDockItem *item)
         if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
             GdlDockObject *toplevel;
         
-            toplevel = gdl_dock_master_get_controller
-                            (GDL_DOCK_OBJECT_GET_MASTER (item));
+            toplevel = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (item));
             if (toplevel == GDL_DOCK_OBJECT (item)) return;
         
             if (item->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
                 g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
-                          GDL_DOCK_OBJECT(item)->name);
+                          gdl_dock_object_get_name (GDL_DOCK_OBJECT (item)));
                 return;
             } else if (toplevel) {
                 gdl_dock_object_dock (toplevel, GDL_DOCK_OBJECT (item),
                                       GDL_DOCK_FLOATING, NULL);
             } else
-                g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", GDL_DOCK_OBJECT(item)->name);
+                g_warning("There is no toplevel window. GdlDockItem %s cannot be shown.\n", gdl_dock_object_get_name (GDL_DOCK_OBJECT (item)));
                 return;
         } else
             g_warning("GdlDockItem %s is not bound. It cannot be shown.\n",
-                      GDL_DOCK_OBJECT(item)->name);
+                      gdl_dock_object_get_name (GDL_DOCK_OBJECT (item)));
             return;
     }
 

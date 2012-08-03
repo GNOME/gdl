@@ -350,7 +350,7 @@ gdl_dock_constructor (GType                  type,
         GdlDockMaster *master;
 
         /* create a master for the dock if none was provided in the construction */
-        master = GDL_DOCK_OBJECT_GET_MASTER (GDL_DOCK_OBJECT (dock));
+        master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
         if (!master) {
             gdl_dock_object_set_manual (GDL_DOCK_OBJECT (dock));
             master = g_object_new (GDL_TYPE_DOCK_MASTER, NULL);
@@ -416,8 +416,8 @@ gdl_dock_set_property  (GObject      *object,
             dock->priv->floating = g_value_get_boolean (value);
             break;
         case PROP_DEFAULT_TITLE:
-            if (GDL_DOCK_OBJECT (object)->master)
-                g_object_set (GDL_DOCK_OBJECT (object)->master,
+            if (gdl_dock_object_get_master (GDL_DOCK_OBJECT (object)) != NULL)
+                g_object_set (gdl_dock_object_get_master (GDL_DOCK_OBJECT (object)),
                               "default-title", g_value_get_string (value),
                               NULL);
             break;
@@ -468,9 +468,9 @@ gdl_dock_get_property  (GObject      *object,
             g_value_set_boolean (value, dock->priv->floating);
             break;
         case PROP_DEFAULT_TITLE:
-            if (GDL_DOCK_OBJECT (object)->master) {
+            if (gdl_dock_object_get_master (GDL_DOCK_OBJECT (object)) != NULL) {
                 gchar *default_title;
-                g_object_get (GDL_DOCK_OBJECT (object)->master,
+                g_object_get (gdl_dock_object_get_master (GDL_DOCK_OBJECT (object)),
                               "default-title", &default_title,
                               NULL);
 
@@ -529,11 +529,11 @@ gdl_dock_set_title (GdlDock *dock)
     if (!dock->priv->window)
         return;
 
-    if (!dock->priv->auto_title && object->long_name) {
-        title = object->long_name;
+    if (!dock->priv->auto_title && gdl_dock_object_get_long_name (object)) {
+        title = g_strdup (gdl_dock_object_get_long_name (object));
     }
-    else if (object->master) {
-        g_object_get (object->master, "default-title", &title, NULL);
+    else if (gdl_dock_object_get_master (object) != NULL) {
+        g_object_get (G_OBJECT (gdl_dock_object_get_master (object)), "default-title", &title, NULL);
     }
 
     if (!title && dock->root) {
@@ -544,7 +544,7 @@ gdl_dock_set_title (GdlDock *dock)
         /* set a default title in the long_name */
         dock->priv->auto_title = TRUE;
         title = g_strdup_printf (
-            _("Dock #%d"), GDL_DOCK_MASTER (object->master)->dock_number++);
+            _("Dock #%d"), GDL_DOCK_MASTER (gdl_dock_object_get_master (object))->dock_number++);
     }
 
     gtk_window_set_title (GTK_WINDOW (dock->priv->window), title);
@@ -713,6 +713,7 @@ static void
 gdl_dock_show (GtkWidget *widget)
 {
     GdlDock *dock;
+    GdlDockMaster *master;
 
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
@@ -723,8 +724,9 @@ gdl_dock_show (GtkWidget *widget)
     if (dock->priv->floating && dock->priv->window)
         gtk_widget_show (dock->priv->window);
 
-    if (GDL_DOCK_IS_CONTROLLER (dock)) {
-        gdl_dock_master_foreach_toplevel (GDL_DOCK_OBJECT_GET_MASTER (dock),
+    master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
+    if (GDL_DOCK (gdl_dock_master_get_controller (master)) == dock) {
+        gdl_dock_master_foreach_toplevel (master,
                                           FALSE, (GFunc) gdl_dock_foreach_automatic,
                                           gtk_widget_show);
     }
@@ -734,6 +736,7 @@ static void
 gdl_dock_hide (GtkWidget *widget)
 {
     GdlDock *dock;
+    GdlDockMaster *master;
 
     g_return_if_fail (widget != NULL);
     g_return_if_fail (GDL_IS_DOCK (widget));
@@ -744,8 +747,9 @@ gdl_dock_hide (GtkWidget *widget)
     if (dock->priv->floating && dock->priv->window)
         gtk_widget_hide (dock->priv->window);
 
-    if (GDL_DOCK_IS_CONTROLLER (dock)) {
-        gdl_dock_master_foreach_toplevel (GDL_DOCK_OBJECT_GET_MASTER (dock),
+    master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
+    if (GDL_DOCK (gdl_dock_master_get_controller (master)) == dock) {
+        gdl_dock_master_foreach_toplevel (master,
                                           FALSE, (GFunc) gdl_dock_foreach_automatic,
                                           gtk_widget_hide);
     }
@@ -1120,7 +1124,7 @@ gdl_dock_new_from (GdlDock  *original,
     g_return_val_if_fail (original != NULL, NULL);
 
     new_dock = g_object_new (GDL_TYPE_DOCK,
-                             "master", GDL_DOCK_OBJECT_GET_MASTER (original),
+                             "master", gdl_dock_object_get_master (GDL_DOCK_OBJECT (original)),
                              "floating", floating,
                              NULL);
     gdl_dock_object_set_manual (GDL_DOCK_OBJECT (new_dock));
@@ -1303,7 +1307,7 @@ gdl_dock_add_item (GdlDock          *dock,
     g_return_if_fail (item != NULL);
 
     /* Check if a placeholder widget already exist in the same dock */
-    placeholder = gdl_dock_master_get_object (GDL_DOCK_OBJECT_GET_MASTER (dock), GDL_DOCK_OBJECT (item)->name);
+    placeholder = gdl_dock_master_get_object (GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock))), gdl_dock_object_get_name (GDL_DOCK_OBJECT (item)));
     if ((placeholder != GDL_DOCK_OBJECT (item)) && (placeholder != NULL)) {
         if (gdl_dock_object_get_toplevel (placeholder) == dock) {
             parent = gdl_dock_object_get_parent_object (placeholder);
@@ -1375,7 +1379,7 @@ gdl_dock_add_floating_item (GdlDock        *dock,
     g_return_if_fail (item != NULL);
 
     new_dock = GDL_DOCK (g_object_new (GDL_TYPE_DOCK,
-                                       "master", GDL_DOCK_OBJECT_GET_MASTER (dock),
+                                       "master", gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)),
                                        "floating", TRUE,
                                        "width", width,
                                        "height", height,
@@ -1415,7 +1419,7 @@ gdl_dock_get_item_by_name (GdlDock     *dock,
     g_return_val_if_fail (dock != NULL && name != NULL, NULL);
 
     /* proxy the call to our master */
-    found = gdl_dock_master_get_object (GDL_DOCK_OBJECT_GET_MASTER (dock), name);
+    found = gdl_dock_master_get_object (GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock))), name);
 
     return (found && GDL_IS_DOCK_ITEM (found)) ? GDL_DOCK_ITEM (found) : NULL;
 }
@@ -1437,7 +1441,7 @@ gdl_dock_get_named_items (GdlDock *dock)
 
     g_return_val_if_fail (dock != NULL, NULL);
 
-    gdl_dock_master_foreach (GDL_DOCK_OBJECT_GET_MASTER (dock),
+    gdl_dock_master_foreach (GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock))),
                              (GFunc) _gdl_dock_foreach_build_list, &list);
 
     return list;

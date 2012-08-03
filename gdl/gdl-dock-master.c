@@ -272,11 +272,11 @@ _gdl_dock_master_remove (GdlDockObject *object,
                                           0, 0, NULL, NULL, master);
 
     /* unref the object from the hash if it's there */
-    if (object->name) {
+    if (gdl_dock_object_get_name (object) != NULL) {
         GdlDockObject *found_object;
-        found_object = g_hash_table_lookup (master->dock_objects, object->name);
+        found_object = g_hash_table_lookup (master->dock_objects, gdl_dock_object_get_name (object));
         if (found_object == object) {
-            g_hash_table_remove (master->dock_objects, object->name);
+            g_hash_table_remove (master->dock_objects, gdl_dock_object_get_name (object));
             g_object_unref (object);
         }
     }
@@ -531,7 +531,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
         gdk_window_get_user_data (window, (gpointer) &widget);
         if (GTK_IS_WIDGET (widget)) {
             while (widget && (!GDL_IS_DOCK (widget) ||
-	           GDL_DOCK_OBJECT_GET_MASTER (widget) != master))
+	          gdl_dock_object_get_master (GDL_DOCK_OBJECT (widget)) != G_OBJECT (master)))
                 widget = gtk_widget_get_parent (widget);
             if (widget) {
                 gint win_w, win_h;
@@ -804,20 +804,23 @@ gdl_dock_master_add (GdlDockMaster *master,
         GdlDockObject *found_object;
 
         /* create a name for the object if it doesn't have one */
-        if (!object->name)
+        if (gdl_dock_object_get_name (object) == NULL) {
             /* directly set the name, since it's a construction only
                property */
-            object->name = g_strdup_printf ("__dock_%u", master->priv->number++);
+            gchar *name = g_strdup_printf ("__dock_%u", master->priv->number++);
+            gdl_dock_object_set_name (object, name);
+            g_free (name);
+        }
 
         /* add the object to our hash list */
-        if ((found_object = g_hash_table_lookup (master->dock_objects, object->name))) {
+        if ((found_object = g_hash_table_lookup (master->dock_objects, gdl_dock_object_get_name (object)))) {
             g_warning (_("master %p: unable to add object %p[%s] to the hash.  "
                          "There already is an item with that name (%p)."),
-                       master, object, object->name, found_object);
+                       master, object, gdl_dock_object_get_name (object), found_object);
         }
         else {
             g_object_ref_sink (object);
-            g_hash_table_insert (master->dock_objects, g_strdup (object->name), object);
+            g_hash_table_insert (master->dock_objects, g_strdup (gdl_dock_object_get_name (object)), object);
         }
     }
 

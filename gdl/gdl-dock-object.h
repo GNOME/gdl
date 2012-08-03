@@ -130,6 +130,7 @@ struct _GdlDockRequest {
 struct _GdlDockObject {
     GtkContainer        container;
 
+    /* private */
     GdlDockObjectFlags  flags;
     gint                freeze_count;
 
@@ -301,6 +302,9 @@ void           gdl_dock_object_bind              (GdlDockObject    *object,
                                                   GObject          *master);
 void           gdl_dock_object_unbind            (GdlDockObject    *object);
 gboolean       gdl_dock_object_is_bound          (GdlDockObject    *object);
+GObject       *gdl_dock_object_get_master        (GdlDockObject    *object);
+GdlDockObject *gdl_dock_object_get_controller    (GdlDockObject    *object);
+void           gdl_dock_object_layout_changed_notify (GdlDockObject *object);
 
 gboolean       gdl_dock_object_reorder           (GdlDockObject    *object,
                                                   GdlDockObject    *child,
@@ -318,6 +322,20 @@ gboolean       gdl_dock_object_is_closed         (GdlDockObject    *object);
 
 gboolean       gdl_dock_object_is_automatic      (GdlDockObject    *object);
 void           gdl_dock_object_set_manual        (GdlDockObject    *object);
+
+const gchar   *gdl_dock_object_get_name          (GdlDockObject    *object);
+void           gdl_dock_object_set_name          (GdlDockObject    *object,
+                                                  const gchar      *name);
+const gchar   *gdl_dock_object_get_long_name     (GdlDockObject    *object);
+void           gdl_dock_object_set_long_name     (GdlDockObject    *object,
+                                                  const gchar      *name);
+const gchar   *gdl_dock_object_get_stock_id      (GdlDockObject    *object);
+void           gdl_dock_object_set_stock_id      (GdlDockObject    *object,
+                                                  const gchar      *stock_id);
+GdkPixbuf     *gdl_dock_object_get_pixbuf        (GdlDockObject    *object);
+void           gdl_dock_object_set_pixbuf        (GdlDockObject    *object,
+                                                  GdkPixbuf        *icon);
+
 
 /* other types */
 

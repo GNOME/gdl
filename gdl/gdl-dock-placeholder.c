@@ -516,7 +516,7 @@ gdl_dock_placeholder_dock (GdlDockObject    *object,
         }
         
         /* dock the item as a floating of the controller */
-        toplevel = gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (ph));
+        toplevel = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (ph));
         gdl_dock_object_dock (toplevel, requestor,
                               GDL_DOCK_FLOATING, NULL);
     }
@@ -684,7 +684,7 @@ detach_cb (GdlDockObject *object,
 #endif
         /* the toplevel was detached: we attach ourselves to the
            controller with an initial placement of floating */
-        new_host = gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (ph));
+        new_host = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (ph));
         
         /*
         ph->priv->placement_stack = g_slist_prepend (
