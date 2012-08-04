@@ -1175,7 +1175,7 @@ gdl_dock_item_move_focus_child (GdlDockItem      *item,
 }
 
 #define EVENT_IN_GRIP_EVENT_WINDOW(ev,gr) \
-    ((gr) != NULL && (ev)->window == GDL_DOCK_ITEM_GRIP (gr)->title_window)
+    ((gr) != NULL && gdl_dock_item_grip_has_event (GDL_DOCK_ITEM_GRIP (gr), (GdkEvent *)(ev)))
 
 static gint
 gdl_dock_item_button_changed (GtkWidget      *widget,
@@ -1183,7 +1183,6 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
 {
     GdlDockItem *item;
     GtkAllocation allocation;
-    GdkCursor   *cursor;
     gboolean     locked;
     gboolean     event_handled;
     gboolean     in_handle;
@@ -1229,11 +1228,7 @@ gdl_dock_item_button_changed (GtkWidget      *widget,
 
             GDL_DOCK_OBJECT_SET_FLAGS (item, GDL_DOCK_IN_PREDRAG);
 
-            cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
-                                                 GDK_FLEUR);
-            gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
-                                   cursor);
-            g_object_unref (cursor);
+            gdl_dock_item_grip_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip), TRUE);
 
             event_handled = TRUE;
         };
@@ -1745,19 +1740,8 @@ gdl_dock_item_drag_end (GdlDockItem *item,
         return FALSE;
     }
 
-    /* We check the window since if the item could have been redocked and have
-     * been unrealized, maybe it's not realized again yet */
-    if (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window)
-    {
-        /* Restore old cursor */
-        GdkCursor *cursor;
-
-        cursor = gdk_cursor_new_for_display (gtk_widget_get_display (GTK_WIDGET (item)),
-                                             GDK_HAND2);
-        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window,
-                               cursor);
-        g_object_unref (cursor);
-    }
+    /* Restore old cursor */
+    gdl_dock_item_grip_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip), FALSE);
 
     return TRUE;
 }
@@ -1832,25 +1816,15 @@ gdl_dock_item_unlock_cb (GtkWidget   *widget,
 static void
 gdl_dock_item_showhide_grip (GdlDockItem *item)
 {
-    GdkDisplay *display;
-    GdkCursor *cursor;
-
     gdl_dock_item_detach_menu (GTK_WIDGET (item), NULL);
-    display = gtk_widget_get_display (GTK_WIDGET (item));
-    cursor = NULL;
 
     if (item->priv->grip) {
         if (GDL_DOCK_ITEM_GRIP_SHOWN (item) &&
             GDL_DOCK_ITEM_NOT_LOCKED(item))
-             cursor = gdk_cursor_new_for_display (display, GDK_HAND2);
+            gdl_dock_item_grip_show_handle (GDL_DOCK_ITEM_GRIP (item->priv->grip));
+        else
+            gdl_dock_item_grip_hide_handle (GDL_DOCK_ITEM_GRIP (item->priv->grip));
     }
-    if (item->priv->grip && GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window)
-        gdk_window_set_cursor (GDL_DOCK_ITEM_GRIP (item->priv->grip)->title_window, cursor);
-
-    if (cursor)
-        g_object_unref (cursor);
-
-    gtk_widget_queue_resize (GTK_WIDGET (item));
 }
 
 static void

@@ -61,6 +61,10 @@ enum {
 };
 
 struct _GdlDockItemGripPrivate {
+    GdlDockItem *item;
+    
+    GdkWindow *title_window;
+
     GtkWidget   *label;
 
     GtkWidget   *close_button;
@@ -97,8 +101,8 @@ gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
 
     label_box = (GtkBox*)gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
-    g_object_get (G_OBJECT (grip->item), "stock-id", &stock_id, NULL);
-    g_object_get (G_OBJECT (grip->item), "pixbuf-icon", &pixbuf, NULL);
+    g_object_get (G_OBJECT (grip->priv->item), "stock-id", &stock_id, NULL);
+    g_object_get (G_OBJECT (grip->priv->item), "pixbuf-icon", &pixbuf, NULL);
     if(stock_id) {
         image = GTK_IMAGE(gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_MENU));
 
@@ -114,7 +118,7 @@ gdl_dock_item_create_label_widget(GdlDockItemGrip *grip)
         gtk_box_pack_start(GTK_BOX(label_box), GTK_WIDGET(image), FALSE, TRUE, 0);
     }
 
-    g_object_get (G_OBJECT (grip->item), "long-name", &title, NULL);
+    g_object_get (G_OBJECT (grip->priv->item), "long-name", &title, NULL);
     if (title) {
         label = GTK_LABEL(gtk_label_new(title));
         gtk_label_set_ellipsize(label, PANGO_ELLIPSIZE_END);
@@ -202,7 +206,7 @@ gdl_dock_item_grip_item_notify (GObject    *master,
     } else if (strcmp (pspec->name, "behavior") == 0) {
         cursor = FALSE;
         if (grip->priv->close_button) {
-            if (GDL_DOCK_ITEM_CANT_CLOSE (grip->item)) {
+            if (GDL_DOCK_ITEM_CANT_CLOSE (grip->priv->item)) {
                 gtk_widget_hide (GTK_WIDGET (grip->priv->close_button));
             } else {
                 gtk_widget_show (GTK_WIDGET (grip->priv->close_button));
@@ -210,15 +214,15 @@ gdl_dock_item_grip_item_notify (GObject    *master,
             }
         }
         if (grip->priv->iconify_button) {
-            if (GDL_DOCK_ITEM_CANT_ICONIFY (grip->item)) {
+            if (GDL_DOCK_ITEM_CANT_ICONIFY (grip->priv->item)) {
                 gtk_widget_hide (GTK_WIDGET (grip->priv->iconify_button));
             } else {
                 gtk_widget_show (GTK_WIDGET (grip->priv->iconify_button));
                 cursor = TRUE;
             }
         }
-        if (grip->title_window && !cursor)
-            gdk_window_set_cursor (grip->title_window, NULL);
+        if (grip->priv->title_window && !cursor)
+            gdk_window_set_cursor (grip->priv->title_window, NULL);
 
     }
 }
@@ -234,11 +238,11 @@ gdl_dock_item_grip_dispose (GObject *object)
         priv->label = NULL;
     }
 
-    if (grip->item) {
-        g_signal_handlers_disconnect_by_func (grip->item,
+    if (grip->priv->item) {
+        g_signal_handlers_disconnect_by_func (grip->priv->item,
                                               gdl_dock_item_grip_item_notify,
                                               grip);
-        grip->item = NULL;
+        grip->priv->item = NULL;
     }
 
     G_OBJECT_CLASS (gdl_dock_item_grip_parent_class)->dispose (object);
@@ -258,21 +262,21 @@ gdl_dock_item_grip_set_property (GObject      *object,
 
     switch (prop_id) {
         case PROP_ITEM:
-            grip->item = g_value_get_object (value);
-            if (grip->item) {
-                g_signal_connect (grip->item, "notify::long-name",
+            grip->priv->item = g_value_get_object (value);
+            if (grip->priv->item) {
+                g_signal_connect (grip->priv->item, "notify::long-name",
                                   G_CALLBACK (gdl_dock_item_grip_item_notify),
                                   grip);
-                g_signal_connect (grip->item, "notify::stock-id",
+                g_signal_connect (grip->priv->item, "notify::stock-id",
                                   G_CALLBACK (gdl_dock_item_grip_item_notify),
                                   grip);
-                g_signal_connect (grip->item, "notify::behavior",
+                g_signal_connect (grip->priv->item, "notify::behavior",
                                   G_CALLBACK (gdl_dock_item_grip_item_notify),
                                   grip);
 
-                if (!GDL_DOCK_ITEM_CANT_CLOSE (grip->item) && grip->priv->close_button)
+                if (!GDL_DOCK_ITEM_CANT_CLOSE (grip->priv->item) && grip->priv->close_button)
                     gtk_widget_show (grip->priv->close_button);
-                if (!GDL_DOCK_ITEM_CANT_ICONIFY (grip->item) && grip->priv->iconify_button)
+                if (!GDL_DOCK_ITEM_CANT_ICONIFY (grip->priv->item) && grip->priv->iconify_button)
                     gtk_widget_show (grip->priv->iconify_button);
             }
             break;
@@ -286,9 +290,9 @@ static void
 gdl_dock_item_grip_close_clicked (GtkWidget       *widget,
                                   GdlDockItemGrip *grip)
 {
-    g_return_if_fail (grip->item != NULL);
+    g_return_if_fail (grip->priv->item != NULL);
 
-    gdl_dock_item_hide_item (grip->item);
+    gdl_dock_item_hide_item (grip->priv->item);
 }
 
 static void
@@ -297,9 +301,9 @@ gdl_dock_item_grip_iconify_clicked (GtkWidget       *widget,
 {
     GtkWidget *parent;
 
-    g_return_if_fail (grip->item != NULL);
+    g_return_if_fail (grip->priv->item != NULL);
 
-    parent = gtk_widget_get_parent (GTK_WIDGET (grip->item));
+    parent = gtk_widget_get_parent (GTK_WIDGET (grip->priv->item));
     if (GDL_IS_SWITCHER (parent))
     {
         /* Note: We can not use gtk_container_foreach (parent) here because
@@ -320,7 +324,7 @@ gdl_dock_item_grip_iconify_clicked (GtkWidget       *widget,
     }
     else
     {
-        gdl_dock_item_iconify_item (grip->item);
+        gdl_dock_item_iconify_item (grip->priv->item);
     }
 
     /* Workaround to unhighlight the iconify button. See bug #676890
@@ -394,7 +398,7 @@ gdl_dock_item_grip_realize (GtkWidget *widget)
 
     g_return_if_fail (grip->priv != NULL);
 
-    if (!grip->title_window) {
+    if (!grip->priv->title_window) {
         GtkAllocation  allocation;
         GdkWindowAttr  attributes;
         GdkCursor     *cursor;
@@ -411,28 +415,28 @@ gdl_dock_item_grip_realize (GtkWidget *widget)
         attributes.wclass      = GDK_INPUT_OUTPUT;
         attributes.event_mask  = GDK_ALL_EVENTS_MASK;
 
-        grip->title_window = gdk_window_new (gtk_widget_get_parent_window (widget),
-                                             &attributes, (GDK_WA_X | GDK_WA_Y));
+        grip->priv->title_window = gdk_window_new (gtk_widget_get_parent_window (widget),
+                                                   &attributes, (GDK_WA_X | GDK_WA_Y));
 
-        gdk_window_set_user_data (grip->title_window, grip);
+        gdk_window_set_user_data (grip->priv->title_window, grip);
 
         /* Unref the ref from parent realize for NO_WINDOW */
         g_object_unref (gtk_widget_get_window (widget));
 
         /* Need to ref widget->window, because parent unrealize unrefs it */
-        gtk_widget_set_window (widget, g_object_ref (grip->title_window));
+        gtk_widget_set_window (widget, g_object_ref (grip->priv->title_window));
         gtk_widget_set_has_window (widget, TRUE);
 
         /* Unset the background so as to make the colour match the parent window */
         gtk_widget_modify_bg(widget, GTK_STATE_NORMAL, NULL);
 
-        if (GDL_DOCK_ITEM_CANT_CLOSE (grip->item) &&
-            GDL_DOCK_ITEM_CANT_ICONIFY (grip->item))
+        if (GDL_DOCK_ITEM_CANT_CLOSE (grip->priv->item) &&
+            GDL_DOCK_ITEM_CANT_ICONIFY (grip->priv->item))
             cursor = NULL;
         else
             cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
                                              GDK_HAND2);
-        gdk_window_set_cursor (grip->title_window, cursor);
+        gdk_window_set_cursor (grip->priv->title_window, cursor);
         if (cursor)
             g_object_unref (cursor);
     }
@@ -443,11 +447,11 @@ gdl_dock_item_grip_unrealize (GtkWidget *widget)
 {
     GdlDockItemGrip *grip = GDL_DOCK_ITEM_GRIP (widget);
 
-    if (grip->title_window) {
+    if (grip->priv->title_window) {
         gtk_widget_set_has_window (widget, FALSE);
-        gdk_window_set_user_data (grip->title_window, NULL);
-        gdk_window_destroy (grip->title_window);
-        grip->title_window = NULL;
+        gdk_window_set_user_data (grip->priv->title_window, NULL);
+        gdk_window_destroy (grip->priv->title_window);
+        grip->priv->title_window = NULL;
     }
 
     GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->unrealize (widget);
@@ -460,8 +464,8 @@ gdl_dock_item_grip_map (GtkWidget *widget)
 
     GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->map (widget);
 
-    if (grip->title_window)
-        gdk_window_show (grip->title_window);
+    if (grip->priv->title_window)
+        gdk_window_show (grip->priv->title_window);
 }
 
 static void
@@ -469,8 +473,8 @@ gdl_dock_item_grip_unmap (GtkWidget *widget)
 {
     GdlDockItemGrip *grip = GDL_DOCK_ITEM_GRIP (widget);
 
-    if (grip->title_window)
-        gdk_window_hide (grip->title_window);
+    if (grip->priv->title_window)
+        gdk_window_hide (grip->priv->title_window);
 
     GTK_WIDGET_CLASS (gdl_dock_item_grip_parent_class)->unmap (widget);
 }
@@ -639,8 +643,8 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
       gtk_widget_size_allocate (grip->priv->label, &child_allocation);
     }
 
-    if (grip->title_window) {
-        gdk_window_move_resize (grip->title_window,
+    if (grip->priv->title_window) {
+        gdk_window_move_resize (grip->priv->title_window,
                                 allocation->x,
                                 allocation->y,
                                 allocation->width,
@@ -793,6 +797,8 @@ gdl_dock_item_grip_hide_handle (GdlDockItemGrip *grip)
     if (grip->priv->handle_shown) {
         grip->priv->handle_shown = FALSE;
         gdl_dock_item_grip_showhide_handle (grip);
+        if (grip->priv->title_window != NULL)
+            gdk_window_set_cursor (grip->priv->title_window, NULL);
     };
 }
 
@@ -809,5 +815,53 @@ gdl_dock_item_grip_show_handle (GdlDockItemGrip *grip)
     if (!grip->priv->handle_shown) {
         grip->priv->handle_shown = TRUE;
         gdl_dock_item_grip_showhide_handle (grip);
+        if (grip->priv->title_window != NULL) {
+            GdkCursor *cursor = gdk_cursor_new_for_display (gtk_widget_get_display (GTK_WIDGET (grip)), GDK_HAND2);
+            gdk_window_set_cursor (grip->priv->title_window, cursor);
+            g_object_unref (cursor);
+        }
     };
+}
+
+/**
+ * gdl_dock_item_grip_set_cursor:
+ * @grip: The dock item grip
+ * @in_drag: %TRUE if a drag operation is started
+ *
+ * Change the cursor when a drag operation is started.
+ * 
+ * Since: 3.6 
+ **/
+void
+gdl_dock_item_grip_set_cursor (GdlDockItemGrip *grip,
+                               gboolean in_drag)
+{
+    /* We check the window since if the item could have been redocked and have
+     * been unrealized, maybe it's not realized again yet */
+    
+    if (grip->priv->title_window) {
+        GdkCursor *cursor;
+
+        cursor = gdk_cursor_new_for_display (gtk_widget_get_display (GTK_WIDGET (grip)),
+                                             in_drag ? GDK_FLEUR : GDK_HAND2);
+        gdk_window_set_cursor (grip->priv->title_window,
+                               cursor);
+        g_object_unref (cursor);
+    }
+}
+
+/**
+ * gdl_dock_item_grip_has_event:
+ * @dock: A #GdlDockItemGrip widget
+ * @event: A #GdkEvent
+ *
+ * Return %TRUE if the grip window has reveived the event.
+ *
+ * Returns: %TRUE if the grip has received the event
+ */
+gboolean
+gdl_dock_item_grip_has_event (GdlDockItemGrip *grip,
+                              GdkEvent *event)
+{
+    return event->any.window == grip->priv->title_window;
 }

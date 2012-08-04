@@ -53,10 +53,6 @@ typedef struct _GdlDockItemGripPrivate GdlDockItemGripPrivate;
 
 struct _GdlDockItemGrip {
     GtkContainer parent;
-	
-    GdlDockItem *item;
-    
-    GdkWindow *title_window;
     
     GdlDockItemGripPrivate *priv;
 };
@@ -65,12 +61,18 @@ struct _GdlDockItemGripClass {
     GtkContainerClass parent_class;
 };
 
-GType      gdl_dock_item_grip_get_type (void);
-GtkWidget *gdl_dock_item_grip_new      (GdlDockItem *item);
-void       gdl_dock_item_grip_set_label (GdlDockItemGrip *grip,
-                                          GtkWidget *label);
+GType      gdl_dock_item_grip_get_type    (void);
+GtkWidget *gdl_dock_item_grip_new         (GdlDockItem *item);
+void       gdl_dock_item_grip_set_label   (GdlDockItemGrip *grip,
+                                           GtkWidget *label);
 void       gdl_dock_item_grip_hide_handle (GdlDockItemGrip *grip);
 void       gdl_dock_item_grip_show_handle (GdlDockItemGrip *grip);
+
+void       gdl_dock_item_grip_set_cursor  (GdlDockItemGrip *grip,
+                                           gboolean in_drag);
+
+gboolean   gdl_dock_item_grip_has_event   (GdlDockItemGrip *grip,
+                                           GdkEvent *event);
 
 G_END_DECLS
 
