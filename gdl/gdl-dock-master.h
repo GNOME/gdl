@@ -66,12 +66,6 @@ typedef enum {
 struct _GdlDockMaster {
     GObject               object;
 
-    GHashTable           *dock_objects;
-    GList                *toplevel_docks;
-    GdlDockObject        *controller;      /* GUI root object */
-
-    gint                  dock_number;     /* for toplevel dock numbering */
-
     GdlDockMasterPrivate *priv;
 };
 
@@ -83,15 +77,19 @@ struct _GdlDockMasterClass {
 
 /* additional macros */
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_GET_MASTER:
  * @object: A #GdlDockObject
  *
- * Evaluates to the #GdlDockMaster object managing the object.
+ * Retrieve the #GdlDockMaster object managing the object.
+ *
+ * Deprecated: 3.6: Use gdl_dock_object_get_master()
  */
 #define GDL_DOCK_OBJECT_GET_MASTER(object) \
     (GDL_DOCK_OBJECT (object)->master ? \
         GDL_DOCK_MASTER (GDL_DOCK_OBJECT (object)->master) : NULL)
+#endif
 
 /* public interface */
 
@@ -116,6 +114,8 @@ GdlDockObject *gdl_dock_master_get_object       (GdlDockMaster *master,
 GdlDockObject *gdl_dock_master_get_controller   (GdlDockMaster *master);
 void           gdl_dock_master_set_controller   (GdlDockMaster *master,
                                                  GdlDockObject *new_controller);
+
+gchar         *gdl_dock_master_get_dock_name    (GdlDockMaster *master);
 
 G_END_DECLS
 

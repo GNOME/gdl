@@ -543,8 +543,7 @@ gdl_dock_set_title (GdlDock *dock)
     if (!title) {
         /* set a default title in the long_name */
         dock->priv->auto_title = TRUE;
-        title = g_strdup_printf (
-            _("Dock #%d"), GDL_DOCK_MASTER (gdl_dock_object_get_master (object))->dock_number++);
+        title = gdl_dock_master_get_dock_name (GDL_DOCK_MASTER (gdl_dock_object_get_master (object)));
     }
 
     gtk_window_set_title (GTK_WINDOW (dock->priv->window), title);

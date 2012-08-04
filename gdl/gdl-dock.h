@@ -58,15 +58,19 @@ struct _GdlDockClass {
 };
 
 /* additional macros */
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_IS_CONTROLLER:
  * @obj: A #GdlDockObject
  *
  * Evaluates to %TRUE if the dock is the controller.
+ *
+ * Deprecated: 3.6: Use gdl_dock_object_get_controller (dock) == dock
  */
 #define GDL_DOCK_IS_CONTROLLER(dock)  \
     (gdl_dock_master_get_controller (GDL_DOCK_OBJECT_GET_MASTER (dock)) == \
      GDL_DOCK_OBJECT (dock))
+#endif
 
 /* public interface */
 

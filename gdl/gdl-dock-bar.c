@@ -261,7 +261,6 @@ gdl_dock_bar_item_clicked (GtkWidget   *button,
                            GdlDockItem *item)
 {
     GdlDockBar *dockbar;
-    GdlDockObject *controller;
 
     g_return_if_fail (item != NULL);
 
@@ -269,11 +268,8 @@ gdl_dock_bar_item_clicked (GtkWidget   *button,
     g_assert (dockbar != NULL);
     g_object_set_data (G_OBJECT (item), "GdlDockBar", NULL);
 
-    controller = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (item));
-
     GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
     gdl_dock_item_show_item (item);
-    gtk_widget_queue_resize (GTK_WIDGET (controller));
 }
 
 static void
