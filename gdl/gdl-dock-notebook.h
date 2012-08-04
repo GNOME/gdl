@@ -37,10 +37,13 @@ G_BEGIN_DECLS
 /* data types & structures */
 typedef struct _GdlDockNotebook             GdlDockNotebook;
 typedef struct _GdlDockNotebookClass        GdlDockNotebookClass;
+typedef struct _GdlDockNotebookPrivate      GdlDockNotebookPrivate;
 typedef struct _GdlDockNotebookClassPrivate GdlDockNotebookClassPrivate;
 
 struct _GdlDockNotebook {
     GdlDockItem  item;
+
+    GdlDockNotebookPrivate *priv;
 };
 
 struct _GdlDockNotebookClass {

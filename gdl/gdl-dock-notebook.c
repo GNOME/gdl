@@ -35,10 +35,14 @@
  * @stability: Unstable
  * @see_also: #GdlDockPaned, #GdlDockMaster, #GdlSwitcher
  *
- * A #GdlDockNotebook is a compound dock widget like #GdlDockPaned.
- * Other dock widgets can be added to it, simply by dropping them on the
- * widget. Contrary to the #GdlDockPaned, a #GdlDockNotebook can contain
- * only simple dock widget.
+ * A #GdlDockNotebook is a compound dock widget. It can dock
+ * an unlimited number of widget displaying them in a notebook. This dock
+ * widget is normally created automatically when a child is docked in
+ * the center of another one. 
+ * A #GdlDockNotebook cannot contain other compound widgets, like a #GdlDockPaned.
+ * 
+ * A #GdlDockNotebook derives from #GdlDockItem and contains a #GdlSwitcher
+ * used to display all children.
  */
 
 
@@ -101,6 +105,9 @@ enum {
     PROP_PAGE
 };
 
+struct _GdlDockNotebookPrivate {
+    gboolean    user_action;
+};
 
 /* ----- Private functions ----- */
 
@@ -153,6 +160,8 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
                           G_PARAM_READWRITE |
                           GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
 
+    g_type_class_add_private (object_class, sizeof (GdlDockNotebookPrivate));    
+    
     /* set the style */
     klass->priv = G_TYPE_CLASS_GET_PRIVATE (klass, GDL_TYPE_DOCK_NOTEBOOK, GdlDockNotebookClassPrivate);
 
@@ -176,10 +185,7 @@ gdl_dock_notebook_button_cb (GtkWidget      *widget,
                              GdkEventButton *event,
                              gpointer        user_data)
 {
-    if (event->type == GDK_BUTTON_PRESS)
-        GDL_DOCK_OBJECT_SET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
-    else
-        GDL_DOCK_OBJECT_UNSET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
+    GDL_DOCK_NOTEBOOK (user_data)->priv->user_action = event->type == GDK_BUTTON_PRESS;
 
     return FALSE;
 }
@@ -187,9 +193,12 @@ gdl_dock_notebook_button_cb (GtkWidget      *widget,
 static void
 gdl_dock_notebook_init (GdlDockNotebook *notebook)
 {
-    GdlDockItem *item;
-
-    item = GDL_DOCK_ITEM (notebook);
+    GdlDockItem *item = GDL_DOCK_ITEM (notebook);
+    
+    notebook->priv = G_TYPE_INSTANCE_GET_PRIVATE (notebook,
+                                                  GDL_TYPE_DOCK_NOTEBOOK,
+                                                  GdlDockNotebookPrivate);
+    notebook->priv->user_action = FALSE;
 
     /* create the container notebook */
     item->child = gdl_switcher_new ();
@@ -283,7 +292,7 @@ gdl_dock_notebook_switch_page_cb (GtkNotebook     *nb,
     notebook = GDL_DOCK_NOTEBOOK (data);
     current_page = gtk_notebook_get_current_page (nb);
 
-    if (GDL_DOCK_ITEM_USER_ACTION (notebook))
+    if (notebook->priv->user_action)
         gdl_dock_object_layout_changed_notify (GDL_DOCK_OBJECT (notebook));
 
     /* Signal that the old dock has been deselected */
