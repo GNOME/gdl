@@ -37,13 +37,14 @@ G_BEGIN_DECLS
 #define GDL_DOCK_PANED_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GDL_TYE_DOCK_PANED, GdlDockPanedClass))
 
 /* data types & structures */
-typedef struct _GdlDockPaned      GdlDockPaned;
-typedef struct _GdlDockPanedClass GdlDockPanedClass;
+typedef struct _GdlDockPaned        GdlDockPaned;
+typedef struct _GdlDockPanedClass   GdlDockPanedClass;
+typedef struct _GdlDockPanedPrivate GdlDockPanedPrivate;    
 
 struct _GdlDockPaned {
     GdlDockItem  dock_item;
 
-    gboolean     position_changed;
+    GdlDockPanedPrivate *priv;
 };
 
 struct _GdlDockPanedClass {

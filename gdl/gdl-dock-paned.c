@@ -38,9 +38,11 @@
  * @stability: Unstable
  * @see_also: #GdlDockNotebook, #GdlDockMaster
  *
- * A #GdlDockPaned is a compound dock widget like #GdlDockNotebook.
- * Other dock widgets can be added to it, simply by dropping them on the
- * widget.
+ * A #GdlDockPaned is a compound dock widget. It can dock one or two children,
+ * including another compound widget like a #GdlDockPaned or a #GdlDockNotebook.
+ * The children are displayed in two panes using a #GtkPaned widget.
+ * A #GdlDockPaned is normally created automatically by the master when docking
+ * a child on any edge: top, bottom, left or right.
  */
 
 
@@ -96,6 +98,10 @@ enum {
     PROP_POSITION
 };
 
+struct _GdlDockPanedPrivate {
+    gboolean    user_action;
+    gboolean    position_changed;
+};
 
 /* ----- Private functions ----- */
 
@@ -142,12 +148,19 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
                            0, G_MAXINT, 0,
                            G_PARAM_READWRITE |
                            GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
+
+    g_type_class_add_private (object_class, sizeof (GdlDockPanedPrivate));
 }
 
 static void
 gdl_dock_paned_init (GdlDockPaned *paned)
 {
-    paned->position_changed = FALSE;
+    paned->priv = G_TYPE_INSTANCE_GET_PRIVATE (paned,
+                                               GDL_TYPE_DOCK_PANED,
+                                               GdlDockPanedPrivate);
+
+    paned->priv->user_action = FALSE;
+    paned->priv->position_changed = FALSE;
 }
 
 static void
@@ -164,8 +177,8 @@ gdl_dock_paned_notify_cb (GObject    *g_object,
 
     paned = GDL_DOCK_PANED (user_data);
 
-    if (GDL_DOCK_ITEM_USER_ACTION (user_data) && !strcmp (pspec->name, "position"))
-        paned->position_changed = TRUE;
+    if (paned->priv->user_action && !strcmp (pspec->name, "position"))
+        paned->priv->position_changed = TRUE;
 }
 
 static gboolean
@@ -180,13 +193,13 @@ gdl_dock_paned_button_cb (GtkWidget      *widget,
     paned = GDL_DOCK_PANED (user_data);
     if (event->button == 1) {
         if (event->type == GDK_BUTTON_PRESS)
-            GDL_DOCK_OBJECT_SET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
+            paned->priv->user_action = TRUE;
         else {
-            GDL_DOCK_OBJECT_UNSET_FLAGS (user_data, GDL_DOCK_USER_ACTION);
-            if (paned->position_changed) {
+            paned->priv->user_action = FALSE;
+            if (paned->priv->position_changed) {
                 /* emit pending layout changed signal to track separator position */
                 gdl_dock_object_layout_changed_notify (GDL_DOCK_OBJECT (paned));
-                paned->position_changed = FALSE;
+                paned->priv->position_changed = FALSE;
             }
         }
     }
