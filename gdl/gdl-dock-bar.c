@@ -444,7 +444,7 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
 
 /**
  * gdl_dock_bar_new:
- * @master: (allow-node): The associated #GdlDockMaster or #GdlDockObject object
+ * @master: The associated #GdlDockMaster or #GdlDockObject object
  *
  * Creates a new GDL dock bar. If a #GdlDockObject is used, the dock bar will
  * be associated with the master of this object.
