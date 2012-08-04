@@ -202,7 +202,7 @@ main (int argc, char **argv)
 	dock = gdl_dock_new ();
 
 	/* ... and the layout manager */
-	layout = gdl_dock_layout_new (GDL_DOCK (dock));
+	layout = gdl_dock_layout_new (G_OBJECT (dock));
 
 	/* create the dockbar */
 	dockbar = gdl_dock_bar_new (G_OBJECT (dock));

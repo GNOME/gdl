@@ -76,6 +76,9 @@ enum {
 #define COLUMN_EDITABLE COLUMN_SHOW
 
 struct _GdlDockLayoutPrivate {
+    gboolean              dirty;
+    GdlDockMaster        *master;
+    
     xmlDocPtr         doc;
 
     glong             layout_changed_id;
@@ -123,9 +126,9 @@ gdl_dock_layout_class_init (GdlDockLayoutClass *klass)
     g_object_class_install_property (
         object_class, PROP_MASTER,
         g_param_spec_object ("master", _("Master"),
-                             _("GdlDockMaster object which the layout object "
+                             _("GdlDockMaster or GdlDockObject object which the layout object "
                                "is attached to"),
-                             GDL_TYPE_DOCK_MASTER,
+                             G_TYPE_OBJECT,
                              G_PARAM_READWRITE));
 
     g_object_class_install_property (
@@ -146,10 +149,13 @@ gdl_dock_layout_init (GdlDockLayout *layout)
                                                 GDL_TYPE_DOCK_LAYOUT,
                                                 GdlDockLayoutPrivate);
 
+    layout->priv->master = NULL;
+    layout->priv->dirty = FALSE;
+    layout->priv->idle_save_pending = FALSE;
+#ifndef GDL_DISABLE_DEPRECATED
     layout->master = NULL;
     layout->dirty = FALSE;
-    layout->priv->idle_save_pending = FALSE;
-
+#endif    
 }
 
 static void
@@ -162,7 +168,7 @@ gdl_dock_layout_set_property (GObject      *object,
 
     switch (prop_id) {
         case PROP_MASTER:
-            gdl_dock_layout_attach (layout, g_value_get_object (value));
+            gdl_dock_layout_set_master (layout, g_value_get_object (value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -179,10 +185,10 @@ gdl_dock_layout_get_property (GObject    *object,
 
     switch (prop_id) {
         case PROP_MASTER:
-            g_value_set_object (value, layout->master);
+            g_value_set_object (value, layout->priv->master);
             break;
         case PROP_DIRTY:
-            g_value_set_boolean (value, layout->dirty);
+            g_value_set_boolean (value, layout->priv->dirty);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -196,8 +202,8 @@ gdl_dock_layout_dispose (GObject *object)
 
     layout = GDL_DOCK_LAYOUT (object);
 
-    if (layout->master)
-        gdl_dock_layout_attach (layout, NULL);
+    if (layout->priv->master)
+        gdl_dock_layout_set_master (layout, NULL);
 
     if (layout->priv->idle_save_pending) {
         layout->priv->idle_save_pending = FALSE;
@@ -543,20 +549,19 @@ gdl_dock_layout_save (GdlDockMaster *master,
 
 /**
  * gdl_dock_layout_new:
- * @dock: The dock item.
+ * @master: A master or a dock object to which the layout will be attached.
  *
- * Creates a new #GdlDockLayout
+ * Creates a new #GdlDockLayout. Instead of setting @master
+ * directly with a master object, it is possible to use a #GdlDockObject, in
+ * this case the layout will be attached to the same master than the dock
+ * object.
  *
  * Returns: New #GdlDockLayout item.
  */
 GdlDockLayout *
-gdl_dock_layout_new (GdlDock *dock)
+gdl_dock_layout_new (GObject *master)
 {
-    GdlDockMaster *master = NULL;
-
-    /* get the master of the given dock */
-    if (dock)
-        master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
+    g_return_val_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master) || GDL_IS_DOCK_OBJECT (master), NULL);
 
     return g_object_new (GDL_TYPE_DOCK_LAYOUT,
                          "master", master,
@@ -586,45 +591,78 @@ gdl_dock_layout_layout_changed_cb (GdlDockMaster *master,
 
 
 /**
- * gdl_dock_layout_attach:
- * @layout: The layout item
- * @master: The master item to which the layout will be attached
+ * gdl_dock_layout_set_master:
+ * @layout: The layout object
+ * @master: The master object to which the layout will be attached
  *
  * Attach the @layout to the @master and delete the reference to
- * the master that the layout attached previously
+ * the master that the layout attached previously. Instead of setting @master
+ * directly with the master object, it is possible to use a #GdlDockObject, in
+ * this case the layout will be attached to the same master than the dock
+ * object.
  */
 void
-gdl_dock_layout_attach (GdlDockLayout *layout,
-                        GdlDockMaster *master)
+gdl_dock_layout_set_master (GdlDockLayout *layout,
+                            GObject *master)
 {
     g_return_if_fail (layout != NULL);
-    g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
+    g_return_if_fail (master == NULL || GDL_IS_DOCK_OBJECT (master) || GDL_IS_DOCK_MASTER (master));
 
-    if (layout->master) {
-        g_signal_handler_disconnect (layout->master,
+    if (layout->priv->master) {
+        g_signal_handler_disconnect (layout->priv->master,
                                      layout->priv->layout_changed_id);
-        g_object_unref (layout->master);
+        g_object_unref (layout->priv->master);
     }
 
-    layout->master = master;
-    if (layout->master) {
-        g_object_ref (layout->master);
+    if (master != NULL)
+    {
+        /* Accept a GdlDockObject instead of a GdlDockMaster */
+        if (GDL_IS_DOCK_OBJECT (master)) {
+            master = gdl_dock_object_get_master (GDL_DOCK_OBJECT (master));
+        }
+        layout->priv->master = g_object_ref (master);
         layout->priv->layout_changed_id =
-            g_signal_connect (layout->master, "layout-changed",
+            g_signal_connect (layout->priv->master, "layout-changed",
                               (GCallback) gdl_dock_layout_layout_changed_cb,
                               layout);
+        
+    } else {
+        layout->priv->master = NULL;
     }
+#ifndef GDL_DISABLE_DEPRECATED
+    layout->master = layout->priv->master;
+#endif
 }
+
+/**
+ * gdl_dock_layout_get_master:
+ * @layout: a #GdlDockLayout
+ *
+ * Retrieves the master of the object.
+ *
+ * Return value: (transfer none): a #GdlDockMaster object
+ *
+ * Since: 3.6
+ */
+GObject *
+gdl_dock_layout_get_master (GdlDockLayout *layout)
+{
+    g_return_val_if_fail (GDL_IS_DOCK_LAYOUT (layout), NULL);
+
+    return G_OBJECT (layout->priv->master);
+}
+
 
 /**
 * gdl_dock_layout_load_layout:
 * @layout: The dock item.
 * @name: (allow-none): The name of the layout to load or %NULL for a default layout name.
 *
-* Loads the layout with the given name to the memory.
+* Loads the layout with the given name from the memory.
 * This will set #GdlDockLayout:dirty to %TRUE.
 *
 * See also gdl_dock_layout_load_from_file()
+*
 * Returns: %TRUE if layout successfully loaded else %FALSE
 */
 gboolean
@@ -636,7 +674,7 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
 
     g_return_val_if_fail (layout != NULL, FALSE);
 
-    if (!layout->priv->doc || !layout->master)
+    if (!layout->priv->doc || !layout->priv->master)
         return FALSE;
 
     if (!name)
@@ -650,7 +688,7 @@ gdl_dock_layout_load_layout (GdlDockLayout *layout,
         node = gdl_dock_layout_find_layout (layout, NULL);
 
     if (node) {
-        gdl_dock_layout_load (layout->master, node);
+        gdl_dock_layout_load (layout->priv->master, node);
         return TRUE;
     } else
         return FALSE;
@@ -675,7 +713,7 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
     gchar      *layout_name;
 
     g_return_if_fail (layout != NULL);
-    g_return_if_fail (layout->master != NULL);
+    g_return_if_fail (layout->priv->master != NULL);
 
     if (!layout->priv->doc)
         gdl_dock_layout_build_doc (layout);
@@ -698,8 +736,8 @@ gdl_dock_layout_save_layout (GdlDockLayout *layout,
     xmlSetProp (node, BAD_CAST NAME_ATTRIBUTE_NAME, BAD_CAST layout_name);
 
     /* save the layout */
-    gdl_dock_layout_save (layout->master, node);
-    layout->dirty = TRUE;
+    gdl_dock_layout_save (layout->priv->master, node);
+    layout->priv->dirty = TRUE;
     g_object_notify (G_OBJECT (layout), "dirty");
 }
 
@@ -727,7 +765,7 @@ gdl_dock_layout_delete_layout (GdlDockLayout *layout,
     if (node) {
         xmlUnlinkNode (node);
         xmlFreeNode (node);
-        layout->dirty = TRUE;
+        layout->priv->dirty = TRUE;
         g_object_notify (G_OBJECT (layout), "dirty");
     }
 }
@@ -751,7 +789,7 @@ gdl_dock_layout_load_from_file (GdlDockLayout *layout,
     if (layout->priv->doc) {
         xmlFreeDoc (layout->priv->doc);
         layout->priv->doc = NULL;
-        layout->dirty = FALSE;
+        layout->priv->dirty = FALSE;
         g_object_notify (G_OBJECT (layout), "dirty");
     }
 
@@ -802,7 +840,7 @@ gdl_dock_layout_save_to_file (GdlDockLayout *layout,
     if (file_handle) {
         bytes = xmlDocDump (file_handle, layout->priv->doc);
         if (bytes >= 0) {
-            layout->dirty = FALSE;
+            layout->priv->dirty = FALSE;
             g_object_notify (G_OBJECT (layout), "dirty");
             retval = TRUE;
         };
@@ -824,7 +862,7 @@ gdl_dock_layout_is_dirty (GdlDockLayout *layout)
 {
     g_return_val_if_fail (layout != NULL, FALSE);
 
-    return layout->dirty;
+    return layout->priv->dirty;
 };
 
 /**

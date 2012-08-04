@@ -52,9 +52,10 @@ struct _GdlDockLayout {
     GObject               g_object;
 
     /*< private >*/
+#ifndef GDL_DISABLE_DEPRECATED    
     gboolean              dirty;
     GdlDockMaster        *master;
-
+#endif    
     GdlDockLayoutPrivate *priv;
 };
 
@@ -67,10 +68,11 @@ struct _GdlDockLayoutClass {
 
 GType            gdl_dock_layout_get_type       (void);
 
-GdlDockLayout   *gdl_dock_layout_new            (GdlDock       *dock);
+GdlDockLayout   *gdl_dock_layout_new            (GObject       *master);
 
-void             gdl_dock_layout_attach         (GdlDockLayout *layout,
-                                                 GdlDockMaster *master);
+void             gdl_dock_layout_set_master     (GdlDockLayout *layout,
+                                                 GObject       *master);
+GObject         *gdl_dock_layout_get_master     (GdlDockLayout *layout);
 
 gboolean         gdl_dock_layout_load_layout    (GdlDockLayout *layout,
                                                  const gchar   *name);
@@ -92,6 +94,10 @@ gboolean         gdl_dock_layout_save_to_file   (GdlDockLayout *layout,
 
 gboolean         gdl_dock_layout_is_dirty       (GdlDockLayout *layout);
 
+#ifndef GDL_DISABLE_DEPRECATED
+void             gdl_dock_layout_attach         (GdlDockLayout *layout,
+                                                 GdlDockMaster *master);
+#endif
 
 G_END_DECLS
 

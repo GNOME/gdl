@@ -124,4 +124,23 @@ gdl_dock_item_set_default_position (GdlDockItem   *item,
     g_return_if_fail (item != NULL);
 }
 
+/**
+ * gdl_dock_layout_attach:
+ * @layout: The layout object
+ * @master: The master object to which the layout will be attached
+ *
+ * Attach the @layout to the @master and delete the reference to
+ * the master that the layout attached previously.
+ * 
+ * Deprecated 3.6: Use gdl_dock_layout_set_master() instead.
+ */
+void
+gdl_dock_layout_attach (GdlDockLayout *layout,
+                        GdlDockMaster *master)
+{
+    g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master));
+
+    gdl_dock_layout_set_master (layout, G_OBJECT (master));
+}
+
 #endif
