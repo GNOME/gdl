@@ -69,7 +69,7 @@ static void  gdl_dock_bar_set_property    (GObject         *object,
 
 static void  gdl_dock_bar_dispose         (GObject         *object);
 
-static void  gdl_dock_bar_attach          (GdlDockBar      *dockbar,
+static void  gdl_dock_bar_set_master      (GdlDockBar      *dockbar,
                                            GObject         *master);
 static void gdl_dock_bar_remove_item      (GdlDockBar      *dockbar,
                                            GdlDockItem     *item);
@@ -189,7 +189,7 @@ gdl_dock_bar_set_property (GObject         *object,
 
     switch (prop_id) {
         case PROP_MASTER:
-            gdl_dock_bar_attach (dockbar, g_value_get_object (value));
+            gdl_dock_bar_set_master (dockbar, g_value_get_object (value));
             break;
         case PROP_DOCKBAR_STYLE:
             dockbar->priv->dockbar_style = g_value_get_enum (value);
@@ -222,7 +222,7 @@ gdl_dock_bar_dispose (GObject *object)
     }
 
     if (priv->master) {
-        gdl_dock_bar_attach (dockbar, NULL);
+        gdl_dock_bar_set_master (dockbar, NULL);
     }
 
    G_OBJECT_CLASS (gdl_dock_bar_parent_class)->dispose (object);
@@ -412,8 +412,8 @@ gdl_dock_bar_layout_changed_cb (GdlDockMaster *master,
 }
 
 static void
-gdl_dock_bar_attach (GdlDockBar    *dockbar,
-                     GObject       *master)
+gdl_dock_bar_set_master (GdlDockBar    *dockbar,
+                         GObject       *master)
 {
     g_return_if_fail (dockbar != NULL);
     g_return_if_fail (master == NULL || GDL_IS_DOCK_MASTER (master) || GDL_IS_DOCK_OBJECT (master));
@@ -424,18 +424,20 @@ gdl_dock_bar_attach (GdlDockBar    *dockbar,
         g_object_unref (dockbar->priv->master);
     }
 
-    /* Accept a GdlDockObject instead of a GdlDockMaster */
-    if (GDL_IS_DOCK_OBJECT (master)) {
-        master = gdl_dock_object_get_master (GDL_DOCK_OBJECT (master));
-    }
-    
-    dockbar->priv->master = (GdlDockMaster *)master;
-    if (dockbar->priv->master) {
-        g_object_ref (dockbar->priv->master);
+    if (master != NULL)
+    {
+        /* Accept a GdlDockObject instead of a GdlDockMaster */
+        if (GDL_IS_DOCK_OBJECT (master)) {
+            master = gdl_dock_object_get_master (GDL_DOCK_OBJECT (master));
+        }
+        dockbar->priv->master = g_object_ref (master);
         dockbar->priv->layout_changed_id =
             g_signal_connect (dockbar->priv->master, "layout-changed",
-                              G_CALLBACK (gdl_dock_bar_layout_changed_cb),
+                              (GCallback) gdl_dock_bar_layout_changed_cb,
                               dockbar);
+        
+    } else {
+        dockbar->priv->master = NULL;
     }
 
     update_dock_items (dockbar, FALSE);
