@@ -45,8 +45,6 @@ typedef struct _GdlDockPrivate GdlDockPrivate;
 struct _GdlDock {
     GdlDockObject    object;
 
-    GdlDockObject   *root;
-
     GdlDockPrivate  *priv;
 };
 
@@ -98,6 +96,7 @@ GdlDockItem   *gdl_dock_get_item_by_name  (GdlDock     *dock,
 GList         *gdl_dock_get_named_items   (GdlDock    *dock);
 
 GdlDock       *gdl_dock_object_get_toplevel (GdlDockObject *object);
+GdlDockObject *gdl_dock_get_root            (GdlDock       *dock);
 
 void           gdl_dock_show_preview        (GdlDock       *dock,
                                              GdkRectangle  *rect);

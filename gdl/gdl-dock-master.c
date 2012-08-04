@@ -374,7 +374,7 @@ gdl_dock_master_finalize (GObject *object)
 }
 
 static void
-foreach_lock_unlock (GdlDockItem *item,
+foreach_lock_unlock (GdlDockObject *item,
                      gboolean     locked)
 {
     if (!GDL_IS_DOCK_ITEM (item))
@@ -395,8 +395,9 @@ gdl_dock_master_lock_unlock (GdlDockMaster *master,
 
     for (l = master->priv->toplevel_docks; l; l = l->next) {
         GdlDock *dock = GDL_DOCK (l->data);
-        if (dock->root)
-            foreach_lock_unlock (GDL_DOCK_ITEM (dock->root), locked);
+        GdlDockObject *root = gdl_dock_get_root (dock);
+        if (root != NULL)
+            foreach_lock_unlock (root, locked);
     }
 
     /* just to be sure hidden items are set too */
@@ -1120,8 +1121,9 @@ gdl_dock_master_set_switcher_style (GdlDockMaster *master,
     master->priv->switcher_style = switcher_style;
     for (l = master->priv->toplevel_docks; l; l = l->next) {
         GdlDock *dock = GDL_DOCK (l->data);
-        if (dock->root)
-            set_switcher_style_foreach (GTK_WIDGET (dock->root),
+        GtkWidget *root = GTK_WIDGET (gdl_dock_get_root (dock));
+        if (root != NULL)
+            set_switcher_style_foreach (root,
                                         GINT_TO_POINTER (switcher_style));
     }
 
