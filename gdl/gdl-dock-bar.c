@@ -268,7 +268,6 @@ gdl_dock_bar_item_clicked (GtkWidget   *button,
     g_assert (dockbar != NULL);
     g_object_set_data (G_OBJECT (item), "GdlDockBar", NULL);
 
-    GDL_DOCK_OBJECT_UNSET_FLAGS (item, GDL_DOCK_ICONIFIED);
     gdl_dock_item_show_item (item);
 }
 
@@ -379,10 +378,10 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
             GdlDockItem *item = GDL_DOCK_ITEM (l->data);
 
             if (g_slist_index (dockbar->priv->items, item) != -1 &&
-                !GDL_DOCK_ITEM_ICONIFIED (item))
+                !gdl_dock_item_is_iconified (item))
                 gdl_dock_bar_remove_item (dockbar, item);
             else if (g_slist_index (dockbar->priv->items, item) == -1 &&
-                GDL_DOCK_ITEM_ICONIFIED (item) &&
+                gdl_dock_item_is_iconified (item) &&
                 !gdl_dock_item_is_placeholder (item))
                 gdl_dock_bar_add_item (dockbar, item);
         }
@@ -392,7 +391,7 @@ update_dock_items (GdlDockBar *dockbar, gboolean full_update)
 
             if (g_slist_index (dockbar->priv->items, item) != -1)
                 gdl_dock_bar_remove_item (dockbar, item);
-            if (GDL_DOCK_ITEM_ICONIFIED (item) &&
+            if (gdl_dock_item_is_iconified (item) &&
                 !gdl_dock_item_is_placeholder (item))
                 gdl_dock_bar_add_item (dockbar, item);
         }

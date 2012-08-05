@@ -138,7 +138,7 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
     object_class->dock = gdl_dock_paned_dock;
     object_class->child_placement = gdl_dock_paned_child_placement;
 
-    item_class->has_grip = FALSE;
+    gdl_dock_item_class_set_has_grip (item_class, FALSE);
     item_class->set_orientation = gdl_dock_paned_set_orientation;
 
     g_object_class_install_property (
@@ -212,25 +212,23 @@ gdl_dock_paned_create_child (GdlDockPaned   *paned,
                              GtkOrientation  orientation)
 {
     GdlDockItem *item;
+    GtkWidget *child;
 
     item = GDL_DOCK_ITEM (paned);
 
-    if (item->child)
-        gtk_widget_unparent (GTK_WIDGET (item->child));
-
     /* create the container paned */
-    item->child = gtk_paned_new (orientation);
+    child = gtk_paned_new (orientation);
+    gdl_dock_item_set_child (item, child);
 
     /* get notification for propagation */
-    g_signal_connect (item->child, "notify::position",
+    g_signal_connect (child, "notify::position",
                       (GCallback) gdl_dock_paned_notify_cb, (gpointer) item);
-    g_signal_connect (item->child, "button-press-event",
+    g_signal_connect (child, "button-press-event",
                       (GCallback) gdl_dock_paned_button_cb, (gpointer) item);
-    g_signal_connect (item->child, "button-release-event",
+    g_signal_connect (child, "button-release-event",
                       (GCallback) gdl_dock_paned_button_cb, (gpointer) item);
 
-    gtk_widget_set_parent (item->child, GTK_WIDGET (item));
-    gtk_widget_show (item->child);
+    gtk_widget_show (child);
 }
 
 static GObject *
@@ -246,9 +244,9 @@ gdl_dock_paned_constructor (GType                  type,
     if (g_object) {
         GdlDockItem *item = GDL_DOCK_ITEM (g_object);
 
-        if (!item->child)
+        if (!gdl_dock_item_get_child (item))
             gdl_dock_paned_create_child (GDL_DOCK_PANED (g_object),
-                                         item->orientation);
+                                         gdl_dock_item_get_orientation (item));
         /* otherwise, the orientation was set as a construction
            parameter and the child is already created */
     }
@@ -263,11 +261,13 @@ gdl_dock_paned_set_property (GObject        *object,
                              GParamSpec     *pspec)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
+    GtkWidget *child;
 
     switch (prop_id) {
         case PROP_POSITION:
-            if (item->child && GTK_IS_PANED (item->child))
-                gtk_paned_set_position (GTK_PANED (item->child),
+            child = gdl_dock_item_get_child (item);
+            if (child && GTK_IS_PANED (child))
+                gtk_paned_set_position (GTK_PANED (child),
                                         g_value_get_uint (value));
             break;
         default:
@@ -283,12 +283,14 @@ gdl_dock_paned_get_property (GObject        *object,
                              GParamSpec     *pspec)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (object);
+    GtkWidget *child;
 
     switch (prop_id) {
         case PROP_POSITION:
-            if (item->child && GTK_IS_PANED (item->child))
+            child = gdl_dock_item_get_child (item);
+            if (child && GTK_IS_PANED (child))
                 g_value_set_uint (value,
-                                  gtk_paned_get_position (GTK_PANED (item->child)));
+                                  gtk_paned_get_position (GTK_PANED (child)));
             else
                 g_value_set_uint (value, 0);
             break;
@@ -309,10 +311,7 @@ gdl_dock_paned_destroy (GtkWidget *object)
 
 
     /* after that we can remove the GtkNotebook */
-    if (item->child) {
-        gtk_widget_unparent (item->child);
-        item->child = NULL;
-    };
+    gdl_dock_item_set_child (item, NULL);
 }
 
 static void
@@ -329,18 +328,18 @@ gdl_dock_paned_add (GtkContainer *container,
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
     item = GDL_DOCK_ITEM (container);
-    g_return_if_fail (item->child != NULL);
+    g_return_if_fail (gdl_dock_item_get_child (item) != NULL);
 
-    paned = GTK_PANED (item->child);
+    paned = GTK_PANED (gdl_dock_item_get_child (item));
     child1 = gtk_paned_get_child1 (paned);
     child2 = gtk_paned_get_child2 (paned);
     g_return_if_fail (!child1 || !child2);
 
     if (!child1)
-        pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
+        pos = gdl_dock_item_get_orientation (item) == GTK_ORIENTATION_HORIZONTAL ?
             GDL_DOCK_LEFT : GDL_DOCK_TOP;
     else if (!child2)
-        pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
+        pos = gdl_dock_item_get_orientation (item) == GTK_ORIENTATION_HORIZONTAL ?
             GDL_DOCK_RIGHT : GDL_DOCK_BOTTOM;
 
     if (pos != GDL_DOCK_NONE)
@@ -355,7 +354,7 @@ gdl_dock_paned_forall (GtkContainer *container,
                        GtkCallback   callback,
                        gpointer      callback_data)
 {
-    GdlDockItem *item;
+    GtkWidget *child;
 
     g_return_if_fail (container != NULL);
     g_return_if_fail (GDL_IS_DOCK_PANED (container));
@@ -367,18 +366,18 @@ gdl_dock_paned_forall (GtkContainer *container,
                            (container, include_internals, callback, callback_data);
     }
     else {
-        item = GDL_DOCK_ITEM (container);
-        if (item->child)
-            gtk_container_foreach (GTK_CONTAINER (item->child), callback, callback_data);
+        child = gdl_dock_item_get_child (GDL_DOCK_ITEM (container));
+        if (child)
+            gtk_container_foreach (GTK_CONTAINER (child), callback, callback_data);
     }
 }
 
 static GType
 gdl_dock_paned_child_type (GtkContainer *container)
 {
-    GdlDockItem *item = GDL_DOCK_ITEM (container);
+    GtkWidget *child = gdl_dock_item_get_child (GDL_DOCK_ITEM (container));
 
-    if (gtk_container_child_type (GTK_CONTAINER (item->child)) == G_TYPE_NONE)
+    if (gtk_container_child_type (GTK_CONTAINER (child)) == G_TYPE_NONE)
         return G_TYPE_NONE;
     else
         return GDL_TYPE_DOCK_ITEM;
@@ -510,7 +509,7 @@ gdl_dock_paned_dock_request (GdlDockObject  *object,
                 /* the pointer is on the handle, so snap to top/bottom
                    or left/right */
                 may_dock = TRUE;
-                if (item->orientation == GTK_ORIENTATION_HORIZONTAL) {
+                if (gdl_dock_item_get_orientation (item) == GTK_ORIENTATION_HORIZONTAL) {
                     if (rel_y < alloc.height / 2) {
                         my_request.position = GDL_DOCK_TOP;
                         my_request.rect.height *= SPLIT_RATIO;
@@ -571,9 +570,9 @@ gdl_dock_paned_dock (GdlDockObject    *object,
     gint      temp = 0;
 
     g_return_if_fail (GDL_IS_DOCK_PANED (object));
-    g_return_if_fail (GDL_DOCK_ITEM (object)->child != NULL);
+    g_return_if_fail (gdl_dock_item_get_child (GDL_DOCK_ITEM (object)) != NULL);
 
-    paned = GTK_PANED (GDL_DOCK_ITEM (object)->child);
+    paned = GTK_PANED (gdl_dock_item_get_child (GDL_DOCK_ITEM (object)));
 
     if (GDL_IS_DOCK_ITEM (requestor)) {
         g_object_get (G_OBJECT (requestor), "preferred_height", &temp, NULL);
@@ -589,7 +588,7 @@ gdl_dock_paned_dock (GdlDockObject    *object,
     child2 = gtk_paned_get_child2 (paned);
 
     /* see if we can dock the item in our paned */
-    switch (GDL_DOCK_ITEM (object)->orientation) {
+    switch (gdl_dock_item_get_orientation (GDL_DOCK_ITEM (object))) {
         case GTK_ORIENTATION_HORIZONTAL:
             if (!child1 && position == GDL_DOCK_LEFT) {
                 gtk_paned_pack1 (paned, GTK_WIDGET (requestor), TRUE, TRUE);
@@ -632,17 +631,16 @@ gdl_dock_paned_set_orientation (GdlDockItem    *item,
 
     g_return_if_fail (GDL_IS_DOCK_PANED (item));
 
-    if (item->child) {
-        old_paned = GTK_PANED (item->child);
+    if (gdl_dock_item_get_child (item)) {
+        old_paned = GTK_PANED (gdl_dock_item_get_child (item));
         g_object_ref (old_paned);
-        gtk_widget_unparent (GTK_WIDGET (old_paned));
-        item->child = NULL;
+        gdl_dock_item_set_child (item, NULL);
     }
 
     gdl_dock_paned_create_child (GDL_DOCK_PANED (item), orientation);
 
     if (old_paned) {
-        new_paned = GTK_PANED (item->child);
+        new_paned = GTK_PANED (gdl_dock_item_get_child (item));
         child1 = gtk_paned_get_child1 (old_paned);
         child2 = gtk_paned_get_child2 (old_paned);
 
@@ -672,13 +670,13 @@ gdl_dock_paned_child_placement (GdlDockObject    *object,
     GtkPaned         *paned;
     GdlDockPlacement  pos = GDL_DOCK_NONE;
 
-    if (item->child) {
-        paned = GTK_PANED (item->child);
+    if (gdl_dock_item_get_child (item)) {
+        paned = GTK_PANED (gdl_dock_item_get_child (item));
         if (GTK_WIDGET (child) == gtk_paned_get_child1 (paned))
-            pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
+            pos = gdl_dock_item_get_orientation (item) == GTK_ORIENTATION_HORIZONTAL ?
                 GDL_DOCK_LEFT : GDL_DOCK_TOP;
         else if (GTK_WIDGET (child) == gtk_paned_get_child2 (paned))
-            pos = item->orientation == GTK_ORIENTATION_HORIZONTAL ?
+            pos = gdl_dock_item_get_orientation (item) == GTK_ORIENTATION_HORIZONTAL ?
                 GDL_DOCK_RIGHT : GDL_DOCK_BOTTOM;
     }
 

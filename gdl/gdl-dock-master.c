@@ -601,10 +601,9 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
 
 
     if (!may_dock) {
-        GtkRequisition req;
 	/* Special case for GdlDockItems : they must respect the flags */
 	if(GDL_IS_DOCK_ITEM(item)
-	&& GDL_DOCK_ITEM(item)->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING)
+	&& gdl_dock_item_get_behavior_flags (GDL_DOCK_ITEM(item)) & GDL_DOCK_ITEM_BEH_NEVER_FLOATING)
 	    return;
 
         dock = NULL;
@@ -612,12 +611,9 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
             gdl_dock_object_get_toplevel (request->applicant));
         my_request.position = GDL_DOCK_FLOATING;
 
-        gdl_dock_item_preferred_size (GDL_DOCK_ITEM (request->applicant), &req);
-        my_request.rect.width = req.width;
-        my_request.rect.height = req.height;
-
-        my_request.rect.x = root_x - GDL_DOCK_ITEM (request->applicant)->dragoff_x;
-        my_request.rect.y = root_y - GDL_DOCK_ITEM (request->applicant)->dragoff_y;
+        gdl_dock_item_get_drag_area (GDL_DOCK_ITEM (request->applicant), &my_request.rect);
+        my_request.rect.x = root_x - my_request.rect.x;
+        my_request.rect.y = root_y - my_request.rect.y;
 
         /* setup extra docking information */
         if (G_IS_VALUE (&my_request.extra))
@@ -631,7 +627,7 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
     /* it could be inserted in another floating dock			*/
     /* so check for the flag at this moment				*/
     else if(GDL_IS_DOCK_ITEM(item)
-	&& GDL_DOCK_ITEM(item)->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING
+	&& gdl_dock_item_get_behavior_flags (GDL_DOCK_ITEM(item)) & GDL_DOCK_ITEM_BEH_NEVER_FLOATING
 	&& dock != GDL_DOCK(master->priv->controller))
 	    return;
 
@@ -886,9 +882,9 @@ gdl_dock_master_add (GdlDockMaster *master,
 
         /* If the item is notebook, set the switcher style */
         if (GDL_IS_DOCK_NOTEBOOK (object) &&
-            GDL_IS_SWITCHER (GDL_DOCK_ITEM (object)->child))
+            GDL_IS_SWITCHER (gdl_dock_item_get_child (GDL_DOCK_ITEM (object))))
         {
-            g_object_set (GDL_DOCK_ITEM (object)->child, "switcher-style",
+            g_object_set (gdl_dock_item_get_child (GDL_DOCK_ITEM (object)), "switcher-style",
                           master->priv->switcher_style, NULL);
         }
 
@@ -1098,7 +1094,7 @@ set_switcher_style_foreach (GtkWidget *obj, gpointer user_data)
 
     if (GDL_IS_DOCK_NOTEBOOK (obj)) {
 
-        GtkWidget *child = GDL_DOCK_ITEM (obj)->child;
+        GtkWidget *child = gdl_dock_item_get_child (GDL_DOCK_ITEM (obj));
         if (GDL_IS_SWITCHER (child)) {
 
             g_object_set (child, "switcher-style", style, NULL);
