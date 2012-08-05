@@ -57,6 +57,7 @@ typedef enum {
 #define GDL_DOCK_NAME_PROPERTY    "name"
 #define GDL_DOCK_MASTER_PROPERTY  "master"
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GdlDockObjectFlags:
  * @GDL_DOCK_AUTOMATIC: Object is created and destroyed by the master, not the user
@@ -66,21 +67,28 @@ typedef enum {
  *
  * Described the state of a #GdlDockObject.
  *
- **/
+ * Since 3.6: These flags are available using access function, like
+ * gdl_dock_object_is_automatic() or gdl_dock_object_is_closed().
+ */
 typedef enum {
     GDL_DOCK_AUTOMATIC  = 1 << 0,
     GDL_DOCK_ATTACHED   = 1 << 1,
     GDL_DOCK_IN_REFLOW  = 1 << 2,
     GDL_DOCK_IN_DETACH  = 1 << 3
 } GdlDockObjectFlags;
+#endif
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_FLAGS_SHIFT:
  *
  * Minimum shift count to be used for user defined flags, to be stored in
  * #GdlDockObject.flags.
+ * 
+ * Deprecated: 3.6: Use a private flag instead
  */
 #define GDL_DOCK_OBJECT_FLAGS_SHIFT 8
+#endif
 
 /**
  * GdlDockPlacement:
@@ -105,9 +113,11 @@ typedef enum {
     GDL_DOCK_FLOATING
 } GdlDockPlacement;
 
-typedef struct _GdlDockObject      GdlDockObject;
-typedef struct _GdlDockObjectClass GdlDockObjectClass;
-typedef struct _GdlDockRequest     GdlDockRequest;
+typedef struct _GdlDockObject             GdlDockObject;
+typedef struct _GdlDockObjectPrivate      GdlDockObjectPrivate;
+typedef struct _GdlDockObjectClass        GdlDockObjectClass;
+typedef struct _GdlDockObjectClassPrivate GdlDockObjectClassPrivate;
+typedef struct _GdlDockRequest            GdlDockRequest;
 
 /**
  * GdlDockRequest:
@@ -129,24 +139,19 @@ struct _GdlDockRequest {
 
 struct _GdlDockObject {
     GtkContainer        container;
-
-    /* private */
+#ifndef GDL_DISABLE_DEPRECATED
+    /* Just for compiling, these data are not initialized anymore */
     GdlDockObjectFlags  flags;
-    gint                freeze_count;
-
     GObject            *master;
-    gchar              *name;
-    gchar              *long_name;
-    gchar              *stock_id;
-    GdkPixbuf          *pixbuf_icon;
-
-    gboolean            reduce_pending;
+#endif
+    /*< private >*/
+    GdlDockObjectPrivate  *priv;
 };
 
 struct _GdlDockObjectClass {
     GtkContainerClass parent_class;
 
-    gboolean          is_compound;
+    GdlDockObjectClassPrivate *priv;    
 
     void     (* detach)          (GdlDockObject    *object,
                                   gboolean          recursive);
@@ -177,13 +182,17 @@ struct _GdlDockObjectClass {
 
 /* additional macros */
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_FLAGS:
  * @obj: A #GdlDockObject
  *
  * Get all flags of #GdlDockObject.
+ *
+ * Deprecated: 3.6: The flags are not accessible anymore.
  */
 #define GDL_DOCK_OBJECT_FLAGS(obj)  (GDL_DOCK_OBJECT (obj)->flags)
+#endif
 
 #ifndef GDL_DISABLE_DEPRECATED
 /**
@@ -195,8 +204,7 @@ struct _GdlDockObjectClass {
  *
  * Deprecated: 3.6: Use gdl_dock_object_is_automatic()
  */
-#define GDL_DOCK_OBJECT_AUTOMATIC(obj) \
-    ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_AUTOMATIC) != 0)
+#define GDL_DOCK_OBJECT_AUTOMATIC(obj) gdl_dock_object_is_automatic (GDL_DOCK_OBJECT (obj))
 #endif
 
 #ifndef GDL_DISABLE_DEPRECATED
@@ -206,10 +214,9 @@ struct _GdlDockObjectClass {
  *
  * Evaluates to %TRUE if the object has a parent.
  *
- * Deprecated: 3.6: Use !gdl_dock_object_is_closed()
+ * Deprecated: 3.6: Use 
  */
-#define GDL_DOCK_OBJECT_ATTACHED(obj) \
-    ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_ATTACHED) != 0)
+#define GDL_DOCK_OBJECT_ATTACHED(obj) (!gdl_dock_object_is_closed(GDL_DOCK_OBJECT (obj)))
 #endif
 
 #ifndef GDL_DISABLE_DEPRECATED
@@ -238,26 +245,34 @@ struct _GdlDockObjectClass {
     ((GDL_DOCK_OBJECT_FLAGS (obj) & GDL_DOCK_IN_DETACH) != 0)
 #endif
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_SET_FLAGS:
  * @obj: A #GdlDockObject
  * @flag: One or more #GdlDockObjectFlags
  *
  * Set one or more flags of a dock object.
+ * 
+ * Deprecated: 3.6: This flags are no longer accessible.
  */
 #define GDL_DOCK_OBJECT_SET_FLAGS(obj,flag) \
     G_STMT_START { (GDL_DOCK_OBJECT_FLAGS (obj) |= (flag)); } G_STMT_END
+#endif
 
 
+#ifndef GDL_DISABLE_DEPRECATED
 /**
  * GDL_DOCK_OBJECT_UNSET_FLAGS:
  * @obj: A #GdlDockObject
  * @flag: One or more #GdlDockObjectFlags
  *
  * Clear one or more flags of a dock object.
+ * 
+ * Deprecated: 3.6: This flags are no longer accessible.
  */
 #define GDL_DOCK_OBJECT_UNSET_FLAGS(obj,flag) \
     G_STMT_START { (GDL_DOCK_OBJECT_FLAGS (obj) &= ~(flag)); } G_STMT_END
+#endif
 
 #ifndef GDL_DISABLE_DEPRECATED
 /**
@@ -268,7 +283,7 @@ struct _GdlDockObjectClass {
  *
  * Deprecated: 3.6: Use gdl_dock_object_is_frozen()
  */
-#define GDL_DOCK_OBJECT_FROZEN(obj) (GDL_DOCK_OBJECT (obj)->freeze_count > 0)
+#define GDL_DOCK_OBJECT_FROZEN(obj) gdl_dock_object_is_frozen(GDL_DOCK_OBJECT (obj))
 #endif
 
 
@@ -373,7 +388,7 @@ GType                 gdl_dock_object_set_type_for_nick (const gchar *nick,
            G_OBJECT_TYPE_NAME (object), object, \
            G_OBJECT (object)->ref_count, \
            (GTK_IS_OBJECT (object) && g_object_is_floating (object)) ? "(float)" : "", \
-           GDL_IS_DOCK_OBJECT (object) ? GDL_DOCK_OBJECT (object)->freeze_count : -1, \
+           GDL_IS_DOCK_OBJECT (object) ? gdl_dock_object_is_frozen (GDL_DOCK_OBJECT (object)) : -1, \
 	   ##args); } G_STMT_END
 
 

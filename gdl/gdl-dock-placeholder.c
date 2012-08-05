@@ -155,7 +155,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
 
     container_class->add = gdl_dock_placeholder_add;
 
-    dock_object_class->is_compound = FALSE;
+    gdl_dock_object_class_set_is_compound (dock_object_class, FALSE);
     dock_object_class->detach = gdl_dock_placeholder_detach;
     dock_object_class->reduce = gdl_dock_placeholder_reduce;
     dock_object_class->dock = gdl_dock_placeholder_dock;

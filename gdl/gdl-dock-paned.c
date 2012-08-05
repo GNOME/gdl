@@ -132,8 +132,7 @@ gdl_dock_paned_class_init (GdlDockPanedClass *klass)
     container_class->forall = gdl_dock_paned_forall;
     container_class->child_type = gdl_dock_paned_child_type;
 
-    object_class->is_compound = TRUE;
-
+    gdl_dock_object_class_set_is_compound (object_class, TRUE);
     object_class->dock_request = gdl_dock_paned_dock_request;
     object_class->dock = gdl_dock_paned_dock;
     object_class->child_placement = gdl_dock_paned_child_placement;

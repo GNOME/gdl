@@ -240,7 +240,6 @@ struct _GdlDockItemClassPrivate {
  * the base class initialization function because this function is called for
  * each derived type.
  */
-
 static gpointer gdl_dock_item_parent_class = NULL;
 
 GType
@@ -357,8 +356,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     container_class->set_focus_child = gdl_dock_item_set_focus_child;
     gtk_container_class_handle_border_width (container_class);
 
-    dock_object_class->is_compound = FALSE;
-
+    gdl_dock_object_class_set_is_compound (object_class, FALSE);
     dock_object_class->dock_request = gdl_dock_item_dock_request;
     dock_object_class->dock = gdl_dock_item_dock;
     dock_object_class->present = gdl_dock_item_present;

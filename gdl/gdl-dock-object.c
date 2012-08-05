@@ -55,7 +55,9 @@
 
 /* ----- Private prototypes ----- */
 
-static void     gdl_dock_object_class_init         (GdlDockObjectClass *klass);
+static void    gdl_dock_object_base_class_init    (GdlDockObjectClass *klass);
+static void    gdl_dock_object_class_init         (GdlDockObjectClass *klass);
+static void    gdl_dock_object_init               (GdlDockObject *object);
 
 static void     gdl_dock_object_set_property       (GObject            *g_object,
                                                     guint               prop_id,
@@ -103,6 +105,24 @@ enum {
 
 static guint gdl_dock_object_signals [LAST_SIGNAL] = { 0 };
 
+struct _GdlDockObjectPrivate {
+    guint               automatic : 1;
+    guint               attached : 1;
+    gint                freeze_count;
+
+    GObject            *master;
+    gchar              *name;
+    gchar              *long_name;
+    gchar              *stock_id;
+    GdkPixbuf          *pixbuf_icon;
+
+    gboolean            reduce_pending;
+};
+
+struct _GdlDockObjectClassPrivate {
+    gboolean           is_compound;
+};
+
 struct DockRegisterItem {
 	gchar* nick;
 	gpointer type;
@@ -112,22 +132,65 @@ static GArray *dock_register = NULL;
 
 /* ----- Private interface ----- */
 
-G_DEFINE_TYPE (GdlDockObject, gdl_dock_object, GTK_TYPE_CONTAINER);
+/* It is not possible to use G_DEFINE_TYPE_* macro for GdlDockObject because it
+ * has some class private data. The priv pointer has to be initialized in
+ * the base class initialization function because this function is called for
+ * each derived type.
+ */
+static gpointer gdl_dock_object_parent_class = NULL;
+
+GType
+gdl_dock_object_get_type (void)
+{
+    static GType gtype = 0;
+
+    if (G_UNLIKELY (gtype == 0)) {
+        const GTypeInfo gtype_info = {
+	    sizeof (GdlDockObjectClass),
+	    (GBaseInitFunc) gdl_dock_object_base_class_init,
+	    NULL,
+	    (GClassInitFunc) gdl_dock_object_class_init,
+	    NULL,		/* class_finalize */
+	    NULL,		/* class_data */
+	    sizeof (GdlDockObject),
+	    0,		/* n_preallocs */
+	    (GInstanceInitFunc) gdl_dock_object_init,
+	    NULL,		/* value_table */
+        };
+
+        gtype = g_type_register_static (GTK_TYPE_CONTAINER,
+                                        "GdlDockObject",
+                                        &gtype_info,
+                                        0);
+
+        g_type_add_class_private (gtype, sizeof (GdlDockObjectClassPrivate));
+    }
+
+    return gtype;
+}
+
+static void
+gdl_dock_object_base_class_init (GdlDockObjectClass *klass)
+{
+    klass->priv = G_TYPE_CLASS_GET_PRIVATE (klass, GDL_TYPE_DOCK_OBJECT, GdlDockObjectClassPrivate);
+}
 
 static void
 gdl_dock_object_class_init (GdlDockObjectClass *klass)
 {
-    GObjectClass      *g_object_class;
+    GObjectClass      *object_class;
     GtkWidgetClass    *widget_class;
     GtkContainerClass *container_class;
 
-    g_object_class = G_OBJECT_CLASS (klass);
+    gdl_dock_object_parent_class = g_type_class_peek_parent (klass);
+    
+    object_class = G_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
 
-    g_object_class->set_property = gdl_dock_object_set_property;
-    g_object_class->get_property = gdl_dock_object_get_property;
-    g_object_class->finalize = gdl_dock_object_finalize;
+    object_class->set_property = gdl_dock_object_set_property;
+    object_class->get_property = gdl_dock_object_get_property;
+    object_class->finalize = gdl_dock_object_finalize;
 
     /**
      * GdlDockObject:name:
@@ -136,7 +199,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
      * to recall the object from any other object in the ring
      */
     g_object_class_install_property (
-        g_object_class, PROP_NAME,
+        object_class, PROP_NAME,
         g_param_spec_string (GDL_DOCK_NAME_PROPERTY, _("Name"),
                              _("Unique name for identifying the dock object"),
                              NULL,
@@ -149,7 +212,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
      * A long descriptive name.
      */
     g_object_class_install_property (
-        g_object_class, PROP_LONG_NAME,
+        object_class, PROP_LONG_NAME,
         g_param_spec_string ("long-name", _("Long name"),
                              _("Human readable name for the dock object"),
                              NULL,
@@ -161,7 +224,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
      * A stock id to use for the icon of the dock object.
      */
     g_object_class_install_property (
-        g_object_class, PROP_STOCK_ID,
+        object_class, PROP_STOCK_ID,
         g_param_spec_string ("stock-id", _("Stock Icon"),
                              _("Stock icon for the dock object"),
                              NULL,
@@ -175,7 +238,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
      * Since: 3.3.2
      */
     g_object_class_install_property (
-        g_object_class, PROP_PIXBUF_ICON,
+        object_class, PROP_PIXBUF_ICON,
         g_param_spec_pointer ("pixbuf-icon", _("Pixbuf Icon"),
                               _("Pixbuf icon for the dock object"),
                               G_PARAM_READWRITE));
@@ -186,7 +249,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
      * The master which manages all the objects in a dock ring
      */
     g_object_class_install_property (
-        g_object_class, PROP_MASTER,
+        object_class, PROP_MASTER,
         g_param_spec_object ("master", _("Dock master"),
                              _("Dock master this dock object is bound to"),
                              GDL_TYPE_DOCK_MASTER,
@@ -197,7 +260,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
     widget_class->show = gdl_dock_object_show;
     widget_class->hide = gdl_dock_object_hide;
 
-    klass->is_compound = TRUE;
+    klass->priv->is_compound = TRUE;
 
     klass->detach = gdl_dock_object_real_detach;
     klass->reduce = gdl_dock_object_real_reduce;
@@ -247,13 +310,23 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
                       GDL_TYPE_DOCK_OBJECT,
                       GDL_TYPE_DOCK_PLACEMENT,
                       G_TYPE_VALUE);
+
+    g_type_class_add_private (object_class, sizeof (GdlDockObjectPrivate));
 }
 
 static void
 gdl_dock_object_init (GdlDockObject *object)
 {
-    object->flags = GDL_DOCK_AUTOMATIC;
-    object->freeze_count = 0;
+    object->priv = G_TYPE_INSTANCE_GET_PRIVATE (object,
+                                                GDL_TYPE_DOCK_OBJECT,
+                                                GdlDockObjectPrivate);
+    
+    object->priv->automatic = TRUE;
+    object->priv->freeze_count = 0;
+#ifndef GDL_DISABLE_DEPRECATED
+    object->flags = 0;
+    object->master = NULL;
+#endif
 }
 
 static void
@@ -299,19 +372,19 @@ gdl_dock_object_get_property  (GObject      *g_object,
 
     switch (prop_id) {
     case PROP_NAME:
-        g_value_set_string (value, object->name);
+        g_value_set_string (value, object->priv->name);
         break;
     case PROP_LONG_NAME:
-        g_value_set_string (value, object->long_name);
+        g_value_set_string (value, object->priv->long_name);
         break;
     case PROP_STOCK_ID:
-        g_value_set_string (value, object->stock_id);
+        g_value_set_string (value, object->priv->stock_id);
         break;
     case PROP_PIXBUF_ICON:
-        g_value_set_pointer (value, object->pixbuf_icon);
+        g_value_set_pointer (value, object->priv->pixbuf_icon);
         break;
     case PROP_MASTER:
-        g_value_set_object (value, object->master);
+        g_value_set_object (value, object->priv->master);
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -326,10 +399,10 @@ gdl_dock_object_finalize (GObject *g_object)
 
     object = GDL_DOCK_OBJECT (g_object);
 
-    g_free (object->name);
-    g_free (object->long_name);
-    g_free (object->stock_id);
-    g_free (object->pixbuf_icon);
+    g_free (object->priv->name);
+    g_free (object->priv->long_name);
+    g_free (object->priv->stock_id);
+    g_free (object->priv->pixbuf_icon);
 
     G_OBJECT_CLASS (gdl_dock_object_parent_class)->finalize (g_object);
 }
@@ -356,14 +429,14 @@ gdl_dock_object_destroy (GtkWidget *dock_object)
         gtk_container_foreach (GTK_CONTAINER (object),
                                (GtkCallback) gdl_dock_object_foreach_detach,
                                NULL);
-        object->reduce_pending = FALSE;
+        object->priv->reduce_pending = FALSE;
         gdl_dock_object_thaw (object);
     }
     /* detach ourselves */
     gdl_dock_object_detach (object, FALSE);
 
     /* finally unbind us */
-    if (object->master)
+    if (object->priv->master)
         gdl_dock_object_unbind (object);
 
     GTK_WIDGET_CLASS(gdl_dock_object_parent_class)->destroy (dock_object);
@@ -393,10 +466,7 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
         gtk_container_foreach (GTK_CONTAINER (parent),
                                (GtkCallback) gdl_dock_object_foreach_is_visible,
                                &visible);
-        if (visible)
-                GDL_DOCK_OBJECT_SET_FLAGS (parent, GDL_DOCK_ATTACHED);
-        else
-                GDL_DOCK_OBJECT_UNSET_FLAGS (parent, GDL_DOCK_ATTACHED);
+        parent->priv->attached = visible;
         gtk_widget_set_visible (GTK_WIDGET (parent), visible);
     }
     gdl_dock_object_layout_changed_notify (object);
@@ -415,7 +485,7 @@ gdl_dock_object_foreach_automatic (GdlDockObject *object,
 static void
 gdl_dock_object_show (GtkWidget *widget)
 {
-    GDL_DOCK_OBJECT_SET_FLAGS (widget, GDL_DOCK_ATTACHED);
+    GDL_DOCK_OBJECT (widget)->priv->attached = TRUE;
     GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->show (widget);
 
     /* Update visibility of automatic parents */
@@ -425,7 +495,7 @@ gdl_dock_object_show (GtkWidget *widget)
 static void
 gdl_dock_object_hide (GtkWidget *widget)
 {
-   GDL_DOCK_OBJECT_UNSET_FLAGS (widget, GDL_DOCK_ATTACHED);
+    GDL_DOCK_OBJECT (widget)->priv->attached = FALSE;
    GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->hide (widget);
 
     /* Update visibility of automatic parents */
@@ -449,7 +519,7 @@ gdl_dock_object_real_detach (GdlDockObject *object,
     }
 
     /* detach the object itself */
-    GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_ATTACHED);
+    object->priv->attached = FALSE;
     parent = gdl_dock_object_get_parent_object (object);
     widget = GTK_WIDGET (object);
     if (gtk_widget_get_parent (widget))
@@ -515,7 +585,7 @@ gdl_dock_object_real_reduce (GdlDockObject *object)
         /* sink the widget, so any automatic floating widget is destroyed */
         g_object_ref_sink (object);
         /* don't reenter */
-        object->reduce_pending = FALSE;
+        object->priv->reduce_pending = FALSE;
         gdl_dock_object_thaw (object);
         if (parent)
             gdl_dock_object_thaw (parent);
@@ -555,13 +625,10 @@ gdl_dock_object_real_present (GdlDockObject *object,
 gboolean
 gdl_dock_object_is_compound (GdlDockObject *object)
 {
-    GdlDockObjectClass *klass;
-
     g_return_val_if_fail (object != NULL, FALSE);
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), FALSE);
 
-    klass = GDL_DOCK_OBJECT_GET_CLASS (object);
-    return klass->is_compound;
+    return GDL_DOCK_OBJECT_GET_CLASS (object)->priv->is_compound;
 }
 
 /**
@@ -625,11 +692,11 @@ gdl_dock_object_freeze (GdlDockObject *object)
 {
     g_return_if_fail (object != NULL);
 
-    if (object->freeze_count == 0) {
+    if (object->priv->freeze_count == 0) {
         g_object_ref (object);   /* dock objects shouldn't be
                                     destroyed if they are frozen */
     }
-    object->freeze_count++;
+    object->priv->freeze_count++;
 }
 
 /**
@@ -644,12 +711,12 @@ void
 gdl_dock_object_thaw (GdlDockObject *object)
 {
     g_return_if_fail (object != NULL);
-    g_return_if_fail (object->freeze_count > 0);
+    g_return_if_fail (object->priv->freeze_count > 0);
 
-    object->freeze_count--;
-    if (object->freeze_count == 0) {
-        if (object->reduce_pending) {
-            object->reduce_pending = FALSE;
+    object->priv->freeze_count--;
+    if (object->priv->freeze_count == 0) {
+        if (object->priv->reduce_pending) {
+            object->priv->reduce_pending = FALSE;
             gdl_dock_object_reduce (object);
         }
         g_object_unref (object);
@@ -672,7 +739,7 @@ gdl_dock_object_is_frozen (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), FALSE);
 
-    return object->freeze_count > 0;
+    return object->priv->freeze_count > 0;
 }
 
 /**
@@ -688,7 +755,7 @@ gdl_dock_object_reduce (GdlDockObject *object)
     g_return_if_fail (object != NULL);
 
     if (gdl_dock_object_is_frozen (object)) {
-        object->reduce_pending = TRUE;
+        object->priv->reduce_pending = TRUE;
         return;
     }
 
@@ -744,14 +811,14 @@ gdl_dock_object_dock (GdlDockObject    *object,
     if (object == requestor)
         return;
 
-    if (!object->master)
+    if (!object->priv->master)
         g_warning (_("Dock operation requested in a non-bound object %p. "
                      "The application might crash"), object);
 
     if (!gdl_dock_object_is_bound (requestor))
-        gdl_dock_object_bind (requestor, object->master);
+        gdl_dock_object_bind (requestor, object->priv->master);
 
-    if (requestor->master != object->master) {
+    if (requestor->priv->master != object->priv->master) {
         g_warning (_("Cannot dock %p to %p because they belong to different masters"),
                    requestor, object);
         return;
@@ -781,7 +848,7 @@ gdl_dock_object_dock (GdlDockObject    *object,
     gdl_dock_object_thaw (object);
 	
     if (gtk_widget_get_visible (GTK_WIDGET (requestor)))
-        GDL_DOCK_OBJECT_SET_FLAGS (requestor, GDL_DOCK_ATTACHED);
+        requestor->priv->attached = TRUE;
 
     /* Update visibility of automatic parents */
     gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (requestor));
@@ -802,19 +869,19 @@ gdl_dock_object_bind (GdlDockObject *object,
     g_return_if_fail (object != NULL && master != NULL);
     g_return_if_fail (GDL_IS_DOCK_MASTER (master));
 
-    if (object->master == master)
+    if (object->priv->master == master)
         /* nothing to do here */
         return;
 
-    if (object->master) {
+    if (object->priv->master) {
         g_warning (_("Attempt to bind to %p an already bound dock object %p "
-                     "(current master: %p)"), master, object, object->master);
+                     "(current master: %p)"), master, object, object->priv->master);
         return;
     }
 
     gdl_dock_master_add (GDL_DOCK_MASTER (master), object);
-    object->master = master;
-    g_object_add_weak_pointer (master, (gpointer *) &object->master);
+    object->priv->master = master;
+    g_object_add_weak_pointer (master, (gpointer *) &object->priv->master);
 
     g_object_notify (G_OBJECT (object), "master");
 }
@@ -835,10 +902,10 @@ gdl_dock_object_unbind (GdlDockObject *object)
     /* detach the object first */
     gdl_dock_object_detach (object, TRUE);
 
-    if (object->master) {
-        GObject *master = object->master;
-        g_object_remove_weak_pointer (master, (gpointer *) &object->master);
-        object->master = NULL;
+    if (object->priv->master) {
+        GObject *master = object->priv->master;
+        g_object_remove_weak_pointer (master, (gpointer *) &object->priv->master);
+        object->priv->master = NULL;
         gdl_dock_master_remove (GDL_DOCK_MASTER (master), object);
         g_object_notify (G_OBJECT (object), "master");
     }
@@ -857,7 +924,7 @@ gboolean
 gdl_dock_object_is_bound (GdlDockObject *object)
 {
     g_return_val_if_fail (object != NULL, FALSE);
-    return (object->master != NULL);
+    return (object->priv->master != NULL);
 }
 
 /**
@@ -875,7 +942,7 @@ gdl_dock_object_get_master (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
 
-    return object->master;
+    return object->priv->master;
 }
 
 /**
@@ -893,7 +960,7 @@ gdl_dock_object_get_controller (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
 
-    return gdl_dock_master_get_controller (GDL_DOCK_MASTER (object->master));
+    return gdl_dock_master_get_controller (GDL_DOCK_MASTER (object->priv->master));
 }
 
 /**
@@ -908,8 +975,8 @@ gdl_dock_object_get_controller (GdlDockObject *object)
 void
 gdl_dock_object_layout_changed_notify (GdlDockObject *object)
 {
-    if (object->master)
-        g_signal_emit_by_name (object->master, "layout-changed");
+    if (object->priv->master)
+        g_signal_emit_by_name (object->priv->master, "layout-changed");
 }
 
 
@@ -1018,7 +1085,7 @@ gdl_dock_object_child_placement (GdlDockObject    *object,
 gboolean
 gdl_dock_object_is_closed (GdlDockObject *object)
 {
-    return (object->flags & GDL_DOCK_ATTACHED) == 0; 
+    return !object->priv->attached;
 }
 
 /**
@@ -1037,7 +1104,7 @@ gdl_dock_object_is_automatic (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), FALSE);
 
-    return (object->flags & GDL_DOCK_AUTOMATIC) != 0;
+    return object->priv->automatic;
 }
 
 /**
@@ -1055,7 +1122,7 @@ gdl_dock_object_set_manual (GdlDockObject *object)
 {
     g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
 
-    object->flags &= ~GDL_DOCK_AUTOMATIC;
+    object->priv->automatic = FALSE;
 }
 
 /**
@@ -1073,7 +1140,7 @@ gdl_dock_object_get_name (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
 
-    return object->name;
+    return object->priv->name;
 }
 
 /**
@@ -1091,8 +1158,8 @@ gdl_dock_object_set_name (GdlDockObject *object,
 {
     g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
 
-    g_free (object->name);
-    object->name = g_strdup (name);
+    g_free (object->priv->name);
+    object->priv->name = g_strdup (name);
 }
 
 /**
@@ -1111,7 +1178,7 @@ gdl_dock_object_get_long_name (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
 
-    return object->long_name;
+    return object->priv->long_name;
 }
 
 /**
@@ -1130,8 +1197,8 @@ gdl_dock_object_set_long_name (GdlDockObject *object,
 {
     g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
 
-    g_free (object->long_name);
-    object->long_name = g_strdup (name);
+    g_free (object->priv->long_name);
+    object->priv->long_name = g_strdup (name);
 }
 
 /**
@@ -1149,7 +1216,7 @@ gdl_dock_object_get_stock_id (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
 
-    return object->stock_id;
+    return object->priv->stock_id;
 }
 
 /**
@@ -1167,8 +1234,8 @@ gdl_dock_object_set_stock_id (GdlDockObject *object,
 {
     g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
 
-    g_free (object->stock_id);
-    object->stock_id = g_strdup (stock_id);
+    g_free (object->priv->stock_id);
+    object->priv->stock_id = g_strdup (stock_id);
 }
 
 /**
@@ -1186,7 +1253,7 @@ gdl_dock_object_get_pixbuf (GdlDockObject *object)
 {
     g_return_val_if_fail (GDL_IS_DOCK_OBJECT (object), NULL);
 
-    return object->pixbuf_icon;
+    return object->priv->pixbuf_icon;
 }
 
 /**
@@ -1205,7 +1272,7 @@ gdl_dock_object_set_pixbuf (GdlDockObject *object,
     g_return_if_fail (GDL_IS_DOCK_OBJECT (object));
     g_return_if_fail (icon == NULL || GDK_IS_PIXBUF (icon));
 
-    object->pixbuf_icon =icon;
+    object->priv->pixbuf_icon =icon;
 }
 
 
@@ -1489,3 +1556,20 @@ gdl_dock_object_set_type_for_nick (const gchar *nick,
     return old_type;
 }
 
+/**
+ * gdl_dock_object_class_set_is_compound:
+ * @item: a #GdlDockObjectClass
+ * @is_compound: %TRUE is the dock object contains other objects
+ *
+ * Define in the corresponding kind of dock object can contains children.
+ *    
+ * Since: 3.6
+ */
+void
+gdl_dock_object_class_set_is_compound (GdlDockObjectClass *object_class,
+                                       gboolean            is_compound)
+{
+    g_return_if_fail (GDL_IS_DOCK_OBJECT_CLASS (object_class));
+
+    object_class->priv->is_compound = is_compound;
+}

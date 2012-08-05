@@ -272,8 +272,7 @@ gdl_dock_class_init (GdlDockClass *klass)
     container_class->child_type = gdl_dock_child_type;
     gtk_container_class_handle_border_width (container_class);
 
-    object_class->is_compound = TRUE;
-
+    gdl_dock_object_class_set_is_compound (object_class, TRUE);
     object_class->detach = gdl_dock_detach;
     object_class->reduce = gdl_dock_reduce;
     object_class->dock_request = gdl_dock_dock_request;
