@@ -1,3 +1,11 @@
+Changes in 3.5.5
+
+* Fix various layout bugs from previous changes (Sébastien Granjoux)
+* Remove public members in structs (Sébastien Granjoux)
+* Deprecate macros and replace them with access functions (+ adding some new access functions for now private members) (Sébastien Granjoux)
+* Fix bgo #667158 - Constructor for GdlDockBar loses 'dock' argument with gobj (Sébastien Granjoux)
+* Fix bgo #680655 - test-dock crashes (Sébastien Granjoux)
+
 Changes in 3.5.4
 
 * New handling of hidden/not existing windows in layout:
