@@ -467,6 +467,12 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
                                (GtkCallback) gdl_dock_object_foreach_is_visible,
                                &visible);
         parent->priv->attached = visible;
+#ifndef GDL_DISABLE_DEPRECATED
+        if (visible)
+            parent->flags |= GDL_DOCK_ATTACHED;
+        else
+            parent->flags &= ~GDL_DOCK_ATTACHED;
+#endif
         gtk_widget_set_visible (GTK_WIDGET (parent), visible);
     }
     gdl_dock_object_layout_changed_notify (object);
@@ -486,6 +492,9 @@ static void
 gdl_dock_object_show (GtkWidget *widget)
 {
     GDL_DOCK_OBJECT (widget)->priv->attached = TRUE;
+#ifndef GDL_DISABLE_DEPRECATED
+    GDL_DOCK_OBJECT (widget)->flags |= GDL_DOCK_ATTACHED;
+#endif
     GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->show (widget);
 
     /* Update visibility of automatic parents */
@@ -496,6 +505,9 @@ static void
 gdl_dock_object_hide (GtkWidget *widget)
 {
     GDL_DOCK_OBJECT (widget)->priv->attached = FALSE;
+#ifndef GDL_DISABLE_DEPRECATED
+    GDL_DOCK_OBJECT (widget)->flags &= ~GDL_DOCK_ATTACHED;
+#endif
    GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->hide (widget);
 
     /* Update visibility of automatic parents */
@@ -520,6 +532,9 @@ gdl_dock_object_real_detach (GdlDockObject *object,
 
     /* detach the object itself */
     object->priv->attached = FALSE;
+#ifndef GDL_DISABLE_DEPRECATED
+    object->flags &= ~GDL_DOCK_ATTACHED;
+#endif
     parent = gdl_dock_object_get_parent_object (object);
     widget = GTK_WIDGET (object);
     if (gtk_widget_get_parent (widget))
@@ -647,7 +662,7 @@ gdl_dock_object_detach (GdlDockObject *object,
     if (!GDL_IS_DOCK_OBJECT (object))
         return;
 
-    if (!GDL_DOCK_OBJECT_ATTACHED (object) && (gtk_widget_get_parent (GTK_WIDGET (object)) == NULL))
+    if (!object->priv->attached && (gtk_widget_get_parent (GTK_WIDGET (object)) == NULL))
         return;
 
     /* freeze the object to avoid reducing while detaching children */
@@ -847,9 +862,12 @@ gdl_dock_object_dock (GdlDockObject    *object,
     g_object_unref (requestor);
     gdl_dock_object_thaw (object);
 	
-    if (gtk_widget_get_visible (GTK_WIDGET (requestor)))
+    if (gtk_widget_get_visible (GTK_WIDGET (requestor))) {
         requestor->priv->attached = TRUE;
-
+#ifndef GDL_DISABLE_DEPRECATED
+        requestor->flags |= GDL_DOCK_ATTACHED;
+#endif
+    }
     /* Update visibility of automatic parents */
     gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (requestor));
 }
@@ -1070,7 +1088,6 @@ gdl_dock_object_child_placement (GdlDockObject    *object,
 
 /* Access functions
  *---------------------------------------------------------------------------*/
-
 /**
  * gdl_dock_object_is_closed:
  * @object: The dock object to be checked
