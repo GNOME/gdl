@@ -153,8 +153,8 @@ gdl_dock_layout_init (GdlDockLayout *layout)
     layout->priv->dirty = FALSE;
     layout->priv->idle_save_pending = FALSE;
 #ifndef GDL_DISABLE_DEPRECATED
-    layout->master = NULL;
-    layout->dirty = FALSE;
+    layout->deprecated_master = NULL;
+    layout->deprecated_dirty = FALSE;
 #endif    
 }
 
@@ -630,7 +630,7 @@ gdl_dock_layout_set_master (GdlDockLayout *layout,
         layout->priv->master = NULL;
     }
 #ifndef GDL_DISABLE_DEPRECATED
-    layout->master = layout->priv->master;
+    layout->deprecated_master = layout->priv->master;
 #endif
 }
 

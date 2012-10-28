@@ -17,7 +17,7 @@ static void
 on_style_button_toggled (GtkRadioButton *button, GdlDock *dock)
 {
 	gboolean active;
-	GdlDockMaster *master = GDL_DOCK_OBJECT_GET_MASTER (dock);
+	GdlDockMaster *master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
 	GdlSwitcherStyle style =
 		GPOINTER_TO_INT (g_object_get_data (G_OBJECT (button),
 						    "__style_id"));
@@ -33,8 +33,7 @@ create_style_button (GtkWidget *dock, GtkWidget *box, GtkWidget *group,
 {
 	GdlSwitcherStyle current_style;
 	GtkWidget *button1;
-	GdlDockMaster *master = GDL_DOCK_OBJECT_GET_MASTER (dock);
-
+	GdlDockMaster *master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
 	g_object_get (master, "switcher-style", &current_style, NULL);
 	button1 = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (group),
 						   style_text);

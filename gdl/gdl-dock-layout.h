@@ -53,8 +53,8 @@ struct _GdlDockLayout {
 
     /*< private >*/
 #ifndef GDL_DISABLE_DEPRECATED    
-    gboolean              dirty;
-    GdlDockMaster        *master;
+    gboolean              deprecated_dirty;
+    GdlDockMaster        *deprecated_master;
 #endif    
     GdlDockLayoutPrivate *priv;
 };
