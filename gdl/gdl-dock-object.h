@@ -141,8 +141,8 @@ struct _GdlDockObject {
     GtkContainer        container;
 #ifndef GDL_DISABLE_DEPRECATED
     /* Just for compiling, these data are not initialized anymore */
-    GdlDockObjectFlags  flags;
-    GObject            *master;
+    GdlDockObjectFlags  deprecated_flags;
+    GObject            *deprecated_master;
 #endif
     /*< private >*/
     GdlDockObjectPrivate  *priv;
@@ -191,7 +191,7 @@ struct _GdlDockObjectClass {
  *
  * Deprecated: 3.6: The flags are not accessible anymore.
  */
-#define GDL_DOCK_OBJECT_FLAGS(obj)  (GDL_DOCK_OBJECT (obj)->flags)
+#define GDL_DOCK_OBJECT_FLAGS(obj)  (GDL_DOCK_OBJECT (obj)->deprecated_flags)
 #endif
 
 #ifndef GDL_DISABLE_DEPRECATED

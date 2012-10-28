@@ -850,9 +850,9 @@ gdl_dock_placeholder_attach (GdlDockPlaceholder *ph,
     
     /* object binding */
     if (!gdl_dock_object_is_bound (GDL_DOCK_OBJECT (ph)))
-        gdl_dock_object_bind (GDL_DOCK_OBJECT (ph), object->master);
+        gdl_dock_object_bind (GDL_DOCK_OBJECT (ph), object->deprecated_master);
 
-    g_return_if_fail (GDL_DOCK_OBJECT (ph)->master == object->master);
+    g_return_if_fail (GDL_DOCK_OBJECT (ph)->deprecated_master == object->deprecated_master);
         
     gdl_dock_object_freeze (GDL_DOCK_OBJECT (ph));
     

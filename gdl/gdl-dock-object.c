@@ -324,8 +324,8 @@ gdl_dock_object_init (GdlDockObject *object)
     object->priv->automatic = TRUE;
     object->priv->freeze_count = 0;
 #ifndef GDL_DISABLE_DEPRECATED
-    object->flags = 0;
-    object->master = NULL;
+    object->deprecated_flags = 0;
+    object->deprecated_master = NULL;
 #endif
 }
 
@@ -469,9 +469,9 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
         parent->priv->attached = visible;
 #ifndef GDL_DISABLE_DEPRECATED
         if (visible)
-            parent->flags |= GDL_DOCK_ATTACHED;
+            parent->deprecated_flags |= GDL_DOCK_ATTACHED;
         else
-            parent->flags &= ~GDL_DOCK_ATTACHED;
+            parent->deprecated_flags &= ~GDL_DOCK_ATTACHED;
 #endif
         gtk_widget_set_visible (GTK_WIDGET (parent), visible);
     }
@@ -493,7 +493,7 @@ gdl_dock_object_show (GtkWidget *widget)
 {
     GDL_DOCK_OBJECT (widget)->priv->attached = TRUE;
 #ifndef GDL_DISABLE_DEPRECATED
-    GDL_DOCK_OBJECT (widget)->flags |= GDL_DOCK_ATTACHED;
+    GDL_DOCK_OBJECT (widget)->deprecated_flags |= GDL_DOCK_ATTACHED;
 #endif
     GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->show (widget);
 
@@ -506,7 +506,7 @@ gdl_dock_object_hide (GtkWidget *widget)
 {
     GDL_DOCK_OBJECT (widget)->priv->attached = FALSE;
 #ifndef GDL_DISABLE_DEPRECATED
-    GDL_DOCK_OBJECT (widget)->flags &= ~GDL_DOCK_ATTACHED;
+    GDL_DOCK_OBJECT (widget)->deprecated_flags &= ~GDL_DOCK_ATTACHED;
 #endif
    GTK_WIDGET_CLASS (gdl_dock_object_parent_class)->hide (widget);
 
@@ -533,7 +533,7 @@ gdl_dock_object_real_detach (GdlDockObject *object,
     /* detach the object itself */
     object->priv->attached = FALSE;
 #ifndef GDL_DISABLE_DEPRECATED
-    object->flags &= ~GDL_DOCK_ATTACHED;
+    object->deprecated_flags &= ~GDL_DOCK_ATTACHED;
 #endif
     parent = gdl_dock_object_get_parent_object (object);
     widget = GTK_WIDGET (object);
@@ -865,7 +865,7 @@ gdl_dock_object_dock (GdlDockObject    *object,
     if (gtk_widget_get_visible (GTK_WIDGET (requestor))) {
         requestor->priv->attached = TRUE;
 #ifndef GDL_DISABLE_DEPRECATED
-        requestor->flags |= GDL_DOCK_ATTACHED;
+        requestor->deprecated_flags |= GDL_DOCK_ATTACHED;
 #endif
     }
     /* Update visibility of automatic parents */
@@ -899,6 +899,9 @@ gdl_dock_object_bind (GdlDockObject *object,
 
     gdl_dock_master_add (GDL_DOCK_MASTER (master), object);
     object->priv->master = master;
+#ifndef GDL_DISABLE_DEPRECATED
+    object->deprecated_master = master;
+#endif    
     g_object_add_weak_pointer (master, (gpointer *) &object->priv->master);
 
     g_object_notify (G_OBJECT (object), "master");
@@ -924,6 +927,9 @@ gdl_dock_object_unbind (GdlDockObject *object)
         GObject *master = object->priv->master;
         g_object_remove_weak_pointer (master, (gpointer *) &object->priv->master);
         object->priv->master = NULL;
+#ifndef GDL_DISABLE_DEPRECATED
+        object->deprecated_master = NULL;
+#endif    
         gdl_dock_master_remove (GDL_DOCK_MASTER (master), object);
         g_object_notify (G_OBJECT (object), "master");
     }

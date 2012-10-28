@@ -64,7 +64,7 @@ struct _GdlDockBar {
 
     /*< private >*/
 #ifndef GDL_DISABLE_DEPRECATED    
-    GdlDock *dock;
+    GdlDock *deprecated_dock;
 #endif
     GdlDockBarPrivate *priv;
 };
