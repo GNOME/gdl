@@ -1,3 +1,12 @@
+Changes in 3.6.2
+
+* Fix bgo#686702 Generate error at compile time when using deprecated member
+(Sébastien Granjoux)
+
+* Translation: sr (Мирослав Николић)
+
+
+
 Changes in 3.6.0
 
 * Translation: cs (Marek Černocký)
