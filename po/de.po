@@ -10,387 +10,411 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-01-01 13:17+0000\n"
-"PO-Revision-Date: 2012-03-04 21:27+0100\n"
-"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-12 23:36+0100\n"
+"PO-Revision-Date: 2012-11-12 23:37+0100\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
+#: ../gdl/gdl-dock-item-grip.c:729
+msgid "Controlling dock item"
+msgstr "Dock-Objekt wird gesteuert"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:141
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Dock-Objekt, dem diese Reiterbeschriftung »gehört«"
+
 # Master nicht übersetzbar (ähnlich wie bei Datenspeicherung Master/Slave)?
-#: ../gdl/gdl-dock-bar.c:108
-#: ../gdl/gdl-dock-layout.c:107
+#: ../gdl/gdl-dock-bar.c:127
+#: ../gdl/gdl-dock-layout.c:128
 msgid "Master"
 msgstr "Master"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:128
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "GdlDockMaster-Objekt, an welches das Dockleisten-Widget angehängt wirdgggg"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:140
 msgid "Dockbar style"
 msgstr "Dockleistenstil"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:141
 msgid "Dockbar style to show items on it"
 msgstr "Dockleistenstil mit dem Einträge angezeigt werden"
 
-#: ../gdl/gdl-dock.c:180
+#: ../gdl/gdl-dock.c:197
 msgid "Floating"
 msgstr "Freischwebend"
 
-#: ../gdl/gdl-dock.c:181
+#: ../gdl/gdl-dock.c:198
 msgid "Whether the dock is floating in its own window"
 msgstr "Ob das Dock frei in seinem eigenen Fenster schwebt"
 
-#: ../gdl/gdl-dock.c:188
-#: ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock.c:205
+#: ../gdl/gdl-dock-master.c:187
 msgid "Default title"
 msgstr "Vorgegebener Titel"
 
-#: ../gdl/gdl-dock.c:189
+#: ../gdl/gdl-dock.c:206
 msgid "Default title for the newly created floating docks"
 msgstr "Vorgegebener Titel für die neu erzeugten, freischebenden Docks."
 
-#: ../gdl/gdl-dock.c:195
-#: ../gdl/gdl-dock-placeholder.c:174
+#: ../gdl/gdl-dock.c:212
+#: ../gdl/gdl-dock-placeholder.c:192
 msgid "Width"
 msgstr "Breite"
 
-#: ../gdl/gdl-dock.c:196
+#: ../gdl/gdl-dock.c:213
 msgid "Width for the dock when it's of floating type"
 msgstr "Breite des Docks, wenn es den Typ freischwebend hat"
 
-#: ../gdl/gdl-dock.c:203
-#: ../gdl/gdl-dock-placeholder.c:182
+#: ../gdl/gdl-dock.c:220
+#: ../gdl/gdl-dock-placeholder.c:200
 msgid "Height"
 msgstr "Höhe"
 
-#: ../gdl/gdl-dock.c:204
+#: ../gdl/gdl-dock.c:221
 msgid "Height for the dock when it's of floating type"
 msgstr "Höhe des Docks, wenn es den Typ freischwebend hat"
 
-#: ../gdl/gdl-dock.c:211
+#: ../gdl/gdl-dock.c:228
 msgid "Float X"
 msgstr "Schwebend X"
 
-#: ../gdl/gdl-dock.c:212
+#: ../gdl/gdl-dock.c:229
 msgid "X coordinate for a floating dock"
 msgstr "X-Koordinate eines freischwebenden Docks"
 
-#: ../gdl/gdl-dock.c:219
+#: ../gdl/gdl-dock.c:236
 msgid "Float Y"
 msgstr "Schwebend X"
 
-#: ../gdl/gdl-dock.c:220
+#: ../gdl/gdl-dock.c:237
 msgid "Y coordinate for a floating dock"
 msgstr "Y-Koordinate eines freischwebenden Docks"
 
-#: ../gdl/gdl-dock.c:481
-#, c-format
-msgid "Dock #%d"
-msgstr "Dock Nr. %d"
+#: ../gdl/gdl-dock.c:255
+msgid "Skip taskbar"
+msgstr "Fensterleiste unberührt lassen"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock.c:256
+msgid "Whether or not to prevent a floating dock window from appearing in the taskbar"
+msgstr "Legt fest, ob kein frei schwebendes Dock-Fenster in der Fensterleiste erscheinen soll"
+
+#: ../gdl/gdl-dock-item.c:385
 msgid "Orientation"
 msgstr "Ausrichtung"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:386
 msgid "Orientation of the docking item"
 msgstr "Ausrichtung des Dock-Objekts"
 
-#: ../gdl/gdl-dock-item.c:283
+#: ../gdl/gdl-dock-item.c:401
 msgid "Resizable"
 msgstr "Größe veränderbar"
 
-#: ../gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:402
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr "Falls gesetzt, kann die Größe des Dock-Objekts verändert werden, wenn es in einem GtkPanel-Widget angedockt ist"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:409
 msgid "Item behavior"
 msgstr "Objektverhalten"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:410
 msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
 msgstr "Allgemeines Verhalten für das Dock-Objekt (also ob es schweben kann, es gesperrt ist, u.s.w.)"
 
-#: ../gdl/gdl-dock-item.c:300
-#: ../gdl/gdl-dock-master.c:152
+#: ../gdl/gdl-dock-item.c:418
+#: ../gdl/gdl-dock-master.c:194
 msgid "Locked"
 msgstr "Gesperrt"
 
-#: ../gdl/gdl-dock-item.c:301
+#: ../gdl/gdl-dock-item.c:419
 msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "Falls gesetzt, kann das Dock-Objekt nicht verschoben werden und zeigt keinen Griff"
 
-#: ../gdl/gdl-dock-item.c:309
+#: ../gdl/gdl-dock-item.c:427
 msgid "Preferred width"
 msgstr "Bevorzugte Breite"
 
-#: ../gdl/gdl-dock-item.c:310
+#: ../gdl/gdl-dock-item.c:428
 msgid "Preferred width for the dock item"
 msgstr "Bevorzugte Breite des Dock-Objekts"
 
-#: ../gdl/gdl-dock-item.c:316
+#: ../gdl/gdl-dock-item.c:434
 msgid "Preferred height"
 msgstr "Bevorzugte Höhe"
 
-#: ../gdl/gdl-dock-item.c:317
+#: ../gdl/gdl-dock-item.c:435
 msgid "Preferred height for the dock item"
 msgstr "Bevorzugte Höhe des Dock-Objekts"
 
-#: ../gdl/gdl-dock-item.c:662
+#: ../gdl/gdl-dock-item.c:449
+msgid "Iconified"
+msgstr "Als Symbol"
+
+#: ../gdl/gdl-dock-item.c:450
+msgid "If set, the dock item is hidden but it has a corresponding icon in the dock bar allowing to show it again."
+msgstr "Falls gesetzt, so wird das Dock-Objekt verborgen, aber es gibt ein Symbol in der Dock-Leiste, um es wieder erscheinen zu lassen."
+
+#: ../gdl/gdl-dock-item.c:466
+msgid "Closed"
+msgstr "Geschlossen"
+
+#: ../gdl/gdl-dock-item.c:467
+msgid "Whether the widget is closed."
+msgstr "Legt fest, ob das Widget geschlossen sein soll."
+
+#: ../gdl/gdl-dock-item.c:873
 #, c-format
 msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
 msgstr "Sie können kein Dock-Objekt (%p des Typs %s) in einem %s hinzufügen. Verwenden Sie ein GdlDock oder ein anderes zusammengesetztes Dock-Objekt"
 
-#: ../gdl/gdl-dock-item.c:669
+#: ../gdl/gdl-dock-item.c:880
 #, c-format
 msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
 msgstr "Es wurde versucht, ein Widget vom Typ %s zu einem %s hinzuzufügen, dieses kann aber immer nur ein Widget enthalten. Es enthält bereits ein Widget vom Typ %s"
 
-#: ../gdl/gdl-dock-item.c:1367
-#: ../gdl/gdl-dock-item.c:1417
+#: ../gdl/gdl-dock-item.c:1570
+#: ../gdl/gdl-dock-item.c:1620
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nicht unterstützte Dock-Strategie %s in Dock-Objekt des Typs %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1525
+#: ../gdl/gdl-dock-item.c:1733
 msgid "UnLock"
 msgstr "Freigeben"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1532
+#: ../gdl/gdl-dock-item.c:1740
 msgid "Hide"
 msgstr "Verbergen"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1537
+#: ../gdl/gdl-dock-item.c:1745
 msgid "Lock"
 msgstr "Sperren"
 
-#: ../gdl/gdl-dock-item.c:1810
+#: ../gdl/gdl-dock-item.c:2015
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Versuch, ein unverbundenes Objekt %p anzubinden"
 
-#: ../gdl/gdl-dock-item-grip.c:406
+#: ../gdl/gdl-dock-item-grip.c:387
 msgid "Iconify this dock"
 msgstr "Dieses Dock auf Symbolgröße verkleinern"
 
-#: ../gdl/gdl-dock-item-grip.c:408
+#: ../gdl/gdl-dock-item-grip.c:389
 msgid "Close this dock"
 msgstr "Dieses Dock schließen"
 
-#: ../gdl/gdl-dock-item-grip.c:748
-#: ../gdl/gdl-dock-tablabel.c:128
-msgid "Controlling dock item"
-msgstr "Dock-Objekt wird gesteuert"
-
-#: ../gdl/gdl-dock-item-grip.c:749
+#: ../gdl/gdl-dock-item-grip.c:730
 msgid "Dockitem which 'owns' this grip"
 msgstr "Dock-Objekt, dem dieser Griff »gehört«"
 
-#: ../gdl/gdl-dock-layout.c:108
-msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "GdlDockMaster-Objekt, an den das Layout-Objekt angehängt wird"
+#: ../gdl/gdl-dock-layout.c:129
+msgid "GdlDockMaster or GdlDockObject object which the layout object is attached to"
+msgstr "GdlDockMaster- oder GdlDockObject-Objekt, an welches das Layout-Objekt angehängt wird"
 
-#: ../gdl/gdl-dock-layout.c:115
+#: ../gdl/gdl-dock-layout.c:136
 msgid "Dirty"
 msgstr "Schmutzig"
 
-#: ../gdl/gdl-dock-layout.c:116
+#: ../gdl/gdl-dock-layout.c:137
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Wahr falls die Layout verändert wurden und in eine Datei gespeichert werden müssen"
 
-#: ../gdl/gdl-dock-layout.c:279
+#: ../gdl/gdl-dock-layout.c:303
 #, c-format
 msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
 msgstr "Problem beim Laden des Layouts: Es ist unbekannt, wie ein Dock-Objekt mit dem Alias »%s« erstellt werden soll"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:188
 msgid "Default title for newly created floating docks"
 msgstr "Vorgegebener Titel für neu erstellte freischwebende Docks"
 
-#: ../gdl/gdl-dock-master.c:153
+#: ../gdl/gdl-dock-master.c:195
 msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr "Falls auf »1« gesetzt, werden alle an den Master angebundene Dock-Objekte gesperrt; falls auf »0« gesetzt, sind alle nicht gesperrt; »-1« zeigt Inkonsistenz unter den Objekten an"
 
-#: ../gdl/gdl-dock-master.c:161
-#: ../gdl/gdl-switcher.c:781
+#: ../gdl/gdl-dock-master.c:203
+#: ../gdl/gdl-switcher.c:842
 msgid "Switcher Style"
 msgstr "Umschalterstil"
 
-#: ../gdl/gdl-dock-master.c:162
-#: ../gdl/gdl-switcher.c:782
+#: ../gdl/gdl-dock-master.c:204
+#: ../gdl/gdl-switcher.c:843
 msgid "Switcher buttons style"
 msgstr "Stil des Umschalteknopf"
 
-#: ../gdl/gdl-dock-master.c:772
+#: ../gdl/gdl-dock-master.c:831
 #, c-format
 msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
 msgstr "Master %p: Objekt %p[%s] konnte nicht zum Hash hinzugefügt werden. Es gibt bereits ein gleichnamiges Objekt (%p)."
 
-#: ../gdl/gdl-dock-master.c:944
+#: ../gdl/gdl-dock-master.c:1052
 #, c-format
 msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
 msgstr "Die neue Dock-Steuerung %p ist automatisch. Nur manuelle Dock-Objekte sollten zur Steuerung ernannt werden"
 
-#: ../gdl/gdl-dock-notebook.c:137
+#: ../gdl/gdl-dock-master.c:1083
+#, c-format
+msgid "Dock #%d"
+msgstr "Dock Nr. %d"
+
+#: ../gdl/gdl-dock-notebook.c:156
 msgid "Page"
 msgstr "Seite"
 
-#: ../gdl/gdl-dock-notebook.c:138
+#: ../gdl/gdl-dock-notebook.c:157
 msgid "The index of the current page"
 msgstr "Der Index der aktuellen Seite"
 
-#: ../gdl/gdl-dock-object.c:116
+#: ../gdl/gdl-dock-object.c:203
 msgid "Name"
 msgstr "Name"
 
-#: ../gdl/gdl-dock-object.c:117
+#: ../gdl/gdl-dock-object.c:204
 msgid "Unique name for identifying the dock object"
 msgstr "Eindeutiger Name zur Identifikation des Dock-Objekts"
 
-#: ../gdl/gdl-dock-object.c:124
+#: ../gdl/gdl-dock-object.c:216
 msgid "Long name"
 msgstr "Langer Name"
 
-#: ../gdl/gdl-dock-object.c:125
+#: ../gdl/gdl-dock-object.c:217
 msgid "Human readable name for the dock object"
 msgstr "Leserlicher Name des Dock-Objekts"
 
-#: ../gdl/gdl-dock-object.c:131
+#: ../gdl/gdl-dock-object.c:228
 msgid "Stock Icon"
 msgstr "Standardsymbol"
 
-#: ../gdl/gdl-dock-object.c:132
+#: ../gdl/gdl-dock-object.c:229
 msgid "Stock icon for the dock object"
 msgstr "Standardsymbol für das Dock-Objekt"
 
-#: ../gdl/gdl-dock-object.c:145
+#: ../gdl/gdl-dock-object.c:242
 msgid "Pixbuf Icon"
 msgstr "Pixbuf-Symbol"
 
-#: ../gdl/gdl-dock-object.c:146
-#| msgid "Stock icon for the dock object"
+#: ../gdl/gdl-dock-object.c:243
 msgid "Pixbuf icon for the dock object"
 msgstr "Pixbuf-Symbol für das Dock-Objekt"
 
-#: ../gdl/gdl-dock-object.c:151
+#: ../gdl/gdl-dock-object.c:253
 msgid "Dock master"
 msgstr "Dock-Master"
 
-#: ../gdl/gdl-dock-object.c:152
+#: ../gdl/gdl-dock-object.c:254
 msgid "Dock master this dock object is bound to"
 msgstr "Dock-Master, an den dieses Dock-Objekt angebunden ist"
 
-#: ../gdl/gdl-dock-object.c:456
+#: ../gdl/gdl-dock-object.c:617
 #, c-format
 msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
 msgstr "Rückfrage an gdl_dock_objekt_dock in einem Dock-Objekt %p (Objekttyp ist %s), welches diese Methode nicht implementiert"
 
-#: ../gdl/gdl-dock-object.c:595
+#: ../gdl/gdl-dock-object.c:830
 #, c-format
 msgid "Dock operation requested in a non-bound object %p. The application might crash"
 msgstr "Dock-Operation in einem unverbundenen Objekt %p angefordert. Die Anwendung stürzt möglicherweise ab"
 
-#: ../gdl/gdl-dock-object.c:602
+#: ../gdl/gdl-dock-object.c:837
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Dock %p konnte nicht an %p angedockt werden, da sie zu unterschiedlichen Mastern gehören"
 
-#: ../gdl/gdl-dock-object.c:644
+#: ../gdl/gdl-dock-object.c:895
 #, c-format
 msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr "Versuch, ein bereits angebundenes Objekt an %p anzubinden (%p, aktueller Master: %p)"
 
-#: ../gdl/gdl-dock-paned.c:128
+#: ../gdl/gdl-dock-paned.c:145
 msgid "Position"
 msgstr "Position"
 
-#: ../gdl/gdl-dock-paned.c:129
+#: ../gdl/gdl-dock-paned.c:146
 msgid "Position of the divider in pixels"
 msgstr "Position des Teilers in Pixeln"
 
-#: ../gdl/gdl-dock-placeholder.c:148
+#: ../gdl/gdl-dock-placeholder.c:166
 msgid "Sticky"
 msgstr "Klebrig"
 
 # CHECK
-#: ../gdl/gdl-dock-placeholder.c:149
+#: ../gdl/gdl-dock-placeholder.c:167
 msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
 msgstr "Ob der Platzhalter beim erneuten Andocken seines Hosts bei diesem bleiben oder in der Hierarchie aufsteigen soll"
 
-#: ../gdl/gdl-dock-placeholder.c:156
+#: ../gdl/gdl-dock-placeholder.c:174
 msgid "Host"
 msgstr "Rechner"
 
-#: ../gdl/gdl-dock-placeholder.c:157
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "The dock object this placeholder is attached to"
 msgstr "Das Dock-Objekt, an den dieser Platzhalter angehängt wird"
 
-#: ../gdl/gdl-dock-placeholder.c:164
+#: ../gdl/gdl-dock-placeholder.c:182
 msgid "Next placement"
 msgstr "Nächste Platzieren"
 
 # CHECK
-#: ../gdl/gdl-dock-placeholder.c:165
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid "The position an item will be docked to our host if a request is made to dock to us"
 msgstr "Die Position, an die ein Objekt an unseren Host angedockt wird, falls eine Anfrage zum andocken an uns gemacht wurde"
 
-#: ../gdl/gdl-dock-placeholder.c:175
+#: ../gdl/gdl-dock-placeholder.c:193
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Breite des Widgets, wenn es mit dem Platzhalter verbunden wird"
 
-#: ../gdl/gdl-dock-placeholder.c:183
+#: ../gdl/gdl-dock-placeholder.c:201
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Höhe des Widgets, wenn es mit dem Platzhalter verbunden wird"
 
-#: ../gdl/gdl-dock-placeholder.c:189
+#: ../gdl/gdl-dock-placeholder.c:207
 msgid "Floating Toplevel"
 msgstr "Freischwebend immer sichtbar"
 
-#: ../gdl/gdl-dock-placeholder.c:190
+#: ../gdl/gdl-dock-placeholder.c:208
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Legt fest, ob der Platzhalter für ein schwebendes immer sichtbares Dock steht"
 
-#: ../gdl/gdl-dock-placeholder.c:196
+#: ../gdl/gdl-dock-placeholder.c:214
 msgid "X Coordinate"
 msgstr "X-Koordinate"
 
-#: ../gdl/gdl-dock-placeholder.c:197
+#: ../gdl/gdl-dock-placeholder.c:215
 msgid "X coordinate for dock when floating"
 msgstr "X-Koordinate eines freischwebenden Docks"
 
-#: ../gdl/gdl-dock-placeholder.c:203
+#: ../gdl/gdl-dock-placeholder.c:221
 msgid "Y Coordinate"
 msgstr "Y-Koordinate"
 
-#: ../gdl/gdl-dock-placeholder.c:204
+#: ../gdl/gdl-dock-placeholder.c:222
 msgid "Y coordinate for dock when floating"
 msgstr "Y-Koordinate eines freischwebenden Docks"
 
-#: ../gdl/gdl-dock-placeholder.c:496
+#: ../gdl/gdl-dock-placeholder.c:514
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Versuch, ein Dock-Objekt an einen unverbundenen Platzhalter anzudocken"
 
 # CHECK
-#: ../gdl/gdl-dock-placeholder.c:608
+#: ../gdl/gdl-dock-placeholder.c:641
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "Es wurde ein Ablösesignal von einem Objekt (%p) erhalten, das nicht unser Host %p ist"
 
-#: ../gdl/gdl-dock-placeholder.c:633
+#: ../gdl/gdl-dock-placeholder.c:666
 #, c-format
 msgid "Something weird happened while getting the child placement for %p from parent %p"
 msgstr "Beim Erhalten der Kindplatzierung für %p vom Elternobjekt %p ist etwas seltsames passiert"
-
-#: ../gdl/gdl-dock-tablabel.c:129
-msgid "Dockitem which 'owns' this tablabel"
-msgstr "Dock-Objekt, dem diese Reiterbeschriftung »gehört«"
 
