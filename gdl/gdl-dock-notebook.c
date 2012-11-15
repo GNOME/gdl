@@ -124,7 +124,7 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
     GdlDockItemClass   *item_class;
     static const gchar notebook_style[] =
        "* {\n"
-           "padding: 2;\n"
+           "padding: 2px;\n"
        "}";
 
     g_object_class = G_OBJECT_CLASS (klass);
