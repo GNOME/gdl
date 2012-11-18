@@ -467,7 +467,6 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                               _("Whether the widget is closed."),
                               FALSE,
                               G_PARAM_READWRITE |
-                              GDL_DOCK_PARAM_AFTER |
                               GDL_DOCK_PARAM_EXPORT));
 
     /**
