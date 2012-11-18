@@ -131,7 +131,7 @@ gdl_dock_item_set_default_position (GdlDockItem   *item,
  *
  * Attach the @layout to the @master and delete the reference to
  * the master that the layout attached previously.
- * 
+ *
  * Deprecated 3.6: Use gdl_dock_layout_set_master() instead.
  */
 void

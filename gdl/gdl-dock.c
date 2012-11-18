@@ -44,9 +44,9 @@
  * @stability: Unstable
  *
  * A #GdlDock is the toplevel widget which in turn hold a tree of #GdlDockItem
- * widgets. 
- * 
- * Several dock widgets can exchange widgets if they share the same master. 
+ * widgets.
+ *
+ * Several dock widgets can exchange widgets if they share the same master.
  */
 
 #ifndef __FUNCTION__
@@ -131,7 +131,7 @@ static void     gdl_dock_present          (GdlDockObject    *object,
 struct _GdlDockPrivate
 {
     GdlDockObject   *root;
-    
+
     /* for floating docks */
     gboolean            floating;
     GtkWidget          *window;
@@ -1303,7 +1303,7 @@ gdl_dock_add_item (GdlDock          *dock,
     GdlDockObject *placeholder;
     GdlDockObject *parent = NULL;
     GdlDockPlacement place;
-    
+
     g_return_if_fail (dock != NULL);
     g_return_if_fail (item != NULL);
 
@@ -1316,12 +1316,12 @@ gdl_dock_add_item (GdlDock          *dock,
             gtk_widget_destroy (GTK_WIDGET (placeholder));
         }
     }
-    
+
     if (parent && gdl_dock_object_child_placement (parent, placeholder, &place))
     {
         gdl_dock_object_freeze (GDL_DOCK_OBJECT (parent));
         gtk_widget_destroy (GTK_WIDGET (placeholder));
-        
+
         gdl_dock_object_dock (GDL_DOCK_OBJECT (parent),
                               GDL_DOCK_OBJECT (item),
                               place, NULL);
@@ -1482,7 +1482,7 @@ GdlDockObject *
 gdl_dock_get_root (GdlDock *dock)
 {
     g_return_val_if_fail (GDL_IS_DOCK (dock), NULL);
-    
+
     return dock->priv->root;
 }
 

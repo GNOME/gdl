@@ -63,7 +63,7 @@ struct _GdlDockBar {
     GtkBox parent;
 
     /*< private >*/
-#ifndef GDL_DISABLE_DEPRECATED    
+#ifndef GDL_DISABLE_DEPRECATED
     GdlDock *deprecated_dock;
 #endif
     GdlDockBarPrivate *priv;

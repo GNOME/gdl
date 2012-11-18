@@ -202,9 +202,9 @@ struct _GdlDockItemPrivate {
     guint                resize : 1;
     guint                in_predrag : 1;
     guint                in_drag : 1;
-    
+
     gint                 dragoff_x, dragoff_y;
-    
+
     GtkWidget *menu;
 
     gboolean   grip_shown;
@@ -224,7 +224,7 @@ struct _GdlDockItemPrivate {
 
 struct _GdlDockItemClassPrivate {
     gboolean        has_grip;
-    
+
     GtkCssProvider *css;
 };
 
@@ -327,7 +327,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
     GtkBindingSet      *binding_set;
 
     gdl_dock_item_parent_class = g_type_class_peek_parent (klass);
-    
+
     object_class = G_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
@@ -469,7 +469,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                               G_PARAM_READWRITE |
                               GDL_DOCK_PARAM_AFTER |
                               GDL_DOCK_PARAM_EXPORT));
-    
+
     /**
      * GdlDockItem::dock-drag-begin:
      * @item: The dock item which is being dragged.
@@ -623,12 +623,12 @@ gdl_dock_item_init (GdlDockItem *item)
     item->priv->behavior = GDL_DOCK_ITEM_BEH_NORMAL;
 
     item->priv->iconified = FALSE;
-    
+
     item->priv->resize = TRUE;
 
     item->priv->dragoff_x = item->priv->dragoff_y = 0;
     item->priv->in_predrag = item->priv->in_drag = FALSE;
-   
+
     item->priv->menu = NULL;
 
     item->priv->preferred_width = item->priv->preferred_height = -1;
@@ -2091,7 +2091,7 @@ gdl_dock_item_get_orientation (GdlDockItem *item)
  * @item: The dock item which will get it's behavior set.
  * @behavior: Behavior flags to turn on
  * @clear: Whether to clear state before turning on @flags
- * 
+ *
  * This function sets the behavior of the dock item.
  *
  * Since: 3.6
@@ -2120,7 +2120,7 @@ gdl_dock_item_set_behavior_flags (GdlDockItem *item,
  * gdl_dock_item_unset_behavior_flags:
  * @item: The dock item which will get it's behavior set.
  * @behavior: Behavior flags to turn off
- * 
+ *
  * This function sets the behavior of the dock item.
  *
  * Since: 3.6
@@ -2168,7 +2168,7 @@ gdl_dock_item_get_behavior_flags (GdlDockItem *item)
                     GDL_DOCK_ITEM_BEH_CANT_DOCK_LEFT |
                     GDL_DOCK_ITEM_BEH_CANT_DOCK_RIGHT |
                     GDL_DOCK_ITEM_BEH_CANT_DOCK_CENTER;
-    
+
     return behavior;
 }
 
@@ -2388,10 +2388,10 @@ gdl_dock_item_show_item (GdlDockItem *item)
     if (gtk_widget_get_parent (GTK_WIDGET (item)) == NULL) {
         if (gdl_dock_object_is_bound (GDL_DOCK_OBJECT (item))) {
             GdlDockObject *toplevel;
-        
+
             toplevel = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (item));
             if (toplevel == GDL_DOCK_OBJECT (item)) return;
-        
+
             if (item->priv->behavior & GDL_DOCK_ITEM_BEH_NEVER_FLOATING) {
                 g_warning("Object %s has no default position and flag GDL_DOCK_ITEM_BEH_NEVER_FLOATING is set.\n",
                           gdl_dock_object_get_name (GDL_DOCK_OBJECT (item)));
@@ -2469,7 +2469,7 @@ gdl_dock_item_preferred_size (GdlDockItem    *item,
  * @req: A pointer to a #GdkRectangle that will receive the drag position
  *
  * Gets the size and the position of the drag window in pixels.
- * 
+ *
  * Since: 3.6
  */
 void
@@ -2525,12 +2525,12 @@ gdl_dock_item_or_child_has_focus (GdlDockItem *item)
  *
  * Checks whether a given #GdlDockItem is a placeholder created by the
  * #GdlDockLayout object and does not contain a child.
- * 
+ *
  * Returns: %TRUE if the dock item is a placeholder
  *
  * Since: 3.6
  */
-gboolean 
+gboolean
 gdl_dock_item_is_placeholder (GdlDockItem *item)
 {
     return item->priv->child == NULL;
@@ -2542,7 +2542,7 @@ gdl_dock_item_is_placeholder (GdlDockItem *item)
  *
  * Checks whether a given #GdlDockItem is closed. It can be only hidden or
  * detached.
- * 
+ *
  * Returns: %TRUE if the dock item is closed.
  *
  * Since: 3.6
@@ -2560,7 +2560,7 @@ gdl_dock_item_is_closed (GdlDockItem *item)
  * @item: The dock item to be checked
  *
  * Checks whether a given #GdlDockItem is iconified.
- * 
+ *
  * Returns: %TRUE if the dock item is iconified.
  *
  * Since: 3.6
@@ -2569,7 +2569,7 @@ gboolean
 gdl_dock_item_is_iconified (GdlDockItem *item)
 {
     g_return_val_if_fail (GDL_IS_DOCK_ITEM (item), FALSE);
-    
+
     return item->priv->iconified;
 }
 
@@ -2584,7 +2584,7 @@ gdl_dock_item_is_iconified (GdlDockItem *item)
  *
  * If a child is already present, it will be replaced. If @widget is %NULL the
  * child will be removed.
- *    
+ *
  * Since: 3.6
  */
 void
@@ -2632,7 +2632,7 @@ gdl_dock_item_get_child (GdlDockItem *item)
  *
  * Define in the corresponding kind of dock item has a grip. Even if an item
  * has a grip it can be hidden.
- *    
+ *
  * Since: 3.6
  */
 void

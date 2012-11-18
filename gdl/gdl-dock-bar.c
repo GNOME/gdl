@@ -39,9 +39,9 @@
  * @stability: Unstable
  * @see_also: #GdlDockMaster
  *
- * This docking bar is a widget containing a button for each iconified 
+ * This docking bar is a widget containing a button for each iconified
  * #GdlDockItem widget. The widget can be re-opened by clicking on it.
- * 
+ *
  * A dock bar is associated with one #GdlDockMaster and will get all iconified
  * widgets of this master. This can includes widgets from several #GdlDock
  * objects.
@@ -430,7 +430,7 @@ gdl_dock_bar_set_master (GdlDockBar    *dockbar,
             g_signal_connect (dockbar->priv->master, "layout-changed",
                               (GCallback) gdl_dock_bar_layout_changed_cb,
                               dockbar);
-        
+
     } else {
         dockbar->priv->master = NULL;
     }

@@ -39,7 +39,7 @@ G_BEGIN_DECLS
 /* data types & structures */
 typedef struct _GdlDockPaned        GdlDockPaned;
 typedef struct _GdlDockPanedClass   GdlDockPanedClass;
-typedef struct _GdlDockPanedPrivate GdlDockPanedPrivate;    
+typedef struct _GdlDockPanedPrivate GdlDockPanedPrivate;
 
 struct _GdlDockPaned {
     GdlDockItem  dock_item;
@@ -53,7 +53,7 @@ struct _GdlDockPanedClass {
 
 
 /* public interface */
- 
+
 GType      gdl_dock_paned_get_type        (void);
 
 GtkWidget *gdl_dock_paned_new             (GtkOrientation orientation);

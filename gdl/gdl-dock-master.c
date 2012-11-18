@@ -47,8 +47,8 @@
  * drags items from one place to another, they're all kept in a user-invisible
  * and automatic object called the master. To participate in docking operations
  * every #GdlDockObject must have the same master, the binding to the master is
- * done automatically. 
- * 
+ * done automatically.
+ *
  * The master also keeps track of the manual items,
  * mostly those created with gdl_dock_*_new functions which are in the dock.
  * This is so the user doesn't need to keep track of them, but can perform
@@ -59,7 +59,7 @@
  * widget containing both widgets is created and replace it.
  * Such widgets are hidden automatically when they have less than two
  * children.
- * 
+ *
  * One of the top level dock item of the master is considered as the controller.
  * This controller is an user visible representation of the master. A floating
  * dock widget will use a dock object having the same properties than this
@@ -1071,7 +1071,7 @@ gdl_dock_master_set_controller (GdlDockMaster *master,
  * Return an unique translated dock name.
  *
  * Returns: (transfer full): a new translated name. The string has to be freed
- * with g_free().    
+ * with g_free().
  *
  * Since: 3.6
  */

@@ -38,9 +38,9 @@
  * A #GdlDockNotebook is a compound dock widget. It can dock
  * an unlimited number of widget displaying them in a notebook. This dock
  * widget is normally created automatically when a child is docked in
- * the center of another one. 
+ * the center of another one.
  * A #GdlDockNotebook cannot contain other compound widgets, like a #GdlDockPaned.
- * 
+ *
  * A #GdlDockNotebook derives from #GdlDockItem and contains a #GdlSwitcher
  * used to display all children.
  */
@@ -160,8 +160,8 @@ gdl_dock_notebook_class_init (GdlDockNotebookClass *klass)
                           G_PARAM_READWRITE |
                           GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
 
-    g_type_class_add_private (object_class, sizeof (GdlDockNotebookPrivate));    
-    
+    g_type_class_add_private (object_class, sizeof (GdlDockNotebookPrivate));
+
     /* set the style */
     klass->priv = G_TYPE_CLASS_GET_PRIVATE (klass, GDL_TYPE_DOCK_NOTEBOOK, GdlDockNotebookClassPrivate);
 
@@ -195,7 +195,7 @@ gdl_dock_notebook_init (GdlDockNotebook *notebook)
 {
     GdlDockItem *item = GDL_DOCK_ITEM (notebook);
     GtkWidget *child;
-    
+
     notebook->priv = G_TYPE_INSTANCE_GET_PRIVATE (notebook,
                                                   GDL_TYPE_DOCK_NOTEBOOK,
                                                   GdlDockNotebookPrivate);
@@ -203,7 +203,7 @@ gdl_dock_notebook_init (GdlDockNotebook *notebook)
 
     /* create the container notebook */
     child = gdl_switcher_new ();
-    gdl_dock_item_set_child (item, child);    
+    gdl_dock_item_set_child (item, child);
     gtk_notebook_set_tab_pos (GTK_NOTEBOOK (child), GTK_POS_BOTTOM);
     g_signal_connect (child, "switch-page",
                       (GCallback) gdl_dock_notebook_switch_page_cb, (gpointer) item);
@@ -441,7 +441,7 @@ gdl_dock_notebook_set_orientation (GdlDockItem    *item,
                                    GtkOrientation  orientation)
 {
     GtkWidget *child = gdl_dock_item_get_child (item);
-        
+
     if (child && GTK_IS_NOTEBOOK (child)) {
         if (orientation == GTK_ORIENTATION_HORIZONTAL)
             gtk_notebook_set_tab_pos (GTK_NOTEBOOK (child), GTK_POS_TOP);

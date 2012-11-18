@@ -52,10 +52,10 @@ struct _GdlDockLayout {
     GObject               g_object;
 
     /*< private >*/
-#ifndef GDL_DISABLE_DEPRECATED    
+#ifndef GDL_DISABLE_DEPRECATED
     gboolean              deprecated_dirty;
     GdlDockMaster        *deprecated_master;
-#endif    
+#endif
     GdlDockLayoutPrivate *priv;
 };
 

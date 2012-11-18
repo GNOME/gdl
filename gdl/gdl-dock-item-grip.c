@@ -62,7 +62,7 @@ enum {
 
 struct _GdlDockItemGripPrivate {
     GdlDockItem *item;
-    
+
     GdkWindow *title_window;
 
     GtkWidget   *label;
@@ -829,8 +829,8 @@ gdl_dock_item_grip_show_handle (GdlDockItemGrip *grip)
  * @in_drag: %TRUE if a drag operation is started
  *
  * Change the cursor when a drag operation is started.
- * 
- * Since: 3.6 
+ *
+ * Since: 3.6
  **/
 void
 gdl_dock_item_grip_set_cursor (GdlDockItemGrip *grip,
@@ -838,7 +838,7 @@ gdl_dock_item_grip_set_cursor (GdlDockItemGrip *grip,
 {
     /* We check the window since if the item could have been redocked and have
      * been unrealized, maybe it's not realized again yet */
-    
+
     if (grip->priv->title_window) {
         GdkCursor *cursor;
 

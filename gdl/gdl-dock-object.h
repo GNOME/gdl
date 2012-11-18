@@ -84,7 +84,7 @@ typedef enum {
  *
  * Minimum shift count to be used for user defined flags, to be stored in
  * #GdlDockObject.flags.
- * 
+ *
  * Deprecated: 3.6: Use a private flag instead
  */
 #define GDL_DOCK_OBJECT_FLAGS_SHIFT 8
@@ -151,7 +151,7 @@ struct _GdlDockObject {
 struct _GdlDockObjectClass {
     GtkContainerClass parent_class;
 
-    GdlDockObjectClassPrivate *priv;    
+    GdlDockObjectClassPrivate *priv;
 
     void     (* detach)          (GdlDockObject    *object,
                                   gboolean          recursive);
@@ -214,7 +214,7 @@ struct _GdlDockObjectClass {
  *
  * Evaluates to %TRUE if the object has a parent.
  *
- * Deprecated: 3.6: Use 
+ * Deprecated: 3.6: Use
  */
 #define GDL_DOCK_OBJECT_ATTACHED(obj) (!gdl_dock_object_is_closed(GDL_DOCK_OBJECT (obj)))
 #endif
@@ -252,7 +252,7 @@ struct _GdlDockObjectClass {
  * @flag: One or more #GdlDockObjectFlags
  *
  * Set one or more flags of a dock object.
- * 
+ *
  * Deprecated: 3.6: This flags are no longer accessible.
  */
 #define GDL_DOCK_OBJECT_SET_FLAGS(obj,flag) \
@@ -267,7 +267,7 @@ struct _GdlDockObjectClass {
  * @flag: One or more #GdlDockObjectFlags
  *
  * Clear one or more flags of a dock object.
- * 
+ *
  * Deprecated: 3.6: This flags are no longer accessible.
  */
 #define GDL_DOCK_OBJECT_UNSET_FLAGS(obj,flag) \

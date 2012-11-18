@@ -41,7 +41,7 @@ main (int argc, char **argv)
 	gtk_init (&argc, &argv);
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	g_signal_connect (G_OBJECT (window), "delete_event", 
+	g_signal_connect (G_OBJECT (window), "delete_event",
 			  G_CALLBACK (gtk_main_quit), NULL);
 	gtk_window_set_title (GTK_WINDOW (window), "Combo button test");
 	gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
@@ -51,7 +51,7 @@ main (int argc, char **argv)
 
 	combo = gtk_button_new_from_stock (GTK_STOCK_OPEN);
 	gtk_button_set_relief (GTK_BUTTON (combo), GTK_RELIEF_NONE);
-	gtk_box_pack_start (GTK_BOX (hbox), combo, FALSE, FALSE, 0);	
+	gtk_box_pack_start (GTK_BOX (hbox), combo, FALSE, FALSE, 0);
 
 	menu = gtk_menu_new ();
 	menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_OPEN, NULL);
@@ -59,7 +59,7 @@ main (int argc, char **argv)
 	menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_SAVE, NULL);
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 	gtk_widget_show_all (menu);
-	
+
 	combo = gdl_combo_button_new ();
 	gdl_combo_button_set_label (GDL_COMBO_BUTTON (combo), "Run");
 	gdl_combo_button_set_menu (GDL_COMBO_BUTTON (combo), GTK_MENU (menu));
@@ -73,7 +73,7 @@ main (int argc, char **argv)
 
 	combo = gtk_button_new_from_stock (GTK_STOCK_SAVE);
 	gtk_button_set_relief (GTK_BUTTON (combo), GTK_RELIEF_NONE);
-	gtk_box_pack_start (GTK_BOX (hbox), combo, FALSE, FALSE, 0);	
+	gtk_box_pack_start (GTK_BOX (hbox), combo, FALSE, FALSE, 0);
 
 	menu = gtk_menu_new ();
 	menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_OPEN, NULL);
@@ -81,7 +81,7 @@ main (int argc, char **argv)
 	menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_SAVE, NULL);
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 	gtk_widget_show_all (menu);
-	
+
 	combo = gdl_combo_button_new ();
 	gdl_combo_button_set_label (GDL_COMBO_BUTTON (combo), "Open");
 	gdl_combo_button_set_menu (GDL_COMBO_BUTTON (combo), GTK_MENU (menu));
@@ -104,7 +104,7 @@ main (int argc, char **argv)
 	gtk_box_pack_start (GTK_BOX (hbox), combo, FALSE, FALSE, 0);
 
 	gtk_widget_show_all (window);
-	
+
 	gtk_main ();
 
 	return 0;

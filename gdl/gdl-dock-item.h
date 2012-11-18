@@ -106,7 +106,7 @@ typedef struct _GdlDockItemClassPrivate GdlDockItemClassPrivate;
 
 struct _GdlDockItem {
     GdlDockObject        object;
-    
+
     /* < private> */
     GdlDockItemPrivate  *priv;
 };
@@ -304,7 +304,7 @@ void           gdl_dock_item_set_behavior_flags    (GdlDockItem      *item,
 void           gdl_dock_item_unset_behavior_flags  (GdlDockItem      *item,
                                                     GdlDockItemBehavior behavior);
 GdlDockItemBehavior gdl_dock_item_get_behavior_flags (GdlDockItem      *item);
-   
+
 GtkWidget     *gdl_dock_item_get_tablabel          (GdlDockItem      *item);
 void           gdl_dock_item_set_tablabel          (GdlDockItem      *item,
                                                     GtkWidget        *tablabel);

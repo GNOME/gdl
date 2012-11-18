@@ -1,4 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
  *
  * gdl-dock-placeholder.c - Placeholders for docking items
  *
@@ -46,7 +46,7 @@
  * A dock placeholder is a widget allowing to keep track of a docking place.
  * Unfortunately, all the details of the initial goal have been forgotten and
  * the code has still some issues.
- * 
+ *
  * In GDL 3.6, this part has been deprecated. Placeholder widgets are not
  * used anymore. Instead, closed widgets are hidden but kept in the widget
  * hierarchy.
@@ -138,13 +138,13 @@ struct _GdlDockPlaceholderPrivate {
 
 G_DEFINE_TYPE (GdlDockPlaceholder, gdl_dock_placeholder, GDL_TYPE_DOCK_OBJECT);
 
-static void 
+static void
 gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
 {
     GObjectClass       *object_class;
     GtkContainerClass  *container_class;
     GdlDockObjectClass *dock_object_class;
-    
+
     object_class = G_OBJECT_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
     dock_object_class = GDL_DOCK_OBJECT_CLASS (klass);
@@ -175,7 +175,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
                             _("The dock object this placeholder is attached to"),
                             GDL_TYPE_DOCK_OBJECT,
                             G_PARAM_READWRITE));
-    
+
     /* this will return the top of the placement stack */
     g_object_class_install_property (
         object_class, PROP_NEXT_PLACEMENT,
@@ -186,7 +186,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
                            	GDL_DOCK_CENTER,
                            	G_PARAM_READWRITE |
                            	GDL_DOCK_PARAM_EXPORT | GDL_DOCK_PARAM_AFTER));
-    
+
     g_object_class_install_property (
         object_class, PROP_WIDTH,
         g_param_spec_int ("width", _("Width"),
@@ -194,7 +194,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
                           	-1, G_MAXINT, -1,
                           	G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
                           	GDL_DOCK_PARAM_EXPORT));
-    
+
     g_object_class_install_property (
         object_class, PROP_HEIGHT,
         g_param_spec_int ("height", _("Height"),
@@ -227,7 +227,7 @@ gdl_dock_placeholder_class_init (GdlDockPlaceholderClass *klass)
     g_type_class_add_private (object_class, sizeof (GdlDockPlaceholderPrivate));
 }
 
-static void 
+static void
 gdl_dock_placeholder_init (GdlDockPlaceholder *ph)
 {
     ph->priv = G_TYPE_INSTANCE_GET_PRIVATE (ph,
@@ -238,7 +238,7 @@ gdl_dock_placeholder_init (GdlDockPlaceholder *ph)
     gtk_widget_set_can_focus (GTK_WIDGET (ph), FALSE);
 }
 
-static void 
+static void
 gdl_dock_placeholder_set_property (GObject      *g_object,
                                    guint         prop_id,
                                    const GValue *value,
@@ -282,7 +282,7 @@ gdl_dock_placeholder_set_property (GObject      *g_object,
     }
 }
 
-static void 
+static void
 gdl_dock_placeholder_get_property (GObject    *g_object,
                                    guint       prop_id,
                                    GValue     *value,
@@ -341,20 +341,20 @@ gdl_dock_placeholder_dispose (GObject *object)
     G_OBJECT_CLASS (gdl_dock_placeholder_parent_class)->dispose (object);
 }
 
-static void 
+static void
 gdl_dock_placeholder_add (GtkContainer *container,
                           GtkWidget    *widget)
 {
     GdlDockPlaceholder *ph;
     GdlDockPlacement    pos = GDL_DOCK_CENTER;   /* default position */
-    
+
     g_return_if_fail (GDL_IS_DOCK_PLACEHOLDER (container));
     g_return_if_fail (GDL_IS_DOCK_ITEM (widget));
 
     ph = GDL_DOCK_PLACEHOLDER (container);
     if (ph->priv->placement_stack)
         pos = (GdlDockPlacement) ph->priv->placement_stack->data;
-    
+
     gdl_dock_object_dock (GDL_DOCK_OBJECT (ph), GDL_DOCK_OBJECT (widget),
                           pos, NULL);
 }
@@ -367,7 +367,7 @@ gdl_dock_placeholder_detach (GdlDockObject *object,
 
     /* disconnect handlers */
     disconnect_host (ph);
-    
+
     /* free the placement stack */
     g_slist_free (ph->priv->placement_stack);
     ph->priv->placement_stack = NULL;
@@ -375,7 +375,7 @@ gdl_dock_placeholder_detach (GdlDockObject *object,
     GDL_DOCK_OBJECT_UNSET_FLAGS (object, GDL_DOCK_ATTACHED);
 }
 
-static void 
+static void
 gdl_dock_placeholder_reduce (GdlDockObject *object)
 {
     /* placeholders are not reduced */
@@ -388,15 +388,15 @@ find_biggest_dock_item (GtkContainer *container, GtkWidget **biggest_child,
 {
     GList *children, *child;
     GtkAllocation allocation;
-    
+
     children = gtk_container_get_children (GTK_CONTAINER (container));
     child = children;
     while (child) {
         gint area;
         GtkWidget *child_widget;
-        
+
         child_widget = GTK_WIDGET (child->data);
-        
+
         if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT(child_widget))) {
             find_biggest_dock_item (GTK_CONTAINER (child_widget),
                                     biggest_child, biggest_child_area);
@@ -405,7 +405,7 @@ find_biggest_dock_item (GtkContainer *container, GtkWidget **biggest_child,
         }
         gtk_widget_get_allocation (child_widget, &allocation);
         area = allocation.width * allocation.height;
-        
+
         if (area > *biggest_child_area) {
             *biggest_child_area = area;
             *biggest_child = child_widget;
@@ -427,7 +427,7 @@ attempt_to_dock_on_host (GdlDockPlaceholder *ph, GdlDockObject *host,
     gtk_widget_get_allocation (GTK_WIDGET (host), &allocation);
     host_width = allocation.width;
     host_height = allocation.height;
-    
+
     if (placement != GDL_DOCK_CENTER || !GDL_IS_DOCK_PANED (host)) {
         /* we simply act as a proxy for our host */
         gdl_dock_object_dock (host, requestor,
@@ -439,10 +439,10 @@ attempt_to_dock_on_host (GdlDockPlaceholder *ph, GdlDockObject *host,
          */
         GtkWidget *biggest_child = NULL;
         gint biggest_child_area = 0;
-        
+
         find_biggest_dock_item (GTK_CONTAINER (host), &biggest_child,
                                 &biggest_child_area);
-        
+
         if (biggest_child) {
             /* we simply act as a proxy for our host */
             gdl_dock_object_dock (GDL_DOCK_OBJECT (biggest_child), requestor,
@@ -454,9 +454,9 @@ attempt_to_dock_on_host (GdlDockPlaceholder *ph, GdlDockObject *host,
                                   placement, other_data);
         }
     }
-    
+
     parent = gdl_dock_object_get_parent_object (requestor);
-    
+
     /* Restore dock item's dimention */
     switch (placement) {
         case GDL_DOCK_LEFT:
@@ -468,7 +468,7 @@ attempt_to_dock_on_host (GdlDockPlaceholder *ph, GdlDockObject *host,
         case GDL_DOCK_RIGHT:
             if (ph->priv->width > 0) {
                 gint complementary_width = host_width - ph->priv->width;
-                
+
                 if (complementary_width > 0)
                     g_object_set (G_OBJECT (parent), "position",
                                   complementary_width, NULL);
@@ -483,7 +483,7 @@ attempt_to_dock_on_host (GdlDockPlaceholder *ph, GdlDockObject *host,
         case GDL_DOCK_BOTTOM:
             if (ph->priv->height > 0) {
                 gint complementary_height = host_height - ph->priv->height;
-                
+
                 if (complementary_height > 0)
                     g_object_set (G_OBJECT (parent), "position",
                                   complementary_height, NULL);
@@ -495,26 +495,26 @@ attempt_to_dock_on_host (GdlDockPlaceholder *ph, GdlDockObject *host,
     }
 }
 
-static void 
+static void
 gdl_dock_placeholder_dock (GdlDockObject    *object,
                            GdlDockObject    *requestor,
                            GdlDockPlacement  position,
                            GValue           *other_data)
 {
     GdlDockPlaceholder *ph = GDL_DOCK_PLACEHOLDER (object);
-    
+
     if (ph->priv->host) {
         attempt_to_dock_on_host (ph, ph->priv->host, requestor,
                                  position, other_data);
     }
     else {
         GdlDockObject *toplevel;
-        
+
         if (!gdl_dock_object_is_bound (GDL_DOCK_OBJECT (ph))) {
             g_warning ("%s", _("Attempt to dock a dock object to an unbound placeholder"));
             return;
         }
-        
+
         /* dock the item as a floating of the controller */
         toplevel = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (ph));
         gdl_dock_object_dock (toplevel, requestor,
@@ -541,13 +541,13 @@ print_placement_stack (GdlDockPlaceholder *ph)
         g_string_append_printf (message, "%s, ", name);
     }
     g_message ("%s", message->str);
-    
+
     g_string_free (message, TRUE);
     g_type_class_unref (enum_class);
 }
 #endif
 
-static void 
+static void
 gdl_dock_placeholder_present (GdlDockObject *object,
                               GdlDockObject *child)
 {
@@ -555,24 +555,24 @@ gdl_dock_placeholder_present (GdlDockObject *object,
     return;
 }
 
-/* ----- Public interface ----- */ 
-								   
+/* ----- Public interface ----- */
+
 /**
  * gdl_dock_placeholder_new:
  * @name: Unique name for identifying the dock object.
  * @object: Corresponding #GdlDockObject
  * @position: The position to dock a new item in @object
  * @sticky: %TRUE if the placeholder move with the @object
- * 
+ *
  * Creates a new dock placeholder at @object place. This is a kind of marker
  * allowing you to dock new items later at this place. It is not completely
  * working though.
- * 
+ *
  * Returns: The newly created placeholder.
- * 
+ *
  * Deprecated: 3.6:
  */
-GtkWidget * 
+GtkWidget *
 gdl_dock_placeholder_new (const gchar     *name,
                           GdlDockObject    *object,
                           GdlDockPlacement  position,
@@ -587,31 +587,31 @@ gdl_dock_placeholder_new (const gchar     *name,
                                              "host", object,
                                              NULL));
     GDL_DOCK_OBJECT_UNSET_FLAGS (ph, GDL_DOCK_AUTOMATIC);
-    
+
     return GTK_WIDGET (ph);
 }
 
-static void 
+static void
 gdl_dock_placeholder_weak_notify (gpointer data,
                                   GObject *old_object)
 {
     GdlDockPlaceholder *ph;
-    
+
     g_return_if_fail (data != NULL && GDL_IS_DOCK_PLACEHOLDER (data));
 
     ph = GDL_DOCK_PLACEHOLDER (data);
-    
+
 #ifdef PLACEHOLDER_DEBUG
     g_message ("The placeholder just lost its host, ph = %p", ph);
 #endif
-    
+
     /* we shouldn't get here, so perform an emergency detach. instead
        we should have gotten a detach signal from our host */
     ph->priv->host = NULL;
-    
-    /* We didn't get a detach signal from the host. Detach from the 
+
+    /* We didn't get a detach signal from the host. Detach from the
     supposedly dead host (consequently attaching to the controller) */
-    
+
     detach_cb (NULL, TRUE, data);
 #if 0
     /* free the placement stack */
@@ -630,7 +630,7 @@ detach_cb (GdlDockObject *object,
     GdlDockObject      *new_host, *obj;
 
     g_return_if_fail (user_data != NULL && GDL_IS_DOCK_PLACEHOLDER (user_data));
-    
+
     /* we go up in the hierarchy and we store the hinted placement in
      * the placement stack so we can rebuild the docking layout later
      * when we get the host's dock signal.  */
@@ -642,21 +642,21 @@ detach_cb (GdlDockObject *object,
                      "our host %p"), object, ph->priv->host);
         return;
     }
-    
+
     /* skip sticky objects */
     if (ph->priv->sticky)
         return;
-    
+
     if (obj)
         /* go up in the hierarchy */
         new_host = gdl_dock_object_get_parent_object (obj);
     else
         /* Detaching from the dead host */
         new_host = NULL;
-    
+
     while (new_host) {
         GdlDockPlacement pos = GDL_DOCK_NONE;
-        
+
         /* get placement hint from the new host */
         if (gdl_dock_object_child_placement (new_host, obj, &pos)) {
             ph->priv->placement_stack = g_slist_prepend (
@@ -670,7 +670,7 @@ detach_cb (GdlDockObject *object,
         if (!GDL_DOCK_OBJECT_IN_DETACH (new_host))
             /* we found a "stable" dock object */
             break;
-        
+
         obj = new_host;
         new_host = gdl_dock_object_get_parent_object (obj);
     }
@@ -685,7 +685,7 @@ detach_cb (GdlDockObject *object,
         /* the toplevel was detached: we attach ourselves to the
            controller with an initial placement of floating */
         new_host = gdl_dock_object_get_controller (GDL_DOCK_OBJECT (ph));
-        
+
         /*
         ph->priv->placement_stack = g_slist_prepend (
         ph->priv->placement_stack, (gpointer) GDL_DOCK_FLOATING);
@@ -707,7 +707,7 @@ detach_cb (GdlDockObject *object,
  * children and see if any of them matches the placement which is at
  * the top of the stack.  If this is the case, it tries again with the
  * new host.
- * 
+ *
  * Deprecated: 3.6:
  **/
 static void
@@ -722,7 +722,7 @@ do_excursion (GdlDockPlaceholder *ph)
             (GdlDockPlacement) ph->priv->placement_stack->data;
         GList           *children, *l;
         GdlDockObject   *host = ph->priv->host;
-        
+
         children = gtk_container_get_children (GTK_CONTAINER (host));
         for (l = children; l; l = l->next) {
             pos = stack_pos;
@@ -734,7 +734,7 @@ do_excursion (GdlDockPlaceholder *ph)
                 ph->priv->placement_stack =
                     g_slist_remove_link (ph->priv->placement_stack,
                                          ph->priv->placement_stack);
-                
+
                 /* connect to the new host */
                 disconnect_host (ph);
                 connect_host (ph, GDL_DOCK_OBJECT (l->data));
@@ -742,7 +742,7 @@ do_excursion (GdlDockPlaceholder *ph)
                 /* recurse... */
                 if (!GDL_DOCK_OBJECT_IN_REFLOW (l->data))
                     do_excursion (ph);
-                
+
                 break;
             }
         }
@@ -750,7 +750,7 @@ do_excursion (GdlDockPlaceholder *ph)
     }
 }
 
-static void 
+static void
 dock_cb (GdlDockObject    *object,
          GdlDockObject    *requestor,
          GdlDockPlacement  position,
@@ -759,11 +759,11 @@ dock_cb (GdlDockObject    *object,
 {
     GdlDockPlacement    pos = GDL_DOCK_NONE;
     GdlDockPlaceholder *ph;
-    
+
     g_return_if_fail (user_data != NULL && GDL_IS_DOCK_PLACEHOLDER (user_data));
     ph = GDL_DOCK_PLACEHOLDER (user_data);
     g_return_if_fail (ph->priv->host == object);
-    
+
     /* see if the given position is compatible for the stack's top
        element */
     if (!ph->priv->sticky && ph->priv->placement_stack) {
@@ -785,7 +785,7 @@ disconnect_host (GdlDockPlaceholder *ph)
 {
     if (!ph->priv->host)
         return;
-    
+
     if (ph->priv->host_detach_handler)
         g_signal_handler_disconnect (ph->priv->host, ph->priv->host_detach_handler);
     if (ph->priv->host_dock_handler)
@@ -797,7 +797,7 @@ disconnect_host (GdlDockPlaceholder *ph)
     g_object_weak_unref (G_OBJECT (ph->priv->host),
                          gdl_dock_placeholder_weak_notify, ph);
     ph->priv->host = NULL;
-    
+
 #ifdef PLACEHOLDER_DEBUG
     g_message ("Host just disconnected!, ph = %p", ph);
 #endif
@@ -809,7 +809,7 @@ connect_host (GdlDockPlaceholder *ph,
 {
     if (ph->priv->host)
         disconnect_host (ph);
-    
+
     ph->priv->host = new_host;
     g_object_weak_ref (G_OBJECT (ph->priv->host),
                        gdl_dock_placeholder_weak_notify, ph);
@@ -819,13 +819,13 @@ connect_host (GdlDockPlaceholder *ph,
                           "detach",
                           (GCallback) detach_cb,
                           (gpointer) ph);
-    
+
     ph->priv->host_dock_handler =
         g_signal_connect (ph->priv->host,
                           "dock",
                           (GCallback) dock_cb,
                           (gpointer) ph);
-    
+
 #ifdef PLACEHOLDER_DEBUG
     g_message ("Host just connected!, ph = %p", ph);
 #endif
@@ -835,9 +835,9 @@ connect_host (GdlDockPlaceholder *ph,
  * gdl_dock_placeholder_attach:
  * @ph: The #GdlDockPlaceholder object
  * @object: A new #GdlDockObject
- * 
+ *
  * Move the placeholder to the position of @object.
- * 
+ *
  * Deprecated: 3.6:
  */
 void
@@ -847,23 +847,23 @@ gdl_dock_placeholder_attach (GdlDockPlaceholder *ph,
     g_return_if_fail (ph != NULL && GDL_IS_DOCK_PLACEHOLDER (ph));
     g_return_if_fail (ph->priv != NULL);
     g_return_if_fail (object != NULL);
-    
+
     /* object binding */
     if (!gdl_dock_object_is_bound (GDL_DOCK_OBJECT (ph)))
         gdl_dock_object_bind (GDL_DOCK_OBJECT (ph), object->deprecated_master);
 
     g_return_if_fail (GDL_DOCK_OBJECT (ph)->deprecated_master == object->deprecated_master);
-        
+
     gdl_dock_object_freeze (GDL_DOCK_OBJECT (ph));
-    
+
     /* detach from previous host first */
     if (ph->priv->host)
         gdl_dock_object_detach (GDL_DOCK_OBJECT (ph), FALSE);
 
     connect_host (ph, object);
-    
+
     GDL_DOCK_OBJECT_SET_FLAGS (ph, GDL_DOCK_ATTACHED);
-    
+
     gdl_dock_object_thaw (GDL_DOCK_OBJECT (ph));
 }
 

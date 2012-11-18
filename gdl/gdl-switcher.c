@@ -599,7 +599,7 @@ gdl_switcher_get_preferred_width (GtkWidget *widget, gint *minimum, gint *natura
 
         if (gtk_widget_get_visible (button->button_widget)) {
             gint min, nat;
-            
+
             gtk_widget_get_preferred_width(button->button_widget, &min, &nat);
             *minimum = MAX (*minimum, min + 2 * H_PADDING);
             *natural = MAX (*natural, nat + 2 * H_PADDING);
@@ -927,7 +927,7 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
 
     button_widget = gtk_toggle_button_new ();
     gtk_button_set_relief (GTK_BUTTON(button_widget), GTK_RELIEF_HALF);
-    if (switcher->priv->show && gtk_widget_get_visible (page)) 
+    if (switcher->priv->show && gtk_widget_get_visible (page))
         gtk_widget_show (button_widget);
     g_signal_connect (button_widget, "toggled",
                       G_CALLBACK (button_toggled_callback),

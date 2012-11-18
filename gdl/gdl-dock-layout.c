@@ -78,7 +78,7 @@ enum {
 struct _GdlDockLayoutPrivate {
     gboolean              dirty;
     GdlDockMaster        *master;
-    
+
     xmlDocPtr         doc;
 
     glong             layout_changed_id;
@@ -155,7 +155,7 @@ gdl_dock_layout_init (GdlDockLayout *layout)
 #ifndef GDL_DISABLE_DEPRECATED
     layout->deprecated_master = NULL;
     layout->deprecated_dirty = FALSE;
-#endif    
+#endif
 }
 
 static void
@@ -289,7 +289,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
 
     object_name = xmlGetProp (node, BAD_CAST GDL_DOCK_NAME_PROPERTY);
     if (object_name && strlen ((char*)object_name) > 0) {
-        /* the object can be already be bound to the master or a 
+        /* the object can be already be bound to the master or a
          * placeholder object is created */
         object = gdl_dock_master_get_object (master, (char*)object_name);
 
@@ -388,7 +388,7 @@ gdl_dock_layout_setup_object (GdlDockMaster *master,
     /* finally unref object class */
     g_type_class_unref (object_class);
 
-        
+
     return object;
 }
 
@@ -420,7 +420,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
                                (GtkCallback) gdl_dock_object_detach,
                                GINT_TO_POINTER (TRUE));
             }
-            
+
             /* add the object to the parent */
             if (parent) {
                 if (gdl_dock_object_is_compound (parent)) {
@@ -430,7 +430,7 @@ gdl_dock_layout_recursive_build (GdlDockMaster *master,
 
             /* build children */
             gdl_dock_layout_recursive_build (master, node, object);
-            
+
             /* apply "after" parameters */
             for (i = 0; i < n_after_params; i++) {
                 g_object_set_property (G_OBJECT (object),
@@ -625,7 +625,7 @@ gdl_dock_layout_set_master (GdlDockLayout *layout,
             g_signal_connect (layout->priv->master, "layout-changed",
                               (GCallback) gdl_dock_layout_layout_changed_cb,
                               layout);
-        
+
     } else {
         layout->priv->master = NULL;
     }

@@ -8,7 +8,7 @@
  *
  * Copyright (C) 1998 Ettore Perazzoli
  * Copyright (C) 1998 Elliot Lee
- * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald 
+ * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -53,7 +53,7 @@ typedef struct _GdlDockItemGripPrivate GdlDockItemGripPrivate;
 
 struct _GdlDockItemGrip {
     GtkContainer parent;
-    
+
     GdlDockItemGripPrivate *priv;
 };
 

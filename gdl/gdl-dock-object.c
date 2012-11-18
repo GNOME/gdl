@@ -183,7 +183,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
     GtkContainerClass *container_class;
 
     gdl_dock_object_parent_class = g_type_class_peek_parent (klass);
-    
+
     object_class = G_OBJECT_CLASS (klass);
     widget_class = GTK_WIDGET_CLASS (klass);
     container_class = GTK_CONTAINER_CLASS (klass);
@@ -320,7 +320,7 @@ gdl_dock_object_init (GdlDockObject *object)
     object->priv = G_TYPE_INSTANCE_GET_PRIVATE (object,
                                                 GDL_TYPE_DOCK_OBJECT,
                                                 GdlDockObjectPrivate);
-    
+
     object->priv->automatic = TRUE;
     object->priv->freeze_count = 0;
 #ifndef GDL_DISABLE_DEPRECATED
@@ -339,16 +339,16 @@ gdl_dock_object_set_property  (GObject      *g_object,
 
     switch (prop_id) {
     case PROP_NAME:
-        gdl_dock_object_set_name (object, g_value_get_string (value));   
+        gdl_dock_object_set_name (object, g_value_get_string (value));
         break;
     case PROP_LONG_NAME:
-        gdl_dock_object_set_long_name (object, g_value_get_string (value));   
+        gdl_dock_object_set_long_name (object, g_value_get_string (value));
         break;
     case PROP_STOCK_ID:
-        gdl_dock_object_set_stock_id (object, g_value_get_string (value));   
+        gdl_dock_object_set_stock_id (object, g_value_get_string (value));
         break;
     case PROP_PIXBUF_ICON:
-        gdl_dock_object_set_pixbuf (object,  g_value_get_pointer (value));   
+        gdl_dock_object_set_pixbuf (object,  g_value_get_pointer (value));
         break;
     case PROP_MASTER:
         if (g_value_get_object (value))
@@ -861,7 +861,7 @@ gdl_dock_object_dock (GdlDockObject    *object,
 
     g_object_unref (requestor);
     gdl_dock_object_thaw (object);
-	
+
     if (gtk_widget_get_visible (GTK_WIDGET (requestor))) {
         requestor->priv->attached = TRUE;
 #ifndef GDL_DISABLE_DEPRECATED
@@ -901,7 +901,7 @@ gdl_dock_object_bind (GdlDockObject *object,
     object->priv->master = master;
 #ifndef GDL_DISABLE_DEPRECATED
     object->deprecated_master = master;
-#endif    
+#endif
     g_object_add_weak_pointer (master, (gpointer *) &object->priv->master);
 
     g_object_notify (G_OBJECT (object), "master");
@@ -929,7 +929,7 @@ gdl_dock_object_unbind (GdlDockObject *object)
         object->priv->master = NULL;
 #ifndef GDL_DISABLE_DEPRECATED
         object->deprecated_master = NULL;
-#endif    
+#endif
         gdl_dock_master_remove (GDL_DOCK_MASTER (master), object);
         g_object_notify (G_OBJECT (object), "master");
     }
@@ -1100,7 +1100,7 @@ gdl_dock_object_child_placement (GdlDockObject    *object,
  *
  * Checks whether a given #GdlDockObject is closed. It can be only hidden and
  * still in the widget hierarchy or detached.
-  * 
+  *
  * Returns: %TRUE if the dock object is closed.
  *
  * Since: 3.6
@@ -1445,9 +1445,9 @@ gdl_dock_object_register_init (void)
 {
 #ifdef GDL_DISABLE_DEPRECATED
     const size_t n_default = 4;
-#else    
+#else
     const size_t n_default = 5;
-#endif    
+#endif
     guint i = 0;
     struct DockRegisterItem default_items[n_default];
 
@@ -1466,10 +1466,10 @@ gdl_dock_object_register_init (void)
     default_items[2].type = (gpointer) GDL_TYPE_DOCK_PANED;
     default_items[3].nick = "notebook";
     default_items[3].type = (gpointer) GDL_TYPE_DOCK_NOTEBOOK;
-#ifndef GDL_DISABLE_DEPRECATED    
+#ifndef GDL_DISABLE_DEPRECATED
     default_items[4].nick = "placeholder";
     default_items[4].type = (gpointer) GDL_TYPE_DOCK_PLACEHOLDER;
-#endif    
+#endif
 
     for (i = 0; i < n_default; i++)
         g_array_append_val (dock_register, default_items[i]);
@@ -1585,7 +1585,7 @@ gdl_dock_object_set_type_for_nick (const gchar *nick,
  * @is_compound: %TRUE is the dock object contains other objects
  *
  * Define in the corresponding kind of dock object can contains children.
- *    
+ *
  * Since: 3.6
  */
 void
