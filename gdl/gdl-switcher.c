@@ -74,6 +74,7 @@ static void gdl_switcher_set_show_buttons (GdlSwitcher *switcher, gboolean show)
 static void gdl_switcher_set_style (GdlSwitcher *switcher,
                                     GdlSwitcherStyle switcher_style);
 static GdlSwitcherStyle gdl_switcher_get_style (GdlSwitcher *switcher);
+static void gdl_switcher_update_lone_button_visibility (GdlSwitcher *switcher);
 
 enum {
     PROP_0,
@@ -151,6 +152,7 @@ gdl_switcher_visible_changed (GObject* object,
                                gpointer user_data)
 {
     Button* button = user_data;
+    GdlSwitcher* switcher;
 
     if (gtk_widget_get_visible (button->page))
     {
@@ -160,6 +162,8 @@ gdl_switcher_visible_changed (GObject* object,
     {
         gtk_widget_hide (button->button_widget);
     }
+    switcher = GDL_SWITCHER (gtk_widget_get_parent (button->button_widget));
+    gdl_switcher_update_lone_button_visibility (switcher);
 }
 
 
@@ -226,6 +230,36 @@ gdl_switcher_get_page_id (GtkWidget *widget)
                            GINT_TO_POINTER (switcher_id));
     }
     return switcher_id;
+}
+
+/* Hide switcher button if they are not needed (only one visible page)
+ * or show switcher button if there are two visible pages */
+static void
+gdl_switcher_update_lone_button_visibility (GdlSwitcher *switcher)
+{
+    GSList *p;
+    GtkWidget *alone = NULL;
+
+    for (p = switcher->priv->buttons; p != NULL; p = p->next) {
+        Button *button = p->data;
+
+        if (gtk_widget_get_visible (button->page))
+        {
+            if (alone == NULL)
+            {
+                alone = button->button_widget;
+            }
+            else
+            {
+                gtk_widget_show (alone);
+                gtk_widget_show (button->button_widget);
+                alone = NULL;
+                break;
+            }
+        }
+    }
+
+    if (alone) gtk_widget_hide (alone);
 }
 
 static void
@@ -577,6 +611,7 @@ gdl_switcher_remove (GtkContainer *container, GtkWidget *widget)
             break;
         }
     }
+    gdl_switcher_update_lone_button_visibility (switcher);
     GTK_CONTAINER_CLASS (gdl_switcher_parent_class)->remove (GTK_CONTAINER (switcher), widget);
 }
 
@@ -985,6 +1020,7 @@ gdl_switcher_add_button (GdlSwitcher *switcher, const gchar *label,
                                     arrow, hbox, switcher_id, page));
 
     gtk_widget_set_parent (button_widget, GTK_WIDGET (switcher));
+    gdl_switcher_update_lone_button_visibility (switcher);
     gtk_widget_queue_resize (GTK_WIDGET (switcher));
 }
 
@@ -1164,7 +1200,7 @@ gdl_switcher_set_show_buttons (GdlSwitcher *switcher, gboolean show)
         else
             gtk_widget_hide (button->button_widget);
     }
-
+    gdl_switcher_update_lone_button_visibility (switcher);
     switcher->priv->show = show;
 
     gtk_widget_queue_resize (GTK_WIDGET (switcher));
