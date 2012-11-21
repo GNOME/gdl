@@ -25,8 +25,7 @@
 #include <config.h>
 #endif
 
-#ifndef GDL_DISABLE_DEPRECATED
-#define GDL_DISABLE_DEPRECATION_WARNINGS
+#undef GDL_DISABLE_DEPRECATED
 
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
@@ -700,5 +699,3 @@ gdl_dock_tablabel_deactivate (GdlDockTablabel *tablabel)
     /* yeah, i know it contradictive */
     gtk_widget_set_state (GTK_WIDGET (tablabel), GTK_STATE_ACTIVE);
 }
-
-#endif

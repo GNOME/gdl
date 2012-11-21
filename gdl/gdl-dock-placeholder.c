@@ -25,10 +25,10 @@
 #include <config.h>
 #endif
 
-#ifndef GDL_DISABLE_DEPRECATED
-#define GDL_DISABLE_DEPRECATION_WARNINGS
 
 #include <glib/gi18n-lib.h>
+
+#undef GDL_DISABLE_DEPRECATED
 
 #include "gdl-dock-placeholder.h"
 #include "gdl-dock-item.h"
@@ -866,5 +866,3 @@ gdl_dock_placeholder_attach (GdlDockPlaceholder *ph,
 
     gdl_dock_object_thaw (GDL_DOCK_OBJECT (ph));
 }
-
-#endif

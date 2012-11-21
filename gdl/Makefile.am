@@ -91,6 +91,7 @@ EXTRA_DIST = libgdlmarshal.list \
 libgdltypebuiltins.c: $(libgdl_headers)
 	@GLIB_MKENUMS@ \
 			--fhead "#include <glib-object.h>\n" \
+			--fhead "#undef GDL_DISABLE_DEPRECATED\n\n" \
 			--fhead "#include \"libgdltypebuiltins.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
@@ -143,7 +144,8 @@ introspection_sources = $(libgdl_3_la_SOURCES)
 
 Gdl-3.gir: libgdl-3.la
 Gdl_3_gir_INCLUDES = GObject-2.0 Gtk-3.0
-Gdl_3_gir_CFLAGS = $(INCLUDES)
+Gdl_3_gir_CFLAGS = $(INCLUDES) \
+		   -UGDL_DISABLE_DEPRECATED
 Gdl_3_gir_LIBS = libgdl-3.la
 Gdl_3_gir_FILES = $(introspection_sources)
 Gdl_3_gir_EXPORT_PACKAGES = gdl-3.0

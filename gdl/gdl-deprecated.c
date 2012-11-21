@@ -23,9 +23,9 @@
 #include <config.h>
 #endif
 
-#include "gdl.h"
+#undef GDL_DISABLE_DEPRECATED
 
-#ifndef GDL_DISABLE_DEPRECATED
+#include "gdl.h"
 
 /**
  * gdl_dock_bar_get_orientation:
@@ -142,5 +142,3 @@ gdl_dock_layout_attach (GdlDockLayout *layout,
 
     gdl_dock_layout_set_master (layout, G_OBJECT (master));
 }
-
-#endif
