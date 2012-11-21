@@ -2465,7 +2465,7 @@ gdl_dock_item_preferred_size (GdlDockItem    *item,
 /**
  * gdl_dock_item_get_drag_area:
  * @item: The dock item to get the preferred size of.
- * @req: A pointer to a #GdkRectangle that will receive the drag position
+ * @rect: A pointer to a #GdkRectangle that will receive the drag position
  *
  * Gets the size and the position of the drag window in pixels.
  *
@@ -2575,7 +2575,7 @@ gdl_dock_item_is_iconified (GdlDockItem *item)
 /**
  * gdl_dock_item_set_child:
  * @item: a #GdlDockItem
- * @widget: (allow-none): a #GtkWidget
+ * @child: (allow-none): a #GtkWidget
  *
  * Set a new child for the #GdlDockItem. This child is different from the
  * children using the #GtkContainer interface. It is a private child reserved
@@ -2626,7 +2626,7 @@ gdl_dock_item_get_child (GdlDockItem *item)
 
 /**
  * gdl_dock_item_class_set_has_grip:
- * @item: a #GdlDockItemClass
+ * @item_class: a #GdlDockItemClass
  * @has_grip: %TRUE is the dock item has a grip
  *
  * Define in the corresponding kind of dock item has a grip. Even if an item

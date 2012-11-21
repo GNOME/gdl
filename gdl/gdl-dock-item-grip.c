@@ -852,7 +852,7 @@ gdl_dock_item_grip_set_cursor (GdlDockItemGrip *grip,
 
 /**
  * gdl_dock_item_grip_has_event:
- * @dock: A #GdlDockItemGrip widget
+ * @grip: A #GdlDockItemGrip widget
  * @event: A #GdkEvent
  *
  * Return %TRUE if the grip window has reveived the event.

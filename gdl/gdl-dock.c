@@ -1472,7 +1472,7 @@ gdl_dock_object_get_toplevel (GdlDockObject *object)
 
 /**
  * gdl_dock_get_root:
- * @object: A #GdlDockObject
+ * @dock: A #GdlDockObject
  *
  * Get the first child of the #GdlDockObject.
  *
