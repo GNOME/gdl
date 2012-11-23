@@ -587,6 +587,9 @@ gdl_dock_master_drag_motion (GdlDockItem *item,
             GdkWindow *dock_window;
             dock = GDL_DOCK (l->data);
             dock_window = gtk_widget_get_window (GTK_WIDGET (dock));
+            if (!dock_window)
+                continue;
+
             /* translate root coordinates into dock object coordinates
                (i.e. widget coordinates) */
             gdk_window_get_origin (dock_window, &win_x, &win_y);
