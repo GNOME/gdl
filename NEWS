@@ -1,3 +1,15 @@
+Changes in 3.7.3
+
+* Fix build with GDL_DISABLE_DEPRECATED defined (Sébastien Granjoux)
+* Hide GdlDockNotebook button if there is only one visible page (Sébastien Granjoux)
+* Fix bgo#688585 - Unused docks don't disappear (Sébastien Granjoux)
+* Fix gtk theme warning and assertion (Carl-Anton Ingmarsson)
+* bgo #686702 - Reading the master member of GdlDockObject returns null pointer (Sébastien Granjoux)
+
+* Translation: en_GB (Chris Leonard)
+* Translation: sr (Мирослав Николић)
+* Translation: de (Christian Kirbach)
+
 Changes in 3.6.0
 
 * Translation: cs (Marek Černocký)
