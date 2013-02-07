@@ -123,6 +123,7 @@ struct _GdlDockItemClass {
     /* signals */
     void     (* dock_drag_begin)  (GdlDockItem    *item);
     void     (* dock_drag_motion) (GdlDockItem    *item,
+                                   GdkDevice      *device,
                                    gint            x,
                                    gint            y);
     void     (* dock_drag_end)    (GdlDockItem    *item,
