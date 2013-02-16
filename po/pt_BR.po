@@ -10,15 +10,16 @@
 # Fabrício Godoy <skarllot@gmail.com>, 2008.
 # Jonh Wendell <jwendell@gnome.org>, 2012.
 # Enrico Nicoletto <liverig@gmail.com>, 2013.
+# Rafael Ferreira <rafael.f.f1@gnome.org>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl 2.2\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gdl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-27 14:43+0000\n"
-"PO-Revision-Date: 2013-02-04 12:28-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2013-02-07 20:16+0000\n"
+"PO-Revision-Date: 2013-02-16 19:46-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -176,8 +177,8 @@ msgid ""
 "If set, the dock item is hidden but it has a corresponding icon in the dock "
 "bar allowing to show it again."
 msgstr ""
-"Se definido, o ítem da doca fica oculto porém existirá um ícone "
-"correspondente na barra da doca permitindo mostrá-lo novamente."
+"Se definido, o item de doca é oculto, mas existirá um ícone correspondente "
+"na barra de doca permitindo mostrá-lo novamente."
 
 #: ../gdl/gdl-dock-item.c:466
 msgid "Closed"
@@ -246,7 +247,7 @@ msgstr "Item da doca que \"possui\" este manipulador"
 msgid ""
 "GdlDockMaster or GdlDockObject object which the layout object is attached to"
 msgstr ""
-"GdlDockMaster ou o objeto GdlDockObject no qual o objeto de disposição foi "
+"Objeto GdlDockObject ou GdlDockMaster no qual o objeto de disposição foi "
 "anexado"
 
 #: ../gdl/gdl-dock-layout.c:136
@@ -283,7 +284,7 @@ msgstr ""
 
 #: ../gdl/gdl-dock-master.c:203 ../gdl/gdl-switcher.c:877
 msgid "Switcher Style"
-msgstr "Estilo do Alternador"
+msgstr "Estilo do alternador"
 
 #: ../gdl/gdl-dock-master.c:204 ../gdl/gdl-switcher.c:878
 msgid "Switcher buttons style"
