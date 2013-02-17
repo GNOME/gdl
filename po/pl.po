@@ -6,14 +6,14 @@
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Artur Flinta <aflinta@at.kernel.pl>, 2002-2003.
 # Wadim Dziedzic <wdziedzic@aviary.pl>, 2008-2009.
-# Piotr Drąg <piotrdrag@gmail.com>, 2010-2012.
-# Aviary.pl <gnomepl@aviary.pl>, 2008-2012.
+# Piotr Drąg <piotrdrag@gmail.com>, 2010-2013.
+# Aviary.pl <gnomepl@aviary.pl>, 2008-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-03 00:35+0200\n"
-"PO-Revision-Date: 2012-09-03 00:37+0200\n"
+"POT-Creation-Date: 2013-02-17 16:00+0100\n"
+"PO-Revision-Date: 2013-02-17 16:01+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -25,11 +25,11 @@ msgstr ""
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Poland\n"
 
-#: ../gdl/deprecated/gdl-dock-tablabel.c:140 ../gdl/gdl-dock-item-grip.c:729
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:729
 msgid "Controlling dock item"
 msgstr "Kontrolowanie obiektu dokowalnego"
 
-#: ../gdl/deprecated/gdl-dock-tablabel.c:141
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "Element dokujący, który posiada tę etykietę"
 
@@ -185,7 +185,7 @@ msgstr "Zamknięty"
 msgid "Whether the widget is closed."
 msgstr "Określa, czy widżer jest zamknięty."
 
-#: ../gdl/gdl-dock-item.c:873
+#: ../gdl/gdl-dock-item.c:872
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -194,7 +194,7 @@ msgstr ""
 "Nie można dodać obiektu dokowalnego (%p typu %s) wewnątrz %s. Należy użyć "
 "GdlDock lub innego złożonego obiektu."
 
-#: ../gdl/gdl-dock-item.c:880
+#: ../gdl/gdl-dock-item.c:879
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -203,27 +203,27 @@ msgstr ""
 "Próba dodania widgetu typu %s do %s, ale może on zawierać w danej chwili "
 "tylko jeden element; obecnie zawiera widżet typu %s"
 
-#: ../gdl/gdl-dock-item.c:1570 ../gdl/gdl-dock-item.c:1620
+#: ../gdl/gdl-dock-item.c:1569 ../gdl/gdl-dock-item.c:1619
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nieobsługiwana strategia dokowania %s w obiekcie dokowalnym typu %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1733
+#: ../gdl/gdl-dock-item.c:1732
 msgid "UnLock"
 msgstr "Odblokuj"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1740
+#: ../gdl/gdl-dock-item.c:1739
 msgid "Hide"
 msgstr "Ukryj"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1745
+#: ../gdl/gdl-dock-item.c:1744
 msgid "Lock"
 msgstr "Zablokuj"
 
-#: ../gdl/gdl-dock-item.c:2015
+#: ../gdl/gdl-dock-item.c:2014
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Próba dowiązania niezwiązanego elementu %p"
@@ -277,15 +277,15 @@ msgstr ""
 "są zablokowane, jeśli 0 to odblokowane; -1 oznacza niejednorodność wśród "
 "elementów"
 
-#: ../gdl/gdl-dock-master.c:203 ../gdl/gdl-switcher.c:842
+#: ../gdl/gdl-dock-master.c:203 ../gdl/gdl-switcher.c:877
 msgid "Switcher Style"
 msgstr "Styl przełącznika"
 
-#: ../gdl/gdl-dock-master.c:204 ../gdl/gdl-switcher.c:843
+#: ../gdl/gdl-dock-master.c:204 ../gdl/gdl-switcher.c:878
 msgid "Switcher buttons style"
 msgstr "Styl przycisków przełącznika"
 
-#: ../gdl/gdl-dock-master.c:831
+#: ../gdl/gdl-dock-master.c:834
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -294,7 +294,7 @@ msgstr ""
 "element nadrzędny %p: nie można dodać obiektu %p[%s] do tablicy mieszającej. "
 "Istnieje już element o tej nazwie (%p)."
 
-#: ../gdl/gdl-dock-master.c:1052
+#: ../gdl/gdl-dock-master.c:1055
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -303,7 +303,7 @@ msgstr ""
 "Nowy kontroler doku %p jest automatyczny. Tylko ręczne obiekty dokowalne "
 "mogą być kontrolerami."
 
-#: ../gdl/gdl-dock-master.c:1083
+#: ../gdl/gdl-dock-master.c:1086
 #, c-format
 msgid "Dock #%d"
 msgstr "Dok nr %d"
@@ -372,7 +372,7 @@ msgid ""
 "crash"
 msgstr ""
 "Zażądano działania dokowania dla niedowiązanego obiektu %p. Może nastąpić "
-"awaria programu."
+"awaria programu"
 
 #: ../gdl/gdl-dock-object.c:837
 #, c-format
@@ -405,7 +405,7 @@ msgid ""
 msgstr ""
 "Określa, czy element przyklei się do elementu który go zawiera, czy "
 "przesunie się do góry w hierarchii, gdy element zawierający zostanie "
-"przedokowany."
+"przedokowany"
 
 #: ../gdl/gdl-dock-placeholder.c:174
 msgid "Host"
