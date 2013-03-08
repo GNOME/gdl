@@ -1,3 +1,11 @@
+Changes in 3.7.91
+
+* Fix bgo#693298 - GdlDockItem::dock-drag-motion signal doesn't match vfunc
+
+* Translation: hu (Balázs Úr)
+* Translation: pt_BR (Enrico Nicoletto, Rafael Ferreira)
+
+
 Changes in 3.7.3
 
 * Fix build with GDL_DISABLE_DEPRECATED defined (Sébastien Granjoux)
