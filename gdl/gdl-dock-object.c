@@ -94,7 +94,8 @@ enum {
     PROP_STOCK_ID,
     PROP_PIXBUF_ICON,
     PROP_MASTER,
-    PROP_EXPORT_PROPERTIES
+    PROP_EXPORT_PROPERTIES,
+    PROP_LAST
 };
 
 enum {
@@ -104,6 +105,8 @@ enum {
 };
 
 static guint gdl_dock_object_signals [LAST_SIGNAL] = { 0 };
+
+static GParamSpec *properties[PROP_LAST];
 
 struct _GdlDockObjectPrivate {
     guint               automatic : 1;
@@ -198,37 +201,43 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
      * The object name.  If the object is manual the name can be used
      * to recall the object from any other object in the ring
      */
-    g_object_class_install_property (
-        object_class, PROP_NAME,
+    properties[PROP_NAME] =
         g_param_spec_string (GDL_DOCK_NAME_PROPERTY, _("Name"),
                              _("Unique name for identifying the dock object"),
                              NULL,
                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY |
-                             GDL_DOCK_PARAM_EXPORT));
+                             GDL_DOCK_PARAM_EXPORT);
+
+    g_object_class_install_property (
+        object_class, PROP_NAME, properties[PROP_NAME]);
 
     /**
      * GdlDockObject:long-name:
      *
      * A long descriptive name.
      */
-    g_object_class_install_property (
-        object_class, PROP_LONG_NAME,
+    properties[PROP_LONG_NAME] =
         g_param_spec_string ("long-name", _("Long name"),
                              _("Human readable name for the dock object"),
                              NULL,
-                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+    g_object_class_install_property (
+        object_class, PROP_LONG_NAME, properties[PROP_LONG_NAME]);
 
     /**
      * GdlDockObject:stock-id:
      *
      * A stock id to use for the icon of the dock object.
      */
-    g_object_class_install_property (
-        object_class, PROP_STOCK_ID,
+    properties[PROP_STOCK_ID] =
         g_param_spec_string ("stock-id", _("Stock Icon"),
                              _("Stock icon for the dock object"),
                              NULL,
-                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+    g_object_class_install_property (
+        object_class, PROP_STOCK_ID, properties[PROP_STOCK_ID]);
 
     /**
      * GdlDockObject:pixbuf-icon:
@@ -237,23 +246,27 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
      *
      * Since: 3.3.2
      */
-    g_object_class_install_property (
-        object_class, PROP_PIXBUF_ICON,
+    properties[PROP_PIXBUF_ICON] =
         g_param_spec_pointer ("pixbuf-icon", _("Pixbuf Icon"),
                               _("Pixbuf icon for the dock object"),
-                              G_PARAM_READWRITE));
+                              G_PARAM_READWRITE);
+
+    g_object_class_install_property (
+        object_class, PROP_PIXBUF_ICON, properties[PROP_PIXBUF_ICON]);
 
     /**
      * GdlDockObject:master:
      *
      * The master which manages all the objects in a dock ring
      */
-    g_object_class_install_property (
-        object_class, PROP_MASTER,
+    properties[PROP_MASTER] =
         g_param_spec_object ("master", _("Dock master"),
                              _("Dock master this dock object is bound to"),
                              GDL_TYPE_DOCK_MASTER,
-                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+    g_object_class_install_property (
+        object_class, PROP_MASTER, properties[PROP_MASTER]);
 
     widget_class->destroy = gdl_dock_object_destroy;
 
@@ -1183,6 +1196,8 @@ gdl_dock_object_set_name (GdlDockObject *object,
 
     g_free (object->priv->name);
     object->priv->name = g_strdup (name);
+
+    g_object_notify_by_pspec (object, properties[PROP_NAME]);
 }
 
 /**
@@ -1222,6 +1237,8 @@ gdl_dock_object_set_long_name (GdlDockObject *object,
 
     g_free (object->priv->long_name);
     object->priv->long_name = g_strdup (name);
+
+    g_object_notify_by_pspec (object, properties[PROP_LONG_NAME]);
 }
 
 /**
@@ -1259,6 +1276,8 @@ gdl_dock_object_set_stock_id (GdlDockObject *object,
 
     g_free (object->priv->stock_id);
     object->priv->stock_id = g_strdup (stock_id);
+
+    g_object_notify_by_pspec (object, properties[PROP_STOCK_ID]);
 }
 
 /**
@@ -1296,6 +1315,8 @@ gdl_dock_object_set_pixbuf (GdlDockObject *object,
     g_return_if_fail (icon == NULL || GDK_IS_PIXBUF (icon));
 
     object->priv->pixbuf_icon =icon;
+
+    g_object_notify_by_pspec (object, properties[PROP_PIXBUF_ICON]);
 }
 
 
