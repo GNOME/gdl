@@ -8,7 +8,7 @@ dnl ==========================================================================
 AC_PREREQ(2.65)
 AC_INIT(gdl)
 AC_CONFIG_MACRO_DIR([m4])
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS([config.h])
 
 GDL_MAJOR_VERSION=3
 GDL_MINOR_VERSION=8
