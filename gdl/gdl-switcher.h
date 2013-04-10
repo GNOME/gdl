@@ -28,6 +28,7 @@
 #define _GDL_SWITCHER_H_
 
 #include <gtk/gtk.h>
+#include <gtk/gtkcontainer.h>
 
 G_BEGIN_DECLS
 

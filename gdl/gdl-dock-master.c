@@ -113,6 +113,8 @@ static void gdl_dock_master_set_switcher_style (GdlDockMaster *master,
                                                 GdlSwitcherStyle switcher_style);
 static void gdl_dock_master_set_tab_pos        (GdlDockMaster     *master,
                                                 GtkPositionType    pos);
+static void gdl_dock_master_set_tab_reorderable (GdlDockMaster    *master,
+                                                gboolean           reorderable);
 
 /* ----- Private data types and variables ----- */
 
@@ -121,7 +123,8 @@ enum {
     PROP_DEFAULT_TITLE,
     PROP_LOCKED,
     PROP_SWITCHER_STYLE,
-    PROP_TAB_POS
+    PROP_TAB_POS,
+    PROP_TAB_REORDERABLE
 };
 
 enum {
@@ -156,6 +159,7 @@ struct _GdlDockMasterPrivate {
 
     GdlSwitcherStyle switcher_style;
     GtkPositionType tab_pos;
+    gboolean        tab_reorderable;
 
     /* Window for preview rect */
     GtkWidget* area_window;
@@ -164,6 +168,9 @@ struct _GdlDockMasterPrivate {
 #define COMPUTE_LOCKED(master)                                          \
     (g_hash_table_size ((master)->priv->unlocked_items) == 0 ? 1 :     \
      (g_hash_table_size ((master)->priv->locked_items) == 0 ? 0 : -1))
+
+#define GBOOLEAN_TO_POINTER(i) (GINT_TO_POINTER ((i) ? 2 : 1))
+#define GPOINTER_TO_BOOLEAN(i) ((gboolean) ((GPOINTER_TO_INT(i) == 2) ? TRUE : FALSE))
 
 static guint master_signals [LAST_SIGNAL] = { 0 };
 
@@ -218,6 +225,13 @@ gdl_dock_master_class_init (GdlDockMasterClass *klass)
                            GTK_POS_BOTTOM,
                            G_PARAM_READWRITE));
 
+    g_object_class_install_property (
+        object_class, PROP_TAB_REORDERABLE,
+        g_param_spec_boolean ("tab-reorderable", _("Tab reorderable"),
+                              _("Whether the tab is reorderable by user action"),
+                              FALSE,
+                              G_PARAM_READWRITE));
+
     /**
      * GdlDockMaster::layout-changed:
      *
@@ -254,6 +268,7 @@ gdl_dock_master_init (GdlDockMaster *master)
     master->priv->number = 1;
     master->priv->switcher_style = GDL_SWITCHER_STYLE_BOTH;
     master->priv->tab_pos = GTK_POS_BOTTOM;
+    master->priv->tab_reorderable = FALSE;
     master->priv->locked_items = g_hash_table_new (g_direct_hash, g_direct_equal);
     master->priv->unlocked_items = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
@@ -442,6 +457,9 @@ gdl_dock_master_set_property  (GObject      *object,
         case PROP_TAB_POS:
             gdl_dock_master_set_tab_pos (master, g_value_get_enum (value));
             break;
+        case PROP_TAB_REORDERABLE:
+            gdl_dock_master_set_tab_reorderable (master, g_value_get_boolean (value));
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
@@ -468,6 +486,9 @@ gdl_dock_master_get_property  (GObject      *object,
             break;
         case PROP_TAB_POS:
             g_value_set_enum (value, master->priv->tab_pos);
+            break;
+        case PROP_TAB_REORDERABLE:
+            g_value_set_enum (value, master->priv->tab_reorderable);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -902,7 +923,8 @@ gdl_dock_master_add (GdlDockMaster *master,
             item_notify_cb (object, NULL, master);
         }
 
-        /* If the item is notebook, set the switcher style and tab position */
+        /* If the item is notebook, set the switcher style and notebook
+         * settings. */
         if (GDL_IS_DOCK_NOTEBOOK (object) &&
             GDL_IS_SWITCHER (gdl_dock_item_get_child (GDL_DOCK_ITEM (object))))
         {
@@ -911,6 +933,8 @@ gdl_dock_master_add (GdlDockMaster *master,
                           master->priv->switcher_style, NULL);
             g_object_set (child, "tab-pos",
                           master->priv->tab_pos, NULL);
+            g_object_set (child, "tab-reorderable",
+                          master->priv->tab_reorderable, NULL);
         }
 
         /* post a layout_changed emission if the item is not automatic
@@ -1195,4 +1219,48 @@ gdl_dock_master_set_tab_pos (GdlDockMaster *master,
     /* just to be sure hidden items are set too */
     gdl_dock_master_foreach (master, (GFunc) set_tab_pos_foreach,
                              GINT_TO_POINTER (tab_pos));
+}
+
+static void
+set_tab_reorderable_foreach (GtkWidget *obj, gpointer user_data)
+{
+    gboolean tab_reorderable = GPOINTER_TO_BOOLEAN (user_data);
+
+    if (!GDL_IS_DOCK_ITEM (obj))
+        return;
+
+    if (GDL_IS_DOCK_NOTEBOOK (obj)) {
+
+        GtkWidget *child = gdl_dock_item_get_child (GDL_DOCK_ITEM (obj));
+        if (GDL_IS_SWITCHER (child)) {
+
+            g_object_set (child, "tab-reorderable", tab_reorderable, NULL);
+        }
+    } else if (gdl_dock_object_is_compound (GDL_DOCK_OBJECT (obj))) {
+
+        gtk_container_foreach (GTK_CONTAINER (obj),
+                               set_tab_reorderable_foreach,
+                               user_data);
+    }
+}
+
+static void
+gdl_dock_master_set_tab_reorderable (GdlDockMaster *master,
+                                     gboolean tab_reorderable)
+{
+    GList *l;
+    g_return_if_fail (GDL_IS_DOCK_MASTER (master));
+
+    master->priv->tab_reorderable = tab_reorderable;
+    for (l = master->priv->toplevel_docks; l; l = l->next) {
+        GdlDock *dock = GDL_DOCK (l->data);
+        GtkWidget *root = GTK_WIDGET (gdl_dock_get_root (dock));
+        if (root != NULL)
+            set_tab_reorderable_foreach (root,
+                                         GBOOLEAN_TO_POINTER (tab_reorderable));
+    }
+
+    /* just to be sure hidden items are set too */
+    gdl_dock_master_foreach (master, (GFunc) set_tab_reorderable_foreach,
+                             GBOOLEAN_TO_POINTER (tab_reorderable));
 }

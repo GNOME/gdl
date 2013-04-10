@@ -75,12 +75,14 @@ static void gdl_switcher_set_style (GdlSwitcher *switcher,
                                     GdlSwitcherStyle switcher_style);
 static GdlSwitcherStyle gdl_switcher_get_style (GdlSwitcher *switcher);
 static void gdl_switcher_set_tab_pos (GdlSwitcher *switcher, GtkPositionType pos);
+static void gdl_switcher_set_tab_reorderable (GdlSwitcher *switcher, gboolean reorderable);
 static void gdl_switcher_update_lone_button_visibility (GdlSwitcher *switcher);
 
 enum {
     PROP_0,
     PROP_SWITCHER_STYLE,
-    PROP_TAB_POS
+    PROP_TAB_POS,
+    PROP_TAB_REORDERABLE
 };
 
 typedef struct {
@@ -97,6 +99,7 @@ struct _GdlSwitcherPrivate {
     GdlSwitcherStyle switcher_style;
     GdlSwitcherStyle toolbar_style;
     GtkPositionType tab_pos;
+    gboolean tab_reorderable;
 
     gboolean show;
     GSList *buttons;
@@ -735,6 +738,9 @@ gdl_switcher_set_property  (GObject      *object,
         case PROP_TAB_POS:
             gdl_switcher_set_tab_pos (switcher, g_value_get_enum (value));
             break;
+        case PROP_TAB_REORDERABLE:
+            gdl_switcher_set_tab_reorderable (switcher, g_value_get_boolean (value));
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
@@ -755,6 +761,9 @@ gdl_switcher_get_property  (GObject      *object,
             break;
         case PROP_TAB_POS:
             g_value_set_enum (value, switcher->priv->tab_pos);
+            break;
+        case PROP_TAB_REORDERABLE:
+            g_value_set_enum (value, switcher->priv->tab_reorderable);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -897,6 +906,13 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
                            GTK_POS_BOTTOM,
                            G_PARAM_READWRITE));
 
+    g_object_class_install_property (
+        object_class, PROP_TAB_REORDERABLE,
+        g_param_spec_boolean ("tab-reorderable", _("Tab reorderable"),
+                              _("Whether the tab is reorderable by user action"),
+                              FALSE,
+                              G_PARAM_READWRITE));
+
     g_type_class_add_private (object_class, sizeof (GdlSwitcherPrivate));
 
     /* set the style */
@@ -921,6 +937,7 @@ gdl_switcher_init (GdlSwitcher *switcher)
     priv->show = TRUE;
     priv->buttons_height_request = -1;
     priv->tab_pos = GTK_POS_BOTTOM;
+    priv->tab_reorderable = FALSE;
 
     gtk_notebook_set_tab_pos (GTK_NOTEBOOK (switcher), GTK_POS_BOTTOM);
     gtk_notebook_set_show_tabs (GTK_NOTEBOOK (switcher), FALSE);
@@ -1098,6 +1115,7 @@ gdl_switcher_insert_page (GdlSwitcher *switcher, GtkWidget *page,
                           const gchar *tooltips, const gchar *stock_id,
                           GdkPixbuf *pixbuf_icon, gint position)
 {
+    GtkNotebook *notebook = GTK_NOTEBOOK (switcher);
     gint ret_position;
     gint switcher_id;
     g_signal_handlers_block_by_func (switcher,
@@ -1111,8 +1129,10 @@ gdl_switcher_insert_page (GdlSwitcher *switcher, GtkWidget *page,
     switcher_id = gdl_switcher_get_page_id (page);
     gdl_switcher_add_button (switcher, label, tooltips, stock_id, pixbuf_icon, switcher_id, page);
 
-    ret_position = gtk_notebook_insert_page (GTK_NOTEBOOK (switcher), page,
+    ret_position = gtk_notebook_insert_page (notebook, page,
                                              tab_widget, position);
+    gtk_notebook_set_tab_reorderable (notebook, page,
+                                      switcher->priv->tab_reorderable);
     g_signal_handlers_unblock_by_func (switcher,
                                        gdl_switcher_page_added_cb,
                                        switcher);
@@ -1241,4 +1261,23 @@ gdl_switcher_set_tab_pos (GdlSwitcher *switcher, GtkPositionType pos)
     gtk_notebook_set_tab_pos (GTK_NOTEBOOK (switcher), pos);
 
     switcher->priv->tab_pos = pos;
+}
+
+static void
+gdl_switcher_set_tab_reorderable (GdlSwitcher *switcher, gboolean reorderable)
+{
+    GList *children, *l;
+
+    if (switcher->priv->tab_reorderable == reorderable)
+        return;
+
+    children = gtk_container_get_children (GTK_CONTAINER (switcher));
+    for (l = children; l != NULL; l->next) {
+        gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (switcher),
+                                          GTK_WIDGET (l->data),
+                                          reorderable);
+    }
+    g_list_free (children);
+
+    switcher->priv->tab_reorderable = reorderable;
 }
