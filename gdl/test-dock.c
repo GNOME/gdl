@@ -209,6 +209,8 @@ main (int argc, char **argv)
 
 	/* create the dock */
 	dock = gdl_dock_new ();
+	GdlDockMaster *master = GDL_DOCK_MASTER (gdl_dock_object_get_master (GDL_DOCK_OBJECT (dock)));
+	g_object_set (master, "tab-pos", GTK_POS_TOP, NULL);
 
 	/* ... and the layout manager */
 	layout = gdl_dock_layout_new (G_OBJECT (dock));

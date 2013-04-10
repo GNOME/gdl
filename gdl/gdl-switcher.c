@@ -74,11 +74,13 @@ static void gdl_switcher_set_show_buttons (GdlSwitcher *switcher, gboolean show)
 static void gdl_switcher_set_style (GdlSwitcher *switcher,
                                     GdlSwitcherStyle switcher_style);
 static GdlSwitcherStyle gdl_switcher_get_style (GdlSwitcher *switcher);
+static void gdl_switcher_set_tab_pos (GdlSwitcher *switcher, GtkPositionType pos);
 static void gdl_switcher_update_lone_button_visibility (GdlSwitcher *switcher);
 
 enum {
     PROP_0,
-    PROP_SWITCHER_STYLE
+    PROP_SWITCHER_STYLE,
+    PROP_TAB_POS
 };
 
 typedef struct {
@@ -94,6 +96,7 @@ typedef struct {
 struct _GdlSwitcherPrivate {
     GdlSwitcherStyle switcher_style;
     GdlSwitcherStyle toolbar_style;
+    GtkPositionType tab_pos;
 
     gboolean show;
     GSList *buttons;
@@ -729,6 +732,9 @@ gdl_switcher_set_property  (GObject      *object,
         case PROP_SWITCHER_STYLE:
             gdl_switcher_set_style (switcher, g_value_get_enum (value));
             break;
+        case PROP_TAB_POS:
+            gdl_switcher_set_tab_pos (switcher, g_value_get_enum (value));
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
@@ -746,6 +752,9 @@ gdl_switcher_get_property  (GObject      *object,
     switch (prop_id) {
         case PROP_SWITCHER_STYLE:
             g_value_set_enum (value, gdl_switcher_get_style (switcher));
+            break;
+        case PROP_TAB_POS:
+            g_value_set_enum (value, switcher->priv->tab_pos);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -880,6 +889,14 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
                            GDL_SWITCHER_STYLE_BOTH,
                            G_PARAM_READWRITE));
 
+    g_object_class_install_property (
+        object_class, PROP_TAB_POS,
+        g_param_spec_enum ("tab-pos", _("Tab Position"),
+                           _("Which side of the notebook holds the tabs"),
+                           GTK_TYPE_POSITION_TYPE,
+                           GTK_POS_BOTTOM,
+                           G_PARAM_READWRITE));
+
     g_type_class_add_private (object_class, sizeof (GdlSwitcherPrivate));
 
     /* set the style */
@@ -903,6 +920,7 @@ gdl_switcher_init (GdlSwitcher *switcher)
 
     priv->show = TRUE;
     priv->buttons_height_request = -1;
+    priv->tab_pos = GTK_POS_BOTTOM;
 
     gtk_notebook_set_tab_pos (GTK_NOTEBOOK (switcher), GTK_POS_BOTTOM);
     gtk_notebook_set_show_tabs (GTK_NOTEBOOK (switcher), FALSE);
@@ -1212,4 +1230,15 @@ gdl_switcher_get_style (GdlSwitcher *switcher)
     if (!switcher->priv->show)
         return GDL_SWITCHER_STYLE_TABS;
     return switcher->priv->switcher_style;
+}
+
+static void
+gdl_switcher_set_tab_pos (GdlSwitcher *switcher, GtkPositionType pos)
+{
+    if (switcher->priv->tab_pos == pos)
+        return;
+
+    gtk_notebook_set_tab_pos (GTK_NOTEBOOK (switcher), pos);
+
+    switcher->priv->tab_pos = pos;
 }
