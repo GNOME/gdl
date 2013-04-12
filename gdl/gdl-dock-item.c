@@ -958,8 +958,6 @@ gdl_dock_item_set_focus_child (GtkContainer *container,
     if (GTK_CONTAINER_CLASS (gdl_dock_item_parent_class)->set_focus_child) {
         (* GTK_CONTAINER_CLASS (gdl_dock_item_parent_class)->set_focus_child) (container, child);
     }
-
-    gdl_dock_item_showhide_grip (GDL_DOCK_ITEM (container));
 }
 
 static void
@@ -1868,12 +1866,14 @@ gdl_dock_item_showhide_grip (GdlDockItem *item)
 {
     gdl_dock_item_detach_menu (GTK_WIDGET (item), NULL);
 
-    if (item->priv->grip) {
-        if (GDL_DOCK_ITEM_GRIP_SHOWN (item) &&
-            GDL_DOCK_ITEM_NOT_LOCKED(item))
+    if (item->priv->grip && GDL_DOCK_ITEM_NOT_LOCKED(item) &&
+        GDL_DOCK_ITEM_HAS_GRIP(item)) {
+
+        if (item->priv->grip_shown) {
             gdl_dock_item_grip_show_handle (GDL_DOCK_ITEM_GRIP (item->priv->grip));
-        else
+        } else {
             gdl_dock_item_grip_hide_handle (GDL_DOCK_ITEM_GRIP (item->priv->grip));
+        }
     }
 }
 
@@ -2255,7 +2255,6 @@ gdl_dock_item_hide_grip (GdlDockItem *item)
         item->priv->grip_shown = FALSE;
         gdl_dock_item_showhide_grip (item);
     };
-    g_warning ("Grips always show unless GDL_DOCK_ITEM_BEH_NO_GRIP is set\n" );
 }
 
 /**

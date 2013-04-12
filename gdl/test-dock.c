@@ -163,10 +163,20 @@ static void
 on_change_name (GtkWidget* widget, gpointer data)
 {
 	static int index = 10;
+	static gboolean toggle = TRUE;
 	gchar* name = g_strdup_printf ("Item %d", index);
 	GdlDockItem* item3 = data;
 	g_object_set (G_OBJECT (item3), "long_name", name, NULL);
 	g_free (name);
+	if (toggle) {
+		gdl_dock_item_hide_grip (item3);
+		g_object_set (G_OBJECT (widget), "label", "hidden", NULL);
+		toggle = FALSE;
+	} else {
+		gdl_dock_item_show_grip (item3);
+		g_object_set (G_OBJECT (widget), "label", "shown", NULL);
+		toggle = TRUE;
+	}
 	index++;
 }
 
