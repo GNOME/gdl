@@ -838,7 +838,7 @@ gdl_dock_layout_save_to_file (GdlDockLayout *layout,
 
     file_handle = fopen (filename, "w");
     if (file_handle) {
-        bytes = xmlDocDump (file_handle, layout->priv->doc);
+        bytes = xmlDocFormatDump (file_handle, layout->priv->doc, 1);
         if (bytes >= 0) {
             layout->priv->dirty = FALSE;
             g_object_notify (G_OBJECT (layout), "dirty");
