@@ -1,3 +1,10 @@
+Changes in 3.8.1
+
+* Fix build with automake 1.13 (Marcin Banasiak)
+
+* Translation: fr (Alexandre Franke)
+
+
 Changes in 3.8.0
 
 * Translation: el (Dimitris Spingos)

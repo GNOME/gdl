@@ -12,7 +12,7 @@ AC_CONFIG_HEADERS([config.h])
 
 GDL_MAJOR_VERSION=3
 GDL_MINOR_VERSION=8
-GDL_MICRO_VERSION=0
+GDL_MICRO_VERSION=1
 
 dnl increment if the interface has additions, changes, removals.
 GDL_CURRENT=5
