@@ -8,384 +8,430 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl trunk\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-01-01 13:17+0000\n"
-"PO-Revision-Date: 2012-02-26 19:16+0300\n"
+"POT-Creation-Date: 2013-04-13 20:20+0000\n"
+"PO-Revision-Date: 2013-05-15 22:49+0300\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
 
-#: ../gdl/gdl-dock-bar.c:108
-#: ../gdl/gdl-dock-layout.c:107
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139
+#: ../gdl/gdl-dock-item-grip.c:729
+msgid "Controlling dock item"
+msgstr "Управляющий встраиваемый элемент"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Элемент, владеющий меткой вкладки"
+
+#: ../gdl/gdl-dock-bar.c:127
+#: ../gdl/gdl-dock-layout.c:128
 msgid "Master"
-msgstr "Мастер панели"
+msgstr "Мастер"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:128
 msgid "GdlDockMaster object which the dockbar widget is attached to"
 msgstr "Объект GdlDockMaster, к которому присоединён виджет"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:140
 msgid "Dockbar style"
-msgstr "Стиль панели свёрнутых элементов"
+msgstr "Стиль встраиваемой панели"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:141
 msgid "Dockbar style to show items on it"
-msgstr "Стиль отображения свёрнутых элементов на панели"
+msgstr "Стиль отображения элементов во встраиваемой панели"
 
-#: ../gdl/gdl-dock.c:180
+#: ../gdl/gdl-dock.c:197
 msgid "Floating"
-msgstr "Плавающий"
+msgstr "Плаваяющая"
 
-#: ../gdl/gdl-dock.c:181
+#: ../gdl/gdl-dock.c:198
 msgid "Whether the dock is floating in its own window"
-msgstr "Будет ли панель плавающей в своём окне"
+msgstr "Является ли встраиваемая панель плавающей"
 
-#: ../gdl/gdl-dock.c:188
-#: ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock.c:205
+#: ../gdl/gdl-dock-master.c:198
 msgid "Default title"
 msgstr "Заголовок по умолчанию"
 
-#: ../gdl/gdl-dock.c:189
+#: ../gdl/gdl-dock.c:206
 msgid "Default title for the newly created floating docks"
-msgstr "Заголовок по умолчанию для вновь создаваемых панелей"
+msgstr "Заголовок по умолчанию для новых панелей"
 
-#: ../gdl/gdl-dock.c:195
-#: ../gdl/gdl-dock-placeholder.c:174
+#: ../gdl/gdl-dock.c:212
+#: ../gdl/gdl-dock-placeholder.c:192
 msgid "Width"
 msgstr "Ширина"
 
-#: ../gdl/gdl-dock.c:196
+#: ../gdl/gdl-dock.c:213
 msgid "Width for the dock when it's of floating type"
-msgstr "Ширина панели, когда она является плавающей"
+msgstr "Ширина плавающей панели"
 
-#: ../gdl/gdl-dock.c:203
-#: ../gdl/gdl-dock-placeholder.c:182
+#: ../gdl/gdl-dock.c:220
+#: ../gdl/gdl-dock-placeholder.c:200
 msgid "Height"
 msgstr "Высота"
 
-#: ../gdl/gdl-dock.c:204
+#: ../gdl/gdl-dock.c:221
 msgid "Height for the dock when it's of floating type"
-msgstr "Высота панели, когда она является плавающей"
+msgstr "Высота плавающей панели"
 
-#: ../gdl/gdl-dock.c:211
+#: ../gdl/gdl-dock.c:228
 msgid "Float X"
-msgstr "Плавающая X"
+msgstr "X"
 
-#: ../gdl/gdl-dock.c:212
+#: ../gdl/gdl-dock.c:229
 msgid "X coordinate for a floating dock"
 msgstr "Координата X плавающей панели"
 
-#: ../gdl/gdl-dock.c:219
+#: ../gdl/gdl-dock.c:236
 msgid "Float Y"
-msgstr "Плавающая Y"
+msgstr "Y"
 
-#: ../gdl/gdl-dock.c:220
+#: ../gdl/gdl-dock.c:237
 msgid "Y coordinate for a floating dock"
 msgstr "Координата Y плавающей панели"
 
-#: ../gdl/gdl-dock.c:481
-#, c-format
-msgid "Dock #%d"
-msgstr "Панель #%d"
+#: ../gdl/gdl-dock.c:255
+msgid "Skip taskbar"
+msgstr "Пропускать панель задач"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock.c:256
+msgid "Whether or not to prevent a floating dock window from appearing in the taskbar"
+msgstr "Избегать появления окна встраиваемой панели в панели задач"
+
+#: ../gdl/gdl-dock-item.c:385
 msgid "Orientation"
 msgstr "Направление"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:386
 msgid "Orientation of the docking item"
 msgstr "Направление встраиваемого элемента"
 
-#: ../gdl/gdl-dock-item.c:283
+#: ../gdl/gdl-dock-item.c:401
 msgid "Resizable"
 msgstr "Изменяемый размер"
 
-#: ../gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:402
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr "Если установлено, встраиваемый элемент может менять размер, когда заблокирован в виджете GtkPanel"
+msgstr "Если установлено, размер встраиваемого элемента может изменяться, когда элемент встроен в виджет GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:409
 msgid "Item behavior"
 msgstr "Поведение элемента"
 
-#: ../gdl/gdl-dock-item.c:292
+#: ../gdl/gdl-dock-item.c:410
 msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
-msgstr "Основное поведение для встраиваемого элемента (т.е. будет ли он плавающим, если он заблокирован и т.д.)"
+msgstr "Основное поведение для встраиваемого элемента (т. е. будет ли он плавающим, если он зафиксирован и т. д.)"
 
-#: ../gdl/gdl-dock-item.c:300
-#: ../gdl/gdl-dock-master.c:152
+#: ../gdl/gdl-dock-item.c:418
+#: ../gdl/gdl-dock-master.c:205
 msgid "Locked"
-msgstr "Заблокировано"
+msgstr "Зафиксирован"
 
-#: ../gdl/gdl-dock-item.c:301
+#: ../gdl/gdl-dock-item.c:419
 msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr "Если установлено, встраиваемый элемент не может быть перетащен и не отображает полосу."
+msgstr "Если установлено, встраиваемый элемент нельзя перетаскивать и он не показывает полосу перетаскивания."
 
-#: ../gdl/gdl-dock-item.c:309
+#: ../gdl/gdl-dock-item.c:427
 msgid "Preferred width"
 msgstr "Предпочтительная ширина"
 
-#: ../gdl/gdl-dock-item.c:310
+#: ../gdl/gdl-dock-item.c:428
 msgid "Preferred width for the dock item"
 msgstr "Предпочтительная ширина для встраиваемого элемента"
 
-#: ../gdl/gdl-dock-item.c:316
+#: ../gdl/gdl-dock-item.c:434
 msgid "Preferred height"
 msgstr "Предпочтительная высота"
 
-#: ../gdl/gdl-dock-item.c:317
+#: ../gdl/gdl-dock-item.c:435
 msgid "Preferred height for the dock item"
 msgstr "Предпочтительная высота для встраиваемого элемента"
 
-#: ../gdl/gdl-dock-item.c:662
+#: ../gdl/gdl-dock-item.c:449
+msgid "Iconified"
+msgstr "Свёрнуто в значок"
+
+#: ../gdl/gdl-dock-item.c:450
+msgid "If set, the dock item is hidden but it has a corresponding icon in the dock bar allowing to show it again."
+msgstr "Если выбрано, элемент панели скрыт, но на панели содержится соответствующий значок, позволяющий показать элемент."
+
+#: ../gdl/gdl-dock-item.c:466
+msgid "Closed"
+msgstr "Закрыто"
+
+#: ../gdl/gdl-dock-item.c:467
+msgid "Whether the widget is closed."
+msgstr "Закрыт ли виджет."
+
+#: ../gdl/gdl-dock-item.c:872
 #, c-format
 msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
 msgstr "Нельзя добавить встраиваемый объект (%p типа %s) внутри %s. Используйте GdlDock или другой составной встраиваемый объект."
 
-#: ../gdl/gdl-dock-item.c:669
+#: ../gdl/gdl-dock-item.c:879
 #, c-format
 msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
 msgstr "Попытка добавить виджет типа %s к %s, но он может содержать только один виджет одновременно; он уже содержит виджет типа %s"
 
-#: ../gdl/gdl-dock-item.c:1367
-#: ../gdl/gdl-dock-item.c:1417
+#: ../gdl/gdl-dock-item.c:1567
+#: ../gdl/gdl-dock-item.c:1617
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
-msgstr "Не реализованный метод прикрепления %s во встраиваемом объекте типа %s"
+msgstr "Неподдерживаемый способ встраивания %s в объекте с типом %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1525
+#: ../gdl/gdl-dock-item.c:1730
 msgid "UnLock"
-msgstr "Разблокировать"
+msgstr "Освободить"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1532
+#: ../gdl/gdl-dock-item.c:1737
 msgid "Hide"
-msgstr "Скрыть"
+msgstr "Скрывать"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1537
+#: ../gdl/gdl-dock-item.c:1742
 msgid "Lock"
-msgstr "Заблокировать"
+msgstr "Зафиксировать"
 
-#: ../gdl/gdl-dock-item.c:1810
+#: ../gdl/gdl-dock-item.c:2014
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Попытка прикрепить элемент без границы %p"
 
-#: ../gdl/gdl-dock-item-grip.c:406
+#: ../gdl/gdl-dock-item-grip.c:387
 msgid "Iconify this dock"
 msgstr "Свернуть эту панель в значок"
 
-#: ../gdl/gdl-dock-item-grip.c:408
+#: ../gdl/gdl-dock-item-grip.c:389
 msgid "Close this dock"
 msgstr "Закрыть эту панель"
 
-#: ../gdl/gdl-dock-item-grip.c:748
-#: ../gdl/gdl-dock-tablabel.c:128
-msgid "Controlling dock item"
-msgstr "Управляющий встраиваемый элемент"
-
-#: ../gdl/gdl-dock-item-grip.c:749
+#: ../gdl/gdl-dock-item-grip.c:730
 msgid "Dockitem which 'owns' this grip"
 msgstr "Элемент панели, который «владеет» этой полосой"
 
-#: ../gdl/gdl-dock-layout.c:108
-msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "Объект GdlDockMaster, к которому присоединён объект раскладки"
+#: ../gdl/gdl-dock-layout.c:129
+msgid "GdlDockMaster or GdlDockObject object which the layout object is attached to"
+msgstr "Объект GdlDockMaster или GdlDockObject, к которому присоединён объект раскладки"
 
-#: ../gdl/gdl-dock-layout.c:115
+#: ../gdl/gdl-dock-layout.c:136
 msgid "Dirty"
 msgstr "Изменён"
 
-#: ../gdl/gdl-dock-layout.c:116
+#: ../gdl/gdl-dock-layout.c:137
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Истина, если раскладка элементов изменилась и должна быть сохранена в файл"
 
-#: ../gdl/gdl-dock-layout.c:279
+#: ../gdl/gdl-dock-layout.c:303
 #, c-format
 msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
 msgstr "В процессе загрузки раскладки произошла ошибка: не найдено способа создать объект «%s»"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:199
 msgid "Default title for newly created floating docks"
 msgstr "Заголовок по умолчанию для создаваемых плавающих панелей"
 
-#: ../gdl/gdl-dock-master.c:153
+#: ../gdl/gdl-dock-master.c:206
 msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr "Если установлено в 1, все встраиваемые элементы, связанные с мастером панели, заблокированы. Если в 0, то все разблокированы. -1 означает, что имеются и заблокированные и разблокированные элементы."
 
-#: ../gdl/gdl-dock-master.c:161
-#: ../gdl/gdl-switcher.c:781
+#: ../gdl/gdl-dock-master.c:214
+#: ../gdl/gdl-switcher.c:895
 msgid "Switcher Style"
 msgstr "Стиль переключателя"
 
-#: ../gdl/gdl-dock-master.c:162
-#: ../gdl/gdl-switcher.c:782
+#: ../gdl/gdl-dock-master.c:215
+#: ../gdl/gdl-switcher.c:896
 msgid "Switcher buttons style"
 msgstr "Стиль кнопок переключателя"
 
-#: ../gdl/gdl-dock-master.c:772
+#: ../gdl/gdl-dock-master.c:222
+#: ../gdl/gdl-switcher.c:903
+#| msgid "Position"
+msgid "Tab Position"
+msgstr "Положение вкладки"
+
+#: ../gdl/gdl-dock-master.c:223
+#: ../gdl/gdl-switcher.c:904
+msgid "Which side of the notebook holds the tabs"
+msgstr "С какой стороны находятся вкладки"
+
+#: ../gdl/gdl-dock-master.c:230
+#: ../gdl/gdl-switcher.c:911
+msgid "Tab reorderable"
+msgstr "Изменяемые вкладки"
+
+#: ../gdl/gdl-dock-master.c:231
+#: ../gdl/gdl-switcher.c:912
+msgid "Whether the tab is reorderable by user action"
+msgstr "Может ли пользователь менять вкладки местами"
+
+#: ../gdl/gdl-dock-master.c:874
 #, c-format
 msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
 msgstr "мастер панели %p: не удалось добавить объект %p[%s] в хэш.  Элемент с именем (%p) уже существует."
 
-#: ../gdl/gdl-dock-master.c:944
+#: ../gdl/gdl-dock-master.c:1101
 #, c-format
 msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
-msgstr "Новый диспетчер панели %p автоматический. Только ручные встраиваемые объекты следует называть диспетчером."
+msgstr "Новый диспетчер панели %p является автоматическим. Контроллерами следует называть только ручные встраиваемые объекты."
 
-#: ../gdl/gdl-dock-notebook.c:137
+#: ../gdl/gdl-dock-master.c:1132
+#, c-format
+msgid "Dock #%d"
+msgstr "Панель #%d"
+
+#: ../gdl/gdl-dock-notebook.c:156
 msgid "Page"
 msgstr "Страница"
 
-#: ../gdl/gdl-dock-notebook.c:138
+#: ../gdl/gdl-dock-notebook.c:157
 msgid "The index of the current page"
 msgstr "Индекс текущей страницы"
 
-#: ../gdl/gdl-dock-object.c:116
+#: ../gdl/gdl-dock-object.c:205
 msgid "Name"
 msgstr "Название"
 
-#: ../gdl/gdl-dock-object.c:117
+#: ../gdl/gdl-dock-object.c:206
 msgid "Unique name for identifying the dock object"
 msgstr "Уникальное имя, идентифицирующее встраиваемый объект"
 
-#: ../gdl/gdl-dock-object.c:124
+#: ../gdl/gdl-dock-object.c:220
 msgid "Long name"
 msgstr "Полное имя"
 
-#: ../gdl/gdl-dock-object.c:125
+#: ../gdl/gdl-dock-object.c:221
 msgid "Human readable name for the dock object"
 msgstr "Удобочитаемое имя встраиваемого объекта"
 
-#: ../gdl/gdl-dock-object.c:131
+#: ../gdl/gdl-dock-object.c:234
 msgid "Stock Icon"
 msgstr "Встроенный значок"
 
-#: ../gdl/gdl-dock-object.c:132
+#: ../gdl/gdl-dock-object.c:235
 msgid "Stock icon for the dock object"
 msgstr "Встроенный значок для встраиваемого объекта"
 
-#: ../gdl/gdl-dock-object.c:145
+#: ../gdl/gdl-dock-object.c:250
 msgid "Pixbuf Icon"
 msgstr "Значок pixbuf"
 
-#: ../gdl/gdl-dock-object.c:146
-#| msgid "Stock icon for the dock object"
+#: ../gdl/gdl-dock-object.c:251
 msgid "Pixbuf icon for the dock object"
 msgstr "Значок pixbuf для встраиваемого объекта"
 
-#: ../gdl/gdl-dock-object.c:151
+#: ../gdl/gdl-dock-object.c:263
 msgid "Dock master"
 msgstr "Мастер панели"
 
-#: ../gdl/gdl-dock-object.c:152
+#: ../gdl/gdl-dock-object.c:264
 msgid "Dock master this dock object is bound to"
 msgstr "Мастер панели, к которому привязан этот встраиваемый объект"
 
-#: ../gdl/gdl-dock-object.c:456
+#: ../gdl/gdl-dock-object.c:630
 #, c-format
 msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
-msgstr "Вызовите gdl_dock_object_dock во встраиваемом объекте %p (объект имеет тип %s), который не реализует этот метод"
+msgstr "Вызов gdl_dock_object_dock во встраиваемом объекте %p (объект имеет тип %s), в котором не реализован этот метод"
 
-#: ../gdl/gdl-dock-object.c:595
+#: ../gdl/gdl-dock-object.c:843
 #, c-format
 msgid "Dock operation requested in a non-bound object %p. The application might crash"
 msgstr "Операция с панелью запрашивается в объекте %p, который не имеет рамки. Это приложение может завершится аварийно."
 
-#: ../gdl/gdl-dock-object.c:602
+#: ../gdl/gdl-dock-object.c:850
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Нельзя прикрепить %p к %p, потому что они относятся к разным мастерам панелей"
 
-#: ../gdl/gdl-dock-object.c:644
+#: ../gdl/gdl-dock-object.c:908
 #, c-format
 msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr "Попытка связать с %p встраиваемый объект %p, который уже связан  (текущий мастер панели: %p)"
 
-#: ../gdl/gdl-dock-paned.c:128
+#: ../gdl/gdl-dock-paned.c:145
 msgid "Position"
-msgstr "Позиция"
+msgstr "Положение"
 
-#: ../gdl/gdl-dock-paned.c:129
+#: ../gdl/gdl-dock-paned.c:146
 msgid "Position of the divider in pixels"
-msgstr "Позиция разделителя в пикселах"
+msgstr "Положение разделителя в пикселах"
 
-#: ../gdl/gdl-dock-placeholder.c:148
+#: ../gdl/gdl-dock-placeholder.c:166
 msgid "Sticky"
 msgstr "Прилипающий"
 
-#: ../gdl/gdl-dock-placeholder.c:149
+#: ../gdl/gdl-dock-placeholder.c:167
 msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
 msgstr "Будет ли заполнитель придерживаться родителя или будет менять место в иерархии, когда родитель прикрепляется в другое место"
 
-#: ../gdl/gdl-dock-placeholder.c:156
+#: ../gdl/gdl-dock-placeholder.c:174
 msgid "Host"
 msgstr "Родитель"
 
-#: ../gdl/gdl-dock-placeholder.c:157
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "The dock object this placeholder is attached to"
 msgstr "Встраиваемый объект, который присоединён к этому заполнителю"
 
-#: ../gdl/gdl-dock-placeholder.c:164
+#: ../gdl/gdl-dock-placeholder.c:182
 msgid "Next placement"
-msgstr "Следующее положение"
-
-#: ../gdl/gdl-dock-placeholder.c:165
-msgid "The position an item will be docked to our host if a request is made to dock to us"
-msgstr "Положение элемента, где он будет присоединён, если придёт запрос на стыковку"
-
-#: ../gdl/gdl-dock-placeholder.c:175
-msgid "Width for the widget when it's attached to the placeholder"
-msgstr "Ширина виджета, когда он присоединён к заполнителю"
+msgstr "Следующее размещение"
 
 #: ../gdl/gdl-dock-placeholder.c:183
-msgid "Height for the widget when it's attached to the placeholder"
-msgstr "Высота виджета, когда он присоединён к заполнителю"
+msgid "The position an item will be docked to our host if a request is made to dock to us"
+msgstr "Положение присоединения элемента, если придёт запрос на стыковку"
 
-#: ../gdl/gdl-dock-placeholder.c:189
+#: ../gdl/gdl-dock-placeholder.c:193
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Ширина виджета присоединённого к заполнителю"
+
+#: ../gdl/gdl-dock-placeholder.c:201
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Высота виджета присоединённого к заполнителю"
+
+#: ../gdl/gdl-dock-placeholder.c:207
 msgid "Floating Toplevel"
 msgstr "Плавающая панель верхнего уровня"
 
-#: ../gdl/gdl-dock-placeholder.c:190
+#: ../gdl/gdl-dock-placeholder.c:208
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Будет ли заполнитель неподвижен относительно плавающей панели верхнего уровня"
 
-#: ../gdl/gdl-dock-placeholder.c:196
+#: ../gdl/gdl-dock-placeholder.c:214
 msgid "X Coordinate"
 msgstr "Координата X"
 
-#: ../gdl/gdl-dock-placeholder.c:197
+#: ../gdl/gdl-dock-placeholder.c:215
 msgid "X coordinate for dock when floating"
-msgstr "Координата X для панели, когда она является плавающей"
+msgstr "Координата X для плавающей панели"
 
-#: ../gdl/gdl-dock-placeholder.c:203
+#: ../gdl/gdl-dock-placeholder.c:221
 msgid "Y Coordinate"
 msgstr "Координата Y"
 
-#: ../gdl/gdl-dock-placeholder.c:204
+#: ../gdl/gdl-dock-placeholder.c:222
 msgid "Y coordinate for dock when floating"
-msgstr "Координата Y для панели, когда она является плавающей"
+msgstr "Координата Y для плавающей панели"
 
-#: ../gdl/gdl-dock-placeholder.c:496
+#: ../gdl/gdl-dock-placeholder.c:514
 msgid "Attempt to dock a dock object to an unbound placeholder"
-msgstr "Попытка пристыковать встраиваемый объект к заполнителю без границы"
+msgstr "Попытка встроить объект в заполнитель без границы"
 
-#: ../gdl/gdl-dock-placeholder.c:608
+#: ../gdl/gdl-dock-placeholder.c:641
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr "Получен сигнал отсоединения от объекта (%p), который не является родителем %p"
 
-#: ../gdl/gdl-dock-placeholder.c:633
+#: ../gdl/gdl-dock-placeholder.c:666
 #, c-format
 msgid "Something weird happened while getting the child placement for %p from parent %p"
 msgstr "Произошла ошибка в процессе вычисления положения дочернего элемента %p на родительском элементе %p"
-
-#: ../gdl/gdl-dock-tablabel.c:129
-msgid "Dockitem which 'owns' this tablabel"
-msgstr "Элемент, владеющий меткой вкладки"
 
 #~ msgid "Could not load layout user interface file '%s'"
 #~ msgstr "Не удалось загрузить файл раскладки элементов интерфейса «%s»"
@@ -416,12 +462,6 @@ msgstr "Элемент, владеющий меткой вкладки"
 
 #~ msgid "Size of the expander arrow."
 #~ msgstr "Размер расширяющей стрелки."
-
-#~ msgid "Iconify"
-#~ msgstr "Свернуть в значок"
-
-#~ msgid "Close"
-#~ msgstr "Закрыть"
 
 #~ msgid "Layout managment"
 #~ msgstr "Управление раскладкой"
