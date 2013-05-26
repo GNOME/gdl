@@ -918,7 +918,7 @@ gdl_dock_item_remove (GtkContainer *container,
     item->priv->child = NULL;
 
     if (was_visible)
-        gtk_widget_queue_resize (GTK_WIDGET (container));
+        gtk_widget_hide (GTK_WIDGET (container));
 }
 
 static void
