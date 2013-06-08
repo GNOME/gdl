@@ -868,7 +868,7 @@ gdl_dock_item_add (GtkContainer *container,
     g_return_if_fail (GDL_IS_DOCK_ITEM (container));
 
     item = GDL_DOCK_ITEM (container);
-    if (GDL_IS_DOCK_OBJECT (widget)) {
+    if (GDL_IS_DOCK_ITEM (widget)) {
         g_warning (_("You can't add a dock object (%p of type %s) inside a %s. "
                      "Use a GdlDock or some other compound dock object."),
                    widget, G_OBJECT_TYPE_NAME (widget), G_OBJECT_TYPE_NAME (item));
