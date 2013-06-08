@@ -465,6 +465,30 @@ gdl_dock_object_foreach_is_visible (GdlDockObject *object,
 }
 
 static void
+gdl_dock_object_update_visibility (GdlDockObject *object)
+{
+    g_return_if_fail (object != NULL);
+
+    if (object && gdl_dock_object_is_automatic (object))
+    {
+        gboolean visible = FALSE;
+
+        gtk_container_foreach (GTK_CONTAINER (object),
+                               (GtkCallback) gdl_dock_object_foreach_is_visible,
+                               &visible);
+        object->priv->attached = visible;
+#ifndef GDL_DISABLE_DEPRECATED
+        if (visible)
+            object->deprecated_flags |= GDL_DOCK_ATTACHED;
+        else
+            object->deprecated_flags &= ~GDL_DOCK_ATTACHED;
+#endif
+        gtk_widget_set_visible (GTK_WIDGET (object), visible);
+    }
+    gdl_dock_object_layout_changed_notify (object);
+}
+
+static void
 gdl_dock_object_update_parent_visibility (GdlDockObject *object)
 {
     GdlDockObject *parent;
@@ -472,23 +496,7 @@ gdl_dock_object_update_parent_visibility (GdlDockObject *object)
     g_return_if_fail (object != NULL);
 
     parent = gdl_dock_object_get_parent_object (object);
-    if (parent && gdl_dock_object_is_automatic (parent))
-    {
-        gboolean visible = FALSE;
-
-        gtk_container_foreach (GTK_CONTAINER (parent),
-                               (GtkCallback) gdl_dock_object_foreach_is_visible,
-                               &visible);
-        parent->priv->attached = visible;
-#ifndef GDL_DISABLE_DEPRECATED
-        if (visible)
-            parent->deprecated_flags |= GDL_DOCK_ATTACHED;
-        else
-            parent->deprecated_flags &= ~GDL_DOCK_ATTACHED;
-#endif
-        gtk_widget_set_visible (GTK_WIDGET (parent), visible);
-    }
-    gdl_dock_object_layout_changed_notify (object);
+    if (parent != NULL) gdl_dock_object_update_visibility (parent);
 }
 
 static void
@@ -866,6 +874,7 @@ gdl_dock_object_dock (GdlDockObject    *object,
 
     /* detach the requestor before docking */
     g_object_ref (requestor);
+    parent = gdl_dock_object_get_parent_object (requestor);
     gdl_dock_object_detach (requestor, FALSE);
 
     if (position != GDL_DOCK_NONE)
@@ -882,6 +891,7 @@ gdl_dock_object_dock (GdlDockObject    *object,
 #endif
     }
     /* Update visibility of automatic parents */
+    if (parent != NULL) gdl_dock_object_update_visibility (parent);
     gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (requestor));
 }
 
@@ -1197,7 +1207,7 @@ gdl_dock_object_set_name (GdlDockObject *object,
     g_free (object->priv->name);
     object->priv->name = g_strdup (name);
 
-    g_object_notify_by_pspec (object, properties[PROP_NAME]);
+    g_object_notify_by_pspec (G_OBJECT (object), properties[PROP_NAME]);
 }
 
 /**
@@ -1238,7 +1248,7 @@ gdl_dock_object_set_long_name (GdlDockObject *object,
     g_free (object->priv->long_name);
     object->priv->long_name = g_strdup (name);
 
-    g_object_notify_by_pspec (object, properties[PROP_LONG_NAME]);
+    g_object_notify_by_pspec (G_OBJECT (object), properties[PROP_LONG_NAME]);
 }
 
 /**
@@ -1277,7 +1287,7 @@ gdl_dock_object_set_stock_id (GdlDockObject *object,
     g_free (object->priv->stock_id);
     object->priv->stock_id = g_strdup (stock_id);
 
-    g_object_notify_by_pspec (object, properties[PROP_STOCK_ID]);
+    g_object_notify_by_pspec (G_OBJECT (object), properties[PROP_STOCK_ID]);
 }
 
 /**
@@ -1316,7 +1326,7 @@ gdl_dock_object_set_pixbuf (GdlDockObject *object,
 
     object->priv->pixbuf_icon =icon;
 
-    g_object_notify_by_pspec (object, properties[PROP_PIXBUF_ICON]);
+    g_object_notify_by_pspec (G_OBJECT (object), properties[PROP_PIXBUF_ICON]);
 }
 
 
