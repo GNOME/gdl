@@ -875,6 +875,7 @@ gdl_dock_object_dock (GdlDockObject    *object,
     /* detach the requestor before docking */
     g_object_ref (requestor);
     parent = gdl_dock_object_get_parent_object (requestor);
+    if (parent) g_object_ref (parent);
     gdl_dock_object_detach (requestor, FALSE);
 
     if (position != GDL_DOCK_NONE)
@@ -891,7 +892,11 @@ gdl_dock_object_dock (GdlDockObject    *object,
 #endif
     }
     /* Update visibility of automatic parents */
-    if (parent != NULL) gdl_dock_object_update_visibility (parent);
+    if (parent != NULL)
+    {
+        gdl_dock_object_update_visibility (parent);
+        g_object_unref (parent);
+    }
     gdl_dock_object_update_parent_visibility (GDL_DOCK_OBJECT (requestor));
 }
 
