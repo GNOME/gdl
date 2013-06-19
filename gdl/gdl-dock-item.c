@@ -1774,7 +1774,7 @@ gdl_dock_item_drag_end (GdlDockItem *item,
 {
     if (item->priv->in_drag) {
         /* Release pointer & keyboard. */
-        gtk_grab_remove (gtk_grab_get_current ());
+        gtk_grab_remove (GTK_WIDGET (item));
         g_signal_emit (item, gdl_dock_item_signals [DOCK_DRAG_END], 0, cancel);
         gtk_widget_grab_focus (GTK_WIDGET (item));
 
