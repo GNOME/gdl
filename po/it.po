@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-18 14:53+0200\n"
-"PO-Revision-Date: 2013-08-18 14:59+0200\n"
+"POT-Creation-Date: 2013-08-18 15:21+0200\n"
+"PO-Revision-Date: 2013-08-18 15:22+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -167,13 +167,12 @@ msgid "Iconified"
 msgstr "Riduce a icona"
 
 #: ../gdl/gdl-dock-item.c:450
-#, fuzzy
 msgid ""
 "If set, the dock item is hidden but it has a corresponding icon in the dock "
 "bar allowing to show it again."
 msgstr ""
-"Se impostata, l'elemento dock è nascosto, ma è dotato di un'icona "
-"corrispondente bella barra che consente di mostrarlo."
+"Se impostata, l'elemento aggangio è nascosto, ma è dotato di un'icona "
+"corrispondente nella barra che consente di mostrarlo."
 
 #: ../gdl/gdl-dock-item.c:466
 msgid "Closed"
