@@ -1,3 +1,33 @@
+Changes in 3.9.91
+
+* Allow to add GdlDock object inside GdlDockItem (Sébastien Granjoux)
+* Hide unused widget (Sébastien Granjoux)
+* Remove unused header (Juan Pablo Ugarte)
+* Indent layout when saving (Dominique Lasserre)
+* New property tab-pos and tab-reorderable for GdlSwitcher (Dominique Lasserre)
+* Fix build with automake 1.13	(Marcin Banasiak)
+* Emit notify signal in DockObject setters (Evan Nemerson)
+
+* Fix bgo#699545 - Can't grab or focus widgets after moving around the docks (Ubuntu-specific) (Sébastien Granjoux)
+* Fix bgo#515755 - Manually show and hide grip (Dominique Lasserre)
+
+* Translation: eu (Inaki Larranaga Murgoitio)
+* Translation: pl (Piotr Drąg)
+* Translation: it (Milo Casagrande)
+* Translation: lt (Aurimas Černius)
+* Translation: gl (Fran Diéguez)
+* Translation: id (Andika Triwidada)
+* Translation: ru (Yuri Myasoedov)
+* Translation: cs (Marek Černocký)
+* Translation: pt_BR (Rafael Ferreira)
+* Translation: es (Daniel Mustieles)
+* Translation: sl (Matej Urbančič)
+* Translation: el (Dimitris Spingos)
+* Translation: ca (Gil Forcada, Carles Ferrando)
+* Translation: tg (Victor Ibragimov)
+* Translation: fr (Alexandre Franke)
+
+
 Changes in 3.8.0
 
 * Translation: el (Dimitris Spingos)
