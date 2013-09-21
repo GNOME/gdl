@@ -4,14 +4,14 @@
 #
 # Gabor Kelemen <kelemeng@gnome.hu>, 2006, 2008, 2010.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2010, 2012.
-# Balázs Úr <urbalazs at gmail dot com>, 2012.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gdl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-13 20:36+0000\n"
-"PO-Revision-Date: 2012-12-27 15:41+0100\n"
+"POT-Creation-Date: 2013-08-02 10:29+0000\n"
+"PO-Revision-Date: 2013-09-21 18:54+0200\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: \n"
@@ -21,11 +21,11 @@ msgstr ""
 "X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../gdl/deprecated/gdl-dock-tablabel.c:140 ../gdl/gdl-dock-item-grip.c:729
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:729
 msgid "Controlling dock item"
 msgstr "Vezérlő dokkelem"
 
-#: ../gdl/deprecated/gdl-dock-tablabel.c:141
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
 msgid "Dockitem which 'owns' this tablabel"
 msgstr "A lapcímkét birtokló dokkelem"
 
@@ -55,7 +55,7 @@ msgstr "Lebegő"
 msgid "Whether the dock is floating in its own window"
 msgstr "A dokk lebeg-e a saját ablakában"
 
-#: ../gdl/gdl-dock.c:205 ../gdl/gdl-dock-master.c:187
+#: ../gdl/gdl-dock.c:205 ../gdl/gdl-dock-master.c:198
 msgid "Default title"
 msgstr "Alapértelmezett cím"
 
@@ -136,7 +136,7 @@ msgid ""
 msgstr ""
 "A dokkelem általános viselkedése (azaz lebeghet-e, zárolva van-e, stb.)"
 
-#: ../gdl/gdl-dock-item.c:418 ../gdl/gdl-dock-master.c:194
+#: ../gdl/gdl-dock-item.c:418 ../gdl/gdl-dock-master.c:205
 msgid "Locked"
 msgstr "Zárolva"
 
@@ -163,7 +163,6 @@ msgid "Preferred height for the dock item"
 msgstr "A dokkelem előnyben részesített magassága"
 
 #: ../gdl/gdl-dock-item.c:449
-#| msgid "Iconify this dock"
 msgid "Iconified"
 msgstr "Ikon méretűvé tett"
 
@@ -183,7 +182,7 @@ msgstr "Lezárva"
 msgid "Whether the widget is closed."
 msgstr "Lezárt legyen-e a felületi elem."
 
-#: ../gdl/gdl-dock-item.c:873
+#: ../gdl/gdl-dock-item.c:872
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -192,7 +191,7 @@ msgstr ""
 "Nem vehet fel dokkelemet (a(z) %p %s típusú) egy %s elemen belül. Használjon "
 "GdlDockot vagy más összetett dokkobjektumot."
 
-#: ../gdl/gdl-dock-item.c:880
+#: ../gdl/gdl-dock-item.c:879
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -201,27 +200,27 @@ msgstr ""
 "Kísérlet %s típusú felületi elem hozzáadására egy %s elembe, de az egyszerre "
 "csak egy felületi elemet tartalmazhat és már tartalmaz egy %s típusú elemet."
 
-#: ../gdl/gdl-dock-item.c:1570 ../gdl/gdl-dock-item.c:1620
+#: ../gdl/gdl-dock-item.c:1567 ../gdl/gdl-dock-item.c:1617
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nem támogatott dokkolási stratégia (%s) egy %s típusú dokkobjektumban"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1733
+#: ../gdl/gdl-dock-item.c:1730
 msgid "UnLock"
 msgstr "Feloldás"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1740
+#: ../gdl/gdl-dock-item.c:1737
 msgid "Hide"
 msgstr "Elrejtés"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1745
+#: ../gdl/gdl-dock-item.c:1742
 msgid "Lock"
 msgstr "Zárolás"
 
-#: ../gdl/gdl-dock-item.c:2015
+#: ../gdl/gdl-dock-item.c:2014
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Kísérlet %p nem kötött elem kötésére"
@@ -239,7 +238,6 @@ msgid "Dockitem which 'owns' this grip"
 msgstr "A fogantyút „birtokló” dokkelem"
 
 #: ../gdl/gdl-dock-layout.c:129
-#| msgid "GdlDockMaster object which the layout object is attached to"
 msgid ""
 "GdlDockMaster or GdlDockObject object which the layout object is attached to"
 msgstr ""
@@ -263,11 +261,11 @@ msgstr ""
 "Elrendezés betöltése közben: nem tudom, hogy lehet %s nevű dokkobjektumot "
 "készíteni"
 
-#: ../gdl/gdl-dock-master.c:188
+#: ../gdl/gdl-dock-master.c:199
 msgid "Default title for newly created floating docks"
 msgstr "Újonnan létrejött lebegő dokkok alapértelmezett címe"
 
-#: ../gdl/gdl-dock-master.c:195
+#: ../gdl/gdl-dock-master.c:206
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
@@ -275,15 +273,32 @@ msgstr ""
 "Ha ennek értéke 1. akkor a mesterhez kötött összes dokkelem zárolva van, ha "
 "0, mind fel van oldva, a -1 az elemek közötti inkonzisztenciát jelez."
 
-#: ../gdl/gdl-dock-master.c:203 ../gdl/gdl-switcher.c:842
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:895
 msgid "Switcher Style"
 msgstr "Váltó stílusa"
 
-#: ../gdl/gdl-dock-master.c:204 ../gdl/gdl-switcher.c:843
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:896
 msgid "Switcher buttons style"
 msgstr "Váltógombok stílusa"
 
-#: ../gdl/gdl-dock-master.c:831
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:903
+#| msgid "Position"
+msgid "Tab Position"
+msgstr "Lappozíció"
+
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:904
+msgid "Which side of the notebook holds the tabs"
+msgstr "A notesz melyik oldalán vannak a lapok"
+
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:911
+msgid "Tab reorderable"
+msgstr "A lap átrendezhető"
+
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:912
+msgid "Whether the tab is reorderable by user action"
+msgstr "A lap átrendezhető-e a felhasználó által"
+
+#: ../gdl/gdl-dock-master.c:874
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -292,7 +307,7 @@ msgstr ""
 "%p mester: a(z) %p[%s] objektum nem adható a hash-hez. Már létezik ilyen "
 "nevű elem (%p)."
 
-#: ../gdl/gdl-dock-master.c:1052
+#: ../gdl/gdl-dock-master.c:1101
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -301,7 +316,7 @@ msgstr ""
 "Az új dokkvezérlő (%p) automatikus. Csak a kézi dokkobjektumoknak kell "
 "nevesített vezérlőnek lenniük."
 
-#: ../gdl/gdl-dock-master.c:1083
+#: ../gdl/gdl-dock-master.c:1132
 #, c-format
 msgid "Dock #%d"
 msgstr "%d. dokk"
@@ -314,47 +329,47 @@ msgstr "Oldal"
 msgid "The index of the current page"
 msgstr "Az aktuális oldal indexe"
 
-#: ../gdl/gdl-dock-object.c:203
+#: ../gdl/gdl-dock-object.c:205
 msgid "Name"
 msgstr "Név"
 
-#: ../gdl/gdl-dock-object.c:204
+#: ../gdl/gdl-dock-object.c:206
 msgid "Unique name for identifying the dock object"
 msgstr "A dokkobjektumot azonosító egyedi név"
 
-#: ../gdl/gdl-dock-object.c:216
+#: ../gdl/gdl-dock-object.c:220
 msgid "Long name"
 msgstr "Hosszú név"
 
-#: ../gdl/gdl-dock-object.c:217
+#: ../gdl/gdl-dock-object.c:221
 msgid "Human readable name for the dock object"
 msgstr "A dokkobjektum emberek által olvasható neve"
 
-#: ../gdl/gdl-dock-object.c:228
+#: ../gdl/gdl-dock-object.c:234
 msgid "Stock Icon"
 msgstr "Gyári ikon"
 
-#: ../gdl/gdl-dock-object.c:229
+#: ../gdl/gdl-dock-object.c:235
 msgid "Stock icon for the dock object"
 msgstr "A dokkobjektum alapértelmezett ikonja"
 
-#: ../gdl/gdl-dock-object.c:242
+#: ../gdl/gdl-dock-object.c:250
 msgid "Pixbuf Icon"
 msgstr "Képikon"
 
-#: ../gdl/gdl-dock-object.c:243
+#: ../gdl/gdl-dock-object.c:251
 msgid "Pixbuf icon for the dock object"
 msgstr "A dokkobjektum képikonja"
 
-#: ../gdl/gdl-dock-object.c:253
+#: ../gdl/gdl-dock-object.c:263
 msgid "Dock master"
 msgstr "Dokk mester"
 
-#: ../gdl/gdl-dock-object.c:254
+#: ../gdl/gdl-dock-object.c:264
 msgid "Dock master this dock object is bound to"
 msgstr "Az a dokkmester, amelyhez ez az objektum kötve van"
 
-#: ../gdl/gdl-dock-object.c:617
+#: ../gdl/gdl-dock-object.c:638
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -363,7 +378,7 @@ msgstr ""
 "A gdl_dock_object_dock meghívásra került egy %p dokkobjektumban (az "
 "objektumtípus: %s), amely nem valósította meg ezt a metódust"
 
-#: ../gdl/gdl-dock-object.c:830
+#: ../gdl/gdl-dock-object.c:851
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -371,13 +386,13 @@ msgid ""
 msgstr ""
 "Egy nem kötött objektum (%p) dokkművelet kért. Az alkalmazás összeomolhat."
 
-#: ../gdl/gdl-dock-object.c:837
+#: ../gdl/gdl-dock-object.c:858
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "%p nem dokkolható a következőhöz: %p, mivel különböző mesterekhez tartoznak"
 
-#: ../gdl/gdl-dock-object.c:895
+#: ../gdl/gdl-dock-object.c:923
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
