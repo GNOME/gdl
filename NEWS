@@ -1,3 +1,8 @@
+Changes in 3.10.0
+
+* Translation: hu (Balázs Úr)
+* Translation: pt_BR (Enrico Nicoletto)
+
 Changes in 3.9.91
 
 * Allow to add GdlDock object inside GdlDockItem (Sébastien Granjoux)
