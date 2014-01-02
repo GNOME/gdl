@@ -37,7 +37,7 @@
  */
 
 
-#define ICON_SIZE 12
+#define ICON_SIZE 13
 
 G_DEFINE_TYPE (GdlDockItemButtonImage,
                gdl_dock_item_button_image,
