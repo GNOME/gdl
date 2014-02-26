@@ -584,10 +584,10 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
                 child_allocation.x -= close_requisition.width;
 
             child_allocation.width = close_requisition.width;
-            child_allocation.height = close_requisition.height;
         } else {
             child_allocation.width = 0;
         }
+        child_allocation.height = close_requisition.height;
 
         gtk_widget_size_allocate (grip->priv->close_button, &child_allocation);
 
@@ -603,10 +603,10 @@ gdl_dock_item_grip_size_allocate (GtkWidget     *widget,
                 child_allocation.x -= iconify_requisition.width;
 
             child_allocation.width = iconify_requisition.width;
-            child_allocation.height = iconify_requisition.height;
         } else {
             child_allocation.width = 0;
         }
+        child_allocation.height = iconify_requisition.height;
 
         gtk_widget_size_allocate (grip->priv->iconify_button, &child_allocation);
 
