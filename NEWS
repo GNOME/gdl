@@ -1,3 +1,14 @@
+Changes in 3.11.92
+
+* Fix build using C++11 (Ryan Lortie)
+* Fix valgrind warnings (Sébastien Granjoux)
+* Update FSF's address (Daniel Mustieles)
+
+* Translation: zh (Wylmer Wang)
+* Translation: de (Christian Kirbach)
+* Translation: sr (Мирослав Николић)
+* Translation: lv (Rūdolfs Mazurs)
+
 Changes in 3.10.0
 
 * Translation: hu (Balázs Úr)
