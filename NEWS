@@ -1,3 +1,7 @@
+Changes in 3.12.0
+
+* No change
+
 Changes in 3.11.92
 
 * Fix build using C++11 (Ryan Lortie)
