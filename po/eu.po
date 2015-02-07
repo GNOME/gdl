@@ -1,14 +1,16 @@
-# translation of eu_to_be_translate.po to Basque
+# Basque translation for gdl
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2008, 2011, 2013.
+# Edurne Labaka <elabaka@uzei.com>, 2015.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: eu_to_be_translate\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 16:46+0200\n"
+"Project-Id-Version: gdl master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-07 12:35+0100\n"
 "PO-Revision-Date: 2013-08-30 16:45+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
@@ -19,7 +21,7 @@ msgstr ""
 "X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:729
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:727
 msgid "Controlling dock item"
 msgstr "Kontrolaren elementu atrakagarria"
 
@@ -101,29 +103,29 @@ msgid ""
 "taskbar"
 msgstr "Leiho mugikor atrakagarri bat ataza-barran agertzea saihestu edo ez"
 
-#: ../gdl/gdl-dock-item.c:385
+#: ../gdl/gdl-dock-item.c:383
 msgid "Orientation"
 msgstr "Orientazioa"
 
-#: ../gdl/gdl-dock-item.c:386
+#: ../gdl/gdl-dock-item.c:384
 msgid "Orientation of the docking item"
 msgstr "Elementu atrakagarriaren orientazioa"
 
-#: ../gdl/gdl-dock-item.c:401
+#: ../gdl/gdl-dock-item.c:399
 msgid "Resizable"
 msgstr "Tamainaz alda daiteke"
 
-#: ../gdl/gdl-dock-item.c:402
+#: ../gdl/gdl-dock-item.c:400
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Ezartzen bada, elementu atrakagarria tamainaz alda daiteke GtkPanel trepeta "
 "batean atrakatzean"
 
-#: ../gdl/gdl-dock-item.c:409
+#: ../gdl/gdl-dock-item.c:407
 msgid "Item behavior"
 msgstr "Elementuaren portaera"
 
-#: ../gdl/gdl-dock-item.c:410
+#: ../gdl/gdl-dock-item.c:408
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -131,38 +133,38 @@ msgstr ""
 "Elementu atrakagarriaren portaera orokorra (adib. lekuz alda daitekeen ala "
 "ez, edo blokeatuta dagoen, e.a.)"
 
-#: ../gdl/gdl-dock-item.c:418 ../gdl/gdl-dock-master.c:205
+#: ../gdl/gdl-dock-item.c:416 ../gdl/gdl-dock-master.c:205
 msgid "Locked"
 msgstr "Blokeatuta"
 
-#: ../gdl/gdl-dock-item.c:419
+#: ../gdl/gdl-dock-item.c:417
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Ezartzen bada, elementu atrakagarria ezin izango da lekuz aldatu, eta ez du "
 "heldu-lekurik erakutsiko"
 
-#: ../gdl/gdl-dock-item.c:427
+#: ../gdl/gdl-dock-item.c:425
 msgid "Preferred width"
 msgstr "Hobetsitako zabalera"
 
-#: ../gdl/gdl-dock-item.c:428
+#: ../gdl/gdl-dock-item.c:426
 msgid "Preferred width for the dock item"
 msgstr "Elementu atrakagarriaren zabalera hobetsia"
 
-#: ../gdl/gdl-dock-item.c:434
+#: ../gdl/gdl-dock-item.c:432
 msgid "Preferred height"
 msgstr "Hobetsitako altuera"
 
-#: ../gdl/gdl-dock-item.c:435
+#: ../gdl/gdl-dock-item.c:433
 msgid "Preferred height for the dock item"
 msgstr "Elementu atrakagarriaren altuera hobetsia"
 
-#: ../gdl/gdl-dock-item.c:449
+#: ../gdl/gdl-dock-item.c:447
 msgid "Iconified"
 msgstr "Ikonotuta"
 
-#: ../gdl/gdl-dock-item.c:450
+#: ../gdl/gdl-dock-item.c:448
 msgid ""
 "If set, the dock item is hidden but it has a corresponding icon in the dock "
 "bar allowing to show it again."
@@ -170,15 +172,15 @@ msgstr ""
 "Ezartzen bada, elementu atrakagarria ezkutatu arren  dagokion ikonoa "
 "atrakatze-barran dauka berriro erakustea baimenduz."
 
-#: ../gdl/gdl-dock-item.c:466
+#: ../gdl/gdl-dock-item.c:464
 msgid "Closed"
 msgstr "Itxita"
 
-#: ../gdl/gdl-dock-item.c:467
+#: ../gdl/gdl-dock-item.c:465
 msgid "Whether the widget is closed."
 msgstr "Trepeta itxita dagoen ala ez."
 
-#: ../gdl/gdl-dock-item.c:872
+#: ../gdl/gdl-dock-item.c:870
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -187,7 +189,7 @@ msgstr ""
 "Ezin duzu objektu atrakagarri bat (%p, %s motakoa) %s barruan gehitu. "
 "Erabili GdlDock edo beste objektu atrakagarri konposatua."
 
-#: ../gdl/gdl-dock-item.c:879
+#: ../gdl/gdl-dock-item.c:877
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -196,41 +198,41 @@ msgstr ""
 "%s motako trepeta bat %s(r)i gehitzea saiatu da, baina aldi berean trepeta "
 "bakarra eduki dezake, eta jadanik badu %s motako trepeta"
 
-#: ../gdl/gdl-dock-item.c:1567 ../gdl/gdl-dock-item.c:1617
+#: ../gdl/gdl-dock-item.c:1565 ../gdl/gdl-dock-item.c:1615
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "Onartu gabeko %s atrakatzeko estrategia %s motako objektu atrakagarrian"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1730
+#: ../gdl/gdl-dock-item.c:1728
 msgid "UnLock"
 msgstr "Desblokeatu"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1737
+#: ../gdl/gdl-dock-item.c:1735
 msgid "Hide"
 msgstr "Ezkutatu"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1742
+#: ../gdl/gdl-dock-item.c:1740
 msgid "Lock"
 msgstr "Blokeatu"
 
-#: ../gdl/gdl-dock-item.c:2014
+#: ../gdl/gdl-dock-item.c:2012
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Lotu ezin daitekeen %p elementu bat lotzea saiatu da"
 
-#: ../gdl/gdl-dock-item-grip.c:387
+#: ../gdl/gdl-dock-item-grip.c:385
 msgid "Iconify this dock"
 msgstr "Ikonotu atrakagarri hau"
 
-#: ../gdl/gdl-dock-item-grip.c:389
+#: ../gdl/gdl-dock-item-grip.c:387
 msgid "Close this dock"
 msgstr "Itxi atrakagarri hau"
 
-#: ../gdl/gdl-dock-item-grip.c:730
+#: ../gdl/gdl-dock-item-grip.c:728
 msgid "Dockitem which 'owns' this grip"
 msgstr "Elementu atrakagarria, heldu-leku honen 'jabe' dana"
 
@@ -273,27 +275,27 @@ msgstr ""
 "adierazten da. -1 balioarekin berriz, elementuen arteko kontraesanak daudela "
 "adierazten da."
 
-#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:895
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:893
 msgid "Switcher Style"
 msgstr "Aldatzailearen estiloa"
 
-#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:896
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:894
 msgid "Switcher buttons style"
 msgstr "Aldatzailearen botoien estiloa"
 
-#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:903
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:901
 msgid "Tab Position"
 msgstr "Fitxaren posizioa"
 
-#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:904
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:902
 msgid "Which side of the notebook holds the tabs"
 msgstr "Ohar-koadernoaren zein aldetan dauden fitxak"
 
-#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:911
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:909
 msgid "Tab reorderable"
 msgstr "Fitxa berrantolagarria"
 
-#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:912
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:910
 msgid "Whether the tab is reorderable by user action"
 msgstr "Fitxa berrantola daitekeen erabiltzailearen ekintzaren ondorioz edo ez"
 
