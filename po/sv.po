@@ -1,2804 +1,486 @@
 # Swedish messages for gdl.
-# Copyright (C) 1999-2012 Free Software Foundation, Inc.
+# Copyright © 1999-2015 Free Software Foundation, Inc.
 # Tomas Ögren <stric@ing.umu.se>, 1999.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2010, 2012.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-18 15:46+0100\n"
-"PO-Revision-Date: 2012-01-18 15:46+0100\n"
-"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-26 17:51+0000\n"
+"PO-Revision-Date: 2015-03-08 12:11+0100\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
 
-#: ../gdl/gdl-dock-bar.c:108
-#: ../gdl/gdl-dock-layout.c:107
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:727
+msgid "Controlling dock item"
+msgstr "Styrande dockobjekt"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Dockobjekt som \"äger\" denna fliketikett"
+
+#: ../gdl/gdl-dock-bar.c:127 ../gdl/gdl-dock-layout.c:128
 msgid "Master"
 msgstr "Mästare"
 
-#: ../gdl/gdl-dock-bar.c:109
+#: ../gdl/gdl-dock-bar.c:128
 msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr "GdlDockMaster-objekt som dockradswidgeten är kopplad till"
+msgstr "GdlDockMaster-objekt som dockradskomponenten är kopplad till"
 
-#: ../gdl/gdl-dock-bar.c:116
+#: ../gdl/gdl-dock-bar.c:140
 msgid "Dockbar style"
 msgstr "Dockradsstil"
 
-#: ../gdl/gdl-dock-bar.c:117
+#: ../gdl/gdl-dock-bar.c:141
 msgid "Dockbar style to show items on it"
 msgstr "Dockradsstil för att visa objekt på den"
 
-#: ../gdl/gdl-dock.c:180
+#: ../gdl/gdl-dock.c:197
 msgid "Floating"
 msgstr "Flytande"
 
-#: ../gdl/gdl-dock.c:181
+#: ../gdl/gdl-dock.c:198
 msgid "Whether the dock is floating in its own window"
 msgstr "Huruvida dockan är flytande i dess eget fönster"
 
-#: ../gdl/gdl-dock.c:188
-#: ../gdl/gdl-dock-master.c:145
+#: ../gdl/gdl-dock.c:205 ../gdl/gdl-dock-master.c:198
 msgid "Default title"
 msgstr "Standardtitel"
 
-#: ../gdl/gdl-dock.c:189
+#: ../gdl/gdl-dock.c:206
 msgid "Default title for the newly created floating docks"
 msgstr "Standardtitel för de nyligen skapade flytande dockorna"
 
-#: ../gdl/gdl-dock.c:195
-#: ../gdl/gdl-dock-placeholder.c:174
+#: ../gdl/gdl-dock.c:212 ../gdl/gdl-dock-placeholder.c:192
 msgid "Width"
 msgstr "Bredd"
 
-#: ../gdl/gdl-dock.c:196
+#: ../gdl/gdl-dock.c:213
 msgid "Width for the dock when it's of floating type"
 msgstr "Bredd på dockan när den är av flytande typ"
 
-#: ../gdl/gdl-dock.c:203
-#: ../gdl/gdl-dock-placeholder.c:182
+#: ../gdl/gdl-dock.c:220 ../gdl/gdl-dock-placeholder.c:200
 msgid "Height"
 msgstr "Höjd"
 
-#: ../gdl/gdl-dock.c:204
+#: ../gdl/gdl-dock.c:221
 msgid "Height for the dock when it's of floating type"
 msgstr "Höjd på dockan när den är av flytande typ"
 
-#: ../gdl/gdl-dock.c:211
+#: ../gdl/gdl-dock.c:228
 msgid "Float X"
 msgstr "Flytande X"
 
-#: ../gdl/gdl-dock.c:212
+#: ../gdl/gdl-dock.c:229
 msgid "X coordinate for a floating dock"
 msgstr "X-koordinat för en flytande docka"
 
-#: ../gdl/gdl-dock.c:219
+#: ../gdl/gdl-dock.c:236
 msgid "Float Y"
 msgstr "Flytande Y"
 
-#: ../gdl/gdl-dock.c:220
+#: ../gdl/gdl-dock.c:237
 msgid "Y coordinate for a floating dock"
 msgstr "Y-koordinat för en flytande docka"
 
-#: ../gdl/gdl-dock.c:481
-#, c-format
-msgid "Dock #%d"
-msgstr "Docka %d"
+#: ../gdl/gdl-dock.c:255
+msgid "Skip taskbar"
+msgstr "Hoppa över fönsterlista"
 
-#: ../gdl/gdl-dock-item.c:267
+#: ../gdl/gdl-dock.c:256
+msgid ""
+"Whether or not to prevent a floating dock window from appearing in the "
+"taskbar"
+msgstr ""
+"Huruvida ett flytande dockfönster ska hindras från att dyka upp i "
+"fönsterlistan"
+
+#: ../gdl/gdl-dock-item.c:383
 msgid "Orientation"
 msgstr "Orientering"
 
-#: ../gdl/gdl-dock-item.c:268
+#: ../gdl/gdl-dock-item.c:384
 msgid "Orientation of the docking item"
 msgstr "Orienteringen på dockobjektet"
 
-#: ../gdl/gdl-dock-item.c:283
+#: ../gdl/gdl-dock-item.c:399
 msgid "Resizable"
 msgstr "Storleksändringsbar"
 
-#: ../gdl/gdl-dock-item.c:284
+#: ../gdl/gdl-dock-item.c:400
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
-msgstr "Om detta är angivet kan objektets storlek ändras när det är dockat i en GtkPanel-widget"
+msgstr ""
+"Om detta är angivet kan objektets storlek ändras när det är dockat i en "
+"GtkPanel-komponent"
 
-#: ../gdl/gdl-dock-item.c:291
+#: ../gdl/gdl-dock-item.c:407
 msgid "Item behavior"
 msgstr "Objektbeteende"
 
-#: ../gdl/gdl-dock-item.c:292
-msgid "General behavior for the dock item (i.e. whether it can float, if it's locked, etc.)"
-msgstr "Allmänt beteende för dockobjektet (dvs huruvida den kan flyta, om den är låst, osv)."
+#: ../gdl/gdl-dock-item.c:408
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Allmänt beteende för dockobjektet (dvs huruvida det kan flyta, om det är "
+"låst, osv)."
 
-#: ../gdl/gdl-dock-item.c:300
-#: ../gdl/gdl-dock-master.c:152
+#: ../gdl/gdl-dock-item.c:416 ../gdl/gdl-dock-master.c:205
 msgid "Locked"
 msgstr "Låst"
 
-#: ../gdl/gdl-dock-item.c:301
-msgid "If set, the dock item cannot be dragged around and it doesn't show a grip"
-msgstr "Om detta är angivet kan inte dockobjektet dras run och det har inget handtag"
+#: ../gdl/gdl-dock-item.c:417
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Om detta är angivet kan inte dockobjektet dras runt och det har inget handtag"
 
-#: ../gdl/gdl-dock-item.c:309
+#: ../gdl/gdl-dock-item.c:425
 msgid "Preferred width"
 msgstr "Föredragen bredd"
 
-#: ../gdl/gdl-dock-item.c:310
+#: ../gdl/gdl-dock-item.c:426
 msgid "Preferred width for the dock item"
 msgstr "Föredragen bredd för dockobjektet"
 
-#: ../gdl/gdl-dock-item.c:316
+#: ../gdl/gdl-dock-item.c:432
 msgid "Preferred height"
 msgstr "Föredragen höjd"
 
-#: ../gdl/gdl-dock-item.c:317
+#: ../gdl/gdl-dock-item.c:433
 msgid "Preferred height for the dock item"
 msgstr "Föredragen höjd för dockobjektet"
 
-#: ../gdl/gdl-dock-item.c:662
-#, c-format
-msgid "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or some other compound dock object."
-msgstr "Du kan inte lägga till ett dockobjekt (%p av typen %s) inuti en %s. Använd en GdlDock eller något annat sammansatt dockobjekt."
+#: ../gdl/gdl-dock-item.c:447
+msgid "Iconified"
+msgstr "Ikonifierad"
 
-#: ../gdl/gdl-dock-item.c:669
-#, c-format
-msgid "Attempting to add a widget with type %s to a %s, but it can only contain one widget at a time; it already contains a widget of type %s"
-msgstr "Försöker lägga till en widget med typen %s till en %s, men den kan bara inenhålla en widget åt gången; den innehåller redan en widget av typen %s"
+#: ../gdl/gdl-dock-item.c:448
+msgid ""
+"If set, the dock item is hidden but it has a corresponding icon in the dock "
+"bar allowing to show it again."
+msgstr ""
+"Om inställd är dockobjektet dolt men har en motsvarande ikon i dockraden som "
+"möjliggör det att visas igen."
 
-#: ../gdl/gdl-dock-item.c:1367
-#: ../gdl/gdl-dock-item.c:1417
+#: ../gdl/gdl-dock-item.c:464
+msgid "Closed"
+msgstr "Stängd"
+
+#: ../gdl/gdl-dock-item.c:465
+msgid "Whether the widget is closed."
+msgstr "Huruvida gränssnittskomponenten är stängd."
+
+#: ../gdl/gdl-dock-item.c:870
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Du kan inte lägga till ett dockobjekt (%p av typen %s) inuti en %s. Använd "
+"en GdlDock eller något annat sammansatt dockobjekt."
+
+#: ../gdl/gdl-dock-item.c:877
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Försöker lägga till en gränssnittskomponent med typen %s till en %s, men den "
+"kan bara innehålla en komponent åt gången; den innehåller redan en komponent "
+"av typen %s"
+
+#: ../gdl/gdl-dock-item.c:1565 ../gdl/gdl-dock-item.c:1615
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Dockningsstrategin %s stöds inte i dockobjekt av typen %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1525
+#: ../gdl/gdl-dock-item.c:1728
 msgid "UnLock"
 msgstr "Lås upp"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1532
+#: ../gdl/gdl-dock-item.c:1735
 msgid "Hide"
 msgstr "Dölj"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1537
+#: ../gdl/gdl-dock-item.c:1740
 msgid "Lock"
 msgstr "Lås"
 
-#: ../gdl/gdl-dock-item.c:1810
+#: ../gdl/gdl-dock-item.c:2012
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Försök att binda till ett obundet objekt %p"
 
-#: ../gdl/gdl-dock-item-grip.c:406
+#: ../gdl/gdl-dock-item-grip.c:385
 msgid "Iconify this dock"
 msgstr "Ikonifiera denna docka"
 
-#: ../gdl/gdl-dock-item-grip.c:408
+#: ../gdl/gdl-dock-item-grip.c:387
 msgid "Close this dock"
 msgstr "Stäng denna docka"
 
-#: ../gdl/gdl-dock-item-grip.c:748
-#: ../gdl/gdl-dock-tablabel.c:128
-msgid "Controlling dock item"
-msgstr "Styrande dockobjekt"
-
-#: ../gdl/gdl-dock-item-grip.c:749
+#: ../gdl/gdl-dock-item-grip.c:728
 msgid "Dockitem which 'owns' this grip"
 msgstr "Dockobjekt som \"äger\" detta handtag"
 
-#: ../gdl/gdl-dock-layout.c:108
-msgid "GdlDockMaster object which the layout object is attached to"
-msgstr "GdlDockMaster-objekt som layoutobjektet är fäst vid"
+#: ../gdl/gdl-dock-layout.c:129
+msgid ""
+"GdlDockMaster or GdlDockObject object which the layout object is attached to"
+msgstr ""
+"GdlDockMaster- eller GdlDockObject-objekt som layoutobjektet är fäst vid"
 
-#: ../gdl/gdl-dock-layout.c:115
+#: ../gdl/gdl-dock-layout.c:136
 msgid "Dirty"
 msgstr "Smutsig"
 
-#: ../gdl/gdl-dock-layout.c:116
+#: ../gdl/gdl-dock-layout.c:137
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr "Sant om layouten har ändrats och måste sparas till en fil"
 
-#: ../gdl/gdl-dock-layout.c:279
+#: ../gdl/gdl-dock-layout.c:303
 #, c-format
-msgid "While loading layout: don't know how to create a dock object whose nick is '%s'"
-msgstr "Vid inläsning av layout: Vet inte hur ett docksobjekt vars smeknamn är %s ska skapas"
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is "
+"'%s'"
+msgstr ""
+"Vid inläsning av layout: Vet inte hur ett dockobjekt vars smeknamn är %s ska "
+"skapas"
 
-#: ../gdl/gdl-dock-master.c:146
+#: ../gdl/gdl-dock-master.c:199
 msgid "Default title for newly created floating docks"
 msgstr "Standardtitel för nyligen skapade flytande dockor"
 
-#: ../gdl/gdl-dock-master.c:153
-msgid "If is set to 1, all the dock items bound to the master are locked; if it's 0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr "Om det är ställt till 1 är alla dockobjekt som är bundna till mästare låsta; om det är 0 är alla olåsta; -1 indikerar inkonsekvens bland objekt"
+#: ../gdl/gdl-dock-master.c:206
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Om det är ställt till 1 är alla dockobjekt som är bundna till mästare låsta; "
+"om det är 0 är alla olåsta; -1 indikerar inkonsekvens bland objekt"
 
-#: ../gdl/gdl-dock-master.c:161
-#: ../gdl/gdl-switcher.c:781
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:893
 msgid "Switcher Style"
 msgstr "Växlingsstil"
 
-#: ../gdl/gdl-dock-master.c:162
-#: ../gdl/gdl-switcher.c:782
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:894
 msgid "Switcher buttons style"
 msgstr "Stil på växlingsknapparna"
 
-#: ../gdl/gdl-dock-master.c:772
-#, c-format
-msgid "master %p: unable to add object %p[%s] to the hash.  There already is an item with that name (%p)."
-msgstr "mästare %p: kan inte lägga till objektet %p[%s] till hashen. Det finns redan ett objekt med det namnet (%p)."
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:901
+msgid "Tab Position"
+msgstr "Flikposition"
 
-#: ../gdl/gdl-dock-master.c:944
-#, c-format
-msgid "The new dock controller %p is automatic.  Only manual dock objects should be named controller."
-msgstr "Den nya dockstyrenheten %p är automatisk. Endast manuella dockobjekt får ges namnet controller."
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:902
+msgid "Which side of the notebook holds the tabs"
+msgstr "Vilken sida på flikhäftet som har flikarna"
 
-#: ../gdl/gdl-dock-notebook.c:137
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:909
+msgid "Tab reorderable"
+msgstr "Flikordning går ändra"
+
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:910
+msgid "Whether the tab is reorderable by user action"
+msgstr "Huruvida flikens ordning kan ändras av användaråtgärder"
+
+#: ../gdl/gdl-dock-master.c:874
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"mästare %p: kan inte lägga till objektet %p[%s] till hashen. Det finns redan "
+"ett objekt med det namnet (%p)."
+
+#: ../gdl/gdl-dock-master.c:1101
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"Den nya dockstyrenheten %p är automatisk. Endast manuella dockobjekt får ges "
+"namnet controller."
+
+#: ../gdl/gdl-dock-master.c:1132
+#, c-format
+msgid "Dock #%d"
+msgstr "Docka %d"
+
+#: ../gdl/gdl-dock-notebook.c:156
 msgid "Page"
 msgstr "Sida"
 
-#: ../gdl/gdl-dock-notebook.c:138
+#: ../gdl/gdl-dock-notebook.c:157
 msgid "The index of the current page"
 msgstr "Indexet för den aktuella sidan"
 
-#: ../gdl/gdl-dock-object.c:116
+#: ../gdl/gdl-dock-object.c:205
 msgid "Name"
 msgstr "Namn"
 
-#: ../gdl/gdl-dock-object.c:117
+#: ../gdl/gdl-dock-object.c:206
 msgid "Unique name for identifying the dock object"
 msgstr "Unikt namn för identifiering av dockobjektet"
 
-#: ../gdl/gdl-dock-object.c:124
+#: ../gdl/gdl-dock-object.c:220
 msgid "Long name"
 msgstr "Långt namn"
 
-#: ../gdl/gdl-dock-object.c:125
+#: ../gdl/gdl-dock-object.c:221
 msgid "Human readable name for the dock object"
 msgstr "Begripligt namn på dockobjektet"
 
-#: ../gdl/gdl-dock-object.c:131
+#: ../gdl/gdl-dock-object.c:234
 msgid "Stock Icon"
 msgstr "Standardikon"
 
-#: ../gdl/gdl-dock-object.c:132
+#: ../gdl/gdl-dock-object.c:235
 msgid "Stock icon for the dock object"
 msgstr "Standardikon för dockobjektet"
 
-#: ../gdl/gdl-dock-object.c:145
+#: ../gdl/gdl-dock-object.c:250
 msgid "Pixbuf Icon"
 msgstr "Pixbuf-ikon"
 
-#: ../gdl/gdl-dock-object.c:146
+#: ../gdl/gdl-dock-object.c:251
 msgid "Pixbuf icon for the dock object"
 msgstr "Pixbuf-ikon för dockobjektet"
 
-#: ../gdl/gdl-dock-object.c:151
+#: ../gdl/gdl-dock-object.c:263
 msgid "Dock master"
 msgstr "Dockmästare"
 
-#: ../gdl/gdl-dock-object.c:152
+#: ../gdl/gdl-dock-object.c:264
 msgid "Dock master this dock object is bound to"
 msgstr "Dockmästare som detta dockobjekt är bundet till"
 
-#: ../gdl/gdl-dock-object.c:456
+#: ../gdl/gdl-dock-object.c:638
 #, c-format
-msgid "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which hasn't implemented this method"
-msgstr "Anrop till gdl_dock_object_dock i ett dockobjekt %p (objekttypen är %s) vilket inte har implementerat denna metod"
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Anrop till gdl_dock_object_dock i ett dockobjekt %p (objekttypen är %s) "
+"vilket inte har implementerat denna metod"
 
-#: ../gdl/gdl-dock-object.c:595
+#: ../gdl/gdl-dock-object.c:851
 #, c-format
-msgid "Dock operation requested in a non-bound object %p. The application might crash"
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
 msgstr "Dockåtgärd begärd i ett obundet objekt %p. Programmet kan krascha"
 
-#: ../gdl/gdl-dock-object.c:602
+#: ../gdl/gdl-dock-object.c:858
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Kan inte docka %p till %p eftersom de tillhör olika mästare"
 
-#: ../gdl/gdl-dock-object.c:644
+#: ../gdl/gdl-dock-object.c:923
 #, c-format
-msgid "Attempt to bind to %p an already bound dock object %p (current master: %p)"
-msgstr "Försök att binda till %p på ett redan bundet dockobjekt %p (aktuell mästare: %p)"
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"Försök att binda till %p på ett redan bundet dockobjekt %p (aktuell mästare: "
+"%p)"
 
-#: ../gdl/gdl-dock-paned.c:128
+#: ../gdl/gdl-dock-paned.c:145
 msgid "Position"
 msgstr "Position"
 
-#: ../gdl/gdl-dock-paned.c:129
+#: ../gdl/gdl-dock-paned.c:146
 msgid "Position of the divider in pixels"
 msgstr "Position för avskiljaren i bildpunkter"
 
-#: ../gdl/gdl-dock-placeholder.c:148
+#: ../gdl/gdl-dock-placeholder.c:166
 msgid "Sticky"
 msgstr "Klistrig"
 
-#: ../gdl/gdl-dock-placeholder.c:149
-msgid "Whether the placeholder will stick to its host or move up the hierarchy when the host is redocked"
-msgstr "Huruvida platshållaren kommer att klistra fast vid sin värd eller gå upp i hierarkin då värden dockas om"
+#: ../gdl/gdl-dock-placeholder.c:167
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Huruvida platshållaren kommer att klistra fast vid sin värd eller gå upp i "
+"hierarkin då värden dockas om"
 
-#: ../gdl/gdl-dock-placeholder.c:156
+#: ../gdl/gdl-dock-placeholder.c:174
 msgid "Host"
 msgstr "Värd"
 
-#: ../gdl/gdl-dock-placeholder.c:157
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "The dock object this placeholder is attached to"
 msgstr "Det dockobjekt som platshållaren är fäst vid"
 
-#: ../gdl/gdl-dock-placeholder.c:164
+#: ../gdl/gdl-dock-placeholder.c:182
 msgid "Next placement"
 msgstr "Nästa placering"
 
-#: ../gdl/gdl-dock-placeholder.c:165
-msgid "The position an item will be docked to our host if a request is made to dock to us"
-msgstr "Positionen som ett objekt kommer att dockas vid vår värd om en begäran att docka vid oss görs"
-
-#: ../gdl/gdl-dock-placeholder.c:175
-msgid "Width for the widget when it's attached to the placeholder"
-msgstr "Bredd på widgeten när den är fäst till platshållaren"
-
 #: ../gdl/gdl-dock-placeholder.c:183
-msgid "Height for the widget when it's attached to the placeholder"
-msgstr "Höjd på widgeten när den är fäst till platshållaren"
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"Positionen som ett objekt kommer att dockas vid vår värd om en begäran att "
+"docka vid oss görs"
 
-#: ../gdl/gdl-dock-placeholder.c:189
+#: ../gdl/gdl-dock-placeholder.c:193
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Bredd på gränssnittskomponenten när den är fäst till platshållaren"
+
+#: ../gdl/gdl-dock-placeholder.c:201
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Höjd på gränssnittskomponenten när den är fäst till platshållaren"
+
+#: ../gdl/gdl-dock-placeholder.c:207
 msgid "Floating Toplevel"
 msgstr "Flytande toppnivå"
 
-#: ../gdl/gdl-dock-placeholder.c:190
+#: ../gdl/gdl-dock-placeholder.c:208
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Huruvida platshållaren ersätter en flytande toppnivådocka"
 
-#: ../gdl/gdl-dock-placeholder.c:196
+#: ../gdl/gdl-dock-placeholder.c:214
 msgid "X Coordinate"
 msgstr "X-koordinat"
 
-#: ../gdl/gdl-dock-placeholder.c:197
+#: ../gdl/gdl-dock-placeholder.c:215
 msgid "X coordinate for dock when floating"
 msgstr "X-koordinat för docka när flytande"
 
-#: ../gdl/gdl-dock-placeholder.c:203
+#: ../gdl/gdl-dock-placeholder.c:221
 msgid "Y Coordinate"
 msgstr "Y-koordinat"
 
-#: ../gdl/gdl-dock-placeholder.c:204
+#: ../gdl/gdl-dock-placeholder.c:222
 msgid "Y coordinate for dock when floating"
 msgstr "Y-koordinat för docka när flytande"
 
-#: ../gdl/gdl-dock-placeholder.c:496
+#: ../gdl/gdl-dock-placeholder.c:514
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Försök att docka ett dockobjekt vid en obunden platshållare"
 
-#: ../gdl/gdl-dock-placeholder.c:608
+#: ../gdl/gdl-dock-placeholder.c:641
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
-msgstr "Fick en losskopplingssignal från ett objekt (%p) som inte är vår värd %p"
+msgstr ""
+"Fick en losskopplingssignal från ett objekt (%p) som inte är vår värd %p"
 
-#: ../gdl/gdl-dock-placeholder.c:633
+#: ../gdl/gdl-dock-placeholder.c:666
 #, c-format
-msgid "Something weird happened while getting the child placement for %p from parent %p"
-msgstr "Någonting konstigt hände då barnplaceringen för %p hämtades från föräldern %p"
-
-#: ../gdl/gdl-dock-tablabel.c:129
-msgid "Dockitem which 'owns' this tablabel"
-msgstr "Dockobjekt som \"äger\" denna fliketikett"
-
-#~ msgid "Could not load layout user interface file '%s'"
-#~ msgstr "Kunde inte läsa in layoutanvändargränssnitt \"%s\""
-
-#~ msgid "Visible"
-#~ msgstr "Synlig"
-
-#~ msgid "Item"
-#~ msgstr "Objekt"
-
-#~ msgid "Dock items"
-#~ msgstr "Dockobjekt"
-
-#~ msgid "Layout Managment"
-#~ msgstr "Layouthantering"
-
-#~ msgid "Saved layouts"
-#~ msgstr "Sparade objekt"
-
-#~ msgid "_Load"
-#~ msgstr "_Läs in"
-
-#~ msgid "_Lock dock items"
-#~ msgstr "_Lås dockobjekt"
-
-#~ msgid "Expander Size"
-#~ msgstr "Storlek på expanderare"
-
-#~ msgid "Size of the expander arrow."
-#~ msgstr "Storlek på expanderarpilen."
-
-#~ msgid "Iconify"
-#~ msgstr "Ikonifiera"
-
-#~ msgid "Close"
-#~ msgstr "Stäng"
-
-#~ msgid "Layout managment"
-#~ msgstr "Layouthantering"
-
-#~ msgid "Icon size"
-#~ msgstr "Ikonstorlek"
-
-#~ msgid "GConf key"
-#~ msgstr "GConf-nyckel"
-
-#~ msgid "The gconf key for storing the recent entries."
-#~ msgstr "GConf-nyckeln för lagrande av de senaste posterna."
-
-#~ msgid "Path"
-#~ msgstr "Sökväg"
-
-#~ msgid "The path to put the menu items."
-#~ msgstr "Sökvägen där menyobjekt placeras."
-
-#~ msgid "Limit"
-#~ msgstr "Gräns"
-
-#~ msgid "The maximum number of items to be allowed in the list."
-#~ msgstr "Det största antalet objekt som är tillåtna i listan."
-
-#~ msgid "List type"
-#~ msgstr "Listtyp"
-
-#~ msgid "The type with which the items will be numbered."
-#~ msgstr "Typen med vilken objekten kommer att numreras."
-
-#~ msgid "Open %s"
-#~ msgstr "Öppna %s"
-
-#~ msgid "Factory for the Gnome Symbol Browser control."
-#~ msgstr "Fabrik för Gnome-symbolbläddrarstyrenheten."
-
-#~ msgid "Gnome Symbol Browser Control"
-#~ msgstr "Gnome-symbolbläddrarstyrenhet"
-
-#~ msgid "Gnome Symbol Browser Control Factory"
-#~ msgstr "Gnome-symbolbläddrarstyrfabrik"
-
-#~ msgid "Gnome Symbol Browser."
-#~ msgstr "Gnome-symbolbläddrare."
-
-#~ msgid "Goto Symbol"
-#~ msgstr "Gå till symbol"
-
-#~ msgid "Goto the displayed symbol"
-#~ msgstr "Gå till den visade symbolen"
-
-#~ msgid "Update Symbols"
-#~ msgstr "Uppdatera symboler"
-
-#~ msgid "Update the symbol tree"
-#~ msgstr "Uppdatera symbolträdet"
-
-#~ msgid "_Goto to symbol"
-#~ msgstr "_Gå till symbol"
-
-#~ msgid "_View"
-#~ msgstr "_Visa"
-
-#~ msgid "Unknown"
-#~ msgstr "Okänd"
-
-#~ msgid "Classes"
-#~ msgstr "Klasser"
-
-#~ msgid "Enums"
-#~ msgstr "Enumar"
-
-#~ msgid "Enumerators"
-#~ msgstr "Enumeratorer"
-
-#~ msgid "Fields"
-#~ msgstr "Fält"
-
-#~ msgid "Functions"
-#~ msgstr "Funktioner"
-
-#~ msgid "Interfaces"
-#~ msgstr "Gränssnitt"
-
-#~ msgid "Members"
-#~ msgstr "Medlemmar"
-
-#~ msgid "Methods"
-#~ msgstr "Metoder"
-
-#~ msgid "Namespaces"
-#~ msgstr "Namnutrymmen"
-
-#~ msgid "Packages"
-#~ msgstr "Paket"
-
-#~ msgid "Prototypes"
-#~ msgstr "Prototyper"
-
-#~ msgid "Structs"
-#~ msgstr "Structar"
-
-#~ msgid "Typedefs"
-#~ msgstr "Typdefinitioner"
-
-#~ msgid "Unions"
-#~ msgstr "Unioner"
-
-#~ msgid "Variables"
-#~ msgstr "Variabler"
-
-#~ msgid "ExternVars"
-#~ msgstr "ExternaVariabler"
-
-#~ msgid "Macros"
-#~ msgstr "Makron"
-
-#~ msgid "MacrosWithArgs"
-#~ msgstr "MakronMedArgument"
-
-#~ msgid "Tags"
-#~ msgstr "Taggar"
-
-#~ msgid "Undefined"
-#~ msgstr "Odefinierad"
-
-#~ msgid "<No Symbol>"
-#~ msgstr "<Ingen symbol>"
-
-#~ msgid "Exit"
-#~ msgstr "Avsluta"
-
-#~ msgid "Open Project"
-#~ msgstr "Öppna projekt"
-
-#~ msgid "Save Project"
-#~ msgstr "Spara projekt"
-
-#~ msgid "Set Current File"
-#~ msgstr "Ställ in aktuell fil"
-
-#~ msgid "Update"
-#~ msgstr "Uppdatera"
-
-#~ msgid "Update the whole tree"
-#~ msgstr "Uppdatera hela trädet"
-
-#~ msgid "_Exit"
-#~ msgstr "_Avsluta"
-
-#~ msgid "_File"
-#~ msgstr "_Arkiv"
-
-#~ msgid "_Open Project"
-#~ msgstr "_Öppna projekt"
-
-#~ msgid "_Save Project"
-#~ msgstr "_Spara projekt"
-
-#~ msgid "_Set Current File"
-#~ msgstr "_Ställ in aktuell fil"
-
-#~ msgid "Open file..."
-#~ msgstr "Öppna fil..."
-
-#~ msgid "Set current file..."
-#~ msgstr "Ställ in aktuell fil..."
-
-#~ msgid "Save file..."
-#~ msgstr "Spara fil..."
-
-#~ msgid "Can't initialize bonobo!"
-#~ msgstr "Kan inte initiera bonobo!"
-
-#~ msgid "Dock the toolbar"
-#~ msgstr "Docka verktygsraden"
-
-#~ msgid "Un dock the toolbar"
-#~ msgstr "Avdocka verktygsraden"
-
-#~ msgid "Grip size"
-#~ msgstr "Storlek på handtag"
-
-#~ msgid "Size in pixels of the grip to drag the dock item"
-#~ msgstr "Storlek i bildpunkter för handtaget för att dra i dockobjektet"
-
-#~ msgid "Dock"
-#~ msgstr "Docka"
-
-#~ msgid "You must provide a name for the layout"
-#~ msgstr "Du måste ange ett namn för layouten"
-
-#~ msgid "Icon zoom"
-#~ msgstr "Ikonzoom"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Class"
-#~ msgstr "Klass"
-
-#~ msgid "Enum"
-#~ msgstr "Enum"
-
-#~ msgid "Enumerator"
-#~ msgstr "Enumerator"
-
-#~ msgid "Field"
-#~ msgstr "Fält"
-
-#~ msgid "Function"
-#~ msgstr "Funktion"
-
-#~ msgid "Interface"
-#~ msgstr "Gränssnitt"
-
-#~ msgid "Member"
-#~ msgstr "Medlem"
-
-#~ msgid "Method"
-#~ msgstr "Metod"
-
-#~ msgid "Namespace"
-#~ msgstr "Namnutrymme"
-
-#~ msgid "Package"
-#~ msgstr "Paket"
-
-#~ msgid "Prototype"
-#~ msgstr "Prototyp"
-
-#~ msgid "Struct"
-#~ msgstr "Struct"
-
-#~ msgid "Typedef"
-#~ msgstr "Typdefinition"
-
-#~ msgid "Union"
-#~ msgstr "Union"
-
-#~ msgid "Variable"
-#~ msgstr "Variabel"
-
-#~ msgid "ExternVar"
-#~ msgstr "ExternVariabel"
-
-#~ msgid "Macro"
-#~ msgstr "Makro"
-
-#~ msgid "MacroWithArgs"
-#~ msgstr "MakroMedArgument"
-
-#~ msgid ""
-#~ "A file named ''%s'' already exists.\n"
-#~ "Do you want to replace it with the one you are saving?"
-#~ msgstr ""
-#~ "En fil med namnet \"%s\" finns redan.\n"
-#~ "Vill du ersätta den med den du sparar?"
-
-#~ msgid "Do_n't replace"
-#~ msgstr "Ersätt i_nte"
-
-#~ msgid "_Replace"
-#~ msgstr "_Ersätt"
-
-#~ msgid "Select a file to open"
-#~ msgstr "Välj en fil att öppna"
-
-#~ msgid "Select files to open"
-#~ msgstr "Välj filer att öppna"
-
-#~ msgid "Select a filename to save"
-#~ msgstr "Välj ett filnamn att spara"
-
-#~ msgid "Layout Management"
-#~ msgstr "Layouthantering"
-
-#~ msgid "If set, the dock item can be resized when docked in a panel"
-#~ msgstr ""
-#~ "Om detta är angivet kan objektets storlek ändras när det är dockat i en "
-#~ "panel"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Misslyckades med att öppna filen \"%s\": %s"
-
-#~ msgid "Image file '%s' contains no data"
-#~ msgstr "Bildfilen \"%s\" innehåller ingen data"
-
-#~ msgid "Don't know how to load the animation in file '%s'"
-#~ msgstr "Vet inte hur man läser in animationen i filen \"%s\""
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Misslyckades med att läsa in bilden \"%s\": anledningen är okänd, "
-#~ "troligtvis en trasig bildfil"
-
-#~ msgid ""
-#~ "Failed to load animation '%s': reason not known, probably a corrupt "
-#~ "animation file"
-#~ msgstr ""
-#~ "Misslyckades med att läsa in animationen \"%s\": anledningen är okänd, "
-#~ "troligtvis en trasig animationsfil"
-
-#~ msgid "Unable to load image-loading module: %s: %s"
-#~ msgstr "Kan inte läsa in bildinläsningsmodulen: %s: %s"
-
-#~ msgid ""
-#~ "Image-loading module %s does not export the proper interface; perhaps "
-#~ "it's from a different GTK version?"
-#~ msgstr ""
-#~ "Bildinläsningsmodulen %s exporterar inte rätt gränssnitt; den kanske är "
-#~ "från en annan GTK-version?"
-
-#~ msgid "Image type '%s' is not supported"
-#~ msgstr "Bildtypen \"%s\" stöds inte"
-
-#~ msgid "Couldn't recognize the image file format for file '%s'"
-#~ msgstr "Kunde inte känna igen bildfilformatet på filen \"%s\""
-
-#~ msgid "Unrecognized image file format"
-#~ msgstr "Okänt bildfilformat"
-
-#~ msgid "Don't know how to load the image in file '%s'"
-#~ msgstr "Vet inte hur man läser in bilden i filen \"%s\""
-
-#~ msgid "Failed to load image '%s': %s"
-#~ msgstr "Misslyckades med att läsa in bilden \"%s\": %s"
-
-#~ msgid ""
-#~ "This build of gdk-pixbuf does not support saving the image format: %s"
-#~ msgstr "Detta bygge av gdk-pixbuf stöder inte sparande av bildformatet: %s"
-
-#~ msgid "Failed to open '%s' for writing: %s"
-#~ msgstr "Misslyckades med att öppna \"%s\" för skrivning: %s"
-
-#~ msgid ""
-#~ "Failed to close '%s' while writing image, all data may not have been "
-#~ "saved: %s"
-#~ msgstr ""
-#~ "Misslyckades med att stänga \"%s\" när bilden skrevs, all data kanske "
-#~ "inte har sparats korrekt: %s"
-
-#~ msgid "Incremental loading of image type '%s' is not supported"
-#~ msgstr "Inkrementell inläsning av bildtypen \"%s\" stöds inte"
-
-#~ msgid ""
-#~ "Internal error: Image loader module '%s' failed to begin loading an "
-#~ "image, but didn't give a reason for the failure"
-#~ msgstr ""
-#~ "Internt fel: Bildinläsningsmodulen \"%s\" misslyckades med att läsa in en "
-#~ "bild, men gav inte en anledning till misslyckandet"
-
-#~ msgid "Image header corrupt"
-#~ msgstr "Bildhuvudet är trasigt"
-
-#~ msgid "Image format unknown"
-#~ msgstr "Bildformatet är okänt"
-
-#~ msgid "Image pixel data corrupt"
-#~ msgstr "Bildpunktsdata är trasigt"
-
-#~ msgid "failed to allocate image buffer of %u bytes"
-#~ msgstr "misslyckades med att allokera bildbuffert på %u byte"
-
-#~ msgid "Not enough memory to load bitmap image"
-#~ msgstr "Inte tillräckligt med minne för att läsa in bilden"
-
-#~ msgid "BMP image has unsupported header size"
-#~ msgstr "BMP-bilden har huvudstorlek som inte stöds"
-
-#~ msgid "BMP image has bogus header data"
-#~ msgstr "BMP-bilden har felaktig huvuddata"
-
-#~ msgid "Failure reading GIF: %s"
-#~ msgstr "Misslyckades med att läsa GIF: %s"
-
-#~ msgid "GIF file was missing some data (perhaps it was truncated somehow?)"
-#~ msgstr "GIF-filen saknade en del data (den kanske klipptes på något sätt?)"
-
-#~ msgid "Internal error in the GIF loader (%s)"
-#~ msgstr "Internt fel i GIF-inläsaren (%s)"
-
-#~ msgid "GIF image loader can't understand this image."
-#~ msgstr "GIF-bildinläsaren kan inte förstå denna bild."
-
-#~ msgid "Bad code encountered"
-#~ msgstr "Felaktig kod påträffades"
-
-#~ msgid "Circular table entry in GIF file"
-#~ msgstr "Cirkulär tabellpost i GIF-filen"
-
-#~ msgid "Not enough memory to load GIF file"
-#~ msgstr "Inte tillräckligt med minne för att läsa in GIF-filen"
-
-#~ msgid "GIF image is corrupt (incorrect LZW compression)"
-#~ msgstr "GIF-bilden är trasig (felaktig LZW-komprimering)"
-
-#~ msgid "File does not appear to be a GIF file"
-#~ msgstr "Filen verkar inte vara en GIF-fil"
-
-#~ msgid "Version %s of the GIF file format is not supported"
-#~ msgstr "Version %s av filformatet GIF stöds inte"
-
-#~ msgid "GIF image contained a frame with height or width 0."
-#~ msgstr "GIF-bilden innehöll en ram med höjden eller bredden 0."
-
-#~ msgid "GIF image contained a frame appearing outside the image bounds."
-#~ msgstr "GIF-bilden innehöll en ram som var utanför bildens gränser."
-
-#~ msgid ""
-#~ "First frame of GIF image had 'revert to previous' as its disposal mode."
-#~ msgstr ""
-#~ "Första ramen i GIF-bilden hade \"återgå till föregående\" som dess "
-#~ "förändringsläge."
-
-#~ msgid ""
-#~ "GIF image has no global colormap, and a frame inside it has no local "
-#~ "colormap."
-#~ msgstr ""
-#~ "GIF-bilden har ingen global färgkarta, och en ram i den saknar lokal "
-#~ "färgkarta."
-
-#~ msgid "GIF image was truncated or incomplete."
-#~ msgstr "GIF-bilden var trunkerad eller ofullständig."
-
-#~ msgid "Failure reading ICO: %s"
-#~ msgstr "Misslyckades med att läsa ICO: %s"
-
-#~ msgid "ICO file was missing some data (perhaps it was truncated somehow?)"
-#~ msgstr "ICO-filen saknade en del data (den kanske klipptes på något sätt?)"
-
-#~ msgid "Not enough memory to load icon"
-#~ msgstr "Inte tillräckligt med minne för att läsa in ikonen"
-
-#~ msgid "Invalid header in icon"
-#~ msgstr "Ogiltigt huvud i ikon"
-
-#~ msgid "Icon has zero width"
-#~ msgstr "Ikonen har ingen bredd"
-
-#~ msgid "Icon has zero height"
-#~ msgstr "Ikonen har ingen höjd"
-
-#~ msgid "Compressed icons are not supported"
-#~ msgstr "Komprimerade ikoner stöds inte"
-
-#~ msgid "Unsupported icon type"
-#~ msgstr "Ikontypen stöds inte"
-
-#~ msgid "Not enough memory to load ICO file"
-#~ msgstr "Inte tillräckligt med minne för att läsa in ICO-filen"
-
-#~ msgid "Error interpreting JPEG image file (%s)"
-#~ msgstr "Fel vid tolkning av JPEG-bildfil (%s)"
-
-#~ msgid ""
-#~ "Insufficient memory to load image, try exiting some applications to free "
-#~ "memory"
-#~ msgstr ""
-#~ "Inte tillräckligt med minne för att läsa in bild, försök att avsluta "
-#~ "några program för att frigöra minne"
-
-#~ msgid "Couldn't allocate memory for loading JPEG file"
-#~ msgstr "Kunde inte allokera minne för inläsning av JPEG-fil"
-
-#~ msgid ""
-#~ "JPEG quality must be a value between 0 and 100; value '%s' could not be "
-#~ "parsed."
-#~ msgstr ""
-#~ "JPEG-kvaliteten måste vara ett värde mellan 0 och 100; värdet \"%s\" "
-#~ "kunde inte tolkas."
-
-#~ msgid ""
-#~ "JPEG quality must be a value between 0 and 100; value '%d' is not allowed."
-#~ msgstr ""
-#~ "JPEG-kvaliteten måste vara ett värde mellan 0 och 100; värdet \"%d\" är "
-#~ "inte tillåtet."
-
-#~ msgid "Bits per channel of PNG image is invalid."
-#~ msgstr "Bitar per kanal i PNG-bilden är ogiltigt."
-
-#~ msgid "Transformed PNG has zero width or height."
-#~ msgstr "Transformerad PNG har bredden eller höjden noll."
-
-#~ msgid "Bits per channel of transformed PNG is not 8."
-#~ msgstr "Bitar per kanal av transformerad PNG är inte 8."
-
-#~ msgid "Transformed PNG not RGB or RGBA."
-#~ msgstr "Transformerad PNG är inte RGB eller RGBA."
-
-#~ msgid "Transformed PNG has unsupported number of channels, must be 3 or 4."
-#~ msgstr ""
-#~ "Transformerad PNG har antal kanaler som inte stöds, måste vara 3 eller 4."
-
-#~ msgid "Fatal error in PNG image file: %s"
-#~ msgstr "Ödesdigert fel i PNG-bildfil: %s"
-
-#~ msgid "Insufficient memory to load PNG file"
-#~ msgstr "Inte tillräckligt med minne för att läsa in PNG-fil"
-
-#~ msgid ""
-#~ "Insufficient memory to store a %ld by %ld image; try exiting some "
-#~ "applications to reduce memory usage"
-#~ msgstr ""
-#~ "Inte tillräckligt med minne för att lagra en %ld × %ld stor bild; försök "
-#~ "att avsluta några program för att frigöra minne"
-
-#~ msgid "Fatal error reading PNG image file"
-#~ msgstr "Ödesdigert fel vid läsning av PNG-bildfil"
-
-#~ msgid "Fatal error reading PNG image file: %s"
-#~ msgstr "Ödesdigert fel vid läsning av PNG-bildfil: %s"
-
-#~ msgid ""
-#~ "Keys for PNG text chunks must have at least 1 and at most 79 characters."
-#~ msgstr ""
-#~ "Nycklar för PNG-textstycken måste ha minst 1 och som mest 79 tecken."
-
-#~ msgid "Keys for PNG text chunks must be ASCII characters."
-#~ msgstr "Nycklar för PNG-textstycken måste vara ASCII-tecken."
-
-#~ msgid ""
-#~ "Value for PNG text chunk %s can not be converted to ISO-8859-1 encoding."
-#~ msgstr ""
-#~ "Värdet för PNG-textstycket %s kan inte konverteras till ISO-8859-1-"
-#~ "kodning."
-
-#~ msgid "PNM loader expected to find an integer, but didn't"
-#~ msgstr "PNM-inläsaren förväntade ett heltal, men fick inte"
-
-#~ msgid "PNM file has an incorrect initial byte"
-#~ msgstr "PNM-filen har en ogiltig första byte"
-
-#~ msgid "PNM file is not in a recognized PNM subformat"
-#~ msgstr "PNM-filen är inte i ett känt underformat av PNM"
-
-#~ msgid "PNM file has an image width of 0"
-#~ msgstr "PNM-filens bildbredd är 0"
-
-#~ msgid "PNM file has an image height of 0"
-#~ msgstr "PNM-filens bildhöjd är 0"
-
-#~ msgid "Maximum color value in PNM file is 0"
-#~ msgstr "Maximala färgvärdet i PNM-filen är 0"
-
-#~ msgid "Maximum color value in PNM file is too large"
-#~ msgstr "Maximala färgvärdet i PNM-filen är för stort"
-
-#~ msgid "Can't handle PNM files with maximum color values greater than 255"
-#~ msgstr "Kan inte hantera PNM-filer med maximala färgvärden större än 255"
-
-#~ msgid "Raw PNM image type is invalid"
-#~ msgstr "Råa PNM-bildtypen är ogiltig"
-
-#~ msgid "PNM image format is invalid"
-#~ msgstr "PNM-bildformatet är ogiltigt"
-
-#~ msgid "PNM image loader does not support this PNM subformat"
-#~ msgstr "PNM-bildinläsaren stöder inte detta underformat av PNM"
-
-#~ msgid "Premature end-of-file encountered"
-#~ msgstr "För tidigt filslut påträffades"
-
-#~ msgid "Raw PNM formats require exactly one whitespace before sample data"
-#~ msgstr "Råa PNM-format kräver precis ett blanktecken innan provdata"
-
-#~ msgid "Can't allocate memory for loading PNM image"
-#~ msgstr "Kan inte allokera minne för inläsning av PNM-bild"
-
-#~ msgid "Insufficient memory to load PNM context struct"
-#~ msgstr "Inte tillräckligt med minne för att läsa in PNM-sammanhangsstruktur"
-
-#~ msgid "Unexpected end of PNM image data"
-#~ msgstr "Oväntat slut på PNM-bilddata"
-
-#~ msgid "Insufficient memory to load PNM file"
-#~ msgstr "Inte tillräckligt med minne för att läsa in PNM-fil"
-
-#~ msgid "RAS image has bogus header data"
-#~ msgstr "RAS-bilden har felaktig huvuddata"
-
-#~ msgid "RAS image has unknown type"
-#~ msgstr "RAS-bilden har okänd typ"
-
-#~ msgid "Not enough memory to load RAS image"
-#~ msgstr "Inte tillräckligt med minne för att läsa in RAS-bilden"
-
-#~ msgid "Can't allocate memory for IOBuffer struct"
-#~ msgstr "Kan inte allokera minne för IOBuffer-struct"
-
-#~ msgid "Can't allocate memory for IOBuffer data"
-#~ msgstr "Kan inte allokera minne för IOBuffer-data"
-
-#~ msgid "Can't realloc IOBuffer data"
-#~ msgstr "Kan inte omallokera IOBuffer-data"
-
-#~ msgid "Can't allocate temporary IOBuffer data"
-#~ msgstr "Kan inte allokera temporär IOBuffer-data"
-
-#~ msgid "fread() failed -- premature end-of-file probably encountered"
-#~ msgstr "fread() misslyckades -- för tidigt filslut troligen påträffat"
-
-#~ msgid "fseek() failed -- premature end-of-file probably encountered"
-#~ msgstr "fseek() misslyckades -- för tidigt filslut troligen påträffat"
-
-#~ msgid "Can't allocate new pixbuf"
-#~ msgstr "Kan inte allokera ny pixbuf"
-
-#~ msgid "Can't allocate colormap structure"
-#~ msgstr "Kan inte allokera färgkartestruktur"
-
-#~ msgid "Can't allocate colormap entries"
-#~ msgstr "Kan inte allokera färgkarteposter"
-
-#~ msgid "Unexpected bitdepth for colormap entries"
-#~ msgstr "Oväntat bitdjup för färgkarteposter"
-
-#~ msgid "Can't allocate TGA header memory"
-#~ msgstr "Kan inte allokera TGA-huvudminne"
-
-#~ msgid "TGA image has invalid dimensions"
-#~ msgstr "TGA-bilden har ogiltiga dimensioner"
-
-#~ msgid "TGA image comment length is too long"
-#~ msgstr "Kommentarlängden för TGA-bilden är för lång"
-
-#~ msgid "TGA image type not supported"
-#~ msgstr "TGA-bildtypen stöds inte"
-
-#~ msgid "Can't allocate memory for TGA context struct"
-#~ msgstr "Kan inte allokera minne för TGA-kontextstruct"
-
-#~ msgid "Excess data in file"
-#~ msgstr "För mycket data i fil"
-
-#~ msgid "Can't allocate memory for TGA header"
-#~ msgstr "Kan inte allokera minne för TGA-huvud"
-
-#~ msgid "Too big value in the infolen field of TGA header."
-#~ msgstr "För stort värde i infolen-fältet i TGA-huvud."
-
-#~ msgid "Can't allocate memory for TGA cmap temporary buffer"
-#~ msgstr "Kan inte allokera minne för temporär TGA-cmap-buffert"
-
-#~ msgid "Can't allocate memory for TGA colormap struct"
-#~ msgstr "Kan inte allokera minne för TGA-färgkartestruct"
-
-#~ msgid "Can't allocate memory for TGA colormap entries"
-#~ msgstr "Kan inte allokera minne för TGA-färgkarteposter"
-
-#~ msgid "Unexpected bitdepth for TGA colormap"
-#~ msgstr "Oväntat bitdjup för TGA-färgkarta"
-
-#~ msgid "Pseudo-Color image without colormap"
-#~ msgstr "Pseudo-Color-bild utan färgkarta"
-
-#~ msgid "Can't seek to image offset -- end-of-file probably encountered"
-#~ msgstr "Kan inte spola till bildavstånd -- filslut troligen påträffat"
-
-#~ msgid "Can't allocate pixbuf"
-#~ msgstr "Kan inte allokera pixbuf"
-
-#~ msgid "Unsupported TGA image type"
-#~ msgstr "TGA-bildtypen stöds inte"
-
-#~ msgid "Could not get image width (bad TIFF file)"
-#~ msgstr "Kunde inte få tag i bildbredden (felaktig TIFF-fil)"
-
-#~ msgid "Could not get image height (bad TIFF file)"
-#~ msgstr "Kunde inte få tag i bildhöjden (felaktig TIFF-fil)"
-
-#~ msgid "Width or height of TIFF image is zero"
-#~ msgstr "Bredden eller höjden på TIFF-bilden är noll"
-
-#~ msgid "Dimensions of TIFF image too large"
-#~ msgstr "TIFF-bildens dimensioner är för stora"
-
-#~ msgid "Insufficient memory to open TIFF file"
-#~ msgstr "Inte tillräckligt med minne för att öppna TIFF-fil"
-
-#~ msgid "Failed to load RGB data from TIFF file"
-#~ msgstr "Misslyckades med att läsa in RGB-data från TIFF-fil"
-
-#~ msgid "Failed to open TIFF image"
-#~ msgstr "Misslyckades med att öppna TIFF-bild"
-
-#~ msgid "TIFFClose operation failed"
-#~ msgstr "Åtgärden TIFFClose misslyckades"
-
-#~ msgid "Failed to load TIFF image"
-#~ msgstr "Misslyckades med att läsa in TIFF-bild"
-
-#~ msgid "Image has zero width"
-#~ msgstr "Bilden har ingen bredd"
-
-#~ msgid "Image has zero height"
-#~ msgstr "Bilden har ingen höjd"
-
-#~ msgid "Not enough memory to load image"
-#~ msgstr "Inte tillräckligt med minne för att läsa in bilden"
-
-#~ msgid "Couldn't save the rest"
-#~ msgstr "Kunde inte spara resten"
-
-#~ msgid "Invalid XBM file"
-#~ msgstr "Ogiltig XBM-fil"
-
-#~ msgid "Insufficient memory to load XBM image file"
-#~ msgstr "Inte tillräckligt med minne för att läsa in XBM-bildfil"
-
-#~ msgid "Failed to write to temporary file when loading XBM image"
-#~ msgstr ""
-#~ "Misslyckades med att skriva till temporär fil vid inläsning av XBM-fil"
-
-#~ msgid "No XPM header found"
-#~ msgstr "Inget XPM-huvud hittades"
-
-#~ msgid "XPM file has image width <= 0"
-#~ msgstr "XPM-filen har bildbredd <= 0"
-
-#~ msgid "XPM file has image height <= 0"
-#~ msgstr "XPM-filen har bildhöjd <= 0"
-
-#~ msgid "XPM file has invalid number of colors"
-#~ msgstr "XPM-filen har ogiltigt antal färger"
-
-#~ msgid "XPM has invalid number of chars per pixel"
-#~ msgstr "XPM har ogiltigt antal tecken per bildpunkt"
-
-#~ msgid "Can't read XPM colormap"
-#~ msgstr "Kan inte läsa XPM-färgkarta"
-
-#~ msgid "Can't allocate memory for loading XPM image"
-#~ msgstr "Kan inte allokera minne för inläsning av XPM-bild"
-
-#~ msgid "Failed to write to temporary file when loading XPM image"
-#~ msgstr ""
-#~ "Misslyckades med skrivning till temporär fil vid inläsning av XPM-bild"
-
-#~ msgid "Shift"
-#~ msgstr "Skift"
-
-#~ msgid "Ctrl"
-#~ msgstr "Ctrl"
-
-#~ msgid "Alt"
-#~ msgstr "Alt"
-
-#~ msgid "Accelerator Closure"
-#~ msgstr "Genvägsstängning"
-
-#~ msgid "The closure to be monitored for accelerator changes"
-#~ msgstr "Stängningen att övervakas för genvägsändringar"
-
-#~ msgid "Accelerator Widget"
-#~ msgstr "Genvägswidget"
-
-#~ msgid "The widget to be monitored for accelerator changes"
-#~ msgstr "Widgeten att övervakas för genvägsändringar"
-
-#~ msgid "Horizontal alignment"
-#~ msgstr "Horisontell justering"
-
-#~ msgid ""
-#~ "Horizontal position of child in available space. 0.0 is left aligned, 1.0 "
-#~ "is right aligned"
-#~ msgstr ""
-#~ "Horisontell position av barnet i tillgängligt utrymme. 0,0 är "
-#~ "vänsterjusterat, 1,0 är högerjusterat"
-
-#~ msgid "Vertical alignment"
-#~ msgstr "Vertikal justering"
-
-#~ msgid ""
-#~ "Vertical position of child in available space. 0.0 is top aligned, 1.0 is "
-#~ "bottom aligned"
-#~ msgstr ""
-#~ "Vertikal position av barnet i tillgängligt utrymme. 0,0 är "
-#~ "överkantsjusterat, 1,0 är nederkantsjusterat"
-
-#~ msgid "Horizontal scale"
-#~ msgstr "Horisontell skala"
-
-#~ msgid ""
-#~ "If available horizontal space is bigger than needed for the child, how "
-#~ "much of it to use for the child. 0.0 means none, 1.0 means all"
-#~ msgstr ""
-#~ "Om tillgängligt horisontellt utrymme är större än vad som krävs för "
-#~ "barnet, är detta hur mycket av det som ska användas för barnet. 0,0 "
-#~ "betyder inget, 1,0 betyder allt"
-
-#~ msgid "Vertical scale"
-#~ msgstr "Vertikal skala"
-
-#~ msgid ""
-#~ "If available vertical space is bigger than needed for the child, how much "
-#~ "of it to use for the child. 0.0 means none, 1.0 means all"
-#~ msgstr ""
-#~ "Om tillgängligt vertikalt utrymme är större än vad som krävs för barnet, "
-#~ "är detta hur mycket av det som ska användas för barnet. 0,0 betyder "
-#~ "inget, 1,0 betyder allt"
-
-#~ msgid "Arrow direction"
-#~ msgstr "Pilriktning"
-
-#~ msgid "The direction the arrow should point"
-#~ msgstr "Riktningen som pilen ska peka"
-
-#~ msgid "Arrow shadow"
-#~ msgstr "Pilskugga"
-
-#~ msgid "Appearance of the shadow surrounding the arrow"
-#~ msgstr "Utseende på skuggan som omger pilen"
-
-#~ msgid "Horizontal Alignment"
-#~ msgstr "Horisontell justering"
-
-#~ msgid "X alignment of the child"
-#~ msgstr "X-justering på barnet"
-
-#~ msgid "Vertical Alignment"
-#~ msgstr "Vertikal justering"
-
-#~ msgid "Y alignment of the child"
-#~ msgstr "Y-justering av barnet"
-
-#~ msgid "Ratio"
-#~ msgstr "Förhållande"
-
-#~ msgid "Aspect ratio if obey_child is FALSE"
-#~ msgstr "Proportionsförhållande om obey_child är FALSKT"
-
-#~ msgid "Obey child"
-#~ msgstr "Lyd barn"
-
-#~ msgid "Force aspect ratio to match that of the frame's child"
-#~ msgstr "Tvinga proportionsförhållande för att matcha den av ramens barn"
-
-#~ msgid "Minimum child width"
-#~ msgstr "Minsta bredd på barn"
-
-#~ msgid "Minimum width of buttons inside the box"
-#~ msgstr "Minsta bredd på knappar inuti rutan"
-
-#~ msgid "Minimum child height"
-#~ msgstr "Minsta höjd på barn"
-
-#~ msgid "Minimum height of buttons inside the box"
-#~ msgstr "Minsta höjd på knappar inuti rutan"
-
-#~ msgid "Child internal width padding"
-#~ msgstr "Intern utfyllnad i bredd runt barn"
-
-#~ msgid "Amount to increase child's size on either side"
-#~ msgstr "Mängd att öka barns storlek på var sida"
-
-#~ msgid "Child internal height padding"
-#~ msgstr "Intern utfyllnad i höjd runt barn"
-
-#~ msgid "Amount to increase child's size on the top and bottom"
-#~ msgstr "Mängd att öka barns storlek överst och nederst"
-
-#~ msgid "Layout style"
-#~ msgstr "Utseendestil"
-
-#~ msgid ""
-#~ "How to layout the buttons in the box. Possible values are default, "
-#~ "spread, edge, start and end"
-#~ msgstr ""
-#~ "Hur knappar ska placeras ut i rutan. Möjliga värden är standard, spridd, "
-#~ "kant, start och slut"
-
-#~ msgid "Secondary"
-#~ msgstr "Sekundär"
-
-#~ msgid ""
-#~ "If TRUE, the child appears in a secondary group of children, suitable "
-#~ "for, e.g., help buttons."
-#~ msgstr ""
-#~ "Om SANT kommer barnet att visas i en sekundär grupp med barn. Användbart "
-#~ "exempelvis för hjälpknappar."
-
-#~ msgid "Spacing"
-#~ msgstr "Mellanrum"
-
-#~ msgid "The amount of space between children."
-#~ msgstr "Mängden mellanrum mellan barn."
-
-#~ msgid "Homogeneous"
-#~ msgstr "Homogena"
-
-#~ msgid "Whether the children should all be the same size."
-#~ msgstr "Huruvida barnen allihop ska vara av samma storlek."
-
-#~ msgid "Expand"
-#~ msgstr "Utöka"
-
-#~ msgid "Whether the child should receive extra space when the parent grows"
-#~ msgstr "Huruvida barnet ska få extra utrymme då föräldern växer"
-
-#~ msgid "Fill"
-#~ msgstr "Fyll"
-
-#~ msgid ""
-#~ "Whether extra space given to the child should be allocated to the child "
-#~ "or used as padding"
-#~ msgstr ""
-#~ "Huruvida extra utrymme som ges till barnet ska allokeras till barnet "
-#~ "eller användas som utfyllnad"
-
-#~ msgid "Padding"
-#~ msgstr "Utfyllnad"
-
-#~ msgid "Extra space to put between the child and its neighbors, in pixels"
-#~ msgstr ""
-#~ "Extra mellanrum att stoppa mellan barnet och dess föräldrar, i bildpunkter"
-
-#~ msgid "Pack type"
-#~ msgstr "Packningstyp"
-
-#~ msgid ""
-#~ "A GtkPackType indicating whether the child is packed with reference to "
-#~ "the start or end of the parent"
-#~ msgstr ""
-#~ "En GtkPackType som indikerar huruvida barnet packas med referens till "
-#~ "början eller slutet på föräldern"
-
-#~ msgid "The index of the child in the parent"
-#~ msgstr "Indexet för barnet i föräldern"
-
-#~ msgid "Label"
-#~ msgstr "Etikett"
-
-#~ msgid ""
-#~ "Text of the label widget inside the button, if the button contains a "
-#~ "label widget."
-#~ msgstr ""
-#~ "Texten på etikettwidgeten inuti knappen, om knappen innehåller en "
-#~ "etikettwidget."
-
-#~ msgid "Use underline"
-#~ msgstr "Använd understrykning"
-
-#~ msgid ""
-#~ "If set, an underline in the text indicates the next character should be "
-#~ "used for the mnemonic accelerator key"
-#~ msgstr ""
-#~ "Om detta är angivet kommer en understrykning i texten att indikera att "
-#~ "nästa tecken ska användas som en genvägstangent"
-
-#~ msgid "Use stock"
-#~ msgstr "Använd standard"
-
-#~ msgid ""
-#~ "If set, the label is used to pick a stock item instead of being displayed"
-#~ msgstr ""
-#~ "Om detta är angivet kommer etiketten att användas för att plocka ett "
-#~ "standardobjekt istället för att visas"
-
-#~ msgid "Border relief"
-#~ msgstr "Kantrelief"
-
-#~ msgid "The border relief style."
-#~ msgstr "Reliefstilen på kansten."
-
-#~ msgid "Default Spacing"
-#~ msgstr "Standardmellanrum"
-
-#~ msgid "Extra space to add for CAN_DEFAULT buttons"
-#~ msgstr "Extra mellanrum att lägga till för alla CAN_DEFAULT-knappar"
-
-#~ msgid "Default Outside Spacing"
-#~ msgstr "Standardmellanrum på utsidan"
-
-#~ msgid ""
-#~ "Extra space to add for CAN_DEFAULT buttons that is always drawn outside "
-#~ "the border"
-#~ msgstr ""
-#~ "Extra mellanrum att lägga till för CAN_DEFAULT-knappar som alltid visas "
-#~ "utanför kanten"
-
-#~ msgid "Child X Displacement"
-#~ msgstr "X-förflyttning av barn"
-
-#~ msgid ""
-#~ "How far in the x direction to move the child when the button is depressed"
-#~ msgstr ""
-#~ "Hur långt bort i x-riktingen barnet ska flyttas då knappen trycks ned"
-
-#~ msgid "Child Y Displacement"
-#~ msgstr "Y-förflyttning av barn"
-
-#~ msgid ""
-#~ "How far in the y direction to move the child when the button is depressed"
-#~ msgstr ""
-#~ "Hur långt bort i y-riktningen barnet ska flyttas då knappen trycks ned"
-
-#~ msgid "mode"
-#~ msgstr "läge"
-
-#~ msgid "Editable mode of the CellRenderer"
-#~ msgstr "Redigerbart läge av CellRenderer"
-
-#~ msgid "visible"
-#~ msgstr "synlig"
-
-#~ msgid "Display the cell"
-#~ msgstr "Visa cellen"
-
-#~ msgid "xalign"
-#~ msgstr "xjustering"
-
-#~ msgid "The x-align."
-#~ msgstr "X-justeringen."
-
-#~ msgid "yalign"
-#~ msgstr "yjustering"
-
-#~ msgid "The y-align."
-#~ msgstr "Y-justeringen."
-
-#~ msgid "xpad"
-#~ msgstr "xutfyllnad"
-
-#~ msgid "The xpad."
-#~ msgstr "X-utfyllnaden."
-
-#~ msgid "ypad"
-#~ msgstr "yutfyllnad"
-
-#~ msgid "The ypad."
-#~ msgstr "Y-utfyllnaden."
-
-#~ msgid "width"
-#~ msgstr "bredd"
-
-#~ msgid "The fixed width."
-#~ msgstr "Den fasta bredden."
-
-#~ msgid "height"
-#~ msgstr "höjd"
-
-#~ msgid "Is Expander"
-#~ msgstr "Är expanderare"
-
-#~ msgid "Row has children."
-#~ msgstr "Rad har barn."
-
-#~ msgid "Is Expanded"
-#~ msgstr "Är utökad"
-
-#~ msgid "Row is an expander row, and is expanded"
-#~ msgstr "Raden är utökningsrad, och är utökad"
-
-#~ msgid "Cell background color name"
-#~ msgstr "Namn på cellbakgrundsfärg"
-
-#~ msgid "Cell background color as a string"
-#~ msgstr "Cellbakgrundsfärg som en sträng"
-
-#~ msgid "Cell background color"
-#~ msgstr "Cellbakgrundsfärg"
-
-#~ msgid "Cell background color as a GdkColor"
-#~ msgstr "Cellbakgrundsfärg som en GdkColor"
-
-#~ msgid "Cell background set"
-#~ msgstr "Cellbakgrundssamling"
-
-#~ msgid "Whether this tag affects the cell background color"
-#~ msgstr "Huruvida denna tagg påverkar cellbakgrundsfärgen"
-
-#~ msgid "Pixbuf Object"
-#~ msgstr "Pixbuf-objekt"
-
-#~ msgid "The pixbuf to render."
-#~ msgstr "Pixbuf:en att rendera."
-
-#~ msgid "Pixbuf Expander Open"
-#~ msgstr "Pixbuf-expanderare öppen"
-
-#~ msgid "Pixbuf for open expander."
-#~ msgstr "Pixbuf för öppen expanderare."
-
-#~ msgid "Pixbuf Expander Closed"
-#~ msgstr "Pixbuf-expanderare stängd"
-
-#~ msgid "Pixbuf for closed expander."
-#~ msgstr "Pixbuf för närmaste expanderare."
-
-#~ msgid "The stock ID of the stock icon to render"
-#~ msgstr "Standard-ID på standardikonen att rendera"
-
-#~ msgid "Size"
-#~ msgstr "Storlek"
-
-#~ msgid "The size of the rendered icon"
-#~ msgstr "Storleken på den renderade ikonen"
-
-#~ msgid "Detail"
-#~ msgstr "Detalj"
-
-#~ msgid "Render detail to pass to the theme engine"
-#~ msgstr "Rendera detalj att skicka till temamotorn"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Text to render"
-#~ msgstr "Text att rendera"
-
-#~ msgid "Markup"
-#~ msgstr "Markup"
-
-#~ msgid "Marked up text to render"
-#~ msgstr "Markup-text att rendera"
-
-#~ msgid "Attributes"
-#~ msgstr "Attribut"
-
-#~ msgid "A list of style attributes to apply to the text of the renderer."
-#~ msgstr "En lista med stilattribut att verkställa på texten av renderaren."
-
-#~ msgid "Background color name"
-#~ msgstr "Namn på bakgrundsfärg"
-
-#~ msgid "Background color as a string"
-#~ msgstr "Bakgrundsfärg som en sträng"
-
-#~ msgid "Background color"
-#~ msgstr "Bakgrundsfärg"
-
-#~ msgid "Background color as a GdkColor"
-#~ msgstr "Bakgrundsfärg som en GdkColor"
-
-#~ msgid "Foreground color name"
-#~ msgstr "Namn på förgrundsfärg"
-
-#~ msgid "Foreground color as a string"
-#~ msgstr "Förgrundsfärg som en sträng"
-
-#~ msgid "Foreground color"
-#~ msgstr "Förgrundsfärg"
-
-#~ msgid "Foreground color as a GdkColor"
-#~ msgstr "Förgrundsfärg som en GdkColor"
-
-#~ msgid "Editable"
-#~ msgstr "Redigerbar"
-
-#~ msgid "Whether the text can be modified by the user"
-#~ msgstr "Huruvida texten kan ändras av användaren"
-
-#~ msgid "Font"
-#~ msgstr "Typsnitt"
-
-#~ msgid "Font description as a string"
-#~ msgstr "Typsnittsbeskrivning som en sträng"
-
-#~ msgid "Font description as a PangoFontDescription struct"
-#~ msgstr "Typsnittsbeskrivning som en PangoFontDescription-struct"
-
-#~ msgid "Font family"
-#~ msgstr "Typsnittsfamilj"
-
-#~ msgid "Name of the font family, e.g. Sans, Helvetica, Times, Monospace"
-#~ msgstr ""
-#~ "Namn på typsnittsfamiljen, till exempel Sans, Helvetica, Times, Monospace"
-
-#~ msgid "Font style"
-#~ msgstr "Typsnittsstil"
-
-#~ msgid "Font variant"
-#~ msgstr "Typsnittsvariant"
-
-#~ msgid "Font weight"
-#~ msgstr "Typsnittsvikt"
-
-#~ msgid "Font stretch"
-#~ msgstr "Typsnittsbredd"
-
-#~ msgid "Font size"
-#~ msgstr "Typsnittsstorlek"
-
-#~ msgid "Font points"
-#~ msgstr "Typsnittspunkter"
-
-#~ msgid "Font size in points"
-#~ msgstr "Typsnittsstorlek i punkter"
-
-#~ msgid "Font scale"
-#~ msgstr "Typsnittsskalning"
-
-#~ msgid "Font scaling factor"
-#~ msgstr "Typsnittsskalfaktor"
-
-#~ msgid "Rise"
-#~ msgstr "Höjning"
-
-#~ msgid ""
-#~ "Offset of text above the baseline (below the baseline if rise is negative)"
-#~ msgstr ""
-#~ "Offset för texten ovanför baslinjen (nedanför baslinjen om höjning är "
-#~ "negativt)"
-
-#~ msgid "Strikethrough"
-#~ msgstr "Genomstrykning"
-
-#~ msgid "Whether to strike through the text"
-#~ msgstr "Huruvida texten ska genomstrykas"
-
-#~ msgid "Style of underline for this text"
-#~ msgstr "Stil på understrykningen för denna text"
-
-#~ msgid "Background set"
-#~ msgstr "Bakgrund inställd"
-
-#~ msgid "Whether this tag affects the background color"
-#~ msgstr "Huruvida denna tagg påverkar bakgrundsfärgen"
-
-#~ msgid "Foreground set"
-#~ msgstr "Förgrund inställd"
-
-#~ msgid "Whether this tag affects the foreground color"
-#~ msgstr "Huruvida denna tagg påverkar förgrundsfärgen"
-
-#~ msgid "Editability set"
-#~ msgstr "Redigerbarhet inställd"
-
-#~ msgid "Whether this tag affects text editability"
-#~ msgstr "Huruvida denna tagg påverkar redigerbarheten"
-
-#~ msgid "Font family set"
-#~ msgstr "Typsnittsfamilj inställd"
-
-#~ msgid "Whether this tag affects the font family"
-#~ msgstr "Huruvida denna tagg påverkar typsnittsfamiljen"
-
-#~ msgid "Font style set"
-#~ msgstr "Typsnittsstil inställd"
-
-#~ msgid "Whether this tag affects the font style"
-#~ msgstr "Huruvida denna tagg påverkar typsnittsstilen"
-
-#~ msgid "Font variant set"
-#~ msgstr "Typsnittsvariant inställd"
-
-#~ msgid "Whether this tag affects the font variant"
-#~ msgstr "Huruvida denna tagg påverkar typsnittsvarianten"
-
-#~ msgid "Font weight set"
-#~ msgstr "Typsnittsvikt inställd"
-
-#~ msgid "Whether this tag affects the font weight"
-#~ msgstr "Huruvida denna tagg påverkar typsnittsvikten"
-
-#~ msgid "Font stretch set"
-#~ msgstr "Typsnittsbredd inställd"
-
-#~ msgid "Whether this tag affects the font stretch"
-#~ msgstr "Huruvida denna tagg påverkar typsnittsbredden"
-
-#~ msgid "Font size set"
-#~ msgstr "Typsnittsstorlek inställd"
-
-#~ msgid "Whether this tag affects the font size"
-#~ msgstr "Huruvida denna tagg påverkar typsnittsstorleken"
-
-#~ msgid "Font scale set"
-#~ msgstr "Typsnittsskalning inställd"
-
-#~ msgid "Whether this tag scales the font size by a factor"
-#~ msgstr "Huruvida denna tagg skalar typsnittet med en faktor"
-
-#~ msgid "Rise set"
-#~ msgstr "Höjning inställd"
-
-#~ msgid "Whether this tag affects the rise"
-#~ msgstr "Huruvida denna tagg påverkar höjningen"
-
-#~ msgid "Strikethrough set"
-#~ msgstr "Genomstrykning inställd"
-
-#~ msgid "Whether this tag affects strikethrough"
-#~ msgstr "Huruvida denna tagg påverkar genomstrykningen"
-
-#~ msgid "Underline set"
-#~ msgstr "Understrykning inställd"
-
-#~ msgid "Whether this tag affects underlining"
-#~ msgstr "Huruvida denna tagg påverkar understrykningen"
-
-#~ msgid "Toggle state"
-#~ msgstr "Växlingstillstånd"
-
-#~ msgid "The toggle state of the button"
-#~ msgstr "Knappens växlingstillstånd"
-
-#~ msgid "Activatable"
-#~ msgstr "Aktiverbar"
-
-#~ msgid "The toggle button can be activated"
-#~ msgstr "Växlingsknappen kan aktiveras"
-
-#~ msgid "Radio state"
-#~ msgstr "Radiotillstånd"
-
-#~ msgid "Draw the toggle button as a radio button"
-#~ msgstr "Rita växlingsknappen som en radioknapp"
-
-#~ msgid "Indicator Size"
-#~ msgstr "Indikatorstorlek"
-
-#~ msgid "Size of check or radio indicator"
-#~ msgstr "Storlek på kryss- eller radioindikator"
-
-#~ msgid "Indicator Spacing"
-#~ msgstr "Indikatormellanrum"
-
-#~ msgid "Spacing around check or radio indicator"
-#~ msgstr "Mellanrum runt kryss- eller radioindikator"
-
-#~ msgid "Active"
-#~ msgstr "Aktiv"
-
-#~ msgid "Inconsistent"
-#~ msgstr "Inkonsistent"
-
-#~ msgid "Whether to display an \"inconsistent\" state."
-#~ msgstr "Huruvida ett \"inkonsistent\" tillstånd ska visas."
-
-#~ msgid ""
-#~ "The previously-selected color, for comparison to the color you're "
-#~ "selecting now. You can drag this color to a palette entry, or select this "
-#~ "color as current by dragging it to the other color swatch alongside."
-#~ msgstr ""
-#~ "Den färg som valdes tidigare, för att du ska kunna jämföra med den färg "
-#~ "du väljer nu. Du kan dra färgen till en palettpost, eller välja denna "
-#~ "färg som den aktuella genom att dra den till det andra färgprovet."
-
-#~ msgid ""
-#~ "The color you've chosen. You can drag this color to a palette entry to "
-#~ "save it for use in the future."
-#~ msgstr ""
-#~ "Färgen som du valt. Du kan dra den här färgen till en palettpost för att "
-#~ "spara den för framtida bruk."
-
-#~ msgid "_Save color here"
-#~ msgstr "_Spara färgen här"
-
-#~ msgid ""
-#~ "Click this palette entry to make it the current color. To change this "
-#~ "entry, drag a color swatch here or right-click it and select \"Save color "
-#~ "here.\""
-#~ msgstr ""
-#~ "Klicka på denna palettpost för att göra den till aktuell färg. För att "
-#~ "ändra denna post kan du dra ett färgprov hit eller högerklicka och välja "
-#~ "\"Spara färg här\"."
-
-#~ msgid "Has Opacity Control"
-#~ msgstr "Har opacitetskontoll"
-
-#~ msgid "Whether the color selector should allow setting opacity"
-#~ msgstr "Huruvida färgväljaren ska tillåta inställning av opacitet"
-
-#~ msgid "Has palette"
-#~ msgstr "Har palett"
-
-#~ msgid "Whether a palette should be used"
-#~ msgstr "Huruvida en palett ska användas"
-
-#~ msgid "Current Alpha"
-#~ msgstr "Aktuellt alfavärde"
-
-#~ msgid "The current opacity value (0 fully transparent, 65535 fully opaque)"
-#~ msgstr "Aktuellt opacitetsvärde (0 är helt transparent, 65535 helt opakt)"
-
-#~ msgid "Custom palette"
-#~ msgstr "Anpassad palett"
-
-#~ msgid "Palette to use in the color selector"
-#~ msgstr "Palett att använda i färgväljaren"
-
-#~ msgid ""
-#~ "Select the color you want from the outer ring. Select the darkness or "
-#~ "lightness of that color using the inner triangle."
-#~ msgstr ""
-#~ "Välj den färg som du vill ha från den yttre ringen. Välj mörkheten eller "
-#~ "ljusheten på den färgen genom att använda den inre triangeln."
-
-#~ msgid ""
-#~ "Click the eyedropper, then click a color anywhere on your screen to "
-#~ "select that color."
-#~ msgstr ""
-#~ "Klicka på pipetten, och klicka sedan på en färg någonstans på din skärm "
-#~ "för att välja den färgen."
-
-#~ msgid "_Hue:"
-#~ msgstr "_Nyans:"
-
-#~ msgid "Position on the color wheel."
-#~ msgstr "Position på färghjulet."
-
-#~ msgid "_Saturation:"
-#~ msgstr "_Mättnad"
-
-#~ msgid "\"Deepness\" of the color."
-#~ msgstr "\"Djup\" på färgen."
-
-#~ msgid "_Value:"
-#~ msgstr "_Värde:"
-
-#~ msgid "Brightness of the color."
-#~ msgstr "Ljushet på färgen."
-
-#~ msgid "_Red:"
-#~ msgstr "_Röd:"
-
-#~ msgid "Amount of red light in the color."
-#~ msgstr "Mängd rött ljus i färgen."
-
-#~ msgid "_Green:"
-#~ msgstr "_Grön:"
-
-#~ msgid "Amount of green light in the color."
-#~ msgstr "Mängd grönt ljus i färgen."
-
-#~ msgid "_Blue:"
-#~ msgstr "_Blå:"
-
-#~ msgid "Amount of blue light in the color."
-#~ msgstr "Mängd blått ljus i bilden."
-
-#~ msgid "_Opacity:"
-#~ msgstr "_Opacitet:"
-
-#~ msgid "Transparency of the currently-selected color."
-#~ msgstr "Genomskinlighet på den färg som är vald för tillfället."
-
-#~ msgid "Color _Name:"
-#~ msgstr "Färg_namn:"
-
-#~ msgid ""
-#~ "You can enter an HTML-style hexadecimal color value, or simply a color "
-#~ "name such as 'orange' in this entry."
-#~ msgstr ""
-#~ "Du kan ange ett hexadecimalt färgvärde i HTML-stil, eller helt enkelt "
-#~ "ange ett engelskt namn på färgen som exempelvis \"orange\" i detta fält."
-
-#~ msgid "_Palette"
-#~ msgstr "_Palett"
-
-#~ msgid "Enable arrow keys"
-#~ msgstr "Använd piltangenter"
-
-#~ msgid "Whether the arrow keys move through the list of items"
-#~ msgstr "Huruvida piltangenter flyttar genom listan med objekt"
-
-#~ msgid "Always enable arrows"
-#~ msgstr "Använd alltid pilar"
-
-#~ msgid ""
-#~ "Whether the arrow keys work, even if the entry contents are not in the "
-#~ "list"
-#~ msgstr ""
-#~ "Huruvida piltangenter fungerar även om fältinnehållet inte finns i listan"
-
-#~ msgid "Case sensitive"
-#~ msgstr "Gör skillnad på VERSALER/gemener"
-
-#~ msgid "Whether list item matching is case sensitive"
-#~ msgstr "Huruvida listobjektet gör skillnad på versaler/gemener"
-
-#~ msgid "Allow empty"
-#~ msgstr "Tillåt tomt"
-
-#~ msgid "Whether an empty value may be entered in this field"
-#~ msgstr "Huruvida ett tomt värde kan anges i detta fält"
-
-#~ msgid "Value in list"
-#~ msgstr "Värde i lista"
-
-#~ msgid "Whether entered values must already be present in the list"
-#~ msgstr "Huruvida angivna värden redan måste finnas i listan"
-
-#~ msgid "Resize mode"
-#~ msgstr "Storleksändringsläge"
-
-#~ msgid "Specify how resize events are handled"
-#~ msgstr "Ange hur storleksändringshändelser hanteras"
-
-#~ msgid "The width of the empty border outside the containers children."
-#~ msgstr "Bredden på den tomma kanten utanför behållarens barn."
-
-#~ msgid "Child"
-#~ msgstr "Barn"
-
-#~ msgid "Can be used to add a new child to the container."
-#~ msgstr "Kan användas för att lägga till ett nytt barn till behållaren."
-
-#~ msgid "Curve type"
-#~ msgstr "Kurvtyp"
-
-#~ msgid "Is this curve linear, spline interpolated, or free-form"
-#~ msgstr "Är denna kurva linjär, spline-interpolerad eller friform"
-
-#~ msgid "Minimum X"
-#~ msgstr "Minsta X"
-
-#~ msgid "Minimum possible value for X"
-#~ msgstr "Minsta möjliga värde för X"
-
-#~ msgid "Maximum X"
-#~ msgstr "Största X"
-
-#~ msgid "Maximum possible X value."
-#~ msgstr "Största möjliga värde för X."
-
-#~ msgid "Minimum Y"
-#~ msgstr "Minsta Y"
-
-#~ msgid "Minimum possible value for Y"
-#~ msgstr "Minsta möjliga värde för Y"
-
-#~ msgid "Maximum Y"
-#~ msgstr "Största Y"
-
-#~ msgid "Maximum possible value for Y"
-#~ msgstr "Största möjliga värde för Y"
-
-#~ msgid "Has separator"
-#~ msgstr "Har avskiljare"
-
-#~ msgid "The dialog has a separator bar above its buttons"
-#~ msgstr "Dialogen har en avskiljarrad ovanför dess knappar"
-
-#~ msgid "Content area border"
-#~ msgstr "Kant för innehållsutrymme"
-
-#~ msgid "Width of border around the main dialog area"
-#~ msgstr "Bredd på kanten runt huvuddialogutrymmet"
-
-#~ msgid "Button spacing"
-#~ msgstr "Knappmellanrum"
-
-#~ msgid "Spacing between buttons"
-#~ msgstr "Mellanrum mellan knappar"
-
-#~ msgid "Action area border"
-#~ msgstr "Kant på åtgärdsutrymme"
-
-#~ msgid "Width of border around the button area at the bottom of the dialog"
-#~ msgstr "Bredd på kanten runt knapputrymmet runt nederkanten på dialogen"
-
-#~ msgid "Cursor Position"
-#~ msgstr "Markörposition"
-
-#~ msgid "The current position of the insertion cursor in chars."
-#~ msgstr "Den aktuella positionen på insättningspekaren i tecken."
-
-#~ msgid ""
-#~ "The position of the opposite end of the selection from the cursor in "
-#~ "chars."
-#~ msgstr ""
-#~ "Positionen för den motsatta änden av markeringen från markören i tecken."
-
-#~ msgid "Whether the entry contents can be edited"
-#~ msgstr "Huruvida fältets innehåll kan redigeras"
-
-#~ msgid "Maximum length"
-#~ msgstr "Maxlängd"
-
-#~ msgid "Maximum number of characters for this entry. Zero if no maximum."
-#~ msgstr "Maximala antalet tecken i detta fält. Noll om inget maxvärde."
-
-#~ msgid "Visibility"
-#~ msgstr "Synlighet"
-
-#~ msgid ""
-#~ "FALSE displays the \"invisible char\" instead of the actual text "
-#~ "(password mode)"
-#~ msgstr ""
-#~ "FALSKT visar det \"osynliga tecknet\" istället för den verkliga texten "
-#~ "(lösenordsläge)"
-
-#~ msgid "Has Frame"
-#~ msgstr "Har ram"
-
-#~ msgid "FALSE removes outside bevel from entry."
-#~ msgstr "FALSKT tar bort den yttre avfasningen från fältet."
-
-#~ msgid "Invisible character"
-#~ msgstr "Osynligt tecken"
-
-#~ msgid ""
-#~ "The character to use when masking entry contents (in \"password mode\")"
-#~ msgstr ""
-#~ "Tecknet att använda när fältets innehåll ska maskeras (i \"lösenordsläge"
-#~ "\")"
-
-#~ msgid "Activates default"
-#~ msgstr "Aktiverar standard"
-
-#~ msgid ""
-#~ "Whether to activate the default widget (such as the default button in a "
-#~ "dialog) when Enter is pressed."
-#~ msgstr ""
-#~ "Huruvida standardwidgeten ska aktiveras (som exempelvis standardknappen i "
-#~ "ett dialogfönster) när Enter trycks ner."
-
-#~ msgid "Width in chars"
-#~ msgstr "Bredd i tecken"
-
-#~ msgid "Number of characters to leave space for in the entry."
-#~ msgstr "Antal tecken som ska lämnas plats till i fältet."
-
-#~ msgid "Scroll offset"
-#~ msgstr "Rullningsoffset"
-
-#~ msgid "Number of pixels of the entry scrolled off the screen to the left"
-#~ msgstr ""
-#~ "Antalet bildpunkter i posten som är rullad utanför skärmen till vänster"
-
-#~ msgid "The contents of the entry"
-#~ msgstr "Innehållet i fältet"
-
-#~ msgid "Select on focus"
-#~ msgstr "Markera vid fokus"
-
-#~ msgid "Whether to select the contents of an entry when it is focused."
-#~ msgstr "Huruvida ett fälts innehåll markeras då fältet får fokus."
-
-#~ msgid "Select All"
-#~ msgstr "Markera allt"
-
-#~ msgid "_Insert Unicode control character"
-#~ msgstr "_Infoga Unicode-styrtecken"
-
-#~ msgid "Filename"
-#~ msgstr "Filnamn"
-
-#~ msgid "The currently selected filename."
-#~ msgstr "Filnamnet som är valt för tillfället."
-
-#~ msgid "Show file operations"
-#~ msgstr "Visa filoperationer"
-
-#~ msgid "Whether buttons for creating/manipulating files should be displayed."
-#~ msgstr "Huruvida knappar för skapande/manipulering av filer ska visas."
-
-#~ msgid "Whether to allow multiple files to be selected."
-#~ msgstr "Huruvida flera filer får väljas."
-
-#~ msgid "Folders"
-#~ msgstr "Mappar"
-
-#~ msgid "Fol_ders"
-#~ msgstr "_Mappar"
-
-#~ msgid "Folder unreadable: %s"
-#~ msgstr "Mappen är oläsbar: %s"
-
-#~ msgid ""
-#~ "The file \"%s\" resides on another machine (called %s) and may not be "
-#~ "available to this program.\n"
-#~ "Are you sure that you want to select it?"
-#~ msgstr ""
-#~ "Filen \"%s\" finns på en annan maskin (kallad %s) och kanske inte är "
-#~ "tillgänglig för detta program.\n"
-#~ "Är du säker på att du vill välja den?"
-
-#~ msgid "_New Folder"
-#~ msgstr "_Ny mapp"
-
-#~ msgid "_Rename File"
-#~ msgstr "_Byt namn på fil"
-
-#~ msgid ""
-#~ "The folder name \"%s\" contains symbols that are not allowed in filenames"
-#~ msgstr "Mappnamnet \"%s\" innehåller tecken som inte är tillåtna i filnamn"
-
-#~ msgid ""
-#~ "Error creating folder \"%s\": %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Fel vid skapande av mappen \"%s\": %s\n"
-#~ "%s"
-
-#~ msgid "You probably used symbols not allowed in filenames."
-#~ msgstr "Du använde troligen tecken som inte är tillåtna i filnamn."
-
-#~ msgid "Error creating folder \"%s\": %s\n"
-#~ msgstr "Fel vid skapande av mappen \"%s\": %s\n"
-
-#~ msgid "New Folder"
-#~ msgstr "Ny mapp"
-
-#~ msgid "_Folder name:"
-#~ msgstr "_Mappnamn:"
-
-#~ msgid "Create"
-#~ msgstr "Skapa"
-
-#~ msgid ""
-#~ "The filename \"%s\" contains symbols that are not allowed in filenames"
-#~ msgstr "Filnamnet \"%s\" innehåller tecken som inte är tillåtna i filnamn"
-
-#~ msgid ""
-#~ "Error deleting file \"%s\": %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Fel vid borttagning av filen \"%s\": %s\n"
-#~ "%s"
-
-#~ msgid "It probably contains symbols not allowed in filenames."
-#~ msgstr "Det innehåller troligen tecken som inte är tillåtna i filnamn."
-
-#~ msgid "Error deleting file \"%s\": %s"
-#~ msgstr "Fel vid borttagning av filen \"%s\": %s"
-
-#~ msgid "Really delete file \"%s\" ?"
-#~ msgstr "Verkligen ta bort filen \"%s\"?"
-
-#~ msgid "Delete File"
-#~ msgstr "Ta bort fil"
-
-#~ msgid ""
-#~ "The file name \"%s\" contains symbols that are not allowed in filenames"
-#~ msgstr "Filnamnet \"%s\" innehåller tecken som inte är tillåtna i filnamn"
-
-#~ msgid ""
-#~ "Error renaming file to \"%s\": %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Fel vid byte av namn på filen till \"%s\": %s\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "Error renaming file \"%s\": %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Fel vid byte av namn på filen \"%s\": %s\n"
-#~ "%s"
-
-#~ msgid "Error renaming file \"%s\" to \"%s\": %s"
-#~ msgstr "Fel vid byte av namn på filen \"%s\" till \"%s\": %s"
-
-#~ msgid "Rename File"
-#~ msgstr "Byt namn på fil"
-
-#~ msgid "Rename file \"%s\" to:"
-#~ msgstr "Byt namn på filen \"%s\" till:"
-
-#~ msgid "Rename"
-#~ msgstr "Byt namn"
-
-#~ msgid "Selection: "
-#~ msgstr "Markering: "
-
-#~ msgid ""
-#~ "The filename \"%s\" couldn't be converted to UTF-8 (try setting the "
-#~ "environment variable G_BROKEN_FILENAMES): %s"
-#~ msgstr ""
-#~ "Filnamnet \"%s\" kunde inte konverteras till UTF-8 (prova att ställa in "
-#~ "miljövariabeln G_BROKEN_FILENAMES): %s"
-
-#~ msgid "Invalid Utf-8"
-#~ msgstr "Ogiltig UTF-8"
-
-#~ msgid "Name too long"
-#~ msgstr "Namnet är för långt"
-
-#~ msgid "Couldn't convert filename"
-#~ msgstr "Kunde inte konvertera filnamn"
-
-#~ msgid "X position"
-#~ msgstr "X-position"
-
-#~ msgid "X position of child widget"
-#~ msgstr "X-position på barnwidgeten"
-
-#~ msgid "Y position"
-#~ msgstr "Y-position"
-
-#~ msgid "Y position of child widget"
-#~ msgstr "Y-position på barnwidgeten"
-
-#~ msgid "abcdefghijk ABCDEFGHIJK"
-#~ msgstr "abcdefghijk ABCDEFGHIJK"
-
-#~ msgid "The X string that represents this font."
-#~ msgstr "Den X-sträng som motsvarar detta typsnitt."
-
-#~ msgid "The GdkFont that is currently selected."
-#~ msgstr "Den GdkFont som är vald för tillfället."
-
-#~ msgid "Preview text"
-#~ msgstr "Förhandsgranskningstext"
-
-#~ msgid "The text to display in order to demonstrate the selected font."
-#~ msgstr "Den text som ska visas för att demonstrera det valda typsnittet."
-
-#~ msgid "_Family:"
-#~ msgstr "_Familj:"
-
-#~ msgid "_Style:"
-#~ msgstr "_Stil:"
-
-#~ msgid "Si_ze:"
-#~ msgstr "S_torlek:"
-
-#~ msgid "_Preview:"
-#~ msgstr "_Förhandsgranskning:"
-
-#~ msgid "Text of the frame's label."
-#~ msgstr "Text på ramens etikett."
-
-#~ msgid "Label xalign"
-#~ msgstr "X-justering på etikett"
-
-#~ msgid "The horizontal alignment of the label."
-#~ msgstr "Den horisontella justeringen på etiketten."
-
-#~ msgid "Label yalign"
-#~ msgstr "Y-justering på etikett"
-
-#~ msgid "The vertical alignment of the label."
-#~ msgstr "Den vertikala justeringen på etiketten."
-
-#~ msgid "Deprecated property, use shadow_type instead."
-#~ msgstr "Föråldrad egenskap, använd shadow_type istället."
-
-#~ msgid "Frame shadow"
-#~ msgstr "Ramskugga"
-
-#~ msgid "Appearance of the frame border."
-#~ msgstr "Utseende på ramkanten."
-
-#~ msgid "Label widget"
-#~ msgstr "Etikettwidget"
-
-#~ msgid "A widget to display in place of the usual frame label."
-#~ msgstr "En widget att visa istället för den vanliga rametiketten."
-
-#~ msgid "Gamma"
-#~ msgstr "Gamma"
-
-#~ msgid "_Gamma value"
-#~ msgstr "_Gammavärde"
-
-#~ msgid "Shadow type"
-#~ msgstr "Skuggtyp"
-
-#~ msgid "Appearance of the shadow that surrounds the container."
-#~ msgstr "Utseende på skuggan som omger behållaren."
-
-#~ msgid "Handle position"
-#~ msgstr "Handtagsposition"
-
-#~ msgid "Position of the handle relative to the child widget."
-#~ msgstr "Position på handtaget relativt barnwidgeten."
-
-#~ msgid "Snap edge"
-#~ msgstr "Fäst kant"
-
-#~ msgid ""
-#~ "Side of the handlebox that's lined up with the docking point to dock the "
-#~ "handlebox."
-#~ msgstr ""
-#~ "Sida på handtaget som är jämsides med dockningspunkten för att docka "
-#~ "handtaget."
-
-#~ msgid "Error loading icon: %s"
-#~ msgstr "Fel vid inläsning av ikonen: %s"
-
-#~ msgid "A GdkPixbuf to display."
-#~ msgstr "En GdkPixbuf att visa."
-
-#~ msgid "Pixmap"
-#~ msgstr "Pixmap"
-
-#~ msgid "A GdkPixmap to display."
-#~ msgstr "En GdkPixmap att visa."
-
-#~ msgid "Image"
-#~ msgstr "Bild"
-
-#~ msgid "A GdkImage to display."
-#~ msgstr "En GdkImage att visa."
-
-#~ msgid "Mask bitmap to use with GdkImage or GdkPixmap"
-#~ msgstr "Maskbitmappsbild att använda med GdkImage eller GdkPixmap"
-
-#~ msgid "Filename to load and display."
-#~ msgstr "Filnamn att läsa in och visa."
-
-#~ msgid "Stock ID for a stock image to display."
-#~ msgstr "Standard-ID för en standardbild att visa."
-
-#~ msgid "Icon set"
-#~ msgstr "Ikonsamling"
-
-#~ msgid "Icon set to display."
-#~ msgstr "Ikonsamling att visa."
-
-#~ msgid "Size to use for stock icon or icon set."
-#~ msgstr "Storlek att använda för standardikon eller ikonsamling."
-
-#~ msgid "Animation"
-#~ msgstr "Animation"
-
-#~ msgid "GdkPixbufAnimation to display."
-#~ msgstr "GdkPixbufAnimation att visa."
-
-#~ msgid "Storage type"
-#~ msgstr "Lagringstyp"
-
-#~ msgid "The representation being used for image data."
-#~ msgstr "Representationen som används för bilddata."
-
-#~ msgid "Image widget"
-#~ msgstr "Bildwidget"
-
-#~ msgid "Child widget to appear next to the menu text"
-#~ msgstr "Bildwidget att visa vid sidan om menytexten"
-
-#~ msgid "Input"
-#~ msgstr "Inmatning"
-
-#~ msgid "No input devices"
-#~ msgstr "Inga inmatningsenheter"
-
-#~ msgid "_Device:"
-#~ msgstr "_Enhet:"
-
-#~ msgid "Disabled"
-#~ msgstr "Avstängd"
-
-#~ msgid "Screen"
-#~ msgstr "Mask"
-
-#~ msgid "Window"
-#~ msgstr "Fönster"
-
-#~ msgid "_Mode: "
-#~ msgstr "_Läge: "
-
-#~ msgid "_Axes"
-#~ msgstr "_Axlar"
-
-#~ msgid "_Keys"
-#~ msgstr "_Tangenter"
-
-#~ msgid "X"
-#~ msgstr "X"
-
-#~ msgid "Y"
-#~ msgstr "Y"
-
-#~ msgid "Pressure"
-#~ msgstr "Tryck"
-
-#~ msgid "X Tilt"
-#~ msgstr "X-lutning"
-
-#~ msgid "Y Tilt"
-#~ msgstr "Y-lutning"
-
-#~ msgid "Wheel"
-#~ msgstr "Hjul"
-
-#~ msgid "(disabled)"
-#~ msgstr "(avstängd)"
-
-#~ msgid "clear"
-#~ msgstr "töm"
-
-#~ msgid "The screen where this window will be displayed."
-#~ msgstr "Den skärm där detta fönster kommer att visas."
-
-#~ msgid "The text of the label."
-#~ msgstr "Texten på etiketten."
-
-#~ msgid "A list of style attributes to apply to the text of the label."
-#~ msgstr "En lista med stilattribut att tillämpa på texten i etiketten."
-
-#~ msgid "Use markup"
-#~ msgstr "Använd markup"
-
-#~ msgid "The text of the label includes XML markup. See pango_parse_markup()."
-#~ msgstr "Etikettens text innehåller XML-markup. Se pango_parse_markup()."
-
-#~ msgid "Justification"
-#~ msgstr "Justering"
-
-#~ msgid ""
-#~ "The alignment of the lines in the text of the label relative to each "
-#~ "other. This does NOT affect the alignment of the label within its "
-#~ "allocation. See GtkMisc::xalign for that."
-#~ msgstr ""
-#~ "Justering på raderna i etikettens text relativt varandra. Detta påverkar "
-#~ "INTE justeringen på etiketten inom dess allokering. Se GtkMisc::xalign "
-#~ "för det."
-
-#~ msgid "Pattern"
-#~ msgstr "Mönster"
-
-#~ msgid ""
-#~ "A string with _ characters in positions correspond to characters in the "
-#~ "text to underline."
-#~ msgstr ""
-#~ "En sträng med \"_\"-tecken i positioner som motsvarar tecken i texten som "
-#~ "ska understrykas."
-
-#~ msgid "Line wrap"
-#~ msgstr "Radbryt"
-
-#~ msgid "If set, wrap lines if the text becomes too wide."
-#~ msgstr ""
-#~ "Om detta är angivet kommer texten att radbrytas om den blir för bred."
-
-#~ msgid "Selectable"
-#~ msgstr "Markerbar"
-
-#~ msgid "Whether the label text can be selected with the mouse."
-#~ msgstr "Huruvida texten i etiketten kan markeras med musen."
-
-#~ msgid "Mnemonic key"
-#~ msgstr "Snabbtangent"
-
-#~ msgid "The mnemonic accelerator key for this label."
-#~ msgstr "Snabbtangenten för denna etikett."
-
-#~ msgid "Mnemonic widget"
-#~ msgstr "Snabbtangentswidget"
-
-#~ msgid "The widget to be activated when the label's mnemonic key is pressed."
-#~ msgstr "Den widget som ska aktiveras då etikettens snabbtangent trycks ned."
-
-#~ msgid "Horizontal adjustment"
-#~ msgstr "Horisontell justering"
-
-#~ msgid "The GtkAdjustment for the horizontal position."
-#~ msgstr "GtkAdjustment på den horisontella positionen."
-
-#~ msgid "Vertical adjustment"
-#~ msgstr "Vertikal justering"
-
-#~ msgid "The GtkAdjustment for the vertical position."
-#~ msgstr "GtkAdjustment på den vertikala positionen."
-
-#~ msgid "The width of the layout."
-#~ msgstr "Bredden på layouten."
-
-#~ msgid "The height of the layout."
-#~ msgstr "Höjden på layouten."
-
-#~ msgid "default:LTR"
-#~ msgstr "default:LTR"
-
-#~ msgid "Tearoff Title"
-#~ msgstr "Löstagbar titel"
-
-#~ msgid ""
-#~ "A title that may be displayed by the window manager when this menu is "
-#~ "torn-off."
-#~ msgstr "En titel som kan visas av fönsterhanteraren då denna meny tas loss."
-
-#~ msgid "Can change accelerators"
-#~ msgstr "Kan ändra snabbtangenter"
-
-#~ msgid ""
-#~ "Whether menu accelerators can be changed by pressing a key over the menu "
-#~ "item."
-#~ msgstr ""
-#~ "Huruvida menysnabbtangenter kan ändras genom att en tangent trycks "
-#~ "ovanför menyposten."
-
-#~ msgid "Style of bevel around the menubar"
-#~ msgstr "Stil på avfasning runt menyraden"
-
-#~ msgid "Internal padding"
-#~ msgstr "Intern utfyllnad"
-
-#~ msgid "Amount of border space between the menubar shadow and the menu items"
-#~ msgstr "Mängd kantutrymme mellan skuggan på menyraden och menyposterna"
-
-#~ msgid "Image/label border"
-#~ msgstr "Bild-/etikettkant"
-
-#~ msgid "Width of border around the label and image in the message dialog"
-#~ msgstr "Bredd på ramen runt etiketten och bilden i meddelandedialogen"
-
-#~ msgid "Message Type"
-#~ msgstr "Meddelandetyp"
-
-#~ msgid "The type of message"
-#~ msgstr "Typen av meddelande"
-
-#~ msgid "Message Buttons"
-#~ msgstr "Meddelandeknappar"
-
-#~ msgid "The buttons shown in the message dialog"
-#~ msgstr "Knapparna som visas i meddelandedialogen"
-
-#~ msgid "X align"
-#~ msgstr "X-justering"
-
-#~ msgid "The horizontal alignment, from 0 (left) to 1 (right)"
-#~ msgstr "Horisontell justering, från 0 (vänster) till 1 (höger)"
-
-#~ msgid "Y align"
-#~ msgstr "Y-justering"
-
-#~ msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
-#~ msgstr "Vertikal justering, från 0 (överst) till 1 (nederst)"
-
-#~ msgid "X pad"
-#~ msgstr "X-utfyllnad"
-
-#~ msgid ""
-#~ "The amount of space to add on the left and right of the widget, in pixels"
-#~ msgstr ""
-#~ "Mängden utrymme att lägga till på vänster och höger sida, i bildpunkter"
-
-#~ msgid "Y pad"
-#~ msgstr "Y-utfyllnad"
-
-#~ msgid ""
-#~ "The amount of space to add on the top and bottom of the widget, in pixels"
-#~ msgstr ""
-#~ "Mängden utrymme att lägga till på vänster och höger sida, i bildpunkter"
-
-#~ msgid "Tab Position"
-#~ msgstr "Flikposition"
-
-#~ msgid "Which side of the notebook holds the tabs"
-#~ msgstr "Vilken sida på flikhäftet som har flikarna"
-
-#~ msgid "Tab Border"
-#~ msgstr "Flikram"
-
-#~ msgid "Width of the border around the tab labels"
-#~ msgstr "Bredd på ramen runt fliketiketterna"
-
-#~ msgid "Horizontal Tab Border"
-#~ msgstr "Horisontell flikram"
-
-#~ msgid "Width of the horizontal border of tab labels"
-#~ msgstr "Bredd på den horisontella ramen runt fliketiketter"
-
-#~ msgid "Vertical Tab Border"
-#~ msgstr "Vertikal flikram"
-
-#~ msgid "Width of the vertical border of tab labels"
-#~ msgstr "Bredd på den vertikala ramen runt fliketiketter"
-
-#~ msgid "Show Tabs"
-#~ msgstr "Visa flikar"
-
-#~ msgid "Whether tabs should be shown or not"
-#~ msgstr "Huruvida flikar ska visas eller inte"
-
-#~ msgid "Show Border"
-#~ msgstr "Visa ram"
-
-#~ msgid "Whether the border should be shown or not"
-#~ msgstr "Huruvida ramen ska visas eller inte"
-
-#~ msgid "Scrollable"
-#~ msgstr "Rullningsbar"
-
-#~ msgid "If TRUE, scroll arrows are added if there are too many tabs to fit"
-#~ msgstr ""
-#~ "Om sann kommer rullningspilar att läggas till om det finns fler flikar än "
-#~ "vad som ryms"
-
-#~ msgid "Enable Popup"
-#~ msgstr "Använd popupmeny"
-
-#~ msgid ""
-#~ "If TRUE, pressing the right mouse button on the notebook pops up a menu "
-#~ "that you can use to go to a page"
-#~ msgstr ""
-#~ "Om sann kommer ett tryck på höger musknapp på flikhäftet att visa en "
-#~ "popupmeny som du kan använda för att gå till en sida"
-
-#~ msgid "Whether tabs should have homogeneous sizes"
-#~ msgstr "Huruvida flikar ska ha samma storlek"
-
-#~ msgid "Tab label"
-#~ msgstr "Fliketikett"
-
-#~ msgid "The string displayed on the childs tab label"
-#~ msgstr "Strängen som visas på barnets fliketikett"
-
-#~ msgid "Menu label"
-#~ msgstr "Menyetikett"
-
-#~ msgid "The string displayed in the childs menu entry"
-#~ msgstr "Strängen som visas på barnets menyetikett"
-
-#~ msgid "Tab expand"
-#~ msgstr "Flikutökning"
-
-#~ msgid "Whether to expand the childs tab or not"
-#~ msgstr "Huruvida barnets flik ska utökas eller inte"
-
-#~ msgid "Tab fill"
-#~ msgstr "Flikfyllnad"
-
-#~ msgid "Wheather the childs tab should fill the allocated area or not"
-#~ msgstr "Huruvida barnets flik ska fylla den allokerade ytan eller inte"
-
-#~ msgid "Tab pack type"
-#~ msgstr "Flikpackningstyp"
-
-#~ msgid "Page %u"
-#~ msgstr "Sida %u"
-
-#~ msgid "Menu"
-#~ msgstr "Meny"
-
-#~ msgid "The menu of options"
-#~ msgstr "Alternativmenyn"
-
-#~ msgid "Size of dropdown indicator"
-#~ msgstr "Storlek på nedfällningsindikator"
-
-#~ msgid "Spacing around indicator"
-#~ msgstr "Mellanrum runt indikator"
-
-#~ msgid ""
-#~ "Position of paned separator in pixels (0 means all the way to the left/"
-#~ "top)"
-#~ msgstr ""
-#~ "Position på panelseparator i bildpunkter (0 betyder längst till vänster/"
-#~ "överst)"
-
-#~ msgid "Position Set"
-#~ msgstr "Inställd position"
-
-#~ msgid "TRUE if the Position property should be used"
-#~ msgstr "SANT om poitionsegenskapen ska användas"
-
-#~ msgid "Handle Size"
-#~ msgstr "Storlek på handtag"
-
-#~ msgid "Width of handle"
-#~ msgstr "Bredd på handtag"
-
-#~ msgid ""
-#~ "Whether the preview widget should take up the entire space it is allocated"
-#~ msgstr ""
-#~ "Huruvida förhandsgranskningswidgeten ska fylla ut hela det utrymme det "
-#~ "har allokerats"
-
-#~ msgid "Activity mode"
-#~ msgstr "Aktivitetsläge"
-
-#~ msgid ""
-#~ "If TRUE the GtkProgress is in activity mode, meaning that it signals "
-#~ "something is happening, but not how much of the activity is finished. "
-#~ "This is used when you're doing something that you don't know how long it "
-#~ "will take."
-#~ msgstr ""
-#~ "Om sant är GtkProgress i aktivitetsläge, vilket betyder att det "
-#~ "signalerar att något händer, men inte hur mycket av aktiviteten som är "
-#~ "slutfört. Detta används när du gör någonting som du inte vet hur lång tid "
-#~ "det kommer att ta."
-
-#~ msgid "Show text"
-#~ msgstr "Visa text"
-
-#~ msgid "Whether the progress is shown as text"
-#~ msgstr "Huruvida förloppet visas som text"
-
-#~ msgid "Text x alignment"
-#~ msgstr "X-justering för text"
-
-#~ msgid ""
-#~ "A number between 0.0 and 1.0 specifying the horizontal alignment of the "
-#~ "text in the progress widget"
-#~ msgstr ""
-#~ "Ett tal mellan 0,0 och 1,0 som anger den horisontella justeringen av "
-#~ "texten i förloppswidgeten"
-
-#~ msgid "Text y alignment"
-#~ msgstr "Y-justering för text"
-
-#~ msgid ""
-#~ "A number between 0.0 and 1.0 specifying the vertical alignment of the "
-#~ "text in the progress widget"
-#~ msgstr ""
-#~ "Ett tal mellan 0,0 och 1,0 som anger den vertikala justeringen av texten "
-#~ "i förloppswidgeten"
-
-#~ msgid "Adjustment"
-#~ msgstr "Justering"
-
-#~ msgid "The GtkAdjustment connected to the progress bar (Deprecated)"
-#~ msgstr "GtkAdjustment ansluten till förloppsmätaren (föråldrat)"
-
-#~ msgid "Orientation and growth direction of the progress bar"
-#~ msgstr "Orientering och tillväxtriktning för förloppsmätaren"
-
-#~ msgid ""
-#~ "Specifies the visual style of the bar in percentage mode (Deprecated)"
-#~ msgstr "Anger utseendet på mätaren i procentläge (föråldrat)"
-
-#~ msgid "Activity Step"
-#~ msgstr "Aktivitetssteg"
-
-#~ msgid "The increment used for each iteration in activity mode (Deprecated)"
-#~ msgstr ""
-#~ "Ökningen som används för varje iterering i aktivitetsläge (föråldrat)"
-
-#~ msgid "Activity Blocks"
-#~ msgstr "Aktivitetsblock"
-
-#~ msgid ""
-#~ "The number of blocks which can fit in the progress bar area in activity "
-#~ "mode (Deprecated)"
-#~ msgstr ""
-#~ "Antalet block som kan passa in i förloppsmätaren i aktivitetsläge "
-#~ "(föråldrat)"
-
-#~ msgid "Discrete Blocks"
-#~ msgstr "Diskreta block"
-
-#~ msgid ""
-#~ "The number of discrete blocks in a progress bar (when shown in the "
-#~ "discrete style)"
-#~ msgstr ""
-#~ "Antalet diskreta block i en förloppsmätare (när den visas i diskret stil)"
-
-#~ msgid "The fraction of total work that has been completed"
-#~ msgstr "Andelen av det totala arbetet som har färdigställts"
-
-#~ msgid "Pulse Step"
-#~ msgstr "Pulssteg"
-
-#~ msgid ""
-#~ "The fraction of total progress to move the bouncing block when pulsed"
-#~ msgstr ""
-#~ "Andelen av det totala förloppet att flytta det studsande blocket när det "
-#~ "pulsas"
-
-#~ msgid "Text to be displayed in the progress bar"
-#~ msgstr "Text att visa i förloppsmätaren"
-
-#~ msgid "Update policy"
-#~ msgstr "Uppdateringspolicy"
-
-#~ msgid "How the range should be updated on the screen"
-#~ msgstr "Hur intervallet ska uppdateras på skärmen"
-
-#~ msgid ""
-#~ "The GtkAdjustment that contains the current value of this range object"
-#~ msgstr ""
-#~ "GtkAdjustment som innehåller det aktuella värdet på detta intervallobjekt"
-
-#~ msgid "Inverted"
-#~ msgstr "Inverterad"
-
-#~ msgid "Invert direction slider moves to increase range value"
-#~ msgstr ""
-#~ "Invertera riktningen som rullningslisten flyttar sig för att öka "
-#~ "intervallvärdet"
-
-#~ msgid "Slider Width"
-#~ msgstr "Bredd på rullningslist"
-
-#~ msgid "Width of scrollbar or scale thumb"
-#~ msgstr "Bredd på rullningslisten eller skalning"
-
-#~ msgid "Trough Border"
-#~ msgstr "Genom kant"
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Någonting konstigt hände då barnplaceringen för %p hämtades från föräldern %p"
