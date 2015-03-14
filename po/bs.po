@@ -1,0 +1,486 @@
+# Bosnian translation for bosnianuniversetranslation
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the bosnianuniversetranslation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bosnianuniversetranslation\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-27 05:52+0000\n"
+"PO-Revision-Date: 2015-02-18 14:44+0100\n"
+"Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-10-23 07:14+0000\n"
+"X-Generator: Launchpad (build 17203)\n"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:727
+msgid "Controlling dock item"
+msgstr "Kontrola objekta pristanišne trake"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Pristanišni objekat posjeduje ovu oznaku kartice"
+
+#: ../gdl/gdl-dock-bar.c:127 ../gdl/gdl-dock-layout.c:128
+msgid "Master"
+msgstr "Glavni"
+
+#: ../gdl/gdl-dock-bar.c:128
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "GdlDockMaster objekt kome je pridružena pristanišna traka"
+
+#: ../gdl/gdl-dock-bar.c:140
+msgid "Dockbar style"
+msgstr "Stil pristanišne trake"
+
+#: ../gdl/gdl-dock-bar.c:141
+msgid "Dockbar style to show items on it"
+msgstr "Stil pristanišne trake za prikaz objekata"
+
+#: ../gdl/gdl-dock.c:197
+msgid "Floating"
+msgstr "Plutajuće"
+
+#: ../gdl/gdl-dock.c:198
+msgid "Whether the dock is floating in its own window"
+msgstr "Da li pristanišna traka pluta u svom vlastitom prozoru"
+
+#: ../gdl/gdl-dock.c:205 ../gdl/gdl-dock-master.c:198
+msgid "Default title"
+msgstr "Podrazumijevani naslov"
+
+#: ../gdl/gdl-dock.c:206
+msgid "Default title for the newly created floating docks"
+msgstr "Podrazumijevani naslov za novokreirana plutajuće pristanišne trake"
+
+#: ../gdl/gdl-dock.c:212 ../gdl/gdl-dock-placeholder.c:192
+msgid "Width"
+msgstr "Širina"
+
+#: ../gdl/gdl-dock.c:213
+msgid "Width for the dock when it's of floating type"
+msgstr "Širina pristanišne trake kada je plutajućeg tipa"
+
+#: ../gdl/gdl-dock.c:220 ../gdl/gdl-dock-placeholder.c:200
+msgid "Height"
+msgstr "Visina"
+
+#: ../gdl/gdl-dock.c:221
+msgid "Height for the dock when it's of floating type"
+msgstr "Visina pristanišne trake kada je plutajućeg tipa"
+
+#: ../gdl/gdl-dock.c:228
+msgid "Float X"
+msgstr "Plutajuće X"
+
+#: ../gdl/gdl-dock.c:229
+msgid "X coordinate for a floating dock"
+msgstr "X koordinata plutajućeg objekta za pripajanje"
+
+#: ../gdl/gdl-dock.c:236
+msgid "Float Y"
+msgstr "Plutajuće Y"
+
+#: ../gdl/gdl-dock.c:237
+msgid "Y coordinate for a floating dock"
+msgstr "Y koordinata plutajućeg objekta za pripajanje"
+
+#: ../gdl/gdl-dock.c:255
+msgid "Skip taskbar"
+msgstr "Preskoči traku zadataka"
+
+#: ../gdl/gdl-dock.c:256
+msgid ""
+"Whether or not to prevent a floating dock window from appearing in the "
+"taskbar"
+msgstr ""
+"Da li ili ne spriječiti plutajući sidrišni prozor da se pojavljuje u traci "
+"zadataka"
+
+#: ../gdl/gdl-dock-item.c:383
+msgid "Orientation"
+msgstr "Orijentacija"
+
+#: ../gdl/gdl-dock-item.c:384
+msgid "Orientation of the docking item"
+msgstr "Orijentacija elementa pristanišne trake"
+
+#: ../gdl/gdl-dock-item.c:399
+msgid "Resizable"
+msgstr "Promjenljive veličine"
+
+#: ../gdl/gdl-dock-item.c:400
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr ""
+"Ako postavljen, panelu  jedinki se može promijeniti veličina kada se dodaj "
+"GtkPanel element"
+
+#: ../gdl/gdl-dock-item.c:407
+msgid "Item behavior"
+msgstr "Ponašanje objekta"
+
+#: ../gdl/gdl-dock-item.c:408
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Opće ponašanje objekta na pristanišnoj traci (može li plutati, je li "
+"zaključan itd.)"
+
+#: ../gdl/gdl-dock-item.c:416 ../gdl/gdl-dock-master.c:205
+msgid "Locked"
+msgstr "Zaključan"
+
+#: ../gdl/gdl-dock-item.c:417
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Ako je postavljeno, objekt na pristanišnoj traci će biti prevučen i ne "
+"prikazuje dršku"
+
+#: ../gdl/gdl-dock-item.c:425
+msgid "Preferred width"
+msgstr "Željena širina"
+
+#: ../gdl/gdl-dock-item.c:426
+msgid "Preferred width for the dock item"
+msgstr "Preferirana širina s pristanišnim objektom"
+
+#: ../gdl/gdl-dock-item.c:432
+msgid "Preferred height"
+msgstr "Željena visina"
+
+#: ../gdl/gdl-dock-item.c:433
+msgid "Preferred height for the dock item"
+msgstr "Preferirana visina za element na pristanišnoj traci"
+
+#: ../gdl/gdl-dock-item.c:447
+msgid "Iconified"
+msgstr "U vidu ikone"
+
+#: ../gdl/gdl-dock-item.c:448
+msgid ""
+"If set, the dock item is hidden but it has a corresponding icon in the dock "
+"bar allowing to show it again."
+msgstr ""
+"Ako je uključeno, sidrišni objekt je sakriven ali ima odgovarajuću ikonu u "
+"sidrišnoj traci koja mu omogućava da se ponovo prikaže."
+
+#: ../gdl/gdl-dock-item.c:464
+msgid "Closed"
+msgstr "Zatvorena"
+
+#: ../gdl/gdl-dock-item.c:465
+msgid "Whether the widget is closed."
+msgstr "Da li je grafička kontrola zatvorena"
+
+#: ../gdl/gdl-dock-item.c:870
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"Možede dodati pristanišni objekt (%p tipa %s) unutar %s. Koristite GdlDock "
+"ili neki drugi složeni pristanišni objekt."
+
+#: ../gdl/gdl-dock-item.c:877
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Pokušaj dodavanja objekta s tipom %s u %s, ali on može sadrži samo jedan "
+"objekt u trenutku; već sadrži objekt tipa %s"
+
+#: ../gdl/gdl-dock-item.c:1565 ../gdl/gdl-dock-item.c:1615
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "Nepodržana pristanišna strategija %s u pristaninom objektu tipa %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1728
+msgid "UnLock"
+msgstr "Otključaj"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1735
+msgid "Hide"
+msgstr "Sakrij"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1740
+msgid "Lock"
+msgstr "Zaključaj"
+
+#: ../gdl/gdl-dock-item.c:2012
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Pokušaj povezivanja nepovezanog objekta %p"
+
+#: ../gdl/gdl-dock-item-grip.c:385
+msgid "Iconify this dock"
+msgstr "Pretvori pristanišnu traku u ikone"
+
+#: ../gdl/gdl-dock-item-grip.c:387
+msgid "Close this dock"
+msgstr "Zatvori pristanišnu traku"
+
+#: ../gdl/gdl-dock-item-grip.c:728
+msgid "Dockitem which 'owns' this grip"
+msgstr "Element na pristanišnoj traci koji sadrži ovu dršku"
+
+#: ../gdl/gdl-dock-layout.c:129
+msgid ""
+"GdlDockMaster or GdlDockObject object which the layout object is attached to"
+msgstr ""
+"GdlDockMaster ili GdlDockObject objekt na koga je objekt rasporeda priključen"
+
+#: ../gdl/gdl-dock-layout.c:136
+msgid "Dirty"
+msgstr "Prljav"
+
+#: ../gdl/gdl-dock-layout.c:137
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr ""
+"Tačno ukoliko su izgledi promijenjeni i treba da budu spremljeni u datoteku"
+
+#: ../gdl/gdl-dock-layout.c:303
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is '%"
+"s'"
+msgstr ""
+"Prilikom učitavanja izgleda: ne zna kako da napravi objekat za panel čiji je "
+"nadimak '%s'"
+
+#: ../gdl/gdl-dock-master.c:199
+msgid "Default title for newly created floating docks"
+msgstr "Podrazumijevani naslov za novokreirane plutajuće pristanišne trake"
+
+#: ../gdl/gdl-dock-master.c:206
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Ako je postavljeno na 1, svi pristanišni elementi povezani na mastera su "
+"zaključani, ako je 0, svi su otključani; -1 indicira nekonzistentnost među "
+"objektima"
+
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:893
+msgid "Switcher Style"
+msgstr "Stil prekidača"
+
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:894
+msgid "Switcher buttons style"
+msgstr "Stil dugmadi prekidača"
+
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:901
+msgid "Tab Position"
+msgstr "Pozicija kartice"
+
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:902
+msgid "Which side of the notebook holds the tabs"
+msgstr "Na kojoj strani se nalaze kartice"
+
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:909
+msgid "Tab reorderable"
+msgstr "Redoslijed kartica promjenljiv"
+
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:910
+msgid "Whether the tab is reorderable by user action"
+msgstr "Da li je redoslijed kartica promjenljiv korisnikovim akcijama ili ne"
+
+#: ../gdl/gdl-dock-master.c:874
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"master %p: ne može dodati objekt %p[%s] u tablicu.  Već postoji element s "
+"ovim imenom (%p)."
+
+#: ../gdl/gdl-dock-master.c:1101
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"Novi upravljač panelom %p je automatski.  Samo ručni objekti panela trebaju "
+"biti imenovani kao upravljači."
+
+#: ../gdl/gdl-dock-master.c:1132
+#, c-format
+msgid "Dock #%d"
+msgstr "Pristanište #%d"
+
+#: ../gdl/gdl-dock-notebook.c:156
+msgid "Page"
+msgstr "Strana"
+
+#: ../gdl/gdl-dock-notebook.c:157
+msgid "The index of the current page"
+msgstr "Indeks trenutne strane"
+
+#: ../gdl/gdl-dock-object.c:205
+msgid "Name"
+msgstr "Naziv"
+
+#: ../gdl/gdl-dock-object.c:206
+msgid "Unique name for identifying the dock object"
+msgstr "Jedinstveno ime da se identificira pristanišni objekat."
+
+#: ../gdl/gdl-dock-object.c:220
+msgid "Long name"
+msgstr "Dugo ime"
+
+#: ../gdl/gdl-dock-object.c:221
+msgid "Human readable name for the dock object"
+msgstr "Čitljivo ime za objekat na pristanišnoj traci"
+
+#: ../gdl/gdl-dock-object.c:234
+msgid "Stock Icon"
+msgstr "Stok ikona"
+
+#: ../gdl/gdl-dock-object.c:235
+msgid "Stock icon for the dock object"
+msgstr "Ikona iz zbirke za pristanišni objekt"
+
+#: ../gdl/gdl-dock-object.c:250
+msgid "Pixbuf Icon"
+msgstr "Pixbuf ikona"
+
+#: ../gdl/gdl-dock-object.c:251
+msgid "Pixbuf icon for the dock object"
+msgstr "Pixbuf ikona za pristanišni objekat"
+
+#: ../gdl/gdl-dock-object.c:263
+msgid "Dock master"
+msgstr "Upravljač pristanišne trake"
+
+#: ../gdl/gdl-dock-object.c:264
+msgid "Dock master this dock object is bound to"
+msgstr "Glavni objekat pristaništa za koji je vezan ovaj pristanišni objekt"
+
+#: ../gdl/gdl-dock-object.c:638
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Poziv gdl_dock_object_dock u pristanišnom objektu %p (tip objekta je %s) "
+"koji nije implementirao ovaj metod"
+
+#: ../gdl/gdl-dock-object.c:851
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"Pristanišna operacija zahtijevana u nepovezanom objektu %p. Program može "
+"krahirati"
+
+#: ../gdl/gdl-dock-object.c:858
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr "Ne može %p pristati u %p jer pripadaju različitim masterima"
+
+#: ../gdl/gdl-dock-object.c:923
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr "Pokušaj povezivanja s %p već povezan objekt %p (trenutni master: %p)"
+
+#: ../gdl/gdl-dock-paned.c:145
+msgid "Position"
+msgstr "Pozicija"
+
+#: ../gdl/gdl-dock-paned.c:146
+msgid "Position of the divider in pixels"
+msgstr "Pozicija razdjelnika u pikselima"
+
+#: ../gdl/gdl-dock-placeholder.c:166
+msgid "Sticky"
+msgstr "Ljepljivo"
+
+#: ../gdl/gdl-dock-placeholder.c:167
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Kada će držač biti vezana za domaćina ili ići gore u hijerarhiju kada se "
+"domaćin ponovo usidri"
+
+#: ../gdl/gdl-dock-placeholder.c:174
+msgid "Host"
+msgstr "Host"
+
+#: ../gdl/gdl-dock-placeholder.c:175
+msgid "The dock object this placeholder is attached to"
+msgstr "Pristanišni objekt za koji je držač povezan"
+
+#: ../gdl/gdl-dock-placeholder.c:182
+msgid "Next placement"
+msgstr "Sljedeća pozicija"
+
+#: ../gdl/gdl-dock-placeholder.c:183
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"Pozicija objekta koji se usidri za domaćina ako je zahtjev dan da se usidri "
+"na nas"
+
+#: ../gdl/gdl-dock-placeholder.c:193
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Širina objekta kada je povezanna držača"
+
+#: ../gdl/gdl-dock-placeholder.c:201
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Visina objekta kada je povezan na držača"
+
+#: ../gdl/gdl-dock-placeholder.c:207
+msgid "Floating Toplevel"
+msgstr "Plutajući najviši nivo"
+
+#: ../gdl/gdl-dock-placeholder.c:208
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr "Kada držač stoji u tekućem, pristaništu na vrhu"
+
+#: ../gdl/gdl-dock-placeholder.c:214
+msgid "X Coordinate"
+msgstr "X koordinata"
+
+#: ../gdl/gdl-dock-placeholder.c:215
+msgid "X coordinate for dock when floating"
+msgstr "X koordinata za dock kada floata"
+
+#: ../gdl/gdl-dock-placeholder.c:221
+msgid "Y Coordinate"
+msgstr "Y koordinata"
+
+#: ../gdl/gdl-dock-placeholder.c:222
+msgid "Y coordinate for dock when floating"
+msgstr "Y koordinata za dock kada floata"
+
+#: ../gdl/gdl-dock-placeholder.c:514
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Pokušaj sidrenja objekta na nepovezan držač"
+
+#: ../gdl/gdl-dock-placeholder.c:641
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr "Dobijen odvajajući signal od objekta (%p) koji nije naš domaćin %p"
+
+#: ../gdl/gdl-dock-placeholder.c:666
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Nešto ružno se desilo pri dobijanju pozicije djeteta za %p od roditelja %p"
