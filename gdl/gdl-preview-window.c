@@ -59,7 +59,7 @@ gdl_preview_window_draw (GtkWidget *window,
     GdkRGBA selected;
 
     context = gtk_widget_get_style_context (window);
-    gtk_style_context_get_background_color (context, GTK_STATE_FLAG_SELECTED,
+    gtk_style_context_lookup_color (context, "theme_selected_bg_color",
                                             &selected);
 
     if (gtk_widget_get_app_paintable (window))
