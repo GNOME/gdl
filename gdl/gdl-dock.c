@@ -374,7 +374,7 @@ gdl_dock_constructor (GType                  type,
                                          dock->priv->width,
                                          dock->priv->height);
             gtk_window_set_type_hint (GTK_WINDOW (dock->priv->window),
-                                      GDK_WINDOW_TYPE_HINT_NORMAL);
+                                      GDK_WINDOW_TYPE_HINT_TOOLBAR);
 
             gdl_dock_set_skip_taskbar (dock, dock->priv->skip_taskbar);
 
