@@ -400,7 +400,7 @@ gdl_dock_item_class_init (GdlDockItemClass *klass)
                               _("If set, the dock item can be resized when "
                                 "docked in a GtkPanel widget"),
                               TRUE,
-                              G_PARAM_READWRITE));
+                              G_PARAM_READWRITE | GDL_DOCK_PARAM_EXPORT));
 
     g_object_class_install_property (
         object_class, PROP_BEHAVIOR,
@@ -741,6 +741,21 @@ gdl_dock_item_set_property  (GObject      *g_object,
             break;
         case PROP_RESIZE:
             item->priv->resize = g_value_get_boolean (value);
+            {
+                GObject * parent = gtk_widget_get_parent (GTK_WIDGET (item));
+                //if we docked update "resize" child_property of our parent
+                if(parent)
+                {
+                        gboolean resize;
+                        gtk_container_child_get(GTK_CONTAINER(parent),
+                                GTK_WIDGET(item),"resize",&resize,NULL);
+                        if(resize != item->priv->resize)
+                        {
+                                gtk_container_child_set(GTK_CONTAINER(parent),
+                                        GTK_WIDGET(item),"resize",item->priv->resize,NULL);
+                        }
+                }
+            }
             gtk_widget_queue_resize (GTK_WIDGET (item));
             break;
         case PROP_BEHAVIOR:
