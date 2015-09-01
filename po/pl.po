@@ -6,14 +6,14 @@
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Artur Flinta <aflinta@at.kernel.pl>, 2002-2003.
 # Wadim Dziedzic <wdziedzic@aviary.pl>, 2008-2009.
-# Piotr Drąg <piotrdrag@gmail.com>, 2010-2013.
-# Aviary.pl <gnomepl@aviary.pl>, 2008-2013.
+# Piotr Drąg <piotrdrag@gmail.com>, 2010-2015.
+# Aviary.pl <gnomepl@aviary.pl>, 2008-2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-24 03:18+0200\n"
-"PO-Revision-Date: 2013-08-24 03:20+0200\n"
+"POT-Creation-Date: 2015-09-01 03:14+0200\n"
+"PO-Revision-Date: 2015-09-01 03:15+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -25,7 +25,7 @@ msgstr ""
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Poland\n"
 
-#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:729
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:727
 msgid "Controlling dock item"
 msgstr "Kontrolowanie obiektu dokowalnego"
 
@@ -110,65 +110,66 @@ msgstr ""
 "Określa, czy powstrzymywać pojawianie się okna pływającego doku na pasku "
 "zadań"
 
-#: ../gdl/gdl-dock-item.c:385
+#: ../gdl/gdl-dock-item.c:383
 msgid "Orientation"
 msgstr "Ułożenie"
 
-#: ../gdl/gdl-dock-item.c:386
+#: ../gdl/gdl-dock-item.c:384
 msgid "Orientation of the docking item"
 msgstr "Ułożenie elementu dokującego"
 
-#: ../gdl/gdl-dock-item.c:401
+#: ../gdl/gdl-dock-item.c:399
 msgid "Resizable"
 msgstr "Zmienny rozmiar"
 
-#: ../gdl/gdl-dock-item.c:402
+#: ../gdl/gdl-dock-item.c:400
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
-"Określa, czy po zadokowaniu elementu w GtkPanel można zmieniać jego rozmiar"
+"Określa, czy po zadokowaniu elementu w widżecie GtkPanel można zmieniać jego "
+"rozmiar"
 
-#: ../gdl/gdl-dock-item.c:409
+#: ../gdl/gdl-dock-item.c:407
 msgid "Item behavior"
 msgstr "Zachowanie elementu"
 
-#: ../gdl/gdl-dock-item.c:410
+#: ../gdl/gdl-dock-item.c:408
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
 msgstr "Ogólne zachowanie doku (tzn. czy może być pływający, zablokowany itp.)"
 
-#: ../gdl/gdl-dock-item.c:418 ../gdl/gdl-dock-master.c:205
+#: ../gdl/gdl-dock-item.c:416 ../gdl/gdl-dock-master.c:205
 msgid "Locked"
 msgstr "Zablokowany"
 
-#: ../gdl/gdl-dock-item.c:419
+#: ../gdl/gdl-dock-item.c:417
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Po ustawieniu tej opcji, zadokowany element nie wyświetla uchwytu i nie może "
 "być przesuwany"
 
-#: ../gdl/gdl-dock-item.c:427
+#: ../gdl/gdl-dock-item.c:425
 msgid "Preferred width"
 msgstr "Preferowana szerokość"
 
-#: ../gdl/gdl-dock-item.c:428
+#: ../gdl/gdl-dock-item.c:426
 msgid "Preferred width for the dock item"
 msgstr "Preferowana szerokość elementu doku"
 
-#: ../gdl/gdl-dock-item.c:434
+#: ../gdl/gdl-dock-item.c:432
 msgid "Preferred height"
 msgstr "Preferowana wysokość"
 
-#: ../gdl/gdl-dock-item.c:435
+#: ../gdl/gdl-dock-item.c:433
 msgid "Preferred height for the dock item"
 msgstr "Preferowana wysokość elementu doku"
 
-#: ../gdl/gdl-dock-item.c:449
+#: ../gdl/gdl-dock-item.c:447
 msgid "Iconified"
 msgstr "Zmniejszony do ikony"
 
-#: ../gdl/gdl-dock-item.c:450
+#: ../gdl/gdl-dock-item.c:448
 msgid ""
 "If set, the dock item is hidden but it has a corresponding icon in the dock "
 "bar allowing to show it again."
@@ -177,15 +178,15 @@ msgstr ""
 "odpowiadającą mu ikonę na pasku doku, umożliwiającą jego ponowne "
 "wyświetlenie."
 
-#: ../gdl/gdl-dock-item.c:466
+#: ../gdl/gdl-dock-item.c:464
 msgid "Closed"
 msgstr "Zamknięty"
 
-#: ../gdl/gdl-dock-item.c:467
+#: ../gdl/gdl-dock-item.c:465
 msgid "Whether the widget is closed."
-msgstr "Określa, czy widżer jest zamknięty."
+msgstr "Określa, czy widżet jest zamknięty."
 
-#: ../gdl/gdl-dock-item.c:872
+#: ../gdl/gdl-dock-item.c:885
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -194,7 +195,7 @@ msgstr ""
 "Nie można dodać obiektu dokowalnego (%p typu %s) wewnątrz %s. Należy użyć "
 "GdlDock lub innego złożonego obiektu."
 
-#: ../gdl/gdl-dock-item.c:879
+#: ../gdl/gdl-dock-item.c:892
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -203,40 +204,40 @@ msgstr ""
 "Próba dodania widgetu typu %s do %s, ale może on zawierać w danej chwili "
 "tylko jeden element; obecnie zawiera widżet typu %s"
 
-#: ../gdl/gdl-dock-item.c:1567 ../gdl/gdl-dock-item.c:1617
+#: ../gdl/gdl-dock-item.c:1580 ../gdl/gdl-dock-item.c:1630
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr "Nieobsługiwana strategia dokowania %s w obiekcie dokowalnym typu %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1730
+#: ../gdl/gdl-dock-item.c:1743
 msgid "UnLock"
 msgstr "Odblokuj"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1737
+#: ../gdl/gdl-dock-item.c:1750
 msgid "Hide"
 msgstr "Ukryj"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1742
+#: ../gdl/gdl-dock-item.c:1755
 msgid "Lock"
 msgstr "Zablokuj"
 
-#: ../gdl/gdl-dock-item.c:2014
+#: ../gdl/gdl-dock-item.c:2027
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Próba dowiązania niezwiązanego elementu %p"
 
-#: ../gdl/gdl-dock-item-grip.c:387
+#: ../gdl/gdl-dock-item-grip.c:385
 msgid "Iconify this dock"
 msgstr "Zmniejsza dok do ikony"
 
-#: ../gdl/gdl-dock-item-grip.c:389
+#: ../gdl/gdl-dock-item-grip.c:387
 msgid "Close this dock"
 msgstr "Zamyka ten dok"
 
-#: ../gdl/gdl-dock-item-grip.c:730
+#: ../gdl/gdl-dock-item-grip.c:728
 msgid "Dockitem which 'owns' this grip"
 msgstr "Element doku, który jest właścicielem uchwytu"
 
@@ -262,7 +263,7 @@ msgid ""
 "'%s'"
 msgstr ""
 "Problem podczas ładowania układu graficznego: nie wiadomo jak utworzyć "
-"obiekt dokowalny o pseudonimie \"%s\""
+"obiekt dokowalny o pseudonimie „%s”"
 
 #: ../gdl/gdl-dock-master.c:199
 msgid "Default title for newly created floating docks"
@@ -277,27 +278,27 @@ msgstr ""
 "są zablokowane, jeśli 0 to odblokowane; -1 oznacza niejednorodność wśród "
 "elementów"
 
-#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:895
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:893
 msgid "Switcher Style"
 msgstr "Styl przełącznika"
 
-#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:896
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:894
 msgid "Switcher buttons style"
 msgstr "Styl przycisków przełącznika"
 
-#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:903
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:901
 msgid "Tab Position"
 msgstr "Pozycja karty"
 
-#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:904
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:902
 msgid "Which side of the notebook holds the tabs"
 msgstr "Która strona notatnika przechowuje karty"
 
-#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:911
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:909
 msgid "Tab reorderable"
 msgstr "Można zmieniać kolejność kart"
 
-#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:912
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:910
 msgid "Whether the tab is reorderable by user action"
 msgstr "Określa, czy użytkownik może zmieniać kolejność kart"
 
