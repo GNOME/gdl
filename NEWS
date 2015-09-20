@@ -1,3 +1,14 @@
+Changes in 3.18.0
+
+* Use "resize" property and fix a bug in panel widget (Vladimir Motilenko)
+* bgo #751239: fix preview window color (Lukas K)
+* bgo #729325 - Set type hint of dragged-out windows to TOOLBAR (Lukas K)
+
+* Translation: ca Jordi Ma
+* Translation: pl Piotr Drąg
+* Translation: pt Pedro Albuquerque
+
+
 Changes in 3.16.0
 
 * Translation: bs Samir Ribic
