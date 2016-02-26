@@ -204,6 +204,7 @@ struct _GdlDockItemPrivate {
     gint                 dragoff_x, dragoff_y;
 
     GtkWidget *menu;
+    GtkWidget *menu_item_hide;
 
     gboolean   grip_shown;
     GtkWidget *grip;
@@ -627,6 +628,7 @@ gdl_dock_item_init (GdlDockItem *item)
     item->priv->in_predrag = item->priv->in_drag = FALSE;
 
     item->priv->menu = NULL;
+    item->priv->menu_item_hide = NULL;
 
     item->priv->preferred_width = item->priv->preferred_height = -1;
     item->priv->tab_label = NULL;
@@ -862,6 +864,7 @@ gdl_dock_item_dispose (GObject *object)
     if (priv->menu) {
         gtk_menu_detach (GTK_MENU (priv->menu));
         priv->menu = NULL;
+        priv->menu_item_hide = NULL;
     }
 
     if (priv->grip) {
@@ -1751,6 +1754,7 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
             gtk_menu_shell_append (GTK_MENU_SHELL (item->priv->menu), mitem);
             g_signal_connect (mitem, "activate",
                               G_CALLBACK (gdl_dock_item_hide_cb), item);
+            item->priv->menu_item_hide = mitem;
             /* Lock menuitem */
             mitem = gtk_menu_item_new_with_label (_("Lock"));
             gtk_menu_shell_append (GTK_MENU_SHELL (item->priv->menu), mitem);
@@ -1761,6 +1765,8 @@ gdl_dock_item_popup_menu (GdlDockItem  *item,
 
     /* Show popup menu. */
     gtk_widget_show_all (item->priv->menu);
+    if (item->priv->menu_item_hide != NULL)
+        gtk_widget_set_visible(item->priv->menu_item_hide, !GDL_DOCK_ITEM_CANT_CLOSE(item));
     gtk_menu_popup (GTK_MENU (item->priv->menu), NULL, NULL, NULL, NULL,
                     button, time);
 }
