@@ -1,3 +1,12 @@
+Changes in 3.22.0
+
+* Really enforce GDL_DOCK_ITEM_BEH_CANT_CLOSE (Lukas K)
+
+* Translation: oc Cédric Valmary
+* Translation: fr Alexandre Franke
+* Translation: pl Piotr Drąg
+
+
 Changes in 3.20.0
 
 * No changes
