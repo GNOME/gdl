@@ -1,0 +1,493 @@
+# Friulian translation for gdl.
+# Copyright (C) 2017 gdl's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gdl package.
+# Fabio Tomat <f.t.public@gmail.com>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gdl master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gdl&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-11-16 12:52+0000\n"
+"PO-Revision-Date: 2017-04-10 12:08+0200\n"
+"Language-Team: Friulian <fur@li.org>\n"
+"Language: fur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:727
+msgid "Controlling dock item"
+msgstr "Element a incàs di control"
+
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Element a incàs che al 'à' cheste etichete di schede"
+
+#: ../gdl/gdl-dock-bar.c:127 ../gdl/gdl-dock-layout.c:128
+msgid "Master"
+msgstr "Principâl"
+
+#: ../gdl/gdl-dock-bar.c:128
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr "Ogjet GdlDockMaster dulà che il widget de sbare dai incàs e je tacade"
+
+#: ../gdl/gdl-dock-bar.c:140
+msgid "Dockbar style"
+msgstr "Stîl sbare dai incàs"
+
+#: ../gdl/gdl-dock-bar.c:141
+msgid "Dockbar style to show items on it"
+msgstr "Stîl de sbare dai incàs par mostrâ i elements parsore"
+
+#: ../gdl/gdl-dock.c:197
+msgid "Floating"
+msgstr "Flotant"
+
+#: ../gdl/gdl-dock.c:198
+msgid "Whether the dock is floating in its own window"
+msgstr "Indiche se l'incàs al è flotant intal so barcon"
+
+#: ../gdl/gdl-dock.c:205 ../gdl/gdl-dock-master.c:198
+msgid "Default title"
+msgstr "Titul predefinît"
+
+#: ../gdl/gdl-dock.c:206
+msgid "Default title for the newly created floating docks"
+msgstr "Titul predefinît pai gnûfs incàs flotants creâts"
+
+#: ../gdl/gdl-dock.c:212 ../gdl/gdl-dock-placeholder.c:192
+msgid "Width"
+msgstr "Largjece"
+
+#: ../gdl/gdl-dock.c:213
+msgid "Width for the dock when it's of floating type"
+msgstr "Largjece dal incàs cuant che al è di gjenar flotant"
+
+#: ../gdl/gdl-dock.c:220 ../gdl/gdl-dock-placeholder.c:200
+msgid "Height"
+msgstr "Altece"
+
+#: ../gdl/gdl-dock.c:221
+msgid "Height for the dock when it's of floating type"
+msgstr "Altece dal incàs cuant che al è di gjenar flotant"
+
+#: ../gdl/gdl-dock.c:228
+msgid "Float X"
+msgstr "X flotant"
+
+#: ../gdl/gdl-dock.c:229
+msgid "X coordinate for a floating dock"
+msgstr "Coordenade X par un incàs flotant"
+
+#: ../gdl/gdl-dock.c:236
+msgid "Float Y"
+msgstr "Y flotant"
+
+#: ../gdl/gdl-dock.c:237
+msgid "Y coordinate for a floating dock"
+msgstr "Coordenade Y par un incàs flotant"
+
+#: ../gdl/gdl-dock.c:255
+msgid "Skip taskbar"
+msgstr "Salte la sbare des ativitâts"
+
+#: ../gdl/gdl-dock.c:256
+msgid ""
+"Whether or not to prevent a floating dock window from appearing in the "
+"taskbar"
+msgstr ""
+"Indiche se si scugne evitâ o no che un barcon di incàs flotant al aparissi "
+"te sbare des ativitâts"
+
+#: ../gdl/gdl-dock-item.c:384
+msgid "Orientation"
+msgstr "Orientament"
+
+#: ../gdl/gdl-dock-item.c:385
+msgid "Orientation of the docking item"
+msgstr "Orientament dal element a incàs"
+
+#: ../gdl/gdl-dock-item.c:400
+msgid "Resizable"
+msgstr "Ridimensionabil"
+
+#: ../gdl/gdl-dock-item.c:401
+msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
+msgstr ""
+"Se stabilît, l'element a incàs al pues cambiâ dimension cuant che al è "
+"incassât intun widget GtkPanel"
+
+#: ../gdl/gdl-dock-item.c:408
+msgid "Item behavior"
+msgstr "Compuartament element"
+
+#: ../gdl/gdl-dock-item.c:409
+msgid ""
+"General behavior for the dock item (i.e. whether it can float, if it's "
+"locked, etc.)"
+msgstr ""
+"Compuartament gjenerâl pal element a incàs (p.e. indiche se al pues flotâ, "
+"se al è blocât, e vie indenant)"
+
+#: ../gdl/gdl-dock-item.c:417 ../gdl/gdl-dock-master.c:205
+msgid "Locked"
+msgstr "Blocât"
+
+#: ../gdl/gdl-dock-item.c:418
+msgid ""
+"If set, the dock item cannot be dragged around and it doesn't show a grip"
+msgstr ""
+"Se stabilît, l'element a incàs nol pues jessi strissinât ator e nol mostre "
+"un rimpin"
+
+#: ../gdl/gdl-dock-item.c:426
+msgid "Preferred width"
+msgstr "Largjece preferide"
+
+#: ../gdl/gdl-dock-item.c:427
+msgid "Preferred width for the dock item"
+msgstr "Largjece preferide dal element a incàs"
+
+#: ../gdl/gdl-dock-item.c:433
+msgid "Preferred height"
+msgstr "Altece preferide"
+
+#: ../gdl/gdl-dock-item.c:434
+msgid "Preferred height for the dock item"
+msgstr "Altece preferide dal element a incàs"
+
+#: ../gdl/gdl-dock-item.c:448
+msgid "Iconified"
+msgstr "Ridot a icone"
+
+#: ../gdl/gdl-dock-item.c:449
+msgid ""
+"If set, the dock item is hidden but it has a corresponding icon in the dock "
+"bar allowing to show it again."
+msgstr ""
+"Se stabilît, l'element a incàs al è platât ma al à une icone corispuindinte "
+"inte sbare dai incàs che e permet di tornâlu a viodi."
+
+#: ../gdl/gdl-dock-item.c:465
+msgid "Closed"
+msgstr "Sierât"
+
+#: ../gdl/gdl-dock-item.c:466
+msgid "Whether the widget is closed."
+msgstr "Indiche se il widget al è sierât."
+
+#: ../gdl/gdl-dock-item.c:888
+#, c-format
+msgid ""
+"You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
+"some other compound dock object."
+msgstr ""
+"No si pues zontâ un ogjet a incàs (%p di gjenar %s) dentri un %s. Dopre un "
+"GdlDock o cualchi altri ogjet di incàs compost."
+
+#: ../gdl/gdl-dock-item.c:895
+#, c-format
+msgid ""
+"Attempting to add a widget with type %s to a %s, but it can only contain one "
+"widget at a time; it already contains a widget of type %s"
+msgstr ""
+"Si cîr di zontâ un widget cun gjenar %s suntun %s, ma chest al pues contignî "
+"un widget ae volte; al conten za un widget di gjenar %s"
+
+#: ../gdl/gdl-dock-item.c:1583 ../gdl/gdl-dock-item.c:1633
+#, c-format
+msgid "Unsupported docking strategy %s in dock object of type %s"
+msgstr "Strategjie di incàs %s no supuartade tal ogjet di incàs di gjenar %s"
+
+#. UnLock menuitem
+#: ../gdl/gdl-dock-item.c:1746
+msgid "UnLock"
+msgstr "Sbloche"
+
+#. Hide menuitem.
+#: ../gdl/gdl-dock-item.c:1753
+msgid "Hide"
+msgstr "Plate"
+
+#. Lock menuitem
+#: ../gdl/gdl-dock-item.c:1759
+msgid "Lock"
+msgstr "Bloche"
+
+#: ../gdl/gdl-dock-item.c:2033
+#, c-format
+msgid "Attempt to bind an unbound item %p"
+msgstr "Tentatîf di leâ un element %p sleât"
+
+#: ../gdl/gdl-dock-item-grip.c:385
+msgid "Iconify this dock"
+msgstr "Met a icone chest incàs"
+
+#: ../gdl/gdl-dock-item-grip.c:387
+msgid "Close this dock"
+msgstr "Siere chest incàs"
+
+#: ../gdl/gdl-dock-item-grip.c:728
+msgid "Dockitem which 'owns' this grip"
+msgstr "Element a incàs che al 'à' chest rimpin"
+
+#: ../gdl/gdl-dock-layout.c:129
+msgid ""
+"GdlDockMaster or GdlDockObject object which the layout object is attached to"
+msgstr ""
+"Ogjet GdlDockMaster o GdlDockObject dulà che l'ogjet disposizion al è tacât"
+
+#: ../gdl/gdl-dock-layout.c:136
+msgid "Dirty"
+msgstr "Sporc"
+
+#: ../gdl/gdl-dock-layout.c:137
+msgid "True if the layouts have changed and need to be saved to a file"
+msgstr ""
+"Vêr se lis disposizions a son cambiadis e a scugnin jessi salvadis suntun "
+"file"
+
+#: ../gdl/gdl-dock-layout.c:303
+#, c-format
+msgid ""
+"While loading layout: don't know how to create a dock object whose nick is "
+"'%s'"
+msgstr ""
+"Dilunc il cjariament de disposizion: no si sa cemût creâ un ogjet di incàs "
+"che al à '%s' come sorenon"
+
+#: ../gdl/gdl-dock-master.c:199
+msgid "Default title for newly created floating docks"
+msgstr "Titul predefinît pai gnûfs incàs flotants creâts"
+
+#: ../gdl/gdl-dock-master.c:206
+msgid ""
+"If is set to 1, all the dock items bound to the master are locked; if it's "
+"0, all are unlocked; -1 indicates inconsistency among the items"
+msgstr ""
+"Se metût a 1 ducj i elements di incàs leâts al principâl a son blocâts; se "
+"al è 0, ducj a son sblocâts; -1 al indiche incoerence tra i elements"
+
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:893
+msgid "Switcher Style"
+msgstr "Stîl dal comutadôr"
+
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:894
+msgid "Switcher buttons style"
+msgstr "Stîl dai botons dal comutadôr"
+
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:901
+msgid "Tab Position"
+msgstr "Posizion schede"
+
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:902
+msgid "Which side of the notebook holds the tabs"
+msgstr "Di ce bande dal portatil che a vegnin tignudis lis schedis"
+
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:909
+msgid "Tab reorderable"
+msgstr "Schede che si pues tornâ a ordenâ"
+
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:910
+msgid "Whether the tab is reorderable by user action"
+msgstr ""
+"Indiche se la schede a pues jessi tornade a meti in ordin cuntune azion dal "
+"utent"
+
+#: ../gdl/gdl-dock-master.c:874
+#, c-format
+msgid ""
+"master %p: unable to add object %p[%s] to the hash.  There already is an "
+"item with that name (%p)."
+msgstr ""
+"il principâl %p: impussibil zontâ l'ogjet %p[%s] al hash. Al esist za un "
+"element cun chel non (%p)."
+
+#: ../gdl/gdl-dock-master.c:1101
+#, c-format
+msgid ""
+"The new dock controller %p is automatic.  Only manual dock objects should be "
+"named controller."
+msgstr ""
+"Il gnûf controlôr di incàs %p al è automatic. Dome i ogjets di incàs manuâi "
+"a varessin di jessi clamâts controlôrs."
+
+#: ../gdl/gdl-dock-master.c:1132
+#, c-format
+msgid "Dock #%d"
+msgstr "Incàs #%d"
+
+#: ../gdl/gdl-dock-notebook.c:156
+msgid "Page"
+msgstr "Pagjine"
+
+#: ../gdl/gdl-dock-notebook.c:157
+msgid "The index of the current page"
+msgstr "L'indiç de pagjine atuâl"
+
+#: ../gdl/gdl-dock-object.c:205
+msgid "Name"
+msgstr "Non"
+
+#: ../gdl/gdl-dock-object.c:206
+msgid "Unique name for identifying the dock object"
+msgstr "Non univoc par identificâ l'ogjet di incàs"
+
+#: ../gdl/gdl-dock-object.c:220
+msgid "Long name"
+msgstr "Non lunc"
+
+#: ../gdl/gdl-dock-object.c:221
+msgid "Human readable name for the dock object"
+msgstr "Non leibil pal ogjet di incàs"
+
+#: ../gdl/gdl-dock-object.c:234
+msgid "Stock Icon"
+msgstr "Icone riserve"
+
+#: ../gdl/gdl-dock-object.c:235
+msgid "Stock icon for the dock object"
+msgstr "Icone di riserve pal ogjet di incàs"
+
+#: ../gdl/gdl-dock-object.c:250
+msgid "Pixbuf Icon"
+msgstr "Icone pixbuf"
+
+#: ../gdl/gdl-dock-object.c:251
+msgid "Pixbuf icon for the dock object"
+msgstr "Icone pixbuf pal ogjet di incàs"
+
+#: ../gdl/gdl-dock-object.c:263
+msgid "Dock master"
+msgstr "Incàs principâl"
+
+#: ../gdl/gdl-dock-object.c:264
+msgid "Dock master this dock object is bound to"
+msgstr "Incàs principâ dulà che chest ogjet di incàs al è leât"
+
+#: ../gdl/gdl-dock-object.c:638
+#, c-format
+msgid ""
+"Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
+"hasn't implemented this method"
+msgstr ""
+"Clamade a gdl_dock_object_dock intun ogjet di incàs %p (il gjenar di ogjet "
+"al è %s) che nol à implementât chest metodi"
+
+#: ../gdl/gdl-dock-object.c:851
+#, c-format
+msgid ""
+"Dock operation requested in a non-bound object %p. The application might "
+"crash"
+msgstr ""
+"Domandade operazion di incàs intun ogjet %p no leât. La aplicazion e podarès "
+"colassâ"
+
+#: ../gdl/gdl-dock-object.c:858
+#, c-format
+msgid "Cannot dock %p to %p because they belong to different masters"
+msgstr ""
+"Impussibil incassâ %p a %p parcè che a apartegnin a diferents principâi"
+
+#: ../gdl/gdl-dock-object.c:923
+#, c-format
+msgid ""
+"Attempt to bind to %p an already bound dock object %p (current master: %p)"
+msgstr ""
+"Tentatîf di leâ a %p un ogjet di incàs %p za leât (principâl atuâl: %p)"
+
+#: ../gdl/gdl-dock-paned.c:145
+msgid "Position"
+msgstr "Posizion"
+
+#: ../gdl/gdl-dock-paned.c:146
+msgid "Position of the divider in pixels"
+msgstr "Posizion de paradane in pixel"
+
+#: ../gdl/gdl-dock-placeholder.c:166
+msgid "Sticky"
+msgstr "Adesîf"
+
+#: ../gdl/gdl-dock-placeholder.c:167
+msgid ""
+"Whether the placeholder will stick to its host or move up the hierarchy when "
+"the host is redocked"
+msgstr ""
+"Se il segnepuest al restarà tacât al so contignidôr o al larà su pe "
+"gjerarchie cuant che il contignidôr si torne a incassâ"
+
+#: ../gdl/gdl-dock-placeholder.c:174
+msgid "Host"
+msgstr "Contignidôr"
+
+#: ../gdl/gdl-dock-placeholder.c:175
+msgid "The dock object this placeholder is attached to"
+msgstr "L'ogjet dal incàs dulà che chest segnepuest al è tacât"
+
+#: ../gdl/gdl-dock-placeholder.c:182
+msgid "Next placement"
+msgstr "Plaçament sucessîf"
+
+#: ../gdl/gdl-dock-placeholder.c:183
+msgid ""
+"The position an item will be docked to our host if a request is made to dock "
+"to us"
+msgstr ""
+"La posizion dulà che un element al vignarà incassât tal nestri contignidôr "
+"se nus rive une domande di incassadure"
+
+#: ../gdl/gdl-dock-placeholder.c:193
+msgid "Width for the widget when it's attached to the placeholder"
+msgstr "Largjece pal widget cuant che al è tacât al segnepuest"
+
+#: ../gdl/gdl-dock-placeholder.c:201
+msgid "Height for the widget when it's attached to the placeholder"
+msgstr "Altece pal widget cuant che al è tacât al segnepuest"
+
+#: ../gdl/gdl-dock-placeholder.c:207
+msgid "Floating Toplevel"
+msgstr "Nivel superiôr flotant"
+
+#: ../gdl/gdl-dock-placeholder.c:208
+msgid "Whether the placeholder is standing in for a floating toplevel dock"
+msgstr ""
+"Indiche se il segnepuest al è in pins par un incàs di nivel superiôr flotant"
+
+#: ../gdl/gdl-dock-placeholder.c:214
+msgid "X Coordinate"
+msgstr "Coordenade X"
+
+#: ../gdl/gdl-dock-placeholder.c:215
+msgid "X coordinate for dock when floating"
+msgstr "Coordenade X par incàs cuant che al è flotant"
+
+#: ../gdl/gdl-dock-placeholder.c:221
+msgid "Y Coordinate"
+msgstr "Coordenade Y"
+
+#: ../gdl/gdl-dock-placeholder.c:222
+msgid "Y coordinate for dock when floating"
+msgstr "Coordenade Y par incàs cuant che al è flotant"
+
+#: ../gdl/gdl-dock-placeholder.c:514
+msgid "Attempt to dock a dock object to an unbound placeholder"
+msgstr "Cîr di incassâ un ogjet di incàs suntun segnepuest cence leam"
+
+#: ../gdl/gdl-dock-placeholder.c:641
+#, c-format
+msgid "Got a detach signal from an object (%p) who is not our host %p"
+msgstr ""
+"Si à vût un segnâl di distac di un ogjet (%p) che nol è in nestri "
+"contignidôr %p"
+
+#: ../gdl/gdl-dock-placeholder.c:666
+#, c-format
+msgid ""
+"Something weird happened while getting the child placement for %p from "
+"parent %p"
+msgstr ""
+"Alc di strani al è sucedût intant che si veve il plaçament dal fi par %p dal "
+"gjenitôr %p"
