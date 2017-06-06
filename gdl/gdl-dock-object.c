@@ -304,6 +304,7 @@ gdl_dock_object_class_init (GdlDockObjectClass *klass)
 
     /**
      * GdlDockObject::dock:
+     * @item: The docked dock object.
      * @requestor: The widget to dock
      * @position: The position for the child
      * @other_data: (allow-none): Optional data giving additional information
