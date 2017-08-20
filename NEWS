@@ -1,3 +1,14 @@
+Changes in 3.25.91
+
+* Remove ome run time warnings (Sébastien Granjoux)
+* Convert various source files to UTF-8 (Emmanuele Bassi)
+* dock-object: fix gtk-doc comment for dock signal (Ting-Wei Lan)
+
+* Translation: eo Kristjan Schmidt
+* Translation: fur Fabio Tomat
+* Translation: da Alan Mortensen
+
+
 Changes in 3.22.0
 
 * Really enforce GDL_DOCK_ITEM_BEH_CANT_CLOSE (Lukas K)
