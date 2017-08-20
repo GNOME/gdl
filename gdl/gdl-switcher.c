@@ -869,8 +869,7 @@ gdl_switcher_class_init (GdlSwitcherClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
     static const gchar button_style[] =
        "* {\n"
-           "-GtkWidget-focus-line-width : 1;\n"
-           "-GtkWidget-focus-padding : 1;\n"
+           "outline-width : 1px;\n"
            "padding: 0;\n"
        "}";
 
