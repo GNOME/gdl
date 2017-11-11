@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gdl&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-08-19 16:47+0000\n"
+"POT-Creation-Date: 2017-04-10 10:09+0000\n"
 "PO-Revision-Date: 2016-11-16 13:43+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -29,7 +29,7 @@ msgstr "Styrende dokelement"
 
 #: ../gdl/deprecated/gdl-dock-tablabel.c:140
 msgid "Dockitem which 'owns' this tablabel"
-msgstr "Dokelement som \"ejer\" denne tablabel"
+msgstr "Dokelement som “ejer” denne tablabel"
 
 #: ../gdl/gdl-dock-bar.c:127 ../gdl/gdl-dock-layout.c:128
 msgid "Master"
@@ -236,7 +236,7 @@ msgstr "Luk denne dok"
 
 #: ../gdl/gdl-dock-item-grip.c:728
 msgid "Dockitem which 'owns' this grip"
-msgstr "Dokelement som \"ejer\" dette greb"
+msgstr "Dokelement som “ejer” dette greb"
 
 #: ../gdl/gdl-dock-layout.c:129
 msgid ""
@@ -257,7 +257,7 @@ msgid ""
 "While loading layout: don't know how to create a dock object whose nick is "
 "'%s'"
 msgstr ""
-"Ved indlæsning af layout: ved ikke hvordan et dokobjekt ved navn \"%s\" "
+"Ved indlæsning af layout: ved ikke hvordan et dokobjekt ved navn “%s” "
 "oprettes"
 
 #: ../gdl/gdl-dock-master.c:199
@@ -268,7 +268,9 @@ msgstr "Standardtitel for nyoprettede flydende dokke"
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
-msgstr "Hvis sat til 1, vil alle dokelementer bundet til master være låst; hvis 0, vil alle være låst op; -1 angiver indbyrdes inkonsistens elementerne imellem"
+msgstr ""
+"Hvis sat til 1, vil alle dokelementer bundet til master være låst; hvis 0, "
+"vil alle være låst op; -1 angiver indbyrdes inkonsistens elementerne imellem"
 
 #: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:893
 msgid "Switcher Style"
@@ -487,7 +489,7 @@ msgstr ""
 "ophav %p"
 
 #~ msgid "Could not load layout user interface file '%s'"
-#~ msgstr "Kunne ikke indlæse brugergrænseflade-layoutfilen \"%s\""
+#~ msgstr "Kunne ikke indlæse brugergrænseflade-layoutfilen “%s”"
 
 #~ msgid "Visible"
 #~ msgstr "Synlig"
@@ -559,13 +561,13 @@ msgstr ""
 #~ msgstr "Kopier"
 
 #~ msgid "_Find..."
-#~ msgstr "_Find..."
+#~ msgstr "_Find …"
 
 #~ msgid "_Paste"
 #~ msgstr "Sæt ind"
 
 #~ msgid "_Replace..."
-#~ msgstr "E_rstat..."
+#~ msgstr "E_rstat …"
 
 #~ msgid "Scintilla Editor"
 #~ msgstr "Scintilla-bearbejder"
