@@ -1,3 +1,10 @@
+Changes in 3.34.0
+
+* omment invalid <category> in DOAP file (Andre Klapper)
+
+* Translation: nl (Nathan Follens)
+* Translation: ro (Florentina Mușat)
+
 Changes in 3.28.0
 
 * bgo#791913 - Convert Latin-1-encoded characters to UTF-8 (Ting-Wei Lan)
