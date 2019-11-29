@@ -416,7 +416,8 @@ gdl_dock_object_finalize (GObject *g_object)
     g_free (object->priv->name);
     g_free (object->priv->long_name);
     g_free (object->priv->stock_id);
-    g_free (object->priv->pixbuf_icon);
+    if (object->priv->pixbuf_icon)
+        g_object_unref (object->priv->pixbuf_icon);
 
     G_OBJECT_CLASS (gdl_dock_object_parent_class)->finalize (g_object);
 }
