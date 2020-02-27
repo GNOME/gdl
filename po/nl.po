@@ -6,16 +6,16 @@
 # Tino Meinen <a.t.meinen@chello.nl>, 2003.
 # Daniel van Eeden <daniel_e@dds.nl>, 2004.
 # Wouter Bolsterlee <wbolster@gnome.org>, 2008–2011.
-# Nathan Follens <nthn@unseen.is>, 2019.
+# Nathan Follens <nthn@unseen.is>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gdl/issues\n"
-"POT-Creation-Date: 2018-06-10 16:12+0000\n"
+"POT-Creation-Date: 2019-11-29 19:39+0000\n"
 "PO-Revision-Date: 2019-02-26 21:13+0100\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
-"Language-Team: Dutch <vertaling@nl.linux.org>\n"
+"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -369,7 +369,7 @@ msgstr "Dok-meester"
 msgid "Dock master this dock object is bound to"
 msgstr "Dok-meester aan welke dit dok is gebonden"
 
-#: ../gdl/gdl-dock-object.c:639
+#: ../gdl/gdl-dock-object.c:640
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -378,7 +378,7 @@ msgstr ""
 "Aanroep naar gdl_dock_object_dock in een dok-object %p (object-type is %s) "
 "die deze methode niet heeft geïmplementeerd"
 
-#: ../gdl/gdl-dock-object.c:852
+#: ../gdl/gdl-dock-object.c:853
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -387,13 +387,13 @@ msgstr ""
 "Dok-bewerking aangevraagd voor een ongebonden object %p. De toepassing kan "
 "mogelijk crashen"
 
-#: ../gdl/gdl-dock-object.c:859
+#: ../gdl/gdl-dock-object.c:860
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "Kan %p niet vastzetten aan %p omdat ze aan verschillende meesters toebehoren"
 
-#: ../gdl/gdl-dock-object.c:924
+#: ../gdl/gdl-dock-object.c:925
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
