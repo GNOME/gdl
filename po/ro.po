@@ -7,59 +7,128 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gdl&component=general\n"
-"POT-Creation-Date: 2010-04-12 21:19+0000\n"
-"PO-Revision-Date: 2009-09-08 16:37+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gdl/issues\n"
+"POT-Creation-Date: 2020-03-31 18:10+0000\n"
+"PO-Revision-Date: 2020-07-07 15:29+0200\n"
 "Last-Translator: Adi Roiban <adi@roiban.ro>\n"
 "Language-Team: Gnome Romanian Team <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.3.1\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Launchpad-Export-Date: 2009-08-22 01:28+0000\n"
 
-#: ../gdl/gdl-dock-item-grip.c:342
-msgid "Iconify this dock"
-msgstr "Minimizează acest doc"
-
-#: ../gdl/gdl-dock-item-grip.c:344
-msgid "Close this dock"
-msgstr "Închide acest doc"
-
-#: ../gdl/gdl-dock-item-grip.c:662 ../gdl/gdl-dock-tablabel.c:128
+#: ../gdl/deprecated/gdl-dock-tablabel.c:139 ../gdl/gdl-dock-item-grip.c:727
 msgid "Controlling dock item"
 msgstr "Elementul detașabil comandat"
 
-#: ../gdl/gdl-dock-item-grip.c:663
-msgid "Dockitem which 'owns' this grip"
-msgstr "Elementul detașabil care deține acest mâner"
+#: ../gdl/deprecated/gdl-dock-tablabel.c:140
+msgid "Dockitem which 'owns' this tablabel"
+msgstr "Element detașabil care deține acest „tablabel”"
 
-#: ../gdl/gdl-dock-item.c:254
+#: ../gdl/gdl-dock-bar.c:127 ../gdl/gdl-dock-layout.c:128
+msgid "Master"
+msgstr "Stăpân"
+
+#: ../gdl/gdl-dock-bar.c:128
+msgid "GdlDockMaster object which the dockbar widget is attached to"
+msgstr ""
+"Obiectul de tip GdlDockMaster de care aparține widgetul bară de atașare"
+
+#: ../gdl/gdl-dock-bar.c:140
+msgid "Dockbar style"
+msgstr "Stil bară de atașare"
+
+#: ../gdl/gdl-dock-bar.c:141
+msgid "Dockbar style to show items on it"
+msgstr "Stil de afișare a elementelor pe bara de atașare"
+
+#: ../gdl/gdl-dock.c:197
+msgid "Floating"
+msgstr "Flotant"
+
+#: ../gdl/gdl-dock.c:198
+msgid "Whether the dock is floating in its own window"
+msgstr "Dacă docul este flotant într-o fereastră proprie"
+
+#: ../gdl/gdl-dock.c:205 ../gdl/gdl-dock-master.c:198
+msgid "Default title"
+msgstr "Titlu implicit"
+
+#: ../gdl/gdl-dock.c:206
+msgid "Default title for the newly created floating docks"
+msgstr "Titlul implicit pentru docurile flotante nou create"
+
+#: ../gdl/gdl-dock.c:212 ../gdl/gdl-dock-placeholder.c:192
+msgid "Width"
+msgstr "Lățime"
+
+#: ../gdl/gdl-dock.c:213
+msgid "Width for the dock when it's of floating type"
+msgstr "Lățimea docului când este de tip flotant"
+
+#: ../gdl/gdl-dock.c:220 ../gdl/gdl-dock-placeholder.c:200
+msgid "Height"
+msgstr "Înălțime"
+
+#: ../gdl/gdl-dock.c:221
+msgid "Height for the dock when it's of floating type"
+msgstr "Înălțimea docului când este de tip flotant"
+
+#: ../gdl/gdl-dock.c:228
+msgid "Float X"
+msgstr "Flotant X"
+
+#: ../gdl/gdl-dock.c:229
+msgid "X coordinate for a floating dock"
+msgstr "Coordonata X a unui doc flotant"
+
+#: ../gdl/gdl-dock.c:236
+msgid "Float Y"
+msgstr "Flotant Y"
+
+#: ../gdl/gdl-dock.c:237
+msgid "Y coordinate for a floating dock"
+msgstr "Coordonata X a unui doc flotant"
+
+#: ../gdl/gdl-dock.c:255
+msgid "Skip taskbar"
+msgstr "Omite bara de sarcini"
+
+#: ../gdl/gdl-dock.c:256
+msgid ""
+"Whether or not to prevent a floating dock window from appearing in the "
+"taskbar"
+msgstr ""
+"Să se prevină sau nu fereastra andocabilă plutitoare de la apariția în bara "
+"cu unelte"
+
+#: ../gdl/gdl-dock-item.c:384
 msgid "Orientation"
 msgstr "Orientare"
 
-#: ../gdl/gdl-dock-item.c:255
+#: ../gdl/gdl-dock-item.c:385
 msgid "Orientation of the docking item"
 msgstr "Orientarea elementului detașabil"
 
-#: ../gdl/gdl-dock-item.c:270
+#: ../gdl/gdl-dock-item.c:400
 msgid "Resizable"
 msgstr "Redimensionabil"
 
-#: ../gdl/gdl-dock-item.c:271
+#: ../gdl/gdl-dock-item.c:401
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Dacă opțiunea este activată, elementul detașabil poate fi redimensionat când "
 "este atașat unui widget GtkPanel"
 
-#: ../gdl/gdl-dock-item.c:278
+#: ../gdl/gdl-dock-item.c:408
 msgid "Item behavior"
 msgstr "Comportament element"
 
-#: ../gdl/gdl-dock-item.c:279
+#: ../gdl/gdl-dock-item.c:409
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -67,34 +136,54 @@ msgstr ""
 "Regimul general de funcționare al elementului detașabil (ex: dacă poate fi "
 "detașat în afara ferestrei, dacă este blocată deplasarea sa, etc.)"
 
-#: ../gdl/gdl-dock-item.c:287 ../gdl/gdl-dock-master.c:147
+#: ../gdl/gdl-dock-item.c:417 ../gdl/gdl-dock-master.c:205
 msgid "Locked"
 msgstr "Blocat"
 
-#: ../gdl/gdl-dock-item.c:288
+#: ../gdl/gdl-dock-item.c:418
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr ""
 "Dacă opțiunea este activată, elementul detașabil nu poate fi mutat și "
 "mânerul nu este afișat"
 
-#: ../gdl/gdl-dock-item.c:296
+#: ../gdl/gdl-dock-item.c:426
 msgid "Preferred width"
 msgstr "Lățime preferată"
 
-#: ../gdl/gdl-dock-item.c:297
+#: ../gdl/gdl-dock-item.c:427
 msgid "Preferred width for the dock item"
 msgstr "Lățimea preferabilă a elementului detașabil"
 
-#: ../gdl/gdl-dock-item.c:303
+#: ../gdl/gdl-dock-item.c:433
 msgid "Preferred height"
 msgstr "Înălțime preferată"
 
-#: ../gdl/gdl-dock-item.c:304
+#: ../gdl/gdl-dock-item.c:434
 msgid "Preferred height for the dock item"
 msgstr "Înălțimea preferabilă a elementului detașabil"
 
-#: ../gdl/gdl-dock-item.c:592
+#: ../gdl/gdl-dock-item.c:448
+msgid "Iconified"
+msgstr "Iconificat"
+
+#: ../gdl/gdl-dock-item.c:449
+msgid ""
+"If set, the dock item is hidden but it has a corresponding icon in the dock "
+"bar allowing to show it again."
+msgstr ""
+"Dacă este stabilită, elementul andocabil este ascuns dar are o iconiță "
+"corespunzătoare în bara andocabilă permițând afișarea lui din nou."
+
+#: ../gdl/gdl-dock-item.c:465
+msgid "Closed"
+msgstr "Închis"
+
+#: ../gdl/gdl-dock-item.c:466
+msgid "Whether the widget is closed."
+msgstr "Dacă widgetul este închis."
+
+#: ../gdl/gdl-dock-item.c:888
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -103,7 +192,7 @@ msgstr ""
 "Nu se poate ancora un container (%p de tipul %s) într-un element de tip %s. "
 "Utilizați un element de tip GdlDock sau un alt tip de element compus."
 
-#: ../gdl/gdl-dock-item.c:599
+#: ../gdl/gdl-dock-item.c:895
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -112,105 +201,108 @@ msgstr ""
 "Încercare de ancorare a unui widget cu tipul %s la un %s, dar poate conține "
 "doar un widget la un moment dat; acesta conține deja un widget de tipul %s"
 
-#: ../gdl/gdl-dock-item.c:1285 ../gdl/gdl-dock-item.c:1335
+#: ../gdl/gdl-dock-item.c:1583 ../gdl/gdl-dock-item.c:1633
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "Strategia de atașare %s nu este implementată în obiecte doc de tipul %s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1443
+#: ../gdl/gdl-dock-item.c:1746
 msgid "UnLock"
 msgstr "Deblochează"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1450
+#: ../gdl/gdl-dock-item.c:1753
 msgid "Hide"
 msgstr "Ascunde"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1455
+#: ../gdl/gdl-dock-item.c:1759
 msgid "Lock"
 msgstr "Blochează"
 
-#: ../gdl/gdl-dock-item.c:1693
+#: ../gdl/gdl-dock-item.c:2033
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Încercare de legare a unul element nelegat %p"
 
-#: ../gdl/gdl-dock-layout.c:122 ../gdl/gdl-dock-bar.c:107
-msgid "Master"
-msgstr "Stăpân"
+#: ../gdl/gdl-dock-item-grip.c:385
+msgid "Iconify this dock"
+msgstr "Minimizează acest doc"
 
-#: ../gdl/gdl-dock-layout.c:123
-msgid "GdlDockMaster object which the layout object is attached to"
+#: ../gdl/gdl-dock-item-grip.c:387
+msgid "Close this dock"
+msgstr "Închide acest doc"
+
+#: ../gdl/gdl-dock-item-grip.c:728
+msgid "Dockitem which 'owns' this grip"
+msgstr "Elementul detașabil care deține acest mâner"
+
+#: ../gdl/gdl-dock-layout.c:129
+msgid ""
+"GdlDockMaster or GdlDockObject object which the layout object is attached to"
 msgstr ""
-"Obiectul de tip GdlDockMaster de care aparține obiectul de control al "
-"aranjamentului"
+"Obiectul de tip GdlDockMaster sau GdlDockObject la care obiectul "
+"aranjamentului este atașat"
 
-#: ../gdl/gdl-dock-layout.c:130
+#: ../gdl/gdl-dock-layout.c:136
 msgid "Dirty"
 msgstr "Murdar"
 
-#: ../gdl/gdl-dock-layout.c:131
+#: ../gdl/gdl-dock-layout.c:137
 msgid "True if the layouts have changed and need to be saved to a file"
 msgstr ""
 "Adevărat dacă aranjamentele s-au schimbat și trebuie să fie salvate într-un "
 "fișier"
 
-#: ../gdl/gdl-dock-layout.c:563
-#, c-format
-msgid "Could not load layout user interface file '%s'"
-msgstr ""
-"Nu s-a putut încărca fișierul cu aranjamentul interfeței cu utilizator „%s”"
-
-#: ../gdl/gdl-dock-layout.c:620
-msgid "Visible"
-msgstr "Vizibil"
-
-#: ../gdl/gdl-dock-layout.c:627
-msgid "Item"
-msgstr "Element"
-
-#: ../gdl/gdl-dock-layout.c:712 ../gdl/gdl-dock-object.c:119
-msgid "Name"
-msgstr "Nume"
-
-#: ../gdl/gdl-dock-layout.c:770
+#: ../gdl/gdl-dock-layout.c:303
 #, c-format
 msgid ""
-"While loading layout: don't know how to create a dock object whose nick is '%"
-"s'"
+"While loading layout: don't know how to create a dock object whose nick is "
+"'%s'"
 msgstr ""
 "La inițializarea aranjamentului: nu se cunoaște un mod de creare a unui "
 "obiect doc cu numele „%s”"
 
-#: ../gdl/gdl-dock-master.c:140 ../gdl/gdl-dock.c:186
-msgid "Default title"
-msgstr "Titlu implicit"
-
-#: ../gdl/gdl-dock-master.c:141
+#: ../gdl/gdl-dock-master.c:199
 msgid "Default title for newly created floating docks"
 msgstr "Titlul implicit pentru docurile flotante nou create"
 
-#: ../gdl/gdl-dock-master.c:148
+#: ../gdl/gdl-dock-master.c:206
 msgid ""
 "If is set to 1, all the dock items bound to the master are locked; if it's "
 "0, all are unlocked; -1 indicates inconsistency among the items"
 msgstr ""
 "Dacă are valoarea 1, toate elementele detașabile care aparțin de acest "
-"stăpân sunt blocate; pentru valoarea 0, toate sunt detașabile, iar valoarea -"
-"1 indică neuniformitate în regimul de funcționare al elementelor componente"
+"stăpân sunt blocate; pentru valoarea 0, toate sunt detașabile, iar valoarea "
+"-1 indică neuniformitate în regimul de funcționare al elementelor componente"
 
-#: ../gdl/gdl-dock-master.c:156 ../gdl/gdl-switcher.c:689
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:892
 msgid "Switcher Style"
 msgstr "Comutator stil"
 
-#: ../gdl/gdl-dock-master.c:157 ../gdl/gdl-switcher.c:690
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:893
 msgid "Switcher buttons style"
 msgstr "Stil buton comutator"
 
-#: ../gdl/gdl-dock-master.c:763
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:900
+msgid "Tab Position"
+msgstr "Poziția tabului"
+
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:901
+msgid "Which side of the notebook holds the tabs"
+msgstr "Care parte a carnețelului conține taburi"
+
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:908
+msgid "Tab reorderable"
+msgstr "Taburi reordonabile"
+
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:909
+msgid "Whether the tab is reorderable by user action"
+msgstr "Dacă tabul este reordonabil la acțiunea utilizatorului"
+
+#: ../gdl/gdl-dock-master.c:874
 #, c-format
 msgid ""
 "master %p: unable to add object %p[%s] to the hash.  There already is an "
@@ -219,7 +311,7 @@ msgstr ""
 "master %p: nu se poate ancora obiectul %p[%s] în tabela de dispersie. Există "
 "deja un element cu acest nume (%p)."
 
-#: ../gdl/gdl-dock-master.c:935
+#: ../gdl/gdl-dock-master.c:1101
 #, c-format
 msgid ""
 "The new dock controller %p is automatic.  Only manual dock objects should be "
@@ -228,52 +320,69 @@ msgstr ""
 "Noul administrator de elemente detașabile %p este automat. Numai obiectele "
 "manuale ar trebui să fie desemnate administratori."
 
-#: ../gdl/gdl-dock-notebook.c:134
+#: ../gdl/gdl-dock-master.c:1132
+#, c-format
+msgid "Dock #%d"
+msgstr "Docul #%d"
+
+#: ../gdl/gdl-dock-notebook.c:156
 msgid "Page"
 msgstr "Pagină"
 
-#: ../gdl/gdl-dock-notebook.c:135
+#: ../gdl/gdl-dock-notebook.c:157
 msgid "The index of the current page"
 msgstr "Indexul paginii curente"
 
-#: ../gdl/gdl-dock-object.c:120
+#: ../gdl/gdl-dock-object.c:205
+msgid "Name"
+msgstr "Nume"
+
+#: ../gdl/gdl-dock-object.c:206
 msgid "Unique name for identifying the dock object"
 msgstr "Nume unic pentru identificarea obiectului doc"
 
-#: ../gdl/gdl-dock-object.c:127
+#: ../gdl/gdl-dock-object.c:220
 msgid "Long name"
 msgstr "Nume lung"
 
-#: ../gdl/gdl-dock-object.c:128
+#: ../gdl/gdl-dock-object.c:221
 msgid "Human readable name for the dock object"
 msgstr "Numele lizibil al obiectului doc"
 
-#: ../gdl/gdl-dock-object.c:134
+#: ../gdl/gdl-dock-object.c:234
 msgid "Stock Icon"
 msgstr "Iconiță standard"
 
-#: ../gdl/gdl-dock-object.c:135
+#: ../gdl/gdl-dock-object.c:235
 msgid "Stock icon for the dock object"
 msgstr "Iconiță standard pentru obiectul doc"
 
-#: ../gdl/gdl-dock-object.c:141
+#: ../gdl/gdl-dock-object.c:250
+msgid "Pixbuf Icon"
+msgstr "Iconiță pixbuf"
+
+#: ../gdl/gdl-dock-object.c:251
+msgid "Pixbuf icon for the dock object"
+msgstr "Iconiță pibuf pentru obiectul doc"
+
+#: ../gdl/gdl-dock-object.c:263
 msgid "Dock master"
 msgstr "Doc stăpân"
 
-#: ../gdl/gdl-dock-object.c:142
+#: ../gdl/gdl-dock-object.c:264
 msgid "Dock master this dock object is bound to"
 msgstr "Docul stăpân de care este legat docul curent"
 
-#: ../gdl/gdl-dock-object.c:444
+#: ../gdl/gdl-dock-object.c:639
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
 "hasn't implemented this method"
 msgstr ""
-"Apel către gdl_dock_object_dock pe un obiect doc %p (tipul obiectului este %"
-"s) care nu implementează această metodă"
+"Apel către gdl_dock_object_dock pe un obiect doc %p (tipul obiectului este "
+"%s) care nu implementează această metodă"
 
-#: ../gdl/gdl-dock-object.c:576
+#: ../gdl/gdl-dock-object.c:852
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -282,31 +391,31 @@ msgstr ""
 "Operația de atașare cerută pe un obiect nelegat %p. Aplicația poate să-și "
 "încheie brusc execuția"
 
-#: ../gdl/gdl-dock-object.c:583
+#: ../gdl/gdl-dock-object.c:859
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr "Nu se poate atașa %p la %p deoarece aparțin unor stăpâni diferiți"
 
-#: ../gdl/gdl-dock-object.c:625
+#: ../gdl/gdl-dock-object.c:924
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
 msgstr ""
 "Încercare de legare a %p la un obiect doc deja legat %p (stăpân curent: %p)"
 
-#: ../gdl/gdl-dock-paned.c:131
+#: ../gdl/gdl-dock-paned.c:145
 msgid "Position"
 msgstr "Poziție"
 
-#: ../gdl/gdl-dock-paned.c:132
+#: ../gdl/gdl-dock-paned.c:146
 msgid "Position of the divider in pixels"
 msgstr "Poziția divizorului în pixeli"
 
-#: ../gdl/gdl-dock-placeholder.c:144
+#: ../gdl/gdl-dock-placeholder.c:166
 msgid "Sticky"
 msgstr "Adezic"
 
-#: ../gdl/gdl-dock-placeholder.c:145
+#: ../gdl/gdl-dock-placeholder.c:167
 msgid ""
 "Whether the placeholder will stick to its host or move up the hierarchy when "
 "the host is redocked"
@@ -314,19 +423,19 @@ msgstr ""
 "Dacă înlocuitorul va sta lipit de gazda sa sau va urca în ierarhie când "
 "gazda este reatașată"
 
-#: ../gdl/gdl-dock-placeholder.c:152
+#: ../gdl/gdl-dock-placeholder.c:174
 msgid "Host"
 msgstr "Gazdă"
 
-#: ../gdl/gdl-dock-placeholder.c:153
+#: ../gdl/gdl-dock-placeholder.c:175
 msgid "The dock object this placeholder is attached to"
 msgstr "Docul de care este atașat acest înlocuitor"
 
-#: ../gdl/gdl-dock-placeholder.c:160
+#: ../gdl/gdl-dock-placeholder.c:182
 msgid "Next placement"
 msgstr "Plasare următoare"
 
-#: ../gdl/gdl-dock-placeholder.c:161
+#: ../gdl/gdl-dock-placeholder.c:183
 msgid ""
 "The position an item will be docked to our host if a request is made to dock "
 "to us"
@@ -334,143 +443,83 @@ msgstr ""
 "Poziție de atașare a unui element la gazda noastră, daca ne este trimisă o "
 "cerere de atașare"
 
-#: ../gdl/gdl-dock-placeholder.c:170 ../gdl/gdl-dock.c:193
-msgid "Width"
-msgstr "Lățime"
-
-#: ../gdl/gdl-dock-placeholder.c:171
+#: ../gdl/gdl-dock-placeholder.c:193
 msgid "Width for the widget when it's attached to the placeholder"
 msgstr "Lățimea widgetului când este atașat la un înlocuitor"
 
-#: ../gdl/gdl-dock-placeholder.c:178 ../gdl/gdl-dock.c:201
-msgid "Height"
-msgstr "Înălțime"
-
-#: ../gdl/gdl-dock-placeholder.c:179
+#: ../gdl/gdl-dock-placeholder.c:201
 msgid "Height for the widget when it's attached to the placeholder"
 msgstr "Înălțimea widgetului când este atașat la un înlocuitor"
 
-#: ../gdl/gdl-dock-placeholder.c:185
+#: ../gdl/gdl-dock-placeholder.c:207
 msgid "Floating Toplevel"
 msgstr "Nivel superior flotant"
 
-#: ../gdl/gdl-dock-placeholder.c:186
+#: ../gdl/gdl-dock-placeholder.c:208
 msgid "Whether the placeholder is standing in for a floating toplevel dock"
 msgstr "Dacă înlocuitorul ține locul unui doc de nivel superior flotant"
 
-#: ../gdl/gdl-dock-placeholder.c:192
+#: ../gdl/gdl-dock-placeholder.c:214
 msgid "X Coordinate"
 msgstr "Coodonata X"
 
-#: ../gdl/gdl-dock-placeholder.c:193
+#: ../gdl/gdl-dock-placeholder.c:215
 msgid "X coordinate for dock when floating"
 msgstr "Coordonata X a docului, când este flotant"
 
-#: ../gdl/gdl-dock-placeholder.c:199
+#: ../gdl/gdl-dock-placeholder.c:221
 msgid "Y Coordinate"
 msgstr "Coordonata Y"
 
-#: ../gdl/gdl-dock-placeholder.c:200
+#: ../gdl/gdl-dock-placeholder.c:222
 msgid "Y coordinate for dock when floating"
 msgstr "Coordonata Y a docului, când este flotant"
 
-#: ../gdl/gdl-dock-placeholder.c:495
+#: ../gdl/gdl-dock-placeholder.c:514
 msgid "Attempt to dock a dock object to an unbound placeholder"
 msgstr "Încercare de atașare a unui obiect doc la un înlocuitor nelegat"
 
-#: ../gdl/gdl-dock-placeholder.c:619
+#: ../gdl/gdl-dock-placeholder.c:641
 #, c-format
 msgid "Got a detach signal from an object (%p) who is not our host %p"
 msgstr ""
 "S-a primit un semnal de detașare de la un obiect (%p) care nu este gazda "
 "noastră %p"
 
-#: ../gdl/gdl-dock-placeholder.c:644
+#: ../gdl/gdl-dock-placeholder.c:666
 #, c-format
 msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr ""
-"Un eveniment ciudat a avut loc în procesul aflării plasamentului copilului %"
-"p de la părintele %p"
+"Un eveniment ciudat a avut loc în procesul aflării plasamentului copilului "
+"%p de la părintele %p"
 
-#: ../gdl/gdl-dock-tablabel.c:129
-msgid "Dockitem which 'owns' this tablabel"
-msgstr "Element detașabil care deține acest „tablabel”"
+#~ msgid "Could not load layout user interface file '%s'"
+#~ msgstr ""
+#~ "Nu s-a putut încărca fișierul cu aranjamentul interfeței cu utilizator "
+#~ "„%s”"
 
-#: ../gdl/gdl-dock-bar.c:108
-msgid "GdlDockMaster object which the dockbar widget is attached to"
-msgstr ""
-"Obiectul de tip GdlDockMaster de care aparține widgetul bară de atașare"
+#~ msgid "Visible"
+#~ msgstr "Vizibil"
 
-#: ../gdl/gdl-dock-bar.c:115
-msgid "Dockbar style"
-msgstr "Stil bară de atașare"
+#~ msgid "Item"
+#~ msgstr "Element"
 
-#: ../gdl/gdl-dock-bar.c:116
-msgid "Dockbar style to show items on it"
-msgstr "Stil de afișare a elementelor pe bara de atașare"
+#~ msgid "Dock items"
+#~ msgstr "Elemente doc"
 
-#: ../gdl/gdl-dock.c:178
-msgid "Floating"
-msgstr "Flotant"
+#~ msgid "Layout Managment"
+#~ msgstr "Administrator aranjamente"
 
-#: ../gdl/gdl-dock.c:179
-msgid "Whether the dock is floating in its own window"
-msgstr "Dacă docul este flotant într-o fereastră proprie"
+#~ msgid "Saved layouts"
+#~ msgstr "Aranjamente salvate"
 
-#: ../gdl/gdl-dock.c:187
-msgid "Default title for the newly created floating docks"
-msgstr "Titlul implicit pentru docurile flotante nou create"
+#~ msgid "_Load"
+#~ msgstr "Înca_rcă"
 
-#: ../gdl/gdl-dock.c:194
-msgid "Width for the dock when it's of floating type"
-msgstr "Lățimea docului când este de tip flotant"
-
-#: ../gdl/gdl-dock.c:202
-msgid "Height for the dock when it's of floating type"
-msgstr "Înălțimea docului când este de tip flotant"
-
-#: ../gdl/gdl-dock.c:209
-msgid "Float X"
-msgstr "Flotant X"
-
-#: ../gdl/gdl-dock.c:210
-msgid "X coordinate for a floating dock"
-msgstr "Coordonata X a unui doc flotant"
-
-#: ../gdl/gdl-dock.c:217
-msgid "Float Y"
-msgstr "Flotant Y"
-
-#: ../gdl/gdl-dock.c:218
-msgid "Y coordinate for a floating dock"
-msgstr "Coordonata X a unui doc flotant"
-
-#: ../gdl/gdl-dock.c:484
-#, c-format
-msgid "Dock #%d"
-msgstr "Docul #%d"
-
-#: ../gdl/layout.ui.h:1
-msgid "Dock items"
-msgstr "Elemente doc"
-
-#: ../gdl/layout.ui.h:2
-msgid "Layout Managment"
-msgstr "Administrator aranjamente"
-
-#: ../gdl/layout.ui.h:3
-msgid "Saved layouts"
-msgstr "Aranjamente salvate"
-
-#: ../gdl/layout.ui.h:4
-msgid "_Load"
-msgstr "Înca_rcă"
-
-#: ../gdl/layout.ui.h:5
-msgid "_Lock dock items"
-msgstr "B_lochează elementele docului"
+#~ msgid "_Lock dock items"
+#~ msgstr "B_lochează elementele docului"
 
 #~ msgid "Layout managment"
 #~ msgstr "Administrare aranjament"
