@@ -35,7 +35,7 @@
  */
 
 
-#define ICON_SIZE 13
+#define ICON_SIZE 16
 
 G_DEFINE_TYPE (GdlDockItemButtonImage,
                gdl_dock_item_button_image,
@@ -48,9 +48,15 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
     GdlDockItemButtonImage *button_image;
     GtkStyleContext *context;
     GdkRGBA color;
+    int offset_x, offset_y;
 
     g_return_val_if_fail (widget != NULL, 0);
     button_image = GDL_DOCK_ITEM_BUTTON_IMAGE (widget);
+
+    /* Center the icon inside the widget */
+    offset_x = (gtk_widget_get_allocated_width (widget) - ICON_SIZE) / 2;
+    offset_y = (gtk_widget_get_allocated_height (widget) - ICON_SIZE) / 2;
+    cairo_translate (cr, offset_x, offset_y);
 
     /* Set up the pen */
     cairo_set_line_width(cr, 1.0);
