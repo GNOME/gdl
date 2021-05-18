@@ -1269,7 +1269,7 @@ gdl_switcher_set_tab_reorderable (GdlSwitcher *switcher, gboolean reorderable)
         return;
 
     children = gtk_container_get_children (GTK_CONTAINER (switcher));
-    for (l = children; l != NULL; l->next) {
+    for (l = children; l != NULL; l = l->next) {
         gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (switcher),
                                           GTK_WIDGET (l->data),
                                           reorderable);
