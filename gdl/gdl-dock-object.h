@@ -351,6 +351,9 @@ GdkPixbuf     *gdl_dock_object_get_pixbuf        (GdlDockObject    *object);
 void           gdl_dock_object_set_pixbuf        (GdlDockObject    *object,
                                                   GdkPixbuf        *icon);
 
+void          gdl_dock_object_class_set_is_compound (GdlDockObjectClass *object_class,
+                                                     gboolean           is_compound);
+
 
 /* other types */
 
