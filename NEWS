@@ -1,6 +1,16 @@
+Changes in 3.40.0
+
+* Center dock item button images (Thomas Holder)
+* Fix build problem on macOS (Ruben Di Battista)
+* Fix tab reordering (Sébatien Granjoux)
+
+* Translation: ca (Jordi Mas)
+* Translation: uk (Yuri Chornoivan)
+* Translation: nl (Nathan Follens)
+
 Changes in 3.34.0
 
-* omment invalid <category> in DOAP file (Andre Klapper)
+* Comment invalid <category> in DOAP file (Andre Klapper)
 
 * Translation: nl (Nathan Follens)
 * Translation: ro (Florentina Mușat)
