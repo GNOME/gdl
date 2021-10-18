@@ -68,13 +68,13 @@ gdl_dock_item_button_image_draw (GtkWidget      *widget,
 
     /* Draw the icon border */
     cairo_move_to (cr, 10.5, 2.5);
-    cairo_arc (cr, 10.5, 4.5, 2, -0.5 * M_PI, 0);
+    cairo_arc (cr, 10.5, 4.5, 2, -0.5 * G_PI, 0);
     cairo_line_to (cr, 12.5, 10.5);
-    cairo_arc (cr, 10.5, 10.5, 2, 0, 0.5 * M_PI);
+    cairo_arc (cr, 10.5, 10.5, 2, 0, 0.5 * G_PI);
     cairo_line_to (cr, 4.5, 12.5);
-    cairo_arc (cr, 4.5, 10.5, 2, 0.5 * M_PI, M_PI);
+    cairo_arc (cr, 4.5, 10.5, 2, 0.5 * G_PI, G_PI);
     cairo_line_to (cr, 2.5, 4.5);
-    cairo_arc (cr, 4.5, 4.5, 2, M_PI, 1.5 * M_PI);
+    cairo_arc (cr, 4.5, 4.5, 2, G_PI, 1.5 * G_PI);
     cairo_close_path (cr);
 
     cairo_stroke (cr);
