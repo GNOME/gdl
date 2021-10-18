@@ -1482,9 +1482,9 @@ static void
 gdl_dock_object_register_init (void)
 {
 #ifdef GDL_DISABLE_DEPRECATED
-    const size_t n_default = 4;
+#define n_default 4
 #else
-    const size_t n_default = 5;
+#define n_default 5
 #endif
     guint i = 0;
     struct DockRegisterItem default_items[n_default];

@@ -380,7 +380,7 @@ GType                 gdl_dock_object_set_type_for_nick (const gchar *nick,
  *
  * Output a debugging message for the corresponding dock object.
  */
-#define GDL_TRACE_OBJECT(object, format, args...) \
+#define GDL_TRACE_OBJECT(object, format, ...) \
     G_STMT_START {                            \
     g_log (G_LOG_DOMAIN,                      \
 	   G_LOG_LEVEL_DEBUG,                 \
@@ -392,9 +392,7 @@ GType                 gdl_dock_object_set_type_for_nick (const gchar *nick,
            G_OBJECT (object)->ref_count, \
            (GTK_IS_OBJECT (object) && g_object_is_floating (object)) ? "(float)" : "", \
            GDL_IS_DOCK_OBJECT (object) ? gdl_dock_object_is_frozen (GDL_DOCK_OBJECT (object)) : -1, \
-	   ##args); } G_STMT_END
-
-
+	   __VA_ARGS__); } G_STMT_END
 
 G_END_DECLS
 
