@@ -54,7 +54,7 @@ sources = [
   'gdl-deprecated.c',
 ]
 
-library('gdl-3',
+libgdl = library('gdl-3',
   sources: sources,
   version: '5.0.9',
   include_directories: include_directories('..', '.'),
@@ -66,5 +66,6 @@ library('gdl-3',
     xml_dep,
     gtk_dep,
   ],
+  vs_module_defs: 'gdl.def',
   install: true,
 )

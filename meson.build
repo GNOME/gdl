@@ -12,7 +12,7 @@ cc = meson.get_compiler('c')
 xml_dep = dependency('libxml-2.0', version: '>= 2.2.8')
 gtk_dep = dependency('gtk+-3.0')
 
-if host_machine.system() == 'windows'
+if cc.get_id() == 'msvc'
   add_project_arguments('-mms-bitfields', language: 'c')
 endif
 
