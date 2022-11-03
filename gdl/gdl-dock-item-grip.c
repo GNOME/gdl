@@ -401,7 +401,9 @@ gdl_dock_item_grip_realize (GtkWidget *widget)
         GdkWindowAttr  attributes;
         GdkCursor     *cursor;
 
-        g_return_if_fail (grip->priv->label != NULL);
+        if (grip->priv->label == NULL) {
+            gdl_dock_item_grip_set_label (grip, gdl_dock_item_create_label_widget(grip) );
+        }
 
         gtk_widget_get_allocation (widget, &allocation);
 
