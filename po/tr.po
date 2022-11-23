@@ -1,5 +1,5 @@
 # translation of gdl to Turkish
-# Copyright (C) 2008 THE gdl'S COPYRIGHT HOLDER
+# Copyright (C) 2008-2022 gdl's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gdl package.
 #
 # Baris Cicek <baris@teamforce.name.tr>, 2008.
@@ -9,9 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gdl master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gdl&key"
-"words=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-12 05:48+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gdl/issues\n"
+"POT-Creation-Date: 2022-08-31 11:46+0000\n"
 "PO-Revision-Date: 2015-02-14 22:03+0000\n"
 "Last-Translator: Necdet Yücel <necdetyucel@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -103,31 +102,32 @@ msgstr "Görev çubuğunu geç"
 msgid ""
 "Whether or not to prevent a floating dock window from appearing in the "
 "taskbar"
-msgstr "Kayan bir pencerenin görev çubuğunda görünmesinin önlenip önlenmeyeceği"
+msgstr ""
+"Kayan bir pencerenin görev çubuğunda görünmesinin önlenip önlenmeyeceği"
 
-#: ../gdl/gdl-dock-item.c:383
+#: ../gdl/gdl-dock-item.c:384
 msgid "Orientation"
 msgstr "Yönelim"
 
-#: ../gdl/gdl-dock-item.c:384
+#: ../gdl/gdl-dock-item.c:385
 msgid "Orientation of the docking item"
 msgstr "Sabitlenen öğenin yönelimi"
 
-#: ../gdl/gdl-dock-item.c:399
+#: ../gdl/gdl-dock-item.c:400
 msgid "Resizable"
 msgstr "Yeniden boyutlanabilir"
 
-#: ../gdl/gdl-dock-item.c:400
+#: ../gdl/gdl-dock-item.c:401
 msgid "If set, the dock item can be resized when docked in a GtkPanel widget"
 msgstr ""
 "Eğer atanmışsa, sabitlenmiş öğe GtkPanel parçası içinde sabitlenmişse "
 "yeniden boyutlandırılabilir"
 
-#: ../gdl/gdl-dock-item.c:407
+#: ../gdl/gdl-dock-item.c:408
 msgid "Item behavior"
 msgstr "Öğe işleyişi"
 
-#: ../gdl/gdl-dock-item.c:408
+#: ../gdl/gdl-dock-item.c:409
 msgid ""
 "General behavior for the dock item (i.e. whether it can float, if it's "
 "locked, etc.)"
@@ -135,36 +135,36 @@ msgstr ""
 "Sabitlenmiş öğe için genel işleyiş (örn. taşınabilir olması ya da kilitli "
 "olması vb.)"
 
-#: ../gdl/gdl-dock-item.c:416 ../gdl/gdl-dock-master.c:205
+#: ../gdl/gdl-dock-item.c:417 ../gdl/gdl-dock-master.c:205
 msgid "Locked"
 msgstr "Kilitli"
 
-#: ../gdl/gdl-dock-item.c:417
+#: ../gdl/gdl-dock-item.c:418
 msgid ""
 "If set, the dock item cannot be dragged around and it doesn't show a grip"
 msgstr "Eğer atanmışsa, sabitlenmiş öğe taşınabilir ve bir grip göstermez"
 
-#: ../gdl/gdl-dock-item.c:425
+#: ../gdl/gdl-dock-item.c:426
 msgid "Preferred width"
 msgstr "Tercih edilen genişlik"
 
-#: ../gdl/gdl-dock-item.c:426
+#: ../gdl/gdl-dock-item.c:427
 msgid "Preferred width for the dock item"
 msgstr "Sabitlenmiş öğe için tercih edilen genişlik"
 
-#: ../gdl/gdl-dock-item.c:432
+#: ../gdl/gdl-dock-item.c:433
 msgid "Preferred height"
 msgstr "Tercih edilen yükseklik"
 
-#: ../gdl/gdl-dock-item.c:433
+#: ../gdl/gdl-dock-item.c:434
 msgid "Preferred height for the dock item"
 msgstr "Sabitlenmiş öğe için tercih edilen yükseklik"
 
-#: ../gdl/gdl-dock-item.c:447
+#: ../gdl/gdl-dock-item.c:448
 msgid "Iconified"
 msgstr "Simgeleştir"
 
-#: ../gdl/gdl-dock-item.c:448
+#: ../gdl/gdl-dock-item.c:449
 msgid ""
 "If set, the dock item is hidden but it has a corresponding icon in the dock "
 "bar allowing to show it again."
@@ -172,15 +172,15 @@ msgstr ""
 "Eğer ayarlanırsa, sabitlenmiş öge gizlidir ama geri getirilebilmesi için "
 "çubukta karşılık gelen simgesi bulunur."
 
-#: ../gdl/gdl-dock-item.c:464
+#: ../gdl/gdl-dock-item.c:465
 msgid "Closed"
 msgstr "Kapalı"
 
-#: ../gdl/gdl-dock-item.c:465
+#: ../gdl/gdl-dock-item.c:466
 msgid "Whether the widget is closed."
 msgstr "Parçanın kapalı olup olmaması."
 
-#: ../gdl/gdl-dock-item.c:870
+#: ../gdl/gdl-dock-item.c:888
 #, c-format
 msgid ""
 "You can't add a dock object (%p of type %s) inside a %s. Use a GdlDock or "
@@ -189,7 +189,7 @@ msgstr ""
 "Bir %3$s içine sabitleme nesnesi (%1$p tane %2$s türünden) ekleyemezsiniz. "
 "GdlDock ya da başka bir bileşen sabitleme nesnesi kullanın."
 
-#: ../gdl/gdl-dock-item.c:877
+#: ../gdl/gdl-dock-item.c:895
 #, c-format
 msgid ""
 "Attempting to add a widget with type %s to a %s, but it can only contain one "
@@ -198,28 +198,28 @@ msgstr ""
 "Bir %2$s içine %1$s türünde bir parça eklemeye çalışıldı, ancak aynı anda "
 "sadece bir parça bulunablir, zaten %3$s türünde bir parça içeriyor"
 
-#: ../gdl/gdl-dock-item.c:1565 ../gdl/gdl-dock-item.c:1615
+#: ../gdl/gdl-dock-item.c:1583 ../gdl/gdl-dock-item.c:1633
 #, c-format
 msgid "Unsupported docking strategy %s in dock object of type %s"
 msgstr ""
 "%2$s türündeki sabitleme nesnesinde desteklenmeyen sabitleme stratejisi %1$s"
 
 #. UnLock menuitem
-#: ../gdl/gdl-dock-item.c:1728
+#: ../gdl/gdl-dock-item.c:1746
 msgid "UnLock"
 msgstr "Kilidi Kaldır"
 
 #. Hide menuitem.
-#: ../gdl/gdl-dock-item.c:1735
+#: ../gdl/gdl-dock-item.c:1753
 msgid "Hide"
 msgstr "Gizle"
 
 #. Lock menuitem
-#: ../gdl/gdl-dock-item.c:1740
+#: ../gdl/gdl-dock-item.c:1759
 msgid "Lock"
 msgstr "Kilitle"
 
-#: ../gdl/gdl-dock-item.c:2012
+#: ../gdl/gdl-dock-item.c:2033
 #, c-format
 msgid "Attempt to bind an unbound item %p"
 msgstr "Ayırma öğesi %p bağlama girişimi"
@@ -271,27 +271,27 @@ msgstr ""
 "eğer 0 olarak atanmışsa, tümünün kilidi kaldırılır; -1 öğeler arasında "
 "tutarsızlık olduğunu belirtir"
 
-#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:893
+#: ../gdl/gdl-dock-master.c:214 ../gdl/gdl-switcher.c:892
 msgid "Switcher Style"
 msgstr "Değiştirici Biçemi"
 
-#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:894
+#: ../gdl/gdl-dock-master.c:215 ../gdl/gdl-switcher.c:893
 msgid "Switcher buttons style"
 msgstr "Değiştirici düğmeleri biçemi"
 
-#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:901
+#: ../gdl/gdl-dock-master.c:222 ../gdl/gdl-switcher.c:900
 msgid "Tab Position"
 msgstr "Sekme Konumu"
 
-#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:902
+#: ../gdl/gdl-dock-master.c:223 ../gdl/gdl-switcher.c:901
 msgid "Which side of the notebook holds the tabs"
 msgstr "Defterin hangi tarafının sekmeleri tutacağı"
 
-#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:909
+#: ../gdl/gdl-dock-master.c:230 ../gdl/gdl-switcher.c:908
 msgid "Tab reorderable"
 msgstr "Sekme sıralanabilir"
 
-#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:910
+#: ../gdl/gdl-dock-master.c:231 ../gdl/gdl-switcher.c:909
 msgid "Whether the tab is reorderable by user action"
 msgstr "Sekmenin kullanıcı tarafından yeniden sıralanabilmesi"
 
@@ -366,7 +366,7 @@ msgstr "Ana sabitlenmiş"
 msgid "Dock master this dock object is bound to"
 msgstr "Bu sabitleme nesnesinin bağlanacağı ana sabitlenmiş"
 
-#: ../gdl/gdl-dock-object.c:638
+#: ../gdl/gdl-dock-object.c:640
 #, c-format
 msgid ""
 "Call to gdl_dock_object_dock in a dock object %p (object type is %s) which "
@@ -375,7 +375,7 @@ msgstr ""
 "Sabitleme nesnesi %p (nesne türü %s) içerisinde bu metodu uygulamayan "
 "gtk_dock_object_dock çağrısı"
 
-#: ../gdl/gdl-dock-object.c:851
+#: ../gdl/gdl-dock-object.c:853
 #, c-format
 msgid ""
 "Dock operation requested in a non-bound object %p. The application might "
@@ -383,14 +383,14 @@ msgid ""
 msgstr ""
 "Bağlanmamış nesne %p içinde sabitleme işlemi istenmiş. Uygulama çakabilir"
 
-#: ../gdl/gdl-dock-object.c:858
+#: ../gdl/gdl-dock-object.c:860
 #, c-format
 msgid "Cannot dock %p to %p because they belong to different masters"
 msgstr ""
 "%p sabitlemesi %p üzerine gerçekleştirilemiyor çünkü ikisi de farklı analara "
 "ait"
 
-#: ../gdl/gdl-dock-object.c:923
+#: ../gdl/gdl-dock-object.c:925
 #, c-format
 msgid ""
 "Attempt to bind to %p an already bound dock object %p (current master: %p)"
@@ -485,39 +485,3 @@ msgid ""
 "Something weird happened while getting the child placement for %p from "
 "parent %p"
 msgstr "%p için %p üstünden alt yerleşimi alınırken garip bir şeyler oldu"
-
-#~ msgid "Could not load layout user interface file '%s'"
-#~ msgstr "Düzen kullanıcı arayüz dosyası '%s' yüklenemedi"
-
-#~ msgid "Visible"
-#~ msgstr "Görünür"
-
-#~ msgid "Item"
-#~ msgstr "Öğe"
-
-#~ msgid "Dock items"
-#~ msgstr "Bağlama öğeleri"
-
-#~ msgid "Layout Managment"
-#~ msgstr "Düzen Yönetimi"
-
-#~ msgid "Saved layouts"
-#~ msgstr "Kaydedilmiş düzenler"
-
-#~ msgid "_Load"
-#~ msgstr "_Yükle"
-
-#~ msgid "_Lock dock items"
-#~ msgstr "Sabitleme öğelerini _kilitle"
-
-#~ msgid "Expander Size"
-#~ msgstr "Genişletici Boyutu"
-
-#~ msgid "Size of the expander arrow."
-#~ msgstr "Genişletici okunun boyutu."
-
-#~ msgid "Layout managment"
-#~ msgstr "Düzen yöneticisi"
-
-#~ msgid "Icon size"
-#~ msgstr "Simge boyutu"
